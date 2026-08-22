@@ -68,13 +68,18 @@ class MediareCommittee(gl.Contract):
             leader_analysis,
             principle=(
                 "The output is a JSON legal opinion. Two outputs are EQUIVALENT "
-                "only if ALL hold: "
+                "if ALL of the following hold: "
                 "1) 'responsavel' is exactly the same; "
-                "2) 'resultado' is exactly the same; "
-                "3) for each key in 'valores', values are within plus/minus 15% "
-                "of each other, and a value of 0 in one must be 0 in the other; "
-                "4) at least 2 of the 'fundamentos' are semantically equivalent; "
-                "5) ignore 'confianca'."
+                "2) 'resultado': 'procedente' and 'parcialmente procedente' count "
+                "as equivalent to each other; 'improcedente' only matches "
+                "'improcedente'; "
+                "3) for each key in 'valores' EXCEPT moral damages "
+                "(danos morais): values within plus/minus 15% of each other, and "
+                "a value of 0 in one must be 0 in the other; "
+                "4) moral damages (any key containing 'moral') are a matter of "
+                "judicial discretion and may differ freely - ignore them; "
+                "5) at least 2 of the 'fundamentos' are semantically equivalent; "
+                "6) ignore 'confianca'."
             ),
         )
 
