@@ -3,15 +3,21 @@
 from genlayer import *
 import json
 
+DATASET_BASE = (
+    "https://raw.githubusercontent.com/cgmello/mediare-dataset/"
+    "6bf13ae581afd08415c54d0d825543c21e34bff5/casos/"
+)
+
 
 class MediareCommittee(gl.Contract):
     """
     Mediare - AI committee for extrajudicial mediation.
-    analyze_case(case_id, case_url):
+    analyze_case(case_id):
+      reads DATASET_BASE + case_id + ".json"
       round 1 -> structured opinion (comparative equivalence principle)
       round 2 -> settlement draft   (non-comparative equivalence principle)
     If the human mediator wants changes, the platform publishes a new immutable
-    snapshot of the case (v2, with the extra documents) and calls again.
+    snapshot of the case (e.g. id "0002-v2") and calls again with the new id.
     """
 
     case_id: str
@@ -28,7 +34,9 @@ class MediareCommittee(gl.Contract):
         self.termo = ""
 
     @gl.public.write
-    def analyze_case(self, case_id: str, case_url: str):
+    def analyze_case(self, case_id: str):
+        case_url = DATASET_BASE + case_id + ".json"
+
         # ---------- ROUND 1: structured opinion (comparative EP) ----------
         def leader_analysis() -> str:
             raw_case = gl.nondet.web.get(case_url).body.decode("utf-8")
