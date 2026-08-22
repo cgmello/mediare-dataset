@@ -1,8 +1,0 @@
-- Pedido de compra emitido pela revendedora S. D. V. Ltda. (28/10/2019) com valor da parcela de R$ 1.973,01
-- Comprovante de pagamento da entrada de R$ 2.000,00
-- Comprovante de devolução da entrada pela revendedora (03/02/2020)
-- Carnê/boletos recebidos da financeira com valor de R$ 2.043,45 por parcela
-- Certidão de inscrição em cadastros restritivos de crédito (SPC/Serasa)
-- Comprovante de tentativa de compra recusada em estabelecimento comercial
-- Documentos relativos à ação de busca e apreensão do veículo
-- Comprovação de que o veículo nunca foi retirado/recebido

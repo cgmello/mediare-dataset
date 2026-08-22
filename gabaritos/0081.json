@@ -1,0 +1,39 @@
+{
+  "id": "0081",
+  "origem": "real",
+  "processo_tjsp": "1000863-88.2025.8.26.0445",
+  "sha256_caso": "264315759bf56adc78350ed4958e5c2b73309fd4767ec6e69f5c0b8e101354ac",
+  "caso": "real-075-reforma",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1000863-88.2025.8.26.0445",
+  "parecer_esperado": {
+    "responsavel": "requerente",
+    "resultado": "improcedente",
+    "valores": {
+      "cobranca_notas_fiscais_custos_extraordinarios": 0.0,
+      "perdas_danos_lucros_cessantes": 0.0,
+      "dano_moral_pessoa_fisica": 0.0,
+      "dano_moral_pessoa_juridica": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Anulação do Termo de Transação e Encerramento",
+      "Condenação ao pagamento de R$ 1.496.468,35",
+      "Condenação em perdas e danos e lucros cessantes",
+      "Indenização por dano moral existencial à pessoa física (30 salários mínimos)",
+      "Indenização por danos morais à pessoa jurídica (50 salários mínimos)"
+    ],
+    "fundamentos": [
+      "Validade do Termo de Transação e Encerramento subscrito em 29/07/2024 com quitação plena, geral, ampla, irrestrita e irrevogável",
+      "Ausência de vício de consentimento: não comprovada coação econômica nos termos do art. 151 do Código Civil",
+      "Aplicação dos arts. 421, parágrafo único, e 421-A do CC: contratos empresariais presumem-se paritários, com intervenção mínima e força obrigatória",
+      "Dificuldades financeiras não configuram coação jurídica relevante nem premente necessidade para caracterizar lesão (art. 157 CC)",
+      "Assistência de advogado não é requisito formal de validade de negócio jurídico empresarial (art. 104 CC)",
+      "Transação só se anula por dolo, coação ou erro essencial (art. 849 CC), não comprovados nos autos"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: validade da transação com quitação plena e ausência de vício de consentimento (coação/lesão)"
+  }
+}

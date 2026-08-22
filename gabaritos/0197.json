@@ -1,0 +1,32 @@
+{
+  "id": "0197",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "f6edfc13ba2ca1ab09bd74e0cc5a81f5a614842396db9db61221b56c8766447f",
+  "caso": "sint-016-vizinhanca",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "parcial_ambos",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "danos_materiais": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "impermeabilizar_e_drenar": true,
+      "prazo_dias": 60,
+      "multa_diaria": 200.0
+    },
+    "pedidos_rejeitados": [
+      "ressarcimento de R$ 8250.00 - infiltracao interna decorre de defeito da propria requerente"
+    ],
+    "fundamentos": [
+      "requerido deve conter/drenar seu terreno elevado",
+      "danos internos tem causa em impermeabilizacao propria deficiente"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

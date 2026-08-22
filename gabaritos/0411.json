@@ -1,0 +1,29 @@
+{
+  "id": "0411",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "85a747bd1836b350dd173d18fc8bca3ab57b082f75085a4250d16eae15fb2cdc",
+  "caso": "sint-230-cobranca-servicos",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "requerida",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "total_devido": 720,
+      "multa_contratual": 0.0
+    },
+    "pedidos_rejeitados": [
+      "clausula de multa nao consta do contrato juntado - multa indevida"
+    ],
+    "fundamentos": [
+      "forca obrigatoria do contrato",
+      "ausencia de cancelamento formal mantem a obrigacao",
+      "clausula de multa nao consta do contrato juntado - multa indevida"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

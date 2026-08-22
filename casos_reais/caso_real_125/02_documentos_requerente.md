@@ -1,8 +1,0 @@
-- Convenção Condominial do Edifício (com destaque para Cláusula XII sobre penalidades)
-- Regulamento Interno do condomínio
-- Certidão de matrícula nº 97.462 do imóvel
-- Planilha detalhada das multas aplicadas (7 penalidades)
-- Ata da assembleia geral de 21 de março de 2024 ratificando as penalidades
-- Correspondências trocadas com a empresa locatária em julho/2022 sobre infração de estacionamento
-- Fotografias ou registros das infrações constatadas
-- Comprovantes das taxas condominiais da unidade para cálculo das multas

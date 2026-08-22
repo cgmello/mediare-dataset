@@ -1,8 +1,0 @@
-- Comprovante de pagamento do aluguel de maio de 2024
-- Recibo da caução de R$ 900,00 entregue no início da locação
-- Comprovantes de pagamento das contas de água (DAEM) datados de 09/08/2024
-- Comprovantes de pagamento das contas de energia (CPFL) datados de 09/08/2024
-- Comprovante de novo endereço (contrato de locação ou conta de consumo)
-- Boletim de Ocorrência ou registro de ameaças e ofensas (se houver)
-- Termo ou solicitação de recibo de entrega das chaves
-- Documentos pessoais (RG e CPF)

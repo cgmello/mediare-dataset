@@ -1,6 +1,0 @@
-- Contrato de compra e venda com especificação das condições de garantia
-- Certificado de garantia discriminando cobertura estrutural (10 anos) e cobertura do Gel-Coat (01 ano)
-- Manual técnico do produto explicando características do Gel-Coat
-- Literatura técnica sobre formação de bolhas em piscinas de fibra
-- Comprovante de registro da empresa (CNPJ, contrato social)
-- Eventuais registros de atendimento ao cliente

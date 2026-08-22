@@ -1,9 +1,0 @@
-- Contrato social da empresa requerida demonstrando atividade de comércio de veículos
-- Ficha de vistoria do veículo no momento da venda
-- Termo de garantia limitada de 90 dias para motor e câmbio
-- Comprovante de entrega do veículo à autora
-- Registro de atendimento da reclamação da autora
-- Ordem de serviço da oficina credenciada
-- Relatório dos serviços realizados pela oficina credenciada
-- Manual do proprietário do veículo com orientações de manutenção
-- Documentos societários demonstrando dificuldades financeiras da empresa

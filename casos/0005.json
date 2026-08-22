@@ -1,0 +1,12 @@
+{
+  "categoria": "005-reforma-empreitada",
+  "documentos": {
+    "documentos_requerente": "# Documentos comprobatórios — Requerentes\n\n1. Contrato de administração da obra e comprovantes de pagamento.\n2. Fotos das infiltrações no terraço, do forro de gesso danificado, do piso de madeira\n   estufado e dos dutos de ar-condicionado comprometidos.\n3. Orçamentos de reparação (impermeabilização + acabamentos): R$ 64.734,88.\n4. Troca de mensagens cobrando providências do empreiteiro.",
+    "documentos_requerido": "# Documentos comprobatórios — Requerido\n\n1. Registro fotográfico da entrega da obra (maio/2021).\n2. Fotos posteriores mostrando a alteração da drenagem do terraço feita pelos donos.\n3. (Não apresenta ART/projeto de impermeabilização nem diário de obra — documentação\n   técnica inexistente.)",
+    "peticao_requerente": "# Pedido de mediação — Parte Requerente\n\n**Requerentes:** Proprietários do imóvel (casal)\n**Requerido:** Empreiteiro/administrador da obra\n**Tipo de conflito:** Contrato de empreitada — vícios construtivos\n\n## Relato dos fatos\n\nContratamos o requerido para administrar a reforma da nossa residência, iniciada em\njulho de 2020: construção de laje nova, varanda, quartos, sauna e adequações\nhidráulicas. A obra foi entregue em maio de 2021. Pouco depois surgiram infiltrações\nseveras de água de chuva no terraço externo, danificando o forro de gesso, o piso de\nmadeira e os dutos do ar-condicionado. O requerido não supervisionou adequadamente\na impermeabilização e sequer manteve a documentação técnica do projeto.\n\n## Pedidos\n\n1. Ressarcimento integral do custo de reparação dos danos: R$ 64.734,88;\n2. Responsabilização do requerido pelos vícios construtivos.",
+    "resposta_requerido": "# Resposta da Parte Requerida\n\n**Requerido (empreiteiro):** a obra foi executada conforme o combinado e entregue sem\nressalvas. As infiltrações decorrem de alterações feitas pelos próprios proprietários\nAPÓS a entrega: por razões estéticas, modificaram o sistema de escoamento/drenagem\ndo terraço, comprometendo o projeto original. Não pode responder por intervenções\nde terceiros sobre o serviço entregue."
+  },
+  "id": "0005",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "ouro"
+}

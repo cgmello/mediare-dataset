@@ -1,9 +1,0 @@
-- Notas fiscais e recibos dos serviços de impermeabilização realizados
-- Contratos com empresas prestadoras de serviços de manutenção
-- Projeto original do edifício mostrando a localização do muro de arrimo
-- Fotografias da área de divisa entre os condomínios
-- Documentação técnica sobre a servidão de passagem
-- Comprovantes de despesas com reparos realizados
-- Atas de assembleias do nosso condomínio tratando das providências tomadas
-- Correspondências trocadas com o condomínio autor
-- Laudo ou parecer técnico (se houver) sobre a construção da churrasqueira do autor sobre estrutura de divisa

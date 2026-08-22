@@ -1,0 +1,12 @@
+{
+  "categoria": "transito",
+  "documentos": {
+    "documentos_requerente": "- Boletim de Ocorrência do acidente registrado em 14/04/2024\n- Documento de propriedade do veículo Hyundai HB20S\n- CNH da condutora M.D.A.\n- Apólice de seguro do veículo\n- Aviso de sinistro protocolado junto à seguradora\n- Orçamento da concessionária autorizada para reparo do veículo\n- Nota fiscal/recibo dos reparos realizados no valor de R$ 26.497,17\n- Comprovante de pagamento da franquia no valor de R$ 3.324,05\n- Fotografias dos danos no veículo\n- Mensagens/tentativas de contato com o requerido solicitando ressarcimento",
+    "documentos_requerido": "Nenhum documento foi apresentado pela parte requerida, que não contestou a ação.",
+    "peticao_requerente": "# PEDIDO DE MEDIAÇÃO\n\nVenho solicitar a mediação do conflito decorrente de acidente de trânsito ocorrido em 14/04/2024, por volta das 21h40.\n\nMinha filha, M.D.A., conduzia meu veículo Hyundai HB20S quando foi atingida pelo veículo Ford Fiesta conduzido pelo requerido G.M.S. O acidente aconteceu porque o requerido avançou a sinalização de PARE, colidindo com meu veículo.\n\nFelizmente não houve ferimentos graves nas ocupantes, mas o veículo sofreu danos significativos. Acionei o seguro e, devido à necessidade de reparo em concessionária autorizada, o conserto totalizou R$ 26.497,17. Tive que pagar franquia no valor de R$ 3.324,05.\n\nTentei contato com o requerido para que ressarcisse ao menos o valor da franquia que paguei, mas ele se recusou a realizar o pagamento.\n\nAlém do prejuízo material, passei por grande transtorno e abalo emocional com toda a situação, desde o momento do acidente com minha filha até a recusa do responsável em arcar com os danos que causou.\n\n**PEDIDOS:**\n1. Condenação do requerido ao pagamento de R$ 3.324,05 referente à franquia do seguro;\n2. Indenização por danos morais pelos transtornos e abalo sofridos;\n3. Correção monetária e juros desde a data do acidente.",
+    "resposta_requerido": "Não foi apresentada contestação pelos requeridos.\n\nOs requeridos G.M.S. e a segunda parte foram devidamente citados, mas permaneceram inertes, não oferecendo defesa no prazo legal."
+  },
+  "id": "0070",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "real"
+}

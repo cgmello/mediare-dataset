@@ -1,0 +1,40 @@
+{
+  "id": "0066",
+  "origem": "real",
+  "processo_tjsp": "1003151-98.2024.8.26.0168",
+  "sha256_caso": "f7d9e58167bd3859ae8ccd9e8a17f91db6ab48bbc812c0c52dc286a7624713a1",
+  "caso": "real-060-transito",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1003151-98.2024.8.26.0168",
+  "parecer_esperado": {
+    "responsavel": "requerente",
+    "resultado": "improcedente",
+    "valores": {
+      "lucros_cessantes": 0.0,
+      "pensao_vitalicia_mensal": 0.0,
+      "danos_materiais": 0.0,
+      "danos_morais": 0.0,
+      "danos_esteticos": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Lucros cessantes de R$ 7.816,00",
+      "Pensão mensal vitalícia desde a data do acidente até os 82 anos",
+      "Danos materiais de R$ 5.000,00",
+      "Danos morais de R$ 30.000,00",
+      "Danos estéticos de R$ 10.000,00"
+    ],
+    "fundamentos": [
+      "Culpa exclusiva da vítima por trafegar na contramão de direção, conforme registrado no Boletim de Ocorrência e relatado pela testemunha presencial (condutor do outro veículo)",
+      "Trafegar na contramão constitui infração gravíssima nos termos do Código de Trânsito Brasileiro, rompendo o nexo causal com eventuais irregularidades na via",
+      "A principal causa do acidente foi a fumaça decorrente de incêndio em vegetação de lote particular (fato de terceiro), pela qual o município não responde",
+      "A autora residia há 5 anos no local e transitava diariamente pela via, tendo pleno conhecimento prévio das irregularidades do asfalto e presença de areia, não havendo elemento surpresa",
+      "Ausência de nexo causal entre as alegadas irregularidades na via e a colisão frontal, que decorreu da invasão da contramão pela motociclista",
+      "A única testemunha presencial não corrobora a versão da autora, afirmando que o veículo atingido trafegava corretamente em sua mão de direção quando foi surpreendido pela moto na contramão"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - culpa exclusiva da requerente (vítima)",
+    "valores": "tolerância ±15% por rubrica; todas as rubricas devem ser 0.0 (zero) ante a improcedência total",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) trafegar na contramão, (2) fato de terceiro (incêndio/fumaça), (3) conhecimento prévio das condições da via pela autora, (4) ausência de nexo causal"
+  }
+}

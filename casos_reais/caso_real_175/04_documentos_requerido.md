@@ -1,9 +1,0 @@
-- Comprovante de transferência PIX de R$ 25.000,00 para K.E.F.S. realizada em 06/12/2024 às 11h12min
-- Pesquisa veicular completa emitida pela MTIX Tecnologia em 06/12/2024 às 10h54min
-- Laudo de vistoria cautelar de transferência pela CIA Vistorias de 07/12/2024
-- Prints de conversas via Facebook e aplicativo de mensagens com o anunciante W.R./E.R.
-- Recibos de pagamento de despachante e taxas de transferência do DETRAN/SP
-- Notas fiscais de reparos mecânicos, funilaria e pintura realizados no veículo
-- Cópia da ATPV assinada pelo autor com reconhecimento de firma
-- Fotos do veículo no momento da vistoria presencial mostrando avarias
-- Documentos pessoais (RG e CPF)

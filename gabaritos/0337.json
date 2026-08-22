@@ -1,0 +1,25 @@
+{
+  "id": "0337",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "bcb103b131c285f974869ab9aab125c5061f08c07e2c02ec966ee1a54b4374a2",
+  "caso": "sint-156-reforma-empreitada",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "requerida_empreiteira",
+    "resultado": "procedente",
+    "valores": {
+      "restituicao": 17625.0,
+      "multa_contratual": 7050.0
+    },
+    "fundamentos": [
+      "abandono injustificado da obra",
+      "restituicao do pago menos servicos efetivamente executados"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

@@ -1,4 +1,0 @@
-# Caso real 081 — reforma
-
-Fonte: CJPG/TJSP — proc. 1007289-13.2021.8.26.0266 — 1ª Vara, Itanhaém — 03/08/2026 ... final dos serviços de empreitada e reforma contratados junto às réus Dan Arquitetura Empreiteira Reformas em Geral Ltda e Fabiana de Moraes Daniel, fornecedoras de serviços do ramo de engenharia e reformas. Dito isto, de rigor a aplicação do Código Consumerista ao caso, invertendo-se o ônus da prova, nos termos de seu art. 6º, inciso VIII. Isso porque verifico haver ... CONCLUSÃO Aos 03/08/2026, faço estes autos conclusos ao MM. Juiz de Direito da 1ª Vara Judicial, Exmo. Sr. Dr. Paulo Alexandre Rodrigues Coutinho. Eu, ____________, subscrevi. SENTENÇA Processo Digital nº: 1007289-13.2021.8.26.0266 Classe –
-Peças reconstruídas do Relatório da sentença; nomes pseudonimizados (LGPD).

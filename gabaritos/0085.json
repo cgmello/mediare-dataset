@@ -1,0 +1,38 @@
+{
+  "id": "0085",
+  "origem": "real",
+  "processo_tjsp": "1015164-36.2023.8.26.0566",
+  "sha256_caso": "bb1dc5088285dff5425a5bf31fe8cb823e203c846a602791a04836773ab5a9e1",
+  "caso": "real-079-reforma",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1015164-36.2023.8.26.0566",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "danos_materiais_vicios_construtivos": 38389.85,
+      "multa_contratual": 0.0,
+      "aluguel_periodo_atraso": 0.0,
+      "danos_morais": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Danos materiais de R$ 59.768,38 (deferido apenas R$ 38.389,85 conforme perícia)",
+      "Multa contratual de R$ 18.000,00",
+      "Ressarcimento integral de aluguéis no valor de R$ 43.672,19 (deferido o valor mas a quantificação ficou para fase de cumprimento)",
+      "Danos morais de R$ 50.000,00"
+    ],
+    "fundamentos": [
+      "Perícia técnica constatou vícios construtivos de natureza endógena (falhas de execução) no valor de R$ 38.389,85",
+      "Atraso na entrega da obra comprovado: prazo contratual era janeiro/2021 e entrega ocorreu em agosto/2022",
+      "Pandemia de Covid-19 não configura caso fortuito ou força maior pois construção civil foi classificada como atividade essencial",
+      "Vícios decorrem de falhas de execução e não de má qualidade de materiais fornecidos pelo autor, conforme conclusão pericial",
+      "Direito ao ressarcimento de aluguéis pelo período de atraso (janeiro/2021 a agosto/2022) com base na teoria da reparação integral, a ser quantificado em fase de cumprimento de sentença",
+      "Réu não se desincumbiu do ônus de provar fato impeditivo, modificativo ou extintivo do direito do autor quanto aos vícios construtivos"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0; atenção: aluguel tem valor a ser apurado em liquidação",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: (1) vícios construtivos endógenos comprovados por perícia; (2) atraso configurado; (3) pandemia não afasta responsabilidade por ser atividade essencial"
+  }
+}

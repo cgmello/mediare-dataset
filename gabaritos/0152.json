@@ -1,0 +1,38 @@
+{
+  "id": "0152",
+  "origem": "real",
+  "processo_tjsp": "1018783-70.2024.8.26.0361",
+  "sha256_caso": "cfb5ad6d96f9716c861d59faa09b112041971961d91051ecba56d0717ff5c11f",
+  "caso": "real-146-divida",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1018783-70.2024.8.26.0361",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "honorarios_sobre_indenizacao": 4200.0,
+      "honorarios_sobre_imoveis": 0.0,
+      "custas_processuais_requerente": 0.0,
+      "custas_processuais_requerido": 0.0,
+      "honorarios_sucumbenciais_favor_requerente": 420.0,
+      "honorarios_sucumbenciais_favor_requerido": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Cobrança de honorários sobre os imóveis partilhados (matrículas 873 e 90.095)",
+      "Obrigação de registrar a escritura nas matrículas dos imóveis"
+    ],
+    "fundamentos": [
+      "Existência e validade do contrato de prestação de serviços advocatícios celebrado em 26/04/2018",
+      "Comprovação da efetiva prestação dos serviços com lavratura da escritura pública de dissolução de união estável",
+      "Não ocorrência de prescrição quanto aos honorários sobre a indenização, pois o prazo quinquenal não transcorreu desde o vencimento das parcelas",
+      "Procedência do pedido quanto aos 10% sobre a indenização de R$ 42.000,00 por constituir obrigação líquida e exigível",
+      "Improcedência do pedido quanto aos honorários sobre os imóveis por estar sujeito a condição suspensiva (alienação dos bens) ainda não implementada",
+      "Sucumbência recíproca em razão da procedência parcial do pedido monitório"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: (1) efetiva prestação dos serviços advocatícios; (2) não implementação da condição suspensiva quanto aos imóveis; (3) não ocorrência de prescrição"
+  }
+}

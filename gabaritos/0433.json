@@ -1,0 +1,28 @@
+{
+  "id": "0433",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "713e32b1d2a5abf39392fb78614260a5b2b106cd276739bb1f1fa6e3e10e39d3",
+  "caso": "sint-252-vizinhanca",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "danos_morais": 5000
+    },
+    "obrigacoes_de_fazer": {
+      "cessar_ruido_apos_22h": true,
+      "multa_por_evento": 300.0
+    },
+    "fundamentos": [
+      "perturbacao reiterada do sossego comprovada (videos, BOs)",
+      "dano moral pela reiteracao; valor moderado"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

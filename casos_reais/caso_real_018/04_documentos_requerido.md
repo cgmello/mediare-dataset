@@ -1,8 +1,0 @@
-- Contrato de locação assinado
-- Memória de cálculo discriminada do débito
-- Laudo de vistoria apontando necessidade de pintura
-- Termo de entrega das chaves de 06/02/2025
-- Comprovante de abatimento da caução atualizada
-- Correspondências trocadas com a locatária sobre agendamento de vistoria
-- Cláusula contratual prevendo obrigações de devolução do imóvel (art. 23, III, Lei 8.245/91)
-- Planilha demonstrando aplicação da cláusula IX do contrato (multa rescisória)

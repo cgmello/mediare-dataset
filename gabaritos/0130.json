@@ -1,0 +1,48 @@
+{
+  "id": "0130",
+  "origem": "real",
+  "processo_tjsp": "1023223-67.2023.8.26.0451",
+  "sha256_caso": "6ddc6f67a4f1956f35041b9e4e0a38487358324e688cf193778f7b83a462480b",
+  "caso": "real-124-condominio",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1023223-67.2023.8.26.0451",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "alugueis_periodo_atraso": 12389.19,
+      "revestimento_escada": 0.0,
+      "item_vidros_plasticos": 0.0,
+      "economia_telhado": 0.0,
+      "diferenca_esquadrias": 0.0,
+      "danos_morais_total": 0.0,
+      "danos_morais_por_reu": 0.0,
+      "agua_energia_imovel_locado": 0.0,
+      "iptu_condominio_imovel_locado": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "conclusao_da_obra": "Não determinada na sentença analisada, pois a autora foi autorizada a prosseguir com a obra por conta própria"
+    },
+    "pedidos_rejeitados": [
+      "Ressarcimento de contas de água e energia elétrica do imóvel alugado (despesas ordinárias de consumo)",
+      "Restituição de R$ 3.000,00 do revestimento da escada",
+      "Restituição de R$ 4.987,40 referente a vidros e plásticos",
+      "Restituição da economia com telhas",
+      "Restituição de R$ 9.918,00 de diferença de esquadrias",
+      "Indenização por danos morais de R$ 20.000,00",
+      "IPTU e condomínio do imóvel locado"
+    ],
+    "fundamentos": [
+      "Configuração de mora ex re: o prazo de 14 meses era vinculante e não meramente estimativo, constituindo elemento nuclear da oferta em relação de consumo (CDC art. 6º, III e art. 397 CC)",
+      "Perícia técnica atestou que o prazo de 14 meses era plenamente exequível e compatível com as técnicas construtivas para edificação de 155,12 m²",
+      "Inexistência de alterações solicitadas pela contratante capazes de justificar o atraso, conforme laudo pericial",
+      "Aluguéis configuram dano emergente indenizável: a privação da posse do imóvel próprio obrigou a autora a manter moradia locada, gerando prejuízo direto decorrente do inadimplemento",
+      "Despesas de água e energia elétrica do imóvel locado são ordinárias e existiriam em qualquer moradia, inclusive no imóvel próprio se concluído, não constituindo dano indenizável",
+      "Relação de consumo caracterizada entre autora e réus prestadores de serviços de engenharia, com incidência do CDC (arts. 2º, 3º e 14)"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato: requerido",
+    "valores": "tolerância ±15% para aluguéis (R$ 12.389,19); todas as demais rubricas devem ser 0.0 pois foram rejeitadas",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) prazo vinculante não meramente estimativo em relação de consumo, (2) viabilidade técnica do prazo confirmada por perícia, (3) aluguéis como dano emergente vs despesas ordinárias não indenizáveis"
+  }
+}

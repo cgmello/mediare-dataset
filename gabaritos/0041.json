@@ -1,0 +1,33 @@
+{
+  "id": "0041",
+  "origem": "real",
+  "processo_tjsp": "0000112-12.2025.8.26.0157",
+  "sha256_caso": "fd46806768d2c78f0c1cf10e6c0a2f09baa86311206ec5e687876ae4fa89f47a",
+  "caso": "real-035-consumo",
+  "fonte": "Sentenca TJSP - CJPG - proc. 0000112-12.2025.8.26.0157",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "substituicao_produto": 2598.0,
+      "danos_morais": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "substituir_refrigerador": "A requerida deve substituir o refrigerador Midea modelo MD RT 468FF DUP 220V BCO defeituoso por outro em perfeitas condições, mediante retirada do produto viciado"
+    },
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Relação de consumo caracterizada com aplicação do CDC",
+      "Responsabilidade solidária do marketplace que integra a cadeia de fornecimento conforme arts. 7º, parágrafo único, e 25, § 1º do CDC",
+      "Produto entregue com defeitos (amassados) constatados no ato da entrega",
+      "Constatação dos defeitos por preposto da própria requerida enviado à residência do autor",
+      "Requerida não se desincumbiu do ônus de provar que o produto foi entregue em perfeitas condições ou que os vícios decorreram de mau uso (art. 373, II, CPC)",
+      "Direito do consumidor à substituição do produto viciado conforme art. 18, caput, §1º, inciso I do CDC"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - deve ser 'requerido'",
+    "valores": "tolerância ±15% para valor de substituição (R$ 2.598,00); danos morais devem ser 0 pois não foram deferidos",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) responsabilidade solidária do marketplace/CDC, (2) defeito constatado na entrega, (3) inversão do ônus probatório não atendida pela ré, (4) direito à substituição do produto viciado"
+  }
+}

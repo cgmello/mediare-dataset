@@ -1,0 +1,25 @@
+{
+  "id": "0191",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "051513239ff08b746b897c4d984c8f5661d94c42ac75244dcd73d780aa606e45",
+  "caso": "sint-010-locacao-caucao",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "parcial_ambos",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "devolucao_caucao": 2100,
+      "retencao_reparos": 3900
+    },
+    "fundamentos": [
+      "vistoria inicial + final comprova danos alem do desgaste natural",
+      "retencao proporcional; saldo deve ser devolvido"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

@@ -1,4 +1,0 @@
-- Documentos pessoais (RG e CPF)
-- Eventual projeto ou planta da construção do telhado
-- Fotografias da própria estrutura do telhado
-- Comprovante de residência

@@ -1,0 +1,12 @@
+{
+  "categoria": "reforma-empreitada",
+  "documentos": {
+    "documentos_requerente": "# Documentos comprobatórios — Requerente\n\n1. Contrato de empreitada e comprovantes de pagamento.\n2. Fotos da obra.\n3. Orçamentos/laudo de reparação.",
+    "documentos_requerido": "# Documentos comprobatórios — Requerida\n\n1. Contrato (mesma via).\n2. Registro fotográfico da entrega.\n3. Mensagens trocadas.",
+    "peticao_requerente": "# Pedido de mediação — Parte Requerente\n\n**Requerente:** I.K.D.\n**Requerida:** Refrigeração Polar ME\n**Conflito:** empreitada de reforma residencial\n\n## Fatos e pedidos\nContratei reforma por R$ 26500.00, paguei R$ 10600.00 adiantado e a empresa abandonou a obra com fração executada.",
+    "resposta_requerido": "# Resposta da Parte Requerida\n\n**Requerida:** Refrigeração Polar ME\n\nParalisamos por falta de pagamento de extras verbais (sem aditivo escrito)."
+  },
+  "id": "0263",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "sintetico"
+}

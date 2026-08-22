@@ -1,0 +1,12 @@
+{
+  "categoria": "cobranca",
+  "documentos": {
+    "documentos_requerente": "- Termo de Adesão ao Contrato de Formatura assinado em 31/03/2022\n- Comprovante de transferência Pix no valor de R$ 7.500,00\n- Comprovantes de emissão de ingressos nominais para o jantar de gala (17/08/2023)\n- Comprovantes de emissão de ingressos nominais para o baile de formatura (19/08/2023)\n- Registros de validação de entradas e acessos aos eventos\n- Planilha demonstrativa do saldo devedor de R$ 10.000,00",
+    "documentos_requerido": "(Nenhum documento apresentado)",
+    "peticao_requerente": "# Pedido de Mediação\n\nVenho solicitar mediação para resolver questão relacionada a contrato de formatura.\n\nEm 31/03/2022, aderi ao pacote de serviços de formatura da empresa requerida para minha turma de medicina, no valor total de R$ 17.500,00.\n\nA empresa organizou e realizou o jantar de gala em 17/08/2023 e o baile de formatura em 19/08/2023. Eu e meus convidados participamos dos eventos, que foram devidamente realizados conforme contratado.\n\nPaguei até o momento apenas R$ 7.500,00 através de transferência Pix, restando um saldo devedor de R$ 10.000,00 que não consegui quitar.\n\nSolicito mediação para negociarmos o pagamento deste valor remanescente de forma que eu possa honrar meu compromisso.",
+    "resposta_requerido": "# Resposta\n\n(A parte requerida não apresentou contestação nem documentos após ser regularmente citada)"
+  },
+  "id": "0037",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "real"
+}

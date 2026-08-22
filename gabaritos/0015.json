@@ -1,0 +1,43 @@
+{
+  "id": "0015",
+  "origem": "real",
+  "processo_tjsp": "1003432-20.2025.8.26.0168",
+  "sha256_caso": "2711b436ac30baffe6abf0140ec00391956186c5b38f9bbe8f360cc21ed893e0",
+  "caso": "real-009-locacao",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1003432-20.2025.8.26.0168",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "alugueis_em_atraso": 0.0,
+      "valor_proporcional_ajuste_vencimento": 266.6,
+      "taxa_religacao_agua": 52.5,
+      "faturas_agua_energia": 1313.25,
+      "danos_materiais_reparos": 1038.08,
+      "multa_compensatoria": 0.0,
+      "multa_moratoria": 0.0,
+      "juros": 0.0,
+      "correcao_monetaria": 0.0,
+      "honorarios_extrajudiciais": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Multa compensatória de 3 aluguéis na integralidade (reduzida por desproporcionalidade)",
+      "Honorários advocatícios contratuais/extrajudiciais (indevidos sem fixação judicial)",
+      "Cobrança cumulativa integral de multa moratória, juros e correção sem abatimento dos pagamentos parciais"
+    ],
+    "fundamentos": [
+      "Inadimplemento contratual incontroverso a partir de maio de 2025, admitido pelo próprio réu (art. 373, II, CPC)",
+      "Obrigação do locatário de pagar encargos (água e energia) decorre de previsão contratual expressa (Cláusulas 13d, 13f e 17ª) e da Lei 8.245/91",
+      "Dever de restituir o imóvel no estado em que recebeu (art. 23, III, Lei 8.245/91), comprovada deterioração por fotografias e certidões",
+      "Redução da multa compensatória por desproporcionalidade (art. 413 CC), considerando cumprimento parcial do contrato por 11 meses de prazo de 30 meses",
+      "Honorários advocatícios contratuais são indevidos sem fixação judicial",
+      "Devem ser abatidos os pagamentos parciais comprovados nos autos"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0; observar que valores de aluguéis em atraso, multas e juros dependem de abatimentos de pagamentos parciais não detalhados na sentença",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) inadimplemento incontroverso, (2) redução de multa por desproporcionalidade art. 413 CC, (3) dever de restituir imóvel e pagar encargos locatícios"
+  }
+}

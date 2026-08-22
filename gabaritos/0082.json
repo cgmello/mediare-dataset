@@ -1,0 +1,35 @@
+{
+  "id": "0082",
+  "origem": "real",
+  "processo_tjsp": "1000088-84.2022.8.26.0346",
+  "sha256_caso": "2e6aafad4148914779453a8ca99a207961849c974038c6a3a9a5362689bdd688",
+  "caso": "real-076-reforma",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1000088-84.2022.8.26.0346",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "valor_da_empreitada": 80000.0,
+      "entrega_imovel_alternativa": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "entrega_imovel_lote_11E_quadra_25": "obrigação principal afastada por impossibilidade jurídica (bem pertence a terceiro não obrigado)"
+    },
+    "pedidos_rejeitados": [
+      "Entrega do imóvel lote 11-E da quadra 25 (pedido principal) - rejeitado por impossibilidade de cumprimento, pois o bem pertence a terceiro (A.M.B.) que não integra a relação obrigacional"
+    ],
+    "fundamentos": [
+      "Contrato de empreitada válido e demonstrado por instrumento particular não impugnado",
+      "Execução substancial da obra pelo autor, comprovada por fotografias e reconhecimento tácito do réu",
+      "Interrupção dos trabalhos por iniciativa do próprio tomador dos serviços, impedindo acesso do empreiteiro ao local",
+      "Preclusão da prova pericial requerida pelo réu por não recolhimento dos honorários periciais, impedindo a comprovação dos alegados vícios estruturais",
+      "Impossibilidade jurídica de cumprimento da obrigação de entrega do imóvel, pois o bem pertence a terceiro (A.M.B.) que não participou do contrato e não autorizou a disposição",
+      "Aplicação do artigo 373, II, do CPC: o réu não se desincumbiu do ônus de comprovar os fatos impeditivos do direito do autor (vícios construtivos e insegurança da edificação)"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - deve ser 'requerido'",
+    "valores": "tolerância ±15% sobre R$ 80.000,00 para o valor da empreitada; entrega do imóvel deve ser 0 (impossibilidade jurídica)",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) execução substancial da obra pelo autor, (2) preclusão da prova pericial por não recolhimento pelo réu, (3) impossibilidade de entrega do imóvel por pertencer a terceiro não obrigado, (4) interrupção da obra por iniciativa do tomador"
+  }
+}

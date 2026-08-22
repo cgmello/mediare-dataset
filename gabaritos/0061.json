@@ -1,0 +1,36 @@
+{
+  "id": "0061",
+  "origem": "real",
+  "processo_tjsp": "1002042-26.2019.8.26.0394",
+  "sha256_caso": "f8a4ac85888fd80e5f56f381b6c09c85abb4e76a0bab35bf0a6de90f103c3986",
+  "caso": "real-055-transito",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1002042-26.2019.8.26.0394",
+  "parecer_esperado": {
+    "responsavel": "requerente",
+    "resultado": "improcedente",
+    "valores": {
+      "danos_morais": 0.0,
+      "pensionamento_mensal": 0.0,
+      "danos_materiais": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Indenização por danos morais de R$ 100.000,00",
+      "Pensionamento mensal de R$ 2.500,00",
+      "Ressarcimento de danos materiais"
+    ],
+    "fundamentos": [
+      "Culpa exclusiva da vítima comprovada por laudo pericial do Instituto de Criminalística que apontou que o ciclista não respeitou sinalização de parada obrigatória",
+      "Prova testemunhal confirmou que o ônibus trafegava em via preferencial, em baixa velocidade, e que o ciclista surgiu de ponto cego após ultrapassar pela direita ônibus parado",
+      "Ciclista realizou manobra imprudente de ultrapassagem e ingresso no cruzamento sem observar a preferência de passagem do coletivo",
+      "Rompimento do nexo de causalidade pela conduta exclusiva da vítima afasta responsabilidade objetiva da transportadora (art. 37, §6º, CF)",
+      "Autor não se desincumbiu do ônus probatório (art. 373, I, CPC) de demonstrar conduta culposa do condutor",
+      "Arquivamento do inquérito criminal por ausência de justa causa corrobora conclusão de culpa exclusiva da vítima"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - deve ser 'requerente' (culpa exclusiva da vítima)",
+    "valores": "todas as rubricas devem ser 0.0 (zero) - pedido improcedente; qualquer valor diferente de zero está incorreto",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: culpa exclusiva da vítima por desrespeito à parada obrigatória, prova pericial e testemunhal convergente, via preferencial do ônibus, rompimento do nexo causal, manobra imprudente do ciclista"
+  }
+}

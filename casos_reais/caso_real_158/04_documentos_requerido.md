@@ -1,7 +1,0 @@
-- Contrato de empréstimo consignado nº 010114716265 (fls. 356-357)
-- Documentos relativos ao processo de concessão do crédito (fls. 336-357)
-- Comprovante de transferência do valor do empréstimo para conta bancária (fls. 422-423)
-- Documentação do refinanciamento posterior
-- Histórico de descontos realizados no benefício previdenciário
-- Políticas internas de segurança e procedimentos de contratação
-- Normativas do Banco Central aplicáveis a empréstimos consignados

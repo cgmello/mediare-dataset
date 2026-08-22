@@ -1,0 +1,25 @@
+{
+  "id": "0382",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "ca970087d61b0a7879055aaa8b99619182d0f3c318d869953dc293e09a007b44",
+  "caso": "sint-201-consumo-produto",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "requerida_fornecedora",
+    "resultado": "procedente",
+    "valores": {
+      "restituicao": 8200,
+      "danos_morais": 4500
+    },
+    "fundamentos": [
+      "CDC art. 18 - vicio nao sanado em 30 dias",
+      "laudo confirma defeito de fabricacao"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

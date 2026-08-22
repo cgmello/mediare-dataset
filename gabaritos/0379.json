@@ -1,0 +1,26 @@
+{
+  "id": "0379",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "83047f7eadb87450a62e27dc023b0e0d62dae17bdd155ee5e22d8e8e49f39014",
+  "caso": "sint-198-cobranca-servicos",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "requerida",
+    "resultado": "procedente",
+    "valores": {
+      "total_devido": 700,
+      "multa_contratual": 200.0
+    },
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "forca obrigatoria do contrato",
+      "ausencia de cancelamento formal mantem a obrigacao"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

@@ -1,8 +1,0 @@
-- Contrato de empreitada assinado em 20/09/2021
-- Comprovantes de transferências bancárias totalizando R$ 123.041,61
-- Fotografias do estado da obra em novembro/2021 demonstrando a execução inferior a 10%
-- Fotografias dos defeitos encontrados na execução
-- Fotografias dos materiais de baixa qualidade empregados
-- Notificação de rescisão contratual datada de 09/11/2021
-- Documentos pessoais (RG, CPF)
-- Comprovante de propriedade/posse do imóvel reformado

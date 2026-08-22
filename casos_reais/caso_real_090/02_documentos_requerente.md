@@ -1,7 +1,0 @@
-- Contrato de prestação de serviços de reforma assinado em 03/05/2023
-- Comprovantes de pagamento das parcelas (R$ 11.500,00 total)
-- Parecer técnico de engenheiro civil
-- Fotografias dos defeitos na execução da obra
-- Notificação extrajudicial enviada à requerida
-- Orçamentos de terceiros para refazimento da obra (R$ 86.610,04)
-- Documentos pessoais (RG, CPF, comprovante de residência)

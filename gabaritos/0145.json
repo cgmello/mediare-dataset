@@ -1,0 +1,40 @@
+{
+  "id": "0145",
+  "origem": "real",
+  "processo_tjsp": "1002800-05.2025.8.26.0132",
+  "sha256_caso": "095c3a04e7ca3f2bf171ef8701844b914ef49ea7b875cf674e8c360f809af835",
+  "caso": "real-139-divida",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1002800-05.2025.8.26.0132",
+  "parecer_esperado": {
+    "responsavel": "ambos_culpa_concorrente",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "valor_principal_confessado": 0.0,
+      "excesso_execucao_reconhecido": 0.0,
+      "restituicao_valores_franquia": 0.0,
+      "multa_contratual": 0.0,
+      "honorarios_inclusos_indevidamente": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Reconhecimento da nulidade da execução",
+      "Rescisão do contrato de franquia por culpa exclusiva da franqueadora",
+      "Restituição de todos os valores pagos",
+      "Reconhecimento de excesso de execução",
+      "Concessão de efeito suspensivo"
+    ],
+    "fundamentos": [
+      "A sentença foi interrompida antes da conclusão do julgamento - o documento termina abruptamente na instrução probatória sem apresentar dispositivo",
+      "Embargos à execução possuem objeto limitado pelo artigo 917 do CPC, não sendo via adequada para anular contrato de franquia",
+      "Confissão de dívida constitui título executivo extrajudicial autônomo (art. 784, III, CPC) com liquidez, certeza e exigibilidade",
+      "Ausência de registro definitivo da marca no INPI não invalida necessariamente contrato de franquia se há pedido protocolizado",
+      "Vícios alegados na COF e no contrato de franquia deveriam ser discutidos em ação própria de conhecimento",
+      "Questões relacionadas à causa subjacente da obrigação não impedem necessariamente a executividade do título confessório autônomo"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "ATENÇÃO: Sentença incompleta - documento termina abruptamente sem dispositivo final. Gabarito baseado em análise da fundamentação parcial disponível",
+    "valores": "Sentença não contém decisão final sobre valores - documento interrompido. Todos os valores zerados por ausência de julgamento completo",
+    "fundamentos": "Mínimo 3 fundamentos em comum: autonomia da confissão de dívida, inadequação parcial da via dos embargos para anular contrato, e necessidade de ação própria para discutir vícios contratuais"
+  }
+}

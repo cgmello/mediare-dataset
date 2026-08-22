@@ -1,0 +1,28 @@
+{
+  "id": "0445",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "0feb8791739ab7daec3579dc4d1182dfbd8378f6c54d44480c19b6ee7b88a40c",
+  "caso": "sint-264-consumo-produto",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "requerida_fornecedora",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "restituicao": 7700,
+      "danos_morais": 0.0
+    },
+    "pedidos_rejeitados": [
+      "danos morais - mero aborrecimento"
+    ],
+    "fundamentos": [
+      "vicio oculto: prazo conta da descoberta (CDC art. 26 par.3)",
+      "restituicao devida; sem dano moral"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

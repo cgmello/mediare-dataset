@@ -1,0 +1,12 @@
+{
+  "categoria": "004-transito-engavetamento",
+  "documentos": {
+    "documentos_requerente": "# Documentos comprobatórios — Requerente\n\n1. Boletim de ocorrência do acidente com croqui do engavetamento.\n2. Fotos dos danos na traseira e lateral do Prisma prensado no guard-rail.\n3. Três orçamentos de funilaria (deferido o menor: R$ 18.472,00).\n4. Contrato de locação do táxi com diária de R$ 130,00.\n5. Ordens de serviço demonstrando 82 dias de oficina.",
+    "documentos_requerido": "# Documentos comprobatórios — Requerida\n\n1. Apólice de seguro com limite de R$ 50.000,00 para RCF-V danos materiais.\n2. Comprovantes de indenizações já pagas a outras vítimas do mesmo acidente.\n3. Versão do condutor registrada no aviso de sinistro.",
+    "peticao_requerente": "# Pedido de mediação — Parte Requerente\n\n**Requerente:** Locadora de veículos para taxistas Ltda.\n**Requerido:** Condutor do VW T-Cross (e sua seguradora)\n**Tipo de conflito:** Acidente de trânsito — danos materiais e lucros cessantes\n\n## Relato dos fatos\n\nEm 11/05/2023, por volta das 16h30, no elevado da Av. General Olímpio da Silveira\n(São Paulo/SP), nosso Chevrolet Prisma 2017 (utilizado como táxi por locatário) foi\natingido em um engavetamento: o VW T-Cross do requerido, sem guardar distância de\nsegurança, colidiu contra o GM Tracker que seguia à sua frente, que foi arremessado\ncontra o nosso táxi, prensando-o contra o guard-rail.\n\n## Pedidos\n\n1. Reparos do veículo: R$ 18.472,00 (menor orçamento);\n2. Lucros cessantes: R$ 10.660,00 — 82 dias de imobilização × diária de locação de R$ 130,00.",
+    "resposta_requerido": "# Resposta da Parte Requerida\n\n**Requerido (condutor do T-Cross):** o engavetamento decorreu de parada brusca e\ninjustificada dos veículos à frente, inclusive do táxi do requerente, o que configuraria\nculpa concorrente. Não agiu com imprudência.\n\n**Seguradora (interveniente):** a apólice tem limite de R$ 50.000,00 para danos\nmateriais a terceiros, já parcialmente consumido por indenizações pagas a outras\nvítimas do mesmo engavetamento; o saldo remanescente é de R$ 9.476,49."
+  },
+  "id": "0004",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "ouro"
+}

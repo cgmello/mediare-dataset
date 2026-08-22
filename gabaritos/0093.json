@@ -1,0 +1,41 @@
+{
+  "id": "0093",
+  "origem": "real",
+  "processo_tjsp": "1002292-16.2023.8.26.0363",
+  "sha256_caso": "a6f60eb299d5ce498ba87590f1602ea68b517a9fcacb047fce92b3b4c5aa0f78",
+  "caso": "real-087-reforma",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1002292-16.2023.8.26.0363",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "improcedente",
+    "valores": {
+      "saldo_acabamento": 0.0,
+      "assessoria_financiamento": 0.0,
+      "reembolso_pintura": 0.0,
+      "reforma_telhado": 0.0,
+      "total_cobranca_construtora": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Cobrança de R$ 30.900,00 de saldo de acabamento",
+      "Cobrança de R$ 6.391,95 de assessoria de financiamento",
+      "Cobrança de R$ 4.011,85 de materiais de pintura",
+      "Cobrança de R$ 19.515,32 de reforma do telhado"
+    ],
+    "fundamentos": [
+      "Aplicação do CDC - construtora como fornecedora e contratantes como consumidores finais (arts. 2º e 3º CDC)",
+      "Inversão do ônus da prova em favor dos consumidores (art. 6º, VIII, CDC)",
+      "Exceção do contrato não cumprido (art. 476 CC) - construtora não entregou obra em condições adequadas conforme perícia",
+      "Abatimentos autorizados pelo próprio representante da construtora em áudios e mensagens (janelas, caixas d'água, pisos, INSS) totalizando R$ 27.844,31",
+      "Inexistência de termo aditivo formalizando cobrança de assessoria de financiamento, conforme exigido pela Cláusula Primeira, Parágrafo Segundo do contrato",
+      "Materiais de pintura já incluídos no escopo contratual (Cláusula Segunda, Parágrafo Quinto)",
+      "Laudo pericial judicial constatou que a causa primária das infiltrações foi a execução defeituosa do telhado original pela construtora (estrutura em madeira quando memorial exigia aço, inclinação inadequada)",
+      "Reforma do telhado constitui cumprimento do dever legal de garantia (art. 618 CC e NBR 15.575:2013), afastando direito de cobrança"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido (construtora) é o responsável pelos vícios",
+    "valores": "tolerância ±15% por rubrica; todas as rubricas cobradas pela construtora devem ser 0 (zero) - cobrança totalmente improcedente",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) aplicação do CDC com inversão do ônus da prova, (2) laudo pericial constatando vícios construtivos de responsabilidade da construtora, (3) exceção do contrato não cumprido, (4) ausência de formalização da assessoria por termo aditivo"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "categoria": "locacao-caucao",
+  "documentos": {
+    "documentos_requerente": "# Documentos comprobatórios — Requerente\n\n1. Contrato de locação com cláusula de caução.\n2. Comprovante de pagamento da caução.\n3. Fotos do imóvel.\n4. Comprovante de devolução das chaves.",
+    "documentos_requerido": "# Documentos comprobatórios — Requerida\n\n1. Contrato (mesma via).\n2. Fotos após desocupação.\n3. Laudos de vistoria inicial e final assinados.",
+    "peticao_requerente": "# Pedido de mediação — Parte Requerente\n\n**Requerente:** D.L.P.\n**Requerido:** N.F.O.\n**Conflito:** locação residencial — caução\n\n## Fatos e pedidos\nDevolvi o imóvel de N.F.O. e ele reteve TODA a caução de R$ 7500.00. Aceito descontar pequenos reparos, mas a retenção integral é abusiva.",
+    "resposta_requerido": "# Resposta da Parte Requerida\n\n**Requerido:** N.F.O.\n\nA vistoria de saída, comparada à de entrada (ambas assinadas), aponta danos de R$ 3600.00. Retive a caução para cobri-los."
+  },
+  "id": "0237",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "sintetico"
+}

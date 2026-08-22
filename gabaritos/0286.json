@@ -1,0 +1,25 @@
+{
+  "id": "0286",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "46eddb5ddaad77d279eb145c8d7bdabea0a1a16c34531c6bfba8ea900e4c5b12",
+  "caso": "sint-105-locacao-caucao",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "requerido_locador",
+    "resultado": "procedente",
+    "valores": {
+      "devolucao_caucao": 6000,
+      "multa_contratual": 11000
+    },
+    "fundamentos": [
+      "Lei 8.245/91 art. 22 - vicios anteriores a locacao",
+      "sem vistoria inicial nao ha prova de danos do locatario"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

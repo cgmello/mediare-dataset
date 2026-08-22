@@ -1,8 +1,0 @@
-- Fotos do portão atual de 21cm de largura
-- Fotos da escada reduzida de 27cm
-- Documentos comprobatórios de residência desde 2000
-- Fotos das obras de reforma motivadas pelas chuvas de dezembro/2023
-- Conta de água em nome único (relógio compartilhado)
-- Orçamentos para ampliação da escada e troca do portão
-- Fotos da coluna que foi mandada retirar
-- Eventuais mensagens ou comunicações com a requerida sobre os conflitos

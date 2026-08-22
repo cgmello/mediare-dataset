@@ -1,0 +1,33 @@
+{
+  "id": "0034",
+  "origem": "real",
+  "processo_tjsp": "0009868-31.2014.8.26.0157",
+  "sha256_caso": "5a83febe9bc80bf1977098e68f49729b3ce93c79d7dc1b8fd7ed7a7037122e5d",
+  "caso": "real-028-cobranca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 0009868-31.2014.8.26.0157",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "mensalidades_fevereiro_a_junho_2012": 2731.14,
+      "multa_contratual": 0.0,
+      "correcao_monetaria": "IPCA-E desde vencimento de cada prestação até citação, após SELIC",
+      "juros_de_mora": "incluídos na SELIC a partir da citação"
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Contrato de prestação de serviços educacionais devidamente assinado pelo requerido, comprovando o vínculo jurídico obrigacional",
+      "Ausência de prova de pagamento das mensalidades de fevereiro a junho de 2012 por parte do réu",
+      "Contestação por negativa geral não desconstituiu a prova documental apresentada pela autora",
+      "Ônus da prova do pagamento (fato extintivo) cabia ao requerido, nos termos do art. 373, II, CPC",
+      "A autora desincumbiu-se do ônus de comprovar o fato constitutivo de seu direito (art. 373, I, CPC)",
+      "Aplicação da multa contratual conforme previsto no instrumento firmado entre as partes"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido deve ser identificado como responsável integral",
+    "valores": "tolerância ±15% sobre o valor principal de R$ 2.731,14; multa contratual deve ser considerada (valor não especificado na sentença); correção e juros conforme parâmetros definidos (IPCA-E até citação, SELIC após)",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) existência de contrato válido assinado, (2) ausência de prova de pagamento pelo réu, (3) negativa geral não afasta prova documental robusta, (4) distribuição do ônus probatório"
+  }
+}

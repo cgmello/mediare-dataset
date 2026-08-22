@@ -1,0 +1,40 @@
+{
+  "id": "0111",
+  "origem": "real",
+  "processo_tjsp": "1002063-20.2025.8.26.0223",
+  "sha256_caso": "54a0fee9fd0cea059f253fedcfd31a7d52283833fc7c9d5ec15ce9a17453a33e",
+  "caso": "real-105-vizinhanca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1002063-20.2025.8.26.0223",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "multa_diaria_por_descumprimento": 1000.0,
+      "limite_multa_diaria": 40000.0,
+      "custas_processuais": 0.0,
+      "honorarios_advocaticios": 1000.0
+    },
+    "obrigacoes_de_fazer": {
+      "sanar_infiltracao": "Instalar vedação adequada (rufo) na fresta entre o telhado da ré e a parede divisória",
+      "corrigir_declividade": "Corrigir a declividade da cobertura do telhado",
+      "prazo_cumprimento_dias": 30
+    },
+    "pedidos_rejeitados": [
+      "Remoção das telhas do muro (perda superveniente de objeto - ré já removeu durante o processo)",
+      "Indenização por danos (pedido não formulado na inicial)"
+    ],
+    "fundamentos": [
+      "Perícia confirmou existência de manchas de umidade, mofo e infiltrações na parede interna dos autores que faz divisa com imóvel da ré",
+      "Laudo pericial estabeleceu nexo causal entre infiltrações e falta de vedação (rufo) na fresta entre telha da ré e parede dos autores",
+      "Perícia apontou declividade reduzida da cobertura da ré como causa contributiva das infiltrações",
+      "Artigo 1.277 do Código Civil assegura direito de fazer cessar interferências prejudiciais provocadas por propriedade vizinha",
+      "Artigo 1.300 do Código Civil determina que proprietário deve edificar de modo que beiral não despeje águas sobre prédio vizinho",
+      "Ré promoveu alteração na estrutura durante o processo, retirando apoio das telhas no muro dos autores, tornando esse pedido prejudicado"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: confirmação pericial das infiltrações e nexo causal com estrutura da ré; aplicação dos artigos 1.277 e 1.300 do Código Civil sobre direito de vizinhança"
+  }
+}

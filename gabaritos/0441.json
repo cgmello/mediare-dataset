@@ -1,0 +1,28 @@
+{
+  "id": "0441",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "a773b170c144a5d15585c5c88426b793ec5ce0a26e3626c104d5d51a62f06186",
+  "caso": "sint-260-transito",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "danos_materiais": 20250,
+      "lucros_cessantes": 0.0
+    },
+    "pedidos_rejeitados": [
+      "lucros cessantes de R$ 7900.00 - sem prova do prejuizo liquido"
+    ],
+    "fundamentos": [
+      "culpa do requerido comprovada",
+      "lucros cessantes exigem prova efetiva, nao estimativa"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

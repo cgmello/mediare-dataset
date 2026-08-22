@@ -1,0 +1,12 @@
+{
+  "categoria": "003-consumo-piscina",
+  "documentos": {
+    "documentos_requerente": "# Documentos comprobatórios — Requerente\n\n1. Nota fiscal da compra (R$ 32.888,00) e contrato com instalação incluída.\n2. Fotos das bolhas nas bordas do casco, da delaminação lateral e das manchas.\n3. Laudo técnico/pericial apontando falhas de fabricação e instalação imprópria como\n   causa direta dos danos (nexo causal), afastando mau uso.\n4. Protocolos de reclamação junto à fabricante e à revendedora.",
+    "documentos_requerido": "# Documentos comprobatórios — Requeridas\n\n1. Certificado de garantia e manual do produto.\n2. Relatório interno da fabricante atestando conformidade do lote.\n3. Ordem de serviço da instalação assinada pelo consumidor.",
+    "peticao_requerente": "# Pedido de mediação — Parte Requerente\n\n**Requerente:** Consumidor (pessoa física)\n**Requeridas:** Fabricante de piscinas Ltda. e Revendedora Ltda.\n**Tipo de conflito:** Relação de consumo — vício do produto\n\n## Relato dos fatos\n\nAdquiri da revendedora uma piscina de fibra de vidro fabricada pela primeira requerida,\npelo valor de R$ 32.888,00, com instalação incluída. Pouco tempo após a instalação, o\nproduto passou a apresentar defeitos graves: bolhas porosas ao longo das bordas do\ncasco, delaminação lateral da fibra e manchas generalizadas. Acionei as requeridas,\nque não resolveram o problema, cada uma atribuindo a responsabilidade à outra e,\npor fim, alegando mau uso de minha parte.\n\n## Pedidos\n\n1. Restituição integral do valor pago: R$ 32.888,00;\n2. Indenização por danos morais, pela longa privação do uso e descaso no atendimento.",
+    "resposta_requerido": "# Resposta das Partes Requeridas\n\n**Fabricante:** o produto saiu de fábrica dentro dos padrões de qualidade; os danos\ndecorrem de instalação e manutenção inadequadas, de responsabilidade da revendedora\nou do próprio consumidor (uso de produtos químicos incorretos).\n\n**Revendedora:** a instalação seguiu o manual; eventuais defeitos são de fabricação,\nde responsabilidade exclusiva da fabricante. Ambas negam solidariedade e imputam\nmau uso ao consumidor."
+  },
+  "id": "0003",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "ouro"
+}

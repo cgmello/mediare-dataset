@@ -1,0 +1,50 @@
+{
+  "id": "0099",
+  "origem": "real",
+  "processo_tjsp": "1000976-49.2025.8.26.0281",
+  "sha256_caso": "9f78b091098eddb43e1c6947bb303eadc76345035c571a20bbca609de819cb89",
+  "caso": "real-093-reforma",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1000976-49.2025.8.26.0281",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "nota_fiscal_servicos_infraestrutura": 135000.0,
+      "nota_fiscal_materiais_equipamentos": 184755.61,
+      "danos_morais": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "emissao_nota_fiscal_servicos_infraestrutura": {
+        "descricao": "Emitir e entregar nota fiscal de prestação de serviços de infraestrutura (demolição, retirada de entulho, instalação elétrica e hidráulica, construção e acabamento)",
+        "valor": 135000.0,
+        "prazo_dias": 15,
+        "multa_diaria": 500.0,
+        "limite_multa_dias": 30
+      },
+      "emissao_nota_fiscal_materiais": {
+        "descricao": "Emitir e entregar nota fiscal de materiais de instalação e equipamentos adquiridos pela ré em favor da autora",
+        "valor": 184755.61,
+        "prazo_dias": 15,
+        "multa_diaria": 500.0,
+        "limite_multa_dias": 30
+      }
+    },
+    "pedidos_rejeitados": [
+      "Indenização por danos morais",
+      "Multa contratual da cláusula 8ª (não requerida expressamente)"
+    ],
+    "fundamentos": [
+      "Relação de consumo configurada, com aplicação do CDC (arts. 2º e 3º, §2º) e Código Civil (arts. 610-626)",
+      "Pagamento integral do preço contratual (R$ 400.000,00) comprovado por transferências, Pix e cartão, sem impugnação específica pela ré",
+      "Obrigação de emitir notas fiscais de prestação de serviços prevista na cláusula 5ª do contrato e na legislação tributária (LC 116/2003)",
+      "Notas fiscais emitidas pela ré referem-se apenas a materiais (R$ 30.000,00), representando menos de 10% do contrato, sem comprovação de emissão de notas de serviços",
+      "Descumprimento configurado pelo não atendimento às notificações extrajudiciais sobre vícios da obra (ar condicionado, drywall, fiação, porta) e ausência de impugnação específica",
+      "Dano moral à pessoa jurídica não comprovado: ausência de prova de lesão à honra objetiva, imagem ou crédito comercial; mero inadimplemento contratual insuficiente (Súmula 227 STJ)"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato: requerido",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0. Nota fiscal infraestrutura R$ 135.000,00; nota fiscal materiais R$ 184.755,61; danos morais = 0",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) relação de consumo + CDC, (2) pagamento integral comprovado vs. notas fiscais emitidas apenas para materiais (10% do contrato), (3) obrigação contratual e legal de emitir notas de serviços, (4) dano moral à PJ exige prova concreta de abalo extrapatrimonial"
+  }
+}

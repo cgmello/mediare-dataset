@@ -1,7 +1,0 @@
-- Matrícula do imóvel comprovando propriedade
-- Fotografias das infiltrações, umidade e mofo nas paredes limítrofes
-- Fotografias do terreno vizinho mostrando o aterro realizado
-- Notas fiscais e recibos dos serviços de reforma no valor total de R$ 8.000,00
-- Orçamentos dos trabalhos de aterramento interno
-- Comprovante de residência
-- Eventuais registros/notificações prévias ao vizinho

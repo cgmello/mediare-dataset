@@ -1,0 +1,24 @@
+{
+  "id": "0311",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "c770b7b4feed0319fc055c213dd962d06dc85297a7b5b58a987a8484413ab88b",
+  "caso": "sint-130-transito",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "ambos_culpa_concorrente",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "danos_materiais": 7625.0
+    },
+    "fundamentos": [
+      "conversao irregular do requerido + velocidade incompativel do requerente",
+      "reparticao 50/50 dos danos"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

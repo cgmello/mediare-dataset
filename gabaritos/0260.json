@@ -1,0 +1,24 @@
+{
+  "id": "0260",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "d8688f4b8f1d6f6dfff472c640ec602efb31cbab7d1225f03a604a5ac7f85042",
+  "caso": "sint-079-reforma-empreitada",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "requerida_empreiteira",
+    "resultado": "procedente",
+    "valores": {
+      "custo_reparos": 31250
+    },
+    "fundamentos": [
+      "vicios construtivos comprovados por laudo",
+      "responsabilidade do empreiteiro pela solidez e perfeicao (CC art. 618)"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

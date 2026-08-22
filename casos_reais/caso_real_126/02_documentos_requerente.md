@@ -1,7 +1,0 @@
-- Compromisso de compra e venda do lote 158-B firmado em 31/07/1984
-- Escritura pública de compra e venda registrada em 29/01/1988
-- Certidão de matrícula nº 28.223 do 1º Cartório de Registro de Imóveis de Bauru
-- Contrato-padrão do loteamento com cláusula 9ª (taxa de conservação)
-- Planilha de cobrança apresentada pela requerida em 27/06/2025 no valor de R$ 31.259,43
-- Comprovante de comunicação via aplicativo de mensagens com a cobrança
-- Documentos de identidade e CPF dos proprietários

@@ -1,0 +1,39 @@
+{
+  "id": "0028",
+  "origem": "real",
+  "processo_tjsp": "1000222-50.2025.8.26.0009",
+  "sha256_caso": "89c1114cb1c9a8cefc10d367eec49a6b7df937aa43619c935a49f86ec8a277a0",
+  "caso": "real-022-locacao",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1000222-50.2025.8.26.0009",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "alugueis_vencidos_ate_novembro_2024": 17808.59,
+      "alugueis_vincendos_ate_desocupacao": "a calcular",
+      "caucao_a_compensar": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "desocupacao_imovel": "15 dias para desocupação voluntária do imóvel situado na Rua Pedro Aguiar nº 133, Jardim Colorado"
+    },
+    "pedidos_rejeitados": [
+      "Compensação com caução contratual (não comprovada)",
+      "Reconhecimento de litigância de má-fé do autor",
+      "Inépcia da inicial",
+      "Falta de interesse processual"
+    ],
+    "fundamentos": [
+      "Existência comprovada de contrato de locação verbal entre as partes com aluguel mensal de R$ 1.000,00",
+      "Comprovação de pagamentos regulares até maio de 2023 por meio de comprovantes e mensagens de WhatsApp",
+      "Ausência de comprovação de pagamento dos aluguéis vencidos a partir de junho/2023 pelo locatário",
+      "Planilha de cálculo dos débitos não foi especificamente impugnada com apontamento de irregularidades concretas",
+      "Caução alegada pelo réu não foi minimamente comprovada (sem indicação de valor, data ou documento)",
+      "Questões sobre invasão de domicílio não interferem na inadimplência locatícia comprovada"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum"
+  }
+}

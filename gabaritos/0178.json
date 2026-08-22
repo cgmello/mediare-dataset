@@ -1,0 +1,36 @@
+{
+  "id": "0178",
+  "origem": "real",
+  "processo_tjsp": "1019891-07.2021.8.26.0114",
+  "sha256_caso": "a318075d7bd3fc3140cc629e5416f862af4ef863c27121f26df329beef41a762",
+  "caso": "real-172-veiculo_venda",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1019891-07.2021.8.26.0114",
+  "parecer_esperado": {
+    "responsavel": "requerente",
+    "resultado": "improcedente",
+    "valores": {
+      "restituicao_valor_compra": 0.0,
+      "restituicao_desvalorizacao": 0.0,
+      "danos_morais": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Restituição integral do valor pago (R$ 67.000,00) com desfazimento do negócio",
+      "Restituição de desvalorização de 40% (R$ 29.985,60)",
+      "Indenização por danos morais de R$ 27.500,00"
+    ],
+    "fundamentos": [
+      "Perícia judicial constatou que a vistoria realizada pela empresa Taboão Vistorias atendeu aos parâmetros técnicos exigidos para exames daquela natureza",
+      "As avarias estruturais identificadas eram graves e manifestas, de modo que teriam sido obrigatoriamente consignadas no laudo se existissem na data da primeira inspeção",
+      "Transcorreram 182 dias entre a primeira e segunda vistoria, período em que o veículo circulou mais de 10.000 km sob posse da autora",
+      "É plenamente possível a ocorrência de evento danoso ou sinistro posterior no intervalo temporal entre as vistorias, apto a ocasionar as deformações constatadas",
+      "Ausência de prova de que o vício alegado existia ao tempo da alienação ou da realização da vistoria cautelar",
+      "Não restou configurado ato ilícito, falha na prestação de serviço ou dever de indenizar a cargo de qualquer dos demandados"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerente deve arcar com ônus da sucumbência por não comprovar vício pré-existente",
+    "valores": "todas as rubricas devem ser 0.0 (zero) - pedido totalmente improcedente",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) perícia atestou regularidade da vistoria inicial; (2) avarias graves seriam detectadas se existissem à época; (3) transcurso de tempo significativo (182 dias e 10.896 km) com possibilidade de sinistro posterior; (4) ausência de prova de vício pré-existente"
+  }
+}

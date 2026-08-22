@@ -1,4 +1,0 @@
-- Laudo técnico particular de vistoria apontando desconformidades construtivas, insuficiência de elementos estruturais e risco de colapso
-- Fotografias demonstrando os vícios da construção
-- Cadastro municipal do imóvel em nome de A.M.B. (mãe do requerido)
-- Matrícula ou documentação do imóvel demonstrando titularidade de terceiro

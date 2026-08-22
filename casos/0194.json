@@ -1,0 +1,12 @@
+{
+  "categoria": "transito",
+  "documentos": {
+    "documentos_requerente": "# Documentos comprobatórios — Requerente\n\n1. Boletim de ocorrência com croqui.\n2. Fotos dos danos e do local.\n3. Três orçamentos de reparo.",
+    "documentos_requerido": "# Documentos comprobatórios — Requerida\n\n1. Fotos do próprio veículo.\n2. Versão registrada no BO.",
+    "peticao_requerente": "# Pedido de mediação — Parte Requerente\n\n**Requerente:** F.G.N.\n**Requerido:** I.K.D.\n**Conflito:** acidente de trânsito — danos materiais\n\n## Fatos\nEm via urbana de Jundiaí, meu veículo foi atingido pelo do requerido (colisão traseira).\n\n## Pedidos\n1. Reparos (menor orçamento): R$ 14000.00\n2. Lucros cessantes (uso profissional do veículo): R$ 10100.00",
+    "resposta_requerido": "# Resposta da Parte Requerida\n\n**Requerido:** I.K.D.\n\nReconheço a colisão, mas os lucros cessantes são estimativa sem comprovação contábil."
+  },
+  "id": "0194",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "sintetico"
+}

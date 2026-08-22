@@ -1,0 +1,35 @@
+{
+  "id": "0154",
+  "origem": "real",
+  "processo_tjsp": "1008108-15.2021.8.26.0309",
+  "sha256_caso": "5e33c06b67ad2b4df9e9b432a734e077c5d27ead07dd9da0570a9f4cc42ee222",
+  "caso": "real-148-servicos",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1008108-15.2021.8.26.0309",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "restituicao_valor_contratual": 10000.0,
+      "danos_morais": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Indenização por danos morais de R$ 20.000,00"
+    ],
+    "fundamentos": [
+      "Responsabilidade objetiva da clínica odontológica por defeito na prestação de serviços (art. 14 CDC)",
+      "Inversão do ônus da prova em favor do consumidor hipossuficiente (art. 6º, VIII, CDC)",
+      "Laudo pericial constatou nexo causal certo, direto e total entre os fatos narrados e os achados clínicos",
+      "Perícia identificou falha técnica no tratamento realizado e inobservância das regras consagradas na literatura científica",
+      "Requerida não se desincumbiu do ônus de comprovar excludentes de responsabilidade (art. 14, §3º, CDC)",
+      "Ausência de documentação clínica adequada (termo de consentimento, prontuário detalhado) por parte da requerida",
+      "Odontograma apresentado sem identificação, discriminação adequada dos trabalhos, assinatura e data",
+      "Dano moral não configurado: ausência de lesão a direito de personalidade, caracterizando mero aborrecimento"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - deve ser 'requerido'",
+    "valores": "tolerância ±15% para restituição (R$ 10.000,00); danos morais devem ser 0 (negados expressamente pela jurisprudência citada - mero aborrecimento)",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: responsabilidade objetiva CDC, inversão ônus da prova, laudo pericial confirmando falha técnica, ausência de documentação adequada pela clínica, dano moral não configurado"
+  }
+}

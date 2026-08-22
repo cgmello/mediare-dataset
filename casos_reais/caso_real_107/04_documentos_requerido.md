@@ -1,6 +1,0 @@
-- Notas fiscais da reforma hidráulica completa realizada no apartamento 62
-- Comprovantes de pagamento dos serviços de substituição da tubulação
-- Projeto técnico ou memorial descritivo da reforma hidráulica
-- Declaração escrita do síndico Sr. José Nelson Bonfiglioli Filho atestando que as infiltrações ocorreram antes da imissão na posse
-- Escritura de aquisição do imóvel com data de compra
-- Fotografias do estado do apartamento antes e após a reforma

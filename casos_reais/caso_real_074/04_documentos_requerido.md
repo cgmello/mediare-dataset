@@ -1,9 +1,0 @@
-- Cópia do contrato de empreitada;
-- Habite-se municipal emitido em 14/04/2021;
-- Documento de liberação/aprovação da obra pela engenharia da Caixa Econômica Federal;
-- Notas fiscais de materiais adquiridos para a obra;
-- Comprovantes de pagamento de mão de obra;
-- Eventuais notificações à autora sobre a retenção da última parcela;
-- Documentos comprovando dificuldades de fornecimento durante a pandemia;
-- Registros de comunicação com a autora durante a execução da obra;
-- Comprovante do valor da última parcela retida (R$ 5.000,00 / R$ 6.182,48 atualizado).

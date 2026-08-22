@@ -1,7 +1,0 @@
-- Escritura de compra do imóvel datada de janeiro/2024
-- Documentos do antigo proprietário (Ricardo Ferreira de Almeida)
-- Projeto ou registros das melhorias realizadas no sistema de drenagem
-- Fotografias do corredor lateral mostrando as grelhas instaladas
-- Laudo de assistente técnico contestando as conclusões do laudo particular da autora
-- Eventual documentação sobre a idade e histórico do muro divisório
-- Registros de manutenções realizadas no imóvel após a aquisição

@@ -1,0 +1,46 @@
+{
+  "id": "0048",
+  "origem": "real",
+  "processo_tjsp": "1005927-12.2025.8.26.0047",
+  "sha256_caso": "543a3aa6d5a98b689db2a68424a9286e157c4d17b1d3182b22029de4f57284b5",
+  "caso": "real-042-consumo",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1005927-12.2025.8.26.0047",
+  "parecer_esperado": {
+    "responsavel": "requerente",
+    "resultado": "procedente",
+    "valores": {
+      "valor_principal_devido": 5300.0,
+      "valor_atualizado_inicial": 5764.43,
+      "pedido_contraposto_ressarcimento_reparo": 0.0,
+      "pedido_compensacao": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Reconhecimento de vício do produto",
+      "Aplicação da exceção do contrato não cumprido",
+      "Inexigibilidade do débito",
+      "Compensação com valores de reparo",
+      "Condenação da requerente a restituir diferença",
+      "Inversão do ônus da prova",
+      "Exibição de documentos de terceiro",
+      "Produção de prova oral"
+    ],
+    "fundamentos": [
+      "Nota fiscal eletrônica e boleto mercantil protestado constituem prova escrita suficiente para ação monitória",
+      "O réu confessou expressamente a aquisição do produto e a ausência de pagamento",
+      "Alegação de defeito não constitui justificativa automática para não pagamento sem prova do vício",
+      "Ônus da prova do fato impeditivo (art. 373, II, CPC) não foi cumprido pelo embargante",
+      "Ausência de prova mínima do vício: não há laudo técnico, parecer ou elemento que demonstre defeito",
+      "Inexistência de prova documental de acionamento formal da garantia ou recusa da fornecedora",
+      "Nota fiscal de reparo emitida em nome de terceiro (A.P.) sem demonstração de correspondência com o produto em discussão",
+      "Inversão do ônus probatório exige verossimilhança mínima, inexistente no caso",
+      "Exceção do contrato não cumprido pressupõe prova do descumprimento pela parte contrária",
+      "Mora constituída de pleno direito desde o vencimento (28/04/2025) conforme art. 397 do Código Civil"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato: deve ser 'requerente' (credor/autor da monitória tem razão)",
+    "valores": "tolerância ±15% por rubrica; valor_principal_devido deve ser exatamente 5300.0; pedidos contrapostos devem ser 0.0 (rejeitados); valor atualizado é informativo",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) prova documental suficiente para monitória, (2) confissão do débito pelo réu, (3) ausência de prova do vício alegado, (4) ônus probatório não cumprido pelo embargante, (5) inexistência de prova de acionamento/recusa de garantia"
+  }
+}

@@ -1,5 +1,0 @@
-# Resposta da Parte Requerida
-
-**Requerida:** Refrigeração Polar ME
-
-O laudo da assistência constatou sinais claros de mau uso (queda e ingresso de líquido), excluindo a garantia.

@@ -1,0 +1,40 @@
+{
+  "id": "0043",
+  "origem": "real",
+  "processo_tjsp": "1005187-26.2025.8.26.0606",
+  "sha256_caso": "96fcb4bee6af2e21f2001022808676ff69254255edd799f006099e5a34bc7eb8",
+  "caso": "real-037-consumo",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1005187-26.2025.8.26.0606",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "danos_morais_A_B_S_S": 3000.0,
+      "danos_morais_P_B_S_S": 3000.0,
+      "total_condenacao": 6000.0,
+      "valor_pedido_A_B_S_S": 10000.0,
+      "valor_pedido_P_B_S_S": 10000.0,
+      "valor_negado": 14000.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Indenização por danos morais no valor de R$ 10.000,00 para A.B.S.S. (concedido apenas R$ 3.000,00)",
+      "Indenização por danos morais no valor de R$ 10.000,00 para P.B.S.S. (concedido apenas R$ 3.000,00)",
+      "Condenação solidária de Soni Supermercados Ltda. (reconhecida ilegitimidade passiva)"
+    ],
+    "fundamentos": [
+      "Ilegitimidade passiva do comerciante Soni Supermercados com base no art. 13 do CDC, pois o fabricante está identificado e macarrão não é produto perecível",
+      "Responsabilidade objetiva do fabricante M. Dias Branco pelo fato do produto, nos termos do art. 12 do CDC",
+      "Aplicação da inversão do ônus da prova (art. 6º, VIII, CDC) e ausência de prova concreta pela fabricante de inexistência de defeito ou de excludentes de responsabilidade",
+      "Comprovação do defeito do produto mediante fotografias, vídeo e cupom fiscal datado do mesmo dia da compra e do preparo",
+      "Configuração de dano moral in re ipsa pela comercialização de produto alimentício contaminado, com exposição a risco concreto à saúde, agravado por destinar-se a lactente de 8 meses",
+      "Aplicação do precedente do STJ (REsp 1.830.103/SP) que reconhece dano moral pela simples comercialização de produto contaminado, independentemente de ingestão efetiva"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - apenas M. Dias Branco responsabilizada, Soni Supermercados excluída por ilegitimidade",
+    "valores": "tolerância ±15% por rubrica (R$ 3.000,00 ±15% = R$ 2.550,00 a R$ 3.450,00 por autor); valor total entre R$ 5.100,00 e R$ 6.900,00; importante reconhecer redução do pedido de R$ 20.000,00 para R$ 6.000,00",
+    "resultado": "deve ser classificado como 'parcialmente procedente' pois houve redução substancial do valor (30% do pedido) e exclusão de um réu",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) ilegitimidade do comerciante por art. 13 CDC; (2) responsabilidade objetiva do fabricante por defeito do produto; (3) dano moral in re ipsa ou precedente STJ sobre produto contaminado; (4) inversão do ônus da prova e falta de prova da fabricante"
+  }
+}

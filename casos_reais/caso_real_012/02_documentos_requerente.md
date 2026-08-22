@@ -1,7 +1,0 @@
-- Contratos de Cessão Onerosa de Espaço firmados em 12/07/2018 (Container nº 2, Container nº 4, Plataformas A, C e D)
-- Planilha detalhada de cálculo do débito discriminando valores, vencimentos e índices aplicados
-- Edital de licitação referente à concessão dos espaços
-- Comprovantes de notificações extrajudiciais enviadas à requerida
-- Termo de devolução dos espaços datado de 23/08/2021
-- Demonstrativo de valores cobrados e pagos durante o período contratual
-- Documentos comprobatórios da concessão de desconto durante período pandêmico

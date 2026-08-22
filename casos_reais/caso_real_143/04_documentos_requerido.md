@@ -1,6 +1,0 @@
-- Comprovante de aposentadoria por incapacidade permanente
-- Extratos bancários demonstrando renda modesta
-- Documentos de identificação pessoal
-- Comprovante de residência atual
-- Cópia da decisão judicial que reconheceu a nulidade da citação
-- Cálculo demonstrando o transcurso do prazo prescricional quinquenal

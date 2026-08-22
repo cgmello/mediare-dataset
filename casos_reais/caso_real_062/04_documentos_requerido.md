@@ -1,4 +1,0 @@
-- Contestação fundamentada
-- Documentos do veículo municipal (ônibus escolar placa DBA-7297)
-- Cópia do processo administrativo de análise do pedido da requerente
-- Despacho de indeferimento administrativo

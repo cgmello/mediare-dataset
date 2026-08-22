@@ -1,1 +1,0 @@
-**Não houve apresentação de contestação. O requerido foi citado pessoalmente e permaneceu revel, não trazendo sua versão dos fatos nem documentos aos autos.**

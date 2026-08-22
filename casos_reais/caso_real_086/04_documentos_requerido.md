@@ -1,7 +1,0 @@
-- Contrato de prestação de serviços assinado pelas partes
-- Notas fiscais dos serviços prestados
-- Fotografias da obra em diferentes etapas de execução
-- Registro de medições e avanço físico-financeiro da obra
-- Orçamentos e comprovantes dos serviços extras executados
-- Comunicações com o contratante sobre andamento da obra
-- Planilha detalhada de custos e serviços executados

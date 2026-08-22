@@ -1,6 +1,0 @@
-- Termo de Adesão ao Contrato de Formatura assinado em 31/03/2022
-- Comprovante de transferência Pix no valor de R$ 7.500,00
-- Comprovantes de emissão de ingressos nominais para o jantar de gala (17/08/2023)
-- Comprovantes de emissão de ingressos nominais para o baile de formatura (19/08/2023)
-- Registros de validação de entradas e acessos aos eventos
-- Planilha demonstrativa do saldo devedor de R$ 10.000,00

@@ -1,0 +1,35 @@
+{
+  "id": "0157",
+  "origem": "real",
+  "processo_tjsp": "1006498-56.2025.8.26.0637",
+  "sha256_caso": "05609d4a67db9fe33375cd2cd93db5eb4c9e7364b8f88dc9417245978fb04889",
+  "caso": "real-151-servicos",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1006498-56.2025.8.26.0637",
+  "parecer_esperado": {
+    "responsavel": "requerente",
+    "resultado": "improcedente",
+    "valores": {
+      "restituicao_dobro_descontos": 0.0,
+      "dano_moral": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Declaração de inexigibilidade dos contratos nº 000015496829 e nº 000014979555",
+      "Restituição em dobro dos valores descontados",
+      "Indenização por danos morais de R$ 15.000,00"
+    ],
+    "fundamentos": [
+      "A autenticidade da cédula de crédito bancário nº 000014979555 (fls. 410-418) não foi impugnada, mantendo sua eficácia probatória (art. 428, I, CPC)",
+      "Prova pericial grafotécnica concluiu que a assinatura aposta na cédula de crédito bancário nº 000015496829 (fls. 399-409) é convergente com o padrão autêntico de assinatura da autora",
+      "Instituição financeira desincumbiu-se do ônus probatório de demonstrar a autenticidade do contrato impugnado (art. 429, II, CPC e Tema 1061 do STJ)",
+      "Comprovada a existência e validade de ambos os contratos, não há fundamento para declarar inexistência ou inexigibilidade das relações jurídicas",
+      "Pedidos de restituição de valores e indenização por danos morais pressupõem o reconhecimento de inexistência ou inexigibilidade contratual, o que não se verificou",
+      "Aplicação do CDC às instituições financeiras (Súmula 297 STJ) e responsabilidade objetiva (art. 14 CDC), mas ausência de falha na prestação do serviço bancário, uma vez que os contratos foram validamente celebrados pela própria autora"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: (1) prova pericial confirmou autenticidade da assinatura do contrato impugnado; (2) um dos contratos não teve autenticidade impugnada; (3) ausência de comprovação de fraude"
+  }
+}

@@ -1,8 +1,0 @@
-- Contrato de locação não residencial celebrado em 10/11/2013
-- Escritura ou matrícula do imóvel comprovando a propriedade
-- Planilha demonstrativa do débito discriminando mês a mês (agosto/2022 em diante)
-- Comprovantes de IPTU do imóvel
-- Contas de consumo (água, luz) eventualmente não pagas pelos locatários
-- Notificação extrajudicial enviada aos locatários cobrando os valores
-- Termo de fiança assinado por A.C.V.
-- Eventuais aditivos contratuais ou prorrogações

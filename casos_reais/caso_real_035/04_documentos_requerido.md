@@ -1,5 +1,0 @@
-- Termos e condições de uso da plataforma marketplace
-- Contrato de parceria comercial com a fabricante Midea
-- Políticas de responsabilidade e divisão de atribuições entre marketplace e vendedores parceiros
-- Comprovante de que a venda foi intermediada através de lojista parceiro
-- Eventualmente, registros internos de atendimento ao cliente

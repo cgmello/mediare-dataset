@@ -1,8 +1,0 @@
-# Pedido de mediação — Parte Requerente
-
-**Requerente:** Condomínio Edifício Alvorada
-**Requerido:** F.G.N. (unidade 153)
-**Conflito:** cobrança de cotas condominiais
-
-## Fatos
-O requerido acumulou 10 cotas de R$ 1400.00. Pedimos o principal com multa de 2% e juros de 1% a.m.

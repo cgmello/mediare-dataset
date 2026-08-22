@@ -1,0 +1,38 @@
+{
+  "id": "0153",
+  "origem": "real",
+  "processo_tjsp": "1008721-68.2024.8.26.0361",
+  "sha256_caso": "280082abea004da0eb3fc0dd3328a9ab9bff1cbfcc003e5c9f284cd6b1b6951e",
+  "caso": "real-147-divida",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1008721-68.2024.8.26.0361",
+  "parecer_esperado": {
+    "responsavel": "requerente",
+    "resultado": "improcedente",
+    "valores": {
+      "obrigacao_prestar_contas": 0.0,
+      "lucros_nao_repassados": 0.0,
+      "valores_desviados": 0.0,
+      "estoque_nao_devolvido": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Condenação do réu ao dever de prestar contas",
+      "Constituição de título executivo judicial para cobrança de valores",
+      "Apuração de lucros auferidos no período de 23/03/2023 a 04/07/2024",
+      "Prestação de contas da gestão do estabelecimento comercial"
+    ],
+    "fundamentos": [
+      "Ausência de demonstração inequívoca de relação jurídica fundada na efetiva administração, guarda ou gestão de bens, valores ou haveres alheios pelo requerido",
+      "O conjunto probatório não demonstrou outorga de poderes gerenciais, contrato de mandato, franquia, arrendamento ou assunção de administração de bens alheios pelo requerido",
+      "O requerido exercia função meramente operacional e subordinada de vendedor/comerciário, sem poderes de representação empresarial ou livre gestão financeira",
+      "A administração do estabelecimento após a prisão do autor ficou sob responsabilidade da genitora do requerente (Sra. Marisa Felício Bernardo), e não do requerido",
+      "As vendas por cartão eram direcionadas para conta bancária da pessoa jurídica do autor, não havendo comprovação de desvio de valores pelo réu",
+      "A ação de exigir contas pressupõe administração de bens alheios com autonomia diretiva, não se aplicando a empregados em funções operacionais subordinadas"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerente (autor não comprovou dever de prestar contas do réu)",
+    "valores": "tolerância ±15% por rubrica; todas as rubricas devem ser 0 (zero) pois o pedido foi totalmente improcedente na primeira fase",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) ausência de relação de administração/gestão de bens alheios; (2) réu era empregado vendedor sem poderes gerenciais; (3) não comprovação de outorga de mandato ou autonomia administrativa"
+  }
+}

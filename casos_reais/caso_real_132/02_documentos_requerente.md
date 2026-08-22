@@ -1,7 +1,0 @@
-- Comprovante de propriedade do imóvel (matrícula ou escritura)
-- Recibo de pagamento da caução (R$ 900,00) entregue pela locatária
-- Comprovantes de notificação extrajudicial para desocupação
-- Faturas de água em atraso (maio e junho de 2022; maio e junho de 2024)
-- Documentos pessoais (RG e CPF)
-- Comprovante de residência atual
-- Declaração de necessidade de uso próprio do imóvel

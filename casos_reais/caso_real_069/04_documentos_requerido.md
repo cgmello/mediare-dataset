@@ -1,7 +1,0 @@
-- Apólice de seguro do veículo (Allianz Seguros S.A.)
-- Documentos do veículo (CRLV)
-- Fotografias do veículo após o acidente (lateral traseira)
-- Boletim de Ocorrência (mesma ocorrência)
-- Eventual laudo pericial do veículo
-- Comprovante de que a requerente não possuía CNH na data do acidente
-- Orçamentos de reparo do veículo (se houver danos)

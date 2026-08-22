@@ -1,7 +1,0 @@
-- Contrato de Prestação de Serviços original
-- Registros de conversas por aplicativo de mensagens demonstrando intervenções da proprietária
-- Documentos comprovando o teste de estanqueidade realizado em janeiro/2021
-- Orçamentos e propostas da época demonstrando a recusa da manta asfáltica
-- Registros de comunicações técnicas enviadas aos proprietários
-- Parecer da assistente técnica contestando o laudo dos autores
-- Documentos da empresa SI Soluções (terceira executora da impermeabilização)

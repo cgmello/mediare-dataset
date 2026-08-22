@@ -1,3 +1,0 @@
-- Documentos relacionados a procedimentos específicos realizados na clínica em novembro e dezembro de 2023
-- Registros parciais de atendimentos do período (não incluindo a totalidade dos acessos ao sistema)
-- Comprovante de um atendimento específico registrado em nome da requerente

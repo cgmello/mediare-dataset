@@ -1,6 +1,0 @@
-- Anotações sobre problemas no projeto e na execução da obra
-- Conversas por mensagens com o requerente sobre questões da obra
-- Recibos de compras de materiais realizadas
-- Declarações sobre dificuldades enfrentadas durante a obra
-- Registros de paralisações e problemas técnicos
-- Comprovação da comunicação ao autor sobre impossibilidade de prosseguir

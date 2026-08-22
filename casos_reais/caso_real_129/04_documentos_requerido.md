@@ -1,7 +1,0 @@
-- Ata da assembleia geral extraordinária de 06/07/2024
-- Prestação de contas do período de abril de 2023 a junho de 2024 apresentada à assembleia
-- Documentos demonstrando irregularidades na gestão (contratos sem cotação prévia de orçamentos)
-- Ata de assembleia geral ordinária de agosto de 2025 com eleição de novo corpo diretivo
-- Convenção condominial
-- Demonstrativos de cotas condominiais de março e abril de 2024
-- Comprovantes de comunicação sobre a renúncia/afastamento do autor

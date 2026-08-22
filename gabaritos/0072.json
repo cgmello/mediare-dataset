@@ -1,0 +1,43 @@
+{
+  "id": "0072",
+  "origem": "real",
+  "processo_tjsp": "1006853-34.2023.8.26.0541",
+  "sha256_caso": "55d571aa8ff92fda0e4a06f9f0e0ff59a122d3018d15f91f8196f5e68e9bc164",
+  "caso": "real-066-transito",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1006853-34.2023.8.26.0541",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "danos_materiais_cota_protecao_veicular": 13978.3,
+      "danos_materiais_locacao_veiculo": 5675.0,
+      "danos_materiais_documentacao_vistoria": 970.0,
+      "seguro_veiculo_locado": 0.0,
+      "lucros_cessantes": 0.0,
+      "danos_morais": 0.0,
+      "pedido_contraposto": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Seguro do veículo locado (R$ 600,00) - pagamentos não comprovadamente relacionados ao contrato de locação",
+      "Lucros cessantes - ausência de prova do lucro líquido e de período determinado sem auferir renda, considerando que o autor locou veículo para continuar trabalhando",
+      "Danos morais - ausência de lesões físicas ou prova de ofensa à integridade psíquica; transtornos decorrentes de danos materiais não configuram dano moral",
+      "Pedido contraposto - valor de R$ 139.366,18 excede limite de 40 salários mínimos do Juizado; ausência de renúncia ao excedente; inclusão de pretensão de terceiro (esposa) vedada pelo art. 10 da Lei 9.099/95"
+    ],
+    "fundamentos": [
+      "O requerido iniciou mudança de faixa sem se certificar de que poderia executá-la com segurança, violando o art. 34 do Código de Trânsito Brasileiro",
+      "O relatório da Polícia Militar Rodoviária registrou que o veículo Fiat Toro colidiu lateralmente com o caminhão ao tentar mudar da faixa 2 para a faixa 3",
+      "A sinalização com seta apenas comunica intenção de mudar de faixa, não conferindo preferência para executar a manobra",
+      "O tacógrafo comprovou que o autor trafegava entre 70-80 km/h, dentro do limite regulamentar de 80 km/h para veículos pesados",
+      "A alegação de que o autor olhava para baixo permaneceu isolada, proveniente de pessoa diretamente interessada (esposa do requerido), sem confirmação objetiva",
+      "A classificação provisória como 'autor do fato' no procedimento criminal não constitui pronunciamento definitivo da Justiça Criminal",
+      "Lucros cessantes exigem prova objetiva do rendimento frustrado; o autor não demonstrou lucro líquido, custos operacionais ou período determinado sem renda, tendo locado veículo para continuar trabalhando",
+      "Danos morais requerem prova de ofensa à integridade física ou psíquica; transtornos decorrentes de prejuízos patrimoniais, por si sós, não configuram dano extrapatrimonial indenizável"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido",
+    "valores": "tolerância ±15% para cada rubrica de dano material concedida; rubricas negadas (seguro locado, lucros cessantes, danos morais, pedido contraposto) devem ser exatamente 0",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) violação ao dever de cautela na mudança de faixa pelo requerido; (2) insuficiência probatória dos lucros cessantes por ausência de demonstração de lucro líquido e período sem renda; (3) inexistência de dano moral por falta de prova de lesão à integridade física ou psíquica"
+  }
+}

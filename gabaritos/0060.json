@@ -1,0 +1,32 @@
+{
+  "id": "0060",
+  "origem": "real",
+  "processo_tjsp": "1007819-02.2022.8.26.0292",
+  "sha256_caso": "e5f4b48bfa3765c31e1fcff82602f7f7160defdc37ff0ddd7ef81e5896db8c6a",
+  "caso": "real-054-transito",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1007819-02.2022.8.26.0292",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "danos_emergentes_franquia": 5538.85,
+      "lucros_cessantes": 1772.9,
+      "danos_morais": 15000.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Responsabilidade civil objetiva do Estado por danos causados por agentes públicos ou prestadores de serviço terceirizados, nos termos do artigo 37, §6º da Constituição Federal",
+      "Dever indelegável de fiscalização da obra pública pelo Município, que não se exime pela terceirização do serviço",
+      "Fato comprovado documentalmente: retroescavadeira invadiu a pista e colidiu com veículo do autor que trafegava regularmente",
+      "Danos materiais comprovados pelo pagamento da franquia do seguro no valor de R$ 5.538,85",
+      "Lucros cessantes demonstrados pela privação do veículo utilizado como instrumento de trabalho em atividade autônoma de fretes",
+      "Dano moral caracterizado pelo abalo emocional decorrente do acidente e pela perda temporária do instrumento de trabalho, única fonte de subsistência do autor"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - responsabilidade solidária do Município e da empresa Casamax (ambos requeridos)",
+    "valores": "tolerância ±15% por rubrica; danos emergentes R$ 5.538,85; lucros cessantes R$ 1.772,90; danos morais R$ 15.000,00",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) responsabilidade objetiva estatal art. 37 §6º CF; (2) dever de fiscalização indelegável do Município; (3) comprovação do nexo causal e dos danos"
+  }
+}

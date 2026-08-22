@@ -1,0 +1,29 @@
+{
+  "id": "0362",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "4f79dd2f629c16e75656f8319cba53695d1e0a4961a5de4931c09cee12297385",
+  "caso": "sint-181-vizinhanca",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "danos_materiais": 6000
+    },
+    "obrigacoes_de_fazer": {
+      "impermeabilizar_e_drenar": true,
+      "prazo_dias": 60,
+      "multa_diaria": 200.0
+    },
+    "fundamentos": [
+      "obra do requerido alterou escoamento das aguas",
+      "laudo confirma nexo causal"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

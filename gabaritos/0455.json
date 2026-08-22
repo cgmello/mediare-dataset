@@ -1,0 +1,26 @@
+{
+  "id": "0455",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "5844c62f690d6ea4a40d0b3f6f8d4e98db78d8389a0676f6482830ac8138c0bf",
+  "caso": "sint-274-condominio",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "principal": 5850,
+      "multa_2pct": 117.0
+    },
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "obrigacao propter rem do condomino",
+      "multa limitada a 2% (CC art. 1.336 par.1)"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

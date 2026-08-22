@@ -1,6 +1,0 @@
-- Boletim de Ocorrência registrado na Polícia Militar sobre o incidente
-- Cupom fiscal do estabelecimento demonstrando cobrança apenas de bebidas
-- Relatório médico da Santa Casa de Jaú referente ao atendimento de urgência do menor C.H.N.
-- Registro do atendimento médico com descrição dos sintomas (tremores, falta de ar, palpitações)
-- Fotografias das pizzas com cacos de vidro (se disponíveis)
-- Eventuais testemunhas presentes no local

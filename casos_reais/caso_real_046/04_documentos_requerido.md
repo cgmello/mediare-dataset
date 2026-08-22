@@ -1,6 +1,0 @@
-- Extrato do contrato n° 4282676225458000
-- Parecer do setor financeiro atestando não localização do acordo
-- Parecer da assessoria de cobrança Paschoalotto informando que pagamentos não foram aceitos por divergência de modalidade
-- Demonstrativo de saldo devedor atual (R$ 2.142,43)
-- Documentos internos sobre política de recebimento de acordos
-- Comprovante de regularidade da inscrição nos órgãos de proteção ao crédito

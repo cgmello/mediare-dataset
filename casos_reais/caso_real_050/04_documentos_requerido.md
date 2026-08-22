@@ -1,7 +1,0 @@
-- Relatório técnico da assistência técnica autorizada
-- Laudo interno constatando instalação incorreta (abril/2024)
-- Fotografias da instalação mostrando tubulação com emendas de diâmetros distintos
-- Manual de instalação do produto com especificações técnicas
-- Termos de garantia do fabricante
-- Ordem de Serviço RNN231113043895 com anotações dos técnicos
-- Comprovante de visita técnica realizada em 05/01/2024

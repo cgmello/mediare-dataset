@@ -1,7 +1,0 @@
-- Parecer técnico divergente elaborado por assistente técnico
-- Projetos originais de engenharia do empreendimento
-- Memorial descritivo da incorporação
-- Documentos de aprovação do projeto na Prefeitura Municipal
-- Eventuais laudos técnicos de vistoria realizada antes da entrega das unidades
-- Comprovante de registro da incorporação
-- Termos de entrega e recebimento das unidades pelos adquirentes

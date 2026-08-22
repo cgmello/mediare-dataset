@@ -1,9 +1,0 @@
-- Fotografias dos danos causados pelas infiltrações (manchas de umidade, deterioração de pintura e revestimentos)
-- Escritura ou contrato de compra e venda do apartamento
-- Carnês de IPTU e taxas condominiais comprovando a propriedade
-- Relatórios de vistoria realizados pelo zelador e funcionários do condomínio
-- Orçamentos para reparo dos danos (pintura, reparos estruturais, substituição de materiais)
-- Comprovantes de tentativas de contato com a proprietária do apartamento superior
-- Correspondências trocadas com a administração do condomínio
-- Fotos do estado original do imóvel (antes das infiltrações)
-- Eventuais laudos técnicos sobre a origem e extensão dos danos

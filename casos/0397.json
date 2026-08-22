@@ -1,0 +1,12 @@
+{
+  "categoria": "vizinhanca",
+  "documentos": {
+    "documentos_requerente": "# Documentos comprobatórios — Requerente\n\n1. Fotos/vídeos.\n2. Laudo/orçamentos (quando aplicável).\n3. Boletins de ocorrência / atas de condomínio.",
+    "documentos_requerido": "# Documentos comprobatórios — Requerida\n\n1. Fotos da própria obra/imóvel.\n2. Testemunhos de outros vizinhos.",
+    "peticao_requerente": "# Pedido de mediação — Parte Requerente\n\n**Requerente:** N.F.O.\n**Requerido:** B.O.C.\n**Conflito:** direito de vizinhança\n\n## Fatos e pedidos\nO aterro do vizinho joga água na minha divisa. Gastei R$ 11000.00 em reformas internas e quero ressarcimento + drenagem.",
+    "resposta_requerido": "# Resposta da Parte Requerida\n\n**Requerido:** B.O.C.\n\nA parede dela não tem impermeabilização própria; os danos internos são da construção dela. Farei drenagem se preciso."
+  },
+  "id": "0397",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "sintetico"
+}

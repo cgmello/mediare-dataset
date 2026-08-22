@@ -1,0 +1,25 @@
+{
+  "id": "0432",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "76396e42ecda88a0e49b5814de964eaf0fd97d28f4a49593e2aa8599701f67dd",
+  "caso": "sint-251-consumo-produto",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "requerente_consumidor",
+    "resultado": "improcedente",
+    "valores": {
+      "restituicao": 0.0,
+      "danos_morais": 0.0
+    },
+    "fundamentos": [
+      "laudo tecnico da assistencia constatou mau uso (queda/liquido)",
+      "excludente de responsabilidade do fornecedor"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

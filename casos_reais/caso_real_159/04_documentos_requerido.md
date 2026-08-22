@@ -1,7 +1,0 @@
-- Contrato de prestação de serviços odontológicos assinado pelo autor (valor de R$ 3.400,00)
-- Termo de consentimento esclarecido assinado pelo paciente
-- Prontuário odontológico completo do autor
-- Registro de comparecimento do paciente às consultas
-- Comprovante de realização de moldagem em 01/03/2023
-- Documentos técnicos dos procedimentos realizados
-- Parecer de assistente técnico odontológico

@@ -1,4 +1,0 @@
-- Declaração de hipossuficiência econômica
-- Comprovantes de renda demonstrando dificuldades financeiras
-- Registro fotográfico do estado de conservação do imóvel (se houver)
-- Correspondências ou mensagens sobre a devolução do imóvel em novembro/2019 (se houver)

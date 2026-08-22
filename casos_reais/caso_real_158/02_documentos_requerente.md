@@ -1,8 +1,0 @@
-- Certidões de óbito de M.L.R.
-- Documentos de identidade dos três herdeiros (A.C.R.N., L.R.F. e B.R.F.)
-- Formal de partilha ou inventário demonstrando a condição de herdeiros
-- Documentos de curatela de A.C.R.N. (representado pelo irmão curador)
-- Histórico de empréstimos consignados obtido junto ao INSS
-- Extratos do benefício previdenciário demonstrando os descontos mensais
-- Comprovante de residência
-- Planilha discriminando os valores descontados indevidamente

@@ -1,5 +1,0 @@
-- Contrato de locação residencial celebrado em 24/01/2018
-- Comprovantes de titularidade do imóvel (escritura ou matrícula)
-- Planilha discriminativa dos valores devidos
-- Notificação extrajudicial enviada aos locatários (se houver)
-- Cópia das cláusulas contratuais, especialmente cláusulas 8ª e 11ª referentes às multas

@@ -1,0 +1,34 @@
+{
+  "id": "0059",
+  "origem": "real",
+  "processo_tjsp": "1005510-11.2025.8.26.0451",
+  "sha256_caso": "e494ac7a3375e927fbbf1b7c613f879adbc263436c1dcc259d6ff52037a37961",
+  "caso": "real-053-consumo",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1005510-11.2025.8.26.0451",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "restituicao_valor_produto": 2399.0,
+      "correcao_monetaria": "IPCA desde 20/12/2024",
+      "juros_mora": "SELIC desde a citação com dedução do IPCA",
+      "honorarios_advocaticios": 1000.0,
+      "custas_processuais": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Relação de consumo caracterizada, aplicável o Código de Defesa do Consumidor",
+      "Responsabilidade objetiva do fornecedor por vício de qualidade do produto (art. 18 CDC)",
+      "Aparecimento de descascamento após apenas 39 dias de uso incompatível com qualidade prometida de couro legítimo",
+      "Ré não se desincumbiu do ônus de provar excludente de responsabilidade (culpa exclusiva do consumidor)",
+      "Laudo técnico unilateral sem exame físico do produto não possui força probatória suficiente",
+      "Inversão do ônus da prova cabível por verossimilhança das alegações e hipossuficiência técnica do consumidor (art. 6º, VIII, CDC)"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: responsabilidade objetiva CDC art. 18, insuficiência de laudo unilateral, e não comprovação de excludente de responsabilidade"
+  }
+}

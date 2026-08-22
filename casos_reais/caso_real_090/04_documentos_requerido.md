@@ -1,6 +1,0 @@
-- Cópia do contrato de prestação de serviços
-- Contrato com subempreiteiro
-- Fotografias da obra em andamento e concluída
-- Planilhas de medição de serviços executados
-- Documentos da empresa (contrato social, inscrição estadual)
-- Eventual notificação de cobrança do saldo devedor

@@ -1,1 +1,0 @@
-(Não foram apresentados documentos pela defesa, que se limitou à negativa geral)

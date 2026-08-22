@@ -1,1 +1,0 @@
-_(Nenhum documento apresentado - revelia)_

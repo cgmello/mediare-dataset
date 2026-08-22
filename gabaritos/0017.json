@@ -1,0 +1,47 @@
+{
+  "id": "0017",
+  "origem": "real",
+  "processo_tjsp": "1017815-66.2023.8.26.0008",
+  "sha256_caso": "96133d9360e53ac1ca9eaa3719b01f61d9200a3cb9dbc29eecfe36b379ffceaa",
+  "caso": "real-011-locacao",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1017815-66.2023.8.26.0008",
+  "parecer_esperado": {
+    "responsavel": "requerente",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "devolucao_caucao": 6000.0,
+      "rendimentos_poupanca_sobre_caucao": 0.0,
+      "reembolso_energia_eletrica": 250.0,
+      "danos_morais_requerente": 0.0,
+      "compensacao_aluguel_proporcional": -1800.0,
+      "compensacao_contas_consumo": 0.0,
+      "danos_materiais_imovel": 0.0,
+      "despesas_chaveiro": 0.0,
+      "danos_morais_requerido": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "restituicao_caucao_corrigida": "Devolução da caução de R$ 6.000,00 com rendimentos da poupança, mediante compensação com débitos comprovados",
+      "liquidacao_por_calculo": "Apuração em liquidação do crédito da autora referente a faturas de energia com parcelamento pretérito, abatendo R$ 250,00 já compensados"
+    },
+    "pedidos_rejeitados": [
+      "Indenização por danos morais de R$ 15.000,00 pleiteada pela locatária",
+      "Indenização por danos morais de R$ 5.000,00 pleiteada pela locadora",
+      "Ressarcimento de R$ 1.782,00 por danos ao imóvel",
+      "Reembolso de R$ 280,00 de despesas com chaveiro",
+      "Reembolso integral de R$ 500,00 de energia elétrica (parcialmente deferido após liquidação)"
+    ],
+    "fundamentos": [
+      "O locatário possui direito potestativo de devolver o imóvel a qualquer tempo, não podendo o locador condicionar o recebimento das chaves à prévia vistoria ou quitação de encargos (art. 38, Lei 8.245/91)",
+      "A perícia judicial atestou a integridade estrutural do imóvel e plenas condições de habitabilidade, afastando a tese de inabitabilidade alegada pela locatária",
+      "A caução deve ser restituída com rendimentos da poupança, admitida compensação com débitos locatícios efetivamente comprovados",
+      "É devido aluguel proporcional de 27 dias referente ao período entre 19/09/2023 e 16/10/2023, no valor de R$ 1.800,00",
+      "Mero descumprimento contratual e aborrecimentos cotidianos não configuram dano moral indenizável",
+      "A cobrança por danos ao imóvel exige confronto entre laudo de vistoria inicial e de saída formais e bilaterais, não bastando vistorias unilaterais"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato: 'requerente' (locatária não comprovou inabitabilidade)",
+    "valores": "tolerância ±15% por rubrica; caução base R$ 6.000,00; aluguel proporcional R$ 1.800,00 (débito); reembolso energia a apurar em liquidação (parcial ~R$ 250,00); danos morais de ambas as partes = 0; danos materiais e chaveiro = 0",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) direito potestativo de devolução das chaves; (2) perícia afastou inabitabilidade; (3) devolução de caução com compensação de débitos comprovados; (4) rejeição de danos morais por ausência de ofensa à personalidade"
+  }
+}

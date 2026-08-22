@@ -1,0 +1,48 @@
+{
+  "id": "0128",
+  "origem": "real",
+  "processo_tjsp": "1034505-78.2024.8.26.0577",
+  "sha256_caso": "6095a9d3b5b8c5430490fa475e0bc768c60e4e623e238434d2263b587ab4aa78",
+  "caso": "real-122-condominio",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1034505-78.2024.8.26.0577",
+  "parecer_esperado": {
+    "responsavel": "ambos_culpa_concorrente",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "deposito_alugueis": 4618.36,
+      "indenizacao_danos_materiais_alugueres": 0.0,
+      "indenizacao_danos_materiais_agua": 0.0,
+      "multa_contratual": 0.0,
+      "danos_morais": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "declaracao_inexigibilidade": "parcial - cobranças após efetiva desocupação/vistoria formal",
+      "declaracao_quitacao": "mediante regularização do procedimento de entrega das chaves"
+    },
+    "pedidos_rejeitados": [
+      "Indenização por danos materiais de R$ 44.114,58 (descontos de aluguel)",
+      "Indenização por danos materiais de R$ 4.612,52 (conta de água)",
+      "Multa contratual de R$ 52.200,00",
+      "Reparação por danos morais de R$ 34.800,00",
+      "Reconhecimento de esbulho possessório",
+      "Caracterização de recusa injustificada de pagamentos",
+      "Caracterização de recusa injustificada no recebimento das chaves"
+    ],
+    "fundamentos": [
+      "Autores tinham pleno conhecimento do estado inacabado do imóvel conforme laudo de vistoria de entrada assinado por ambas as partes",
+      "Vícios relatados (piscina) foram prontamente reparados pelos locadores mediante contratação de empresa especializada com laudo técnico comprovando correção",
+      "Problema no lavabo surgiu após a entrega do imóvel (não constava em vistoria de entrada), caracterizando manutenção ordinária",
+      "Autores descumpriram cláusula contratual ao tentar efetuar pagamentos via PIX quando contrato estabelecia boleto bancário da administradora",
+      "Não houve solicitação formal e inequívoca de entrega antecipada do imóvel pelos locadores, apenas consultas informativas",
+      "Vistoria de saída não foi efetivamente realizada por falta de confirmação de novo horário após pedido de alteração pelos próprios autores",
+      "Ausência de formalização adequada da extinção contratual conforme procedimentos estabelecidos no contrato e na Lei de Locações",
+      "Cobranças foram suspensas assim que configurada a efetiva desocupação do imóvel (24/10/2024)",
+      "Depósito judicial realizado pelos autores deve ser considerado para quitação proporcional do período efetivamente ocupado"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato ou 'ambos_culpa_concorrente' / 'parcial_ambos' considerados equivalentes neste caso",
+    "valores": "tolerância ±15% por rubrica; todas as rubricas indenizatórias devem ser 0 ou valores muito baixos; apenas depósito judicial deve ser reconhecido",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) conhecimento prévio do estado do imóvel, (2) reparos realizados pelos locadores, (3) descumprimento da forma contratual de pagamento pelos locatários, (4) ausência de formalização adequada da extinção contratual"
+  }
+}

@@ -1,6 +1,0 @@
-- Documentos relacionados ao espólio/herança do imóvel
-- Fotografias do próprio terreno
-- Fotografias da construção da autora mostrando aspectos da edificação
-- Eventuais documentos sobre o aterro realizado
-- Comprovantes de renda e patrimônio (juntados quando intimado sobre gratuidade de justiça)
-- Guia DARE de recolhimento das custas da reconvenção

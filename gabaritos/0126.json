@@ -1,0 +1,45 @@
+{
+  "id": "0126",
+  "origem": "real",
+  "processo_tjsp": "1005276-34.2023.8.26.0084",
+  "sha256_caso": "505cce1f16d6adfe1f36a1ef090da835e5092e6b5bf5374ceefae75c3337e5a9",
+  "caso": "real-120-condominio",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1005276-34.2023.8.26.0084",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "alugueis_abril_2023": 1175.81,
+      "alugueis_maio_2023": 1175.81,
+      "alugueis_junho_2023": 1175.81,
+      "alugueis_julho_2023": 1175.81,
+      "alugueis_agosto_2023": 1175.81,
+      "multa_moratoria_10_por_cento": 587.91,
+      "juros_mora_1_por_cento_ao_mes": 0.0,
+      "multa_contratual_tres_alugueis": 0.0,
+      "indenizacao_danos_imovel": 0.0,
+      "honorarios_advocaticios_na_cobranca": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Despejo (extinto sem resolução de mérito por perda de objeto)",
+      "Multa contratual de três aluguéis (R$ 1.800,00) por haver cláusula penal específica aplicável",
+      "Indenização por danos ao imóvel por ausência de prova",
+      "Inclusão de honorários advocatícios no valor da condenação",
+      "Responsabilização da fiadora K.B.M.P. por nulidade da fiança"
+    ],
+    "fundamentos": [
+      "Extinção do pedido de despejo sem resolução de mérito por perda superveniente do interesse processual (art. 485, VI, CPC), ante a desocupação espontânea do imóvel em 22/08/2023 e exaurimento do prazo contratual",
+      "Ausência de prova de pagamento das parcelas locatícias vencidas entre abril e agosto de 2023, sendo que o ônus probatório recaía sobre a devedora (art. 373, II, CPC)",
+      "Reconhecimento da confissão de dívida de 31/07/2023 no valor de R$ 5.173,56 como prova do inadimplemento, sem comprovação de pagamento das parcelas ajustadas",
+      "Rejeição da multa contratual genérica de três aluguéis por existir cláusula penal específica para inadimplemento (multa de 10% e juros de 1%), evitando bis in idem e dupla penalização pelo mesmo fato",
+      "Improcedência do pedido de indenização por danos ao imóvel por ausência completa de prova (laudo, fotografias, orçamentos) do fato constitutivo do direito",
+      "Nulidade da fiança prestada por K.B.M.P. por ser menor de 18 anos na data da assinatura, haver colidência de interesses com a mãe locatária e ausência de autorização judicial (arts. 1.691 e 1.692 do Código Civil)"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato: apenas requerido L.B.S.R. (K.B.M.P. excluída por nulidade da fiança)",
+    "valores": "tolerância ±15% por rubrica; os cinco aluguéis devem estar presentes com valores idênticos ou próximos; multa de três aluguéis, danos e honorários na cobrança devem ser 0; juros podem variar conforme período de cálculo",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) perda de objeto do despejo, (2) ausência de prova de pagamento das parcelas abril-agosto/2023, (3) nulidade da fiança por menoridade, (4) rejeição da multa de três aluguéis por bis in idem, (5) improcedência de danos por falta de prova"
+  }
+}

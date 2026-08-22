@@ -1,5 +1,0 @@
-- Declaração de hipossuficiência econômica para fins de gratuidade da justiça
-- Planilha de cálculo demonstrando o valor incontroverso de R$ 49.636,32
-- Demonstrativo apontando o excesso de cobrança de R$ 14.000,92
-- Cópia do contrato questionado quanto às divergências de dados
-- Documentos financeiros pessoais (se houver)

@@ -1,0 +1,40 @@
+{
+  "id": "0119",
+  "origem": "real",
+  "processo_tjsp": "1008376-94.2025.8.26.0223",
+  "sha256_caso": "4df0a826d4150ab3f31b3a483bc225467e89d40e62513c29743312fe5a8a1cc5",
+  "caso": "real-113-vizinhanca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1008376-94.2025.8.26.0223",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "danos_materiais": 0.0,
+      "danos_morais": 0.0,
+      "lucros_cessantes": 0.0,
+      "nota": "Danos materiais reconhecidos mas sem quantificação - valor a ser apurado em liquidação"
+    },
+    "obrigacoes_de_fazer": {
+      "cessar_vazamentos": "A requerida deve adotar todas as medidas necessárias para cessar definitivamente os vazamentos provenientes de sua unidade, incluindo reparo adequado das instalações hidráulicas e correção das adaptações inadequadas do ralo"
+    },
+    "pedidos_rejeitados": [
+      "Indenização por danos morais - situação configurou mero aborrecimento cotidiano, sem lesão a direito da personalidade",
+      "Lucros cessantes - ausência de comprovação efetiva de atividade locatícia ou do prejuízo alegado",
+      "Responsabilização do Condomínio - homologada desistência, problema originado em unidade privativa"
+    ],
+    "fundamentos": [
+      "Revelia da requerida corroborada por prova testemunhal e documental",
+      "Prova oral confirmou que infiltrações originaram-se da unidade superior por entupimento de ralo e inadequação das instalações hidráulicas",
+      "Conduta omissiva quanto à conservação da unidade caracteriza infração ao dever geral de não lesar (arts. 186 e 927 do CC)",
+      "Aplicação das normas de direito de vizinhança (arts. 1.277 e 1.336, IV, do CC) que vedam utilizar unidade causando prejuízo a imóveis vizinhos",
+      "Nexo causal entre vazamento e danos demonstrado por testemunhas (zelador e auxiliar de serviços gerais) e fotografias",
+      "Ausência de prova apta a quantificar extensão econômica dos danos materiais justifica liquidação posterior (art. 491 CPC)",
+      "Dano moral não configurado: transtornos não evidenciaram lesão concreta a direito da personalidade nem excepcional gravidade"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido é a única resposta correta",
+    "valores": "danos materiais devem estar como 'a apurar' ou valor zero com observação de liquidação futura; danos morais e lucros cessantes devem ser 0 (negados)",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) revelia + prova testemunhal confirmando origem do vazamento na unidade superior, (2) aplicação dos arts. 186, 927, 1.277 e 1.336-IV do CC, (3) obrigação de fazer mantida com caráter inibitório, (4) dano moral afastado por ausência de lesão à esfera extrapatrimonial"
+  }
+}

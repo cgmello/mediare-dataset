@@ -1,5 +1,0 @@
-# Resposta da Parte Requerida
-
-**Requerido:** J.P.R.
-
-Passei por dificuldades financeiras. Algumas das cotas cobradas EU JÁ PAGUEI — segue comprovante. Peço parcelamento e isenção da multa.

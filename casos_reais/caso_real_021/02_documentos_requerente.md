@@ -1,7 +1,0 @@
-- Contrato de locação residencial firmado em 06/03/2020
-- Planilha detalhada de débitos de aluguéis e encargos (janeiro/2023 a junho/2024)
-- Boletos bancários emitidos em nome do locatário J.R.S.
-- Contas de energia elétrica em nome da locatária N.N.O.
-- Comprovante de caução no valor de R$ 2.100,00
-- Cópia da cláusula terceira (§1º) prevendo multa moratória de 10% e juros de 0,03% ao dia
-- Cópia da cláusula décima nona prevendo multa compensatória equivalente a três aluguéis

@@ -1,5 +1,0 @@
-- Comprovantes de pagamentos de aluguéis realizados (caso existam)
-- Registro de ocorrência policial ou notificação extrajudicial relatando o bloqueio de acesso a cômodos e garagem (se houver)
-- Comprovante ou recibo de pagamento de caução no início da locação
-- Fotografias ou vídeos demonstrando os cômodos trancados e garagem bloqueada
-- Cópia de mensagens trocadas com o locador sobre os problemas relatados

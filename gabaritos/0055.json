@@ -1,0 +1,41 @@
+{
+  "id": "0055",
+  "origem": "real",
+  "processo_tjsp": "1010994-03.2024.8.26.0302",
+  "sha256_caso": "6cf3844a3f4ad4bdbfb37f709ea84a0f6a1c2ad82f7479975d92e9374c658850",
+  "caso": "real-049-consumo",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1010994-03.2024.8.26.0302",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "danos_morais_L_T": 2000.0,
+      "danos_morais_G_A_M": 2000.0,
+      "danos_morais_M_M": 2000.0,
+      "danos_morais_E_T_M": 2000.0,
+      "danos_morais_C_H_N": 4000.0,
+      "total_deferido": 12000.0,
+      "total_requerido": 25000.0
+    },
+    "obrigacoes_de_fazer": {
+      "deposito_judicial_menores": "Valores correspondentes aos menores C.H.N. (R$ 4.000,00) e M.M. (R$ 2.000,00) devem ser depositados em conta judicial em nome de cada um, com movimentação sujeita à autorização judicial até o advento da maioridade"
+    },
+    "pedidos_rejeitados": [
+      "Valor integral pleiteado de R$ 25.000,00 - deferido parcialmente R$ 12.000,00"
+    ],
+    "fundamentos": [
+      "Responsabilidade objetiva do fornecedor caracterizada pelo art. 14 do CDC diante da comprovação de defeito no produto (fragmentos de vidro nas pizzas)",
+      "Boletim de Ocorrência confirmado por depoimento de policiais militares isentos que relataram admissão do gerente quanto à existência de vidro na pizza",
+      "Cupom fiscal demonstra cobrança apenas de bebidas (não de pizzas), evidência objetiva que corrobora reconhecimento tácito do problema pelo estabelecimento",
+      "Atendimento médico de urgência do menor C.H.N. na Santa Casa com registro de tremores, falta de ar e palpitações, sintomas consistentes com quadro ansioso agudo pela situação traumática",
+      "Dano moral in re ipsa pela aquisição de alimento com corpo estranho, conforme jurisprudência pacificada do STJ, independentemente de lesão física efetiva ou ingestão",
+      "Testemunhas do réu (funcionárias) possuem menor isenção comparadas aos policiais militares, e uma delas declarou só ter sabido do episódio após citação judicial",
+      "Exposição a risco palpável de gravidade elevada durante refeição familiar com crianças não constitui mero aborrecimento, mas situação geradora de angústia significativa e abalo psicológico"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato: requerido",
+    "valores": "tolerância ±15% por rubrica; total deferido R$ 12.000,00 (sendo R$ 2.000,00 para L.T., G.A.M., M.M. e E.T.M., e R$ 4.000,00 para C.H.N.); rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) responsabilidade objetiva CDC art. 14 por defeito do produto, (2) prova do vidro na pizza pela convergência de boletim de ocorrência/depoimentos de policiais/cupom fiscal com não cobrança das pizzas/atendimento médico do menor, (3) dano moral in re ipsa por corpo estranho em alimento segundo jurisprudência STJ, (4) diferenciação do valor para C.H.N. pelo abalo comprovado com atendimento médico"
+  }
+}

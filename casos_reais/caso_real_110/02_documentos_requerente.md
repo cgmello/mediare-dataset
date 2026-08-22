@@ -1,7 +1,0 @@
-- Escritura ou matrícula do imóvel comprovando a propriedade
-- Fotografias mostrando o muro com infiltrações, mofo, bolor e degradação
-- Fotografias do imóvel vizinho evidenciando a ausência de calhas e condutores pluviais
-- Relatório ou notificação da Defesa Civil advertindo sobre o problema
-- Fotografias mostrando o desnível entre os terrenos
-- Registro fotográfico da água escorrendo do telhado do vizinho diretamente sobre o muro em dias de chuva
-- Eventuais orçamentos para reparação dos danos

@@ -1,0 +1,36 @@
+{
+  "id": "0094",
+  "origem": "real",
+  "processo_tjsp": "1049010-67.2022.8.26.0602",
+  "sha256_caso": "ee008e094a71fda05377b656fd4f1cc72eecf233c77faa5edde8125c23f95aa3",
+  "caso": "real-088-reforma",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1049010-67.2022.8.26.0602",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "restituicao_valores_pagos_liquido": 0.0,
+      "valor_a_liquidar_por_arbitramento": 225218.75,
+      "alugueis_periodo_atraso": 8247.26,
+      "total_alugueis": 8247.26
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Desconsideração da personalidade jurídica",
+      "Responsabilização pessoal do sócio D.C.S."
+    ],
+    "fundamentos": [
+      "Inadimplemento contratual imputável aos réus caracterizado por falhas estruturais graves, incluindo remoção indevida de pilar estrutural",
+      "Prova oral da testemunha técnica F.D.B. corroborada por fotografias e pareceres técnicos demonstrando apenas 50% da obra executada com necessidade de retrabalho",
+      "Ausência de contraprova técnica idônea por parte dos réus para afastar as irregularidades construtivas apontadas",
+      "Comportamento dos réus consistente na ausência de resposta à notificação extrajudicial e paralisação prolongada reforça descumprimento contratual",
+      "Dano emergente configurado pelo pagamento de aluguéis (R$ 8.247,26) decorrente diretamente da impossibilidade de inauguração da clínica",
+      "Restituição de valores pagos condicionada a liquidação por arbitramento para apurar obra aproveitável, custo de retrabalho e saldo devido"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido",
+    "valores": "tolerância ±15% para alugueis (R$ 8.247,26 é valor fixo); restituição depende de liquidação futura por arbitramento, podendo ser expressa como 'a liquidar' ou valor bruto pago (R$ 225.218,75) com ressalva de abatimento",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) inadimplemento dos réus por falhas técnicas estruturais graves; (2) prova oral técnica corroborada por documentos fotográficos; (3) dano emergente por aluguéis; (4) ausência de contraprova dos réus; (5) necessidade de liquidação por arbitramento"
+  }
+}

@@ -1,7 +1,0 @@
-- Instrumento Particular de Promessa de Compra e Venda celebrado em 06/10/2006
-- Certidão de Matrícula nº 157.840 do 1º Oficial de Registro de Imóveis de Sorocaba/SP
-- Comprovantes de quitação integral do preço pelo adquirente
-- Correspondências e notificações enviadas ao requerido solicitando a regularização
-- Comprovantes de pagamento de IPTU e taxas condominiais em nome da empresa vendedora
-- Documentos constitutivos da empresa requerente
-- Projeto e memorial descritivo do Condomínio Residencial

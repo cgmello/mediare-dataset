@@ -1,8 +1,0 @@
-- Escrituras de propriedade do imóvel situado na Rua C. C., nº 2.775
-- Escritura pública de instituição de usufruto em favor de Y. O. A.
-- Comprovantes de pagamento do reforço de fundação realizado em ambos os imóveis
-- Apólice de seguro de responsabilidade civil familiar contratada junto à ALIANÇA DO BRASIL SEGUROS S/A desde junho/2020
-- Comprovantes de pagamento dos prêmios de seguro e renovações periódicas
-- Fotografias do imóvel das requeridas
-- Comprovantes de reparos realizados nos vazamentos
-- Faturas da concessionária demonstrando normalização do consumo após novembro/2020

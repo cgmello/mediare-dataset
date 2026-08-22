@@ -1,0 +1,35 @@
+{
+  "id": "0141",
+  "origem": "real",
+  "processo_tjsp": "1018780-84.2025.8.26.0554",
+  "sha256_caso": "1eaf40d555ee31d769cde395ccd9417a547117ab81318a318554d27f3ebaae3b",
+  "caso": "real-135-condominio",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1018780-84.2025.8.26.0554",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "cobranca_alugueis_espólios": 0.0,
+      "prestacao_contas": 0.0,
+      "arbitramento_aluguel_uso_exclusivo": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Cobrança e repasse de aluguéis dos imóveis do espólio",
+      "Prestação de contas dos valores locatícios",
+      "Arbitramento de aluguel pelo uso exclusivo do imóvel (decisão incompleta, sentença interrompida)"
+    ],
+    "fundamentos": [
+      "Competência absoluta do juízo do inventário para questões relacionadas aos frutos civis (aluguéis) dos bens que compõem o espólio, conforme art. 612 do CPC",
+      "Obrigação legal de trazer ao acervo sucessório os frutos percebidos desde a abertura da sucessão, nos termos do art. 2.020 do Código Civil",
+      "Vis atrativa do juízo sucessório abrange todos os fatos relevantes relacionados à herança que não dependam de outras provas além das documentais",
+      "Extinção sem resolução do mérito quanto à cobrança de frutos civis e prestação de contas por incompetência absoluta (art. 485, IV do CPC)",
+      "Possibilidade de discussão do arbitramento de aluguel por uso exclusivo em ação autônoma nas vias ordinárias, por se tratar de matéria que pode demandar dilação probatória"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - questão processual de competência, não de mérito sobre responsabilidade",
+    "valores": "todos os valores devem ser 0.0, pois houve extinção sem resolução de mérito por incompetência absoluta do juízo",
+    "fundamentos": "mínimo 3 fundamentos em comum: competência absoluta do juízo sucessório, art. 2.020 do CC sobre frutos da herança, extinção sem mérito por incompetência (art. 485, IV CPC), distinção entre cobrança de frutos (competência do inventário) e arbitramento por uso exclusivo (vias ordinárias)"
+  }
+}

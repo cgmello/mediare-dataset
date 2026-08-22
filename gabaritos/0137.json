@@ -1,0 +1,38 @@
+{
+  "id": "0137",
+  "origem": "real",
+  "processo_tjsp": "1005798-49.2024.8.26.0400",
+  "sha256_caso": "d5a7993dabf0bc15362f366b795d3db07d0b367c783768e8427936276925976f",
+  "caso": "real-131-condominio",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1005798-49.2024.8.26.0400",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "declaracao_inexigibilidade_debito_condominial": 10600.0,
+      "devolucao_integral_valores_pagos": 0.0,
+      "lucros_cessantes": 0.0,
+      "danos_morais": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Devolução integral dos valores pagos pelo contrato",
+      "Pagamento de lucros cessantes",
+      "Indenização por danos morais",
+      "Rescisão contratual"
+    ],
+    "fundamentos": [
+      "Aplicação do Tema 886 do STJ: a responsabilidade pelas obrigações condominiais não é definida pelo registro do compromisso de compra e venda, mas pela imissão na posse do imóvel",
+      "A autora não foi imitida na posse do imóvel, conforme constatado nos autos, razão pela qual não pode ser responsabilizada pelas taxas condominiais",
+      "Declarada a inexigibilidade do débito condominial de R$ 10.600,00 cobrado na execução extrajudicial",
+      "Rejeitado o pedido de rescisão contratual, pois o contrato está quitado e o imóvel estava disponível para uso conforme cronograma de multipropriedade",
+      "Não comprovado ato ilícito das requeridas que justifique lucros cessantes, uma vez que o empreendimento foi concluído e a autora não demonstrou ter buscado o uso de sua cota",
+      "Afastada a indenização por danos morais por não restar demonstrado ato ilícito suficiente"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido é responsável apenas pela cobrança indevida de taxas condominiais",
+    "valores": "tolerância ±15% para declaração de inexigibilidade (R$ 10.600,00); demais rubricas (devolução, lucros cessantes, danos morais) devem ser exatamente 0",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) aplicação do Tema 886/STJ sobre responsabilidade condominial; (2) ausência de imissão na posse; (3) inexigibilidade do débito condominial; (4) rejeição da rescisão por quitação do contrato"
+  }
+}

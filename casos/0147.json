@@ -1,0 +1,12 @@
+{
+  "categoria": "divida",
+  "documentos": {
+    "documentos_requerente": "- Instrumento particular de confissão de dívida assinado pelo requerido\n- Certidão de reconhecimento de firma em cartório\n- Cópia integral do inquérito policial que originou a confissão de dívida\n- Documentos de identificação pessoal da requerente\n- Comprovante de endereço atualizado",
+    "documentos_requerido": "- Documentos de identificação pessoal\n- Comprovante de endereço atualizado\n\n(Observação: O requerido apresentou contestação por negativa geral, sem apresentação de documentos comprobatórios específicos ou prova de pagamento)",
+    "peticao_requerente": "# Petição de Mediação\n\nVenho por meio desta solicitar mediação para resolução de conflito relacionado a dívida não paga.\n\n## Dos Fatos\n\nSou credora do requerido N.K.F. na quantia de R$ 39.857,34 (trinta e nove mil, oitocentos e cinquenta e sete reais e trinta e quatro centavos).\n\nEsta dívida está comprovada por instrumento particular de confissão de dívida, devidamente assinado pelo requerido com reconhecimento de firma em cartório.\n\nA confissão da dívida decorreu de fatos apurados em inquérito policial, no qual o requerido reconheceu o débito para comigo.\n\nApesar da confissão formal e do reconhecimento da dívida, o requerido não efetuou o pagamento do valor devido até a presente data.\n\n## Do Pedido\n\nDiante do exposto, solicito:\n\n1. Que seja realizada sessão de mediação com o requerido para tentativa de acordo;\n2. Que o requerido seja condenado ao pagamento da quantia de R$ 39.857,34, devidamente atualizada;\n3. Que o requerido arque com os custos do processo e honorários advocatícios.\n\nAguardo a oportunidade de resolver esta questão de forma amigável.",
+    "resposta_requerido": "# Resposta à Mediação\n\n## Da Contestação\n\nVenho apresentar minha defesa quanto ao pedido formulado pela requerente A.H.M.N.\n\nNego genericamente os fatos narrados pela requerente e a existência da dívida nos termos apresentados.\n\nContesto a exigibilidade do débito mencionado, bem como o valor cobrado.\n\n## Do Pedido\n\nDiante do exposto, requeiro:\n\n1. A improcedência total do pedido da requerente;\n2. Que a requerente arque com os custos do processo e honorários advocatícios.\n\nNestes termos, peço deferimento."
+  },
+  "id": "0147",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "real"
+}

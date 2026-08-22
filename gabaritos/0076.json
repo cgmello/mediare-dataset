@@ -1,0 +1,43 @@
+{
+  "id": "0076",
+  "origem": "real",
+  "processo_tjsp": "1009164-92.2023.8.26.0348",
+  "sha256_caso": "70926ba70a1af201ba5067564f68ea6477ed68857b0fc6effab396cc4d40f6c7",
+  "caso": "real-070-transito",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1009164-92.2023.8.26.0348",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "danos_materiais_reparo_veiculo": 30000.0,
+      "danos_morais": 0.0,
+      "honorarios_contratuais": 0.0,
+      "reconvencao_franquia": 0.0,
+      "reconvencao_conserto": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Indenização por danos materiais no valor integral de R$ 51.957,37 (limitada a R$ 30.000,00 por reconhecimento expresso da autora quanto ao limite contratual)",
+      "Indenização por danos morais de R$ 10.000,00 (ausência de comprovação de lesão extrapatrimonial)",
+      "Ressarcimento de honorários advocatícios contratados de R$ 10.000,00 (vedação jurisprudencial - STJ)",
+      "Reconvenção - franquia de R$ 2.583,72 (réu-reconvinte é responsável pelo acidente)",
+      "Reconvenção - valores de conserto (causador do dano não pode cobrar da vítima)",
+      "Litigância de má-fé (não configurada)"
+    ],
+    "fundamentos": [
+      "Presunção de culpa de quem colide na traseira, nos termos do artigo 29, inciso II, do Código de Trânsito Brasileiro, que impõe o dever de guardar distância de segurança frontal",
+      "Prova testemunhal robusta: o condutor do veículo Astra (L.H.B.) confirmou categoricamente que houve apenas um impacto e que o veículo da autora parou normalmente atrás do seu, sendo atingida segundos depois pelo HB20",
+      "Inexistência de prova de colisão anterior: a testemunha presencial negou ter percebido dois impactos distintos, desmentindo integralmente a tese defensiva",
+      "Declaração do próprio réu no boletim de ocorrência de que trafegava a 80 km/h em pista molhada e que seu carro patinou até bater, evidenciando velocidade incompatível e falta de distância de segurança",
+      "Limitação da indenização material a R$ 30.000,00 em razão do reconhecimento expresso da autora quanto ao limite contratual da cobertura da Associação P.",
+      "Improcedência do pedido de danos morais por ausência de demonstração de lesão à honra, dignidade ou sofrimento intenso que ultrapasse o mero dissabor do acidente de trânsito",
+      "Improcedência do pedido de honorários contratuais por vedação jurisprudencial consolidada no STJ (inexistência de bis in idem com honorários sucumbenciais)",
+      "Improcedência da reconvenção porque o réu-reconvinte, como causador culposo do dano, não pode exigir da vítima o ressarcimento de despesas decorrentes do próprio ato ilícito"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido",
+    "valores": "tolerância ±15% na rubrica danos_materiais (aceitar entre R$ 25.500,00 e R$ 34.500,00); danos_morais, honorários_contratuais e reconvenção devem ser exatamente 0",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) presunção de culpa por colisão traseira + artigo 29, II, CTB; (2) prova testemunhal confirmando impacto único e parada normal; (3) inexistência de prova de colisão anterior ou veículo parado irregularmente; (4) limite contratual de R$ 30.000,00 reconhecido pela autora"
+  }
+}

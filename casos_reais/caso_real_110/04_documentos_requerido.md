@@ -1,4 +1,0 @@
-- Escritura ou matrícula do imóvel comprovando que adquiriu o terreno com o muro já edificado pelo antigo proprietário
-- Fotografias do imóvel do requerente mostrando ausência de muro de contenção próprio
-- Fotografias evidenciando o desnível natural entre os terrenos
-- Eventual laudo técnico particular (se houver) atestando que não há escoamento de água de seu imóvel para o do vizinho

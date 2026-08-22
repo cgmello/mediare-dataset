@@ -1,1 +1,0 @@
-Não foram apresentados documentos específicos pela defesa, que atuou por meio de contestação por negativa geral através de curadoria especial.

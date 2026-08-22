@@ -1,7 +1,0 @@
-- Instrumento Particular de Confissão de Dívida firmado pela requerida
-- Notas promissórias emitidas como garantia de pagamento
-- Contrato de prestação de serviços educacionais (cláusulas gerais)
-- Planilha discriminada do débito com cálculo atualizado
-- Comprovantes de matrícula da aluna L.F.A. no ano de 2018
-- Demonstrativo de mensalidades vencidas e não pagas
-- Cláusula contratual prevendo multa de 2% e juros de 1% ao mês em caso de inadimplemento

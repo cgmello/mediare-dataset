@@ -1,8 +1,0 @@
-- Fotografias do imóvel demonstrando a pavimentação integral do quintal
-- Fotografias do sistema de drenagem superficial e declividade adequada
-- Fotografias mostrando o escoamento de águas pluviais em direção à rua
-- Comprovantes de renda (contracheques, extratos bancários)
-- Declaração de imposto de renda ou declaração de isento
-- Contas de consumo (água, luz)
-- Escritura ou documento de posse do imóvel
-- Documentos pessoais (RG e CPF)

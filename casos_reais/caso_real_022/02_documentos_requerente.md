@@ -1,5 +1,0 @@
-- Cópia de mensagens de WhatsApp trocadas com o locatário demonstrando a relação locatícia e tentativas de cobrança
-- Comprovantes de pagamento de aluguéis efetuados pelo locatário até maio de 2023
-- Planilha detalhada de cálculo dos valores em atraso, discriminando mês a mês desde junho/2023
-- Documentos que comprovam a posse do imóvel localizado na Rua Pedro Aguiar nº 133, Jardim Colorado
-- Eventuais comprovantes de despesas com o imóvel (IPTU, contas de consumo)

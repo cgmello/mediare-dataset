@@ -1,0 +1,24 @@
+{
+  "id": "0279",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "67bb3c9b21ffd1ac8e8639c0afc870e516ab597b4b3532d45bfd4d1c5cb14014",
+  "caso": "sint-098-venda-veiculo",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "requerente_comprador",
+    "resultado": "improcedente",
+    "valores": {
+      "indenizacao": 0.0
+    },
+    "fundamentos": [
+      "desgaste natural compativel com idade/km do veiculo",
+      "venda entre particulares no estado, sem garantia"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

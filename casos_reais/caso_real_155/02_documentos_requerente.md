@@ -1,7 +1,0 @@
-- Boletim de ocorrência registrado sobre a invasão da conta e aplicação de golpes
-- Prints de tela das conversas em que terceiros aplicaram golpes usando minha conta (comunicações com seguidores)
-- Comprovantes das tentativas de recuperação da conta junto à plataforma
-- Atestado/laudo médico comprovando afastamento das atividades laborais por problemas psicológicos (ansiedade e depressão)
-- Prints de tela demonstrando a autenticação em dois fatores ativada
-- Registro de protocolos de atendimento junto ao suporte da requerida
-- Eventual perícia psicológica ou documentos relacionados ao tratamento psicológico

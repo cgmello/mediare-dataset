@@ -1,0 +1,48 @@
+{
+  "id": "0083",
+  "origem": "real",
+  "processo_tjsp": "1005293-28.2025.8.26.0625",
+  "sha256_caso": "8c306adbd74041f70b201b2de3a8a4b81adf31cf0372eb51bfe94b93a94d38eb",
+  "caso": "real-077-reforma",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1005293-28.2025.8.26.0625",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "multa_rescisoria_inexigivel": 6409.42,
+      "aviso_previo_inexigivel": 0.0,
+      "aluguel_proporcional_devido_pelo_autor": 1610.0,
+      "iptu_proporcional_devido_pelo_autor": 141.64,
+      "total_devido_pelo_autor": 1751.64,
+      "restituicao_proporcional_fianca": 2401.2,
+      "valor_cobrado_indevidamente": 11234.39,
+      "danos_morais": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "exclusao_negativacao": "Suspensão/exclusão da negativação do nome do autor",
+      "restituicao_fianca": "Devolução proporcional da taxa de fiança no valor de R$2.401,20",
+      "abatimento_valores": "Abatimento dos encargos proporcionais devidos (R$1.751,64) de eventuais valores retidos ou pagamento via depósito judicial"
+    },
+    "pedidos_rejeitados": [
+      "Indenização por danos morais (sentença incompleta não indica o valor final, mas reconhece o dano moral in re ipsa)",
+      "Multa contratual contra o locador"
+    ],
+    "fundamentos": [
+      "Artigo 22, incisos I e IV, da Lei nº 8.245/91: obrigação do locador de entregar imóvel em estado de servir ao uso e responder por vícios anteriores à locação",
+      "Vício oculto grave comprovado: rede de esgoto deteriorada com infiltração no subsolo, conforme relatório de obra do próprio réu (fls. 439)",
+      "Imóvel ficou sem fornecimento de água por pelo menos 9 dias consecutivos para reparos (água religada em 27/11/2024)",
+      "Artigo 26, parágrafo único, da Lei nº 8.245/91: direito de resilição quando reparos urgentes durarem mais de 30 dias (estimativa do profissional em 17/10/2024)",
+      "Rescisão por culpa exclusiva do locador: inadimplemento contratual por entrega de imóvel com vício estrutural que comprometia habitabilidade",
+      "Inexigibilidade de multa rescisória e aviso prévio: ninguém pode se beneficiar da própria inadimplência",
+      "Responsabilidade do autor pelos encargos proporcionais ao período de efetiva posse (10/10/2024 a 30/10/2024)",
+      "Artigo 884 do Código Civil: enriquecimento sem causa na manutenção integral da taxa de fiança quando contrato se extinguiu por culpa do locador",
+      "Dano moral in re ipsa: negativação indevida por dívida inexigível gera presunção de dano",
+      "Responsabilidade solidária: locador deu causa à rescisão e fiadora negativou indevidamente"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato: requerido (locador culpado pela rescisão)",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0; valores devidos pelo autor (R$1.751,64) e restituição de fiança (R$2.401,20) são essenciais; danos morais não quantificados na sentença fornecida",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) vício oculto grave no sistema de esgoto, (2) culpa do locador por descumprimento do art. 22 da Lei 8.245/91, (3) inexigibilidade de multa/aviso prévio quando rescisão por culpa do locador, (4) restituição proporcional da fiança por enriquecimento sem causa"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "id": "0148",
+  "origem": "real",
+  "processo_tjsp": "1000717-63.2022.8.26.0506",
+  "sha256_caso": "6ecaf427330f013226fa6bf8e14df156924b2903943f496b61ae756ffd1dad2e",
+  "caso": "real-142-divida",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1000717-63.2022.8.26.0506",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "valor_principal_confessado": 129061.14,
+      "correcao_monetaria": "conforme metodologia legal (Tabela TJSP até 27/08/2024; IPCA após)",
+      "juros_mora": "1% ao mês até 27/08/2024; SELIC deduzido IPCA após, desde vencimento de cada obrigação",
+      "custas_processuais": "a cargo do réu",
+      "honorarios_advocaticios": "15% sobre o valor da condenação"
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Alegação de vício de consentimento por coação",
+      "Alegação de ausência de liquidez, certeza e exigibilidade do título",
+      "Anulação do Termo de Confissão de Dívida",
+      "Compensação por alegados vícios ocultos"
+    ],
+    "fundamentos": [
+      "Restou incontroverso que as partes celebraram contrato de compra e venda do estabelecimento comercial e posteriormente firmaram Termo de Confissão de Dívida",
+      "O Termo de Confissão de Dívida especifica com precisão a origem e composição dos valores: R$ 62.300,00 em espécie, doze cheques de R$ 5.192,00 e R$ 11.761,48 de estoque",
+      "O réu não apresentou impugnação especificada dos valores lançados no termo, nem planilha de cálculo divergente",
+      "A alegação de coação não foi comprovada por qualquer elemento probatório concreto - ausência total de documentos, testemunhos ou indícios",
+      "Tratando-se de pessoa maior e capaz, não se verifica mácula na celebração do termo, cujo instrumento é redigido de forma simples, clara e direta",
+      "O réu não se desincumbiu do ônus probatório de comprovar fatos modificativos, impeditivos ou extintivos do direito dos autores (art. 373, II, CPC)"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - deve identificar 'requerido' como responsável pela dívida",
+    "valores": "tolerância ±15% para valor principal (R$ 129.061,14); correção e juros devem seguir metodologia legal especificada na sentença; rubricas de custas e honorários devem estar presentes",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) termo de confissão válido e específico quanto aos valores; (2) ausência de prova da alegada coação; (3) réu não impugnou especificamente os valores nem apresentou provas de suas alegações; (4) ônus probatório não cumprido pelo réu"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "categoria": "reforma-empreitada",
+  "documentos": {
+    "documentos_requerente": "# Documentos comprobatórios — Requerente\n\n1. Contrato de empreitada e comprovantes de pagamento.\n2. Fotos da obra.\n3. Orçamentos/laudo de reparação.",
+    "documentos_requerido": "# Documentos comprobatórios — Requerida\n\n1. Contrato (mesma via).\n2. Registro fotográfico da entrega.\n3. Mensagens trocadas.",
+    "peticao_requerente": "# Pedido de mediação — Parte Requerente\n\n**Requerente:** S.B.G.\n**Requerida:** Eventos & Festas Jardim Ltda.\n**Conflito:** empreitada de reforma residencial\n\n## Fatos e pedidos\nA reforma de R$ 33000.00 foi entregue com infiltrações e trincas; laudo aponta má execução. Reparos: R$ 30250.00.",
+    "resposta_requerido": "# Resposta da Parte Requerida\n\n**Requerida:** Eventos & Festas Jardim Ltda.\n\nA obra seguiu o projeto; problemas decorrem de manutenção inadequada posterior."
+  },
+  "id": "0354",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "sintetico"
+}

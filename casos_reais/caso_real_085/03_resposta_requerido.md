@@ -1,1 +1,0 @@
-_(Réus não apresentaram contestação, permaneceram revéis)_

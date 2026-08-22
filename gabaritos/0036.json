@@ -1,0 +1,37 @@
+{
+  "id": "0036",
+  "origem": "real",
+  "processo_tjsp": "1015697-17.2024.8.26.0224",
+  "sha256_caso": "19e6a3be2c31484eb1354c91837a3f95382683d7432036f96a8dc32a9150f8db",
+  "caso": "real-030-cobranca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1015697-17.2024.8.26.0224",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "plantoes_medicos_nao_pagos": 13000.0,
+      "correcao_monetaria": "calculada desde vencimento de cada plantão",
+      "juros_mora": "desde citação conforme art. 406 CC",
+      "valor_atualizado_ajuizamento": 13737.82,
+      "custas_processuais": "a cargo da requerida",
+      "honorarios_advocaticios": "10% sobre valor atualizado da condenação"
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Aplicação de penalidade por litigância de má-fé contra a requerida"
+    ],
+    "fundamentos": [
+      "Existência comprovada de relação profissional entre as partes mediante conversas, registros no sistema interno da clínica e comprovante de pagamento anterior",
+      "Prova oral confirmou que a autora esteve na clínica em múltiplas ocasiões, tinha acesso ao sistema eletrônico e realizava atendimentos",
+      "Distribuição dinâmica do ônus da prova atribuiu à requerida demonstrar que os plantões não foram realizados, por possuir todos os registros (escalas, prontuários, controles de acesso)",
+      "Requerida não apresentou integralidade dos registros que demonstrassem objetivamente a inexistência dos plantões (relatório completo de acessos, escalas integrais, controle de presença)",
+      "Valor unitário de R$ 1.300,00 por plantão demonstrado pela memória de cálculo e corroborado pelo pagamento anterior de R$ 2.600,00 (correspondente a 2 plantões)",
+      "Requerida não apresentou recibos, transferências ou elementos que comprovassem a quitação dos plantões cobrados (ônus da prova do pagamento)"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido deve ser identificado como responsável",
+    "valores": "tolerância ±15% sobre o valor principal de R$ 13.000,00; valores acessórios (juros e correção) devem ser reconhecidos qualitativamente; honorários de 10% devem constar",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) distribuição dinâmica do ônus probatório, (2) requerida não apresentou registros completos que afastassem os plantões, (3) prova oral e documental confirmaram relação profissional e presença da autora, (4) valor unitário demonstrado por pagamento anterior"
+  }
+}

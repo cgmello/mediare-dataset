@@ -1,0 +1,24 @@
+{
+  "id": "0212",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "e1bafc1b95cf1e3b45cd95efab1d39fccca183c0ca2530078c3706394a6be270",
+  "caso": "sint-031-venda-veiculo",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "requerido_vendedor",
+    "resultado": "procedente",
+    "valores": {
+      "abatimento_ou_reparo": 3000
+    },
+    "fundamentos": [
+      "vicio oculto preexistente (motor retificado ocultado) - CC art. 441",
+      "laudo mecanico comprova anterioridade"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

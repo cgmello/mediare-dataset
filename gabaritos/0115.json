@@ -1,0 +1,37 @@
+{
+  "id": "0115",
+  "origem": "real",
+  "processo_tjsp": "1007020-42.2025.8.26.0004",
+  "sha256_caso": "3a6f3ae3a4b8bc38c4a77ca2cdea9b3ad41728015bd77309208329bcc26b3633",
+  "caso": "real-109-vizinhanca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1007020-42.2025.8.26.0004",
+  "parecer_esperado": {
+    "responsavel": "requerente",
+    "resultado": "improcedente",
+    "valores": {
+      "danos_materiais_conserto_banheiro": 0.0,
+      "lucros_cessantes_alugueis": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "realizar_reparos_apartamento_31": "NEGADO - não comprovada origem das infiltrações no apartamento dos réus"
+    },
+    "pedidos_rejeitados": [
+      "Obrigação de fazer consistente na realização completa dos reparos no apartamento nº 31",
+      "Indenização por danos materiais de R$ 1.800,00 referente ao conserto do banheiro",
+      "Indenização por lucros cessantes (aluguéis não recebidos)"
+    ],
+    "fundamentos": [
+      "Laudo pericial inconclusivo quanto à origem das infiltrações - não foi possível determinar tecnicamente se os danos decorrem do apartamento dos réus ou de outros fatores",
+      "Ausência de vazamentos ativos constatados durante a perícia - testes realizados não evidenciaram falhas de vedação ou perda de água no período monitorado",
+      "Perícia concluiu que a causa da umidade permanece tecnicamente indeterminada, podendo estar associada tanto a falhas em instalações hidráulicas quanto a deficiências no sistema de impermeabilização",
+      "Ônus da prova não cumprido pela autora - cabia a ela demonstrar de forma conclusiva que os réus são responsáveis pelos danos, o que não ocorreu",
+      "Inexistência de nexo de causalidade comprovado entre o apartamento dos réus e os danos alegados pela autora",
+      "Estado de dúvida judicial quanto aos fatos - na ausência de prova conclusiva, o risco da ausência de prova recai sobre quem tem o ônus probatório (autora)"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - a responsabilidade recai sobre a requerente por não ter provado sua tese",
+    "valores": "tolerância ±15% por rubrica; todas as rubricas devem ser 0.0 pois todos os pedidos foram negados",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) laudo pericial inconclusivo, (2) ausência de prova do nexo causal, (3) ônus da prova não cumprido pela autora, (4) inexistência de vazamentos ativos na perícia"
+  }
+}

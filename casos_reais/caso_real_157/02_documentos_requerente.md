@@ -1,8 +1,0 @@
-- Contrato de prestação de serviços com a empresa Espaçolaser
-- Termo de ciência e consentimento assinado antes do procedimento
-- Fotografias das lesões nas pernas (manchas escuras e queimaduras)
-- Notas fiscais de produtos dermatológicos adquiridos para tratamento (R$ 99,90)
-- Histórico de sessões anteriores realizadas na mesma clínica
-- Comprovante de comparecimento à sessão do dia 24/06/2024
-- Registros de comunicação com a empresa solicitando suporte após o ocorrido
-- Documento de identidade

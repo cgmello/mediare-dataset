@@ -1,5 +1,0 @@
-- Contrato de prestação de serviços de cobrança firmado com o Condomínio Reserva de Morato II
-- Documentos que comprovam a qualidade de mandatária do condomínio
-- Relação de débitos e devedores fornecida pelo condomínio-mandante
-- Instruções e orientações recebidas do condomínio para realização das cobranças
-- Comprovantes de que as cobranças foram realizadas conforme dados fornecidos pelo mandante

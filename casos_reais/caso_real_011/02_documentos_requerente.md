@@ -1,8 +1,0 @@
-- Contrato de locação assinado em junho/2023
-- Comprovante de pagamento da caução de R$ 6.000,00
-- Fotografias das infiltrações e problemas de umidade no imóvel
-- Orçamentos de reparos necessários no imóvel
-- Recibos de pagamento de aluguéis
-- Comprovantes de pagamento de contas de energia elétrica, incluindo débitos pretéritos
-- Termo manuscrito sobre reparos simples firmado no início da locação
-- Comprovante de tentativa de devolução das chaves em 16/10/2023

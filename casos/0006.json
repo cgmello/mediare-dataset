@@ -1,0 +1,12 @@
+{
+  "categoria": "006-vizinhanca-infiltracao",
+  "documentos": {
+    "documentos_requerente": "# Documentos comprobatórios — Requerente\n\n1. Fotos da parede limítrofe com infiltrações, umidade e mofo.\n2. Notas fiscais das reformas internas de emergência (R$ 8.000,00).\n3. Laudo de engenheiro constatando: baldrame de ~0,70 m sem impermeabilização e\n   ausência de captação/condução das águas pluviais do lote aterrado.\n4. Fotos do aterro realizado pelo requerido.",
+    "documentos_requerido": "# Documentos comprobatórios — Requerido\n\n1. Fotos da execução do aterro e do baldrame.\n2. Fotos da parede da requerente indicando ausência de impermeabilização própria.",
+    "peticao_requerente": "# Pedido de mediação — Parte Requerente\n\n**Requerente:** M.L.C.F. (proprietária de residência)\n**Requerido:** A.H.P. (vizinho de terreno limítrofe)\n**Tipo de conflito:** Direito de vizinhança — águas pluviais e infiltrações\n\n## Relato dos fatos\n\nO requerido realizou aterro significativo em seu lote, que originalmente era mais baixo\nque a minha residência. Com a elevação do terreno, as águas de chuva passaram a se\nacumular e escoar indevidamente contra a parede limítrofe da minha casa, causando\ninfiltrações, umidade excessiva e proliferação de mofo. Gastei R$ 8.000,00 em reformas\ninternas de emergência para tentar conter a água. O muro de baldrame construído pelo\nrequerido (cerca de 0,70 m) não tem qualquer barreira de impermeabilização, nem há\nsistema de captação e condução das águas pluviais do terreno elevado.\n\n## Pedidos\n\n1. Obrigação de impermeabilizar a divisa e instalar sistema de drenagem;\n2. Ressarcimento dos R$ 8.000,00 gastos nas reformas internas.",
+    "resposta_requerido": "# Resposta da Parte Requerida + pedido contraposto\n\n**Requerido:** o aterro foi executado regularmente no meu terreno. As infiltrações da\ncasa da requerente decorrem de defeitos estruturais da construção DELA (falta de\nimpermeabilização da própria parede, construída na divisa). Pedido contraposto: que a\nrequerente apresente alvarás e habite-se da construção dela e me indenize por danos\nmorais pelo constrangimento das acusações."
+  },
+  "id": "0006",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "ouro"
+}

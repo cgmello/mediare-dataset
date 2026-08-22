@@ -1,7 +1,0 @@
-- Termos de uso da plataforma Instagram
-- Política de privacidade e segurança da plataforma
-- Documentação técnica sobre as ferramentas de segurança disponibilizadas aos usuários
-- Manuais e orientações sobre autenticação em dois fatores
-- Prints de tela demonstrando as funcionalidades de segurança disponíveis
-- Eventual registro de logs de acesso (se houver)
-- Documentação sobre procedimentos de recuperação de conta

@@ -1,0 +1,39 @@
+{
+  "id": "0112",
+  "origem": "real",
+  "processo_tjsp": "1002133-52.2024.8.26.0003",
+  "sha256_caso": "9f20126b1bbe5ddabec88f70932b3bb1caf8f18864a368d1a37e5d2d00c70fd1",
+  "caso": "real-106-vizinhanca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1002133-52.2024.8.26.0003",
+  "parecer_esperado": {
+    "responsavel": "parcial_ambos",
+    "resultado": "parcialmente_procedente",
+    "valores": {
+      "danos_morais": 0.0,
+      "reparo_sistema_drenagem_requerido": 0.0,
+      "reparo_danos_dependencias_autor": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "requerido_reparar_caixas_esgoto_aguas_pluviais": true,
+      "requerido_impermeabilizar_muro_arrimo_proprio": true,
+      "requerente_impermeabilizar_muro_arrimo_proprio": true
+    },
+    "pedidos_rejeitados": [
+      "Indenização por danos morais de R$ 80.000,00",
+      "Condenação exclusiva do réu aos reparos nas dependências do autor"
+    ],
+    "fundamentos": [
+      "Laudo pericial conclusivo atestou vazamentos ativos nas caixas de esgoto e águas pluviais do condomínio réu posicionadas junto ao muro de divisa",
+      "Perícia confirmou que a tubulação de servidão que atravessa o imóvel do autor não apresenta vazamentos, concentrando a origem do problema nas caixas de inspeção do réu",
+      "Constatação pericial de que ambos os muros de arrimo (do autor e do réu) apresentam falhas na impermeabilização, contribuindo cada qual para a propagação da umidade em suas respectivas extensões",
+      "Culpa concorrente: o réu é responsável pelos vazamentos nas caixas e falha na impermeabilização de seu muro; o autor possui responsabilidade pela deficiência na impermeabilização do próprio muro de arrimo",
+      "Ausência de comprovação de dano moral coletivo indenizável, tratando-se de transtorno condominial comum que afetou ambos os edifícios durante o período",
+      "Artigo 1.277 do Código Civil garante direito de fazer cessar interferências prejudiciais provocadas por propriedade vizinha, mas artigo 1.286 impõe tolerância à servidão necessária"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - deve reconhecer responsabilidade parcial de ambos (parcial_ambos)",
+    "valores": "danos morais devem ser 0; obrigações de fazer não admitem valores monetários específicos na sentença, apenas determinação de execução",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) vazamento comprovado nas caixas do réu, (2) culpa concorrente por falhas na impermeabilização de ambos os muros, (3) rejeição do dano moral coletivo"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "0092",
+  "origem": "real",
+  "processo_tjsp": "1029874-59.2023.8.26.0405",
+  "sha256_caso": "989c2ba1239eb5a9d82e2f78a2a684670b12c9947e18fdafac38f28336c8f539",
+  "caso": "real-086-reforma",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1029874-59.2023.8.26.0405",
+  "parecer_esperado": {
+    "responsavel": "ambos_culpa_concorrente",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "valor_contrato_original": 57384.36,
+      "valor_pago_pelo_embargante": 54515.15,
+      "servicos_executados": 51769.57,
+      "servicos_nao_executados": 5614.79,
+      "custo_reparatorio_rampa": 1500.0,
+      "servicos_extras_executados": 10096.23,
+      "credito_final_embargada": 5850.65,
+      "bonus_rescisorio": 0.0,
+      "multa_rescisoria": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Declaração de inexigibilidade total da dívida",
+      "Bônus rescisório integral de finalização",
+      "Multas rescisórias",
+      "Inexigibilidade dos serviços extras"
+    ],
+    "fundamentos": [
+      "Perícia técnica constatou execução de apenas 90,22% do escopo contratual original",
+      "Restaram serviços inexecutados no valor de R$ 5.614,79",
+      "Constatada imperfeição técnica na rampa lateral com custo reparatório de R$ 1.500,00",
+      "Serviços extras no valor de R$ 10.096,23 foram efetivamente executados e agregaram valor ao imóvel",
+      "Vedação ao enriquecimento sem causa impõe pagamento pelos serviços extras usufruídos",
+      "Ausência de entrega integral da obra afasta incidência de bônus e multas rescisórias",
+      "Aplicação do encontro de contas resultou em crédito remanescente de R$ 5.850,65"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum"
+  }
+}

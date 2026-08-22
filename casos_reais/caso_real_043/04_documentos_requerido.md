@@ -1,6 +1,0 @@
-- Contrato de compra e venda com cláusulas sobre venda no estado, desgaste natural e exclusões de garantia (cláusulas primeira, segunda e quinta)
-- Notas fiscais e ordens de serviço dos reparos realizados (buchas, rolamentos, amortecedores, coxins, eixo direito, correia dentada, tensor, pastilhas de freio, direção hidráulica, alinhamento, balanceamento, bobina)
-- Notificação extrajudicial informando sobre substituição de bobina e disponibilização do veículo
-- Termo de entrega datado de 10 de outubro de 2022, assinado pela requerente, declarando que o veículo está em perfeito funcionamento
-- Vídeos (links) demonstrando condições do veículo
-- Documentação do veículo demonstrando quilometragem de 241.091 km em abril de 2022

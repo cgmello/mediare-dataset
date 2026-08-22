@@ -1,0 +1,12 @@
+{
+  "categoria": "transito",
+  "documentos": {
+    "documentos_requerente": "# Documentos comprobatórios — Requerente\n\n1. Boletim de ocorrência com croqui.\n2. Fotos dos danos e do local.\n3. Três orçamentos de reparo.",
+    "documentos_requerido": "# Documentos comprobatórios — Requerida\n\n1. Fotos do próprio veículo.\n2. Versão registrada no BO.",
+    "peticao_requerente": "# Pedido de mediação — Parte Requerente\n\n**Requerente:** H.J.B.\n**Requerido:** R.A.T.\n**Conflito:** acidente de trânsito — danos materiais\n\n## Fatos\nEm via urbana de Santos, meu veículo foi atingido pelo do requerido (colisão em cruzamento durante conversão).\n\n## Pedidos\n1. Reparos (menor orçamento): R$ 2500.00",
+    "resposta_requerido": "# Resposta da Parte Requerida\n\n**Requerido:** R.A.T.\n\nO requerente vinha em velocidade incompatível; a culpa é no mínimo concorrente."
+  },
+  "id": "0283",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "sintetico"
+}

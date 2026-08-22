@@ -1,0 +1,38 @@
+{
+  "id": "0158",
+  "origem": "real",
+  "processo_tjsp": "1000181-94.2025.8.26.0458",
+  "sha256_caso": "64f899e9a38b096f85378f7881665e808e4c19d16cf49047d6898916cb1f1d52",
+  "caso": "real-152-servicos",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1000181-94.2025.8.26.0458",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "restituicao_simples_valores_descontados": 0.0,
+      "restituicao_dobro_valores_descontados": 0.0,
+      "danos_morais": 5000.0,
+      "valores_a_restituir_apuracao_liquidacao": "valor_a_apurar"
+    },
+    "obrigacoes_de_fazer": {
+      "cessacao_descontos": "Declarada a inexistência de relação jurídica, com consequente cessação dos descontos (medida antecipatória já deferida)",
+      "restituicao_valores": "Restituição simples dos valores indevidamente descontados, a serem apurados em liquidação de sentença"
+    },
+    "pedidos_rejeitados": [
+      "Restituição em dobro dos valores (concedida restituição simples, por ausência de prova de má-fé)"
+    ],
+    "fundamentos": [
+      "Ausência de prova válida de manifestação de vontade do autor para filiação à associação requerida",
+      "Ônus probatório da requerida (art. 373, II, CPC) não foi cumprido - documento de fls. 64 é prova unilateral insuficiente",
+      "Princípio da autonomia da vontade - associação exige válida manifestação de vontade, não verificada nos autos",
+      "Dano moral in re ipsa configurado pelos descontos indevidos em benefício previdenciário",
+      "Restituição simples (e não em dobro) pela ausência de prova de má-fé da requerida",
+      "Valor de R$ 5.000,00 fixado para danos morais atende às funções compensatória e punitiva, sem gerar enriquecimento ilícito"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido é o único responsável",
+    "valores": "tolerância ±15% para danos morais (R$ 4.250,00 a R$ 5.750,00); restituição em dobro deve ser 0; restituição simples deve indicar apuração em liquidação",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) ausência de prova de manifestação de vontade; (2) ônus probatório não cumprido pela ré; (3) dano moral in re ipsa por desconto indevido em benefício previdenciário; (4) restituição simples por ausência de má-fé"
+  }
+}

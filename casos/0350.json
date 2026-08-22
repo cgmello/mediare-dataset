@@ -1,0 +1,12 @@
+{
+  "categoria": "condominio",
+  "documentos": {
+    "documentos_requerente": "# Documentos comprobatórios — Requerente\n\n1. Convenção do condomínio.\n2. Demonstrativo do débito por competência.\n3. Atas de assembleia fixando a cota.",
+    "documentos_requerido": "# Documentos comprobatórios — Requerida\n\n1. Comprovantes de pagamento parcial.",
+    "peticao_requerente": "# Pedido de mediação — Parte Requerente\n\n**Requerente:** Condomínio Edifício Alvorada\n**Requerido:** F.G.N. (unidade 138)\n**Conflito:** cobrança de cotas condominiais\n\n## Fatos\nO requerido acumulou 4 cotas de R$ 550.00. Pedimos o principal com multa de 2% e juros de 1% a.m.",
+    "resposta_requerido": "# Resposta da Parte Requerida\n\n**Requerido:** F.G.N.\n\nPassei por dificuldades financeiras. Algumas das cotas cobradas EU JÁ PAGUEI — segue comprovante. Peço parcelamento e isenção da multa."
+  },
+  "id": "0350",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "sintetico"
+}

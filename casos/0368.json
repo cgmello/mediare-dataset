@@ -1,0 +1,12 @@
+{
+  "categoria": "venda-veiculo",
+  "documentos": {
+    "documentos_requerente": "# Documentos comprobatórios — Requerente\n\n1. Recibo/CRV de compra e venda.\n2. Laudo mecânico.\n3. Orçamentos de reparo.\n4. Anúncio da venda.",
+    "documentos_requerido": "# Documentos comprobatórios — Requerida\n\n1. Anúncio com a quilometragem.\n2. Mensagens da negociação.",
+    "peticao_requerente": "# Pedido de mediação — Parte Requerente\n\n**Requerente:** A.S.M.\n**Requerido:** L.M.A.\n**Conflito:** compra e venda de veículo usado entre particulares\n\n## Fatos e pedidos\nComprei de L.M.A. um carro usado por R$ 56500.00. Dias depois, o motor falhou: laudo aponta retífica antiga ocultada. Reparo: R$ 12250.00.",
+    "resposta_requerido": "# Resposta da Parte Requerida\n\n**Requerido:** L.M.A.\n\nVendi o carro no estado, com test-drive livre; nunca soube de retífica."
+  },
+  "id": "0368",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "sintetico"
+}

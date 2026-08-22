@@ -1,9 +1,0 @@
-- Contrato de locação assinado em junho/2023
-- Termo manuscrito da locatária reconhecendo estado do imóvel e necessidade de reparos simples no início da locação
-- Fotografias do imóvel demonstrando suas condições de habitabilidade
-- Comprovante de locação posterior do imóvel para terceiro
-- Faturas de energia elétrica no valor de R$ 440,80 referentes ao período de ocupação
-- Faturas de água no valor de R$ 441,26 referentes ao período de ocupação
-- Orçamentos de reparos nos danos causados pela locatária totalizando R$ 1.782,00
-- Nota fiscal de serviço de chaveiro no valor de R$ 280,00
-- Fotografias e vistoria unilateral de saída do imóvel indicando os danos

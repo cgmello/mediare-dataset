@@ -1,1 +1,0 @@
-*Nenhum documento foi apresentado pela parte requerida.*

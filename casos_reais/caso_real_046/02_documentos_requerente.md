@@ -1,7 +1,0 @@
-- Comprovantes de pagamento da entrada (R$ 121,71) e das três parcelas de R$ 229,90
-- Prints de conversas com atendimento da empresa requerida reconhecendo o acordo
-- Documento demonstrando resposta administrativa que confirma recebimento de pelo menos uma parcela
-- Comprovante de inscrição do nome nos órgãos de proteção ao crédito (Serasa/SPC)
-- Documentos pessoais (RG e CPF)
-- Comprovante de titularidade do cartão C&A
-- Protocolos de atendimento das tentativas de resolução administrativa

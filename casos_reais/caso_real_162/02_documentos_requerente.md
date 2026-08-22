@@ -1,9 +1,0 @@
-- Contrato de intermediação de venda do veículo datado de 30/07/2024
-- Documento de Autorização de Transferência (ATPV-e) assinado irregularmente pelo sócio da loja
-- Comprovante de pagamento do veículo
-- Auto de infração de trânsito no valor de R$ 132,67
-- Notificações extrajudiciais enviadas às requeridas
-- Comprovantes de tentativas de contato (mensagens, e-mails, protocolos)
-- Contrato de honorários advocatícios no valor de R$ 5.648,00
-- Documentos pessoais (RG, CPF, comprovante de residência)
-- Fotografias do veículo

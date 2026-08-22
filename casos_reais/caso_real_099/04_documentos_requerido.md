@@ -1,6 +1,0 @@
-- Laudo/relatório da vigilância sanitária atestando inexistência de vazamento ativo
-- Fotografias do reservatório de água separado do muro divisório
-- Fotografias das obras realizadas (desvinculação da cobertura, parede autônoma erguida)
-- Fotografias mostrando água/umidade proveniente do muro da requerente em seu terreno
-- Orçamentos ou notas fiscais das obras de regularização executadas
-- Registro fotográfico de poças formadas em seu imóvel

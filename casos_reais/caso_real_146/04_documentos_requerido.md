@@ -1,5 +1,0 @@
-- Documentos comprobatórios de renda (contracheques, extratos bancários)
-- Comprovantes de despesas mensais (contas de água, luz, aluguel, medicamentos)
-- Declaração de Imposto de Renda
-- Cópia da Escritura Pública de Dissolução de União Estável
-- Eventuais comprovantes de pagamento de parcelas da indenização recebida

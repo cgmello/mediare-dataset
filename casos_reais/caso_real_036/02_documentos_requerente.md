@@ -1,6 +1,0 @@
-- Comprovante de pagamento ou nota fiscal da aquisição da piscina (R$ 11.000,00)
-- Contrato de compra e venda e instalação firmado com a empresa
-- Certificado de garantia de 10 anos da piscina
-- Fotografias dos defeitos (bolhas e rachaduras) apresentados na piscina
-- Prints ou registros de conversas/contatos com a empresa relatando os problemas
-- Documento de identidade e CPF

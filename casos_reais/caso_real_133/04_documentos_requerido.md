@@ -1,6 +1,0 @@
-- Carteira de Trabalho e Previdência Social (CTPS) comprovando situação de desemprego
-- Extratos bancários demonstrando hipossuficiência econômica
-- Comprovante de residência do imóvel em questão
-- Declaração de ausência de outros bens imóveis
-- Comprovantes de despesas mensais básicas (água, luz, condomínio)
-- Eventual comprovante de seguro-desemprego ou auxílios governamentais recebidos

@@ -1,5 +1,0 @@
-- Prints de conversas via aplicativo de mensagens com representantes da clínica tratando sobre escalas e plantões
-- Comprovante de transferência bancária no valor de R$ 2.600,00 realizada pela empresa requerida (pagamento anterior de 2 plantões)
-- Planilha/memória de cálculo discriminando os 10 plantões realizados com respectivas datas e valores (novembro e dezembro de 2023)
-- Prints de telas do sistema eletrônico interno da clínica mostrando registros de acesso
-- Documentos relacionados a atendimentos registrados em nome da requerente no sistema da clínica

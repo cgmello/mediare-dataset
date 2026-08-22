@@ -1,0 +1,33 @@
+{
+  "id": "0071",
+  "origem": "real",
+  "processo_tjsp": "1001415-94.2026.8.26.0032",
+  "sha256_caso": "69e57575cf6b979a817db80baa6bced2773eb3a6a8dd29c2ac8d083215de62b3",
+  "caso": "real-065-transito",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1001415-94.2026.8.26.0032",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "danos_morais": 30000.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Responsabilidade civil objetiva do Estado prevista no artigo 37, §6º da Constituição Federal",
+      "Responsabilidade subjetiva por omissão do Município fundamentada na teoria da 'faute du service' (culpa administrativa)",
+      "Falha na prestação do serviço público de manutenção e conservação de vias públicas",
+      "Nexo causal entre a omissão do Município (má conservação da via) e os danos sofridos pelo autor",
+      "Comprovação de danos físicos graves: queimaduras de segundo grau, hematomas, dores, deformação facial temporária",
+      "Comprovação de danos psicológicos mediante laudo psicológico que atesta abalo emocional",
+      "Violência do impacto com acionamento de airbag, perda de consciência momentânea e perda total do veículo",
+      "Afastamento da tese de exclusão de responsabilidade por chuvas excepcionais, cabendo ao Município a adequada manutenção preventiva das vias",
+      "Valor de R$ 30.000,00 adequado e proporcional à gravidade das lesões físicas e psicológicas"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - deve identificar responsabilidade do requerido (Município)",
+    "valores": "tolerância ±15% sobre R$ 30.000,00 para danos morais (faixa aceitável: R$ 25.500,00 a R$ 34.500,00)",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) responsabilidade do Estado por omissão na manutenção de vias; (2) nexo causal entre a falha do serviço e os danos; (3) comprovação de danos físicos graves (queimaduras de segundo grau) e/ou psicológicos; (4) aplicação da teoria da faute du service"
+  }
+}

@@ -1,31 +1,30 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Empacota os casos (ouro, reais e sintéticos) em JSONs canônicos para o
-repositório público mediare-dataset.
+Empacota os casos (ouro, reais e sinteticos) em JSONs canonicos, gravando
+NA RAIZ da pasta atual (que e o repositorio mediare-dataset):
 
-Estrutura gerada:
-  mediare-dataset/
-    casos/0001.json ...      <- SÓ os documentos de entrada (o que o contrato lê)
-    gabaritos/0001.json ...  <- gabarito separado (avaliação)
-    manifest.json            <- índice com id, categoria, origem e sha256 de cada caso
-    README.md
+  casos/0001.json ...      <- SO os documentos de entrada (o que o contrato le)
+  gabaritos/0001.json ...  <- gabarito separado (avaliacao)
+  manifest.json            <- indice com id, categoria, origem e sha256 de cada caso
+  README.md                <- em ingles
+  .gitignore               <- impede publicar as fontes brutas e o sentencas.jsonl
 
-Uso: coloque este script na pasta que contém casos_ouro/, casos_sinteticos/ e
-     casos_reais/, e rode:  python3 empacotar_dataset.py
+Uso: rode na pasta que contem casos_ouro/, casos_sinteticos/ e casos_reais/:
+     python3 empacotar_dataset.py
 """
 import glob, hashlib, json, os, re
 
-SAIDA = "mediare-dataset"
+SAIDA = "."
 
 def ler(pasta, prefixo):
-    """Lê o arquivo 0N_*.md da pasta (tolera variações de nome)."""
+    """Le o arquivo 0N_*.md da pasta (tolera variacoes de nome)."""
     achados = sorted(glob.glob(os.path.join(pasta, prefixo + "*.md")))
     return open(achados[0], encoding="utf-8").read().strip() if achados else ""
 
 def coletar():
     fontes = []
-    # ouro (curados) — na raiz ou dentro de casos_ouro/
+    # ouro (curados) - na raiz ou dentro de casos_ouro/
     for p in sorted(glob.glob("caso_0*")) + sorted(glob.glob("casos_ouro/caso_0*")):
         if os.path.isdir(p) and os.path.exists(f"{p}/gabarito.json"):
             fontes.append((p, "ouro"))
@@ -33,7 +32,7 @@ def coletar():
     for p in sorted(glob.glob("casos_reais/caso_real_*")):
         if os.path.exists(f"{p}/gabarito.json"):
             fontes.append((p, "real"))
-    # sintéticos
+    # sinteticos
     for p in sorted(glob.glob("casos_sinteticos/caso_sint_*")):
         if os.path.exists(f"{p}/gabarito.json"):
             fontes.append((p, "sintetico"))
@@ -45,7 +44,7 @@ def main():
     manifest = []
     fontes = coletar()
     if not fontes:
-        print("Nenhuma pasta de caso encontrada. Rode na pasta que contém casos_reais/ etc.")
+        print("Nenhuma pasta de caso encontrada. Rode na pasta que contem casos_reais/ etc.")
         return
     for i, (pasta, origem) in enumerate(fontes, start=1):
         cid = f"{i:04d}"
@@ -56,8 +55,8 @@ def main():
             "origem": origem,
             "categoria": categoria,
             "instrucao": ("Analise os documentos das duas partes e produza um parecer "
-                          "estruturado: parte responsável, resultado, valores por rubrica "
-                          "(0.0 quando negada), obrigações de fazer (se houver) e 3 a 6 "
+                          "estruturado: parte responsavel, resultado, valores por rubrica "
+                          "(0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 "
                           "fundamentos objetivos."),
             "documentos": {
                 "peticao_requerente":     ler(pasta, "01_"),
@@ -69,7 +68,7 @@ def main():
         blob = json.dumps(caso, ensure_ascii=False, indent=2, sort_keys=True)
         open(f"{SAIDA}/casos/{cid}.json", "w", encoding="utf-8").write(blob + "\n")
         sha = hashlib.sha256(blob.encode("utf-8")).hexdigest()
-        # nº do processo TJSP (casos reais e ouro; None para sintéticos)
+        # numero do processo TJSP (casos reais e ouro; None para sinteticos)
         mproc = re.search(r"(\d{7}-\d{2}\.\d{4}\.8\.26\.\d{4})", gab.get("fonte", ""))
         processo = mproc.group(1) if mproc else None
         gab_out = {"id": cid, "origem": origem, "processo_tjsp": processo,
@@ -87,14 +86,44 @@ def main():
     cnt = Counter(m["origem"] for m in manifest)
     open(f"{SAIDA}/README.md", "w", encoding="utf-8").write(f"""# Mediare Dataset
 
-Benchmark de casos de mediação extrajudicial para avaliação de comitês de IA.
-Total: **{len(manifest)} casos** ({cnt.get('ouro',0)} ouro · {cnt.get('real',0)} derivados
-de sentenças públicas do TJSP · {cnt.get('sintetico',0)} sintéticos).
+Benchmark of Brazilian extrajudicial mediation cases for evaluating AI committees.
+Total: **{len(manifest)} cases** ({cnt.get('ouro',0)} gold, {cnt.get('real',0)} derived
+from public court decisions (TJSP/Brazil), {cnt.get('sintetico',0)} synthetic).
 
-- `casos/NNNN.json` — documentos de entrada das duas partes (o que o modelo/contrato lê)
-- `gabaritos/NNNN.json` — desfecho esperado + critérios de equivalência (avaliação)
-- `manifest.json` — índice com categoria, origem e SHA-256 de cada caso
+- `casos/NNNN.json` - input documents from both parties (what the model/contract reads)
+- `gabaritos/NNNN.json` - expected outcome + equivalence criteria (evaluation ground truth)
+- `manifest.json` - index with category, origin, TJSP case number and SHA-256 of each case
 
-## Uso com Intelligent Contracts (GenLayer)
+All content is in Brazilian Portuguese, the language of the underlying disputes.
 
-Passe ao contrato a URL **fixada em um commit** (imutável — nunca use `main`):
+## Usage with Intelligent Contracts (GenLayer)
+
+Pass the contract a URL pinned to a commit (immutable - never use `main`):
+
+    https://raw.githubusercontent.com/cgmello/mediare-dataset/<COMMIT_SHA>/casos/0001.json
+
+Verify integrity by comparing the content's SHA-256 against `manifest.json`.
+
+## Notes
+
+- "real" cases were reconstructed from public court decisions (CJPG/TJSP), with
+  party names pseudonymized (LGPD compliance). "sintetico" cases contain no real data.
+- Gold cases were manually curated; real cases were generated via LLM and should be
+  sample-reviewed before use as evaluation ground truth.
+- For honest evaluation of web-browsing models, consider keeping `gabaritos/`
+  in a private repository during test runs.
+""")
+    open(".gitignore", "w", encoding="utf-8").write(
+        "# fontes brutas - nao publicar\n"
+        "casos_ouro/\n"
+        "casos_reais/\n"
+        "casos_sinteticos/\n"
+        "sentencas.jsonl\n"
+        ".venv/\n"
+        ".DS_Store\n"
+        "__pycache__/\n"
+    )
+    print(f"OK: {len(manifest)} casos empacotados em ./{SAIDA}/  ({dict(cnt)})")
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,37 @@
+{
+  "id": "0166",
+  "origem": "real",
+  "processo_tjsp": "1020827-41.2024.8.26.0562",
+  "sha256_caso": "b9dc2ab15b9af7449f77eba0a6068b75d836e9ef4c5de42c26160044685b64f7",
+  "caso": "real-160-veiculo_venda",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1020827-41.2024.8.26.0562",
+  "parecer_esperado": {
+    "responsavel": "ambos",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "indenizacao_danos_morais": 0.0,
+      "restituicao_salarios_retidos": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "cancelamento_comunicado_venda_detran": "A ré J.B.L.F. deve providenciar o cancelamento do comunicado de venda indevido junto ao órgão de trânsito"
+    },
+    "pedidos_rejeitados": [
+      "Indenização por danos morais no valor de 20 salários mínimos",
+      "Transferência administrativa direta dos débitos tributários",
+      "Suspensão de protestos e cobranças por ordem judicial direta ao Detran e Fazenda Pública"
+    ],
+    "fundamentos": [
+      "Inexistência do negócio jurídico de compra e venda pela ausência de tradição do bem móvel, elemento essencial do contrato conforme artigo 1.267 do Código Civil",
+      "Confissão pela revelia do corréu J.G.Z.C. de que reteve salários do autor como entrada mas jamais entregou o veículo sob alegação fraudulenta",
+      "Configuração de ato simulado no preenchimento do documento de transferência e comunicação de venda perante o Detran à revelia do autor",
+      "Responsabilidade da ré J.B.L.F. como titular de firma individual que se confunde patrimonialmente com a pessoa física, respondendo ilimitadamente pelas obrigações",
+      "Impossibilidade de determinar obrigações diretamente ao Detran e Fazenda Pública por ausência de participação desses entes no processo, sob pena de violação dos limites subjetivos da lide (art. 506 CPC)",
+      "Ausência de comprovação de dano moral indenizável apesar dos protestos, pois o juízo não condenou nessa rubrica"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - 'ambos' (réus solidários, sendo que o corréu J.G.Z.C. por confissão pela revelia e a corré J.B.L.F. como titular da firma individual)",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0 - no caso concreto, indenização por danos morais foi rejeitada (0.0)",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: (1) inexistência do negócio por ausência de tradição; (2) ato simulado de transferência à revelia do autor; (3) impossibilidade de determinar obrigações a terceiros não participantes do processo"
+  }
+}

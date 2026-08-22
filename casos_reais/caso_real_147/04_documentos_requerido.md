@@ -1,9 +1,0 @@
-- Documentos pessoais (RG e CPF)
-- Extratos bancários pessoais demonstrando não recebimento de valores elevados
-- Faturas de cartão de crédito
-- Declaração de Imposto de Renda compatível com remuneração de vendedor
-- Termo de entrega de chaves ao proprietário do imóvel datado de 04/07/2024
-- Inventário das mercadorias existentes no momento da entrega das chaves
-- Eventuais comprovantes de pagamento de salário mínimo + comissões
-- Declaração de testemunhas que confiram sua função de vendedor
-- Comprovantes de que as vendas por cartão eram creditadas na conta da empresa do autor

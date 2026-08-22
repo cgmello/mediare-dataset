@@ -1,5 +1,0 @@
-- Instrumento particular de compra e venda com cláusula de isenção de responsabilidade
-- Declaração de vistoria assinada pelo comprador
-- Comprovante da idade do equipamento (ano 2017)
-- Manifestações sobre a ausência de notas fiscais dos reparos
-- Impugnação ao contrato de prestação de serviços sem assinaturas

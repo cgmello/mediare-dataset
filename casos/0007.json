@@ -1,0 +1,12 @@
+{
+  "categoria": "locacao",
+  "documentos": {
+    "documentos_requerente": "- Contrato de locação comercial firmado em setembro de 2024, com vigência até setembro de 2025\n- Escritura ou matrícula do imóvel comprovando a propriedade\n- Notificação extrajudicial enviada à locatária cobrando os débitos\n- Comprovante de ajuizamento de ação de cobrança (processo nº 1063240-63.2025.8.26.0100)\n- Comprovante de depósito de caução processual\n- Comunicação sobre a desocupação voluntária do imóvel pela locatária\n- Fotografias ou laudo de vistoria inicial do imóvel (se disponível)",
+    "documentos_requerido": "*Nenhum documento foi apresentado pela parte requerida.*",
+    "peticao_requerente": "# Pedido de Mediação Extrajudicial\n\nVenho por meio desta solicitar mediação para resolução de conflito decorrente de contrato de locação comercial.\n\n## Dos Fatos\n\nSou proprietária de imóvel comercial situado na Avenida Brigadeiro Faria Lima, loja nº 10, Jardim Paulistano/SP, o qual aluguei à Sra. R.M.F.S. para fins comerciais.\n\nO contrato foi firmado pelo período de 01 de setembro de 2024 a 01 de setembro de 2025, estabelecendo o pagamento mensal de aluguel, além das despesas de condomínio e IPTU incidentes sobre o imóvel.\n\nOcorre que a locatária deixou de adimplir os aluguéis e demais encargos locatícios desde determinado momento da locação, o que me levou inclusive a ajuizar ação de cobrança específica para receber os valores devidos.\n\nDiante do inadimplemento persistente, busquei a rescisão do contrato e a retomada do imóvel. A locatária posteriormente desocupou voluntariamente o bem.\n\n## Dos Pedidos\n\nDiante do exposto, solicito:\n\n1. O reconhecimento da rescisão do contrato de locação em razão do inadimplemento contratual da locatária;\n2. A declaração de despejo da locatária do imóvel (caso ainda não desocupado);\n3. A condenação da locatária ao ressarcimento de eventuais danos materiais causados ao imóvel durante o período locatício, a serem apurados mediante vistoria técnica.",
+    "resposta_requerido": "# Resposta à Mediação\n\n(A requerida R.M.F.S. foi regularmente citada em seu novo endereço, mas não apresentou contestação ou manifestação nos autos, caracterizando revelia.)\n\n*Não houve apresentação de defesa ou versão da parte requerida.*"
+  },
+  "id": "0007",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "real"
+}

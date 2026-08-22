@@ -1,9 +1,0 @@
-- Contrato de locação assinado em 23/04/2024
-- Laudo de vistoria inicial com descrição do estado do imóvel e fotografias
-- Termo de entrega de chaves datado de 10/02/2025
-- Fotografias do imóvel no momento da devolução mostrando danos
-- Cupom fiscal de compra de material de pintura (R$ 317,00) de 12/02/2025
-- Recibo de serviço de pintura geral e chumbamento datado de 17/02/2025
-- Boletos ou comprovantes de despesas de condomínio e IPTU em aberto
-- Notificação extrajudicial enviada aos locatários
-- Cópia da cláusula 13ª (multa rescisória), cláusula 27ª (autorização para reparos) e demais cláusulas relevantes

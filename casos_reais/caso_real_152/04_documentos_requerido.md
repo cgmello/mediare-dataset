@@ -1,6 +1,0 @@
-- Estatuto social da Associação AMBEC
-- Certificado de regularidade de constituição da entidade
-- Documento eletrônico (print de sistema) alegadamente comprovando a filiação do requerente
-- Demonstrativo dos valores de contribuição associativa praticados
-- Relação de benefícios oferecidos aos associados
-- Declaração de hipossuficiência econômica da associação (para pedido de gratuidade)

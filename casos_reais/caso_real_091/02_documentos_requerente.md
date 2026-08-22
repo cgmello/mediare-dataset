@@ -1,6 +1,0 @@
-- Contrato de Construção por Empreitada assinado em 15/02/2021
-- Comprovantes de pagamento das parcelas da entrada (março/2021 a março/2022) totalizando R$ 6.826,63
-- Fotografias da placa informativa instalada pela Prefeitura Municipal no loteamento
-- Certidão da Prefeitura Municipal de Arandu atestando ausência de registro aprovado do loteamento
-- Documentos pessoais (RG, CPF, comprovante de residência)
-- Eventuais mensagens trocadas com os requeridos sobre o contrato e as obras

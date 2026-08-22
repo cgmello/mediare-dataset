@@ -1,0 +1,39 @@
+{
+  "id": "0035",
+  "origem": "real",
+  "processo_tjsp": "1006390-23.2025.8.26.0606",
+  "sha256_caso": "d1cc0d06a3ba100d60c69ecf2eb20e1aef4659d3214345b7cd3532bce35846d9",
+  "caso": "real-029-cobranca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1006390-23.2025.8.26.0606",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "servicos_executados_nao_pagos": 75696.61,
+      "correcao_monetaria": 0.0,
+      "juros": 0.0,
+      "valor_principal_devido": 75696.61
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Ilegitimidade passiva da ré",
+      "Integração do Grupo Irmãos Muffato à lide",
+      "Suspensão/reunião de processos por prejudicialidade externa",
+      "Produção de prova testemunhal",
+      "Produção de perícia técnica"
+    ],
+    "fundamentos": [
+      "Contrato de prestação de serviços firmado diretamente entre autora e ré em 30/08/2023, com pedidos de compra emitidos pela ré",
+      "Responsabilidade contratual da contratante direta (ré) perante o prestador de serviços (autora), independentemente da relação com o dono da obra",
+      "Confissão judicial de dívida no valor de R$ 64.000,00 pela ré em contestação apresentada no processo nº 1040824-38.2023.8.26.0564, não impugnada especificamente",
+      "Execução de aproximadamente 80% dos serviços contratados, conforme planilhas e relatórios diários não impugnados especificamente pela ré",
+      "Realização de pagamentos parciais diretos pela ré à autora durante a obra, comprovando a relação contratual direta",
+      "Ausência de solidariedade legal ou contratual entre a ré e o Grupo Muffato que afaste a responsabilidade da contratante direta"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - deve ser 'requerido'",
+    "valores": "tolerância ±15% sobre R$ 75.696,61; valor principal deve estar entre R$ 64.342,12 e R$ 87.051,10",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) existência de contrato direto entre as partes, (2) confissão de dívida pela ré em outro processo, (3) responsabilidade da contratante direta e não do dono da obra"
+  }
+}

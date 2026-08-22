@@ -1,0 +1,35 @@
+{
+  "id": "0104",
+  "origem": "real",
+  "processo_tjsp": "1012514-42.2022.8.26.0019",
+  "sha256_caso": "1e4ade803191c882f9ed1e380ba58fc4648c6c869ee2a5927306692d999b5366",
+  "caso": "real-098-vizinhanca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1012514-42.2022.8.26.0019",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "danos_materiais_reparo_piso": 12932.4,
+      "danos_emergentes_despesas": 1647.84,
+      "danos_morais": 3000.0,
+      "valor_pedido_inicial_danos_materiais_negado": 7287.76
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Valor integral de danos materiais de R$ 20.220,16 (deferido apenas R$ 12.932,40 conforme laudo pericial judicial)"
+    ],
+    "fundamentos": [
+      "Perícia judicial constatou vício construtivo endógeno: argamassa colante aplicada de forma parcial e insuficiente, sem adotar técnica de dupla colagem conforme normas técnicas ABNT",
+      "Descumprimento pelas requeridas das normas técnicas ABNT NBR 13.753:1996, 13.754:1996, 13.755 e 14.081-1:2012 quanto ao assentamento de pisos cerâmicos",
+      "Perícia afastou expressamente a tese de culpa exclusiva da consumidora, atestando que a manutenção dos rejuntes não contribuiu para as anomalias apuradas",
+      "Vícios ocultos imperceptíveis no ato de recebimento das chaves, de natureza progressiva",
+      "Responsabilidade objetiva e solidária das fornecedoras com base no Código de Defesa do Consumidor",
+      "Dano moral configurado por circunstâncias que ultrapassaram mero inadimplemento contratual: comprometimento das condições de habitabilidade, risco de acidentes, depreciação do imóvel e descaso das requeridas"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido",
+    "valores": "tolerância ±15% por rubrica; danos materiais R$ 12.932,40 (não R$ 20.220,16); danos emergentes R$ 1.647,84; danos morais R$ 3.000,00; valor negado da diferença deve ser identificado",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) perícia atestou vício construtivo na aplicação de argamassa; (2) descumprimento de normas técnicas ABNT; (3) afastamento de culpa exclusiva do consumidor quanto à manutenção de rejuntes; (4) responsabilidade objetiva CDC"
+  }
+}

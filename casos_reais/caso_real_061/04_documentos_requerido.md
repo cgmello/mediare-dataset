@@ -1,6 +1,0 @@
-- Contrato de concessão da rodovia SP-310
-- Relatório de Ocorrências do dia 21/11/2025, km 380, registrando às 20h01 evento "ATROPELO UM CAPIVARA"
-- Planilhas de rondas e fiscalização periódicas da rodovia
-- Registros de passagem de viatura pelo km 380 minutos antes do acidente
-- Normas técnicas e padrões de fiscalização aplicáveis às concessões rodoviárias
-- Jurisprudência sobre responsabilidade subjetiva em casos de invasão de animais silvestres

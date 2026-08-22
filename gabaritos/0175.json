@@ -1,0 +1,36 @@
+{
+  "id": "0175",
+  "origem": "real",
+  "processo_tjsp": "1002376-73.2024.8.26.0236",
+  "sha256_caso": "23b75ac066eac2bfec39fb28f9842dea5ec690f3d1691a87a6a59b4844a2c07c",
+  "caso": "real-169-veiculo_venda",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1002376-73.2024.8.26.0236",
+  "parecer_esperado": {
+    "responsavel": "requerente",
+    "resultado": "improcedente",
+    "valores": {
+      "danos_materiais_conserto": 0.0,
+      "lucros_cessantes": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Ressarcimento de danos materiais de R$ 53.693,01",
+      "Indenização por lucros cessantes de R$ 163.600,00"
+    ],
+    "fundamentos": [
+      "Laudo pericial inconclusivo quanto à existência de vício oculto preexistente à venda, sendo impossível determinar a causa raiz do problema",
+      "Trator já consertado no momento da perícia, impossibilitando análise contemporânea da falha",
+      "Peças avariadas apresentadas sem cadeia de custódia, oxidadas e sem comprovação de pertencerem ao maquinário em questão",
+      "Ausência de documentação essencial: relatórios de diagnóstico eletrônico, notas fiscais pormenorizadas dos reparos e registro do horímetro na data da alienação",
+      "Autor admitiu ter detectado alertas em março/2024 mas continuou usando o trator até junho/2024, conduta que pode agravar falhas mecânicas",
+      "Bem usado com 7 anos de fabricação sujeito a desgaste natural de componentes, especialmente transmissão PowerShift que opera sob alta carga",
+      "Prova inconclusiva por obstáculo criado pela própria parte autora (conserto antes da perícia) milita contra quem tinha o ônus probatório",
+      "Não demonstrado nexo de causalidade entre eventual vício e a conduta do vendedor"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerente assumiu risco probatório",
+    "valores": "tolerância ±15% por rubrica; todas as rubricas devem ser 0.0 (improcedência total)",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: laudo inconclusivo, ausência de prova do vício preexistente, uso continuado após alertas, ausência de documentação/notas fiscais, bem usado sujeito a desgaste natural"
+  }
+}

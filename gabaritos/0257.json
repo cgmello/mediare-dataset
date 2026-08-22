@@ -1,0 +1,25 @@
+{
+  "id": "0257",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "bbd56486ace299b6da8d886373526b9ef3be9681ee5c8e84df632f81b9ff26c0",
+  "caso": "sint-076-reforma-empreitada",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "ambos_culpa_concorrente",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "custo_reparos_total": 22750,
+      "quota_empreiteira_50pct": 11375.0
+    },
+    "fundamentos": [
+      "falha de impermeabilizacao do empreiteiro",
+      "alteracoes feitas pelo dono apos a entrega contribuiram para o dano"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

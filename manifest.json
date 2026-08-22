@@ -1,0 +1,4007 @@
+{
+  "dataset": "mediare-dataset",
+  "versao": "1.0.0",
+  "total": 500,
+  "casos": [
+    {
+      "id": "0001",
+      "origem": "ouro",
+      "categoria": "001-locacao-vicios-ocultos",
+      "processo_tjsp": "1007405-93.2025.8.26.0099",
+      "sha256": "5e45a64ddbbfa60a16152d3bc18a63a886ab7a9cdf7744b6786c7d6054902c24",
+      "url_relativa": "casos/0001.json"
+    },
+    {
+      "id": "0002",
+      "origem": "ouro",
+      "categoria": "002-cobranca-curso",
+      "processo_tjsp": "1007987-65.2024.8.26.0637",
+      "sha256": "3587e9e80cdb39831be70e6683d9ea199605c68b655c52b5bcb63f8c299aa3f4",
+      "url_relativa": "casos/0002.json"
+    },
+    {
+      "id": "0003",
+      "origem": "ouro",
+      "categoria": "003-consumo-piscina",
+      "processo_tjsp": "1000369-83.2023.8.26.0579",
+      "sha256": "2cf79cdad48f2a4c21c5ccbffd434c9519897d39efd448b22556efeb1670faa9",
+      "url_relativa": "casos/0003.json"
+    },
+    {
+      "id": "0004",
+      "origem": "ouro",
+      "categoria": "004-transito-engavetamento",
+      "processo_tjsp": "1037981-09.2024.8.26.0001",
+      "sha256": "0e4728794a39349d720f2bd8f7190e47e88b01a8b5db55b132a18583ad3b9910",
+      "url_relativa": "casos/0004.json"
+    },
+    {
+      "id": "0005",
+      "origem": "ouro",
+      "categoria": "005-reforma-empreitada",
+      "processo_tjsp": "1002671-02.2025.8.26.0099",
+      "sha256": "47379edd7ca05451e9e1633a12716e14ca0378e783ff81e27a04bbc6ec1cc47e",
+      "url_relativa": "casos/0005.json"
+    },
+    {
+      "id": "0006",
+      "origem": "ouro",
+      "categoria": "006-vizinhanca-infiltracao",
+      "processo_tjsp": "1008295-56.2024.8.26.0361",
+      "sha256": "55ebbcdff5bbc223885ebb0d57d8a9a9b53d7df0c2ecad3113722556808b39a5",
+      "url_relativa": "casos/0006.json"
+    },
+    {
+      "id": "0007",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1063928-25.2025.8.26.0100",
+      "sha256": "9afb33d1df59e09e30aa3484dff1d5ab574c1ee7f305d404332e1e00566770f3",
+      "url_relativa": "casos/0007.json"
+    },
+    {
+      "id": "0008",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1104626-10.2024.8.26.0100",
+      "sha256": "9d192b2ea3de1ff8fc1f4740ca2cb1e9423e97880233c68ce92cefd444c34094",
+      "url_relativa": "casos/0008.json"
+    },
+    {
+      "id": "0009",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1003276-57.2024.8.26.0462",
+      "sha256": "b5c249ccca21bb8a36ae4b16ed2b22d804446ba71694a1538ca548d6c6872dd3",
+      "url_relativa": "casos/0009.json"
+    },
+    {
+      "id": "0010",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1014014-72.2024.8.26.0020",
+      "sha256": "10c179db230d77908bbb14024a42ac3be444b88a696758a440faacdfffbe1f41",
+      "url_relativa": "casos/0010.json"
+    },
+    {
+      "id": "0011",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1025010-04.2024.8.26.0482",
+      "sha256": "4baa2a43c1116a235dcccfcf649ec7e051234fea8568d73f796b4c4e5319250a",
+      "url_relativa": "casos/0011.json"
+    },
+    {
+      "id": "0012",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1021276-32.2021.8.26.0100",
+      "sha256": "c3757748febb229b488d35916a093588fcf5a4bad4cce36d9fb6be0b30bb864a",
+      "url_relativa": "casos/0012.json"
+    },
+    {
+      "id": "0013",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1042555-91.2019.8.26.0602",
+      "sha256": "ffa095e9fee389644f53599acfbe5f95041dd731f35c4eaa16e9c8e8d31a9b97",
+      "url_relativa": "casos/0013.json"
+    },
+    {
+      "id": "0014",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1007405-93.2025.8.26.0099",
+      "sha256": "68e1661f38ec4566769ada44643afed49fe5c45940d9ef1051862ab5788b704a",
+      "url_relativa": "casos/0014.json"
+    },
+    {
+      "id": "0015",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1003432-20.2025.8.26.0168",
+      "sha256": "2711b436ac30baffe6abf0140ec00391956186c5b38f9bbe8f360cc21ed893e0",
+      "url_relativa": "casos/0015.json"
+    },
+    {
+      "id": "0016",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1017790-53.2023.8.26.0008",
+      "sha256": "3c0a2dc9921952a5e92dce88efc8212dd427a3f644fbf948d14afb9628836d98",
+      "url_relativa": "casos/0016.json"
+    },
+    {
+      "id": "0017",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1017815-66.2023.8.26.0008",
+      "sha256": "96133d9360e53ac1ca9eaa3719b01f61d9200a3cb9dbc29eecfe36b379ffceaa",
+      "url_relativa": "casos/0017.json"
+    },
+    {
+      "id": "0018",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1010291-64.2022.8.26.0004",
+      "sha256": "6014ca4b09eeec97327392890f2ba1cb088255bc5994b171e8bd7876b110e091",
+      "url_relativa": "casos/0018.json"
+    },
+    {
+      "id": "0019",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1016199-06.2025.8.26.0002",
+      "sha256": "857828657deb590a683cc2b6ea2c9ee5f5e83c05a5d604bb63dbdc7428c5e4bc",
+      "url_relativa": "casos/0019.json"
+    },
+    {
+      "id": "0020",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1118560-06.2022.8.26.0100",
+      "sha256": "0611e3aa9a4dfc3c2518a8940eb2ac7defa6c2961a02759debb09771327a76a1",
+      "url_relativa": "casos/0020.json"
+    },
+    {
+      "id": "0021",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1008827-58.2025.8.26.0405",
+      "sha256": "de3676c087049e6f72cfa590b250e09d260c8b1f8d7513e696f55990f4e84bfe",
+      "url_relativa": "casos/0021.json"
+    },
+    {
+      "id": "0022",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1002097-22.2025.8.26.0602",
+      "sha256": "ecc6fb5338924b72a9877f4856c2cf24f8790e355f9edd48004749200489e11b",
+      "url_relativa": "casos/0022.json"
+    },
+    {
+      "id": "0023",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1019530-96.2025.8.26.0001",
+      "sha256": "dcca4d4be8f4cec57ec49128e456caa2c916d215c9cf11ef5475fe54724a1c64",
+      "url_relativa": "casos/0023.json"
+    },
+    {
+      "id": "0024",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1025480-29.2025.8.26.0602",
+      "sha256": "bd44f005ee9eadaceba82bc397154db48cb653896383e9c8015a9abd450a738b",
+      "url_relativa": "casos/0024.json"
+    },
+    {
+      "id": "0025",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1053144-10.2022.8.26.0224",
+      "sha256": "b3fe6d78f76b6c7eb1a50d08765ddcb70351e4c1ca71eb74631c863296a4341a",
+      "url_relativa": "casos/0025.json"
+    },
+    {
+      "id": "0026",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1008928-98.2024.8.26.0577",
+      "sha256": "ed08dad3f96527e9eabb0038ce6b8438edafe7799c243ce343d10b1175250fc0",
+      "url_relativa": "casos/0026.json"
+    },
+    {
+      "id": "0027",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1029937-50.2024.8.26.0114",
+      "sha256": "85909a44fd152123dad11451255e7590eb43add3abf3ec0d9dc3d1b06195ca8a",
+      "url_relativa": "casos/0027.json"
+    },
+    {
+      "id": "0028",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1000222-50.2025.8.26.0009",
+      "sha256": "89c1114cb1c9a8cefc10d367eec49a6b7df937aa43619c935a49f86ec8a277a0",
+      "url_relativa": "casos/0028.json"
+    },
+    {
+      "id": "0029",
+      "origem": "real",
+      "categoria": "locacao",
+      "processo_tjsp": "1012616-26.2025.8.26.0224",
+      "sha256": "23bb1eef2fc8b8c4c638d6ed5aba32073b1f8f55f65a9619e5a0d8fbdfe81344",
+      "url_relativa": "casos/0029.json"
+    },
+    {
+      "id": "0030",
+      "origem": "real",
+      "categoria": "cobranca",
+      "processo_tjsp": "1007987-65.2024.8.26.0637",
+      "sha256": "0cf9d4c0834a8c4685bda4544d1e8ee07b5e48d4ec8c106850162c7b83bee6fd",
+      "url_relativa": "casos/0030.json"
+    },
+    {
+      "id": "0031",
+      "origem": "real",
+      "categoria": "cobranca",
+      "processo_tjsp": "0800311-25.2012.8.26.0361",
+      "sha256": "6ba6f5e5971a8abbcc4726d043ccb81174cefc0aaf4451736e001ac703857489",
+      "url_relativa": "casos/0031.json"
+    },
+    {
+      "id": "0032",
+      "origem": "real",
+      "categoria": "cobranca",
+      "processo_tjsp": "1003063-17.2024.8.26.0344",
+      "sha256": "5bb30ef2822ed6f394b1baa22799ffd1644a8046b00ac9937e82c7ac705a4f43",
+      "url_relativa": "casos/0032.json"
+    },
+    {
+      "id": "0033",
+      "origem": "real",
+      "categoria": "cobranca",
+      "processo_tjsp": "1197464-69.2024.8.26.0100",
+      "sha256": "7233e83c01d33fb61fc3859a8097aa163c859a58c4155dfd1951091c046e416d",
+      "url_relativa": "casos/0033.json"
+    },
+    {
+      "id": "0034",
+      "origem": "real",
+      "categoria": "cobranca",
+      "processo_tjsp": "0009868-31.2014.8.26.0157",
+      "sha256": "5a83febe9bc80bf1977098e68f49729b3ce93c79d7dc1b8fd7ed7a7037122e5d",
+      "url_relativa": "casos/0034.json"
+    },
+    {
+      "id": "0035",
+      "origem": "real",
+      "categoria": "cobranca",
+      "processo_tjsp": "1006390-23.2025.8.26.0606",
+      "sha256": "d1cc0d06a3ba100d60c69ecf2eb20e1aef4659d3214345b7cd3532bce35846d9",
+      "url_relativa": "casos/0035.json"
+    },
+    {
+      "id": "0036",
+      "origem": "real",
+      "categoria": "cobranca",
+      "processo_tjsp": "1015697-17.2024.8.26.0224",
+      "sha256": "19e6a3be2c31484eb1354c91837a3f95382683d7432036f96a8dc32a9150f8db",
+      "url_relativa": "casos/0036.json"
+    },
+    {
+      "id": "0037",
+      "origem": "real",
+      "categoria": "cobranca",
+      "processo_tjsp": "1006795-75.2024.8.26.0224",
+      "sha256": "e67229dba5ac42c8d9653b2667f219078ca5fbc77aa391d947f146e9fdbc8f66",
+      "url_relativa": "casos/0037.json"
+    },
+    {
+      "id": "0038",
+      "origem": "real",
+      "categoria": "cobranca",
+      "processo_tjsp": "1138786-95.2023.8.26.0100",
+      "sha256": "ac652801c4db5cc305ed1f9ddf9c995f197d206c4894f4261b7a093348ccb45b",
+      "url_relativa": "casos/0038.json"
+    },
+    {
+      "id": "0039",
+      "origem": "real",
+      "categoria": "cobranca",
+      "processo_tjsp": "1006563-24.2022.8.26.0001",
+      "sha256": "a046d2fb320abd56f60b861f4b7c8055fd9cff53d61b8ded482d0980698d3a5d",
+      "url_relativa": "casos/0039.json"
+    },
+    {
+      "id": "0040",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "1000895-10.2025.8.26.0020",
+      "sha256": "55fbb993358ab775cd8d5a45b86a7aaa007deedc151d302bfe6e30a4ce956572",
+      "url_relativa": "casos/0040.json"
+    },
+    {
+      "id": "0041",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "0000112-12.2025.8.26.0157",
+      "sha256": "fd46806768d2c78f0c1cf10e6c0a2f09baa86311206ec5e687876ae4fa89f47a",
+      "url_relativa": "casos/0041.json"
+    },
+    {
+      "id": "0042",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "1001019-90.2024.8.26.0484",
+      "sha256": "510ece88383ca9e30ab07b32d427fcdc6cd80351e3dce4b0f3711ea12fe9c6b4",
+      "url_relativa": "casos/0042.json"
+    },
+    {
+      "id": "0043",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "1005187-26.2025.8.26.0606",
+      "sha256": "96fcb4bee6af2e21f2001022808676ff69254255edd799f006099e5a34bc7eb8",
+      "url_relativa": "casos/0043.json"
+    },
+    {
+      "id": "0044",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "1003975-18.2025.8.26.0590",
+      "sha256": "600efdfb03ad509712e32e82a563eda14348c7cf90a9f4994402c3faf7cb5e7a",
+      "url_relativa": "casos/0044.json"
+    },
+    {
+      "id": "0045",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "1003394-13.2025.8.26.0037",
+      "sha256": "fca7296229349fe8277bdc36bc877561886a5ee8872958531081860fbd8a0020",
+      "url_relativa": "casos/0045.json"
+    },
+    {
+      "id": "0046",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "1003067-61.2021.8.26.0020",
+      "sha256": "914eeda7ba79641b938fe991a8619535a707f49bf03f476f1945581addf2deb1",
+      "url_relativa": "casos/0046.json"
+    },
+    {
+      "id": "0047",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "1004240-52.2023.8.26.0505",
+      "sha256": "6c4e7ed0c82771615c37104f818f93ffc022636aa46176b09110f65d2aab5a67",
+      "url_relativa": "casos/0047.json"
+    },
+    {
+      "id": "0048",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "1005927-12.2025.8.26.0047",
+      "sha256": "543a3aa6d5a98b689db2a68424a9286e157c4d17b1d3182b22029de4f57284b5",
+      "url_relativa": "casos/0048.json"
+    },
+    {
+      "id": "0049",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "1003457-96.2022.8.26.0084",
+      "sha256": "3afc49b476702de801aa8534bb40d0d30a13d3103e833dd4ee7d6be808c33b26",
+      "url_relativa": "casos/0049.json"
+    },
+    {
+      "id": "0050",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "1002380-02.2025.8.26.0002",
+      "sha256": "c36f4345e821379d95c1228b67a7ba1ac260d6bd1434f1ac7b52ac68da4f2d07",
+      "url_relativa": "casos/0050.json"
+    },
+    {
+      "id": "0051",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "1003326-43.2025.8.26.0270",
+      "sha256": "25d645f48d25ac57597269eacb65e7a7f1348bfc7a7b818a508aa62b4ea67799",
+      "url_relativa": "casos/0051.json"
+    },
+    {
+      "id": "0052",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "1019044-69.2024.8.26.0576",
+      "sha256": "9510e07d0e0005a59b1024c424d05c325e02c010eb2f3bd46cab3a1182f2a99f",
+      "url_relativa": "casos/0052.json"
+    },
+    {
+      "id": "0053",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "1006791-24.2024.8.26.0358",
+      "sha256": "0dc0576f3b11b8f55079e3993802532bb6fde107a4158d1b452c2634a3dc102e",
+      "url_relativa": "casos/0053.json"
+    },
+    {
+      "id": "0054",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "1001929-86.2023.8.26.0344",
+      "sha256": "73b70a89674339871ec10aef64d4a8cb65d46121f64e43bd94015d42c4fcba78",
+      "url_relativa": "casos/0054.json"
+    },
+    {
+      "id": "0055",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "1010994-03.2024.8.26.0302",
+      "sha256": "6cf3844a3f4ad4bdbfb37f709ea84a0f6a1c2ad82f7479975d92e9374c658850",
+      "url_relativa": "casos/0055.json"
+    },
+    {
+      "id": "0056",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "1008712-89.2025.8.26.0032",
+      "sha256": "927894917b00104e1c95e279e59b5b32b369ed53ce16d9ed15792acc57ca866b",
+      "url_relativa": "casos/0056.json"
+    },
+    {
+      "id": "0057",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "1050296-79.2024.8.26.0224",
+      "sha256": "814cd0e958773c0f254c467c337f46e323b1c63c61791b9f93bd7fc1a2b1b17f",
+      "url_relativa": "casos/0057.json"
+    },
+    {
+      "id": "0058",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "1002663-47.2024.8.26.0491",
+      "sha256": "08359f51dad9b83d94ea27d84fea8e419f719a43a753c8ff7b9bc27897d69e83",
+      "url_relativa": "casos/0058.json"
+    },
+    {
+      "id": "0059",
+      "origem": "real",
+      "categoria": "consumo",
+      "processo_tjsp": "1005510-11.2025.8.26.0451",
+      "sha256": "e494ac7a3375e927fbbf1b7c613f879adbc263436c1dcc259d6ff52037a37961",
+      "url_relativa": "casos/0059.json"
+    },
+    {
+      "id": "0060",
+      "origem": "real",
+      "categoria": "transito",
+      "processo_tjsp": "1007819-02.2022.8.26.0292",
+      "sha256": "e5f4b48bfa3765c31e1fcff82602f7f7160defdc37ff0ddd7ef81e5896db8c6a",
+      "url_relativa": "casos/0060.json"
+    },
+    {
+      "id": "0061",
+      "origem": "real",
+      "categoria": "transito",
+      "processo_tjsp": "1002042-26.2019.8.26.0394",
+      "sha256": "f8a4ac85888fd80e5f56f381b6c09c85abb4e76a0bab35bf0a6de90f103c3986",
+      "url_relativa": "casos/0061.json"
+    },
+    {
+      "id": "0062",
+      "origem": "real",
+      "categoria": "transito",
+      "processo_tjsp": "1037981-09.2024.8.26.0001",
+      "sha256": "0d156cecb642cb9681aba06e03dae2279b6431ffb1d09cfa02464592ce28291d",
+      "url_relativa": "casos/0062.json"
+    },
+    {
+      "id": "0063",
+      "origem": "real",
+      "categoria": "transito",
+      "processo_tjsp": "1012018-28.2025.8.26.0562",
+      "sha256": "3d0e5b124ff3e9a412d251a08eddcd9fcb9aa5caca8c37b169c330d205952161",
+      "url_relativa": "casos/0063.json"
+    },
+    {
+      "id": "0064",
+      "origem": "real",
+      "categoria": "transito",
+      "processo_tjsp": "1004021-86.2023.8.26.0360",
+      "sha256": "b31bd09f44c4cb5c22f3adeda292fc36c384b269a82376272c9950f126433742",
+      "url_relativa": "casos/0064.json"
+    },
+    {
+      "id": "0065",
+      "origem": "real",
+      "categoria": "transito",
+      "processo_tjsp": "1000929-21.2025.8.26.0493",
+      "sha256": "7bf6483f4c6f39ee40b9e3ff11e92cfeaeb30360c04aca93497578aa9160c78a",
+      "url_relativa": "casos/0065.json"
+    },
+    {
+      "id": "0066",
+      "origem": "real",
+      "categoria": "transito",
+      "processo_tjsp": "1003151-98.2024.8.26.0168",
+      "sha256": "f7d9e58167bd3859ae8ccd9e8a17f91db6ab48bbc812c0c52dc286a7624713a1",
+      "url_relativa": "casos/0066.json"
+    },
+    {
+      "id": "0067",
+      "origem": "real",
+      "categoria": "transito",
+      "processo_tjsp": "1002338-40.2026.8.26.0576",
+      "sha256": "9b98b495a53fc0c3bba28c58fe2c208e43405d9763c2cffca7871ec55a90790f",
+      "url_relativa": "casos/0067.json"
+    },
+    {
+      "id": "0068",
+      "origem": "real",
+      "categoria": "transito",
+      "processo_tjsp": "0002115-84.2025.8.26.0400",
+      "sha256": "af814797fa2ddfd20837ca231ac2f29ed077b5a1052310bfb0c076052a021986",
+      "url_relativa": "casos/0068.json"
+    },
+    {
+      "id": "0069",
+      "origem": "real",
+      "categoria": "transito",
+      "processo_tjsp": "1001778-17.2026.8.26.0506",
+      "sha256": "9fadb1f2008a2bb1bb29e6f4f2dbb4879ba8250c7d214b3dd391761b7ffbba98",
+      "url_relativa": "casos/0069.json"
+    },
+    {
+      "id": "0070",
+      "origem": "real",
+      "categoria": "transito",
+      "processo_tjsp": "1034056-42.2024.8.26.0506",
+      "sha256": "80e46b75eba6702cdddb6a7bd52ba5468d7fd47ccfb6fd1b58b041ff49a3b565",
+      "url_relativa": "casos/0070.json"
+    },
+    {
+      "id": "0071",
+      "origem": "real",
+      "categoria": "transito",
+      "processo_tjsp": "1001415-94.2026.8.26.0032",
+      "sha256": "69e57575cf6b979a817db80baa6bced2773eb3a6a8dd29c2ac8d083215de62b3",
+      "url_relativa": "casos/0071.json"
+    },
+    {
+      "id": "0072",
+      "origem": "real",
+      "categoria": "transito",
+      "processo_tjsp": "1006853-34.2023.8.26.0541",
+      "sha256": "55d571aa8ff92fda0e4a06f9f0e0ff59a122d3018d15f91f8196f5e68e9bc164",
+      "url_relativa": "casos/0072.json"
+    },
+    {
+      "id": "0073",
+      "origem": "real",
+      "categoria": "transito",
+      "processo_tjsp": "0002801-96.2025.8.26.0361",
+      "sha256": "2f184c158397a5889222824206909b2c36e536edad0d017129a17fb44fdfb6d6",
+      "url_relativa": "casos/0073.json"
+    },
+    {
+      "id": "0074",
+      "origem": "real",
+      "categoria": "transito",
+      "processo_tjsp": "1000850-34.2025.8.26.0431",
+      "sha256": "05d978ec7068816c571f77166e35e767e525b3799c37ed3824c8c9d259f6a5cb",
+      "url_relativa": "casos/0074.json"
+    },
+    {
+      "id": "0075",
+      "origem": "real",
+      "categoria": "transito",
+      "processo_tjsp": "1042870-21.2021.8.26.0224",
+      "sha256": "775050d0647396e6b4997057340a3833297fecda15191c34dd563623312cc963",
+      "url_relativa": "casos/0075.json"
+    },
+    {
+      "id": "0076",
+      "origem": "real",
+      "categoria": "transito",
+      "processo_tjsp": "1009164-92.2023.8.26.0348",
+      "sha256": "70926ba70a1af201ba5067564f68ea6477ed68857b0fc6effab396cc4d40f6c7",
+      "url_relativa": "casos/0076.json"
+    },
+    {
+      "id": "0077",
+      "origem": "real",
+      "categoria": "transito",
+      "processo_tjsp": "1016364-48.2022.8.26.0361",
+      "sha256": "458151b33caa968c33777005dd89d4b11a1e01b5fb36c2605834936ea4ee63be",
+      "url_relativa": "casos/0077.json"
+    },
+    {
+      "id": "0078",
+      "origem": "real",
+      "categoria": "transito",
+      "processo_tjsp": "1000193-88.2020.8.26.0101",
+      "sha256": "5ec6fdc2648c66228df21ed8835dcb708ec6f37ad697c040f511b3acba960ba7",
+      "url_relativa": "casos/0078.json"
+    },
+    {
+      "id": "0079",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1002671-02.2025.8.26.0099",
+      "sha256": "b76b803feeaec212016267ecd7620c4105b56e430cc29efe7ccd47fb64934495",
+      "url_relativa": "casos/0079.json"
+    },
+    {
+      "id": "0080",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1004752-33.2022.8.26.0032",
+      "sha256": "e32bf51b8bcc78fbfdc596d109d7b6e3fba97556bb72f9156511018e160b8e27",
+      "url_relativa": "casos/0080.json"
+    },
+    {
+      "id": "0081",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1000863-88.2025.8.26.0445",
+      "sha256": "264315759bf56adc78350ed4958e5c2b73309fd4767ec6e69f5c0b8e101354ac",
+      "url_relativa": "casos/0081.json"
+    },
+    {
+      "id": "0082",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1000088-84.2022.8.26.0346",
+      "sha256": "2e6aafad4148914779453a8ca99a207961849c974038c6a3a9a5362689bdd688",
+      "url_relativa": "casos/0082.json"
+    },
+    {
+      "id": "0083",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1005293-28.2025.8.26.0625",
+      "sha256": "8c306adbd74041f70b201b2de3a8a4b81adf31cf0372eb51bfe94b93a94d38eb",
+      "url_relativa": "casos/0083.json"
+    },
+    {
+      "id": "0084",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1008484-09.2021.8.26.0565",
+      "sha256": "d722af8272640ff4da2f618cbfb86374045661765568151977838cc7c6258603",
+      "url_relativa": "casos/0084.json"
+    },
+    {
+      "id": "0085",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1015164-36.2023.8.26.0566",
+      "sha256": "bb1dc5088285dff5425a5bf31fe8cb823e203c846a602791a04836773ab5a9e1",
+      "url_relativa": "casos/0085.json"
+    },
+    {
+      "id": "0086",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1027670-05.2024.8.26.0309",
+      "sha256": "a314a33dfa8094e8cca3a20093d55c67adcd4b7d38ff4f873a43b6a61dcbd6ff",
+      "url_relativa": "casos/0086.json"
+    },
+    {
+      "id": "0087",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1007289-13.2021.8.26.0266",
+      "sha256": "2b3c37ba9c491f2dc9522366f695aac010b1916d38e208a88cba725ee00614f9",
+      "url_relativa": "casos/0087.json"
+    },
+    {
+      "id": "0088",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1006216-96.2025.8.26.0320",
+      "sha256": "55caf8d66b834d1e01eb3f3601b04b9511c0ee4f622c55de2f3ccea92a8e187a",
+      "url_relativa": "casos/0088.json"
+    },
+    {
+      "id": "0089",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1008362-61.2024.8.26.0477",
+      "sha256": "c92080e00a81575f5b3ecfc7ab6b1542bbb18b92cbaaf001a01963653db5b04e",
+      "url_relativa": "casos/0089.json"
+    },
+    {
+      "id": "0090",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1016443-97.2023.8.26.0003",
+      "sha256": "3868e0341102b932d240ea626d3739f99a455c8b29b322f19f5a029c8e470116",
+      "url_relativa": "casos/0090.json"
+    },
+    {
+      "id": "0091",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1046938-02.2025.8.26.0506",
+      "sha256": "d711f501e3464f8ae624a380b8a79b290dc160b7197bbc7073a8a40d481d7410",
+      "url_relativa": "casos/0091.json"
+    },
+    {
+      "id": "0092",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1029874-59.2023.8.26.0405",
+      "sha256": "989c2ba1239eb5a9d82e2f78a2a684670b12c9947e18fdafac38f28336c8f539",
+      "url_relativa": "casos/0092.json"
+    },
+    {
+      "id": "0093",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1002292-16.2023.8.26.0363",
+      "sha256": "a6f60eb299d5ce498ba87590f1602ea68b517a9fcacb047fce92b3b4c5aa0f78",
+      "url_relativa": "casos/0093.json"
+    },
+    {
+      "id": "0094",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1049010-67.2022.8.26.0602",
+      "sha256": "ee008e094a71fda05377b656fd4f1cc72eecf233c77faa5edde8125c23f95aa3",
+      "url_relativa": "casos/0094.json"
+    },
+    {
+      "id": "0095",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1003068-43.2021.8.26.0506",
+      "sha256": "e4ad68c70cf93bd2acc23959f2ce3280ca49afa130192ec93787e5ef7d1338fa",
+      "url_relativa": "casos/0095.json"
+    },
+    {
+      "id": "0096",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1001064-20.2023.8.26.0035",
+      "sha256": "855ba6c3d35f3b643c36865369efa2f3a29911df3e717a1651d4e196e31d92d0",
+      "url_relativa": "casos/0096.json"
+    },
+    {
+      "id": "0097",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1004981-93.2024.8.26.0073",
+      "sha256": "1e34de2425ea544bb36754a343f88b1ebd4b17f8d679d61679270618fb3faea0",
+      "url_relativa": "casos/0097.json"
+    },
+    {
+      "id": "0098",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1008818-60.2024.8.26.0008",
+      "sha256": "8c6b025ef2a918352a4fc6cf40df9249c07863e4c2b5c4f35fb405ffd52110c9",
+      "url_relativa": "casos/0098.json"
+    },
+    {
+      "id": "0099",
+      "origem": "real",
+      "categoria": "reforma",
+      "processo_tjsp": "1000976-49.2025.8.26.0281",
+      "sha256": "9f78b091098eddb43e1c6947bb303eadc76345035c571a20bbca609de819cb89",
+      "url_relativa": "casos/0099.json"
+    },
+    {
+      "id": "0100",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1011852-17.2025.8.26.0361",
+      "sha256": "e90317bad59203e7e181ab81b847e53f95ac48894e90a545ec378dd6400e35ed",
+      "url_relativa": "casos/0100.json"
+    },
+    {
+      "id": "0101",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1007217-57.2022.8.26.0309",
+      "sha256": "e899c2265e95a0f653cb4914d61e8738baec83ff4c690e884e6daeec45f0d591",
+      "url_relativa": "casos/0101.json"
+    },
+    {
+      "id": "0102",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1026842-17.2021.8.26.0405",
+      "sha256": "54ff305351f79184d3b7df6d28586f30b0f89824591e3cc6e479536313f65cfd",
+      "url_relativa": "casos/0102.json"
+    },
+    {
+      "id": "0103",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1008295-56.2024.8.26.0361",
+      "sha256": "341eaed57c3c59d9009d8901132a925f18d913276e9fba78eaaf20bbdea8ba54",
+      "url_relativa": "casos/0103.json"
+    },
+    {
+      "id": "0104",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1012514-42.2022.8.26.0019",
+      "sha256": "1e4ade803191c882f9ed1e380ba58fc4648c6c869ee2a5927306692d999b5366",
+      "url_relativa": "casos/0104.json"
+    },
+    {
+      "id": "0105",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1000874-04.2022.8.26.0355",
+      "sha256": "930c883bfe20b41eade3052b46b95325b014cd4ce2a8ab4b036fdd80498a2049",
+      "url_relativa": "casos/0105.json"
+    },
+    {
+      "id": "0106",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1003233-60.2024.8.26.0482",
+      "sha256": "ee6c8a2f49c61f526224cc76b86a2e1a9251bc69198f84c76c8b303dabb61c96",
+      "url_relativa": "casos/0106.json"
+    },
+    {
+      "id": "0107",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1065990-72.2024.8.26.0100",
+      "sha256": "14570f32a8c73224108d35e7afc7265bde8278dfd0533f1f00499d0cad74148f",
+      "url_relativa": "casos/0107.json"
+    },
+    {
+      "id": "0108",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1017849-33.2023.8.26.0625",
+      "sha256": "29a87acbb3838d7ad972ca76f36cc7f34ee0d0f086919297cbd18213e4183c79",
+      "url_relativa": "casos/0108.json"
+    },
+    {
+      "id": "0109",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1015218-54.2024.8.26.0602",
+      "sha256": "ca10c20080226e634e19ad3551d07f5d11b15284a0679bf6bff5dfc5fdb31e41",
+      "url_relativa": "casos/0109.json"
+    },
+    {
+      "id": "0110",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1001743-60.2023.8.26.0539",
+      "sha256": "50e62d3f6c85ebee4d94c313767c02cc1c308f9c81e6be696e764f60713b3e78",
+      "url_relativa": "casos/0110.json"
+    },
+    {
+      "id": "0111",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1002063-20.2025.8.26.0223",
+      "sha256": "54a0fee9fd0cea059f253fedcfd31a7d52283833fc7c9d5ec15ce9a17453a33e",
+      "url_relativa": "casos/0111.json"
+    },
+    {
+      "id": "0112",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1002133-52.2024.8.26.0003",
+      "sha256": "9f20126b1bbe5ddabec88f70932b3bb1caf8f18864a368d1a37e5d2d00c70fd1",
+      "url_relativa": "casos/0112.json"
+    },
+    {
+      "id": "0113",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1026010-79.2024.8.26.0016",
+      "sha256": "f5e39452bf3e346ab569763a79d99aee7a0cc62e3e21d0e9e03086b55e070294",
+      "url_relativa": "casos/0113.json"
+    },
+    {
+      "id": "0114",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1028923-45.2024.8.26.0562",
+      "sha256": "2ffec053fbc638890c6d8cf57287657082c1a4bfab3d06a4228a1043dfbc5c1c",
+      "url_relativa": "casos/0114.json"
+    },
+    {
+      "id": "0115",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1007020-42.2025.8.26.0004",
+      "sha256": "3a6f3ae3a4b8bc38c4a77ca2cdea9b3ad41728015bd77309208329bcc26b3633",
+      "url_relativa": "casos/0115.json"
+    },
+    {
+      "id": "0116",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1005538-39.2022.8.26.0271",
+      "sha256": "3c8cce6b12e17feff50d29fae273d15de305d544dd68262a774deffa7d66a42b",
+      "url_relativa": "casos/0116.json"
+    },
+    {
+      "id": "0117",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1005537-53.2024.8.26.0281",
+      "sha256": "0eeaf3373484cc91c048e45dd810f64b576b0f6d53bf9ae6cb4d028c3641e07e",
+      "url_relativa": "casos/0117.json"
+    },
+    {
+      "id": "0118",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1019918-08.2023.8.26.0344",
+      "sha256": "ce6f06d46b7f2f517bdfa3fc65351a1556805443b2b389e418982d17c6cd089a",
+      "url_relativa": "casos/0118.json"
+    },
+    {
+      "id": "0119",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1008376-94.2025.8.26.0223",
+      "sha256": "4df0a826d4150ab3f31b3a483bc225467e89d40e62513c29743312fe5a8a1cc5",
+      "url_relativa": "casos/0119.json"
+    },
+    {
+      "id": "0120",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1042253-67.2024.8.26.0576",
+      "sha256": "8cda00183cd0eac32e85ad2d8290818fcc49c06da6ae23ad5ef78c935b519d1d",
+      "url_relativa": "casos/0120.json"
+    },
+    {
+      "id": "0121",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1031211-94.2024.8.26.0002",
+      "sha256": "baa1d20ae6b8c0869e5c5c7afc5c576b225bf8400cd7cfd8ea2065f917d2bab6",
+      "url_relativa": "casos/0121.json"
+    },
+    {
+      "id": "0122",
+      "origem": "real",
+      "categoria": "vizinhanca",
+      "processo_tjsp": "1057492-14.2024.8.26.0576",
+      "sha256": "f3ef53631aea8b575fa754c28d594a5da4101e9b6df195adec4a1d0e4761c848",
+      "url_relativa": "casos/0122.json"
+    },
+    {
+      "id": "0123",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1033144-48.2024.8.26.0602",
+      "sha256": "452994b385ba893e4cec37d54a6bea50d5a7316a1a7ffe3275110518a1532c59",
+      "url_relativa": "casos/0123.json"
+    },
+    {
+      "id": "0124",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1007730-58.2025.8.26.0361",
+      "sha256": "85486c631848870637d98e407734184c0f8901e2786b8f5eb23045f4e57b8f8d",
+      "url_relativa": "casos/0124.json"
+    },
+    {
+      "id": "0125",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1049968-05.2025.8.26.0002",
+      "sha256": "4867d950f292107228b0c7032e3ef0d5cf5858f65e01f0173cffac765327b442",
+      "url_relativa": "casos/0125.json"
+    },
+    {
+      "id": "0126",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1005276-34.2023.8.26.0084",
+      "sha256": "505cce1f16d6adfe1f36a1ef090da835e5092e6b5bf5374ceefae75c3337e5a9",
+      "url_relativa": "casos/0126.json"
+    },
+    {
+      "id": "0127",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1005662-06.2024.8.26.0577",
+      "sha256": "2010e2257d761493d21b69c3074c5ffc3aabb934f382b5205cd565dc59093017",
+      "url_relativa": "casos/0127.json"
+    },
+    {
+      "id": "0128",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1034505-78.2024.8.26.0577",
+      "sha256": "6095a9d3b5b8c5430490fa475e0bc768c60e4e623e238434d2263b587ab4aa78",
+      "url_relativa": "casos/0128.json"
+    },
+    {
+      "id": "0129",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1004287-15.2025.8.26.0001",
+      "sha256": "9cfa71dbfb9f816202f1d82b4004c1459ae2c286b8d4c8a6af74da172db2b01a",
+      "url_relativa": "casos/0129.json"
+    },
+    {
+      "id": "0130",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1023223-67.2023.8.26.0451",
+      "sha256": "6ddc6f67a4f1956f35041b9e4e0a38487358324e688cf193778f7b83a462480b",
+      "url_relativa": "casos/0130.json"
+    },
+    {
+      "id": "0131",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1018159-97.2024.8.26.0562",
+      "sha256": "a02f2c38299b8afa96fe7a1a2695ef1f62da2525657e05a34fd4122c64a41456",
+      "url_relativa": "casos/0131.json"
+    },
+    {
+      "id": "0132",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1017909-48.2025.8.26.0071",
+      "sha256": "ee50efb604aa8928b5a07d9f1a313e7afaa9fe696a102f546eb5a98b977d9a19",
+      "url_relativa": "casos/0132.json"
+    },
+    {
+      "id": "0133",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1003677-20.2025.8.26.0010",
+      "sha256": "6ea3eb46691b686b183a967dd51a500f2b204430fa3b81e9b5008997f5a08120",
+      "url_relativa": "casos/0133.json"
+    },
+    {
+      "id": "0134",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1002520-79.2025.8.26.0602",
+      "sha256": "83436ba894ea2c6b9f4f83e8ee9aba2a55108d4e92170b92a145ad8b77ae2c30",
+      "url_relativa": "casos/0134.json"
+    },
+    {
+      "id": "0135",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1008456-72.2025.8.26.0477",
+      "sha256": "416db1541e890718bd7a4fcc89b9b994dbbb1529e896b15d6110a2a48a478eea",
+      "url_relativa": "casos/0135.json"
+    },
+    {
+      "id": "0136",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1021962-12.2024.8.26.0361",
+      "sha256": "52e820039041f2c4eea3481cbab821895109162c462757470ba46518683aa128",
+      "url_relativa": "casos/0136.json"
+    },
+    {
+      "id": "0137",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1005798-49.2024.8.26.0400",
+      "sha256": "d5a7993dabf0bc15362f366b795d3db07d0b367c783768e8427936276925976f",
+      "url_relativa": "casos/0137.json"
+    },
+    {
+      "id": "0138",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1012185-54.2024.8.26.0344",
+      "sha256": "b27c8a26a1e9cab95472e1ce5e2950abe7c03d2d8a10a004f65b09af87ebebc7",
+      "url_relativa": "casos/0138.json"
+    },
+    {
+      "id": "0139",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1015645-02.2024.8.26.0004",
+      "sha256": "3c36365da9e81a95a8d825b8c98912171da6bde068c64fb184d19ba19b4de29a",
+      "url_relativa": "casos/0139.json"
+    },
+    {
+      "id": "0140",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1001518-57.2025.8.26.0543",
+      "sha256": "a75bff2e5201ed13334cdc1cf76797cc19c4c462a59c53237dd3b1c2a3d53780",
+      "url_relativa": "casos/0140.json"
+    },
+    {
+      "id": "0141",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1018780-84.2025.8.26.0554",
+      "sha256": "1eaf40d555ee31d769cde395ccd9417a547117ab81318a318554d27f3ebaae3b",
+      "url_relativa": "casos/0141.json"
+    },
+    {
+      "id": "0142",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1079579-68.2023.8.26.0100",
+      "sha256": "0204f4a3351df66a32fdbe84e69724e8eb485560015f1dc9a93b9bf6d8b96475",
+      "url_relativa": "casos/0142.json"
+    },
+    {
+      "id": "0143",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1011938-17.2020.8.26.0602",
+      "sha256": "3b5bfa160545b5c8d16ff67678bf4885cd3c4e2da6da25538cb72165633d4aad",
+      "url_relativa": "casos/0143.json"
+    },
+    {
+      "id": "0144",
+      "origem": "real",
+      "categoria": "condominio",
+      "processo_tjsp": "1006964-85.2025.8.26.0302",
+      "sha256": "bd52a554b11d03e75285e0d1fbd29bbc1dd215ddd4dd30e7f188b6a5e0d017a8",
+      "url_relativa": "casos/0144.json"
+    },
+    {
+      "id": "0145",
+      "origem": "real",
+      "categoria": "divida",
+      "processo_tjsp": "1002800-05.2025.8.26.0132",
+      "sha256": "095c3a04e7ca3f2bf171ef8701844b914ef49ea7b875cf674e8c360f809af835",
+      "url_relativa": "casos/0145.json"
+    },
+    {
+      "id": "0146",
+      "origem": "real",
+      "categoria": "divida",
+      "processo_tjsp": "1004074-86.2025.8.26.0428",
+      "sha256": "34d59c0dc02c7a3d00804ae959518fcb708c5635b9c3947401c530a6a245fa88",
+      "url_relativa": "casos/0146.json"
+    },
+    {
+      "id": "0147",
+      "origem": "real",
+      "categoria": "divida",
+      "processo_tjsp": "1005146-56.2025.8.26.0510",
+      "sha256": "7fdcdec36c9b82161db0398f87d3fb19f9df46e318c7cc3518e33e1a06023fc6",
+      "url_relativa": "casos/0147.json"
+    },
+    {
+      "id": "0148",
+      "origem": "real",
+      "categoria": "divida",
+      "processo_tjsp": "1000717-63.2022.8.26.0506",
+      "sha256": "6ecaf427330f013226fa6bf8e14df156924b2903943f496b61ae756ffd1dad2e",
+      "url_relativa": "casos/0148.json"
+    },
+    {
+      "id": "0149",
+      "origem": "real",
+      "categoria": "divida",
+      "processo_tjsp": "1001477-34.2017.8.26.0426",
+      "sha256": "e15b5715954806cb3afe74326f61c609ef1bddad55f1284db0614cffffe0b06f",
+      "url_relativa": "casos/0149.json"
+    },
+    {
+      "id": "0150",
+      "origem": "real",
+      "categoria": "divida",
+      "processo_tjsp": "1003048-37.2023.8.26.0068",
+      "sha256": "0de9d2dc50cd2b61046328b93c412796f249130423a56221c8641d451a078485",
+      "url_relativa": "casos/0150.json"
+    },
+    {
+      "id": "0151",
+      "origem": "real",
+      "categoria": "divida",
+      "processo_tjsp": "1014110-12.2023.8.26.0606",
+      "sha256": "b6f5543ce3ffb5971059952654f2b636e4034b43ff20a19611c5733612e1cb31",
+      "url_relativa": "casos/0151.json"
+    },
+    {
+      "id": "0152",
+      "origem": "real",
+      "categoria": "divida",
+      "processo_tjsp": "1018783-70.2024.8.26.0361",
+      "sha256": "cfb5ad6d96f9716c861d59faa09b112041971961d91051ecba56d0717ff5c11f",
+      "url_relativa": "casos/0152.json"
+    },
+    {
+      "id": "0153",
+      "origem": "real",
+      "categoria": "divida",
+      "processo_tjsp": "1008721-68.2024.8.26.0361",
+      "sha256": "280082abea004da0eb3fc0dd3328a9ab9bff1cbfcc003e5c9f284cd6b1b6951e",
+      "url_relativa": "casos/0153.json"
+    },
+    {
+      "id": "0154",
+      "origem": "real",
+      "categoria": "servicos",
+      "processo_tjsp": "1008108-15.2021.8.26.0309",
+      "sha256": "5e33c06b67ad2b4df9e9b432a734e077c5d27ead07dd9da0570a9f4cc42ee222",
+      "url_relativa": "casos/0154.json"
+    },
+    {
+      "id": "0155",
+      "origem": "real",
+      "categoria": "servicos",
+      "processo_tjsp": "1037027-71.2022.8.26.0602",
+      "sha256": "d23280cf5b70a4e4761e8fa61186dbbfaebed364bbadccbaeae93de85b000d07",
+      "url_relativa": "casos/0155.json"
+    },
+    {
+      "id": "0156",
+      "origem": "real",
+      "categoria": "servicos",
+      "processo_tjsp": "1000456-73.2024.8.26.0233",
+      "sha256": "20d5bff2c1be6ad2fbede7f254ffab796a3b56e7ec5ed7c2e6ed30c553c8f695",
+      "url_relativa": "casos/0156.json"
+    },
+    {
+      "id": "0157",
+      "origem": "real",
+      "categoria": "servicos",
+      "processo_tjsp": "1006498-56.2025.8.26.0637",
+      "sha256": "05609d4a67db9fe33375cd2cd93db5eb4c9e7364b8f88dc9417245978fb04889",
+      "url_relativa": "casos/0157.json"
+    },
+    {
+      "id": "0158",
+      "origem": "real",
+      "categoria": "servicos",
+      "processo_tjsp": "1000181-94.2025.8.26.0458",
+      "sha256": "64f899e9a38b096f85378f7881665e808e4c19d16cf49047d6898916cb1f1d52",
+      "url_relativa": "casos/0158.json"
+    },
+    {
+      "id": "0159",
+      "origem": "real",
+      "categoria": "servicos",
+      "processo_tjsp": "1003422-89.2024.8.26.0562",
+      "sha256": "bfaa81f97852dba9085c9d49be7e6d4b45ea2edef1a7f658317ff43aeafb642b",
+      "url_relativa": "casos/0159.json"
+    },
+    {
+      "id": "0160",
+      "origem": "real",
+      "categoria": "servicos",
+      "processo_tjsp": "1007963-53.2025.8.26.0006",
+      "sha256": "001b5f2aac6af709bc9528acba791933a72586e1265d2e6cc23bcacf3ad34f91",
+      "url_relativa": "casos/0160.json"
+    },
+    {
+      "id": "0161",
+      "origem": "real",
+      "categoria": "servicos",
+      "processo_tjsp": "1056584-70.2024.8.26.0506",
+      "sha256": "e42c7517916e3467dfeccf0ada3ba4569ac4d30a6550a733552e36079672b253",
+      "url_relativa": "casos/0161.json"
+    },
+    {
+      "id": "0162",
+      "origem": "real",
+      "categoria": "servicos",
+      "processo_tjsp": "1106532-38.2024.8.26.0002",
+      "sha256": "c0457cb571ccf8ee3fa7dda336ae545a68034dcdfb497d69a9fd3c45673ca0ad",
+      "url_relativa": "casos/0162.json"
+    },
+    {
+      "id": "0163",
+      "origem": "real",
+      "categoria": "servicos",
+      "processo_tjsp": "1018282-72.2024.8.26.0020",
+      "sha256": "d6d08b0c00c5816402d2eafe23e711b04dbc5be2f61ff56c8ed3ca81b195a443",
+      "url_relativa": "casos/0163.json"
+    },
+    {
+      "id": "0164",
+      "origem": "real",
+      "categoria": "servicos",
+      "processo_tjsp": "1002460-98.2025.8.26.0637",
+      "sha256": "343263988f6e7d3cfc8ec74ed453e6b5a696d0398fc0f654de8f522cf5ce9af4",
+      "url_relativa": "casos/0164.json"
+    },
+    {
+      "id": "0165",
+      "origem": "real",
+      "categoria": "servicos",
+      "processo_tjsp": "1005008-11.2023.8.26.0009",
+      "sha256": "9396e1ee3803b6890b6322aa3f9dbfa3cddf7525fd6f233b8730c1ed407311a7",
+      "url_relativa": "casos/0165.json"
+    },
+    {
+      "id": "0166",
+      "origem": "real",
+      "categoria": "veiculo_venda",
+      "processo_tjsp": "1020827-41.2024.8.26.0562",
+      "sha256": "b9dc2ab15b9af7449f77eba0a6068b75d836e9ef4c5de42c26160044685b64f7",
+      "url_relativa": "casos/0166.json"
+    },
+    {
+      "id": "0167",
+      "origem": "real",
+      "categoria": "veiculo_venda",
+      "processo_tjsp": "1001405-62.2024.8.26.0374",
+      "sha256": "c542a79ac05c6cd7a6b2116aa7f5309fb875966ae9757c245e1407ad3b2e762c",
+      "url_relativa": "casos/0167.json"
+    },
+    {
+      "id": "0168",
+      "origem": "real",
+      "categoria": "veiculo_venda",
+      "processo_tjsp": "1041830-68.2024.8.26.0007",
+      "sha256": "24ae72d9eafe5e5a55beeaad553a0db360524bd0260ee0707aaedb2f463cdf7d",
+      "url_relativa": "casos/0168.json"
+    },
+    {
+      "id": "0169",
+      "origem": "real",
+      "categoria": "veiculo_venda",
+      "processo_tjsp": "1024374-28.2016.8.26.0576",
+      "sha256": "67967a48873d11295b92c2d5f406c355bb3d583121b300c3201fdf817af697b4",
+      "url_relativa": "casos/0169.json"
+    },
+    {
+      "id": "0170",
+      "origem": "real",
+      "categoria": "veiculo_venda",
+      "processo_tjsp": "1004817-82.2025.8.26.0271",
+      "sha256": "1384132a1f92efdcbe87ec0496a04a702e1d18a693f7c14d6c2ad2a5e2e52738",
+      "url_relativa": "casos/0170.json"
+    },
+    {
+      "id": "0171",
+      "origem": "real",
+      "categoria": "veiculo_venda",
+      "processo_tjsp": "1011673-61.2024.8.26.0606",
+      "sha256": "42d9439171d6eca09d3371c36301c076307d3c18e76676a9047b4deb1beac5fb",
+      "url_relativa": "casos/0171.json"
+    },
+    {
+      "id": "0172",
+      "origem": "real",
+      "categoria": "veiculo_venda",
+      "processo_tjsp": "1000092-03.2025.8.26.0125",
+      "sha256": "b5a344b32b50104daf7ac0659ac8f5878a1c1bef1ea667170db2f168d8f7d0a6",
+      "url_relativa": "casos/0172.json"
+    },
+    {
+      "id": "0173",
+      "origem": "real",
+      "categoria": "veiculo_venda",
+      "processo_tjsp": "1004844-42.2025.8.26.0602",
+      "sha256": "207e1324615642635c6e0e3071a228b9230d38000baad9a365fd67fa2f22a781",
+      "url_relativa": "casos/0173.json"
+    },
+    {
+      "id": "0174",
+      "origem": "real",
+      "categoria": "veiculo_venda",
+      "processo_tjsp": "1014876-89.2024.8.26.0037",
+      "sha256": "5ae1e5887cd5a62620c41db62a7b7a910ae79ecf0b0bc2fd49dd87161a6a532e",
+      "url_relativa": "casos/0174.json"
+    },
+    {
+      "id": "0175",
+      "origem": "real",
+      "categoria": "veiculo_venda",
+      "processo_tjsp": "1002376-73.2024.8.26.0236",
+      "sha256": "23b75ac066eac2bfec39fb28f9842dea5ec690f3d1691a87a6a59b4844a2c07c",
+      "url_relativa": "casos/0175.json"
+    },
+    {
+      "id": "0176",
+      "origem": "real",
+      "categoria": "veiculo_venda",
+      "processo_tjsp": "1016989-11.2024.8.26.0071",
+      "sha256": "f93ca4b291f86caab3f41ce9b8f342948bcb85896d80a087db6a739b026f3056",
+      "url_relativa": "casos/0176.json"
+    },
+    {
+      "id": "0177",
+      "origem": "real",
+      "categoria": "veiculo_venda",
+      "processo_tjsp": "1000466-78.2025.8.26.0073",
+      "sha256": "8d1070d0b02dfc85db1f1136affda3c232865dabe54645244ac71d3be5165b25",
+      "url_relativa": "casos/0177.json"
+    },
+    {
+      "id": "0178",
+      "origem": "real",
+      "categoria": "veiculo_venda",
+      "processo_tjsp": "1019891-07.2021.8.26.0114",
+      "sha256": "a318075d7bd3fc3140cc629e5416f862af4ef863c27121f26df329beef41a762",
+      "url_relativa": "casos/0178.json"
+    },
+    {
+      "id": "0179",
+      "origem": "real",
+      "categoria": "veiculo_venda",
+      "processo_tjsp": "1011148-70.2023.8.26.0006",
+      "sha256": "e71cda68e5789f8d9c27453b57c145aefb5cd9db476206ce22ba00c45244e703",
+      "url_relativa": "casos/0179.json"
+    },
+    {
+      "id": "0180",
+      "origem": "real",
+      "categoria": "veiculo_venda",
+      "processo_tjsp": "1029157-13.2024.8.26.0405",
+      "sha256": "2e772011e80720849fc04a359015a749c981de1ccdd29a6cb91d0cf585dfaf1e",
+      "url_relativa": "casos/0180.json"
+    },
+    {
+      "id": "0181",
+      "origem": "real",
+      "categoria": "veiculo_venda",
+      "processo_tjsp": "1006637-55.2024.8.26.0568",
+      "sha256": "d9fb2b3692cf20c9044cb4aebf60e453fadf8e50ca3cfa22251cd4cb2471eb2d",
+      "url_relativa": "casos/0181.json"
+    },
+    {
+      "id": "0182",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "e4a7979037b39e54c5612670efc0d3114e5f939a0170537f7273ca394cf225e2",
+      "url_relativa": "casos/0182.json"
+    },
+    {
+      "id": "0183",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "e6048c7f1974d63ea5e86ab28ca2a142486423894f8058f1335d28f2b64c2693",
+      "url_relativa": "casos/0183.json"
+    },
+    {
+      "id": "0184",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "d39ba46e3b471e48ff5113897fb92bf890aa9b0cfb3fc0a7586cec0c5c1c9f97",
+      "url_relativa": "casos/0184.json"
+    },
+    {
+      "id": "0185",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "613e0753f999cc52f88fdf5b4cd0f8114bd6050e517fb30737f62d1d87753128",
+      "url_relativa": "casos/0185.json"
+    },
+    {
+      "id": "0186",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "7dabb3b1bd1c69f8d16cbd6cfaf9c1ee6256a04237b1c97b763874dcb41cfbff",
+      "url_relativa": "casos/0186.json"
+    },
+    {
+      "id": "0187",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "cc3be7ccad9dea2d7158647765faed54d64a0686b149f2106bac01674ddae2d4",
+      "url_relativa": "casos/0187.json"
+    },
+    {
+      "id": "0188",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "c109e795fb56f4f2ca3e778f1d108478d029cd77958b151d4fc5f0f404100c21",
+      "url_relativa": "casos/0188.json"
+    },
+    {
+      "id": "0189",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "ffc1010f8e730d1fb06da5c8617383f148ff4d60f366f6c81785e6ed7ac0574d",
+      "url_relativa": "casos/0189.json"
+    },
+    {
+      "id": "0190",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "07628396d27deecd1b245e0993f154c1f7709959945b075322faac390e9faed3",
+      "url_relativa": "casos/0190.json"
+    },
+    {
+      "id": "0191",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "051513239ff08b746b897c4d984c8f5661d94c42ac75244dcd73d780aa606e45",
+      "url_relativa": "casos/0191.json"
+    },
+    {
+      "id": "0192",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "79b7bc4f563a61925fbaa087fd848956a552b11444cee35acaf1607970991d99",
+      "url_relativa": "casos/0192.json"
+    },
+    {
+      "id": "0193",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "945b96679334a81f2e871f9dace603725d6b6fc8e63c95171338a8ead1ec254d",
+      "url_relativa": "casos/0193.json"
+    },
+    {
+      "id": "0194",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "a8123e241b02ff4dfec22e20f4d45a420f800c6aae1ef83b6dd421c12e660823",
+      "url_relativa": "casos/0194.json"
+    },
+    {
+      "id": "0195",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "87835b44f6f57ccd63b6269bc03dea421c0b23ddfefd59deba49c0a273f0aee4",
+      "url_relativa": "casos/0195.json"
+    },
+    {
+      "id": "0196",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "dffd6fdb269c3e6a5456a9244c223d85b209fff87034bf3a21e13a3ccd2fdcdf",
+      "url_relativa": "casos/0196.json"
+    },
+    {
+      "id": "0197",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "f6edfc13ba2ca1ab09bd74e0cc5a81f5a614842396db9db61221b56c8766447f",
+      "url_relativa": "casos/0197.json"
+    },
+    {
+      "id": "0198",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "032d2d8e535f6f945ef21990779aadc021cadc167ffe48188827dd1b0ac58889",
+      "url_relativa": "casos/0198.json"
+    },
+    {
+      "id": "0199",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "83c9902555021c8a8ffdd56b730fb561274438823e08fd8a1565597751c2a3e1",
+      "url_relativa": "casos/0199.json"
+    },
+    {
+      "id": "0200",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "8baaa753b16bb88fdda657c0b38ea8bfc8fce6af1e40b0f9c6819cf5f1178fa4",
+      "url_relativa": "casos/0200.json"
+    },
+    {
+      "id": "0201",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "4b0b91883b4c35775388873e2ab3ce15680a7d717744d02fd211ec706cbc8687",
+      "url_relativa": "casos/0201.json"
+    },
+    {
+      "id": "0202",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "20d1e2ac2399bbd2bba59eadc6cacc16e52efc2aaa047966c5f76a2150caf943",
+      "url_relativa": "casos/0202.json"
+    },
+    {
+      "id": "0203",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "4604348561662821a151fcfae6a4d1e9724bd7ae40a8a6b5391d2af36452bce5",
+      "url_relativa": "casos/0203.json"
+    },
+    {
+      "id": "0204",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "c663e2a2d7e3e562fce6476c21a08c67f890e4e2493a0077366385f65db47cf8",
+      "url_relativa": "casos/0204.json"
+    },
+    {
+      "id": "0205",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "474649b79d4c4664b3574948f6b2fd826aaf4da07d6dd1a9e99837bba06a107d",
+      "url_relativa": "casos/0205.json"
+    },
+    {
+      "id": "0206",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "230170bdfadd2a8c5afdc5e0ef09609922ccbe543c71b75b95d3aeb643c86924",
+      "url_relativa": "casos/0206.json"
+    },
+    {
+      "id": "0207",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "f6a3929add9693192aa4d1f1e80a69473f610709c31a55148bea0cf320b3c836",
+      "url_relativa": "casos/0207.json"
+    },
+    {
+      "id": "0208",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "eb76148f3e67ddc7c494b097a7bff543a7e30036cb3efa79157b57d2fb105e53",
+      "url_relativa": "casos/0208.json"
+    },
+    {
+      "id": "0209",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "6bacab0c79bfaa791c5b8823c29074e0aeeb98bc5c3e4f122f215deb63103400",
+      "url_relativa": "casos/0209.json"
+    },
+    {
+      "id": "0210",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "97ef1c830a5790f05d60799b7ca0838d69e03ae0c386a0d5e81ccb0907a2bbd7",
+      "url_relativa": "casos/0210.json"
+    },
+    {
+      "id": "0211",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "6af970993ddb966c3bf7ab0dac4480faf70b03f8afb02ab61422cfdad8e93767",
+      "url_relativa": "casos/0211.json"
+    },
+    {
+      "id": "0212",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "e1bafc1b95cf1e3b45cd95efab1d39fccca183c0ca2530078c3706394a6be270",
+      "url_relativa": "casos/0212.json"
+    },
+    {
+      "id": "0213",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "bba887d2c1ae143c593797dd37923b05d72feca595283826dd52e37cc7ba37b0",
+      "url_relativa": "casos/0213.json"
+    },
+    {
+      "id": "0214",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "bed27affe56b094d965dc3d1ff3c7bf8aed1d3d4d72fcdf8afe330ac147baf34",
+      "url_relativa": "casos/0214.json"
+    },
+    {
+      "id": "0215",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "757c8e8321e736e8b310e36a28739ce377e3a39341344cb5db28d34abbd63385",
+      "url_relativa": "casos/0215.json"
+    },
+    {
+      "id": "0216",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "ea7a71e9433c6331d8dfd4a3dae234af23066c42b5d8847eb3991b9a6ca86d81",
+      "url_relativa": "casos/0216.json"
+    },
+    {
+      "id": "0217",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "b0a99427555fef9967a5245f3ad472ebad98870ba3f17931e19183d9d9a7dc3f",
+      "url_relativa": "casos/0217.json"
+    },
+    {
+      "id": "0218",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "f49ba520e863c0f4e4aad7f9169fe117df0274bc9ab557fb3a308a128240259d",
+      "url_relativa": "casos/0218.json"
+    },
+    {
+      "id": "0219",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "bf56aafc32a42c600cdb96133b5cac1e40eace5d9196e692cac3154ab7f062a9",
+      "url_relativa": "casos/0219.json"
+    },
+    {
+      "id": "0220",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "48499a33db900df71ead5f05c38fde00efed02253a8fc61b7b614104ded8994e",
+      "url_relativa": "casos/0220.json"
+    },
+    {
+      "id": "0221",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "f232b2702f2c1cf829d755c7dfb7042dc83e6339c007877039c147faba2eff2c",
+      "url_relativa": "casos/0221.json"
+    },
+    {
+      "id": "0222",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "fe91c2d8685e53f59acb428407173a217754ecdc0eaead4a8fee7d110d033847",
+      "url_relativa": "casos/0222.json"
+    },
+    {
+      "id": "0223",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "cf57f9490a726f1d5a2399d4d11ad9a370e826c88aadcc5ccd91f803ba860192",
+      "url_relativa": "casos/0223.json"
+    },
+    {
+      "id": "0224",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "6e56753e387791df490b988cd77500d2b84d80e5612b7074299d6dde9d9b50e4",
+      "url_relativa": "casos/0224.json"
+    },
+    {
+      "id": "0225",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "5d5209ea8ed7f40cca98a75d7c08a21507671ccb7e170b560596e0e55ecb5ae2",
+      "url_relativa": "casos/0225.json"
+    },
+    {
+      "id": "0226",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "bcdc80941c4320832d3dce60fb396b8a88e0f6f57fbfacbc9700f9064d211752",
+      "url_relativa": "casos/0226.json"
+    },
+    {
+      "id": "0227",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "18db9e78f2e58c7e67360e5d4ba5fd80e8404e1b3b242250c10fc669f770c18f",
+      "url_relativa": "casos/0227.json"
+    },
+    {
+      "id": "0228",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "7b9a647a8b43a5a59fb48398039428866ae6c34b4e69dd27f45405eb540d3604",
+      "url_relativa": "casos/0228.json"
+    },
+    {
+      "id": "0229",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "6c2a36a6ab52ea86c951897401cefdf91c504889e1d1438dc6005847b6fcd339",
+      "url_relativa": "casos/0229.json"
+    },
+    {
+      "id": "0230",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "89a9441f3f96e333f00d5c2ed405abc3a6335c022b5e0d94cd3b588d1a0fa49c",
+      "url_relativa": "casos/0230.json"
+    },
+    {
+      "id": "0231",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "7112800cc79c0a8f5d82ff5d2a1cf545508c4816ae9ca1df7e7038dc39d382e3",
+      "url_relativa": "casos/0231.json"
+    },
+    {
+      "id": "0232",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "3b145dbc7ceacdb78ed747a155d8155a782ef936889f8ca21a59471d154270bf",
+      "url_relativa": "casos/0232.json"
+    },
+    {
+      "id": "0233",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "10dadc53472aa29049b7771cf75a5bba87eb0acbc0c6082fcc33dce954651d65",
+      "url_relativa": "casos/0233.json"
+    },
+    {
+      "id": "0234",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "2df1479e9853b6c1c066587a914fb05277aa292d2cde6d0d211a2aa94184b33b",
+      "url_relativa": "casos/0234.json"
+    },
+    {
+      "id": "0235",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "f1c8b57801634d201c94d502a2e763bc46103cf46275460634b5847bf13e64c1",
+      "url_relativa": "casos/0235.json"
+    },
+    {
+      "id": "0236",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "19a9d31881204c4f2f04b1c32dca5a7e118a7367cfa3dd417f6422874a3d8d58",
+      "url_relativa": "casos/0236.json"
+    },
+    {
+      "id": "0237",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "1c469f831bc9af66f255a0cba664c8bfa3e83d5cebc2c37e8f04d9898a8a9ce9",
+      "url_relativa": "casos/0237.json"
+    },
+    {
+      "id": "0238",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "36e7453898a1fe6657388d5bf9f465edd33e2f244a47b87daf424543fd95ab15",
+      "url_relativa": "casos/0238.json"
+    },
+    {
+      "id": "0239",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "313b5ae5f862bc71a109aefb3974e027166592106135d9a1e028c4031e5b3f55",
+      "url_relativa": "casos/0239.json"
+    },
+    {
+      "id": "0240",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "6ff44ca0240a5d87a492775d99f75945287f8dbad3622b1c7c461c809b0bc26e",
+      "url_relativa": "casos/0240.json"
+    },
+    {
+      "id": "0241",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "e8f4ec1192895545b946f7a563cda903e0e5121752ab774060f6ba0cebed426e",
+      "url_relativa": "casos/0241.json"
+    },
+    {
+      "id": "0242",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "00960377ec9b71aea1281feb547620ea841613c6c14e297d52e65c6746920438",
+      "url_relativa": "casos/0242.json"
+    },
+    {
+      "id": "0243",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "f037526f59d3e197458b7e4f95e70065b276079b049e72e61be6bf7e3dd1f60c",
+      "url_relativa": "casos/0243.json"
+    },
+    {
+      "id": "0244",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "9ac9df3b5fc21f299b090025b83510bdf85e3f700fd7ff0f9735c6efabe9fbb2",
+      "url_relativa": "casos/0244.json"
+    },
+    {
+      "id": "0245",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "8d9cd01755d416ee10014a74ff2be763665a2320acb7361ea61a717f97d1c21c",
+      "url_relativa": "casos/0245.json"
+    },
+    {
+      "id": "0246",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "8ab5894b30f80e041c5b33b02605d49cbb14b136291e2742e26ffd2ba4dd7d98",
+      "url_relativa": "casos/0246.json"
+    },
+    {
+      "id": "0247",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "1fd604845aba94d6d9a7c22e7d29a494086e7f9ad2e1999c8980af1148cb6577",
+      "url_relativa": "casos/0247.json"
+    },
+    {
+      "id": "0248",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "6caaf9b1f696f210e78116f2f8c0efb7755b6cd63e869bbd101781ec116f3bf6",
+      "url_relativa": "casos/0248.json"
+    },
+    {
+      "id": "0249",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "f59ba070108552868ac871f95c7ca9200f0a647ef129bc2163ba6835fa9afc02",
+      "url_relativa": "casos/0249.json"
+    },
+    {
+      "id": "0250",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "7ce5da38167060c8a7196f91b9cd961ac1261a03d691f68fd2d64c29051aa951",
+      "url_relativa": "casos/0250.json"
+    },
+    {
+      "id": "0251",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "f9f4956f0dd677362f33ec20820cb7f13707e1e4b64e314a4bc7526b314cbd85",
+      "url_relativa": "casos/0251.json"
+    },
+    {
+      "id": "0252",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "555973bb1371f2766898b871a3dc973704e9931fad3743746cbbe2bc96382e99",
+      "url_relativa": "casos/0252.json"
+    },
+    {
+      "id": "0253",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "71c6c7b4e095cc7942d4098ac0a6a11c48febb37188eeb74a3eccee1c3bc7e8d",
+      "url_relativa": "casos/0253.json"
+    },
+    {
+      "id": "0254",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "84feee5f125e3cc81bfabc7f4865034b63fbb717b9d2544abca3c6d1bf2a12b4",
+      "url_relativa": "casos/0254.json"
+    },
+    {
+      "id": "0255",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "ef2c4f58f096c62d5ab068db08bc1f1ec5ae3326a76b4ad82aa387b064a6e3fc",
+      "url_relativa": "casos/0255.json"
+    },
+    {
+      "id": "0256",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "db19e4cc981755fddb5f5c2c4c04f2bbbeb7e909338c0aea8f56eb82329b2bca",
+      "url_relativa": "casos/0256.json"
+    },
+    {
+      "id": "0257",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "bbd56486ace299b6da8d886373526b9ef3be9681ee5c8e84df632f81b9ff26c0",
+      "url_relativa": "casos/0257.json"
+    },
+    {
+      "id": "0258",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "e0b6a302766231a9da51ce720cf8391d5baeb957381eb8fe5aa4d83d626edcfa",
+      "url_relativa": "casos/0258.json"
+    },
+    {
+      "id": "0259",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "fab4049a54d2526a8fc2bbde0cc2593140dc36c5e4bdc668e681109072ec890a",
+      "url_relativa": "casos/0259.json"
+    },
+    {
+      "id": "0260",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "d8688f4b8f1d6f6dfff472c640ec602efb31cbab7d1225f03a604a5ac7f85042",
+      "url_relativa": "casos/0260.json"
+    },
+    {
+      "id": "0261",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "737749f418af08be2cb9ebb58d85a937477c9de24e353d71707903f4be1ebf7e",
+      "url_relativa": "casos/0261.json"
+    },
+    {
+      "id": "0262",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "806cd26e8de283ed3e601612952b7942674a82fb9b11c3e3de6597ce914ddf29",
+      "url_relativa": "casos/0262.json"
+    },
+    {
+      "id": "0263",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "33586e8860d2b6ae849cf0fc4e17d2d201d479c6c211da8a19977c46a84ca5b3",
+      "url_relativa": "casos/0263.json"
+    },
+    {
+      "id": "0264",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "7bdfecb23ffcf2b204143e463cec4091030c708e77b0a6d57f81f5aa3ffb9461",
+      "url_relativa": "casos/0264.json"
+    },
+    {
+      "id": "0265",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "56f649f45d5896f5b96bbf5919d9e97de2a289218b667995297f41e31c738c3e",
+      "url_relativa": "casos/0265.json"
+    },
+    {
+      "id": "0266",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "0da4759c3878c4532243f3e1a6eb8151aa81d8df932c8fd0ea1b12f3a4a40ec7",
+      "url_relativa": "casos/0266.json"
+    },
+    {
+      "id": "0267",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "477c6050c725b8321796727c218a4a9f40f4193a6dbe81573dc3ce2820d5b57d",
+      "url_relativa": "casos/0267.json"
+    },
+    {
+      "id": "0268",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "7bc90e15d45bcc0671fe926205390398985a2012f5ae423f09d4bffebc31eff4",
+      "url_relativa": "casos/0268.json"
+    },
+    {
+      "id": "0269",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "273118113d4260714f010f0f4b50681e5422cc2165381163e7522e2914d2df9f",
+      "url_relativa": "casos/0269.json"
+    },
+    {
+      "id": "0270",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "661fff54b58ccb0fef8fa64f16f70200df3287d4097fb55ff5ee28e7b1010adf",
+      "url_relativa": "casos/0270.json"
+    },
+    {
+      "id": "0271",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "0e5fa7372f9488c751160d5a4423bf0f4d48fa40fc3b5a12ff02fde4096b18b7",
+      "url_relativa": "casos/0271.json"
+    },
+    {
+      "id": "0272",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "dffdf416c96fd9998c9cdb56814562e04d3880a353c09539eb14e4d99228f268",
+      "url_relativa": "casos/0272.json"
+    },
+    {
+      "id": "0273",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "0f9502115365e07d7ab7123bcca27146989fb3fda4f27cd2b89e6100e657ebc3",
+      "url_relativa": "casos/0273.json"
+    },
+    {
+      "id": "0274",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "1e2a197e8bff2a70f5dbbee0558472b1fd562ded2a29ff29bdbabb216480be79",
+      "url_relativa": "casos/0274.json"
+    },
+    {
+      "id": "0275",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "989b1c4b2e3b5a7786c56474a99b22e8ccfb04ab7d9ccb13d8ff7785da78852f",
+      "url_relativa": "casos/0275.json"
+    },
+    {
+      "id": "0276",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "47c60e6e539e3acb04fc8145e970ae8f80daeb404c0221580c24ad0c9ae0dc8e",
+      "url_relativa": "casos/0276.json"
+    },
+    {
+      "id": "0277",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "2a4f4d1d7f702581a24c202bca9f81b55bfed4e509cbaf6cda30928df0ac2511",
+      "url_relativa": "casos/0277.json"
+    },
+    {
+      "id": "0278",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "d2bb108a3ba14a53b58c75797f360f1e768298507760b1b7e64cc5706369ffff",
+      "url_relativa": "casos/0278.json"
+    },
+    {
+      "id": "0279",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "67bb3c9b21ffd1ac8e8639c0afc870e516ab597b4b3532d45bfd4d1c5cb14014",
+      "url_relativa": "casos/0279.json"
+    },
+    {
+      "id": "0280",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "ac13afb330a95113f505e07eafd7cc42e99393731709d1e47aae7a6974726c9b",
+      "url_relativa": "casos/0280.json"
+    },
+    {
+      "id": "0281",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "71ec38c4354718677ef0e9e9bc65537fb5466f10fd0e88fe03c3a01d88d0a580",
+      "url_relativa": "casos/0281.json"
+    },
+    {
+      "id": "0282",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "b08363cb709718480125ac8d3669af35caaf384d036931cc21199a7b75301705",
+      "url_relativa": "casos/0282.json"
+    },
+    {
+      "id": "0283",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "587d1e4059a713bf5dcecb68298e948a0388f5ee4e5042479ce3c858a25f566e",
+      "url_relativa": "casos/0283.json"
+    },
+    {
+      "id": "0284",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "47f13c9fe92a6d626abb33e21b27b52868ba233d6aa897e65e4632ea395bb975",
+      "url_relativa": "casos/0284.json"
+    },
+    {
+      "id": "0285",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "42844b53b598795145236e9e2b1e1b793f7888ea1f5112fc0dd7182b7543f67b",
+      "url_relativa": "casos/0285.json"
+    },
+    {
+      "id": "0286",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "46eddb5ddaad77d279eb145c8d7bdabea0a1a16c34531c6bfba8ea900e4c5b12",
+      "url_relativa": "casos/0286.json"
+    },
+    {
+      "id": "0287",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "d15b4e7f400daa4b4a246b6887d09579fac0dc27fe367ceeb51b36a552b28011",
+      "url_relativa": "casos/0287.json"
+    },
+    {
+      "id": "0288",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "d7b063aec8383941932d559f2b330b7f25907d19f087455264d373947d664495",
+      "url_relativa": "casos/0288.json"
+    },
+    {
+      "id": "0289",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "3ddd946de54203c5b409fd6eb27b1aaf5ca676143cdc13681e325cc8b1c2ef6f",
+      "url_relativa": "casos/0289.json"
+    },
+    {
+      "id": "0290",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "f420079904318e7922d36e79269e578f7a0a210ff3b846c6dab0c8dc7493238f",
+      "url_relativa": "casos/0290.json"
+    },
+    {
+      "id": "0291",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "e9b6819305b9d40b19250963b5de550a450df5d9f4361f0e3075957149f6d333",
+      "url_relativa": "casos/0291.json"
+    },
+    {
+      "id": "0292",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "b8508e41c6aa49d9bfbe82bcf97d8e816bd577ffcb314ce1cc5f09debdc314a7",
+      "url_relativa": "casos/0292.json"
+    },
+    {
+      "id": "0293",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "9a4ac2eb0e85e04d3d748da01d2013c4b2626776fb9069faf403a00c07a0cf70",
+      "url_relativa": "casos/0293.json"
+    },
+    {
+      "id": "0294",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "7c74c08b320b0ae088500bd2086a7d88cbac9523fee3549232cc75d643078843",
+      "url_relativa": "casos/0294.json"
+    },
+    {
+      "id": "0295",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "6285c65f62d27e408b8988be3e75b36d3b756ecd27ff299f0757c5cfed2cb3f1",
+      "url_relativa": "casos/0295.json"
+    },
+    {
+      "id": "0296",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "617eddeb81b8291588c495e4be8b2024af4f3eb492d1f1aa097053bfe9939ea8",
+      "url_relativa": "casos/0296.json"
+    },
+    {
+      "id": "0297",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "4d1877dbd788a18a45fc20aec5c2a050ef69e185ca31e7efb991c3ace701854a",
+      "url_relativa": "casos/0297.json"
+    },
+    {
+      "id": "0298",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "dd4e27db05ab5771b92f51d0970061f384091729e53e6800cf06f44c7af0e2a9",
+      "url_relativa": "casos/0298.json"
+    },
+    {
+      "id": "0299",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "36d98069b469c822c741f2690f2fbddd8166c3260a88a2cb458c994639638195",
+      "url_relativa": "casos/0299.json"
+    },
+    {
+      "id": "0300",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "aaf3ff0ba1b269a8105a190f044343a0a376d0dee257f560d3e02d0ad1965356",
+      "url_relativa": "casos/0300.json"
+    },
+    {
+      "id": "0301",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "891f5ecdf433de0ca6f422b7037c88d150de9608b21534458680fdaa0b4dbb76",
+      "url_relativa": "casos/0301.json"
+    },
+    {
+      "id": "0302",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "51a57fb3c842ea21a56d294da0aa4c4b64096b6d0bffb01c7f1ada6ffcce6f28",
+      "url_relativa": "casos/0302.json"
+    },
+    {
+      "id": "0303",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "fa0e881f7caf96d7bc07c62ae807d643b5d81b12dd3e7acfc32654fd492d24e2",
+      "url_relativa": "casos/0303.json"
+    },
+    {
+      "id": "0304",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "c6859c3efb3a624bfee642426be04948e23def6d956396c7738a9f1d13bb2b0f",
+      "url_relativa": "casos/0304.json"
+    },
+    {
+      "id": "0305",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "c5d7af0a110856aef29bcc5d742862049c2d3f6103efb2ca7eb6bf78ece723c9",
+      "url_relativa": "casos/0305.json"
+    },
+    {
+      "id": "0306",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "16f34cd20772c3d31c4c6b525b7bd845a86953bc82bfa69bfe53c2791a507708",
+      "url_relativa": "casos/0306.json"
+    },
+    {
+      "id": "0307",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "234b8468609285a8f1376d6dc669747db07b3ec86457513e99875d21b6e8f555",
+      "url_relativa": "casos/0307.json"
+    },
+    {
+      "id": "0308",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "4c0c23fc477b2231d24f1b8d1b5a8787e980bfb253d966d781e9ec8ea5cd01eb",
+      "url_relativa": "casos/0308.json"
+    },
+    {
+      "id": "0309",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "684e2df44e7ea9c54af0e6d16fbcb059d85d215b19fe3520d03cea1e8f664c49",
+      "url_relativa": "casos/0309.json"
+    },
+    {
+      "id": "0310",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "37c5056a141fc29f9f87d257407435a96d79f490f9aa4f3ddc6d37fd91133e03",
+      "url_relativa": "casos/0310.json"
+    },
+    {
+      "id": "0311",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "c770b7b4feed0319fc055c213dd962d06dc85297a7b5b58a987a8484413ab88b",
+      "url_relativa": "casos/0311.json"
+    },
+    {
+      "id": "0312",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "4d8adc1e94cca130883594d3fdf1ca2be3b713d5693443d6a850647402ccf75d",
+      "url_relativa": "casos/0312.json"
+    },
+    {
+      "id": "0313",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "f3f5220b7871985846b398d00385e58c493511aa34791bd8d635c7b5892dd8bc",
+      "url_relativa": "casos/0313.json"
+    },
+    {
+      "id": "0314",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "21218671030676fed7a491f65f0bde6970d04c096ab36cd42d97398ac167ad17",
+      "url_relativa": "casos/0314.json"
+    },
+    {
+      "id": "0315",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "4fefb7a07e5a64c435e6f3f2683c180d661036a82948b8e937ba3b45a9ff7a50",
+      "url_relativa": "casos/0315.json"
+    },
+    {
+      "id": "0316",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "edbd6369f43d52b84f9e9edb1e716c7c71174e0d3d2046d6214bb27b0ef91b64",
+      "url_relativa": "casos/0316.json"
+    },
+    {
+      "id": "0317",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "8d49dba4f49f585c22ef76e59a548b06b783d16f967034547781548a55e44918",
+      "url_relativa": "casos/0317.json"
+    },
+    {
+      "id": "0318",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "0c2d137f1d4d4d9f94ab0ebe9f2239414f812fd386bb9cfaa3abfbcae486ab49",
+      "url_relativa": "casos/0318.json"
+    },
+    {
+      "id": "0319",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "16d876962e0740c23a3e8e65650043f488a75921b407e57b6c6681ae46fcf472",
+      "url_relativa": "casos/0319.json"
+    },
+    {
+      "id": "0320",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "a9cebca2d3d1a9d0cdc649dcdd31a4b4b4ab8131bcdebdc11d647b496121c9d5",
+      "url_relativa": "casos/0320.json"
+    },
+    {
+      "id": "0321",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "9ae2d4879a99bfa86e52d00f0e456c8dac96cd81921389f192b43e8eec48fd1b",
+      "url_relativa": "casos/0321.json"
+    },
+    {
+      "id": "0322",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "c82b2d33d6bbc2f79c24c8d7720c1689acdb43112693ba5cb737e2be494f7b7f",
+      "url_relativa": "casos/0322.json"
+    },
+    {
+      "id": "0323",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "3d1cbe12df30ab21e7f96a6a6470e7fdb129aca0ba629ae67206bb96207686b0",
+      "url_relativa": "casos/0323.json"
+    },
+    {
+      "id": "0324",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "3c79e87eceffa736c873ecde9eebb2c9fa97702869a1b3ffe689debf3d425668",
+      "url_relativa": "casos/0324.json"
+    },
+    {
+      "id": "0325",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "f9c2a4b6d3dd4fb071a5426b2e2845975b2014f7008d451c7188ca7e755e99b2",
+      "url_relativa": "casos/0325.json"
+    },
+    {
+      "id": "0326",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "97097794af5873bda8636818c2637d4a4654f9b7e27fa49e1938bc9717779811",
+      "url_relativa": "casos/0326.json"
+    },
+    {
+      "id": "0327",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "c5e0b7486a430b4267fe4c3bb080bf4d3eb003fb92ccc41ed9e13407ff3fd14c",
+      "url_relativa": "casos/0327.json"
+    },
+    {
+      "id": "0328",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "742c2516332ef201b1c56da3bec8c0d4cd5950d0e3240ee80ec56447f87e27bd",
+      "url_relativa": "casos/0328.json"
+    },
+    {
+      "id": "0329",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "fd3603794dd38173431b6e036b64d83fa814da3cd4fe167d50dc85c6d597aa44",
+      "url_relativa": "casos/0329.json"
+    },
+    {
+      "id": "0330",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "83199d21beea36678ee286840ee36c120c87f1dfb389e2a683e96fff044fadb2",
+      "url_relativa": "casos/0330.json"
+    },
+    {
+      "id": "0331",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "1200078a3e6bd6a412bf28784f78ec8511f2c9f1c4c6f2c1567e1a4dd8060b8c",
+      "url_relativa": "casos/0331.json"
+    },
+    {
+      "id": "0332",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "c8945ca8862857518603563604b8bd6300ab41cb1d3be38cfcbac7690cd6421d",
+      "url_relativa": "casos/0332.json"
+    },
+    {
+      "id": "0333",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "6d4833832c9a457bb4e313bf6bfa83226ae88ed8b489e239dddfd2bdca66f493",
+      "url_relativa": "casos/0333.json"
+    },
+    {
+      "id": "0334",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "27acc33e817226eda15b04f0888f092d243fff570ff3f1b7a7be25cad2e61568",
+      "url_relativa": "casos/0334.json"
+    },
+    {
+      "id": "0335",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "5a1a22857423958983835495da94ee4bd595278d1dc4d6b2aa10bea3312a1cad",
+      "url_relativa": "casos/0335.json"
+    },
+    {
+      "id": "0336",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "d4d07cd49580e4679250ec24746c405f5f6bfef48d8b8080075c0d260cf93b93",
+      "url_relativa": "casos/0336.json"
+    },
+    {
+      "id": "0337",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "bcb103b131c285f974869ab9aab125c5061f08c07e2c02ec966ee1a54b4374a2",
+      "url_relativa": "casos/0337.json"
+    },
+    {
+      "id": "0338",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "6fc2e8cf38ae607039faffb9a0ebc8b58ff10b8087330166a07b6a936c3868c5",
+      "url_relativa": "casos/0338.json"
+    },
+    {
+      "id": "0339",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "de219e62d7d34d85c8779e7d534b1b71cd64fe2fa2c6e73034ffc79204d6e002",
+      "url_relativa": "casos/0339.json"
+    },
+    {
+      "id": "0340",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "6de64952b32b026e1468dacf84391dd8de66db785559efd022a521fd0c29b7f0",
+      "url_relativa": "casos/0340.json"
+    },
+    {
+      "id": "0341",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "007b89fc886deb8e3ea0264641ec0997bf9aa8500ef3b2a3c3e6c4502b2e4479",
+      "url_relativa": "casos/0341.json"
+    },
+    {
+      "id": "0342",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "f062556f26cb3e3b30ba0a9b3e85330c3c2a23bf26fadb9d0058e4d53fe42392",
+      "url_relativa": "casos/0342.json"
+    },
+    {
+      "id": "0343",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "c5be0f89dabc2601092785672dfd060cb049039191ca28f5ececb1d711fcc372",
+      "url_relativa": "casos/0343.json"
+    },
+    {
+      "id": "0344",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "e103051ee85b522fb1b8057c0730a2f5fd8bf406b04a3af301b647d18b791900",
+      "url_relativa": "casos/0344.json"
+    },
+    {
+      "id": "0345",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "a1a08e061e9ffb6769932497aff0057395a611e7ee8ac8323fe77db1d07a184a",
+      "url_relativa": "casos/0345.json"
+    },
+    {
+      "id": "0346",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "11c80d5063bfcd6489d8880b047543c39f433b4923bddb5f60886f0a68086509",
+      "url_relativa": "casos/0346.json"
+    },
+    {
+      "id": "0347",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "139c87635578f021a2a730dd8387e903772346322a9f5dc63f2cfabefe1c7a78",
+      "url_relativa": "casos/0347.json"
+    },
+    {
+      "id": "0348",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "27e0a23d5f95dac761b43740fc0f2cf7c5a9353177b862b4d082ddee95680d9a",
+      "url_relativa": "casos/0348.json"
+    },
+    {
+      "id": "0349",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "dd995a56b4c9b4a2205f776d749f3acc3e65dbc4e5d65c497e392ee39f63f50e",
+      "url_relativa": "casos/0349.json"
+    },
+    {
+      "id": "0350",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "c7490a78ea09ff2965ebf9bf6ff627c03af3441c5c2c1a8d8234fe7aaf2d42ed",
+      "url_relativa": "casos/0350.json"
+    },
+    {
+      "id": "0351",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "4f8dfa43a6e477767c89a4b5c55413c32cfab3362cfe4a9af4e0abb90b9f4d7a",
+      "url_relativa": "casos/0351.json"
+    },
+    {
+      "id": "0352",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "153fa1e028a4b8e3cded0008da827b25a1983d3bc7679b9a89f5c3056f517717",
+      "url_relativa": "casos/0352.json"
+    },
+    {
+      "id": "0353",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "f7db43c0f7b13383bceb8825d01ae545634223ee88e97fa09806fcb2b0df0ec1",
+      "url_relativa": "casos/0353.json"
+    },
+    {
+      "id": "0354",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "2f499461c3a438166c0f47da3b728a6ccc72301ca3f0b992bfc5744f20b8e7b1",
+      "url_relativa": "casos/0354.json"
+    },
+    {
+      "id": "0355",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "168b1e117f51fefe6ec0f05f9711e97a456a18c007ba6e18e70f2c55d7084440",
+      "url_relativa": "casos/0355.json"
+    },
+    {
+      "id": "0356",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "c2cb54e98f1b0b143b877a4bf9ddd8f8f3906f24f5f0560e97ec58bda558776e",
+      "url_relativa": "casos/0356.json"
+    },
+    {
+      "id": "0357",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "622c93ce66c87150d90d9b8e48e4493c2ca0776d95db3f55f2bbe4d83ae77fe7",
+      "url_relativa": "casos/0357.json"
+    },
+    {
+      "id": "0358",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "857cd1c407e75f669463ac6e2f70e2f2b37a9621c33cd225d64baeb785f6686f",
+      "url_relativa": "casos/0358.json"
+    },
+    {
+      "id": "0359",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "fbbedb8745f7be37c657c5461d26e62a6f4a3bc77872490162c62f1df6de04d1",
+      "url_relativa": "casos/0359.json"
+    },
+    {
+      "id": "0360",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "f7ab0e998a336ccd79c0f3e6c7d179f39b18571db06fc821a41d8062f8fb793a",
+      "url_relativa": "casos/0360.json"
+    },
+    {
+      "id": "0361",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "dc606eb158eff1a09bb5560b2a76086ae746688c5693060e613f87f30a400979",
+      "url_relativa": "casos/0361.json"
+    },
+    {
+      "id": "0362",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "4f79dd2f629c16e75656f8319cba53695d1e0a4961a5de4931c09cee12297385",
+      "url_relativa": "casos/0362.json"
+    },
+    {
+      "id": "0363",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "969c0eef4b245aac367866da73a0eba70f1a1a2f597a5d7b88402dbb8b23258c",
+      "url_relativa": "casos/0363.json"
+    },
+    {
+      "id": "0364",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "7906c238a4fe2f54fee80eb7f5a24e2c83569f276dd1efc05f9012e1f94de94c",
+      "url_relativa": "casos/0364.json"
+    },
+    {
+      "id": "0365",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "16972319bff89780d4ec729224515396f7b37eb3735c9906e76fbc0ff437d207",
+      "url_relativa": "casos/0365.json"
+    },
+    {
+      "id": "0366",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "2619d6737d3a452f6306a347a16c81e790d19691cffed0cf46f014d0f97fb5fc",
+      "url_relativa": "casos/0366.json"
+    },
+    {
+      "id": "0367",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "e75b4b3458a1d2b46a5eb964eb9711a9f1de25a6d13bfc327c8a2dbdba499cf9",
+      "url_relativa": "casos/0367.json"
+    },
+    {
+      "id": "0368",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "09690554a09542d2dd92cc449a9a8dc1b4bb0dfbc835673e0b6c336a8fca1ea0",
+      "url_relativa": "casos/0368.json"
+    },
+    {
+      "id": "0369",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "60fff5594e023a11ab4cb9af3d8c4a0ede9f312985467261acb526fcf2b7a668",
+      "url_relativa": "casos/0369.json"
+    },
+    {
+      "id": "0370",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "950532559eb24768947b18d982982d593fbb527c1e13f6a7c0527c07a25992b6",
+      "url_relativa": "casos/0370.json"
+    },
+    {
+      "id": "0371",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "60edc9d66bb29c2030dd3869e328b556c7f5a89527213ab3ec8045525ddaf951",
+      "url_relativa": "casos/0371.json"
+    },
+    {
+      "id": "0372",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "eba3123e1f9b251fdf9bde76c58fa9fef8f760063f9a9435b7e93ac38daa12c2",
+      "url_relativa": "casos/0372.json"
+    },
+    {
+      "id": "0373",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "e05421e21263516fdd582ddbadbcdce9d830c40c6f9936f93a45c987369cc069",
+      "url_relativa": "casos/0373.json"
+    },
+    {
+      "id": "0374",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "a125d900f00b87a56b8e4e134314004421fadfc97296dcec0f8a5acd2c6c0c23",
+      "url_relativa": "casos/0374.json"
+    },
+    {
+      "id": "0375",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "e21b179226f96f7eccfd932d56f58b9ebb041e737802080e4539e5ecab69a582",
+      "url_relativa": "casos/0375.json"
+    },
+    {
+      "id": "0376",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "3b734875915e7b07f59ae86f3f44b5e5ed80975590999213f164d974af4e7666",
+      "url_relativa": "casos/0376.json"
+    },
+    {
+      "id": "0377",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "b4683b8c2bfe0323cbc199d1d195e14126abc701241bfbb6d4c0fdfbf5ed5c39",
+      "url_relativa": "casos/0377.json"
+    },
+    {
+      "id": "0378",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "75f5f1043c59a387265423ceb8875a5e952f5290409696735767d109b140d2d3",
+      "url_relativa": "casos/0378.json"
+    },
+    {
+      "id": "0379",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "83047f7eadb87450a62e27dc023b0e0d62dae17bdd155ee5e22d8e8e49f39014",
+      "url_relativa": "casos/0379.json"
+    },
+    {
+      "id": "0380",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "e5a0c119270616a09ca558b11e416dfbb58c7a8d6d7fa348b06341cb062039eb",
+      "url_relativa": "casos/0380.json"
+    },
+    {
+      "id": "0381",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "3c215ade60169f00fd4ce7e9036db2ef0f188ffd57218b755fc16ef837a00232",
+      "url_relativa": "casos/0381.json"
+    },
+    {
+      "id": "0382",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "ca970087d61b0a7879055aaa8b99619182d0f3c318d869953dc293e09a007b44",
+      "url_relativa": "casos/0382.json"
+    },
+    {
+      "id": "0383",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "b60d4d0bc240883b72b3782d911546de10e293eb7176a5913d2b8a7cffca2c98",
+      "url_relativa": "casos/0383.json"
+    },
+    {
+      "id": "0384",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "7d40c0863133f1627402adddad0a5d45f30339b405bc32ca093983f2e643b6a4",
+      "url_relativa": "casos/0384.json"
+    },
+    {
+      "id": "0385",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "5b2cde0693839a457c46bcab9e73bfc8fcee900188a1c01ca470096ce54c0265",
+      "url_relativa": "casos/0385.json"
+    },
+    {
+      "id": "0386",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "ff59857f4282c22ad927d00234c9aeae16fcb89af317ef1588374795a69fcbaf",
+      "url_relativa": "casos/0386.json"
+    },
+    {
+      "id": "0387",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "cc3de0c3ab04c81cfc5a8960ff51eac9d06282e652c8d7afb06b4d7737a687e0",
+      "url_relativa": "casos/0387.json"
+    },
+    {
+      "id": "0388",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "36c5155b769077d1ced93abcf38a58b2abdbafb04a977f696d9d2819ebd33f94",
+      "url_relativa": "casos/0388.json"
+    },
+    {
+      "id": "0389",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "c10a4f1400cb9a63a5f139a293daa9530d98f97444af08b4f153ac481af7b5f1",
+      "url_relativa": "casos/0389.json"
+    },
+    {
+      "id": "0390",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "72fbbb7d8271c210fad3e33cfd059e442a845b60355f6c9eecdb4d698fa9adbb",
+      "url_relativa": "casos/0390.json"
+    },
+    {
+      "id": "0391",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "2687e942c5145b48f16ed3234d7460018f0e3d1169eaab83d8a299448e5ce756",
+      "url_relativa": "casos/0391.json"
+    },
+    {
+      "id": "0392",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "75be1fabbf9c61d27cb5f259caf72ae862f2da46a4b0d5c9d7535e55886e2410",
+      "url_relativa": "casos/0392.json"
+    },
+    {
+      "id": "0393",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "9f2512194bfcd08581eb3528a21c7495c4f6e6c73396d1d39c4e973101273df8",
+      "url_relativa": "casos/0393.json"
+    },
+    {
+      "id": "0394",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "7ce61300bf0f42b7cc128c2a177cbb961572f1e3a9a91f60029d607e8ab34570",
+      "url_relativa": "casos/0394.json"
+    },
+    {
+      "id": "0395",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "0d6df928c48b2512ca6a2fceeb0a9ef33883a740b84e6b8a26304276236fa92f",
+      "url_relativa": "casos/0395.json"
+    },
+    {
+      "id": "0396",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "9ed98744ba4950776df0269905917642715840e21f095eb5ef7f87ea6950d72a",
+      "url_relativa": "casos/0396.json"
+    },
+    {
+      "id": "0397",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "9c06cea52dd89dc0c34ef83a9fc74a54a6b6b02232df74a96ca218972270f6e6",
+      "url_relativa": "casos/0397.json"
+    },
+    {
+      "id": "0398",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "c1715e841ec34fa836404452717d432f2a97a620c73daedda2c101e83d4313bd",
+      "url_relativa": "casos/0398.json"
+    },
+    {
+      "id": "0399",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "032db73a7bcc4524bb7f5497fed3ef80673db352f1bf983ceb7afdc98bce0ce9",
+      "url_relativa": "casos/0399.json"
+    },
+    {
+      "id": "0400",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "83cb47419c1f5d889b2e106e2337a853a463969214774eeba289bca49c6d7943",
+      "url_relativa": "casos/0400.json"
+    },
+    {
+      "id": "0401",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "922cf4054b752f04906f8b7777d2d7992e079637c8c780d3a114a53e793656de",
+      "url_relativa": "casos/0401.json"
+    },
+    {
+      "id": "0402",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "e7de3d7b921b8ffbd7acb139c864dcbbea3d71a5db4400bbe9a45efb4aaaf2cb",
+      "url_relativa": "casos/0402.json"
+    },
+    {
+      "id": "0403",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "9d9dad9ea0b02f1d2034165041e069faf9b6ecadd0215a5f93b5e83cbee4cfdf",
+      "url_relativa": "casos/0403.json"
+    },
+    {
+      "id": "0404",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "6c5f2cf8c26a22c4b592088e3f178358772a936c979e636b37359005a9dc24f5",
+      "url_relativa": "casos/0404.json"
+    },
+    {
+      "id": "0405",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "b24bb28c834692403ec0e6c7c7bf450c658cd8cc2223c5284fdf4b00ba025ec5",
+      "url_relativa": "casos/0405.json"
+    },
+    {
+      "id": "0406",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "0ee6750ae8a5b82d41428c2b8c1d502cd7ac375a9a55da12d932b1dd0e1fbd93",
+      "url_relativa": "casos/0406.json"
+    },
+    {
+      "id": "0407",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "f8a0393dd490688ffc2ee4b8200277ad2c54257c2771196de642bc96a889e38c",
+      "url_relativa": "casos/0407.json"
+    },
+    {
+      "id": "0408",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "9c8675187791b0c022534452df74ca6d5177d65b6ce52336a0d60eb3098b2c4f",
+      "url_relativa": "casos/0408.json"
+    },
+    {
+      "id": "0409",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "d673a8ec17a2a505525b4a3089324df8dfea975b8f2ca34b8f0804f65441ca0c",
+      "url_relativa": "casos/0409.json"
+    },
+    {
+      "id": "0410",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "01229592b04de8edce3e2f6090c5d99fc536d9ebf7daaef41b9c8e23b759e6cc",
+      "url_relativa": "casos/0410.json"
+    },
+    {
+      "id": "0411",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "85a747bd1836b350dd173d18fc8bca3ab57b082f75085a4250d16eae15fb2cdc",
+      "url_relativa": "casos/0411.json"
+    },
+    {
+      "id": "0412",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "4b2b3321567b0588d54ef8d3bdb6ff694d054768d8702ed6e6313dae140a7bbd",
+      "url_relativa": "casos/0412.json"
+    },
+    {
+      "id": "0413",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "e0649f08aca748218c1b9aefc217d13e0ad1ab11cdf868dc39ddccd468718642",
+      "url_relativa": "casos/0413.json"
+    },
+    {
+      "id": "0414",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "756a1605857588bd6d5999513b46a4d003c94c0f664f72451a2404d94295a67c",
+      "url_relativa": "casos/0414.json"
+    },
+    {
+      "id": "0415",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "c7f9616b728b2ec226b8461efb7384d586ac2ee856c7c73cf06e239bdd033203",
+      "url_relativa": "casos/0415.json"
+    },
+    {
+      "id": "0416",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "1943d5b91870b7c04710b21577ebcd31f2450779a7719483887b7d3cf5c2f4ff",
+      "url_relativa": "casos/0416.json"
+    },
+    {
+      "id": "0417",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "fb24b07ab0f7603019884cf7ede6d25b55d4d3c4fb1827054ecbe1a41748f317",
+      "url_relativa": "casos/0417.json"
+    },
+    {
+      "id": "0418",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "b50453498925d052b011363779b74b6acde876760d0161c3eda42c8bd737cbbc",
+      "url_relativa": "casos/0418.json"
+    },
+    {
+      "id": "0419",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "1df6d5ae97317bce7ae51732a641230e9c8455434725a3e210df10cc10797b25",
+      "url_relativa": "casos/0419.json"
+    },
+    {
+      "id": "0420",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "3ee45807de0c7f0f86d148168b2fa781d2fbaf371379254ea89fb91563a8bb5c",
+      "url_relativa": "casos/0420.json"
+    },
+    {
+      "id": "0421",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "1e38663406b8d6ea775f10e5fb2eb93e22fa18a0462b07179b9c862c3c979448",
+      "url_relativa": "casos/0421.json"
+    },
+    {
+      "id": "0422",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "52bbc999288f94e06d1bc8f6332289fdc5a1c1ebdad5e01fa8a666b0f57cdedd",
+      "url_relativa": "casos/0422.json"
+    },
+    {
+      "id": "0423",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "d3db1f4b3d7d2e6c3ea65d80656e6b310e6d50371f978c3c048af573a6e69663",
+      "url_relativa": "casos/0423.json"
+    },
+    {
+      "id": "0424",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "018eb41d1fd9a17c74e7a12a0538f2350dc09d9014b736e1596b0822212509c1",
+      "url_relativa": "casos/0424.json"
+    },
+    {
+      "id": "0425",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "6dcd29b010ecb2efeaa8c8472291b8e6d1108dda3f57d42073656d3041e42913",
+      "url_relativa": "casos/0425.json"
+    },
+    {
+      "id": "0426",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "1c50fc45b35fc1490bd0d79dfc35a8510711d5cb03aec757232fb9736e787baa",
+      "url_relativa": "casos/0426.json"
+    },
+    {
+      "id": "0427",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "cedfb75ed2e770557212cc439535997d54fb5d5edd9022ac68c998fa5292d6b2",
+      "url_relativa": "casos/0427.json"
+    },
+    {
+      "id": "0428",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "489700b430a0ec44f8bbcc4fbdaa94d740d834b96dc991e55fb64ba31cea61e6",
+      "url_relativa": "casos/0428.json"
+    },
+    {
+      "id": "0429",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "d42f3f615dcde1858112257c5691471ad9f4f31d77de5efc0b34d4b10f21e740",
+      "url_relativa": "casos/0429.json"
+    },
+    {
+      "id": "0430",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "5c8962a930a481908de44b8ed6250621b000467b4d0c6d511c6c9b59793207d1",
+      "url_relativa": "casos/0430.json"
+    },
+    {
+      "id": "0431",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "1a3ecab50fc5f8346bd2d92d868f95d736573470ff7d1fd56473dc42ed2c26c6",
+      "url_relativa": "casos/0431.json"
+    },
+    {
+      "id": "0432",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "76396e42ecda88a0e49b5814de964eaf0fd97d28f4a49593e2aa8599701f67dd",
+      "url_relativa": "casos/0432.json"
+    },
+    {
+      "id": "0433",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "713e32b1d2a5abf39392fb78614260a5b2b106cd276739bb1f1fa6e3e10e39d3",
+      "url_relativa": "casos/0433.json"
+    },
+    {
+      "id": "0434",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "3c57cf5558a2974215ce0149b71b9a70e92757deb85b9b5572d9aae9d166870c",
+      "url_relativa": "casos/0434.json"
+    },
+    {
+      "id": "0435",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "0d32e0e6a0693e2b353897a0cd62bc69a341d42f9aeda8410c35eccc2fe738e9",
+      "url_relativa": "casos/0435.json"
+    },
+    {
+      "id": "0436",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "7cb35087cff5aca1f21f05993dfd6ba3219b9b2e60f889cc24c40c19a6db5cdd",
+      "url_relativa": "casos/0436.json"
+    },
+    {
+      "id": "0437",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "5226c7b6264695c4c2a9b2c5e82103f8c1ed2d7defb3cba63c1a4eff1860497c",
+      "url_relativa": "casos/0437.json"
+    },
+    {
+      "id": "0438",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "25dd7d6accb7d2c6e1e9856e6b192254fe8d37a220599bf0483b60a735064cb7",
+      "url_relativa": "casos/0438.json"
+    },
+    {
+      "id": "0439",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "e4d85d3cd9c4d4e88b6ff2e7e9f46492d4a6d6b9eaafcb57c2011284009ec7ce",
+      "url_relativa": "casos/0439.json"
+    },
+    {
+      "id": "0440",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "5fd5e175f51de99925cbc2b5106cef0045d671fb0792f7ee10112e840f689f17",
+      "url_relativa": "casos/0440.json"
+    },
+    {
+      "id": "0441",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "a773b170c144a5d15585c5c88426b793ec5ce0a26e3626c104d5d51a62f06186",
+      "url_relativa": "casos/0441.json"
+    },
+    {
+      "id": "0442",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "c8adcc4c2a446ea3e8e86238cbbbec93b1f559585f3c42f0c522a4ff9efbe1bd",
+      "url_relativa": "casos/0442.json"
+    },
+    {
+      "id": "0443",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "d6e46129858f1875987e0c2a28f30e810466b0d8fb336dcd049ee95315fed6bd",
+      "url_relativa": "casos/0443.json"
+    },
+    {
+      "id": "0444",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "6a3408480ac9d0996c7ebe48fa48b4da40a36594b07293a856ed281a18c34b5e",
+      "url_relativa": "casos/0444.json"
+    },
+    {
+      "id": "0445",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "0feb8791739ab7daec3579dc4d1182dfbd8378f6c54d44480c19b6ee7b88a40c",
+      "url_relativa": "casos/0445.json"
+    },
+    {
+      "id": "0446",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "71516d423c10f0715f03541a5bb421791153ff3e2d3cf11c26d4a27060f96154",
+      "url_relativa": "casos/0446.json"
+    },
+    {
+      "id": "0447",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "7484ca919a286bc287a53f8d1a0a96b266eb070497f2d7f41fcebd723dc149a1",
+      "url_relativa": "casos/0447.json"
+    },
+    {
+      "id": "0448",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "1a9ebead8bdab1bad1a34c4d7b3112ef8adba839a8a5e9d5c22a450fb2c6d10d",
+      "url_relativa": "casos/0448.json"
+    },
+    {
+      "id": "0449",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "8fd36910a505dfcb1dde5a4e4f9187f7b14f40dffa7fbb521e112197fdef2c80",
+      "url_relativa": "casos/0449.json"
+    },
+    {
+      "id": "0450",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "402ef7c39999216f282385702c8e3c7530d98714ac35d492a1089936414960e0",
+      "url_relativa": "casos/0450.json"
+    },
+    {
+      "id": "0451",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "20f67131af3461797a689f3eb21272c7a1ebab75e99d1262c82a4ae833acbe50",
+      "url_relativa": "casos/0451.json"
+    },
+    {
+      "id": "0452",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "cfc7776a06417834a2426d06f71d644e45c90341b0a9abb7c2f49ee3852b70dc",
+      "url_relativa": "casos/0452.json"
+    },
+    {
+      "id": "0453",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "0c8ead2cc5ed3e7c1d7d03e4b2ddbb399cd19fb628765679d52ad8143f91ae80",
+      "url_relativa": "casos/0453.json"
+    },
+    {
+      "id": "0454",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "a0ea3d6d80f4cb2b2acecc5ab931b468244d2c7b70cd31fa311cf636faa0cf7a",
+      "url_relativa": "casos/0454.json"
+    },
+    {
+      "id": "0455",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "5844c62f690d6ea4a40d0b3f6f8d4e98db78d8389a0676f6482830ac8138c0bf",
+      "url_relativa": "casos/0455.json"
+    },
+    {
+      "id": "0456",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "17696a5feaf8cd7d872931d5a2b4b5381165ec676aaaa3ddf25b1797851e12e8",
+      "url_relativa": "casos/0456.json"
+    },
+    {
+      "id": "0457",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "d9e8221fc76fce7361f28032511c288fd2a92ac65b376e3659cfc65de0da3501",
+      "url_relativa": "casos/0457.json"
+    },
+    {
+      "id": "0458",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "8118c75c02086193ba9d32df642506533f26fa7c4d7246df19ffe69ffea40e8f",
+      "url_relativa": "casos/0458.json"
+    },
+    {
+      "id": "0459",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "cbd6988a762bdbd832aeb9488c7e5f45246b06f54a55439ea7f7d8df63f1b3cb",
+      "url_relativa": "casos/0459.json"
+    },
+    {
+      "id": "0460",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "ce3e1c552f70582aa61ab7040a78be46a1486e97cd4a1cd26de1226c6f12265c",
+      "url_relativa": "casos/0460.json"
+    },
+    {
+      "id": "0461",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "67a72eb9463cf4148aa1b9213f6c0230e10753260f6ce5a05a4b907ed4bfa3fa",
+      "url_relativa": "casos/0461.json"
+    },
+    {
+      "id": "0462",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "06a41174815ea5be69b37ce22ab5e450701927abe14372074ad3eae0097541c1",
+      "url_relativa": "casos/0462.json"
+    },
+    {
+      "id": "0463",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "cc53656d4ce5d8b51beccafd649edf95cfb44f1e0a0fa38220d52fe0ab95e883",
+      "url_relativa": "casos/0463.json"
+    },
+    {
+      "id": "0464",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "1f433f62a8d303c0ee096e7df0c7c0a18c768a922d1aed9d54e2d42db30b0e66",
+      "url_relativa": "casos/0464.json"
+    },
+    {
+      "id": "0465",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "257af57353598cba3c9fe884f0a273a56546e42b1ef2422a5b28168da0400f8e",
+      "url_relativa": "casos/0465.json"
+    },
+    {
+      "id": "0466",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "da9a9b01b057bd5321ec3bcdc629f8e0ac5cffe13cd1f9171b40f0096a4e4739",
+      "url_relativa": "casos/0466.json"
+    },
+    {
+      "id": "0467",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "ff0c7ad0850cf9564ca2189f73f3e50027cc82216a662b6df19f409219934980",
+      "url_relativa": "casos/0467.json"
+    },
+    {
+      "id": "0468",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "7c5a1218deb5d76dfcce6fbe78ace61c224227342046cb7210c788c3ed18240b",
+      "url_relativa": "casos/0468.json"
+    },
+    {
+      "id": "0469",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "2e89255eea708f29f0f24636f5cacc67b8454d88bacf927db2f8649c6fc1fe68",
+      "url_relativa": "casos/0469.json"
+    },
+    {
+      "id": "0470",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "7b2dafac5ad915811eba27c4342412e049e51980990258c661b9543b8b56409b",
+      "url_relativa": "casos/0470.json"
+    },
+    {
+      "id": "0471",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "f73939b6b864f35d7569eb0aa17e8fcb98540f1ae6600b753fa1ab5b5b9a0b60",
+      "url_relativa": "casos/0471.json"
+    },
+    {
+      "id": "0472",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "2cf52da56a1ab321d41e87228029f719bd58b2dccf3b3cafb44d001d5979f2ef",
+      "url_relativa": "casos/0472.json"
+    },
+    {
+      "id": "0473",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "a94937d74fffa67b197af6bce64dd5248d1461c345024104e25e2f58860b3553",
+      "url_relativa": "casos/0473.json"
+    },
+    {
+      "id": "0474",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "2bd3b207b2b728e6db07dac3a740b558e8f2460308dbaf342eb78d8141b456b8",
+      "url_relativa": "casos/0474.json"
+    },
+    {
+      "id": "0475",
+      "origem": "sintetico",
+      "categoria": "transito",
+      "processo_tjsp": null,
+      "sha256": "7d7777c5e42f6c60f5703bf7abf76aeaa9bc12f9c30ef261819c6916509b7c54",
+      "url_relativa": "casos/0475.json"
+    },
+    {
+      "id": "0476",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "bfed3fb73af367e76480f6e029c21472a321d8eb628c62dde4fc787a7269673b",
+      "url_relativa": "casos/0476.json"
+    },
+    {
+      "id": "0477",
+      "origem": "sintetico",
+      "categoria": "reforma-empreitada",
+      "processo_tjsp": null,
+      "sha256": "9f6f1fa34d404c8771fa2332d1d145e4ae93e015732c46afc3189d3dc6309c26",
+      "url_relativa": "casos/0477.json"
+    },
+    {
+      "id": "0478",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "d05a29237df398bc5c31f5bd9af7d130bdb6a4f9aad9b49499bb8a1f942e1484",
+      "url_relativa": "casos/0478.json"
+    },
+    {
+      "id": "0479",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "614acdf3295c5af44ed0b77a63b6d70f8e25f9ca1c38bb1455b37069737a9129",
+      "url_relativa": "casos/0479.json"
+    },
+    {
+      "id": "0480",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "fa1fbde7090d60ad3754529aec86af445780b10742c0725fa3a23e4f309dafbc",
+      "url_relativa": "casos/0480.json"
+    },
+    {
+      "id": "0481",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "113447b81bb1ba312795fa4ea2c58c5ea2803ec74de47efa8c8e20638e7a0814",
+      "url_relativa": "casos/0481.json"
+    },
+    {
+      "id": "0482",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "08121406367f6d7b73ede31c2fb8569a0275550e557cb80b1fb30a799eb09029",
+      "url_relativa": "casos/0482.json"
+    },
+    {
+      "id": "0483",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "63ba42f60a22be6ac369767fc7118f1270a37e2ea0aae494bfe5f2a1b326f0c4",
+      "url_relativa": "casos/0483.json"
+    },
+    {
+      "id": "0484",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "37c31bccc223e82c51a12fefb5b86aa69eb59da45f0788aaebf0fb4d49d7d1c0",
+      "url_relativa": "casos/0484.json"
+    },
+    {
+      "id": "0485",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "f353fc0b840a5764eab9794c0aa696de66b11212286d271e72a9cc8e1bbdc4c4",
+      "url_relativa": "casos/0485.json"
+    },
+    {
+      "id": "0486",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "5df61bb0fc43d763badacf25d6c5a0a1c4230025ad7a2b2beb16513bf68370d9",
+      "url_relativa": "casos/0486.json"
+    },
+    {
+      "id": "0487",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "75366ca37361033d3e4a4050c08c5995c6fc55cbedb137b401d28adcb046f6a1",
+      "url_relativa": "casos/0487.json"
+    },
+    {
+      "id": "0488",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "0a5f8ae8046a87e75b14ebeee4fd3ff666b7b3898051e9943ae14b4f97d968f8",
+      "url_relativa": "casos/0488.json"
+    },
+    {
+      "id": "0489",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "05a744c9f84fb25c0918bc46834c51029f3d3fc3c02eeaf43931f1da04ee2c83",
+      "url_relativa": "casos/0489.json"
+    },
+    {
+      "id": "0490",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "aa60f0143a1a1ecfee0942acce493dc982f1ed91ca16d2aa786a019284cca0af",
+      "url_relativa": "casos/0490.json"
+    },
+    {
+      "id": "0491",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "73589c3c8ded43f0eeee8267469d991fac85be0ba952459d5b4693c66a38c941",
+      "url_relativa": "casos/0491.json"
+    },
+    {
+      "id": "0492",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "879c143879f75ec8f112f6c8e77f9c1fcce5caadb6251f35b1e95a42882b84a0",
+      "url_relativa": "casos/0492.json"
+    },
+    {
+      "id": "0493",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "aa64748a7a1e4cc27bb2328f14fc1a72764d7737b917a1eb985a23765970073f",
+      "url_relativa": "casos/0493.json"
+    },
+    {
+      "id": "0494",
+      "origem": "sintetico",
+      "categoria": "condominio",
+      "processo_tjsp": null,
+      "sha256": "b864f10a546a3e820949d958a1a547b3f476c60d7b8f4d94e9d4548ab50c08f0",
+      "url_relativa": "casos/0494.json"
+    },
+    {
+      "id": "0495",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "1437518d12fad968decdaf2204f35643505f787298a7332a048e9057da508a63",
+      "url_relativa": "casos/0495.json"
+    },
+    {
+      "id": "0496",
+      "origem": "sintetico",
+      "categoria": "vizinhanca",
+      "processo_tjsp": null,
+      "sha256": "1d11f1a53df305e8e78d666d9c60b381a5ed2f37112bb4e2efeefc374b839583",
+      "url_relativa": "casos/0496.json"
+    },
+    {
+      "id": "0497",
+      "origem": "sintetico",
+      "categoria": "locacao-caucao",
+      "processo_tjsp": null,
+      "sha256": "473c6796c4061d235501e0191ac4933668e2aede5489e6298bae545abb16848b",
+      "url_relativa": "casos/0497.json"
+    },
+    {
+      "id": "0498",
+      "origem": "sintetico",
+      "categoria": "cobranca-servicos",
+      "processo_tjsp": null,
+      "sha256": "dc7c3cff12d6af3dcc6192f32db6d65e3dc546971823410976c72db262be34db",
+      "url_relativa": "casos/0498.json"
+    },
+    {
+      "id": "0499",
+      "origem": "sintetico",
+      "categoria": "consumo-produto",
+      "processo_tjsp": null,
+      "sha256": "4f1afa98454aa48a482edb74de05781db87e9c8b1d4e19147332ee874b5c8fc6",
+      "url_relativa": "casos/0499.json"
+    },
+    {
+      "id": "0500",
+      "origem": "sintetico",
+      "categoria": "venda-veiculo",
+      "processo_tjsp": null,
+      "sha256": "d75df48d45f5fbbb34578bc695b395fc069b558342022f1de5254564415c9147",
+      "url_relativa": "casos/0500.json"
+    }
+  ]
+}

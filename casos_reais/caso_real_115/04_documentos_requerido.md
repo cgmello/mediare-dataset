@@ -1,9 +1,0 @@
-- Escritura de compra do imóvel de 2008 com menção à garagem
-- Fotos da instalação do novo portão pela requerente sem autorização
-- Fotos mostrando como o pilar do portão reduziu a fachada e inviabilizou a garagem
-- Fotos e notas fiscais dos reparos realizados em decorrência das infiltrações
-- Comprovante de solicitação e pagamento da individualização dos relógios de água à concessionária
-- Contas atuais de água individualizadas
-- Contrato de aluguel do imóvel que precisou alugar
-- Contrato de aluguel de garagem
-- Comprovantes de pagamento dos aluguéis

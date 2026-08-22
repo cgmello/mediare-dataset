@@ -1,0 +1,40 @@
+{
+  "id": "0084",
+  "origem": "real",
+  "processo_tjsp": "1008484-09.2021.8.26.0565",
+  "sha256_caso": "d722af8272640ff4da2f618cbfb86374045661765568151977838cc7c6258603",
+  "caso": "real-078-reforma",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1008484-09.2021.8.26.0565",
+  "parecer_esperado": {
+    "responsavel": "requerente",
+    "resultado": "improcedente",
+    "valores": {
+      "saldo_contrato_original": 0.0,
+      "saldo_aditivos": 0.0,
+      "credito_autoras_reconhecido_pericia": 182935.21,
+      "credito_reu_reconhecido_pericia": 185868.42,
+      "saldo_final_devido_as_autoras": 0.0,
+      "saldo_final_favoravel_ao_reu": 2933.21
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Cobrança de R$ 100.000,00 (saldo da última parcela original)",
+      "Cobrança de R$ 80.564,48 (saldo dos serviços adicionais)",
+      "Cobrança total de R$ 180.564,48",
+      "Juros e correção monetária sobre valores cobrados"
+    ],
+    "fundamentos": [
+      "Prova pericial de engenharia demonstrou a existência de diversos vícios construtivos de responsabilidade das autoras",
+      "Perícia apurou que o réu efetuou gastos comprovados com serviços e materiais que eram de responsabilidade das empreiteiras contratadas",
+      "Consolidação de créditos e débitos pela perícia resultou em crédito das autoras de R$ 182.935,21 e crédito do réu de R$ 185.868,42",
+      "Saldo final apurado pela perícia favorável ao réu em R$ 2.933,21, compensando integralmente os valores cobrados",
+      "Nos contratos de empreitada, vícios de construção e gastos de correção podem ser compensados com valores contratuais reclamados",
+      "Autoras não comprovaram existência de crédito líquido exigível, requisito indispensável para acolhimento da cobrança"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - deve identificar responsabilidade das requerentes (autoras) pelos vícios",
+    "valores": "tolerância ±15% nas rubricas reconhecidas pela perícia; valores cobrados pelas autoras devem resultar em 0 (zero) após compensação; saldo final pode variar entre R$ 2.493,23 e R$ 3.373,19",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) existência de vícios construtivos apurados por perícia, (2) gastos do réu com correções que compensam o crédito das autoras, (3) compensação resulta em ausência de saldo devido às autoras ou saldo favorável ao réu"
+  }
+}

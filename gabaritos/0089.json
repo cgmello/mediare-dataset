@@ -1,0 +1,37 @@
+{
+  "id": "0089",
+  "origem": "real",
+  "processo_tjsp": "1008362-61.2024.8.26.0477",
+  "sha256_caso": "c92080e00a81575f5b3ecfc7ab6b1542bbb18b92cbaaf001a01963653db5b04e",
+  "caso": "real-083-reforma",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1008362-61.2024.8.26.0477",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "restituicao_valores_pagos_a_maior": 57555.0,
+      "danos_materiais_novo_empreiteiro": 0.0,
+      "danos_morais": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Restituição de R$ 64.605,00 (valor recalculado para R$ 57.555,00 conforme serviços efetivamente executados)",
+      "Indenização por danos materiais de R$ 32.300,00 (não comprovada a efetiva contratação nem pagamento)",
+      "Indenização por danos morais de R$ 20.000,00 (inadimplemento contratual sem ofensa excepcional aos direitos da personalidade)"
+    ],
+    "fundamentos": [
+      "Relação de consumo entre autor e réu caracterizada, com incidência do CDC em contrato de empreitada residencial",
+      "Inadimplemento definitivo do réu caracterizado pela interrupção dos serviços após executar apenas 70,50% do contratado",
+      "Ausência de comprovação pelo réu de inadimplemento do autor capaz de justificar a interrupção definitiva (alegações de erros no projeto, atrasos, falta de materiais não suficientemente demonstradas)",
+      "Cabível a resolução contratual por inadimplemento do réu com restituição proporcional aos serviços não executados",
+      "Valor da restituição calculado sobre o preço total ajustado (R$ 229.000,00) aplicando-se o percentual não executado (29,50%), resultando em R$ 161.445,00 devidos, contra R$ 219.000,00 pagos",
+      "Dano material pela contratação de novo empreiteiro não comprovado (documento apresentado é mero orçamento sem prova de contratação ou pagamento efetivo)",
+      "Dano moral não configurado pois os transtornos permanecem no âmbito do inadimplemento contratual sem prova de ofensa excepcional aos direitos da personalidade"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: (1) inadimplemento do réu caracterizado pela interrupção injustificada após 70,50% de execução; (2) restituição proporcional calculada sobre preço total vs. percentual executado; (3) danos materiais e morais não comprovados"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "categoria": "venda-veiculo",
+  "documentos": {
+    "documentos_requerente": "# Documentos comprobatórios — Requerente\n\n1. Recibo/CRV de compra e venda.\n2. Laudo mecânico.\n3. Orçamentos de reparo.\n4. Anúncio da venda.",
+    "documentos_requerido": "# Documentos comprobatórios — Requerida\n\n1. Anúncio com a quilometragem.\n2. Mensagens da negociação.",
+    "peticao_requerente": "# Pedido de mediação — Parte Requerente\n\n**Requerente:** I.K.D.\n**Requerido:** N.F.O.\n**Conflito:** compra e venda de veículo usado entre particulares\n\n## Fatos e pedidos\nComprei de N.F.O. um usado por R$ 75500.00; a embreagem gastou 3 meses depois. Quero o conserto.",
+    "resposta_requerido": "# Resposta da Parte Requerida\n\n**Requerido:** N.F.O.\n\nVeículo com 137 mil km, vendido no estado; embreagem é item de desgaste."
+  },
+  "id": "0297",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "sintetico"
+}

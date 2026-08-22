@@ -1,0 +1,40 @@
+{
+  "id": "0138",
+  "origem": "real",
+  "processo_tjsp": "1012185-54.2024.8.26.0344",
+  "sha256_caso": "b27c8a26a1e9cab95472e1ce5e2950abe7c03d2d8a10a004f65b09af87ebebc7",
+  "caso": "real-132-condominio",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1012185-54.2024.8.26.0344",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "alugueis_junho_julho_2024": 1100.0,
+      "contas_agua": 0.0,
+      "indenizacao_danos_morais_reconvencao": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "rescisao_contrato": true,
+      "desocupacao_imovel": "já efetivada em 07/08/2024"
+    },
+    "pedidos_rejeitados": [
+      "Cobrança de contas de água (pagas antes da sentença)",
+      "Aluguéis vincendos (imóvel desocupado em 07/08/2024)",
+      "Abatimento da caução no débito (caução não substitui pagamento pontual)",
+      "Indenização por danos morais da reconvenção (ausência de prova robusta)"
+    ],
+    "fundamentos": [
+      "Inadimplência dos aluguéis de junho e julho de 2024 comprovada, configurando mora contratual",
+      "Caução locatícia não descaracteriza mora nem dispensa pagamento pontual dos aluguéis, seu uso depende de consenso entre as partes",
+      "Contas de água foram pagas em 09/08/2024, antes da sentença, afastando a cobrança desses valores",
+      "Desocupação do imóvel ocorreu em 07/08/2024, limitando a cobrança de aluguéis até essa data",
+      "Prova de ofensas e ameaças na reconvenção é insuficiente para caracterizar danos morais indenizáveis (baseada apenas em testemunho de pessoa próxima)",
+      "Art. 9º, III, da Lei 8.245/91: falta de pagamento de aluguéis justifica rescisão contratual e despejo"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido inadimplente",
+    "valores": "tolerância ±15% para aluguéis devidos (R$ 1.100,00); contas de água devem ser 0 (pagas); danos morais devem ser 0 (improcedente)",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) inadimplência comprovada de junho/julho 2024; (2) caução não substitui pagamento pontual; (3) contas pagas antes da sentença; (4) desocupação em 07/08/2024 limita cobrança"
+  }
+}

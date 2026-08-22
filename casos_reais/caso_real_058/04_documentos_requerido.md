@@ -1,7 +1,0 @@
-- Apólice de seguro mantida com AIG Seguros Brasil S.A. (nº 087372023010351001586)
-- Fotografias do local do acidente demonstrando a topografia (aclive)
-- Fotografias das avarias laterais no caminhão, demonstrando tentativa de manobra evasiva
-- Documento do veículo (CRLV) do caminhão Iveco/Tector
-- Habilitação do condutor do caminhão
-- Informações sobre a existência de radar no trecho do km 311 da SP-322
-- Eventuais registros de manutenção do sistema de freios do caminhão

@@ -1,0 +1,12 @@
+{
+  "categoria": "cobranca-servicos",
+  "documentos": {
+    "documentos_requerente": "# Documentos comprobatórios — Requerente\n\n1. Contrato de prestação de serviços (mensalidade R$ 150.00) com cláusula de multa de 2 mensalidades.\n2. Boletos em aberto.\n3. Planilha do débito.",
+    "documentos_requerido": "# Documentos comprobatórios — Requerida\n\n1. Comprovantes de pagamentos anteriores.\n2. Comprovante da parcela paga e cobrada indevidamente.",
+    "peticao_requerente": "# Pedido de mediação — Parte Requerente\n\n**Requerente:** Pinturas & Acabamentos Silva ME\n**Requerida:** C.R.F.\n**Conflito:** cobrança de mensalidades de serviço contratado\n\n## Fatos\nA requerida contratou nossos serviços por mensalidades de R$ 150.00. Deixou de pagar 5 parcelas e nunca formalizou o cancelamento, embora alegue ter pago uma das parcelas. O contrato prevê multa de duas mensalidades pela rescisão sem aviso.\n\n## Pedidos\n1. Parcelas em aberto: R$ 750.00\n2. Multa contratual: R$ 300.00",
+    "resposta_requerido": "# Resposta da Parte Requerida\n\n**Requerida:** C.R.F.\n\nParei de usar o serviço e entendo nada dever após deixar de frequentar. Paguei uma das parcelas cobradas, tenho o comprovante. Não fiz cancelamento formal por desconhecimento."
+  },
+  "id": "0230",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "sintetico"
+}

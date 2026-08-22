@@ -1,2 +1,0 @@
-- Contestação por negativa geral apresentada por Curador Especial
-- (Não foram juntados documentos comprobatórios de pagamento ou outros elementos de defesa, tendo em vista a citação ficta e contestação por negativa geral)

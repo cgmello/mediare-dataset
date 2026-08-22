@@ -1,8 +1,0 @@
-- Contrato de locação do imóvel celebrado em 08/12/2023
-- Comprovante de depósito caução no valor de R$ 7.500,00
-- Planilha de cálculo dos valores devidos com atualização pelo IGP-M/FGV
-- Boletos de aluguel dos meses inadimplidos (junho/2024, maio/2025 e junho/2025)
-- Comprovantes de pagamento parcial (quando houver)
-- Guias de IPTU do imóvel
-- Termo de entrega de chaves datado de 29/01/2026
-- Escritura ou matrícula do imóvel comprovando a propriedade

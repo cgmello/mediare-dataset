@@ -1,0 +1,25 @@
+{
+  "id": "0488",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "0a5f8ae8046a87e75b14ebeee4fd3ff666b7b3898051e9943ae14b4f97d968f8",
+  "caso": "sint-307-locacao-caucao",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "requerido_locatario",
+    "resultado": "procedente",
+    "valores": {
+      "alugueis_devidos": 9300,
+      "abatimento_caucao": 9300
+    },
+    "fundamentos": [
+      "inadimplencia incontroversa",
+      "caucao compensavel com o debito"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

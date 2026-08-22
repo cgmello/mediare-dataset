@@ -1,8 +1,0 @@
-- Contrato de locação do imóvel
-- Comprovante de pagamento da caução
-- Mensagens eletrônicas/e-mails trocados com a imobiliária em janeiro de 2025
-- Comunicação formal de rescisão enviada no início de janeiro de 2025
-- E-mail da administradora de 09/01/2025 confirmando possibilidade de vistoria
-- Termo de entrega de chaves datado de 06/02/2025
-- Comprovantes de pagamento de aluguéis anteriores
-- Contas de consumo (água, luz, gás) demonstrando desocupação

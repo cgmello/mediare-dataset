@@ -1,0 +1,12 @@
+{
+  "categoria": "consumo-produto",
+  "documentos": {
+    "documentos_requerente": "# Documentos comprobatórios — Requerente\n\n1. Nota fiscal.\n2. Fotos/vídeos do defeito.\n3. Protocolos de reclamação e ordens de serviço.",
+    "documentos_requerido": "# Documentos comprobatórios — Requerida\n\n1. Laudo da assistência técnica.",
+    "peticao_requerente": "# Pedido de mediação — Parte Requerente\n\n**Requerente:** S.B.G.\n**Requerida:** Clínica Vet Amigo Fiel Ltda.\n**Conflito:** vício do produto\n\n## Fatos\nComprei um(a) piscina de fibra por R$ 29300.00. Apresentou defeito logo após a compra e a loja não resolveu em 30 dias.\n\n## Pedidos\n1. Restituição: R$ 29300.00\n2. Danos morais.",
+    "resposta_requerido": "# Resposta da Parte Requerida\n\n**Requerida:** Clínica Vet Amigo Fiel Ltda.\n\nO produto saiu conforme; o defeito alegado não foi reproduzido integralmente em bancada."
+  },
+  "id": "0241",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "sintetico"
+}

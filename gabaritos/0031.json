@@ -1,0 +1,36 @@
+{
+  "id": "0031",
+  "origem": "real",
+  "processo_tjsp": "0800311-25.2012.8.26.0361",
+  "sha256_caso": "6ba6f5e5971a8abbcc4726d043ccb81174cefc0aaf4451736e001ac703857489",
+  "caso": "real-025-cobranca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 0800311-25.2012.8.26.0361",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente_procedente",
+    "valores": {
+      "honorarios_advocaticios_proporcionais": 2213.33,
+      "percentual_sobre_valor_causa": 0.0,
+      "honorarios_fase_conhecimento_isolada": 0.0,
+      "honorarios_fase_recursal_isolada": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Honorários no percentual de 15% do valor da causa (R$ 2.490,00)",
+      "Divisão específica entre 10% fase de conhecimento e 5% fase recursal conforme critério da autora"
+    ],
+    "fundamentos": [
+      "A revogação do mandato pelos constituintes não elimina o direito do advogado à remuneração proporcional pelos serviços efetivamente prestados até aquele momento",
+      "Aplicação do artigo 22, § 3º, da Lei nº 8.906/94 como parâmetro objetivo para arbitramento proporcional: 1/3 no início, 1/3 até decisão de primeira instância e 1/3 ao final",
+      "A profissional atuou em toda fase de conhecimento (petição inicial, réplica, acompanhamento até sentença) e também na fase recursal (contrarrazões), correspondendo a 2/3 dos honorários globais",
+      "Adoção do valor da causa (R$ 16.600,00) como base de cálculo ante ausência de prova da estipulação diversa no ajuste verbal",
+      "Cálculo: 20% de R$ 16.600,00 = R$ 3.320,00 (honorários globais); aplicando-se 2/3 = R$ 2.213,33",
+      "Não se mostra razoável condicionar a remuneração ao julgamento definitivo de recurso pendente há mais de uma década quando a profissional foi destituída em 2012"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido deve pagar",
+    "valores": "tolerância ±15% sobre R$ 2.213,33 (faixa: R$ 1.881,33 a R$ 2.545,33); pedidos específicos da autora (15% ou divisão 10%+5%) devem ser rejeitados/zerados",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) direito a remuneração proporcional apesar da contratação ad exitum quando há revogação do mandato; (2) aplicação do art. 22, §3º da Lei 8.906/94 para arbitramento de 2/3 dos honorários; (3) base de cálculo sobre valor da causa de R$ 16.600,00 ante ausência de prova de estipulação diversa"
+  }
+}

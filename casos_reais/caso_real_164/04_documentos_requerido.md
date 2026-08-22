@@ -1,7 +1,0 @@
-- Contrato social e documentos da empresa
-- Garantia de Compra e Venda firmada em 02/12/2020
-- Recibo de compra e venda do veículo Fiat Palio Weekend para M.N.R.
-- Comprovante de comunicação de venda ao DETRAN datado de 14/01/2021, constando M.N.R. como comprador
-- Consulta ao sistema do DETRAN demonstrando o registro da comunicação de venda
-- Comprovantes de quitação dos débitos de IPVA relacionados ao veículo
-- Documentação demonstrando as práticas comerciais habituais da empresa no comércio de veículos usados

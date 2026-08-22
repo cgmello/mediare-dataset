@@ -1,0 +1,36 @@
+{
+  "id": "0054",
+  "origem": "real",
+  "processo_tjsp": "1001929-86.2023.8.26.0344",
+  "sha256_caso": "73b70a89674339871ec10aef64d4a8cb65d46121f64e43bd94015d42c4fcba78",
+  "caso": "real-048-consumo",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1001929-86.2023.8.26.0344",
+  "parecer_esperado": {
+    "responsavel": "ambos_culpa_concorrente",
+    "resultado": "procedente",
+    "valores": {
+      "danos_morais": 5000.0,
+      "reparo_piscina": 0.0,
+      "substituicao_piscina": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "conserto_piscina": "Obrigação cumprida em 24/10/2023 pela ré F. Indústria de Fibras, conforme tutela de urgência confirmada"
+    },
+    "pedidos_rejeitados": [
+      "Substituição da piscina por uma nova (conserto foi suficiente e adequado conforme perícia)"
+    ],
+    "fundamentos": [
+      "Relação de consumo caracterizada - piscina adquirida para uso doméstico residencial (art. 2º CDC)",
+      "Responsabilidade solidária e objetiva de todos os integrantes da cadeia de fornecimento (arts. 7º parágrafo único e 18 do CDC) - revendedora e fabricante respondem conjuntamente",
+      "Laudo pericial confirmou existência de vício no produto (rachadura com vazamento) e eficácia do reparo realizado",
+      "Origem mecânica da trinca durante instalação/transporte constitui fortuito interno, risco da atividade econômica que não pode ser repassado ao consumidor",
+      "Dano moral configurado pelo desgaste emocional, tentativas frustradas de solução administrativa ao longo de meses, desvio produtivo do consumidor e risco causado a imóveis vizinhos",
+      "Conserto adequado e suficiente afasta necessidade de substituição do produto (art. 18, §1º CDC) - pedido alternativo superado pelo cumprimento da obrigação principal"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - ambos_culpa_concorrente (responsabilidade solidária da cadeia de fornecimento)",
+    "valores": "tolerância ±15% para danos morais (R$ 4.250,00 a R$ 5.750,00); reparo e substituição devem ser 0 pois obrigação foi cumprida in natura",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) responsabilidade solidária CDC, (2) vício comprovado por perícia, (3) dano moral por desvio produtivo e descaso, (4) fortuito interno não exclui responsabilidade"
+  }
+}

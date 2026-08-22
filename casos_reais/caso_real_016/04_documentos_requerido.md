@@ -1,5 +1,0 @@
-- Cópia do contrato de locação
-- Cópia do termo de confissão de dívida
-- Comprovantes de tentativas de contato com a imobiliária administradora
-- Planilha própria de cálculo dos valores que entendem devidos
-- Correspondências trocadas com a administradora

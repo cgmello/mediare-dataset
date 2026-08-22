@@ -1,0 +1,29 @@
+{
+  "id": "0399",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "032db73a7bcc4524bb7f5497fed3ef80673db352f1bf983ceb7afdc98bce0ce9",
+  "caso": "sint-218-cobranca-servicos",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "requerida",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "total_devido": 400,
+      "multa_contratual": 160.0
+    },
+    "pedidos_rejeitados": [
+      "requerida comprovou pagamento de 1 parcela (R$ 80.00) que deve ser abatida"
+    ],
+    "fundamentos": [
+      "forca obrigatoria do contrato",
+      "ausencia de cancelamento formal mantem a obrigacao",
+      "requerida comprovou pagamento de 1 parcela (R$ 80.00) que deve ser abatida"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

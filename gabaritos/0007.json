@@ -1,0 +1,35 @@
+{
+  "id": "0007",
+  "origem": "real",
+  "processo_tjsp": "1063928-25.2025.8.26.0100",
+  "sha256_caso": "9afb33d1df59e09e30aa3484dff1d5ab574c1ee7f305d404332e1e00566770f3",
+  "caso": "real-001-locacao",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1063928-25.2025.8.26.0100",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "ressarcimento_danos_materiais": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "rescisao_contratual": "Declarada a rescisão do contrato de locação em razão do inadimplemento",
+      "despejo": "Prejudicado por desocupação voluntária"
+    },
+    "pedidos_rejeitados": [
+      "Ressarcimento por eventuais danos materiais ao imóvel"
+    ],
+    "fundamentos": [
+      "Revelia caracterizada pela ausência de contestação após citação regular (art. 344 do CPC)",
+      "Inadimplemento contratual não contestado autoriza a rescisão da relação locatícia",
+      "Desocupação voluntária do imóvel no curso da demanda tornou prejudicado o pedido de despejo por perda superveniente do objeto",
+      "Responsabilidade por danos ao imóvel não decorre automaticamente do inadimplemento, exigindo comprovação efetiva do prejuízo (arts. 186 e 927 do CC)",
+      "Pedido de ressarcimento de danos 'eventuais' não pode ser acolhido sem demonstração concreta da existência, extensão e nexo causal do dano",
+      "Vedação à condenação genérica fundada em dano hipotético ou futuro (art. 491 do CPC)"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: (1) revelia autoriza rescisão contratual; (2) danos materiais exigem comprovação efetiva, não sendo admitida condenação por prejuízo eventual"
+  }
+}

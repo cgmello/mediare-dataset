@@ -1,0 +1,12 @@
+{
+  "categoria": "002-cobranca-curso",
+  "documentos": {
+    "documentos_requerente": "# Documentos comprobatórios — Requerente\n\n1. Contrato de prestação de serviços educacionais assinado em 08/03/2021, com cláusula\n   de mensalidade (R$ 100,00) e de multa de 2 mensalidades por rescisão sem aviso formal.\n2. Boletos/carnês das mensalidades de abril a julho de 2021, em aberto.\n3. Registros de frequência da aluna (presenças até março/2021).\n4. Comprovantes de disponibilização do material didático.\n5. Planilha de atualização do débito (R$ 717,05).",
+    "documentos_requerido": "# Documentos comprobatórios — Requerida\n\n1. Comprovantes de pagamento das mensalidades até março/2021.\n2. (Não apresenta pedido formal de cancelamento — inexistente.)",
+    "peticao_requerente": "# Pedido de mediação — Parte Requerente\n\n**Requerente:** A.G.C. (microempreendedor individual, escola de cursos profissionalizantes)\n**Requerida:** L.L.F.P. (ex-aluna)\n**Tipo de conflito:** Cobrança — prestação de serviços educacionais\n\n## Relato dos fatos\n\nEm 08/03/2021 a requerida contratou curso de formação profissional, comprometendo-se\na pagar mensalidades de R$ 100,00, que remuneram o apoio pedagógico e o material\ndidático disponibilizado. A requerida pagou as primeiras parcelas, mas deixou de pagar\nos meses de abril, maio, junho e julho de 2021 (R$ 400,00). Simplesmente parou de\nfrequentar as aulas, sem jamais formalizar o cancelamento da matrícula, como exige o\ncontrato. O contrato prevê, para a rescisão sem aviso formal, multa equivalente a\nduas mensalidades (R$ 200,00).\n\n## Pedidos\n\n1. Pagamento das 4 mensalidades em aberto: R$ 400,00;\n2. Multa contratual por ausência de rescisão formal: R$ 200,00;\n3. Correção monetária e juros desde os vencimentos (valor atualizado: R$ 717,05).",
+    "resposta_requerido": "# Resposta da Parte Requerida\n\n**Requerida:** L.L.F.P.\n\n## Versão dos fatos\n\nParei de frequentar o curso em março de 2021 por motivos pessoais e entendo que,\na partir do momento em que deixei de assistir às aulas, não seria devido mais nenhum\npagamento, pois o serviço não estava sendo usufruído. Não fiz o cancelamento formal\npor desconhecer essa exigência. Considero indevida a cobrança das mensalidades\nposteriores e da multa."
+  },
+  "id": "0002",
+  "instrucao": "Analise os documentos das duas partes e produza um parecer estruturado: parte responsavel, resultado, valores por rubrica (0.0 quando negada), obrigacoes de fazer (se houver) e 3 a 6 fundamentos objetivos.",
+  "origem": "ouro"
+}

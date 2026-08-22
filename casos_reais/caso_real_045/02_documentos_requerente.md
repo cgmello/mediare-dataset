@@ -1,7 +1,0 @@
-- Contrato denominado "Locação de Automóvel com Opção de Compra" firmado em 14/10/2022
-- Comprovantes de pagamento da entrada de R$ 10.000,00
-- Comprovantes de pagamento das parcelas mensais de novembro/2022 a maio/2024 (19 parcelas de R$ 1.000,00)
-- Capturas de tela de conversas por WhatsApp com o requerido relatando os problemas mecânicos do veículo
-- Boletim de Ocorrência registrado em 03/02/2025 sobre a retomada forçada do veículo
-- Documento de identificação do veículo (placa DUU-3891)
-- Eventuais orçamentos ou pareceres técnicos sobre os defeitos do motor

@@ -1,8 +1,0 @@
-- Contrato de compra e venda do veículo Ford Ka firmado com E.M. Ltda. em 25/01/2023
-- Comprovante de pagamento da entrada de R$ 10.000,00
-- Contrato de financiamento celebrado com A.C.F.I. S.A. no valor de R$ 11.000,00
-- Comprovantes de pagamento das parcelas do financiamento já quitadas
-- Ordem de serviço datada de 13/03/2023 discriminando os reparos realizados pela loja (motor de partida, rolamento, sensor de velocidade, bomba d'água, lâmpadas, chicote do limpador)
-- Documento do veículo (CRLV) demonstrando registro em nome de M.F.R.
-- Registros de comunicação com a loja E.M. Ltda. sobre os problemas (mensagens, e-mails ou protocolos)
-- Fotografias dos defeitos apresentados pelo veículo

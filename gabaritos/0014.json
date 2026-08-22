@@ -1,0 +1,47 @@
+{
+  "id": "0014",
+  "origem": "real",
+  "processo_tjsp": "1007405-93.2025.8.26.0099",
+  "sha256_caso": "68e1661f38ec4566769ada44643afed49fe5c45940d9ef1051862ab5788b704a",
+  "caso": "real-008-locacao",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1007405-93.2025.8.26.0099",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "devolucao_caucao": 20000.0,
+      "multa_contratual": 15000.0,
+      "danos_morais_autor_1": 5000.0,
+      "danos_morais_autor_2": 5000.0,
+      "multa_reconvencional": 0.0,
+      "ressarcimento_moveis": 0.0,
+      "reparo_boiler": 0.0,
+      "multa_sublocacao": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "abstencao_contato": "A ré deve abster-se de realizar contatos diretos ou presenciais com os autores, sob pena de multa"
+    },
+    "pedidos_rejeitados": [
+      "Reconvenção: multa por rescisão antecipada",
+      "Reconvenção: ressarcimento de custos de reforma de móveis",
+      "Reconvenção: reparo do boiler",
+      "Reconvenção: multa por sublocação não autorizada",
+      "Reconvenção: retenção da caução"
+    ],
+    "fundamentos": [
+      "Comprovação de vícios ocultos graves (infiltrações, cupins, defeitos no boiler, contaminação por fezes de pombos) mediante provas documentais, fotográficas e orçamentos técnicos",
+      "Descumprimento pelo locador dos deveres previstos no art. 22, I, III e IV da Lei 8.245/1991 de entregar e manter o imóvel em estado de servir ao uso",
+      "Comunicação reiterada dos problemas ao locador sem providência de reparos integrais e indispensáveis",
+      "Rescisão contratual por culpa exclusiva do locador autoriza restituição da caução e aplicação de multa contratual",
+      "Dano moral configurado pela privação do uso pleno e saudável da moradia, com impacto psíquico comprovado por laudos médicos",
+      "Ausência de laudo de vistoria inicial assinado pelos locatários impede cobrança de reparos ao término da locação",
+      "Inexistência de prova de sublocação comercial ou onerosa do imóvel",
+      "Despesas com boiler e infraestrutura estrutural são de responsabilidade do proprietário"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: (1) comprovação de vícios ocultos graves que comprometem habitabilidade, (2) descumprimento do dever do locador de manter imóvel em condições de uso, (3) ausência de vistoria inicial impede cobrança reconvencional"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "0147",
+  "origem": "real",
+  "processo_tjsp": "1005146-56.2025.8.26.0510",
+  "sha256_caso": "7fdcdec36c9b82161db0398f87d3fb19f9df46e318c7cc3518e33e1a06023fc6",
+  "caso": "real-141-divida",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1005146-56.2025.8.26.0510",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "valor_principal_devido": 39857.34,
+      "honorarios_advocaticios_percentual": 10.0,
+      "despesas_processuais": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Existência de instrumento particular de confissão de dívida com assinatura e reconhecimento de firma do réu",
+      "Confissão de dívida respaldada por inquérito policial",
+      "Ausência de prova de pagamento por parte do réu",
+      "Negativa geral do réu insuficiente para elidir a prova documental apresentada",
+      "Preenchimento dos requisitos da ação monitória com documentos sem eficácia executiva mas que comprovam a dívida"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: confissão de dívida válida e ausência de prova de pagamento"
+  }
+}

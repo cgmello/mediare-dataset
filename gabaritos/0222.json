@@ -1,0 +1,24 @@
+{
+  "id": "0222",
+  "origem": "sintetico",
+  "processo_tjsp": null,
+  "sha256_caso": "fe91c2d8685e53f59acb428407173a217754ecdc0eaead4a8fee7d110d033847",
+  "caso": "sint-041-transito",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "danos_materiais": 19500
+    },
+    "fundamentos": [
+      "presuncao de culpa na colisao traseira (CTB art. 29 II)",
+      "menor orcamento deferido"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

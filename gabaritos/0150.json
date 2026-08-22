@@ -1,0 +1,39 @@
+{
+  "id": "0150",
+  "origem": "real",
+  "processo_tjsp": "1003048-37.2023.8.26.0068",
+  "sha256_caso": "0de9d2dc50cd2b61046328b93c412796f249130423a56221c8641d451a078485",
+  "caso": "real-144-divida",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1003048-37.2023.8.26.0068",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "mensalidades_escolares_2018": 57913.0,
+      "juros_moratoria_1porcento_mes": 0.0,
+      "multa_2porcento": 0.0,
+      "honorarios_contratuais_10porcento": 0.0,
+      "valor_total_constituido_titulo": 57913.0,
+      "valor_expurgado_honorarios_contratuais": 5724.24
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Cobrança de honorários contratuais de 10% (R$ 5.724,24)",
+      "Valor total de R$ 63.637,24 conforme planilha inicial",
+      "Gratuidade da justiça à embargante"
+    ],
+    "fundamentos": [
+      "Honorários advocatícios contratuais para cobrança extrajudicial não podem ser incluídos no débito cobrado judicialmente, pois os honorários judiciais subordinam-se ao regime de direito público do CPC (artigos 85 e 701)",
+      "A inclusão de 10% de honorários contratuais (R$ 5.724,24) acarretaria bis in idem e duplicidade de encargo honorário pela mesma atuação processual",
+      "O contrato, a confissão de dívida, as notas promissórias e a planilha de cálculo constituem prova escrita suficiente para a ação monitória nos termos do art. 700 do CPC",
+      "A alegação de dúvida quanto à autenticidade das assinaturas foi genérica, sem indicação concreta de falsidade, sem requerimento fundamentado de perícia e sem elementos capazes de infirmar a documentação",
+      "O demonstrativo de débito indica corretamente a incidência de juros moratórios de 1% ao mês e multa de 2% sobre o saldo devedor, conforme cláusula 2ª do contrato",
+      "O pedido de gratuidade da justiça foi indeferido pela ausência de documentação idônea e atual acerca da real situação econômico-financeira da requerente"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0; o valor principal constituído (R$ 57.913,00) é resultado da subtração dos honorários contratuais indevidos (R$ 5.724,24) do total cobrado (R$ 63.637,24)",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: (1) vedação à inclusão de honorários contratuais no débito cobrado judicialmente para evitar bis in idem; (2) suficiência da prova escrita (confissão de dívida, notas promissórias e contrato) para ação monitória"
+  }
+}

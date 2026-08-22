@@ -1,9 +1,0 @@
-- Contrato de locação comercial celebrado com W.M.S.
-- Comprovante de entrega das chaves em 04/07/2022
-- Correspondências trocadas com o locador
-- Comprovante de pagamento da caução de R$ 9.000,00
-- Documentos relativos aos entraves administrativos (protocolos junto à prefeitura, negativas de licenças)
-- Notificações recebidas do poder público municipal
-- Extratos bancários demonstrando a situação financeira
-- Cópia da execução nº 1003308-33.2022.8.26.0462
-- Cópia da exceção de pré-executividade apresentada

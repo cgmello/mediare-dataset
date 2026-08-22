@@ -1,7 +1,0 @@
-- Termo de internação e contratação de serviços médico-hospitalares assinado pelo paciente
-- Faturas detalhadas dos serviços prestados discriminando os itens cobrados
-- Memória discriminada de cálculo do débito
-- Extrato de serviços com cobertura negada pelo convênio médico
-- Comprovante de negativa de cobertura pela operadora Bradesco Saúde
-- Certidão de óbito do paciente
-- Notificações de cobrança extrajudicial

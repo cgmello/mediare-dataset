@@ -1,9 +1,0 @@
-- Prontuário odontológico do paciente (fls. 150/152 - reconhecidamente lacônico)
-- Contratos sociais demonstrando sucessão empresarial (DC Odontologia assumindo em 08/02/2022)
-- Contrato de franquia (no caso da franqueadora)
-- Orçamentos e propostas de tratamento assinadas
-- Eventuais termos de consentimento (não localizados)
-- Registros de comparecimento a consultas
-- Notas fiscais emitidas
-- Documentação societária dos réus
-- Comprovantes de orientações dadas ao paciente sobre cuidados pós-operatórios

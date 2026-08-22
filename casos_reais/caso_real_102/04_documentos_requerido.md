@@ -1,9 +1,0 @@
-- Escritura ou matrícula do imóvel da requerida
-- Projeto aprovado pela Prefeitura para sua construção
-- Anotação de Responsabilidade Técnica (ART) da obra
-- Fotografias da construção durante a execução
-- Fotografias mostrando independência entre as fundações e muros
-- Documentos técnicos sobre as fundações realizadas
-- Fotografias do estado de conservação do imóvel dos autores (demonstrando falta de manutenção)
-- Eventual laudo técnico próprio contestando as alegações
-- Declaração de profissional responsável pela obra

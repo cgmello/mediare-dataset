@@ -1,0 +1,39 @@
+{
+  "id": "0046",
+  "origem": "real",
+  "processo_tjsp": "1003067-61.2021.8.26.0020",
+  "sha256_caso": "914eeda7ba79641b938fe991a8619535a707f49bf03f476f1945581addf2deb1",
+  "caso": "real-040-consumo",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1003067-61.2021.8.26.0020",
+  "parecer_esperado": {
+    "responsavel": "ambos",
+    "resultado": "procedente",
+    "valores": {
+      "danos_morais": 6000.0,
+      "devolucao_entrada": 0.0,
+      "diferenca_parcelas": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "declaracao_rescisao_compra_venda": "Declarar rescindido o contrato de compra e venda",
+      "declaracao_rescisao_financiamento": "Declarar rescindido o contrato de financiamento coligado",
+      "declaracao_inexigibilidade_debito": "Declarar inexigível o débito do financiamento",
+      "exclusao_cadastros_restritivos": "Determinar exclusão do nome do autor dos cadastros de proteção ao crédito"
+    },
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Contratos de compra e venda e financiamento são coligados, formando cadeia contratual unitária com finalidade econômica comum e indivisível",
+      "Rescisão do contrato principal (compra e venda) contamina necessariamente o contrato de financiamento coligado, impondo sua resolução",
+      "Pedido de compra emitido pela revendedora com parcela de R$ 1.973,01 constitui oferta vinculante nos termos do art. 30 do CDC",
+      "Divergência entre pedido de compra e contrato de financiamento não pode ser imputada ao consumidor, sendo responsabilidade exclusiva dos fornecedores",
+      "Revendedora ao devolver entrada assumiu dever de comunicar formalmente à financeira a rescisão e requerer cancelamento do financiamento",
+      "Responsabilidade solidária e objetiva de todos os integrantes da cadeia de fornecimento (arts. 7º, 14, 25 §1º e 34 do CDC)",
+      "Inscrição indevida em cadastros restritivos e ajuizamento de busca e apreensão de veículo não entregue configuram falha grave na prestação do serviço (art. 14 CDC)",
+      "Baixa cadastral perante CNPJ não se equipara à dissolução regular da pessoa jurídica, não impedindo prosseguimento da demanda"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato ou 'ambos' / 'requerido' (ambas as rés responsabilizadas solidariamente)",
+    "valores": "tolerância ±15% para danos morais (R$ 6.000,00); demais rubricas devem ser 0",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) contratos coligados, (2) rescisão do principal implica rescisão do acessório, (3) oferta vinculante do CDC, (4) responsabilidade solidária na cadeia de fornecimento"
+  }
+}

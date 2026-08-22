@@ -1,0 +1,37 @@
+{
+  "id": "0163",
+  "origem": "real",
+  "processo_tjsp": "1018282-72.2024.8.26.0020",
+  "sha256_caso": "d6d08b0c00c5816402d2eafe23e711b04dbc5be2f61ff56c8ed3ca81b195a443",
+  "caso": "real-157-servicos",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1018282-72.2024.8.26.0020",
+  "parecer_esperado": {
+    "responsavel": "nenhum",
+    "resultado": "improcedente",
+    "valores": {
+      "danos_materiais": 0.0,
+      "danos_esteticos": 0.0,
+      "danos_morais": 0.0,
+      "valor_total": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Indenização por danos materiais de R$ 99,90",
+      "Indenização por danos estéticos de R$ 40.000,00",
+      "Indenização por danos morais de R$ 50.000,00"
+    ],
+    "fundamentos": [
+      "Prova pericial confirmou que o procedimento foi executado com padrão de fluência idêntico ao das sessões anteriores, sem alteração de parâmetros técnicos",
+      "Perícia atestou inexistência de imprudência, imperícia, falha técnica, excesso de potência ou má regulagem do aparelho",
+      "Autora foi previamente informada sobre os riscos do procedimento, incluindo queimaduras e alterações pigmentares, mediante contrato e termo de ciência claros",
+      "Reações apresentadas (ardência, irritação e alteração pigmentar) são efeitos adversos previstos na literatura médica e compatíveis com os riscos informados",
+      "Lesões foram classificadas como de baixa complexidade, com evolução favorável e resolução espontânea, sem sequelas permanentes",
+      "Ausência de defeito no serviço prestado, aplicando-se a excludente do art. 14, §3º, I, do CDC - mera materialização de risco inerente à técnica, previamente informado, não configura insegurança anormal"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - deve ser 'nenhum' ou equivalente que indique ausência de responsabilidade civil",
+    "valores": "todos os valores devem ser exatamente 0.0 - qualquer valor diferente está incorreto",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) regularidade técnica do procedimento confirmada por perícia, (2) prévia informação sobre riscos à consumidora, (3) efeitos adversos como risco inerente previsto em literatura médica sem configurar defeito do serviço, (4) ausência de sequelas permanentes"
+  }
+}

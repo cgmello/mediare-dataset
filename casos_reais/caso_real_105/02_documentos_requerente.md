@@ -1,6 +1,0 @@
-- Escritura ou matrícula do imóvel comprovando a propriedade
-- Fotografias das infiltrações, manchas de umidade e mofo na parede interna
-- Fotografias externas mostrando o telhado da vizinha apoiado no muro divisório
-- Comprovante de residência
-- Documentos pessoais (RG e CPF dos requerentes)
-- Eventual troca de mensagens ou comunicações com a vizinha sobre o problema

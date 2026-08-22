@@ -1,0 +1,37 @@
+{
+  "id": "0098",
+  "origem": "real",
+  "processo_tjsp": "1008818-60.2024.8.26.0008",
+  "sha256_caso": "8c6b025ef2a918352a4fc6cf40df9249c07863e4c2b5c4f35fb405ffd52110c9",
+  "caso": "real-092-reforma",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1008818-60.2024.8.26.0008",
+  "parecer_esperado": {
+    "responsavel": "requerente",
+    "resultado": "improcedente",
+    "valores": {
+      "valor_retido_cobrado": 0.0,
+      "multa_contratual_2_porcento": 0.0,
+      "juros_mensais": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Declaração de resolução do contrato por inadimplência da requerida",
+      "Condenação ao pagamento do valor retido de R$ 76.344,41",
+      "Aplicação de multa de 2% sobre o valor retido",
+      "Aplicação de juros de 1% ao mês"
+    ],
+    "fundamentos": [
+      "Laudo pericial constatou vícios construtivos generalizados em 43 das 49 unidades reformadas, incluindo fissuras no drywall, falhas de acabamento, som cavo nos revestimentos e descolamento de placas cerâmicas",
+      "Falhas executivas decorrem de não utilização ou incorreta instalação de elementos de reforço e descumprimento de normas técnicas e boas práticas da construção civil",
+      "Requerente não sanου os vícios mesmo na unidade 909 destinada especificamente ao reparo, onde persistiram fissuras e descolamento de revestimento",
+      "Descumprimento da cláusula 5.1.29 do contrato ao contratar apólice de seguro em benefício próprio e não da requerida (dona da obra)",
+      "Retenção do saldo de R$ 76.344,41 encontra respaldo técnico e contratual na cláusula 5.1.22 do instrumento de empreitada",
+      "Vícios constatados têm caráter repetitivo e padronizado em 30 das 49 unidades, evidenciando falha executiva sistêmica e não meramente pontual"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: (1) existência de vícios construtivos generalizados comprovados por perícia, (2) retenção contratual legítima pela cláusula 5.1.22, (3) descumprimento da obrigação de seguro"
+  }
+}

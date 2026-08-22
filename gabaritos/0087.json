@@ -1,0 +1,33 @@
+{
+  "id": "0087",
+  "origem": "real",
+  "processo_tjsp": "1007289-13.2021.8.26.0266",
+  "sha256_caso": "2b3c37ba9c491f2dc9522366f695aac010b1916d38e208a88cba725ee00614f9",
+  "caso": "real-081-reforma",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1007289-13.2021.8.26.0266",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "restituicao_valores_pagos": 123041.61,
+      "danos_morais": 30000.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Relação de consumo configurada entre a autora (destinatária final) e as rés (fornecedoras de serviços de reforma), com aplicação do CDC",
+      "Inversão do ônus da prova em favor da consumidora diante da verossimilhança das alegações e hipossuficiência técnica",
+      "Inadimplemento contratual das requeridas comprovado documentalmente pelo conjunto probatório",
+      "Autora pagou R$ 123.041,61 (mais que o dobro do valor contratado de R$ 57.000,00) sem receber a contraprestação adequada",
+      "Obra executada em menos de 10% do planejado, com defeitos graves e materiais de baixa qualidade diversos do contratado",
+      "Rés não apresentaram notas fiscais nem comprovantes de aquisição de materiais quando solicitadas",
+      "Rescisão contratual justificada por culpa exclusiva das requeridas em 09/11/2021",
+      "Danos morais configurados pelo desgaste emocional, estresse e frustração decorrentes do inadimplemento grave e desaparecimento das contratadas"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - a responsabilidade é exclusiva das requeridas pelo inadimplemento contratual",
+    "valores": "tolerância ±15% por rubrica; restituição deve girar em torno de R$ 123.041,61 e danos morais em torno de R$ 30.000,00",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) relação de consumo com inversão do ônus da prova, (2) pagamento muito superior ao contratado sem contraprestação adequada, (3) obra executada em percentual ínfimo com defeitos graves, (4) ausência de comprovação de gastos pelas rés"
+  }
+}

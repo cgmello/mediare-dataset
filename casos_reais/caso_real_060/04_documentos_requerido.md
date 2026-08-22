@@ -1,7 +1,0 @@
-- Contestação fundamentada em responsabilidade subjetiva por omissão
-- Cópia do Boletim de Ocorrência (destacando trechos sobre contramão e fumaça)
-- Código de Trânsito Brasileiro (artigos sobre infração por trafegar na contramão)
-- Parecer jurídico sobre teoria da responsabilidade civil do Estado
-- Eventual documentação sobre manutenção viária realizada no município
-- Registros de chamados do Corpo de Bombeiros para combate ao incêndio
-- Jurisprudência sobre excludentes de responsabilidade (culpa exclusiva da vítima e fato de terceiro)

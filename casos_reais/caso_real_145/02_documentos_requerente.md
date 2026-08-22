@@ -1,6 +1,0 @@
-- Instrumento Particular de Confissão de Dívida datado de 19/08/2020, assinado pelos requeridos com firmas reconhecidas
-- Planilha de cálculo discriminando as parcelas inadimplidas (nº 11, 12 e 13)
-- Comprovante de registro da confissão de dívida
-- Demonstrativo de valores atualizados com juros moratórios de 1% ao mês e multa de 2%
-- Documentação do imóvel objeto da negociação (unidade 33, Bloco D)
-- Comprovante de quitação das 10 primeiras parcelas pelos requeridos
