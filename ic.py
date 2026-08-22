@@ -35,7 +35,7 @@ class MediareCommittee(gl.Contract):
 
     @gl.public.write
     def analyze_case(self, case_id: str):
-        case_url = DATASET_BASE + case_id + ".json"
+        case_url = DATASET_BASE + case_id.zfill(4) + ".json"
 
         # ---------- ROUND 1: structured opinion (comparative EP) ----------
         def leader_analysis() -> str:
@@ -80,6 +80,10 @@ class MediareCommittee(gl.Contract):
                 "documentos; NAO reduza nem module valores por equidade, "
                 "razoabilidade ou boa-fe - ajustes de equidade sao prerrogativa "
                 "exclusiva do mediador humano, fora deste parecer. "
+                "(e) conceda valor em uma rubrica SOMENTE quando houver prova "
+                "documental suficiente do prejuizo efetivo; estimativas ou "
+                "projecoes sem comprovacao documental do prejuizo liquido "
+                "recebem 0.0. "
                 "Use apenas fatos presentes nos documentos. "
                 "Nao invente valores nem fatos."
             )
