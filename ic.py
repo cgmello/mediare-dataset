@@ -86,6 +86,12 @@ class MediareCommittee(gl.Contract):
                 "recebem 0.0. "
                 "Use apenas fatos presentes nos documentos. "
                 "Nao invente valores nem fatos."
+                "(f) os 'valores' representam o TOTAL devido ao requerente por "
+                "rubrica, conforme o merito. Limites de apolice de seguro, "
+                "franquias e divisao de pagamento entre requeridos sao questoes "
+                "de execucao e NAO alteram os valores do parecer. Em 'principal', "
+                "informe a soma dos danos materiais e lucros cessantes "
+                "concedidos, sem somar nem subtrair coberturas de seguro. "
             )
             answer = gl.nondet.exec_prompt(prompt)
             answer = answer.replace("```json", "").replace("```", "").strip()
