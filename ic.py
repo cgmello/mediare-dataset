@@ -51,9 +51,27 @@ class MediareCommittee(gl.Contract):
                 '"ambos_culpa_concorrente" | "parcial_ambos",\n'
                 ' "resultado": "procedente" | "improcedente" | '
                 '"parcialmente procedente",\n'
-                ' "valores": {"<rubrica>": <numero, 0.0 quando negada>},\n'
+                ' "valores": {"principal": <numero>, "multa": <numero>, '
+                '"danos_morais": <numero>, "outros": <numero>},\n'
                 ' "fundamentos": ["<3 a 6 fundamentos objetivos e curtos>"],\n'
                 ' "confianca": <0.0 a 1.0>}\n'
+                "Regras de classificacao: "
+                "(a) em 'valores', use SOMENTE as chaves principal, multa, "
+                "danos_morais e outros, com 0.0 quando a rubrica for negada ou "
+                "nao se aplicar; some na mesma chave rubricas da mesma natureza; "
+                "nao inclua correcao monetaria ou juros. "
+                "(b) use 'parcial_ambos' ou 'ambos_culpa_concorrente' SOMENTE "
+                "quando as DUAS partes tiverem contribuido causalmente para o "
+                "dano; rejeitar apenas parte dos pedidos NAO torna o caso "
+                "'parcial_ambos' - nesse caso o responsavel e a parte perdedora "
+                "e o resultado e 'parcialmente procedente'. "
+                "(c) 'responsavel' significa a parte que fica OBRIGADA a pagar "
+                "ou fazer algo em favor da outra (a parte perdedora). Se o "
+                "requerido deve pagar ao requerente, responsavel = 'requerido'. "
+                "(d) aplique os valores conforme o contrato e as provas dos "
+                "documentos; NAO reduza nem module valores por equidade, "
+                "razoabilidade ou boa-fe - ajustes de equidade sao prerrogativa "
+                "exclusiva do mediador humano, fora deste parecer. "
                 "Use apenas fatos presentes nos documentos. "
                 "Nao invente valores nem fatos."
             )
@@ -70,15 +88,16 @@ class MediareCommittee(gl.Contract):
                 "The output is a JSON legal opinion. Two outputs are EQUIVALENT "
                 "if ALL of the following hold: "
                 "1) 'responsavel' is exactly the same; "
-                "2) 'resultado': 'procedente' and 'parcialmente procedente' count "
-                "as equivalent to each other; 'improcedente' only matches "
+                "2) 'resultado': 'procedente' and 'parcialmente procedente' "
+                "count as equivalent to each other; 'improcedente' only matches "
                 "'improcedente'; "
-                "3) for each key in 'valores' EXCEPT moral damages "
-                "(danos morais): values within plus/minus 15% of each other, and "
-                "a value of 0 in one must be 0 in the other; "
-                "4) moral damages (any key containing 'moral') are a matter of "
-                "judicial discretion and may differ freely - ignore them; "
-                "5) at least 2 of the 'fundamentos' are semantically equivalent; "
+                "3) in 'valores', for the keys 'principal', 'multa' and "
+                "'outros': values within plus/minus 15% of each other, and a "
+                "value of 0 in one must be 0 in the other; "
+                "4) 'danos_morais' is a matter of judicial discretion and may "
+                "differ freely - ignore it; "
+                "5) at least 2 of the 'fundamentos' are semantically "
+                "equivalent; "
                 "6) ignore 'confianca'."
             ),
         )
@@ -95,8 +114,9 @@ class MediareCommittee(gl.Contract):
                 "Redija, em portugues formal e neutro, o TERMO DE ACORDO "
                 "EXTRAJUDICIAL deste caso de mediacao, com: qualificacao das "
                 "partes (pseudonimizadas), resumo do conflito, obrigacoes de "
-                "cada parte com valores e prazos, clausula de quitacao e "
-                "clausula de confidencialidade."
+                "cada parte com valores e prazos, clausula de quitacao, "
+                "clausula de confidencialidade e clausula declarando o termo "
+                "titulo executivo extrajudicial (CPC, art. 784, III)."
             ),
             criteria=(
                 "The draft is VALID only if ALL hold: "
