@@ -1,0 +1,6 @@
+- Contrato de locação residencial assinado entre as partes
+- Planilha detalhada de débitos (aluguéis, água, energia elétrica, IPTU)
+- Comprovante de recebimento da caução (R$ 5.700,00)
+- Notificações extrajudiciais enviadas à locatária cobrando os débitos
+- Certidão de imissão na posse do imóvel
+- Comprovantes de tentativas de composição amigável

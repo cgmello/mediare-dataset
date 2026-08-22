@@ -1,0 +1,12 @@
+- Contrato de prestação de serviços odontológicos firmado com a clínica Oral Unic, com valor de R$ 19.999,98
+- Comprovante de pagamento da entrada de R$ 10.000,01 realizado em 20/10/2021
+- Contrato de empréstimo consignado no valor de R$ 11.006,98
+- Comprovantes de pagamento das parcelas mensais de R$ 277,78
+- Extratos bancários demonstrando os descontos do empréstimo consignado na pensão
+- Ficha de atendimento/prontuário da clínica requerida (se disponível)
+- Documentos relativos às consultas de 22/11/2021, 01/12/2021, 02/12/2021, 03/12/2021 e 04/12/2021
+- Radiografias panorâmicas realizadas durante o tratamento
+- Laudos/pareceres dos outros dois profissionais consultados posteriormente
+- Orçamentos do tratamento reparador no valor de R$ 26.000,00
+- Documentos de identificação e comprovante de benefício previdenciário
+- Receitas médicas e atestados relacionados às dores e desconfortos

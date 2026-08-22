@@ -1,0 +1,3 @@
+- Notificações de revogação do mandato datadas de 24/04/2012
+- Cópia da procuração original outorgada à advogada
+- Comprovante de andamento processual da ação nº 0000550-67.2009.8.26.0361 demonstrando que o recurso permanece pendente de julgamento

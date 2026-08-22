@@ -1,0 +1,6 @@
+- Certidão de matrícula do imóvel (nº 132.524 do 1º CRI de Osasco) comprovando a copropriedade de 50% para cada parte
+- Comprovante de endereço alternativo demonstrando que não reside no imóvel
+- Notificação extrajudicial enviada ao requerido solicitando acordo para venda do imóvel (se houver)
+- Comprovantes de tentativas de negociação amigável (mensagens, e-mails, conversas)
+- Declaração de Imposto de Renda ou documentos comprobatórios da titularidade do imóvel
+- Eventuais comprovantes de pagamento de despesas condominiais ou IPTU (demonstrando interesse no bem)

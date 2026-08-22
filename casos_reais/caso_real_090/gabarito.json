@@ -1,0 +1,34 @@
+{
+  "caso": "real-090-reforma",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1001064-20.2023.8.26.0035",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "devolucao_valores_pagos": 11500.0,
+      "saldo_contratual_inexigivel": 26975.0,
+      "danos_materiais": 0.0,
+      "danos_morais": 0.0,
+      "reconvencao_saldo_contratual": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Indenização por danos materiais de R$ 86.610,04 (não comprovados adequadamente no trecho disponível da sentença)",
+      "Indenização por danos morais de R$ 5.000,00 (sentença incompleta, mas tendência de rejeição por ausência de caracterização)",
+      "Reconvenção: pagamento do saldo contratual de R$ 26.975,00"
+    ],
+    "fundamentos": [
+      "Relação de consumo caracterizada, aplicável o CDC com responsabilidade objetiva do fornecedor",
+      "Inadimplemento de obrigação essencial: elevação da plataforma da caixa d'água não executada sem anuência expressa comprovada",
+      "Prova pericial conclusiva quanto a graves vícios de execução: manta de subcobertura instalada inadequadamente, contrariando normas técnicas e manual do fabricante",
+      "Inclinação do telhado inferior ao mínimo de 30% exigido pela NBR 13858 em quatro panos (28%, 29%, 23% e outro com 28%), comprometendo estanqueidade",
+      "Emboçamento das cumeeiras com destacamento, fissuras e ausência de acabamento adequado por execução sem umidificação",
+      "Inversão do ônus da prova determinada no saneador não elidida pela ré quanto à alegação de acordo verbal para supressão de serviço"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato: 'requerido'",
+    "valores": "tolerância ±15% por rubrica; devolução_valores_pagos deve ser R$ 11.500,00; saldo_inexigivel R$ 26.975,00; danos materiais e morais provavelmente negados (sentença incompleta); reconvenção improcedente (0)",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: inadimplemento da elevação da caixa d'água, vícios técnicos graves comprovados por perícia (inclinação inadequada, manta mal instalada, emboçamento defeituoso), aplicação do CDC com inversão do ônus probatório"
+  }
+}

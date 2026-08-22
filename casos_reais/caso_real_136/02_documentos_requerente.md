@@ -1,0 +1,15 @@
+- Documentos de propriedade da unidade condominial nº 234, torre B
+- Convenção e Regimento Interno do Condomínio G.
+- Atestado médico-veterinário diagnosticando diabetes canina da cadela P.
+- Prescrição veterinária de uso contínuo de insulina
+- Bula/orientações técnicas de conservação da insulina (refrigeração entre 2° e 8° graus)
+- Notificação extrajudicial recebida do condomínio em 23/03/2023
+- Notificação de aplicação de multa de R$ 570,00 recebida em 22/05/2023
+- Resposta à notificação do condomínio
+- Boleto de taxa condominial com vencimento em 10/03/2023 no valor de R$ 2.907,01
+- Boleto de taxa condominial com vencimento em 10/06/2023
+- Prints de conversas via WhatsApp com funcionários do condomínio
+- Relatório médico atestando tratamento para depressão e síndrome do pânico
+- Cupons fiscais de tentativas de compra de equipamentos para conservação (bolsas térmicas) datados de 16/06/2023 e 21/05/2023
+- Comprovante de residência
+- Documentos pessoais (RG, CPF)

@@ -1,0 +1,8 @@
+- Contrato de locação comercial celebrado em 29/03/2022
+- Termo de confissão de dívida assinado pelos réus
+- Comprovantes de propriedade do imóvel
+- Planilha de débitos discriminando aluguéis vencidos (setembro a dezembro/2024)
+- Boletos de cobrança não pagos
+- Comprovantes de despesas de água não quitadas
+- Carnês de IPTU com parcelas em aberto
+- Correspondências de cobrança enviadas aos locatários

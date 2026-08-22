@@ -1,0 +1,5 @@
+- Instrumento particular de confissão de dívida assinado pelo requerido
+- Certidão de reconhecimento de firma em cartório
+- Cópia integral do inquérito policial que originou a confissão de dívida
+- Documentos de identificação pessoal da requerente
+- Comprovante de endereço atualizado

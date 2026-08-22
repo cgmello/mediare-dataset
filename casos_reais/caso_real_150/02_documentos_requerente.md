@@ -1,0 +1,8 @@
+- Contrato de prestação de serviços odontológicos firmado em 2017
+- Notas fiscais e recibos de pagamento totalizando R$ 15.970,00
+- Prontuário odontológico fornecido pela clínica (se disponível)
+- Documentos de identificação pessoal (RG, CPF)
+- Fotografias da condição bucal atual demonstrando os problemas
+- Histórico de tentativas de contato com a clínica (mensagens, e-mails, protocolos de atendimento)
+- Eventuais laudos ou pareceres de outros profissionais consultados
+- Comprovante de residência

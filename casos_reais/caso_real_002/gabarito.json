@@ -1,0 +1,33 @@
+{
+  "caso": "real-002-locacao",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1104626-10.2024.8.26.0100",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "alugueis_e_encargos_devidos": 28800.0,
+      "multa_contratual_10_porcento": 2880.0,
+      "valor_bruto_devido": 31680.0,
+      "caucao_a_deduzir": 3600.0,
+      "valor_liquido_condenacao": 28080.0,
+      "honorarios_advocaticios_10_porcento": 2808.0
+    },
+    "obrigacoes_de_fazer": {
+      "desocupacao_imovel": "já cumprida mediante imissão na posse em 15/04/2026"
+    },
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Obrigação do locatário de pagar pontualmente o aluguel e encargos conforme artigo 23, inciso I, da Lei nº 8.245/91",
+      "Réu não comprovou quitação dos aluguéis vencidos a partir de 19/04/2024, ônus que lhe cabia nos termos do artigo 373, inciso II, do CPC",
+      "Abandono do imóvel demonstrado por declarações do zelador e porteiro, ausência de consumo de energia desde dezembro/2024 e certidão de constatação do Oficial de Justiça",
+      "Caracterizada infração contratual por falta de pagamento autorizando rescisão e despejo conforme artigo 9º, inciso III, da Lei nº 8.245/91",
+      "Contestação por negativa geral não afasta necessidade de análise probatória, e provas documentais demonstram inadimplemento",
+      "Dedução da caução de R$ 3.600,00 do montante devido, conforme reconhecido pelo próprio autor"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0; período de cobrança: 19/04/2024 a 15/04/2026 (24 meses); valor base aluguel R$ 1.200,00/mês",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: inadimplemento comprovado, ônus probatório do réu quanto à quitação, abandono caracterizado, rescisão por infração contratual da Lei do Inquilinato"
+  }
+}

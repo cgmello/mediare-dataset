@@ -1,0 +1,36 @@
+{
+  "caso": "real-143-divida",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1001477-34.2017.8.26.0426",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "improcedente",
+    "valores": {
+      "divida_principal": 0.0,
+      "multa_contratual_20_porcento": 0.0,
+      "correcao_monetaria": 0.0,
+      "juros_mora": 0.0,
+      "valor_total_cobrado": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Cobrança do saldo devedor de R$ 9.305,70",
+      "Multa contratual de 20%",
+      "Correção monetária",
+      "Juros de mora de 1% ao mês",
+      "Constituição de título executivo judicial"
+    ],
+    "fundamentos": [
+      "Reconhecimento da tempestividade dos embargos monitórios opostos pelo requerido",
+      "Declaração prévia de nulidade da citação realizada na fase de conhecimento",
+      "Ausência de interrupção válida do prazo prescricional quinquenal previsto no artigo 206, § 5º, inciso I, do Código Civil",
+      "Responsabilidade da credora pelas diligências que resultaram em citação nula, afastando a aplicação da Súmula 106 do STJ",
+      "Consumação do prazo prescricional de cinco anos entre o vencimento antecipado (17/07/2017) e o comparecimento espontâneo do devedor, já após 17/07/2022",
+      "Impossibilidade de retroação dos efeitos do despacho citatório à propositura da ação quando a citação é declarada nula por conduta imputável ao autor"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - deve ser 'requerido' (embargos acolhidos por prescrição)",
+    "valores": "todas as rubricas devem ser 0.0 (zero), pois a ação foi julgada improcedente por prescrição",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) prescrição quinquenal consumada, (2) nulidade da citação anterior, (3) responsabilidade da autora pela citação inválida afastando Súmula 106 STJ"
+  }
+}

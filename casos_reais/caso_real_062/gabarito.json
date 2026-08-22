@@ -1,0 +1,30 @@
+{
+  "caso": "real-062-transito",
+  "fonte": "Sentenca TJSP - CJPG - proc. 0002115-84.2025.8.26.0400",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "danos_materiais": 3264.0,
+      "danos_morais_pedido": 3000.0,
+      "danos_morais_arbitrado": 2000.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Danos morais no valor integral de R$ 3.000,00 (arbitrado em R$ 2.000,00)"
+    ],
+    "fundamentos": [
+      "Responsabilidade civil objetiva da Administração Pública conforme art. 37, § 6º da Constituição Federal",
+      "Comprovação do nexo causal entre a conduta (veículo municipal desgovernado) e os danos ao imóvel mediante boletim de ocorrência, fotografias e vídeos",
+      "Legitimidade ativa da locatária com autorização expressa do proprietário e direito decorrente da posse direta (art. 1.210 do Código Civil)",
+      "Danos materiais evidentes nas imagens (destruição de muro, portões, telhado e piso) compatíveis com o valor pleiteado de R$ 3.264,00",
+      "Dano moral configurado pela insegurança, susto e comprometimento da estrutura e segurança da residência, superando meros dissabores cotidianos",
+      "Arbitramento de danos morais em R$ 2.000,00 observados os princípios da razoabilidade, proporcionalidade e caráter compensatório-pedagógico"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato (requerido - Prefeitura Municipal)",
+    "valores": "tolerância ±15% por rubrica; danos materiais: R$ 3.264,00 (exato); danos morais: entre R$ 1.700,00 e R$ 2.300,00 aceitável",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: responsabilidade objetiva do Estado, nexo causal comprovado por provas documentais/visuais, legitimidade da locatária autorizada, danos materiais e morais demonstrados"
+  }
+}

@@ -1,0 +1,8 @@
+- Instrumento Particular de Ajustamento de Regras Gerais de Prestação de Serviço em Construção Civil, firmado em 30/08/2023
+- Pedidos de compra nºs 30265, 31015 e 31327 emitidos pela contratante
+- Planilha de medição detalhada dos serviços executados com valores e percentuais de conclusão
+- Relatórios diários de obra demonstrando o andamento dos trabalhos
+- Mensagens eletrônicas trocadas entre os sócios das empresas sobre medições, valores e pagamentos pendentes
+- Memória de cálculo atualizada do débito com correção monetária e juros
+- Comprovantes de pagamentos parciais realizados pela contratante durante a execução da obra
+- Cópia da contestação/reconvenção apresentada pela contratante no processo nº 1040824-38.2023.8.26.0564 onde reconhece a dívida de R$ 64.000,00

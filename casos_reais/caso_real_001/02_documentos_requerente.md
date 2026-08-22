@@ -1,0 +1,7 @@
+- Contrato de locação comercial firmado em setembro de 2024, com vigência até setembro de 2025
+- Escritura ou matrícula do imóvel comprovando a propriedade
+- Notificação extrajudicial enviada à locatária cobrando os débitos
+- Comprovante de ajuizamento de ação de cobrança (processo nº 1063240-63.2025.8.26.0100)
+- Comprovante de depósito de caução processual
+- Comunicação sobre a desocupação voluntária do imóvel pela locatária
+- Fotografias ou laudo de vistoria inicial do imóvel (se disponível)

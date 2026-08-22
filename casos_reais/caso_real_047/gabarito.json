@@ -1,0 +1,28 @@
+{
+  "caso": "real-047-consumo",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1006791-24.2024.8.26.0358",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "danos_materiais_reparos": 13486.27,
+      "custas_processuais": 0.0,
+      "honorarios_advocaticios_percentual": 15.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Aplicação do CDC pela Teoria Finalista Mitigada: autora é pessoa jurídica vulnerável que adquiriu veículo como destinatária final para uso administrativo, não para revenda",
+      "Rejeição da decadência: reclamação tempestiva no prazo de garantia de 90 dias obstou a fluência do prazo decadencial (art. 26, §2º, I, CDC)",
+      "Responsabilidade objetiva do fornecedor por vício do produto (art. 18 CDC): veículo apresentou vazamentos graves de óleo e água após 30 dias de uso",
+      "Preclusão da prova pericial por inércia da ré: não depositou honorários periciais de R$ 5.000,00 apesar de intimada, perdendo a oportunidade de comprovar mau uso alegado",
+      "Inversão do ônus da prova (art. 6º, VIII, CDC e art. 373, II, CPC): cabia à ré demonstrar fato impeditivo (mau uso/falta de manutenção), o que não fez",
+      "Comprovação dos danos materiais: autora apresentou documentos demonstrando a compra, reclamação contemporânea, ineficácia dos serviços da oficina credenciada e desembolso de R$ 13.486,27 para reparos"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: aplicação do CDC por vulnerabilidade, responsabilidade objetiva por vício do produto, preclusão da prova pericial por não depósito dos honorários, inversão do ônus da prova"
+  }
+}

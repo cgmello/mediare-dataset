@@ -1,0 +1,8 @@
+- Certidão de casamento e sentença de divórcio (processo nº 1001737-93.2020.8.26.0010)
+- Escritura ou matrícula do imóvel situado na Rua Barão do Rio da Prata, nº 185, Bloco B, Apto. 104
+- Certidão de trânsito em julgado da sentença de divórcio reconhecendo 50% de propriedade para cada parte
+- Contrato de locação atual em nome da requerente
+- Comprovantes de pagamento de aluguel e despesas do imóvel atual
+- Certidão de nascimento dos filhos
+- Avaliações de imóveis semelhantes na região (corretores imobiliários)
+- Fotografias do imóvel objeto da ação

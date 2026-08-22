@@ -1,0 +1,28 @@
+{
+  "caso": "sint-213-vizinhanca",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "parcial_ambos",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "danos_materiais": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "impermeabilizar_e_drenar": true,
+      "prazo_dias": 60,
+      "multa_diaria": 200.0
+    },
+    "pedidos_rejeitados": [
+      "ressarcimento de R$ 8750.00 - infiltracao interna decorre de defeito da propria requerente"
+    ],
+    "fundamentos": [
+      "requerido deve conter/drenar seu terreno elevado",
+      "danos internos tem causa em impermeabilizacao propria deficiente"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

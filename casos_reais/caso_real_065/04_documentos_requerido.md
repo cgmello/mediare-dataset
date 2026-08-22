@@ -1,0 +1,6 @@
+- Relatório técnico subscrito pelos servidores municipais C.R.S. e F.L.M. sobre as condições climáticas e o evento
+- Dados pluviométricos do período demonstrando índices excepcionais e anormais de chuva
+- Registros de manutenção preventiva das vias públicas municipais
+- Fotografias do local após o evento
+- Documentos técnicos sobre a estrutura viária do município
+- Eventuais relatórios de Defesa Civil sobre as condições climáticas excepcionais

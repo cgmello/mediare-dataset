@@ -1,0 +1,32 @@
+{
+  "caso": "real-061-transito",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1002338-40.2026.8.26.0576",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "danos_materiais_emergentes": 8185.0,
+      "lucros_cessantes": 1806.0,
+      "danos_morais": 0.0,
+      "total_condenacao": 9991.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Danos materiais no valor de R$ 13.232,00 (acolhido apenas R$ 8.185,00 - orçamento de menor valor)",
+      "Danos morais de R$ 10.000,00 (ausência de lesão física ou repercussão psicológica excepcional)"
+    ],
+    "fundamentos": [
+      "Responsabilidade objetiva da concessionária de rodovia por acidente causado por animal na pista, aplicando-se CDC, CF/88 art. 37 §6º e teoria do risco da atividade (Tema Repetitivo 1.122 STJ)",
+      "Presença de animal na pista constitui fortuito interno inerente ao risco da atividade de exploração de rodovia em área rural, não excludente de responsabilidade",
+      "Comprovação do acidente por Boletim de Ocorrência, fotografias e Relatório de Ocorrências da própria concessionária registrando 'ATROPELO UM CAPIVARA' no local, data e horário narrados",
+      "Danos materiais limitados ao orçamento de menor valor (R$ 8.185,00) dentre os apresentados, para evitar enriquecimento sem causa",
+      "Lucros cessantes comprovados por Alvará de Táxi, declaração de oficina quanto ao período de imobilização (21 dias) e declaração sindical de renda média (R$ 86,00/dia), constituindo cálculo objetivo",
+      "Inexistência de dano moral indenizável por ausência de lesão física, sequela ou repercussão psicológica que extrapole aborrecimento ordinário de acidente sem maiores consequências"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato: deve ser 'requerido'",
+    "valores": "tolerância ±15% para danos_materiais_emergentes (faixa: R$ 6.957,25 a R$ 9.412,75) e lucros_cessantes (faixa: R$ 1.535,10 a R$ 2.076,90); danos_morais deve ser exatamente 0",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) responsabilidade objetiva da concessionária com base no Tema 1.122 STJ; (2) fortuito interno não exclui responsabilidade; (3) limitação de danos materiais ao menor orçamento; (4) comprovação adequada de lucros cessantes por documentação objetiva; (5) ausência de dano moral por falta de lesão ou abalo excepcional"
+  }
+}

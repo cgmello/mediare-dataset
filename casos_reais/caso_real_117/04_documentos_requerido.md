@@ -1,0 +1,5 @@
+- Declaração de hipossuficiência econômica para justiça gratuita
+- Comprovantes de renda atuais
+- Demonstrativo de despesas mensais (opcional)
+- Contestação aos valores cobrados (análise da planilha do condomínio)
+- Eventual comprovante de pagamentos parciais realizados no período

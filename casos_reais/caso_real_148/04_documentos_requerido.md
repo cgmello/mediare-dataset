@@ -1,0 +1,4 @@
+- Registro de comparecimentos do requerente (agosto de 2020 - seis atendimentos; fevereiro de 2021)
+- Exame radiográfico de fevereiro de 2021
+- Comprovante de consulta agendada para fevereiro de 2021
+- Protocolos de atendimento anteriores a agosto de 2020 (mencionados mas não detalhados)

@@ -1,0 +1,9 @@
+- Boletim de ocorrência registrando o acidente do dia 24/10/2024
+- Documentos pessoais (RG, CPF)
+- Comprovante de residência atual
+- Contrato de locação do imóvel
+- Autorização expressa do proprietário do imóvel para buscar reparação dos danos
+- Fotografias dos danos causados ao muro, portões, telhado e piso da garagem
+- Vídeos do local logo após o acidente, mostrando o micro-ônibus e os estragos
+- Protocolo de requerimento administrativo junto à Prefeitura
+- Resposta administrativa da Prefeitura indeferindo o pedido

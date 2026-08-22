@@ -1,0 +1,11 @@
+- Contrato de locação firmado em 11/09/2024
+- Termo de vistoria inicial do imóvel
+- Contrato de garantia de fiança com L.S.F. S/A
+- Comprovante de pagamento da taxa de fiança (R$2.484,00)
+- Mensagens/e-mails reportando os vícios à imobiliária administradora
+- Termo de entrega de chaves (30/10/2024)
+- Orçamentos e diagnósticos dos prestadores de serviço sobre os problemas de esgoto
+- Notificação da fiadora cobrando R$11.234,39
+- Comprovante de negativação do nome
+- Fotografias do afundamento do piso da garagem
+- Histórico de comunicações com a imobiliária sobre a rescisão

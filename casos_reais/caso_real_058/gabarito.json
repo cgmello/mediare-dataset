@@ -1,0 +1,33 @@
+{
+  "caso": "real-058-transito",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1004021-86.2023.8.26.0360",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "indenizacao_por_danos_materiais": 69425.0,
+      "valor_indenizado_ao_segurado": 79925.0,
+      "valor_obtido_com_venda_salvado": 10500.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Tese de culpa exclusiva do condutor do veículo segurado",
+      "Tese de culpa concorrente com redução de 50% da indenização",
+      "Tese de ruptura do nexo causal por fortuito externo",
+      "Impugnação à comprovação do desembolso da indenização"
+    ],
+    "fundamentos": [
+      "Presunção relativa de culpa daquele que colide na traseira, não elidida pela prova produzida",
+      "Inobservância da distância de segurança pelo condutor do caminhão em trecho de trânsito lento",
+      "Ausência de prova robusta de frenagem brusca e injustificada pelo veículo segurado",
+      "Sub-rogação validamente comprovada mediante apólice, comprovante de pagamento ao segurado (R$ 79.925,00) e nota fiscal de venda do salvado (R$ 10.500,00)",
+      "Responsabilidade solidária da proprietária do veículo pelos atos culposos de seu preposto/condutor",
+      "Ônus probatório não cumprido pela ré quanto aos fatos modificativos/impeditivos do direito da autora (art. 373, II, CPC)"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato: deve ser 'requerido'",
+    "valores": "tolerância ±15% para indenização_por_danos_materiais (R$ 69.425,00); valores auxiliares (79.925,00 e 10.500,00) devem constar para contexto",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: presunção de culpa na colisão traseira, inobservância de distância segura, sub-rogação comprovada, responsabilidade solidária do proprietário"
+  }
+}

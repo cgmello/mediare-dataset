@@ -1,0 +1,7 @@
+- Comprovante de residência em nome da requerida no endereço Rua Dr. Oswaldo Cruz, nº 479, apartamento 408, Santos/SP
+- Certidão do 1º Tabelionato de Notas de Santos comprovando reconhecimento de assinatura por autenticidade em 26/10/2018
+- Documento Único de Transferência (DUT) com assinatura reconhecida
+- Documentos da empresa individual Juliana Branco Lancieri Fernandes Pizzaria
+- Comprovante de baixa da empresa individual
+- Notificações de penalidade de trânsito apontando J.G.Z.C. como condutor do veículo
+- Documentos demonstrando que o veículo estava sob posse de terceiros (sogro da requerida)

@@ -1,0 +1,39 @@
+{
+  "caso": "real-015-locacao",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1008827-58.2025.8.26.0405",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "alugueis_vencidos_marco_2024_a_dezembro_2025": 0.0,
+      "iptu_em_atraso": 0.0,
+      "total_condenacao_periodo_especificado": 70261.73,
+      "alugueis_janeiro_a_junho_2026": 0.0,
+      "indenizacao_por_benfeitorias": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "extincao_relacao_locaticia": "decretada",
+      "despejo": "efetivado em 08/06/2026 com desocupação voluntária",
+      "imissao_na_posse": "concedida ao locador"
+    },
+    "pedidos_rejeitados": [
+      "Reconvenção por benfeitorias no valor de R$ 130.000,00 - rejeitada liminarmente por não recolhimento de custas",
+      "Impugnação à gratuidade do autor - rejeitada",
+      "Alegação de carência por ausência de composição extrajudicial - rejeitada",
+      "Compensação de benfeitorias com débitos locatícios"
+    ],
+    "fundamentos": [
+      "Relação locatícia comprovada por contrato desde 2004, vigente por prazo indeterminado desde 2021",
+      "Inadimplência incontroversa a partir de março de 2024, após reconhecimento pelo autor do pagamento de janeiro e fevereiro/2024",
+      "Réu não comprovou pagamento de parcelas vencidas desde março/2024, ônus que lhe incumbia (art. 373, II, CPC)",
+      "Despejo decretado com base no art. 9º, III, da Lei 8.245/91 por falta de pagamento",
+      "Planilha de débito acolhida integralmente (R$ 70.261,73) por ausência de impugnação específica pelo réu",
+      "Reconvenção rejeitada liminarmente por não recolhimento de custas processuais após indeferimento de gratuidade ao réu-reconvinte"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0. Valor principal da condenação: R$ 70.261,73 (aluguéis março/2024 a dezembro/2025 + IPTU). Aluguéis janeiro a 08/junho/2026 a apurar em liquidação.",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: (1) inadimplência comprovada a partir de março/2024; (2) ausência de prova de pagamento pelo réu; (3) reconvenção rejeitada por não recolhimento de custas"
+  }
+}

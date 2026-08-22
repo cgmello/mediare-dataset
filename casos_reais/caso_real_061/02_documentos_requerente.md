@@ -1,0 +1,8 @@
+- Boletim de Ocorrência registrando o acidente (data: 21/11/2025, local: SP-310 km 380)
+- Fotografias dos danos na parte dianteira do veículo
+- Documento de propriedade do veículo Nissan Versa, placa EXO4H00
+- Orçamentos de reparos do veículo (4 orçamentos, incluindo o de R$ 13.232,00 e outro de R$ 8.185,00)
+- Nota fiscal/comprovante de pagamento dos reparos realizados
+- Alvará de Táxi nº 37 comprovando a atividade profissional
+- Declaração da oficina mecânica atestando período de imobilização do veículo (24/11/2025 a 15/12/2025 - 21 dias)
+- Declaração do sindicato da categoria atestando renda média diária de R$ 86,00

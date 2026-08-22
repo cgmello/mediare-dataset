@@ -1,0 +1,44 @@
+{
+  "caso": "real-102-vizinhanca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1017849-33.2023.8.26.0625",
+  "parecer_esperado": {
+    "responsavel": "ambos_culpa_concorrente",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "instalacao_rufos_pingadeiras": 0.0,
+      "demolicao_reconstrucao_muro": 0.0,
+      "compactacao_solo": 0.0,
+      "remocao_verga": 0.0,
+      "estabilizacao_muro_frontal": 0.0,
+      "eliminacao_infiltracoes": 0.0,
+      "refazimento_calcamento": 0.0,
+      "retirada_telhado": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "instalacao_correcao_rufos_pingadeiras": "A requerida deve providenciar, mediante profissional habilitado e às suas expensas, a instalação e/ou correção dos rufos e pingadeiras faltantes ou inadequados em sua edificação, na extensão necessária para impedir lançamento ou infiltração de águas pluviais prejudiciais à divisa com o imóvel dos autores. Prazo: 30 dias após trânsito em julgado."
+    },
+    "pedidos_rejeitados": [
+      "Retirada de telhado",
+      "Demolição e reconstrução do muro de divisa",
+      "Compactação do solo",
+      "Remoção de verga",
+      "Estabilização do muro frontal",
+      "Eliminação de infiltrações e solapamento",
+      "Refazimento do calçamento",
+      "Responsabilização integral da ré pelos danos estruturais"
+    ],
+    "fundamentos": [
+      "Ausência de nexo causal entre a construção da ré e os principais danos estruturais alegados pelos autores (fissuras, trincas, recalques, solapamento do muro divisório)",
+      "Laudo pericial judicial constatou que os danos decorrem de infiltrações de águas pluviais por ausência de impermeabilização, rufos e pingadeiras na própria edificação dos autores, e saturação do solo",
+      "As anomalias no muro divisório são características de recalque provocado por saturação do solo decorrente de infiltrações pluviais oriundas da cobertura da edificação dos próprios autores",
+      "A construção da ré possui muro e fundações próprios e independentes, sem evidências técnicas de que sua execução tenha causado os danos estruturais",
+      "Irregularidades administrativas ou desconformidade com projeto aprovado não caracterizam, isoladamente, responsabilidade civil sem comprovação de nexo causal com os danos",
+      "Identificada apenas contribuição parcial (30%) da ré quanto à ausência de pingadeiras em sua edificação, que pode produzir umidade prejudicial na região de divisa, justificando obrigação limitada de correção"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "Aceitar 'ambos_culpa_concorrente' ou 'parcial_ambos' como equivalentes. A responsabilidade preponderante é dos autores (70%), mas há contribuição mínima da ré (30%) apenas quanto aos rufos/pingadeiras",
+    "valores": "Todos os valores monetários devem ser 0.0, pois a condenação foi exclusivamente em obrigação de fazer específica e limitada (rufos e pingadeiras), sem condenação em dinheiro nem nas demais intervenções pleiteadas",
+    "fundamentos": "Essenciais: (1) ausência de nexo causal entre obra da ré e danos estruturais; (2) danos decorrem de infiltrações pluviais e falta de manutenção do imóvel dos autores; (3) responsabilidade da ré limitada à deficiência de rufos/pingadeiras em sua própria edificação. Mínimo 2 destes fundamentos centrais devem estar presentes"
+  }
+}

@@ -1,0 +1,6 @@
+- Instrumento particular de confissão de dívida firmado em 25/02/2025
+- Contrato de prestação de serviços advocatícios referente aos anos de 2024 e 2025
+- Planilha de cálculo do débito atualizado com aplicação dos encargos contratuais
+- Comprovantes da prestação dos serviços jurídicos (peças processuais, atos praticados, acompanhamento de processos)
+- Correspondências de cobrança enviadas aos requeridos
+- Comprovantes de tentativas de contato para recebimento dos honorários

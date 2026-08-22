@@ -1,0 +1,4 @@
+- Cópia do contrato de locação com opção de compra
+- Eventuais notificações de cobrança enviadas à requerente
+- Comprovante de entrega do veículo
+- Documentos que demonstrem a regularidade do veículo à época da entrega

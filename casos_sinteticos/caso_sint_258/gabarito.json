@@ -1,0 +1,25 @@
+{
+  "caso": "sint-258-cobranca-servicos",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "requerida",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "total_devido": 600,
+      "multa_contratual": 0.0
+    },
+    "pedidos_rejeitados": [
+      "clausula de multa nao consta do contrato juntado - multa indevida"
+    ],
+    "fundamentos": [
+      "forca obrigatoria do contrato",
+      "ausencia de cancelamento formal mantem a obrigacao",
+      "clausula de multa nao consta do contrato juntado - multa indevida"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

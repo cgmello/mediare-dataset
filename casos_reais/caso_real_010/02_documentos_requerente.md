@@ -1,0 +1,8 @@
+- Contrato de locação assinado em junho/2023
+- Recibo de pagamento da caução no valor de R$ 6.000,00
+- Comprovante de pagamento de conta de energia elétrica no valor de R$ 500,00 referente a débito anterior à locação
+- Fotografias dos problemas estruturais do imóvel (infiltrações, umidade, problemas na caixa d'água e gabinete do banheiro)
+- Termo manuscrito sobre o estado do imóvel no início da locação
+- Comprovante de tentativa de devolução das chaves em 16/10/2023
+- Comprovantes de pagamento dos aluguéis realizados durante o período de ocupação
+- Orçamentos solicitados para reparos no imóvel

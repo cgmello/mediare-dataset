@@ -1,0 +1,30 @@
+{
+  "caso": "real-067-transito",
+  "fonte": "Sentenca TJSP - CJPG - proc. 0002801-96.2025.8.26.0361",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "reparo_veiculo": 24020.8,
+      "despesas_transporte_aplicativo": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Responsabilização de Norberto de Agostini Junior (acolhida ilegitimidade passiva)",
+      "Despesas com transporte por aplicativo (sentença incompleta, mas há indícios de que seria analisado)"
+    ],
+    "fundamentos": [
+      "Acolhimento da ilegitimidade passiva de Norberto de Agostini Junior por perda da propriedade do veículo desde 2021 (apreensão e perdimento pela Receita Federal)",
+      "Rejeição da ilegitimidade da Transertão porque o veículo ostentava visivelmente o logotipo da empresa, gerando aparência de vinculação perante terceiros",
+      "Identidade de sócio-administrador entre Transertão e Julimar (proprietária formal) conjugada com uso do logotipo caracteriza responsabilidade",
+      "Presunção de culpa em colisão traseira não elidida, pois a ré não comprovou a alegada frenagem brusca injustificada (ônus do art. 373, II, CPC)",
+      "Veículo da autora estava parado em sinal vermelho, conduta regular que afasta culpa concorrente",
+      "Orçamento de R$ 24.020,80 prevalece sobre o de R$ 10.310,00 da ré, pois este foi elaborado sem inspeção do veículo e as fotografias comprovam danos expressivos"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato: 'requerido' (especificamente Transertão, excluído Norberto)",
+    "valores": "tolerância ±15% para reparo_veiculo (R$ 24.020,80); despesas de transporte devem ser 0 ou não informadas (sentença incompleta)",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) ilegitimidade de Norberto por perda anterior da propriedade; (2) legitimidade da Transertão por uso ostensivo do logotipo + identidade societária com proprietária formal; (3) presunção de culpa em colisão traseira não elidida; (4) prevalência do orçamento da autora"
+  }
+}

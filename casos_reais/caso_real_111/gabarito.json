@@ -1,0 +1,29 @@
+{
+  "caso": "real-111-vizinhanca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1005537-53.2024.8.26.0281",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "multa_contratual_proporcional": 1120.0,
+      "danos_materiais_moveis": 8190.0,
+      "danos_morais": 10000.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Aplicação da teoria da asserção para reconhecer legitimidade ativa dos ocupantes do imóvel, mesmo não constando formalmente no contrato de locação",
+      "Comprovação por prova oral convergente de que locador e imobiliária tinham conhecimento e anuência quanto à ocupação do imóvel pelos requerentes (faturas em nome deles, comunicações por WhatsApp, termo de entrega de chaves)",
+      "Violação pelo locador dos deveres previstos no art. 22, II, III e IV da Lei 8.245/1991 de garantir uso pacífico do imóvel e realizar reparos com as devidas cautelas",
+      "Negligência e imprudência configuradas pela realização de destelhamento completo em pleno mês de janeiro (período de maior precipitação, com 300mm), sem orientação aos moradores para remoção de móveis e sem proteção adequada",
+      "Contradições insanáveis entre depoimento do réu e de sua própria testemunha (pedreiro) quanto à duração da obra, pernoite dos moradores e comunicação sobre cuidados necessários",
+      "Prova documental robusta dos danos materiais (orçamento discriminado de R$ 8.190,00) e nexo causal direto entre a conduta negligente e os prejuízos sofridos",
+      "Dever de cuidado do locador não se exaure na contratação do prestador de serviço, exigindo fiscalização e adoção de medidas preventivas para evitar danos ao patrimônio dos ocupantes"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - deve ser 'requerido'",
+    "valores": "tolerância ±15% por rubrica; todas as três rubricas devem ser reconhecidas com valores superiores a zero",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) legitimidade dos ocupantes mesmo sem contrato formal; (2) negligência na execução da obra em período chuvoso sem proteção adequada; (3) descumprimento dos deveres do locador previstos na Lei do Inquilinato; (4) contradições na versão defensiva"
+  }
+}

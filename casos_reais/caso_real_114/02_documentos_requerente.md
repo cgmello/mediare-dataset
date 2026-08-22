@@ -1,0 +1,8 @@
+- Contrato de locação do imóvel
+- Conversas por WhatsApp e mensagens trocadas com a imobiliária e proprietária sobre o problema no muro
+- Fotografias do muro com rachaduras
+- Fotografias do muro após o desabamento
+- Registro de ocorrência junto à Defesa Civil
+- Laudo ou relatório da Defesa Civil constatando o risco de desabamento
+- Comprovante de endereço do imóvel locado
+- Documentos pessoais (RG e CPF)

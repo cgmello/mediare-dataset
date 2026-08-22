@@ -1,0 +1,10 @@
+- Contrato de locação não residencial firmado em 15/09/2004
+- Termos aditivos ao contrato de locação
+- Último termo aditivo de 07/10/2021 (não assinado pelo locatário)
+- Comprovantes de propriedade dos lotes (matrícula atualizada)
+- Carnês ou boletos de aluguel não pagos (janeiro/2024 em diante)
+- Notificações de cobrança enviadas ao locatário
+- Comprovantes de débitos de IPTU (R$ 3.526,17)
+- Comprovante de renda (extrato de benefício previdenciário)
+- Declaração de que é pessoa idosa
+- Planilha discriminando os valores em atraso com correção e encargos contratuais

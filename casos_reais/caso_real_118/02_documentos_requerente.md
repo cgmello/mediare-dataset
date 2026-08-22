@@ -1,0 +1,10 @@
+- Contrato de locação residencial firmado em 25/04/2023
+- Boletos e recibos de pagamento dos aluguéis (sem discriminação de rubricas)
+- Comprovantes de transferência bancária dos valores pagos
+- Ata de assembleia ou documento comprobatório da função de conselheiro exercida entre março e junho de 2024
+- Extratos condominiais demonstrando o desconto de 50% para conselheiros
+- Boletos de cobrança individualizada de água (SEMAE) a partir de setembro de 2024
+- Correspondências trocadas com a imobiliária solicitando discriminação de valores
+- Comprovante de depósito judicial de R$ 658,30
+- Documentos pessoais (RG, CPF, comprovante de residência)
+- Procuração

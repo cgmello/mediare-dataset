@@ -1,0 +1,10 @@
+- Contrato de trabalho ou carteira de trabalho comprovando vínculo empregatício com o primeiro requerido no período de 28/08/2018 a 12/09/2019
+- Cópia da reclamação trabalhista nº 1000444-05.2019.5.02.0443 da 3ª Vara do Trabalho de Santos/SP
+- Documentos do veículo Fiat Siena EL 1.0, placas FMH6538, Renavam 1041705791
+- Comprovante de comunicação de venda junto ao Detran em nome do autor
+- Certidões de protesto em CPF datadas de 20/10/2020 e 24/07/2023
+- Certidões de Dívida Ativa de IPVA dos exercícios de 2019 e 2022
+- Comprovante de consulta ao CPF demonstrando restrições e queda de score de crédito
+- Notificações de penalidade de trânsito do veículo
+- Documentos da CET-Santos referentes ao veículo
+- Comprovante de registro do veículo em nome da empresa Juliana Branco Lancieri Fernandes Pizzaria

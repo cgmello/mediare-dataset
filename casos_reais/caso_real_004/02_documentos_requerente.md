@@ -1,0 +1,7 @@
+- Contrato de locação residencial firmado em março de 2019
+- Planilha discriminada de débitos locatícios (outubro/2023 até a data atual)
+- Comprovantes de propriedade do imóvel (matrícula atualizada)
+- Notificação extrajudicial enviada aos locatários cobrando os valores em atraso
+- Comprovantes de IPTU do imóvel
+- Eventuais comprovantes de pagamentos realizados pelos locatários em períodos anteriores
+- Cálculo atualizado do débito com aplicação de multa, juros e correção monetária conforme cláusulas contratuais

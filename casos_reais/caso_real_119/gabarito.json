@@ -1,0 +1,35 @@
+{
+  "caso": "real-119-condominio",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1049968-05.2025.8.26.0002",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "multa_por_cobranca_indevida": 500.0,
+      "limite_inicial_multa": 15000.0,
+      "honorarios_advocaticios": 5716.05,
+      "custas_processuais": 0.0,
+      "danos_morais": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "abstenção_de_cobranca_telefonica": "A ré deve se abster de realizar cobranças ao requerente pelo telefone/WhatsApp 957**-1124",
+      "abstenção_de_cobranca_email": "A ré deve se abster de realizar cobranças ao requerente pelo e-mail weis*******@gmail.com",
+      "objeto_da_abstenção": "Cobranças referentes a taxas condominiais do apartamento O-103 do Condomínio Reserva de Morato II",
+      "penalidade": "Multa de R$ 500,00 por cada ato de cobrança indevida, limitada inicialmente a R$ 15.000,00"
+    },
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Comprovação inequívoca da venda do imóvel em dezembro/2024 com registro na matrícula",
+      "Notificação prévia e reiterada à empresa ré sobre a mudança de titularidade do imóvel",
+      "Persistência indevida das cobranças mesmo após ciência da venda (fevereiro a junho/2025)",
+      "Aplicação do art. 927 do Código Civil - responsabilidade por ato ilícito",
+      "Rejeição da preliminar de ilegitimidade passiva pela teoria da asserção",
+      "A empresa ré teve ciência inequívoca da venda mas insistiu em cobrar quem não é mais proprietário"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: (1) comprovação da venda com registro e (2) persistência de cobranças após notificação da mudança de titularidade"
+  }
+}

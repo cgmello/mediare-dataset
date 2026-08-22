@@ -1,0 +1,7 @@
+- Termo de vistoria cautelar de 19/02/2024 (aprovação do veículo)
+- Contrato social das empresas requeridas
+- Procedimentos internos de vistoria cautelar
+- Documentação técnica sobre critérios de vistoria utilizados
+- Comprovante de entrega do laudo ao autor no momento da venda
+- Rol de testemunhas (funcionários/técnicos das empresas)
+- Documentação demonstrando regularidade das transferências do veículo no DETRAN

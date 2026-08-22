@@ -1,0 +1,6 @@
+- Condições gerais do título de capitalização (com destaque para cláusulas 9.5 e 9.6)
+- Comprovante de constituição do título como garantia locatícia vinculada ao Condomínio Edifício G.
+- Registros de contatos/solicitações da requerente para resgate
+- Comunicações enviadas à requerente sobre documentação necessária
+- Ausência de autorização/anuência do locador beneficiário
+- Normativos internos sobre procedimento de liberação de garantias locatícias

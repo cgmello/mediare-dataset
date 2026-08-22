@@ -1,0 +1,30 @@
+{
+  "caso": "real-027-cobranca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1197464-69.2024.8.26.0100",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "servicos_medico_hospitalares_nao_cobertos": 38064.19,
+      "correcao_monetaria": "conforme tabela TJSP até 29/08/2024 e IPCA após 30/08/2024",
+      "juros_mora": "1% ao mês até 29/08/2024; diferença SELIC-IPCA após 30/08/2024"
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Preliminar de incompetência territorial"
+    ],
+    "fundamentos": [
+      "Cláusula 12 do contrato estipula expressamente a responsabilidade subsidiária do paciente pelo pagamento dos serviços em caso de negativa de cobertura pela operadora",
+      "Cláusula 13 prevê que custos não abrangidos ou que excedam a cobertura do plano de saúde serão arcados pelo paciente",
+      "Hospital é terceiro na relação securitária entre paciente e operadora, competindo ao paciente demandar a operadora em ação autônoma se entender abusiva a negativa",
+      "A seguradora custeou apenas terapia oncológica (diárias, exames e medicamentos cobertos), sendo que a cobrança refere-se especificamente a medicamentos não acobertados",
+      "Réu não comprovou que os medicamentos cobrados estavam incluídos na cobertura aprovada pela seguradora, não se desincumbindo do ônus probatório do art. 373, II, CPC",
+      "Restou demonstrada a liquidez, certeza e exigibilidade do débito mediante documentação contratual, faturas detalhadas e memória de cálculo"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: responsabilidade subsidiária contratual do paciente (cláusulas 12 e 13), hospital como terceiro na relação securitária, cobrança restrita a medicamentos não cobertos, e ônus probatório não cumprido pelo réu quanto à inclusão dos medicamentos na cobertura"
+  }
+}

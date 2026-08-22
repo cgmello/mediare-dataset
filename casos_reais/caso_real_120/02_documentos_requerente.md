@@ -1,0 +1,7 @@
+- Contrato de locação assinado em 08/02/2021
+- Planilha de débitos discriminando aluguéis e encargos em aberto
+- Notificações extrajudiciais enviadas às requeridas informando a inadimplência
+- Termo de confissão de dívida locatícia firmado em 31/07/2023
+- Certidão de imissão na posse do imóvel datada de 23/08/2023
+- Auto de depósito de bens móveis remanescentes
+- Comprovantes de quitação de condomínio e IPTU pelo locador

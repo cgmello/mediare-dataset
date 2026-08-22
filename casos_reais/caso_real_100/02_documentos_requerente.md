@@ -1,0 +1,7 @@
+- Fotografias do imóvel demonstrando as infiltrações, fissuras, bolores e fungos nas paredes
+- Fotografias dos revestimentos desplacados e eflorescências
+- Fotografias de bens móveis danificados pela umidade
+- Escritura ou documento de posse do imóvel
+- Comprovante de residência
+- Documentos pessoais (RG e CPF)
+- Eventuais orçamentos de empresas especializadas para reparo dos danos

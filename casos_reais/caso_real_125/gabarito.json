@@ -1,0 +1,32 @@
+{
+  "caso": "real-125-condominio",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1018159-97.2024.8.26.0562",
+  "parecer_esperado": {
+    "responsavel": "requerente",
+    "resultado": "improcedente",
+    "valores": {
+      "multas_condominiais": 0.0,
+      "correcao_monetaria": 0.0,
+      "juros_mora": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Cobrança de R$ 21.396,76 referente a sete multas condominiais",
+      "Condenação dos réus ao pagamento das multas aplicadas entre 2020 e 2024",
+      "Custas processuais e honorários advocatícios em favor do autor"
+    ],
+    "fundamentos": [
+      "Ausência de comprovação de emissão de advertências prévias por escrito exigidas pela Cláusula XII da Convenção Condominial na primeira infração",
+      "Falta de notificação dos proprietários/réus para exercício do direito de defesa sobre os fatos geradores das multas antes de sua aplicação",
+      "Não cumprimento do procedimento gradativo previsto na Convenção Condominial (advertência → multa de 20% → dobro em reincidência)",
+      "Autor não se desincumbiu do ônus probatório previsto no art. 373, I, do CPC de comprovar o cumprimento do rito procedimental estabelecido",
+      "A ratificação posterior em assembleia geral (21/03/2024) não supre a falta das advertências prévias e notificações individuais exigidas pelo estatuto condominial",
+      "Violação ao contraditório e ampla defesa na via administrativa, tornando as multas inexigíveis"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - autor perdeu por vício procedimental na aplicação das multas",
+    "valores": "todas as rubricas devem ser 0.0 - pedido totalmente improcedente",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) ausência de advertências prévias escritas; (2) falta de notificação para defesa; (3) não observância do procedimento da Cláusula XII da Convenção"
+  }
+}

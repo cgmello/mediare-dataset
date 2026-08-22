@@ -1,0 +1,33 @@
+{
+  "caso": "real-165-veiculo_venda",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1011673-61.2024.8.26.0606",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "devolucao_entrada": 4000.0,
+      "devolucao_parcelas_financiamento": 1396.0,
+      "danos_materiais": 5766.0,
+      "danos_morais": 15000.0
+    },
+    "obrigacoes_de_fazer": {
+      "rescisao_contrato_compra_venda": "Declarar rescindido o contrato de compra e venda do veículo",
+      "rescisao_contrato_financiamento": "Declarar rescindido o contrato de financiamento junto ao Banco Votorantim",
+      "devolucao_veiculo": "Determinar a devolução do veículo aos réus"
+    },
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Relação de consumo caracterizada entre os autores (consumidores) e os réus (fornecedores), com aplicação do CDC como norma de ordem pública",
+      "Vício oculto (defeito grave no cabeçote do motor) manifestado apenas 11 dias após a aquisição, configurando vício redibitório",
+      "Responsabilidade solidária da cadeia de fornecimento, incluindo o vendedor e a instituição financeira que concedeu o crédito",
+      "Recusa injustificada do vendedor em sanar o defeito, violando direito básico do consumidor à reparação efetiva de danos",
+      "Dano moral configurado pelos transtornos, perda de emprego, inadimplência e privação do uso do bem adquirido logo após a compra",
+      "Vulnerabilidade do consumidor reconhecida como princípio fundamental da ordem econômica e das relações de consumo"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido (ambos os réus solidariamente)",
+    "valores": "tolerância ±15% por rubrica; todas as rubricas foram deferidas conforme pedido inicial; devolução de parcelas calculada com base em aproximadamente 2 parcelas pagas (R$ 698,00 x 2)",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) relação de consumo e aplicação do CDC; (2) vício redibitório/oculto manifestado em curto prazo; (3) responsabilidade solidária da cadeia de fornecimento; (4) recusa em reparar o defeito; (5) dano moral pelos transtornos graves"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "caso": "real-149-servicos",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1037027-71.2022.8.26.0602",
+  "parecer_esperado": {
+    "responsavel": "requerente",
+    "resultado": "improcedente",
+    "valores": {
+      "devolucao_valores_pagos": 0.0,
+      "multa_contratual_favor_autora": 0.0,
+      "danos_materiais_tratamento_reparador": 0.0,
+      "danos_morais": 0.0,
+      "multa_contratual_reconvencional_favor_reu": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Rescisão contratual com devolução de valores",
+      "Aplicação de multa contratual de 20% em favor da autora",
+      "Indenização por danos materiais de R$ 26.000,00",
+      "Indenização por danos morais de R$ 50.000,00",
+      "Pedido reconvencional de multa contratual em favor da ré"
+    ],
+    "fundamentos": [
+      "Laudo pericial concluiu pela ausência de má prestação de serviço pela clínica requerida",
+      "Perícia constatou que a autora apresenta-se reabilitada com próteses em adequada função mastigatória e resultado estético satisfatório, sem prejuízos funcionais ou estéticos",
+      "Implantes instalados na mandíbula foram posicionados em conformidade com os princípios técnicos da implantodontia, com torques adequados",
+      "Dois dos quatro implantes originalmente instalados pela requerida permaneceram em função e foram reaproveitados por profissional subsequente, demonstrando adequação técnica do planejamento cirúrgico",
+      "Perda precoce de um implante constitui intercorrência descrita na literatura especializada, associada a múltiplos fatores biológicos e não caracteriza, por si só, falha técnica",
+      "Responsabilidade do cirurgião-dentista é subjetiva (CDC art. 14, §4º), dependendo de prova de culpa, não demonstrada no caso"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato: deve ser 'requerente' (no sentido de que não houve responsabilidade da requerida, pedidos improcedentes)",
+    "valores": "tolerância ±15% por rubrica; todas as rubricas devem ser 0.0 pois os pedidos foram integralmente improcedentes, incluindo a reconvenção",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: ausência de má prestação comprovada por perícia, adequação técnica dos implantes instalados, perda de implante como intercorrência sem nexo causal com culpa profissional, responsabilidade subjetiva do profissional liberal"
+  }
+}

@@ -1,0 +1,9 @@
+- Documento de propriedade do veículo Ford Fusion Titanium, placas FIG7A90, em nome de V.H.M.
+- Consulta ao Sistema Nacional de Gravames demonstrando a restrição fiduciária indevida
+- Cópia do contrato de financiamento nº 11311239-5 celebrado entre J.A.B. e Banco Pan S.A.
+- Comprovante de transferência bancária (PIX) de R$ 44.500,00 realizada pela empresa Real Motors para J.F.R. em 21/06/2024
+- Cheque de R$ 57.000,00 devolvido por insuficiência de fundos (alínea 12)
+- Prints de conversas e mensagens entre as partes sobre a negociação do veículo
+- Comprovante de valor do veículo (anúncios, avaliações) no montante de R$ 78.000,00
+- Documentos pessoais (RG e CPF) dos requerentes
+- Eventuais boletos de cobrança do financiamento recebidos por J.A.B.

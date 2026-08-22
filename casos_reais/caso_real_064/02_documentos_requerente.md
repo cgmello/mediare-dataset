@@ -1,0 +1,10 @@
+- Boletim de Ocorrência do acidente registrado em 14/04/2024
+- Documento de propriedade do veículo Hyundai HB20S
+- CNH da condutora M.D.A.
+- Apólice de seguro do veículo
+- Aviso de sinistro protocolado junto à seguradora
+- Orçamento da concessionária autorizada para reparo do veículo
+- Nota fiscal/recibo dos reparos realizados no valor de R$ 26.497,17
+- Comprovante de pagamento da franquia no valor de R$ 3.324,05
+- Fotografias dos danos no veículo
+- Mensagens/tentativas de contato com o requerido solicitando ressarcimento

@@ -1,0 +1,8 @@
+- Contrato de compra e venda firmado entre A.G.F. e M.A.N. (demonstrando que a empresa não é parte)
+- Cláusula 5ª do contrato (vistoria prévia e aceitação do estado do veículo)
+- Cláusula 11ª do contrato (responsabilidade da compradora por manutenção)
+- Cláusula 3ª do contrato (reserva de domínio até quitação integral)
+- Prints de conversas entre F.S.O.S. e A.G.F. demonstrando cobrança de boletos em atraso
+- Demonstrativo de inadimplência da compradora
+- Comprovantes de que não havia ação judicial ao tempo da venda
+- Documentos demonstrando que a empresa atuou apenas como administradora de recebíveis

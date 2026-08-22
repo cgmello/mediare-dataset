@@ -1,0 +1,4 @@
+- Cópia do contrato de empreitada
+- Comprovantes dos serviços executados
+- Registros internos de tentativas de continuidade da obra
+- Eventuais comunicações com a contratante

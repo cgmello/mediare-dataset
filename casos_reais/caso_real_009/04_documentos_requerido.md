@@ -1,0 +1,4 @@
+- Comprovantes de pagamentos parciais realizados durante a locação
+- Eventuais recibos ou registros de acordos verbais sobre abatimentos
+- Comprovação da desocupação voluntária do imóvel
+- Documentos de hipossuficiência econômica

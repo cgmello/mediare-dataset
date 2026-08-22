@@ -1,0 +1,9 @@
+- Contrato de Prestação de Serviços e Administração firmado em 30/06/2020
+- Laudo técnico particular elaborado pelo engenheiro Marcelo Antonelli
+- Orçamentos da empresa Primor Empreiteira
+- Notas fiscais dos serviços de reparo no valor total de R$ 64.734,88
+- Registros fotográficos das infiltrações e danos
+- Registros fotográficos do empoçamento no terraço
+- Notificações extrajudiciais enviadas aos réus
+- Documentos da propriedade do imóvel
+- Parecer técnico do assistente técnico dos autores

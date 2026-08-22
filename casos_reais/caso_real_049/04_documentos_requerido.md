@@ -1,0 +1,4 @@
+- Declarações das funcionárias (pizzaiola J. e garçonete L.)
+- Certificados de boas práticas de manipulação de alimentos
+- Registros de inspeção sanitária do estabelecimento
+- Eventuais protocolos de qualidade e segurança alimentar adotados

@@ -1,0 +1,9 @@
+- Boletim de Ocorrência do acidente
+- Documento de propriedade do veículo Volkswagen Jetta GLI em nome de S.M.M.
+- CNH da condutora D.M.P.
+- Regulamento Interno do condomínio (especialmente artigo 36)
+- Apólice de seguro do veículo
+- Comprovante de pagamento da franquia do seguro no valor de R$ 17.528,00
+- Orçamentos dos reparos necessários no veículo
+- Imagens das câmeras de segurança do condomínio mostrando o momento do acidente
+- Fotografias dos danos causados ao veículo Jetta

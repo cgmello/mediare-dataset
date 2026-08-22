@@ -1,0 +1,37 @@
+{
+  "caso": "real-133-condominio",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1015645-02.2024.8.26.0004",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "valor_avaliacao_imovel": 360000.0,
+      "aluguel_mensal_devido": 1112.5,
+      "percentual_autora_imovel": 50.0,
+      "percentual_reu_imovel": 50.0
+    },
+    "obrigacoes_de_fazer": {
+      "extincao_condominio": "Declarada a extinção do condomínio sobre o imóvel",
+      "alienacao_judicial": "Determinada a alienação judicial dos direitos sobre o imóvel em hasta pública/leilão eletrônico pelo valor de R$ 360.000,00",
+      "partilha_produto_venda": "O produto da venda deverá ser partilhado na proporção de 50% para cada parte",
+      "direito_preferencia": "Assegurado o direito de preferência dos condôminos na aquisição",
+      "compensacao_valores": "Autorizada a compensação dos aluguéis devidos e débitos de IPTU e condomínio no momento da divisão do produto da venda"
+    },
+    "pedidos_rejeitados": [
+      "Cobrança de aluguéis retroativos a 15/04/2019 (período anterior à citação foi considerado comodato verbal gratuito)"
+    ],
+    "fundamentos": [
+      "Direito potestativo do condômino de promover a extinção da comunhão sobre bem indivisível a qualquer tempo (art. 1.320 do Código Civil)",
+      "Inexistindo acordo para adjudicação ou venda amigável, a alienação judicial é medida imperativa (art. 1.322 do Código Civil)",
+      "O uso exclusivo do bem por apenas um coproprietário gera obrigação de indenizar o condômino privado do gozo, sob pena de enriquecimento sem causa",
+      "Laudo pericial fixou o valor de mercado do imóvel em R$ 360.000,00 e valor locativo mensal em R$ 2.225,00, aceito pela autora e não impugnado pelo réu",
+      "Aluguel devido a partir da citação (jurisprudência do STJ e TJSP), momento em que o réu foi constituído em mora e tomou ciência da oposição ao uso gratuito",
+      "Período anterior à citação presume-se comodato verbal gratuito tolerado entre as partes"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: (1) direito potestativo à extinção de condomínio, (2) dever de indenizar pelo uso exclusivo a partir da citação, (3) alienação judicial obrigatória na ausência de acordo"
+  }
+}

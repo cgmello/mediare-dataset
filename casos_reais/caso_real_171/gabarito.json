@@ -1,0 +1,33 @@
+{
+  "caso": "real-171-veiculo_venda",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1000466-78.2025.8.26.0073",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "cancelamento_gravame": 0.0,
+      "danos_morais": 15000.0,
+      "danos_materiais": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "cancelamento_gravame": "Banco Votorantim S.A. e F&A Representação Ltda. devem providenciar o cancelamento do gravame financeiro sobre o veículo placa FNR-0910"
+    },
+    "pedidos_rejeitados": [
+      "Danos materiais de R$ 15.000,00 - ausência de comprovação de prejuízo patrimonial efetivo",
+      "Danos morais no valor pleiteado de R$ 45.000,00 - valor reduzido para R$ 15.000,00 considerando os parâmetros de razoabilidade e proporcionalidade"
+    ],
+    "fundamentos": [
+      "Aplicação do Código de Defesa do Consumidor às relações estabelecidas entre as partes, com inversão do ônus da prova em favor do consumidor hipossuficiente",
+      "Caracterização de fato do serviço (art. 14 do CDC) pela instituição financeira e pela revendedora, que falharam em verificar a legitimidade da operação de financiamento",
+      "Responsabilidade solidária do Banco Votorantim S.A. e da F&A Representação Ltda. por não adotarem cautelas mínimas para evitar fraude envolvendo veículo consignado",
+      "Ausência de comprovação de que o autor efetivamente vendeu o veículo ou autorizou sua alienação à Sra. R.S.F.",
+      "Revelia da revendedora F&A Representação Ltda. que, embora não produza presunção de veracidade (art. 345, I, CPC), corrobora negligência na intermediação comercial",
+      "Configuração de dano moral in re ipsa pela inscrição indevida de gravame, bloqueio do licenciamento e impossibilidade de livre disposição do bem de propriedade do autor"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido (Banco Votorantim S.A. e F&A Representação Ltda. solidariamente; R.S.F. reconhecida como terceira de boa-fé)",
+    "valores": "tolerância ±15% por rubrica; danos materiais devem ser 0 (não comprovados); danos morais entre R$ 12.750,00 e R$ 17.250,00; cancelamento de gravame é obrigação de fazer, não valor pecuniário",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) relação de consumo com inversão do ônus probatório, (2) responsabilidade solidária banco/revendedora por falha na verificação da legitimidade da operação, (3) dano moral configurado pelo gravame indevido e bloqueio do veículo"
+  }
+}

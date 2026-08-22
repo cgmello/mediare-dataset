@@ -1,0 +1,7 @@
+- Notificação extrajudicial enviada ao condomínio em 08/04/2021 comunicando a devolução do Container nº 4
+- Fotografias e documentos demonstrando a comercialização de produtos concorrentes por outros condôminos
+- Comprovantes de pagamento dos aluguéis com os descontos concedidos no período pandêmico
+- Comprovantes de pagamento das cauções (um mês de aluguel por unidade locada)
+- Cópias dos contratos de cessão onerosa firmados
+- Correspondências trocadas com o condomínio durante o período contratual
+- Edital de licitação com cláusula de exclusividade

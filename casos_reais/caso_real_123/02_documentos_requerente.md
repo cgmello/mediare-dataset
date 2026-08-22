@@ -1,0 +1,11 @@
+- Contrato de Locação Residencial assinado em 15/03/2024
+- Termo de Entrega de Chaves (inicial) datado de 15/03/2024
+- Comprovante de entrega das chaves na portaria em 18/12/2024
+- Boletos/comprovantes de aluguel vencidos (outubro, novembro e dezembro/2024)
+- Boleto da taxa condominial de novembro/2024 no valor de R$ 580,09
+- Notificação extrajudicial enviada aos locatários
+- Boletim de Ocorrência nº SB0319-1/2024
+- Fotografias do estado do imóvel após desocupação (sujeira e desordem)
+- Fotografias evidenciando a ausência do sofá retrátil
+- Comprovante de propriedade do imóvel
+- Cláusulas contratuais (Cláusula 15ª sobre caução, Cláusula 18ª e 23ª sobre multa rescisória)

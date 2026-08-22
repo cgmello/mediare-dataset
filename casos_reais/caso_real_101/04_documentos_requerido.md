@@ -1,0 +1,6 @@
+- Fotografias do vaso sanitário quebrado e colado com durepox
+- Fotografias mostrando falta de azulejos após obra do condomínio
+- Print de mensagem do condomínio reconhecendo dano causado pelo pedreiro na bacia sanitária
+- Print de resposta do filho relatando o problema ao condomínio
+- Comprovante de propriedade do apartamento 68
+- Eventuais testemunhas (filho Luís Roberto, zelador)

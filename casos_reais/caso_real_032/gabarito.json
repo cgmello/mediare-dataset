@@ -1,0 +1,35 @@
+{
+  "caso": "real-032-cobranca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1138786-95.2023.8.26.0100",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "segunda_parcela_rescisao": 1317.87,
+      "terceira_parcela_rescisao": 1317.87,
+      "valor_principal_total": 2635.74,
+      "correcao_monetaria": 0.0,
+      "juros_mora_1_porcento_mes": 0.0,
+      "multa_moratoria_2_porcento": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Nulidade da citação por edital",
+      "Abatimento por cancelamento antes do início das aulas",
+      "Negativa geral quanto à existência do débito"
+    ],
+    "fundamentos": [
+      "Contrato de prestação de serviços educacionais válido e comprovado, com início do curso em maio de 2018",
+      "Solicitação de cancelamento pelo aluno ocorreu apenas em fevereiro de 2019, após já ter frequentado disciplinas conforme histórico escolar",
+      "Concordância expressa do requerido com o parcelamento em três parcelas de R$ 1.317,87 mediante troca de e-mails, dispensando formalidade adicional por força do art. 107 do Código Civil",
+      "Cláusula de abatimento invocada pela defesa aplica-se apenas a cancelamento antes do início das aulas, não sendo o caso dos autos",
+      "Aplicável a cláusula contratual de cancelamento posterior ao início das aulas, com multa de 10% das parcelas vincendas, percentual não excessivo diante da natureza do negócio",
+      "Comprovado pagamento apenas da primeira parcela, restando em aberto as duas parcelas vencidas em 25/04/2019 e 25/05/2019"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0; valores de correção e juros não precisam ser calculados exatamente pois dependem de data-base",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) cancelamento posterior ao início das aulas com frequência comprovada, (2) concordância expressa com parcelamento por e-mail, (3) inaplicabilidade da cláusula de abatimento que exige cancelamento antes do início do curso"
+  }
+}

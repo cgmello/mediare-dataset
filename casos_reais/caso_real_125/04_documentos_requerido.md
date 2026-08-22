@@ -1,0 +1,5 @@
+- Contrato de locação firmado com a empresa Bar Café Del Mar Ltda. ME
+- Documentos da empresa locatária (contrato social, comprovante de atividade)
+- Comprovantes de que não residem/frequentam o condomínio
+- Cláusulas do contrato de locação prevendo responsabilidade do locatário por infrações
+- Certidão de propriedade do imóvel

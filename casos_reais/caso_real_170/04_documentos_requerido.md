@@ -1,0 +1,9 @@
+- Contrato social e documentos da empresa V. M. Automóveis Ltda.
+- Contrato de compra e venda do veículo (09/11/2022)
+- Ficha de vistoria do veículo realizada antes da venda
+- Termo de entrega do veículo assinado pela compradora
+- Ordens de serviço de reparos realizados (ar-condicionado, suspensão, bicos injetores)
+- Comprovantes de atendimento prestado à cliente dentro dos 90 dias
+- Documentação do veículo comprovando ano 2010/2011 e quilometragem de 172.278 km
+- Manual do proprietário e termos de garantia limitada
+- Jurisprudência sobre responsabilidade em veículos usados com idade avançada

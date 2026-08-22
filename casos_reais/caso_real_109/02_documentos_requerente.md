@@ -1,0 +1,10 @@
+- Matrícula do imóvel (apartamento nº 21) comprovando a propriedade
+- Fotografias dos danos causados pelas infiltrações (manchas de umidade, teto danificado, paredes deterioradas)
+- Laudo ou atestado do síndico do condomínio confirmando que as infiltrações têm origem no apartamento nº 31
+- Contrato de locação celebrado com os inquilinos anteriores
+- Termo de rescisão antecipada do contrato de locação motivada pelas infiltrações
+- Orçamentos e notas fiscais dos reparos emergenciais realizados no banheiro (R$ 1.800,00)
+- Correspondências, mensagens ou notificações enviadas aos requeridos solicitando a solução do problema
+- Comprovantes de tentativas de contato (e-mails, WhatsApp, cartas)
+- Recibos de aluguel recebidos antes da rescisão do contrato
+- Planilha demonstrando os lucros cessantes (aluguéis não recebidos)

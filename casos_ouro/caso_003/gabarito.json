@@ -1,0 +1,22 @@
+{
+  "caso": "003-consumo-piscina",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1000369-83.2023.8.26.0579 (17/08/2026)",
+  "parecer_esperado": {
+    "responsavel": "requeridas_solidariamente",
+    "fundamentos": [
+      "CDC art. 18 - responsabilidade solidaria de toda a cadeia de fornecimento por vicio de qualidade",
+      "laudo: nexo causal direto entre os danos e vicios de fabricacao + instalacao impropria",
+      "tese de mau uso do consumidor afastada pela prova tecnica"
+    ],
+    "valores": {
+      "restituicao": 32888.0,
+      "danos_morais": 8000.0
+    },
+    "observacao": "restituicao integral do preco + danos morais"
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato (ambas, solidarias)",
+    "valores": "restituicao match exato; danos morais +/- 30%",
+    "fundamentos": "deve citar solidariedade da cadeia (CDC)"
+  }
+}

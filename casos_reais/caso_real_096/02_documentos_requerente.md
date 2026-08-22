@@ -1,0 +1,13 @@
+- Escritura de propriedade dos imóveis na Av. Dr. Alberto Jackson Byington
+- Contrato social da empresa C. Empreendimentos e Participações Ltda.
+- Laudo técnico elaborado por especialista contratado, atestando os danos estruturais e risco de colapso
+- Auto de interdição emitido pela Prefeitura
+- Registro fotográfico do imóvel da requerida demonstrando estado de abandono
+- Registro fotográfico dos danos causados pelo deslizamento (muro rompido, desabamento estrutural)
+- Contrato de locação do Galpão 1 com o inquilino
+- Notas fiscais e comprovantes de despesas com adaptação do Galpão 2 (R$ 129.925,36)
+- Contrato de locação do imóvel na Rua Catão, 1260
+- Notas fiscais e comprovantes de despesas com adaptação do imóvel para guarda de veículos (R$ 47.656,71)
+- Documentação comprobatória da propriedade dos veículos de coleção
+- Correspondências e tentativas de contato para composição amigável
+- Documentos demonstrando o valor da exploração econômica do imóvel

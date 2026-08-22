@@ -1,0 +1,5 @@
+- Instrumento particular de confissão de dívida firmado em 25/02/2025 (cópia)
+- Proposta de pagamento parcelado mencionando início em 20/11/2025
+- Documentos fiscais e financeiros demonstrando capacidade de pagamento parcelado
+- Correspondências trocadas sobre tentativas de acordo extraprocessual
+- Comprovantes de recebimento dos serviços jurídicos prestados

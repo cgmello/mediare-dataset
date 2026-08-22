@@ -1,0 +1,7 @@
+- Contrato de Prestação de Serviços Advocatícios firmado em 26/04/2018
+- Escritura Pública de Reconhecimento e Dissolução de União Estável lavrada em 20/08/2018
+- Aditivo à Escritura Pública de 04/09/2018
+- Instrumento Particular de Confissão de Dívida e Outras Avenças
+- Certidões das matrículas nº 873 e nº 90.095 do 2º Oficial de Registro de Imóveis de Mogi das Cruzes
+- Comprovante de cadastro da OAB do escritório
+- Correspondências de cobrança enviadas à requerida

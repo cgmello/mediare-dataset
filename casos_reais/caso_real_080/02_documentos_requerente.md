@@ -1,0 +1,16 @@
+- Contrato de locação comercial celebrado em 08/05/2014
+- Termos de aditamento do contrato (extensão para 5 anos e substituição de garantia)
+- Notificação extrajudicial de denúncia do contrato (abril/2022)
+- Matrícula do imóvel demonstrando aquisição pela locadora por R$ 250.000,00
+- Fotografias do estado original do imóvel
+- Fotografias das benfeitorias realizadas
+- Notas fiscais e recibos de materiais de construção
+- Planilha de faturamento mensal do ano de 2022
+- Relatórios de movimentação financeira do estabelecimento (faturamento de R$ 239.832,98 em 2022)
+- Extratos bancários
+- Documentos da ação do Juizado Especial Cível (2014) que concedeu carência e extensão contratual
+- Certidão de habite-se emitida em abril/2015
+- Registros de reclamações sobre infestação de cupins
+- Anúncios do imóvel para locação (R$ 5.000,00) e venda (R$ 790.000,00 e R$ 850.000,00)
+- Comprovantes de pagamento regular dos aluguéis durante 7 anos
+- Documentação do processo de divórcio (contexto da desocupação)

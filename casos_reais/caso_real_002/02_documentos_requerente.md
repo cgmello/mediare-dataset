@@ -1,0 +1,9 @@
+- Contrato particular de locação comercial firmado em 19/02/2024
+- Comprovante de propriedade do imóvel (matrícula atualizada)
+- Comprovantes de pagamento dos aluguéis recebidos até abril/2024
+- Notificação extrajudicial enviada ao locatário
+- Declarações do zelador e porteiro do edifício sobre o abandono
+- Comprovante de ausência de consumo de energia elétrica desde dezembro/2024
+- Recibo de caução no valor de R$ 3.600,00
+- Planilha de débitos discriminando aluguéis e encargos vencidos
+- Fotografias do imóvel demonstrando o abandono

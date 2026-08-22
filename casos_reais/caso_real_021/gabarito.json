@@ -1,0 +1,39 @@
+{
+  "caso": "real-021-locacao",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1029937-50.2024.8.26.0114",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "alugueis_e_encargos_ate_desocupacao": 16827.42,
+      "multa_compensatoria": 0.0,
+      "honorarios_advocaticios_contratuais": 0.0,
+      "danos_materiais_ao_imovel": 0.0,
+      "custas_processuais": 0.0,
+      "honorarios_sucumbenciais_percentual": 15.0
+    },
+    "obrigacoes_de_fazer": {
+      "rescisao_contratual": "declarada",
+      "desocupacao_imovel": "efetivada em 08/04/2026",
+      "imissao_na_posse": "consolidada em favor do locador"
+    },
+    "pedidos_rejeitados": [
+      "Multa compensatória (cláusula 19ª) de R$ 2.100,00 - inadmissível cumulação com aluguéis e multa moratória pelo mesmo fato",
+      "Honorários advocatícios contratuais - incabível cumulação com honorários sucumbenciais",
+      "Indenização por danos ao imóvel - prejuízo meramente hipotético sem vistoria de entrada/saída"
+    ],
+    "fundamentos": [
+      "Revelia dos réus citados que não apresentaram contestação (art. 344, CPC), gerando presunção relativa de veracidade dos fatos alegados",
+      "Inadimplemento comprovado dos aluguéis e encargos a partir de janeiro/2023, configurando infração ao art. 9º, III, da Lei 8.245/91",
+      "Ônus probatório não cumprido pelos réus quanto a fatos extintivos, modificativos ou impeditivos do direito do autor (art. 373, II, CPC)",
+      "Impossibilidade de cumulação de multa compensatória com cobrança de aluguéis atrasados quando o único fato gerador é o inadimplemento (vedação ao bis in idem)",
+      "Inadmissibilidade de cumulação de honorários contratuais com sucumbenciais, devendo prevalecer apenas os últimos fixados judicialmente",
+      "Inexistência de prova de danos materiais ao imóvel (ausência de vistorias de entrada e saída), tratando-se de prejuízo hipotético a ser pleiteado em via autônoma"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas (multa compensatória, honorários contratuais, danos materiais) devem ser 0; valor de aluguéis pode variar conforme cálculo atualizado",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) revelia e presunção de veracidade; (2) inadimplemento comprovado; (3) vedação ao bis in idem na multa compensatória; (4) impossibilidade de indenização por dano hipotético"
+  }
+}

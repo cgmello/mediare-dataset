@@ -1,0 +1,7 @@
+- Documentos de propriedade do imóvel
+- Relatórios técnicos sobre as características geológicas da região e predisposição a inundações
+- Documentação do incêndio ocorrido em dezembro de 2017
+- Ação de Produção Antecipada de Provas n. 1027324-62.2021.8.26.0405
+- Manifestação de concordância em realizar obras recomendadas pela Prefeitura
+- Proposta de reparos no telhado do Galpão 1 (R$ 15.000,00)
+- Documentação técnica (cuja exibição foi determinada judicialmente mas não apresentada)

@@ -1,0 +1,12 @@
+- Contrato de Empreitada original firmado com a construtora
+- Laudo técnico de constatação dos vícios construtivos elaborado por engenheiro
+- Fotografias das infiltrações, inundações e vazamentos na residência
+- Gravações de áudio de conversas com o representante da construtora
+- Prints de mensagens de WhatsApp autorizando abatimentos nos valores
+- Comprovantes de contratação de empresa intermediadora para financiamento bancário
+- Orçamentos de reparação dos defeitos construtivos
+- Notas fiscais de aquisição de janelas, caixas d'água e pisos
+- Comprovante de recolhimento de INSS da obra
+- Registro fotográfico da execução inadequada do telhado
+- Documentação de problemas estruturais (trincas, infiltrações)
+- Memorial Descritivo da obra prevendo estrutura metálica para telhado

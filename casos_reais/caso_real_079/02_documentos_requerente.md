@@ -1,0 +1,8 @@
+- Contrato de empreitada firmado em maio de 2020
+- Cláusulas contratuais, especialmente cláusula 3.1 (prazo de entrega) e cláusula 10.1 (multa contratual)
+- Comprovantes de pagamento dos aluguéis do período de janeiro/2021 até agosto/2022
+- Contratos de locação do período
+- Registros fotográficos dos vícios construtivos
+- Mensagens/e-mails trocados com a empresa sobre os problemas
+- Comprovantes de pagamento à empresa requerida
+- Orçamentos para reparo dos vícios construtivos

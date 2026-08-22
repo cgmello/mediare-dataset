@@ -1,0 +1,7 @@
+- Contrato de locação com anotação na cláusula 10ª sobre caução
+- Comprovante de PIX de R$ 1.950,00 referente à caução
+- Ata notarial de 10/04/2025 com transcrição de mensagem de voz do Sr. E.C. de 28/01/2025
+- Termo de entrega de chaves assinado pela representante da locadora
+- Fotografias do imóvel no momento da entrega
+- Cópia das cláusulas 10ª, 13ª, 17ª e 18ª do contrato
+- Comprovantes de pagamento de aluguéis antecipados

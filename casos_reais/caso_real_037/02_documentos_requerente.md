@@ -1,0 +1,5 @@
+- Cupom fiscal da compra realizada em 07/04/2025 no Soni Supermercados
+- Fotografias do macarrão contaminado com larvas e insetos visíveis na panela
+- Fotografias da embalagem do produto mostrando os insetos
+- Vídeo registrando o momento da descoberta da contaminação
+- Embalagem do produto marca Adria, 500g, formato argola

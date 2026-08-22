@@ -1,0 +1,5 @@
+- Cópia do contrato de promessa de compra e venda original de 2006
+- Comprovantes de quitação integral do preço
+- Trocas de e-mails com a terceira E.A.L. sobre a transação (fls. 172/175)
+- Eventual correspondência informal sobre a cessão de direitos
+- Comprovantes de que não reside no imóvel há mais de 8 anos

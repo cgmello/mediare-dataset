@@ -1,0 +1,7 @@
+- Contrato de locação celebrado em 07/12/2023
+- Comprovantes de não pagamento dos aluguéis
+- Boletim de Ocorrência nº DD8314-1/2024 registrado pela corretora
+- E-mail da corretora ao 16º Cartório de Notas de São Paulo
+- Resposta do 16º Cartório de Notas informando falsificação (21/02/2024)
+- Declaração da suposta fiadora L.V.S. negando assinatura
+- Demonstrativo de débito atualizado

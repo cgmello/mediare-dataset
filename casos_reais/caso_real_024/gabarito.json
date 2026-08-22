@@ -1,0 +1,30 @@
+{
+  "caso": "real-024-cobranca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1007987-65.2024.8.26.0637",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "debito_principal_parcelas_atrasadas": 400.0,
+      "multa_rescisoria_contratual": 200.0,
+      "total_principal": 600.0,
+      "custas_processuais": 0.0,
+      "honorarios_advocaticios": 1000.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Existência de contrato de prestação de serviços educacionais válido e devidamente assinado pela requerida (contrato nº 240, matrícula nº 3290)",
+      "Inadimplemento comprovado de 4 parcelas mensais de R$ 100,00 referentes aos meses de abril a julho de 2021",
+      "Ausência de formalização de rescisão contratual mediante termo rescisório conforme previsto na Cláusula 5ª",
+      "Previsão contratual expressa de multa rescisória correspondente a 2 parcelas (R$ 200,00) em caso de rescisão voluntária antes de 12 meses",
+      "Ausência de comprovação de pagamento dos valores discriminados ou de requerimento formal de cancelamento",
+      "Contestação por negativa geral não gera presunção inversa, mantendo-se o ônus probatório do autor que foi satisfatoriamente cumprido"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido deve ser identificado como único responsável",
+    "valores": "tolerância ±15% por rubrica; débito principal deve totalizar R$ 600,00 (R$ 400,00 de parcelas + R$ 200,00 de multa); honorários fixados em R$ 1.000,00",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) existência e validade do contrato assinado, (2) inadimplemento de 4 parcelas, (3) ausência de formalização da rescisão justificando incidência da multa contratual"
+  }
+}

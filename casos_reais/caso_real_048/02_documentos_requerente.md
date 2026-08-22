@@ -1,0 +1,7 @@
+- Nota fiscal de compra da piscina (dezembro/2021)
+- Notificação extrajudicial enviada às empresas
+- Fotografias da rachadura no fundo da piscina
+- Fotografias do vazamento de água
+- Comprovante de tentativas de contato com as empresas (e-mails, mensagens)
+- Documentos do imóvel
+- Eventual laudo técnico ou orçamento de reparo

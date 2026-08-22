@@ -1,0 +1,33 @@
+{
+  "caso": "real-051-consumo",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1050296-79.2024.8.26.0224",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "restituicao_valor_veiculo": 89964.0,
+      "danos_materiais_bens_destruidos": 3662.67,
+      "danos_morais_T.R.F.S": 5000.0,
+      "danos_morais_E.B.S.J": 5000.0,
+      "danos_morais_pessoa_juridica": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Danos morais à pessoa jurídica E. Transportes Nacionais e Internacionais Ltda."
+    ],
+    "fundamentos": [
+      "Existência de vício oculto de fabricação comprovado por perícia técnica judicial",
+      "Laudo pericial concluiu que incêndio teve início no compartimento do motor, em área coincidente com passagem da linha de combustível próximo ao coletor de escape, por falha de estanqueidade",
+      "Perícia afastou relação causal entre filtro de óleo não homologado e o defeito verificado, sendo improcedente fundamento de exclusão de responsabilidade alegado pela requerida",
+      "Responsabilidade objetiva e solidária do fabricante por vícios de qualidade do produto nos termos do art. 18 do CDC",
+      "Danos materiais comprovados por pesquisas de preço e compatíveis com a situação fática (veículo transportando família com bebê em viagem)",
+      "Danos morais configurados para as pessoas físicas pela evacuação de emergência de criança de 1 ano em momento de pânico e destruição total do bem, superando mero dissabor",
+      "Danos morais à pessoa jurídica incabíveis por ausência de violação à honra objetiva aplicável ao caso concreto"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - deve ser 'requerido'",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0; especial atenção: danos morais totais R$ 10.000,00 divididos entre as duas pessoas físicas (R$ 5.000,00 cada); pessoa jurídica deve receber 0",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) vício oculto comprovado por perícia na linha de combustível; (2) afastamento da excludente do filtro não homologado; (3) responsabilidade objetiva do fabricante pelo CDC; (4) danos morais cabíveis para pessoas físicas pelo trauma do incêndio com bebê; (5) danos morais incabíveis para pessoa jurídica"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "caso": "real-136-condominio",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1079579-68.2023.8.26.0100",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "multa_declarada_inexigivel": 570.0,
+      "danos_morais": 0.0,
+      "restituicao_valores": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "abstenção_cobranca_multa": "O réu deve se abster de cobrar a multa de R$ 570,00 da autora",
+      "autorizacao_uso_emergencial": "Não concedida - não há determinação para autorizar conexões futuras ao gerador"
+    },
+    "pedidos_rejeitados": [
+      "Autorização para conexão de geladeira ao gerador em futuras quedas de energia",
+      "Danos morais",
+      "Obrigação de não publicizar nome no rol de inadimplentes (já levantado o valor depositado)"
+    ],
+    "fundamentos": [
+      "A autora obteve autorização prévia de funcionário da administração do condomínio (Sr. Cardoso) antes de conectar sua extensão ao gerador",
+      "O regimento interno do condomínio não contém vedação expressa ao uso dos geradores para fins emergenciais",
+      "A aplicação de multa deveria ter sido precedida de advertência verbal formal, conforme artigo 7.7 do regimento interno",
+      "A situação configurava emergência real envolvendo preservação de medicamento essencial para saúde de animal (insulina que requer refrigeração entre 2° e 8° graus)",
+      "A alternativa da geladeira comum somente foi oferecida às 10h30 do dia seguinte, quando a autora já havia solicitado autorização e conectado sua geladeira desde a noite anterior",
+      "O valor da multa de R$ 570,00 mostrou-se excessivo e desproporcional à infração, considerando que houve autorização prévia de funcionário e ausência de dano comprovado"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido",
+    "valores": "tolerância ±15% para multa declarada inexigível (R$ 570,00); danos morais devem ser 0 (não foram concedidos)",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) autorização prévia obtida de funcionário; (2) ausência de vedação expressa no regimento; (3) descumprimento do artigo 7.7 quanto à advertência verbal prévia; (4) situação emergencial envolvendo medicamento"
+  }
+}

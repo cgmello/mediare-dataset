@@ -1,0 +1,38 @@
+{
+  "caso": "real-094-vizinhanca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1011852-17.2025.8.26.0361",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "multa_diaria_descumprimento": 500.0,
+      "teto_multa": 20000.0
+    },
+    "obrigacoes_de_fazer": {
+      "instalacao_rufos_vedacao_divisa": "Instalação de rufos de chapa galvanizada com vedação completa do vão entre as alvenarias de divisa em toda extensão",
+      "reinstalacao_rufo_garagem": "Reinstalação e vedação adequada do rufo da cobertura da garagem com limpeza de resíduos de obra",
+      "recomposicao_revestimento_muro": "Recomposição do revestimento do muro afetado por infiltrações: remoção de reboco deteriorado, aplicação de chapisco, emboço, reboco e impermeabilização até 50cm de altura",
+      "prazo_execucao_dias": 60
+    },
+    "pedidos_rejeitados": [
+      "Correção de trincas e rachaduras estruturais nas paredes (preexistentes, sem nexo causal)",
+      "Correção de rachaduras em pisos (preexistentes, sem nexo causal)",
+      "Correção de defeitos decorrentes de recalque de baldrame (causados por sobrecarga introduzida pelo próprio autor)",
+      "Correção de deslocamento de paredes (sem nexo causal com obra)",
+      "Reparos em umidade ascendente por capilaridade (decorrente de falta de impermeabilização original do imóvel)"
+    ],
+    "fundamentos": [
+      "Vistoria cautelar prévia de 13/09/2021 comprovou que trincas, rachaduras e umidade em baldrames já existiam antes do início das obras (jan/fev 2022)",
+      "Laudo pericial confirmou ausência de nexo causal entre obra vizinha e rachaduras estruturais, que decorrem de sobrecarga gerada pelo próprio autor ao elevar altura do muro sem reforço estrutural",
+      "Perícia atestou que imóvel possui idade superior a 40 anos com deficiência de manutenção e impermeabilização original inadequada",
+      "Construtora omitiu-se na execução de vedação do espaço (3cm) entre muro do condomínio e muro do autor, deixando de instalar rufos adequados",
+      "Infiltrações pluviais por ausência de rufos e vedação causaram deterioração do revestimento do muro do autor, configurando nexo causal",
+      "Negligência na divisa caracterizada por deixar resíduos de construção sobre telhas e rufos e instalação ineficiente de rufo na cobertura da garagem"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato: 'requerido'",
+    "valores": "tolerância ±15% para multa diária (R$ 425,00 a R$ 575,00) e teto (R$ 17.000,00 a R$ 23.000,00); prazo de execução: 45 a 75 dias aceitável",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) preexistência de patologias estruturais comprovada por vistoria cautelar anterior às obras, (2) ausência de nexo causal quanto a rachaduras/recalques atribuíveis ao próprio imóvel/autor, (3) nexo causal configurado apenas quanto a infiltrações por ausência de rufos e vedação na divisa"
+  }
+}

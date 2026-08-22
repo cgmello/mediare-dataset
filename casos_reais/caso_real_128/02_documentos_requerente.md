@@ -1,0 +1,9 @@
+- Contrato de prestação de serviços de manutenção de elevadores firmado em 01/08/2023
+- Notificação de distrato enviada em 02/07/2024
+- Laudo técnico elaborado pela nova empresa contratada, apontando ausência de peças e necessidades de manutenção
+- Orçamentos dos serviços necessários totalizando R$ 89.988,48
+- Comprovantes de pagamento dos serviços realizados pela nova empresa
+- Notificação extrajudicial enviada à requerida
+- Resposta da requerida à notificação extrajudicial negando responsabilidade
+- Ata de assembleias condominiais
+- Correspondências trocadas com a requerida durante a vigência contratual

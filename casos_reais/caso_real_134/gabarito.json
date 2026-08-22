@@ -1,0 +1,40 @@
+{
+  "caso": "real-134-condominio",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1001518-57.2025.8.26.0543",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "debito_alugueis_encargos_vencidos": 11830.0,
+      "alugueis_vincendos_ate_desocupacao": 0.0,
+      "multa_diaria_obrigacao_fazer": 1000.0,
+      "limite_multa_diaria": 25000.0,
+      "levantamento_deposito_caucao": 13020.0
+    },
+    "obrigacoes_de_fazer": {
+      "desocupacao_imovel": "15 dias para desocupação voluntária",
+      "restauracao_estado_original": "Restabelecer divisão entre as duas unidades, desfazer abertura no muro, remover escada de concreto instalada e recolocar pia da cozinha removida",
+      "multa_diaria_descumprimento": "R$ 1.000,00 por dia, limitada a R$ 25.000,00"
+    },
+    "pedidos_rejeitados": [
+      "Compensação da caução com aluguéis vencidos",
+      "Manutenção do contrato de locação",
+      "Purgação da mora",
+      "Audiência de conciliação"
+    ],
+    "fundamentos": [
+      "Inadimplemento incontroverso dos aluguéis de maio, junho e julho de 2025, ressalvado depósito parcial de R$ 2.170,00",
+      "Caução contratual possui destinação específica prevista em cláusula expressa, não podendo ser utilizada para amortização de aluguéis vencidos no curso do contrato",
+      "Cláusula 2 do contrato estabelece que em caso de mora superior a três meses, a caução é retida pela locadora e o locatário deve devolver o imóvel imediatamente",
+      "Aditivo contratual de setembro de 2024 estabeleceu que aluguéis seriam devidos até devolução integral dos imóveis, sem abatimento do depósito",
+      "Réu não exerceu a faculdade de purgação da mora em nenhum momento do processo, apesar de oportunizado",
+      "Soma dos comprovantes de pagamento apresentados pelo próprio réu (R$ 69.370,00) não cobre os meses alegadamente inadimplidos",
+      "Réu reconheceu no aditivo contratual ter realizado obras de unificação das unidades e obrigou-se a restaurar o estado original"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido é o único responsável pelo inadimplemento",
+    "valores": "tolerância ±15% sobre R$ 11.830,00 de débito principal; multa diária de R$ 1.000,00 deve ser exata; limite de R$ 25.000,00 deve ser exato; aluguéis vincendos são variáveis (até desocupação efetiva)",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) inadimplemento comprovado, (2) impossibilidade de compensação com caução conforme cláusula contratual, (3) não purgação da mora, (4) obrigação de restaurar estado original do imóvel prevista em aditivo"
+  }
+}

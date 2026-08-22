@@ -1,0 +1,10 @@
+- Laudo pericial do Instituto de Criminalística
+- Fotos do local do acidente
+- Croqui da dinâmica do acidente
+- Registro de arquivamento do inquérito policial pelo Ministério Público
+- Depoimentos das testemunhas presenciais (Sandra Regina e Vinícius Feltrin)
+- Fotos da sinalização de parada obrigatória no local
+- Documentação do veículo (CRLV)
+- Certificado de vistoria do ônibus
+- Habilitação do motorista J.C.
+- Comprovante de treinamento do motorista

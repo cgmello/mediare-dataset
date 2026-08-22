@@ -1,0 +1,8 @@
+- Contrato particular de promessa de compra e venda de unidade imobiliária nº RP001213, datado de 08/03/2022
+- Comprovantes de pagamento totalizando R$ 14.100,00 (recibos, boletos pagos, extratos bancários)
+- Termo de verificação assinado no momento da contratação
+- Prints de reclamações de outros consumidores em sites como Reclame Aqui sobre dificuldades de reservas, taxas abusivas e cancelamentos
+- Documentos pessoais (RG e CPF)
+- Certidão de casamento comprovando estado civil
+- Eventuais e-mails ou correspondências trocadas com a empresa após a contratação
+- Registro de tentativas de contato para esclarecimentos ou cancelamento

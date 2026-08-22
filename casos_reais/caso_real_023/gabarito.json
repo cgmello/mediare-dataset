@@ -1,0 +1,38 @@
+{
+  "caso": "real-023-locacao",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1012616-26.2025.8.26.0224",
+  "parecer_esperado": {
+    "responsavel": "ambos_culpa_concorrente",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "multa_rescisoria_reduzida": 2925.0,
+      "despesas_reparo_pintura": 317.0,
+      "despesas_servico_pintura_chumbamento": 0.0,
+      "caucao_a_compensar": 1950.0,
+      "multa_favor_locatario": 0.0,
+      "saldo_liquido_devido_pelos_requeridos": 1292.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Multa integral de 3 aluguéis (R$ 5.850,00) - reduzida pela metade por cumprimento parcial do contrato",
+      "Renúncia tácita à multa - mensagem não tratou de multa rescisória",
+      "Aplicação de contravenção penal na esfera cível - matéria estranha",
+      "Multa de 12 meses de aluguel em favor do locatário - tese rejeitada",
+      "Devolução integral da caução - compensada com débitos",
+      "Valor total de despesas de reparo conforme recibo de 17/02/2025 - sentença incompleta mas indica acolhimento parcial"
+    ],
+    "fundamentos": [
+      "Multa rescisória proporcional: cumpridos 9 de 18 meses, multa reduzida a 50% conforme art. 4º Lei 8.245/91 e art. 413 CC",
+      "Ausência de renúncia à multa: mensagem de voz tratou apenas de aluguel mensal, não de multa rescisória; renúncia não se presume (art. 114 CC)",
+      "Danos além do uso normal: fotografias comprovam perfurações, pia solta, infiltração e estado incompatível com vistoria inicial",
+      "Dever de restituição no estado original: art. 23, III, Lei 8.245/91 exige devolução no estado recebido, salvo desgaste natural",
+      "Legitimidade das despesas de reparo: cláusula 27ª autorizou contratação de profissionais; cupom fiscal e recibo contemporâneos à devolução",
+      "Compensação implícita: valor pago a título de caução deve ser abatido dos débitos apurados"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - ambos_culpa_concorrente (locatário deve multa reduzida e reparos; locadora deve compensar caução)",
+    "valores": "tolerância ±15% por rubrica; multa rescisória deve estar entre R$ 2.486,25 e R$ 3.363,75; despesas de reparo material R$ 269,45 a R$ 364,55; caução R$ 1.657,50 a R$ 2.242,50; rubricas negadas (multa integral, multa favor locatário, serviço completo sem limitação) devem ser 0",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) redução proporcional da multa por cumprimento parcial, (2) ausência de renúncia tácita pela análise restritiva da mensagem, (3) comprovação de danos além do desgaste natural por prova fotográfica e documental"
+  }
+}

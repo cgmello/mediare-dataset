@@ -1,0 +1,10 @@
+- Contrato de Empreitada para Construção assinado entre as partes
+- Memorial Descritivo da obra
+- Comprovantes de aprovação dos projetos perante a Prefeiura Municipal
+- Notas fiscais dos materiais de pintura no valor de R$ 4.011,85
+- Orçamentos e comprovantes de pagamento da reforma do telhado (R$ 19.515,32)
+- Planilha discriminando o serviço de assessoria de financiamento habitacional
+- Comprovantes de pagamentos parciais efetuados pelos contratantes
+- Demonstrativo do saldo devedor de acabamento (R$ 30.900,00)
+- Fotografias da obra concluída
+- Termo de entrega do imóvel

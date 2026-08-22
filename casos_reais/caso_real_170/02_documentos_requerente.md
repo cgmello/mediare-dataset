@@ -1,0 +1,15 @@
+- Contrato de compra e venda do veículo firmado em 09/11/2022
+- Documento de identidade (RG) e CPF
+- Comprovante de residência
+- Documento do veículo (CRLV) Renault Megane, placa ETN7J95, ano 2010/2011
+- Comprovante de pagamento da entrada (R$ 4.000,00)
+- Contrato de financiamento do veículo
+- Comprovantes de pagamento de IPVA e licenciamento (R$ 4.457,97)
+- Ordens de serviço e relatórios das oficinas indicadas pela requerida (novembro/2022 a março/2023)
+- Laudo técnico da oficina de confiança diagnosticando motor fundido (março/2023)
+- Notas fiscais e recibos dos reparos realizados no motor totalizando R$ 19.969,00
+- Nota fiscal de encamisamento do bloco do motor
+- Notas fiscais de substituição de componentes do motor
+- Registro de comunicações (e-mails, mensagens) com a requerida sobre os problemas
+- Fotos do painel com alertas de falha
+- Registro de quilometragem do veículo na época da compra (172.278 km)

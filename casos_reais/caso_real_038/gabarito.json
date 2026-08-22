@@ -1,0 +1,38 @@
+{
+  "caso": "real-038-consumo",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1003975-18.2025.8.26.0590",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "devolucao_valores_pagos_base": 7253.32,
+      "gastos_com_reparos": 1914.0,
+      "parcelas_vencidas_durante_processo": 0.0,
+      "lucros_cessantes": 5000.0,
+      "danos_morais": 8000.0,
+      "total_danos_materiais": 9167.32
+    },
+    "obrigacoes_de_fazer": {
+      "rescisao_contrato_compra_venda": "Declarada a rescisão do contrato de compra e venda do veículo",
+      "rescisao_contrato_financiamento": "Declarada a rescisão do contrato de financiamento acessório",
+      "devolucao_veiculo": "Autora deve devolver o veículo aos requeridos"
+    },
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Relação de consumo configurada - aplicação do Código de Defesa do Consumidor",
+      "Responsabilidade solidária de todos os fornecores na cadeia de consumo (arts. 7º, parágrafo único, 18 e 25, §1º do CDC)",
+      "Laudo pericial atestou vícios ocultos graves de natureza mecânica (motor e refrigeração) e estrutural (chassi, longarina, assoalho) preexistentes à venda",
+      "Defeitos extrapolam o desgaste natural esperado em veículo usado, comprometendo segurança e finalidade do bem",
+      "Responsabilidade objetiva do fornecedor por vícios em produtos duráveis (art. 18 do CDC)",
+      "Contrato de financiamento coligado ao de compra e venda - instituição financeira integra a cadeia de consumo",
+      "Configuração de danos morais pela Teoria do Desvio Produtivo do Consumidor - frustração da legítima expectativa e impossibilidade de uso para trabalho",
+      "Lucros cessantes comprovados pela impossibilidade de trabalhar como motorista de aplicativo"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - todos os requeridos respondem solidariamente",
+    "valores": "tolerância ±15% por rubrica; devolução de valores pagos (R$ 9.167,32 = R$ 7.253,32 + R$ 1.914,00), lucros cessantes R$ 5.000,00, danos morais R$ 8.000,00; pode haver variação nas parcelas vencidas durante o processo se não especificadas",
+    "resultado": "deve ser procedente - todos os pedidos acolhidos",
+    "fundamentos": "mínimo 4 fundamentos centrais: (1) relação de consumo com CDC aplicável; (2) responsabilidade solidária na cadeia; (3) laudo pericial atestando vícios ocultos graves preexistentes; (4) vícios além do desgaste natural; (5) coligação dos contratos; (6) danos morais configurados"
+  }
+}

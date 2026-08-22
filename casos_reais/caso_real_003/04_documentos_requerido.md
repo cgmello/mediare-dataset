@@ -1,0 +1,8 @@
+- Contrato de locação comercial original assinado
+- Planilha de cálculo do débito atualizado
+- Comprovantes de notificações enviadas aos locatários
+- Recibo de caução de R$ 9.000,00
+- Demonstrativo de abatimento da caução no débito executado
+- Cópia da petição inicial da execução nº 1003308-33.2022.8.26.0462
+- Cópia do v. acórdão do Agravo de Instrumento nº 2349508-65.2024.8.26.0000
+- Memória de cálculo discriminando aluguéis, multa moratória e multa compensatória

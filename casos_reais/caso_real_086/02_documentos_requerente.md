@@ -1,0 +1,7 @@
+- Contrato de prestação de serviços de reforma estrutural
+- Comprovantes de pagamento no valor total de R$ 54.515,15
+- Fotografias demonstrando as falhas na execução da rampa lateral
+- Fotografias evidenciando serviços inacabados
+- Planilha comparativa entre serviços contratados e serviços efetivamente executados
+- Prints de mensagens com a empresa sobre os problemas na obra
+- Orçamentos de terceiros para correção dos defeitos

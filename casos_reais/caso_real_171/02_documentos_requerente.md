@@ -1,0 +1,9 @@
+- Certificado de Registro e Licenciamento do Veículo (CRLV) em nome de O.F.
+- Documento do veículo (DUT) comprovando propriedade
+- Consulta ao DETRAN demonstrando o gravame financeiro registrado em 21/08/2024
+- Contrato ou documento de consignação firmado com a revendedora F&A Representação Ltda.
+- Documento comprovando a retirada do veículo da revendedora
+- Boletim de Ocorrência registrado sobre o fato
+- Comprovante de bloqueio do licenciamento 2024
+- Protocolo de atendimento junto ao Banco Votorantim S.A. tentando resolver administrativamente
+- Documentos pessoais (RG e CPF)

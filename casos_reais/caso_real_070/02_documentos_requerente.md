@@ -1,0 +1,12 @@
+- Boletim de Ocorrência do acidente
+- CRLV do veículo Citroën C4 Hatch, placa EUG-1293
+- CNH da requerente
+- Orçamento de reparo elaborado pela Auto Estufa Zanoni no sistema Cilia (R$ 51.957,37)
+- Fotografias dos danos no veículo
+- Tabela FIPE atualizada do veículo
+- Nota fiscal do serviço de guincho
+- Prints de conversas por aplicativo com o requerido R.F.S.
+- Contrato de honorários advocatícios
+- Comprovante de pagamento dos honorários (R$ 10.000,00)
+- Documentos de qualificação pessoal
+- Declaração de hipossuficiência econômica

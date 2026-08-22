@@ -1,0 +1,39 @@
+{
+  "caso": "real-097-vizinhanca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1008295-56.2024.8.26.0361",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "danos_materiais_reformas": 0.0,
+      "multa_diaria_descumprimento": 200.0,
+      "limite_multa": 10000.0
+    },
+    "obrigacoes_de_fazer": {
+      "impermeabilizacao_baldrame_muro": "Executar impermeabilização adequada entre o muro de divisa/baldrame e a parede de alvenaria do imóvel da autora",
+      "drenagem_aguas_pluviais": "Promover correta captação, drenagem e canalização das águas pluviais superficiais do lote aterrado",
+      "prazo_cumprimento_dias": 60
+    },
+    "pedidos_rejeitados": [
+      "Indenização por danos materiais de R$ 8.000,00",
+      "Reconvenção: apresentação de alvará de construção",
+      "Reconvenção: apresentação de projeto estrutural",
+      "Reconvenção: apresentação de habite-se",
+      "Reconvenção: indenização por danos morais"
+    ],
+    "fundamentos": [
+      "Artigo 1.277 do Código Civil: dever de fazer cessar interferências prejudiciais à segurança e saúde causadas por utilização nociva do prédio confinante",
+      "Artigo 1.288 do Código Civil: vedação de agravar a condição do prédio inferior por obras executadas no prédio superior",
+      "Artigo 1.311 do Código Civil: obrigação de executar medidas acautelatórias para resguardar prédios lindeiros",
+      "Laudo pericial constatou que réu realizou aterro e construiu baldrame de 0,70m sem impermeabilização, gerando risco de percolação hídrica",
+      "Perito concluiu ser indispensável impermeabilização e drenagem adequada para evitar infiltrações no imóvel vizinho",
+      "Inexistência de nexo causal entre aterro do réu e danos reclamados: perícia demonstrou que infiltrações decorrem de vícios construtivos do próprio imóvel da autora (telhas quebradas, ausência de calhas e rufos, vãos fechados sem vedação adequada)",
+      "Reconvenção: ausência de interesse processual e fundamentação jurídica para exigir documentos administrativos da construção da autora e pleitear danos morais"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido é responsável pela obrigação de fazer preventiva",
+    "valores": "tolerância ±15% por rubrica; danos materiais devem ser 0 (negados por falta de nexo causal); multa diária R$ 200,00 e teto R$ 10.000,00",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) deveres de vizinhança arts. 1.277, 1.288 e 1.311 CC; (2) necessidade técnica de impermeabilização e drenagem conforme laudo; (3) inexistência de nexo causal para danos materiais - infiltrações decorrem de vícios da própria construção da autora"
+  }
+}

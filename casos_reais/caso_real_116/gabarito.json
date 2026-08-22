@@ -1,0 +1,37 @@
+{
+  "caso": "real-116-vizinhanca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1057492-14.2024.8.26.0576",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente_procedente",
+    "valores": {
+      "danos_materiais_reparos": 120000.0,
+      "reembolso_custas_acao_antecipada": 244.0,
+      "reembolso_honorarios_periciais": 8000.0,
+      "reembolso_assistente_tecnico": 0.0,
+      "danos_morais": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Indenização por danos morais de R$ 30.000,00",
+      "Reembolso de despesas com assistente técnico particular",
+      "Realização de perícia complementar para atualização do valor dos reparos",
+      "Denunciação da lide à seguradora ALIANÇA (extinta por prescrição)"
+    ],
+    "fundamentos": [
+      "Laudo pericial conclusivo atestou que os danos no imóvel da autora são de natureza exógena, provocados por infiltrações oriundas do imóvel das rés, caracterizando nexo causal",
+      "Responsabilidade objetiva por danos decorrentes de direito de vizinhança (art. 1.277 do Código Civil), independentemente de culpa",
+      "Concessionária de água confirmou vazamentos no imóvel das rés nos meses de setembro, outubro e novembro de 2020, com consumo anormal superior a 280.000 litros",
+      "As próprias requeridas custearam reforço de fundação em ambos os imóveis, conduta incompatível com a tese de desgaste natural exclusivo",
+      "Responsabilidade solidária da usufrutuária Y.O.A. por ser possuidora direta do imóvel causador do dano",
+      "Dano moral rejeitado por ausência de violação à honra, intimidade ou imagem; imóvel continuou habitado e houve minoração de danos pelo reforço das fundações",
+      "Reembolso de despesas com assistente técnico rejeitado por ausência de comprovação dos valores efetivamente desembolsados",
+      "Denunciação à seguradora extinta por prescrição ânua (art. 206, §1º, II, 'b' do CC), pois transcorreram mais de 4 anos entre o sinistro (nov/2020) e qualquer ato interruptivo"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato: 'requerido' (inclui usufrutuária solidariamente)",
+    "valores": "tolerância ±15% para danos materiais (base R$ 120.000,00); rubricas de danos morais e assistente técnico devem ser exatamente 0; reembolsos de custas (R$ 244,00) e perícia (R$ 8.000,00) devem ser exatos ou com tolerância mínima de ±5%",
+    "fundamentos": "mínimo 3 fundamentos centrais obrigatórios: (1) laudo pericial conclusivo quanto à origem exógena dos danos, (2) responsabilidade objetiva por direito de vizinhança, (3) confirmação dos vazamentos pela concessionária, (4) custeio do reforço de fundação como reconhecimento indireto"
+  }
+}

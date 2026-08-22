@@ -1,0 +1,8 @@
+- Relatório técnico apontando instalação de filtro de óleo não homologado
+- Manual do proprietário do veículo com orientações sobre manutenção em rede autorizada
+- Especificações técnicas do veículo Jeep Renegade modelo 2021
+- Histórico de manutenções do veículo (quando disponível)
+- Certificações de qualidade e segurança do modelo
+- Cláusulas contratuais de garantia e suas condições de validade
+- Laudo técnico preliminar sobre o incêndio (se houver)
+- Documentação sobre procedimentos de manutenção recomendados

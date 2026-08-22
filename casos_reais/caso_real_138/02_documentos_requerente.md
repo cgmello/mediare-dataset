@@ -1,0 +1,10 @@
+- Contrato de promessa de cessão de direitos de compromisso de compra e venda datado de 04/08/2022
+- Matrícula do imóvel nº 59217 do Registro de Imóveis de Itapema/SC
+- Comprovantes de pagamento efetuados pelos cessionários totalizando R$ 931.000,00
+- Notificação extrajudicial de desocupação enviada aos requeridos
+- Comprovantes de quitação regular junto à construtora Profor
+- Planilha de débitos em aberto (parcelas vencidas em 19/12/2024 e 05/01/2025)
+- Boletos ou carnês das parcelas inadimplidas
+- Comprovantes de pagamento de IPTU do imóvel
+- Comprovantes de despesas condominiais
+- Cópia do contrato original de compromisso de compra e venda com a construtora

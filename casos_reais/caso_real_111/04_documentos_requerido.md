@@ -1,0 +1,9 @@
+- Contrato de locação celebrado com os fiadores J.A.R. e S.P. (sem menção aos requerentes)
+- Comprovantes de comunicação direta com o pedreiro N.B. sobre a execução da obra
+- Termo de entrega definitiva de chaves datado de 16/02/2024
+- Demonstrativo de débitos dos locatários (aluguéis, CPFL, SABESP, reparos e pintura)
+- Comprovante de acionamento do seguro fiança junto à Porto Seguro
+- Comprovante de ressarcimento recebido da Porto Seguro pelos débitos
+- Documentação da Porto Seguro sobre a negativação dos fiadores
+- Eventuais fotografias do imóvel durante ou após a obra
+- Orçamento/nota fiscal do serviço de reparos do telhado contratado

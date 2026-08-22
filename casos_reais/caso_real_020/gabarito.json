@@ -1,0 +1,33 @@
+{
+  "caso": "real-020-locacao",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1008928-98.2024.8.26.0577",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "alugueis_vencidos": 10438.72,
+      "alugueis_vincendos_ate_desocupacao": 0.0,
+      "multa_contratual": 0.0,
+      "juros_mora": 0.0,
+      "correcao_monetaria": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "rescisao_contratual": "declarada",
+      "desocupacao_imovel": "cumprida no curso do processo"
+    },
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Inadimplência incontroversa da locatária que não pagou nenhum aluguel desde o início da locação",
+      "O contrato de locação firmado entre autor e ré estabelece obrigação direta entre estas partes",
+      "O suposto acordo paralelo entre a ré e terceiro (corretora) não pode ser oposto ao locador que não participou deste pacto",
+      "A ré possui eventual direito de regresso contra a corretora, mas isso não afasta sua responsabilidade perante o locador",
+      "Comprovada a relação jurídica locatícia entre as partes e o inadimplemento contratual pela locatária",
+      "O imóvel foi desocupado no curso do processo, restando apenas a cobrança dos valores devidos"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido deve ser considerado único responsável perante o requerente",
+    "valores": "tolerância ±15% no valor total de R$ 10.438,72; importante observar que o valor engloba aluguéis e encargos já calculados conjuntamente",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: (1) inadimplência incontroversa da locatária e (2) inoponibilidade do contrato paralelo ao locador que dele não participou"
+  }
+}

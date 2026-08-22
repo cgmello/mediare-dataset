@@ -1,0 +1,41 @@
+{
+  "caso": "real-044-consumo",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1002380-02.2025.8.26.0002",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "entrada_veiculo": 1200.0,
+      "parcelas_financiamento_pagas": 15170.04,
+      "ipva": 0.0,
+      "manutencoes_diversas": 2820.85,
+      "total_danos_materiais": 19190.89,
+      "danos_morais": 50000.0,
+      "devolucao_total_paga": 16370.04
+    },
+    "obrigacoes_de_fazer": {
+      "resolucao_contrato_compra_venda": true,
+      "cancelamento_financiamento": true,
+      "devolucao_veiculo": true
+    },
+    "pedidos_rejeitados": [
+      "Pedido de condenação da financeira Aymoré (julgado improcedente quanto a esta ré)",
+      "Indenização específica de IPVA (autores tinham ciência do parcelamento)"
+    ],
+    "fundamentos": [
+      "Relação de consumo configurada entre as partes nos termos dos artigos 2º e 3º do CDC",
+      "Laudo pericial técnico concluiu pela existência de vícios ocultos no veículo no momento da aquisição",
+      "Problemas mecânicos iniciaram-se apenas um mês após a compra, dentro do prazo de garantia legal",
+      "Veículo foi adquirido com histórico desconhecido de manutenção nos 9 anos anteriores",
+      "Loja fornecedora não comprovou ter sanado os vícios no prazo de 30 dias conforme art. 18, §1º do CDC",
+      "Responsabilidade da loja vendedora pelos vícios do produto, sendo a financeira mera facilitadora do crédito",
+      "Impossibilidade de uso adequado do bem adquirido autoriza resolução contratual com devolução de valores",
+      "Danos morais configurados pela frustração da expectativa legítima e transtornos causados pelos defeitos reiterados"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido (loja Enjoy Veículos)",
+    "valores": "tolerância ±15% por rubrica; IPVA deve ser 0 pois autores tinham ciência do parcelamento; danos morais entre R$ 42.500,00 e R$ 57.500,00; danos materiais entre R$ 16.312,26 e R$ 22.069,52",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) vícios ocultos comprovados por perícia; (2) problemas iniciados dentro da garantia legal; (3) responsabilidade exclusiva da loja vendedora, não da financeira; (4) CDC aplicável à relação"
+  }
+}

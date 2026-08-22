@@ -1,0 +1,8 @@
+- CNH da condutora V.R.C.O.
+- Documento de propriedade do veículo Range Rover
+- Regulamento Interno do condomínio (artigo 36, §3º)
+- Dois orçamentos de reparos do veículo: R$ 18.956,00 e R$ 23.965,87
+- Imagens das câmeras de segurança do condomínio
+- Análise técnica de velocidade baseada nas imagens (demonstrando velocidade de aproximadamente 8,93 km/h)
+- Fotografias dos danos ao veículo Range Rover
+- Fotografias dos espelhos de orientação instalados nas rampas

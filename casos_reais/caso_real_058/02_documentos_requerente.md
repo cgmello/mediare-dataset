@@ -1,0 +1,9 @@
+- Apólice de seguro vigente à época do sinistro
+- Boletim de Ocorrência do acidente registrado em 09/02/2023
+- Relatório de regulação de sinistro atestando perda total do veículo
+- Fotografias dos danos no veículo Toyota Corolla
+- Comprovante de transferência bancária no valor de R$ 79.925,00 para o segurado
+- Nota fiscal de venda do salvado no valor de R$ 10.500,00
+- Documento do veículo (CRLV) do Toyota Corolla segurado
+- Laudo de avaliação técnica do veículo danificado
+- Termo de quitação assinado pelo segurado

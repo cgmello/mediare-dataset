@@ -1,0 +1,22 @@
+- Contrato de locação assinado em dezembro/2023
+- Laudo de vistoria de entrada do imóvel
+- E-mails da imobiliária de 06/09/2024 notificando a não renovação
+- E-mails da imobiliária de 23/09/2024 solicitando previsão de saída
+- Prints de WhatsApp de 30/09/2024 com cobrança de data de desocupação
+- E-mail/notificação aos proprietários informando desocupação em 11/10/2024
+- Comprovantes de tentativa de pagamento proporcional de aluguel (estornados)
+- Ata notarial (Protocolo 110846, Livro 2236, Páginas 109/112) comprovando desocupação em 11/10/2024
+- Ata notarial comprovando comparecimento para vistoria e não comparecimento dos réus
+- Boletos e cobranças posteriores a 11/10/2024
+- Cobranças enviadas aos fiadores
+- Fotografias dos vazamentos na piscina
+- Fotografias do vazamento no lavabo social
+- Fotografias das infiltrações no estúdio do subsolo
+- Fotografias dos cômodos inutilizados
+- Contas de água demonstrando consumo anormal
+- Histórico de notificações aos proprietários sobre os vícios do imóvel
+- Respostas dos proprietários (ou ausência delas) às solicitações de reparos
+- Comunicação de julho/2024 oferecendo arcar com reparos
+- Resposta negativa dos proprietários
+- Comunicação de agosto/2024 dos proprietários informando que não fariam mais reparos
+- Comprovante de depósito judicial de R$ 4.618,36

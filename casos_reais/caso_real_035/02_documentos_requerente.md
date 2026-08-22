@@ -1,0 +1,8 @@
+- Comprovante de compra do refrigerador datado de 30/11/2024 no valor de R$ 2.598,00
+- Nota fiscal da aquisição do produto Midea modelo MD RT 468FF DUP 220V BCO
+- Fotografias dos amassados/defeitos no refrigerador tiradas no momento da entrega
+- Protocolo de reclamação registrado na loja física da requerida
+- Comprovante de comparecimento à loja física no dia da entrega
+- Registro ou comprovante da visita do preposto da requerida à residência para constatação dos defeitos
+- Eventuais trocas de mensagens ou e-mails com a requerida sobre o problema
+- Cópia do manual/garantia do produto

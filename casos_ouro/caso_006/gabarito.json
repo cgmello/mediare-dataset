@@ -1,0 +1,31 @@
+{
+  "caso": "006-vizinhanca-infiltracao",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1008295-56.2024.8.26.0361 (17/08/2026)",
+  "parecer_esperado": {
+    "responsavel": "parcial_ambos",
+    "resultado": "parcialmente procedente",
+    "obrigacoes_de_fazer": {
+      "impermeabilizar_divisa": true,
+      "instalar_drenagem_aguas_pluviais": true,
+      "prazo_dias": 60,
+      "multa_diaria": 200.0,
+      "teto_multa": 10000.0
+    },
+    "valores": {
+      "danos_materiais_pedidos": 8000.0,
+      "danos_materiais_deferidos": 0.0
+    },
+    "fundamentos": [
+      "aterro elevou o terreno e alterou o escoamento natural das aguas (dever de conter e drenar)",
+      "baldrame sem impermeabilizacao e ausencia de captacao pluvial confirmados por pericia",
+      "danos internos de R$ 8.000 decorreram de defeitos estruturais da propria requerente - ressarcimento negado",
+      "pedido contraposto rejeitado integralmente"
+    ],
+    "observacao": "caso-armadilha: ha obrigacao de fazer SEM indenizacao - a IA nao deve conceder os R$ 8.000"
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "deve impor obrigacao de fazer ao requerido E negar o ressarcimento",
+    "valores": "danos materiais = 0 (match exato)",
+    "fundamentos": "deve distinguir a causa das infiltracoes internas (defeito proprio) da obrigacao de drenagem"
+  }
+}

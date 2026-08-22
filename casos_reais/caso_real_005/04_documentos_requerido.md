@@ -1,0 +1,3 @@
+- Cópia do contrato de locação
+- Comprovante de pagamento da caução (R$ 5.700,00)
+- Declaração de hipossuficiência econômica (para assistência judiciária gratuita)

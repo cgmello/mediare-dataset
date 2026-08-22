@@ -1,0 +1,7 @@
+- Escritura de propriedade do apartamento nº 55
+- Documentação das reformas realizadas no apartamento (projetos, alvarás, se houver)
+- Notas fiscais e recibos de serviços de hidráulica contratados
+- Fotografias do estado atual das instalações hidráulicas do apartamento nº 55
+- Eventual laudo técnico ou vistoria anterior sobre as condições do imóvel
+- Declaração de renda ou documentos que comprovem necessidade de gratuidade de justiça
+- Correspondências ou comunicações trocadas com os autores sobre o assunto

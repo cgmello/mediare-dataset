@@ -1,0 +1,35 @@
+{
+  "caso": "real-168-veiculo_venda",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1014876-89.2024.8.26.0037",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "restituicao_parcelas_financiamento": 0.0,
+      "restituicao_entrada": 0.0,
+      "danos_materiais": 0.0,
+      "danos_morais": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "rescisao_contrato_compra_venda": "não determinada - sentença incompleta",
+      "rescisao_contrato_financiamento": "não determinada - sentença incompleta"
+    },
+    "pedidos_rejeitados": [
+      "Responsabilização do Banco Itaucard por vícios do veículo",
+      "Condenação do banco a indenizações"
+    ],
+    "fundamentos": [
+      "Existência de vício oculto comprovado por perícia judicial: reparos estruturais pretéritos na traseira do veículo (longarina e assoalho) incompatíveis com padrão fabril",
+      "Caracterização de vício redibitório por diminuição substancial do valor do bem, nos termos do art. 441 do Código Civil",
+      "Defeitos de difícil percepção para consumidor leigo, exigindo inspeção especializada, afastando a decadência do art. 26, CDC",
+      "Contratos de compra e venda e financiamento são coligados, justificando rescisão reflexa do mútuo",
+      "Banco não integra a cadeia de fornecimento do veículo, limitando-se a conceder crédito, sem responsabilidade pelos vícios do produto",
+      "Veículo permaneceu apto ao uso regular durante três anos, tendo rodado mais de 57.000 km sob a guarda da autora"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido (Meta Veículos) é responsável; banco não responde por vícios",
+    "valores": "sentença incompleta - não há condenações pecuniárias definidas no trecho fornecido; qualquer valor atribuído deve ser 0 ou considerar fundamentação sobre uso prolongado do bem",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) vício oculto comprovado por perícia, (2) defeito preexistente de difícil percepção, (3) contratos coligados permitem rescisão reflexa, (4) banco não responde por vícios do produto"
+  }
+}

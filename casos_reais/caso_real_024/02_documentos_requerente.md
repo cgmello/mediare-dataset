@@ -1,0 +1,8 @@
+- Contrato de Prestação de Serviços nº 240 assinado em março de 2021
+- Ficha de matrícula nº 3290 da aluna L.L.F.P.
+- Planilha discriminativa dos valores devidos e parcelas inadimplidas
+- Comprovante de matrícula no curso de Gestão Financeira
+- Cláusulas contratuais especificando valor mensal (R$ 100,00) e condições de rescisão
+- Documento da empresa (MEI) comprovando titularidade da instituição de ensino
+- Registro de ausência de formalização de rescisão contratual
+- Demonstrativo financeiro das parcelas vencidas entre abril e julho de 2021

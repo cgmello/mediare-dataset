@@ -1,0 +1,8 @@
+- Contrato-padrão do loteamento Vale do Igapó com cláusula 9ª instituindo taxa de conservação
+- Planilha discriminativa das 35 taxas semestrais devidas totalizando R$ 31.259,43
+- Cópia da petição inicial da Ação Civil Pública nº 0014387-36.2002.8.26.0071 (AMAVI)
+- Decisão liminar/cautelar proferida na ação coletiva
+- Certidão de trânsito em julgado da ação coletiva ocorrido em 2024
+- Histórico de tramitação processual da ação civil pública (2002-2024)
+- Prints de conversas via aplicativo de mensagens sobre negociação do imóvel
+- Estatuto social da empresa Vale do Igapó Empreendimentos Ltda.

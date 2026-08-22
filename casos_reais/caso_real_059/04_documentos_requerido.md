@@ -1,0 +1,7 @@
+- Documento de propriedade da motocicleta Honda CG Titan Mix KS, placa EHB-5170
+- Carteira Nacional de Habilitação da condutora M.E.R.R.
+- Fotografias da motocicleta danificada
+- Orçamentos de reparos na motocicleta no valor de R$ 1.545,88
+- Fotografias do local do acidente demonstrando as condições da via
+- Boletim de Ocorrência
+- Comprovante de residência no Assentamento Maná

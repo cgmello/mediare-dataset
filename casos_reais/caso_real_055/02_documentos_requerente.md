@@ -1,0 +1,10 @@
+- Boletim de Ocorrência do acidente
+- Relatórios médicos e prontuários hospitalares
+- Exames de imagem (radiografias, tomografias)
+- Atestados médicos comprovando as lesões e sequelas
+- Laudos médicos sobre perda de olfato, paladar e audição
+- Receitas médicas e notas fiscais de medicamentos
+- Comprovantes de despesas com tratamento
+- Fotos do local do acidente
+- Fotos da bicicleta danificada
+- Declaração de testemunhas que socorreram a vítima

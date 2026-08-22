@@ -1,0 +1,34 @@
+{
+  "caso": "real-108-vizinhanca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1028923-45.2024.8.26.0562",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "danos_materiais_reparos": 63000.0,
+      "danos_morais_autor_1": 15000.0,
+      "danos_morais_autor_2": 15000.0,
+      "total_danos_morais": 30000.0,
+      "total_condenacao": 93000.0
+    },
+    "obrigacoes_de_fazer": {
+      "reparar_instalacoes_hidraulicas_unidade_55": "Adequar instalações hidráulicas do apartamento nº 55 conforme ABNT NBR 5626",
+      "cessar_vazamentos": "Paralisar imediatamente os vazamentos e infiltrações",
+      "reparar_danos_unidade_45": "Executar ou custear integralmente reparos na unidade nº 45 (cozinha, área de serviço, W.C. e banheiro social)"
+    },
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Perícia técnica comprovou que vazamentos decorrem diretamente de desconformidades técnicas na rede hidráulica do apartamento 55, com divórcio das normas ABNT NBR 5626",
+      "Constatação em vistoria de vazamento ativo, gotejamento e instalações hidráulicas com execução equivocada no imóvel dos réus",
+      "Aplicação do artigo 1.277 do Código Civil sobre direito de vizinhança, que impõe dever de cessar interferências prejudiciais à segurança e saúde",
+      "Comprovação de nexo de causalidade entre as instalações de uso privativo da unidade 55 e os danos na unidade 45",
+      "Responsabilidade objetiva do proprietário do imóvel superior por danos causados ao inferior em razão de vazamentos (arts. 937 e 1.277 do CC)",
+      "Danos materiais documentados por laudo pericial detalhado, com quantificação de R$ 63.000,00 para reparos completos"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - deve ser 'requerido'",
+    "valores": "tolerância ±15% por rubrica (danos materiais: R$ 53.550,00 a R$ 72.450,00; danos morais totais: R$ 25.500,00 a R$ 34.500,00); valores atribuídos devem considerar montante fixado em perícia",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) prova pericial conclusiva sobre origem dos vazamentos na unidade 55; (2) aplicação do direito de vizinhança e responsabilidade objetiva; (3) nexo causal comprovado entre instalações irregulares e danos"
+  }
+}

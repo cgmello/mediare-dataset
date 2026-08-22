@@ -1,0 +1,11 @@
+- Fotografias do local do acidente mostrando a cratera aberta na via
+- Fotografias dos danos no veículo Honda Civic, placa HKN1889 (para-brisa quebrado, danos frontais, airbag acionado)
+- Laudo da seguradora atestando perda total do veículo
+- Relatórios médicos atestando hematomas no braço
+- Laudos médicos confirmando queimaduras de segundo grau decorrentes do airbag
+- Fotografias das lesões no rosto (deformação temporária)
+- Fotografias das bolhas na pele
+- Receitas médicas e prescrições de medicamentos
+- Laudo psicológico atestando abalo emocional decorrente do acidente
+- Boletim de ocorrência do acidente (se houver)
+- Documentos do veículo (CRLV)

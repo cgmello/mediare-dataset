@@ -1,0 +1,8 @@
+- Escritura ou matrícula do imóvel comprovando a propriedade
+- Fotografias datadas mostrando a evolução dos danos no muro (infiltrações, umidade, bolor, trincas, perfuração)
+- Vídeo demonstrando vazamento de água, areia e detritos pelo muro
+- Laudo técnico particular elaborado por arquiteta em fevereiro/2024 (R$ 1.400,00)
+- Recibo de pagamento do laudo técnico
+- Orçamentos de empresas especializadas para reparação dos danos (estimativa de R$ 30.000,00)
+- Registros de tentativas de contato com o vizinho (mensagens, e-mails, cartas)
+- Eventuais atestados médicos relacionados a problemas de saúde decorrentes de umidade/bolor

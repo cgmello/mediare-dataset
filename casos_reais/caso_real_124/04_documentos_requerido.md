@@ -1,0 +1,11 @@
+- Contrato de empreitada com cláusulas sobre prorrogação de prazo
+- Documentação que comprova atuação apenas como responsável técnico
+- Cronograma de liberação de recursos pela Caixa Econômica Federal
+- Registros de medições realizadas pela CEF
+- Prints de conversas demonstrando solicitações de alteração pela autora
+- Comprovantes de redirecionamento do valor da escada para muros de divisa
+- Memorial descritivo não vedando uso de telhas de fibrocimento
+- Notas fiscais e comprovantes de serviços de vidros e plásticos executados
+- Orçamentos demonstrando que esquadrias automatizadas custam mais
+- Registros fotográficos demonstrando estágio avançado da obra (95%)
+- Documentos técnicos atestando qualidade dos serviços executados

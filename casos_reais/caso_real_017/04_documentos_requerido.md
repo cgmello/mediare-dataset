@@ -1,0 +1,6 @@
+- Cópia do contrato de locação
+- Comprovantes de pagamentos realizados durante a locação
+- Documentos pessoais (RG, CPF)
+- Declaração sobre não pagamento da caução
+- Planilha com cálculos contestando os valores apresentados pelas locadoras
+- Pesquisas sobre jurisprudência quanto à ilegalidade de cobrança de taxa bancária e honorários contratuais

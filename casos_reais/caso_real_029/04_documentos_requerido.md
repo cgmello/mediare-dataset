@@ -1,0 +1,9 @@
+- Contrato principal de empreitada firmado com o Grupo I.M.
+- Instrumento Particular de Ajustamento de Regras Gerais de Prestação de Serviço firmado com a requerente (mesma via)
+- Pedidos de compra emitidos (nºs 30265, 31015 e 31327)
+- Comprovantes de pagamentos parciais realizados diretamente à requerente
+- Documentos do processo nº 1040824-38.2023.8.26.0564 (ação contra o Grupo I.M.)
+- Contestação/reconvenção apresentada naquele processo
+- Comprovantes de comunicações sobre a sistemática de faturamento direto ao Grupo I.M.
+- Documentos relacionados à rescisão do contrato principal ocorrida em 03/11/2023
+- Eventual planilha própria de medição dos serviços executados

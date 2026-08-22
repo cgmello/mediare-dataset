@@ -1,0 +1,8 @@
+- Boletim de Ocorrência Eletrônico do acidente datado de 11/05/2023
+- Fotografias do veículo sinistrado mostrando avarias na traseira e dianteira direita
+- Orçamento da oficina Realkar Serviços e Peças Ltda. no valor de R$ 18.472,00
+- Orçamento elaborado pela rede da seguradora do requerido (sistema Cilia) no valor de R$ 19.355,33
+- Documento de propriedade do veículo Chevrolet Prisma Joy, placas FCD0845
+- Declaração da empresa informando o período de paralisação (82 dias úteis entre 11/05/2023 e 15/08/2023)
+- Declaração da associação de classe indicando valor de diária de locação de táxi em R$ 130,00
+- Comprovante de entrada do veículo na oficina em 01/06/2023

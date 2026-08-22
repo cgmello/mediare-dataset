@@ -1,0 +1,3 @@
+- Nota fiscal de serviço de reparo emitida pela J.R. Diesel Bombas Injetoras Ltda. ME, em nome de A.P., no valor de R$ 6.134,00
+- Documentos pessoais do requerido V.P. comprovando ser produtor rural
+- Comprovante de residência na Comarca de Palmital

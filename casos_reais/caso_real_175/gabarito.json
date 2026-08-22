@@ -1,0 +1,35 @@
+{
+  "caso": "real-175-veiculo_venda",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1006637-55.2024.8.26.0568",
+  "parecer_esperado": {
+    "responsavel": "requerente",
+    "resultado": "improcedente",
+    "valores": {
+      "restituicao_veiculo": 0.0,
+      "indenizacao": 0.0,
+      "valor_venda_reconhecido": 25000.0
+    },
+    "obrigacoes_de_fazer": {
+      "revogacao_bloqueio_transferencia": "deferida em favor do requerido"
+    },
+    "pedidos_rejeitados": [
+      "Declaração de nulidade do negócio jurídico",
+      "Declaração de nulidade da transferência",
+      "Reintegração de posse do veículo",
+      "Manutenção do bloqueio de transferência no DETRAN/SP"
+    ],
+    "fundamentos": [
+      "Boa-fé objetiva e subjetiva comprovada do adquirente que realizou pesquisa veicular, vistoria presencial, laudo cautelar e pagamento integral do preço (art. 113 CC)",
+      "Culpa exclusiva do vendedor que confirmou vínculo familiar falso com intermediário golpista e autorizou expressamente pagamento a terceiro perante tabelião",
+      "Negligência do autor que assinou ATPV com reconhecimento de firma em cartório sem conferir previamente o crédito em sua conta bancária pessoal",
+      "Teoria da aparência: vendedor criou estado de fato de aparente regularidade ao atestar credibilidade do intermediário perante o tabelião",
+      "Vedação ao comportamento contraditório (venire contra factum proprium - art. 150 CC): autor não pode anular negócio após criar confiança legítima no adquirente",
+      "Transmissão válida da propriedade móvel por tradição (arts. 1.226 e 1.267 CC) com convergência de vontades manifestada perante fé pública notarial"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato: deve identificar culpa exclusiva do requerente/vendedor",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0; valor da venda reconhecido como R$ 25.000,00 (não R$ 35.000,00)",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: boa-fé do adquirente, culpa/negligência do vendedor, teoria da aparência/confiança legítima, vedação ao comportamento contraditório"
+  }
+}

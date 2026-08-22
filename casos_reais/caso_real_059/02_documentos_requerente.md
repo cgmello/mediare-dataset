@@ -1,0 +1,7 @@
+- Documento de propriedade do veículo VW Gol 1.0, placa CYU-5931
+- Carteira Nacional de Habilitação do condutor J.P.F.A.
+- Fotografias do veículo danificado
+- Orçamentos de reparos no valor total de R$ 5.277,00
+- Fotografia do local do acidente (via rural não pavimentada)
+- Boletim de Ocorrência do acidente
+- Comprovante de residência no Assentamento Maná

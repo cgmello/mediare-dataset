@@ -1,0 +1,32 @@
+{
+  "caso": "real-057-transito",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1012018-28.2025.8.26.0562",
+  "parecer_esperado": {
+    "responsavel": "requerente",
+    "resultado": "improcedente",
+    "valores": {
+      "indenizacao_danos_materiais_autoras": 0.0,
+      "franquia_seguro_autoras": 0.0,
+      "indenizacao_danos_materiais_reconvinte": 18956.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Condenação da ré ao pagamento de R$ 17.528,00 referente à franquia do seguro",
+      "Ressarcimento por danos materiais em favor das autoras",
+      "Nova perícia conforme artigo 480 do CPC"
+    ],
+    "fundamentos": [
+      "Preferência de passagem pertencia ao veículo em ascensão (subida) conforme artigo 36, §3º do Regulamento Interno do condomínio",
+      "Veículo em subida tinha ângulo de visão severamente prejudicado pela inclinação da rampa de 14 graus (ponto cego acentuado)",
+      "Velocidade do veículo da ré estava abaixo do limite regulamentar (9,84 km/h, inferior aos 10 km/h permitidos), conforme perícia de engenharia",
+      "Condutora do veículo Jetta não observou os espelhos de orientação e desceu a rampa sem verificar a presença do veículo que já subia",
+      "Falha prioritária foi a não observância do veículo que subia a rampa pelo veículo que descia, conforme laudo pericial",
+      "Condutora do Jetta poderia ter imobilizado o veículo no andar superior caso tivesse observado adequadamente a subida do Range Rover"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerente deve ser identificado como responsável",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0; indenização às autoras deve ser zero; indenização à reconvinte entre R$ 16.112,60 e R$ 27.560,75 (considerando orçamentos apresentados)",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) preferência do veículo em subida, (2) ângulo de visão prejudicado/ponto cego da ré, (3) velocidade dentro do limite regulamentar, (4) falha de observação da condutora do Jetta"
+  }
+}

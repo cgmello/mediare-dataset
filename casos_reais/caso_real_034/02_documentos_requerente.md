@@ -1,0 +1,5 @@
+- Nota fiscal da compra do panetone no valor de R$ 11,90 datada de 22/12/2024
+- Comprovante de devolução/ressarcimento do valor pelo supermercado
+- Fotografias do panetone com mofo e bolor esverdeado
+- Fotografia da embalagem mostrando prazo de validade (31/03/2025) e identificação do fabricante
+- Comprovantes de deslocamento (passagens/combustível) para retornar ao estabelecimento

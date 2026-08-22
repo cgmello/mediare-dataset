@@ -1,0 +1,8 @@
+- Escritura de compra e venda do imóvel (apartamento O-103, Condomínio Reserva de Morato II) datada de dezembro/2024
+- Certidão de matrícula do imóvel atualizada, comprovando o registro da venda
+- Notificação enviada à empresa LLZ Solução Cobrança Ltda informando sobre a venda do imóvel
+- Capturas de tela de mensagens via WhatsApp recebidas da empresa cobradora entre fevereiro e junho/2025
+- Registro de ligações telefônicas recebidas no número 957**-1124
+- Cópias de e-mails de cobrança recebidos no endereço weis*******@gmail.com
+- Prints de conversas onde o requerente informa à empresa sobre a venda do imóvel
+- Comprovante de que a comunicação sobre a mudança de titularidade foi feita à empresa

@@ -1,0 +1,8 @@
+- Comprovantes de pagamento dos aluguéis de janeiro e fevereiro de 2024
+- Fotografias das benfeitorias realizadas no imóvel ao longo dos anos
+- Notas fiscais, recibos e comprovantes de gastos com materiais de construção e reformas
+- Orçamentos e contratos com prestadores de serviços para obras no imóvel
+- Documentação da atividade empresarial exercida no local
+- Correspondências ou comunicações com o locador sobre as benfeitorias
+- Laudo técnico ou avaliação estimativa das benfeitorias (R$ 130.000,00)
+- Registro fotográfico do estado anterior e atual do imóvel

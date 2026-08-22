@@ -1,0 +1,33 @@
+{
+  "caso": "real-145-divida",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1014110-12.2023.8.26.0606",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "divida_principal_parcelas_11_12_13": 2166.66,
+      "juros_moratorios": 0.0,
+      "multa_contratual": 0.0,
+      "valor_total_atualizado": 2816.65,
+      "custas_processuais": 0.0,
+      "honorarios_advocaticios_percentual": 10.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Gratuidade da justiça para a corré A.T.C.S."
+    ],
+    "fundamentos": [
+      "Documento particular de confissão de dívida com assinaturas reconhecidas possui presunção de autenticidade (art. 411, I, CPC) e faz prova das declarações nele contidas (art. 408 CPC)",
+      "Negativa geral apresentada por curador especial afasta efeitos formais da revelia mas não desincumbe os devedores do ônus probatório quanto a fato impeditivo, modificativo ou extintivo do direito do autor (art. 373, II, CPC)",
+      "Ausência de comprovação de quitação total ou parcial dos valores reclamados pelos requeridos",
+      "Citação pessoal do corréu I.F. com inércia configura revelia e constitui de pleno direito o título executivo judicial (art. 701, §2º, CPC)",
+      "Citação por hora certa da corré A.T.C.S. observou todas as formalidades legais (arts. 252, 253 e 254 CPC), legitimando a nomeação de curador especial",
+      "Prova escrita pré-constituída demonstra a obrigação de pagar quantia certa, preenchendo os requisitos da ação monitória (art. 700, I, CPC)"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido",
+    "valores": "tolerância ±15% por rubrica; o valor total atualizado de R$ 2.816,65 deve ser reconhecido; rubricas de juros e multa já estão embutidas no valor atualizado apresentado",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) força probante do documento particular com firmas reconhecidas; (2) insuficiência da negativa geral para elidir prova documental; (3) ausência de prova de pagamento pelos réus; (4) constituição de pleno direito do título executivo em face do revel citado pessoalmente"
+  }
+}

@@ -1,0 +1,10 @@
+- Contrato de prestação de serviços assinado pela requerente
+- Termo de ciência e consentimento informando riscos do procedimento (queimaduras e alterações pigmentares)
+- Ficha técnica da sessão de 24/06/2024 com registro do padrão de fluência utilizado (095040)
+- Histórico completo de sessões anteriores da requerente
+- Registros técnicos demonstrando parâmetros idênticos em sessões prévias sem intercorrências
+- Literatura médica especializada sobre riscos da depilação a laser
+- Certificados de calibração e manutenção do equipamento utilizado
+- Comprovantes de capacitação técnica dos profissionais
+- Protocolo interno de execução do procedimento
+- Documentação societária do grupo econômico

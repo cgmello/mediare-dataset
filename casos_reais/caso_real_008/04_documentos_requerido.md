@@ -1,0 +1,8 @@
+- Contrato de locação assinado pelas partes
+- Laudo de vistoria do imóvel (emitido unilateralmente, sem assinatura dos locatários)
+- Fotografias do estado do imóvel após a desocupação
+- Orçamentos para reparo do boiler
+- Orçamentos para conserto de móveis
+- Comprovantes de tentativas de contato com os locatários
+- Cláusula contratual prevendo multa por rescisão antecipada
+- Alegações de presença de terceiros no imóvel (sem comprovação de sublocação)

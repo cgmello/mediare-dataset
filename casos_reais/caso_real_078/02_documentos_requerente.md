@@ -1,0 +1,11 @@
+- Troca de e-mails formalizando a contratação e o valor global de R$ 750.000,00
+- Planilha discriminando as 7 parcelas acordadas
+- Comprovantes de recebimento de 6 parcelas
+- Aditivo Contratual nº 1 com serviços extras solicitados
+- Aditivo Contratual nº 2 com serviços extras solicitados
+- Orçamentos e planilhas dos serviços adicionais totalizando R$ 130.465,48
+- Comprovante de recebimento parcial de R$ 50.000,00 referente aos aditivos
+- Termo de entrega do imóvel reformado datado de 18/06/2021
+- Registros fotográficos da obra executada
+- Notas fiscais de materiais adquiridos para a obra
+- Controle de execução de serviços e cronograma ajustado em razão da pandemia

@@ -1,0 +1,37 @@
+{
+  "caso": "real-104-vizinhanca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1001743-60.2023.8.26.0539",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "danos_materiais": 38439.45,
+      "danos_morais_autor_1": 10000.0,
+      "danos_morais_autor_2": 10000.0,
+      "danos_morais_total": 20000.0,
+      "total_condenacao": 58439.45
+    },
+    "obrigacoes_de_fazer": {
+      "demonstrar_seguranca_obra": true,
+      "instalar_cintas_amarracao_muro_divisa": true,
+      "aviso_previo_novas_intervencoes": true,
+      "permitir_acompanhamento_pessoa_confianca": true
+    },
+    "pedidos_rejeitados": [
+      "Pedido de execução in natura pelos prestadores de serviço dos réus (formulado na contestação sem reconvenção)"
+    ],
+    "fundamentos": [
+      "Responsabilidade civil objetiva no direito de vizinhança (artigos 1.299, 1.311 e 1.312 do Código Civil) - dispensável a prova de culpa, bastando demonstrar o dano e o nexo causal",
+      "Laudo pericial oficial comprovou nexo causal entre a obra dos réus (aterro, muro de arrimo e ampliação) e os danos no imóvel dos autores (recalque diferencial na fundação, trincas, rachaduras, infiltrações e umidade)",
+      "Perícia constatou que o imóvel dos autores (43 anos) está em boas condições gerais, apresentando vícios exclusivamente na região afetada pela obra dos réus, afastando a tese de desgaste natural",
+      "Obra iniciada de forma clandestina em novembro/2022, sem projeto aprovado, sem alvará e sem responsável técnico (regularização só ocorreu em abril/maio 2023), caracterizando irregularidade técnica",
+      "Danos materiais quantificados pela perícia judicial com base em custos técnicos de reparação estrutural, impermeabilização e restauração",
+      "Danos morais configurados pela insegurança habitacional, transtornos prolongados e abalo psicológico causados pelas avarias estruturais em residência de casal idoso"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - deve ser 'requerido'",
+    "valores": "tolerância ±15% por rubrica; total de danos materiais deve estar entre R$ 32.673,53 e R$ 44.205,37; danos morais totais entre R$ 17.000,00 e R$ 23.000,00",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) responsabilidade objetiva no direito de vizinhança, (2) laudo pericial confirmando nexo causal entre obra e danos estruturais, (3) obra irregular/clandestina no início"
+  }
+}

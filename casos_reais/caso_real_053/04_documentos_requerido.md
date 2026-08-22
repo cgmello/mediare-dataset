@@ -1,0 +1,6 @@
+- Laudo técnico do setor de qualidade da empresa
+- Fotografias do produto recebidas via aplicativo de mensagens
+- Especificações técnicas do produto modelo Rowan Satchel
+- Manual de conservação e cuidados com produtos de couro
+- Registro da oferta de bônus de 25% realizada ao consumidor
+- Histórico de mensagens trocadas com o requerente

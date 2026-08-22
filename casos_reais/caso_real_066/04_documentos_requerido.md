@@ -1,0 +1,11 @@
+- Boletim de Ocorrência (versão do requerido)
+- Laudo do Instituto de Criminalística
+- Declaração da esposa M.N.A.S. afirmando que o autor olhava para baixo
+- Cópia do procedimento criminal nº 1501833-88.2024.8.26.0114 constando o autor como "autor do fato"
+- Declaração da testemunha G.M.L.S.E. (que chegou após o acidente)
+- Documentos do veículo Fiat Toro
+- Orçamentos e comprovantes de perda total do veículo
+- Comprovantes de gastos com transporte por aplicativo
+- Cópia da petição inicial do processo nº 1008886-10.2023.8.26.0084 (Campinas)
+- Comprovante de protocolo de contestação no processo de Campinas
+- CNH e documentos pessoais

@@ -1,0 +1,10 @@
+- Matrícula do imóvel do apartamento 58
+- Fotografias dos danos (infiltrações, teto que cedeu, umidade)
+- Vídeo mostrando vazamentos ativos
+- Laudo técnico de engenheiro identificando origem dos vazamentos no apartamento 68
+- Comprovantes de pagamento pela troca da bacia sanitária do apartamento da requerida
+- Orçamentos e notas fiscais totalizando R$ 3.830,00 referentes a reparos no apartamento 58
+- Prints de mensagens e tentativas de contato com a requerida
+- Notificação extrajudicial enviada em março/2024 com AR
+- Ata ou documentos do condomínio sobre a troca da coluna central
+- Fotografias do estado atual do banheiro

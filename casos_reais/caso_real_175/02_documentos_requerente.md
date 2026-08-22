@@ -1,0 +1,8 @@
+- Autorização para Transferência de Propriedade de Veículo (ATPV/CRV) assinada e reconhecida em cartório
+- Documento de identidade e CPF
+- Certificado de Registro de Veículo (CRV) do FIAT STRADA, placas NCG7C04
+- Extrato bancário do Banco Bradesco demonstrando ausência de crédito de R$ 35.000,00 ou R$ 25.000,00
+- Prints de conversas com o suposto intermediário E.R./W.R. via aplicativo de mensagens
+- Comprovante falso de transferência PIX apresentado pelo golpista
+- Anúncio do veículo publicado em grupo de vendas na internet
+- Boletim de Ocorrência (presumível) registrando o estelionato

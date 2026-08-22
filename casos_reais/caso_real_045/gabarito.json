@@ -1,0 +1,27 @@
+{
+  "caso": "real-045-consumo",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1003326-43.2025.8.26.0270",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "restituicao_valores_pagos": 40270.63,
+      "danos_morais": 25000.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Reconhecimento de simulação: o contrato denominado 'locação' na verdade dissimulava compra e venda parcelada, pois havia intenção de transferência definitiva da propriedade ao final dos pagamentos (art. 167, CC)",
+      "Existência de vício oculto no motor do veículo, comprovado por prova testemunhal de mecânico com 20 anos de experiência que atestou problema preexistente à aquisição",
+      "Inversão do ônus da prova em favor da consumidora (CDC art. 6º, VIII), não tendo o requerido demonstrado inexistência do vício ou que decorreu de mau uso",
+      "Ilegalidade da retomada extrajudicial do veículo realizada sem ordem judicial, configurando exercício arbitrário das próprias razões e autotutela vedada pelo ordenamento",
+      "Impugnação genérica às capturas de WhatsApp não infirma sua validade probatória, sendo corroboradas pelos demais elementos dos autos",
+      "Preclusão do direito do requerido à produção de prova testemunhal por descumprimento de ordem judicial que determinara apresentação tempestiva do rol"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: (1) simulação/natureza real de compra e venda; (2) vício oculto preexistente comprovado; (3) ilegalidade da retomada extrajudicial"
+  }
+}

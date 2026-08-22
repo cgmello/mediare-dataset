@@ -1,0 +1,14 @@
+- Matrícula do imóvel nº 8.039
+- Notificação extrajudicial datada de 27/03/2023
+- Laudo técnico de vistoria elaborado pelo engenheiro civil L. A. C. P. em 02/05/2023
+- Fotografias dos danos: trincas e rachaduras nas paredes do porão/edícula
+- Fotografias das infiltrações de água e lama no piso de madeira
+- Fotografias dos danos no reboco e pintura da divisa
+- Fotografias do vão aberto entre os muros sem selamento
+- Fotografias da cerca elétrica e concertina rompidas
+- Fotografias dos respingos de argamassa no pergolado de vidro, corredor, vigas, escadas e deck
+- Fotografias da parede elevada sem estrutura adequada
+- Fotografias dos danos na calçada
+- Fotografias do acúmulo de sujeira e entulhos
+- Orçamentos de reparos no valor total de R$ 38.439,45
+- Documentos pessoais (RG, CPF, comprovante de residência)

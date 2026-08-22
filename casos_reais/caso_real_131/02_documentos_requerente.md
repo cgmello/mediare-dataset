@@ -1,0 +1,8 @@
+- Proposta de compra e venda assinada em 25/10/2014
+- Comprovantes de pagamento integral das parcelas do contrato
+- Certidão de distribuição de ações demonstrando a execução nº 1002901-82.2023.8.26.0400
+- Documentos bancários comprovando bloqueio de contas
+- Certidão de protesto em nome da requerente
+- Correspondências trocadas com a empresa (se houver)
+- Extratos bancários demonstrando os pagamentos realizados
+- Documentos pessoais (RG, CPF, comprovante de residência)

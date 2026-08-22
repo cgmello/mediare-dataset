@@ -1,0 +1,36 @@
+{
+  "caso": "001-locacao-vicios-ocultos",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1007405-93.2025.8.26.0099 (18/08/2026)",
+  "parecer_esperado": {
+    "responsavel": "requerida_locadora",
+    "culpa": "exclusiva da locadora pela rescisao",
+    "fundamentos": [
+      "Lei 8.245/1991, art. 22, I - entregar o imovel em estado de servir ao uso",
+      "Lei 8.245/1991, art. 22, III - manter a forma e o destino do imovel",
+      "Lei 8.245/1991, art. 22, IV - responder pelos vicios anteriores a locacao",
+      "ausencia de laudo de vistoria inicial impede imputar danos aos locatarios",
+      "sublocacao nao autorizada nao comprovada"
+    ],
+    "valores": {
+      "devolucao_caucao": 20000.00,
+      "multa_contratual": 15000.00,
+      "danos_morais_total": 10000.00,
+      "danos_morais_por_requerente": 5000.00
+    },
+    "pedido_contraposto": {
+      "resultado": "improcedente",
+      "motivos": [
+        "sem vistoria inicial bilateral nao ha prova do estado de entrega",
+        "sublocacao alegada sem prova documental"
+      ]
+    },
+    "obrigacao_acessoria": "abster-se de contato com os requerentes fora do procedimento",
+    "correcao_monetaria": "IPCA ate a citacao; apos, SELIC deduzido o IPCA (Lei 14.905/2024)"
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia de +/- 15% por rubrica",
+    "fundamentos": "minimo 2 dos 3 incisos do art. 22 citados",
+    "pedido_contraposto": "match exato no resultado"
+  }
+}

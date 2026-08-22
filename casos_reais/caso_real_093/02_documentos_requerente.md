@@ -1,0 +1,12 @@
+- Contrato de prestação de serviços de construção e reforma (valor R$ 400.000,00)
+- Comprovantes de pagamento via transferência bancária
+- Comprovantes de pagamento via Pix
+- Comprovantes de pagamento via cartão de crédito
+- Extratos bancários demonstrando os pagamentos
+- Mensagens eletrônicas trocadas com a empresa requerida
+- Notas fiscais de materiais emitidas pela requerida (ar condicionado, drywall, material elétrico, gesso, alarme de incêndio) totalizando aproximadamente R$ 30.000,00
+- Notificação extrajudicial enviada em 15/05/2024 (primeiro aviso)
+- Notificação extrajudicial (segundo aviso)
+- Comprovantes de recebimento das notificações
+- Registro fotográfico dos defeitos (ar condicionado com vazamento, drywall mal fechado, fiação aparente, porta com folga)
+- Histórico de mensagens cobrando reparos

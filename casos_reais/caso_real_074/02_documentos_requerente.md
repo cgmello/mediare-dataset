@@ -1,0 +1,9 @@
+- Contrato particular de empreitada para construção;
+- Contrato de financiamento habitacional com a Caixa Econômica Federal assinado em 22/06/2020;
+- Notas fiscais e recibos de materiais de construção adquiridos (R$ 12.090,13);
+- Comprovantes de pagamento de aluguéis durante o período de atraso;
+- Orçamentos de reparos dos vícios construtivos (R$ 14.675,48);
+- Registro fotográfico dos defeitos (infiltrações, mofo, vazamentos, problemas elétricos);
+- Habite-se municipal emitido em 14/04/2021;
+- Eventuais comunicações com a construtora sobre os problemas;
+- Comprovante de residência do imóvel alugado.

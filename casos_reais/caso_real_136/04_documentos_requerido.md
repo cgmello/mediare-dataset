@@ -1,0 +1,13 @@
+- Convenção e Regimento Interno do Condomínio G.
+- Notificação extrajudicial enviada à requerente em 23/03/2023
+- Notificação de aplicação de multa enviada em 22/05/2023
+- Ata de reunião condominial
+- Relatório técnico sobre capacidade dos geradores e riscos de sobrecarga
+- Registros de advertências realizadas à requerente
+- Prints de mensagens trocadas via WhatsApp com a requerente
+- Relação de outros condôminos que utilizaram irregularmente as tomadas
+- Documentos comprobatórios da disponibilização da geladeira de área comum
+- Normas de segurança sobre uso de geradores
+- Planilha de custos operacionais dos geradores
+- Documentos de CNPJ do condomínio
+- Documentação da síndica

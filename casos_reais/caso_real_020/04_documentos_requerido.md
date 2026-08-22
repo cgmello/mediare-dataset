@@ -1,0 +1,3 @@
+- Contrato de cessão e transferência de direito possessório de imóvel celebrado com N.A.B.
+- Documentação do terreno cedido à corretora
+- Cláusula contratual prevendo pagamento através de desconto nos aluguéis

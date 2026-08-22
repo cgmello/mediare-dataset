@@ -1,0 +1,11 @@
+- Contrato original com prazo de entrega estipulado para 06/03/2025
+- Comprovantes de pagamento de aluguel referentes ao período de atraso
+- Recibos de pagamento de condomínio
+- Folhas de pagamento de funcionários contratados
+- Registro fotográfico dos vícios construtivos alegados
+- Orçamentos de correção dos vícios identificados
+- Projeção de faturamento da loja demonstrando lucros cessantes
+- Comunicações enviadas à requerente reclamando do atraso
+- Notificações sobre os vícios construtivos
+- Comprovante do pagamento parcial de R$ 7.969,75
+- Documentos demonstrando gastos com fornecedores no período

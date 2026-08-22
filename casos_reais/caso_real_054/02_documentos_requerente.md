@@ -1,0 +1,8 @@
+- Certificado de Registro e Licenciamento do Veículo (CRLV) em nome de G.V.
+- Fotografias do veículo danificado após a colisão
+- Comprovante de pagamento da franquia do seguro no valor de R$ 5.538,85
+- Apólice de seguro do veículo junto à Azul Seguros
+- Documentos comprobatórios da atividade autônoma de fretes e carretos
+- Declaração de imposto de renda ou recibos de serviços prestados
+- Planilha estimativa de lucros cessantes no período de reparo do veículo
+- Orçamentos ou notas fiscais dos reparos realizados no veículo

@@ -1,0 +1,8 @@
+- Escritura ou matrícula do imóvel dos requerentes
+- Laudo técnico extrajudicial de engenharia detalhando as patologias (infiltrações, trincas, rachaduras, solapamento, comprometimento do muro)
+- Fotografias dos danos no imóvel (muro divisório, estruturas, solo)
+- Orçamento das intervenções necessárias (retirada de telhado, demolição/reconstrução do muro, compactação de solo, etc.)
+- Cópia do projeto aprovado pela Municipalidade para a obra da requerida
+- Documentos da Prefeitura sobre irregularidades ou embargo da obra vizinha
+- Comprovante de tentativas de solução amigável (mensagens, notificações)
+- Fotografias do imóvel antes da construção vizinha (se disponíveis)

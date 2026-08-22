@@ -1,0 +1,13 @@
+- Contrato particular de promessa de compra e venda nº RP001213 assinado pelo autor em 08/03/2022
+- Termo de verificação assinado pelo autor
+- Cláusulas contratuais destacando as condições rescisórias (cláusula sétima, item 8)
+- Cláusula de eleição de foro
+- Comprovante de registro do empreendimento sob regime de afetação
+- Memorial descritivo do empreendimento Royal Prime Thermas Resort
+- Documentação do regime de multipropriedade
+- Planilha de custos administrativos e operacionais
+- Comprovante de pagamento de comissão de corretagem
+- Comprovantes de despesas com marketing e brindes oferecidos
+- Cópia da Lei 13.786/2018 aplicável ao contrato
+- Jurisprudência sobre retenção em contratos de multipropriedade
+- Eventuais comunicados enviados ao autor durante a vigência contratual

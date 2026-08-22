@@ -1,0 +1,6 @@
+- Fotografias do muro divisório mostrando o apoio do telhado do vizinho
+- Fotografias da parede da edificação do vizinho encostada no muro da requerente
+- Fotografias evidenciando umidade e infiltrações
+- Comprovante de propriedade/posse do imóvel (matrícula ou escritura)
+- Fotografias da caixa d'água do vizinho e do transbordamento
+- Imagens do terreno da requerente com água proveniente do imóvel vizinho

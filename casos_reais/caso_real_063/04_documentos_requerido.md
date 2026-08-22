@@ -1,0 +1,9 @@
+- Contrato de concessão da Rodovia SP-255
+- Edital de concessão contendo previsão de inspeções a cada 90 minutos
+- Planilhas e relatórios de vistoria demonstrando fiscalização realizada aproximadamente 30 minutos antes do acidente
+- Registro de inspeção do trecho Km 295 no dia 12/01/2025
+- Escalas de fiscalização e monitoramento da rodovia
+- Relatórios de ocorrências internas
+- Normas e procedimentos operacionais de fiscalização
+- Comprovantes de atendimento ao local do acidente
+- Registros fotográficos ou de sistema de monitoramento

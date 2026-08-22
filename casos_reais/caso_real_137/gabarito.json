@@ -1,0 +1,38 @@
+{
+  "caso": "real-137-condominio",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1011938-17.2020.8.26.0602",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "danos_morais": 0.0,
+      "custas_processuais": 0.0,
+      "honorarios_advocaticios": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "lavratura_e_registro_escritura": "O réu Santo Laurino deverá providenciar a lavratura da escritura pública de compra e venda junto a Tabelionato de Notas e promover o registro na Matrícula nº 157.840 do 1º CRI de Sorocaba/SP",
+      "prazo": "60 dias",
+      "responsavel_custas": "O réu deverá arcar com emolumentos, ITBI e taxas cartorárias",
+      "transferencia_cadastros": "Transferência dos cadastros de IPTU e condominial para nome do adquirente",
+      "suprimento_judicial": "Em caso de inércia, a sentença valerá como suprimento judicial da declaração de vontade"
+    },
+    "pedidos_rejeitados": [
+      "Indenização por danos morais de R$ 5.000,00",
+      "Fixação de astreintes (multa diária)"
+    ],
+    "fundamentos": [
+      "A cessão de direitos contratuais não produz efeitos perante o promitente vendedor sem sua anuência prévia e expressa (artigos 286, 290 e 299 do Código Civil)",
+      "O réu não apresentou documento que comprove cessão formalmente aperfeiçoada nem anuência expressa da autora vendedora",
+      "A terceira Elena Alves de Lima confirmou a inexistência de contrato escrito e ausência de relação jurídica direta com a construtora",
+      "A promessa de compra e venda entre autora e réu permanece válida e eficaz, gerando obrigações recíprocas após a quitação",
+      "A manutenção da propriedade formal em nome do vendedor após quitação gera riscos patrimoniais evidentes (responsabilidade por obrigações propter rem como IPTU e taxas condominiais)",
+      "O artigo 490 do Código Civil estabelece que as despesas de escritura e registro ficam a cargo do comprador, salvo cláusula em contrário"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - deve ser 'requerido'",
+    "valores": "danos morais devem ser exatamente 0 (pedido rejeitado); demais rubricas monetárias também 0",
+    "obrigacoes_de_fazer": "deve incluir obrigatoriamente: (1) lavratura de escritura, (2) registro no CRI, (3) pagamento de custas/ITBI pelo réu, (4) transferência de cadastros municipais/condominiais",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (a) ausência de anuência formal à cessão, (b) permanência da validade do contrato original, (c) riscos ao vendedor por obrigações propter rem, (d) aplicação do art. 490 CC quanto às custas"
+  }
+}

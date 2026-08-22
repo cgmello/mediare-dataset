@@ -1,0 +1,5 @@
+- Contrato particular de empreitada assinado por ambas as partes
+- Fotografias da obra em estágio avançado de execução
+- Fotografias do lote 11-E da quadra 25
+- Boletim de ocorrência relatando impedimento de acesso à obra e destruição de benfeitorias
+- Cadastro municipal identificando a localização e características do lote prometido como pagamento

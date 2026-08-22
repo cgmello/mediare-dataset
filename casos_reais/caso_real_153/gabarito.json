@@ -1,0 +1,32 @@
+{
+  "caso": "real-153-servicos",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1003422-89.2024.8.26.0562",
+  "parecer_esperado": {
+    "responsavel": "requerente",
+    "resultado": "improcedente",
+    "valores": {
+      "restituicao_tratamento": 0.0,
+      "tratamento_reparador": 0.0,
+      "danos_morais": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Restituição de R$ 13.000,00 pagos pelo tratamento",
+      "Ressarcimento de R$ 5.300,00 para tratamento reparador",
+      "Indenização por danos morais de R$ 20.000,00"
+    ],
+    "fundamentos": [
+      "Perícia oficial conclusiva atestou que o planejamento e execução do tratamento seguiram rigorosamente as boas práticas e protocolos odontológicos, com uso de planejamento tomográfico e cirurgia guiada",
+      "Ausência de falha técnica, imperícia ou negligência na conduta do profissional réu conforme laudo pericial",
+      "Culpa exclusiva da consumidora configurada: manutenção do hábito de tabagismo durante período crítico de cicatrização comprometeu a osseointegração dos implantes",
+      "Descumprimento de orientações pós-operatórias pela paciente, incluindo realização de bochechos contraindicados que desestabilizaram o coágulo sanguíneo",
+      "Recusa da paciente em realizar cirurgia complementar recomendada por especialista agravou o próprio quadro",
+      "Aplicação da excludente de responsabilidade prevista no art. 14, §3º, II do CDC por culpa exclusiva do consumidor, rompendo o nexo causal"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - deve ser 'requerente' (culpa exclusiva da paciente)",
+    "valores": "todas as rubricas devem ser exatamente 0.0 pois o pedido foi totalmente improcedente",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) perícia atestou correção técnica do procedimento, (2) tabagismo da paciente comprometeu osseointegração, (3) descumprimento de orientações pós-operatórias, (4) excludente de responsabilidade por culpa exclusiva do consumidor"
+  }
+}

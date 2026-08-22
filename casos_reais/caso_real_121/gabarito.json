@@ -1,0 +1,30 @@
+{
+  "caso": "real-121-condominio",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1005662-06.2024.8.26.0577",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "liberacao_40_salarios_minimos_bloqueados": 0.0,
+      "honorarios_advocaticios_pagos_pela_autora": 52304.66,
+      "saldo_remanescente_leilao": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Liberação dos 40 salários-mínimos bloqueados - não foi objeto de análise/deferimento na fundamentação, permanecendo a questão pendente de resolução no juízo da execução"
+    ],
+    "fundamentos": [
+      "Revelia dos corréus Diego e Isamara que não contestaram, presumindo-se verdadeiros os fatos não controvertidos pelo réu contestante Celso",
+      "Autora figurava como proprietária na matrícula do imóvel à época da cobrança condominial (2012), embora não fosse a real proprietária desde 2007",
+      "Imóvel foi vendido pela autora a Celso em 2007 e posteriormente repassado a Diego e Isamara em 2013 por contrato de permuta",
+      "Autora foi condenada em ação de cobrança condominial por débitos de responsabilidade dos réus (verdadeiros proprietários), tendo que arcar com custos judiciais indevidamente",
+      "Réus eram os responsáveis pelo pagamento das taxas condominiais desde as respectivas aquisições (Celso desde 2007, Diego e Isamara desde 2013)",
+      "Procedência parcial quanto aos honorários advocatícios, pois a autora teve que se defender judicialmente de dívida que não era sua por culpa dos réus que não pagaram os débitos condominiais"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido (no caso, os réus Diego e Isamara como verdadeiros responsáveis, com Celso tendo responsabilidade intermediária)",
+    "valores": "tolerância ±15% por rubrica; honorários advocatícios de R$ 52.304,66 devem ser reconhecidos; liberação dos 40 salários-mínimos não foi objeto de decisão explícita (pendente no juízo da execução)",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) revelia de Diego e Isamara; (2) autora condenada indevidamente por débito de responsabilidade dos réus/verdadeiros proprietários; (3) direito da autora a ressarcimento dos honorários por ter arcado com defesa de dívida alheia; (4) cadeia de transmissões do imóvel (autora→Celso→Diego/Isamara)"
+  }
+}

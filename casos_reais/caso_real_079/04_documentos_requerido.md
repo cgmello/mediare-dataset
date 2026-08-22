@@ -1,0 +1,8 @@
+- Contratos anteriores ao de maio de 2020
+- Comprovantes de dificuldades durante a pandemia (decretos, notícias sobre restrições na construção civil)
+- Termo de entrega da obra
+- Registros fotográficos da obra concluída
+- Especificações técnicas dos materiais que deveriam ser fornecidos pelo autor
+- Notas fiscais e comprovantes de serviços executados
+- Eventuais comunicações sobre atrasos enviadas ao autor
+- Cópia do contrato destacando escopo dos serviços (ausência de sistemas fotovoltaico e rede de dados)

@@ -1,0 +1,8 @@
+- Contrato de empreitada assinado pelas partes com especificação de prazo, objeto e valores
+- Comprovantes de pagamento (transferências bancárias, recibos) totalizando R$ 75.715,86
+- Comprovantes de adiantamentos para compra de materiais
+- Laudo técnico particular descrevendo as irregularidades da obra, ausência de normas técnicas, infiltrações, danos estruturais e comprometimento das instalações
+- Fotografias da residência mostrando a remoção do telhado, infiltrações, danos aos acabamentos internos
+- Fotografias dos danos aos armários, piso de madeira, equipamentos elétricos e sistema de monitoramento
+- Orçamentos para reparação dos danos materiais aos bens e ao imóvel
+- Cópia da cláusula sétima do contrato prevendo multa por inadimplemento

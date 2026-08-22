@@ -1,0 +1,11 @@
+- Boletim de Ocorrência da Polícia Militar Rodoviária descrevendo o acidente (08/06/2023)
+- Laudo do Instituto de Criminalística com análise da colisão
+- Disco do tacógrafo comprovando velocidade entre 70-80 km/h
+- Comprovante de pagamento de R$ 13.978,30 à associação de proteção veicular
+- Contrato de locação de veículo no valor de R$ 5.675,00 mensais
+- Comprovante de pagamento de uma mensalidade da locação
+- Nota fiscal de R$ 970,00 referente a vistoria, placas, INMETRO e serviços PRODESP
+- Autorizações de carregamento e documentos de transporte demonstrando faturamento anterior ao acidente (período pré-acidente)
+- Comprovantes de pagamento no valor de R$ 6.275,00 (destinatário Rodorib Rio Brasil Ltda.)
+- CNH e documentos pessoais
+- Documentos do caminhão

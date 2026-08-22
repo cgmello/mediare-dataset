@@ -1,0 +1,4 @@
+- Extrato da operadora Bradesco Saúde demonstrando cobertura de terapia oncológica, diárias, exames e medicamentos
+- Documentos de identificação do inventariante
+- Certidão de óbito do paciente
+- Comprovantes de rendimentos para análise de gratuidade judiciária (a serem apresentados)

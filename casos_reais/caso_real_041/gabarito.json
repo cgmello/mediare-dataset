@@ -1,0 +1,35 @@
+{
+  "caso": "real-041-consumo",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1004240-52.2023.8.26.0505",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "restituicao_valor_veiculo": 38890.0,
+      "restituicao_documentacao": 890.0,
+      "restituicao_ipva": 1390.0,
+      "danos_morais": 10000.0,
+      "total_danos_materiais": 41170.0,
+      "total_condenacao": 51170.0
+    },
+    "obrigacoes_de_fazer": {
+      "devolucao_veiculo": "A autora deverá devolver o veículo à ré mediante restituição dos valores pagos"
+    },
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Laudo pericial constatou vícios ocultos graves e preexistentes à venda: vazamento ativo no sistema de arrefecimento, insuficiência de pressão de óleo, desgaste acentuado de componentes internos do motor incompatível com a quilometragem",
+      "Vícios identificados tornam o veículo impróprio para uso seguro, com risco de travamento mecânico súbito do motor, enquadrando-se no art. 18, §6º, II, do CDC",
+      "Ré teve mais de seis meses e pelo menos cinco tentativas de reparo sem solucionar definitivamente os defeitos, ultrapassando amplamente o prazo de 30 dias previsto no art. 18, §1º do CDC",
+      "Custo de reparo integral orçado em R$ 11.210,00 representa parcela significativa do valor do veículo, justificando a rescisão contratual",
+      "Ré falhou no dever qualificado de inspeção pré-venda, especialmente considerando que o motor EA111 possui histórico técnico conhecido de sensibilidade à pressão de óleo",
+      "Conduta processual da ré (não comparecimento à perícia, ausência de quesitos, silêncio sobre o laudo) reforça as conclusões periciais e caracteriza desinteresse em produzir contraprova",
+      "Relação de consumo com responsabilidade objetiva da fornecedora por vícios do produto (arts. 2º, 3º e 18 do CDC)",
+      "Direito à restituição de valores acessórios (documentação e IPVA) decorre da rescisão contratual e da necessidade de recomposição integral do patrimônio da consumidora"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - deve ser 'requerido'",
+    "valores": "tolerância ±15% por rubrica; restituição do veículo (R$ 38.890,00), documentação (R$ 890,00), IPVA (R$ 1.390,00) devem estar presentes; danos morais entre R$ 8.500,00 e R$ 11.500,00",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) laudo pericial atestando vícios graves preexistentes, (2) prazo de 30 dias para reparo amplamente ultrapassado, (3) veículo impróprio para uso seguro, (4) falha no dever de inspeção pré-venda, (5) conduta processual omissiva da ré"
+  }
+}

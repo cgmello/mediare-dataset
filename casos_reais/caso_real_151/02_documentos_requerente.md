@@ -1,0 +1,6 @@
+- Documento de identidade (RG)
+- CPF
+- Comprovante de residência
+- Extratos do benefício previdenciário demonstrando os descontos realizados (período de agosto/2020 a outubro/2021)
+- Carta de concessão do benefício do INSS
+- Eventuais comunicações ou notificações recebidas sobre os empréstimos

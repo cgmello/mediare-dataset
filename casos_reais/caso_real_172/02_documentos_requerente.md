@@ -1,0 +1,8 @@
+- Contrato de compra e venda do veículo datado de 27/10/2020
+- Comprovante de pagamento de R$ 67.000,00
+- Laudo de vistoria cautelar emitido pela empresa Taboão Vistorias em 26/10/2020 (véspera da compra)
+- Laudo de segunda vistoria realizado em abril/2021 apontando avarias estruturais
+- Documento do veículo (CRLV)
+- Fotos das avarias estruturais identificadas
+- Tabela FIPE ou similar demonstrando desvalorização do veículo
+- Orçamentos de reparos estruturais

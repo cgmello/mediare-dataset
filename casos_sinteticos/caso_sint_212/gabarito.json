@@ -1,0 +1,21 @@
+{
+  "caso": "sint-212-locacao-caucao",
+  "fonte": "sintetico-mediare-v1 (seed 42)",
+  "parecer_esperado": {
+    "responsavel": "requerido_locador",
+    "resultado": "procedente",
+    "valores": {
+      "devolucao_caucao": 7000,
+      "multa_contratual": 10500
+    },
+    "fundamentos": [
+      "Lei 8.245/91 art. 22 - vicios anteriores a locacao",
+      "sem vistoria inicial nao ha prova de danos do locatario"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerancia +/- 15% por rubrica; rubricas negadas = 0",
+    "fundamentos": "minimo 2 fundamentos centrais em comum"
+  }
+}

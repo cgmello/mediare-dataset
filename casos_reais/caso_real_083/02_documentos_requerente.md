@@ -1,0 +1,7 @@
+- Contrato de empreitada original no valor de R$ 179.000,00
+- Termo aditivo ao contrato no valor de R$ 30.000,00
+- Comprovantes de pagamento totalizando R$ 219.000,00 (transferências, PIX, recibos)
+- Laudos técnicos atestando execução de apenas 70,50% da obra
+- Orçamento de novo empreiteiro para conclusão da obra no valor de R$ 98.000,00
+- Registros fotográficos do estado da obra quando abandonada
+- Mensagens e comunicações sobre a interrupção dos serviços

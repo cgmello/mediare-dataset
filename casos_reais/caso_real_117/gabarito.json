@@ -1,0 +1,36 @@
+{
+  "caso": "real-117-condominio",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1033144-48.2024.8.26.0602",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "debito_condominial_total_cobrado": 37578.21,
+      "parcelas_prescritas_excluidas": "valor_a_calcular",
+      "debito_apos_prescricao": "valor_a_calcular_a_partir_08_2019",
+      "correcao_monetaria": "conforme_tabela_TJSP_ate_lei_14905_depois_IPCA",
+      "juros_mora_percentual": 1.0,
+      "multa_percentual": 2.0
+    },
+    "obrigacoes_de_fazer": {
+      "pagamento_parcelas_vincendas": "A requerida deverá manter em dia o pagamento das parcelas condominiais que vencerem após a sentença"
+    },
+    "pedidos_rejeitados": [
+      "Cobrança das parcelas condominiais vencidas antes de 22/08/2019 (prescritas)",
+      "Parcelamento do débito (recusado pelo credor)"
+    ],
+    "fundamentos": [
+      "Aplicação do Tema 949 do STJ: prescrição quinquenal para cobrança de taxa condominial contada do vencimento de cada prestação (art. 206, §5º, I, CC)",
+      "Prescrição das parcelas vencidas antes de 22/08/2019, mantendo-se exigíveis as parcelas posteriores e vincendas",
+      "Dever do condômino de concorrer para as despesas comuns nos termos dos arts. 1.334, I, e 1.336, I do CC e art. 12 da Lei 4.591/64",
+      "Ausência de comprovação de excesso na planilha pela embargante, que não se desincumbiu do ônus previsto no art. 702, §§2º e 3º do CPC",
+      "Impossibilidade de imposição judicial de parcelamento contra a vontade expressa do credor",
+      "Constituição de título executivo judicial quanto às parcelas não prescritas com aplicação de correção monetária, juros de 1% ao mês e multa de 2% conforme art. 1.336, §1º do CC"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato: requerido é responsável pelo débito condominial",
+    "valores": "tolerância ±15% sobre o valor remanescente após exclusão das parcelas prescritas; parcelas anteriores a 08/2019 devem ser zeradas; juros de 1% a.m. e multa de 2% são valores exatos",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) prescrição quinquenal das parcelas anteriores a 08/2019, (2) dever condominial de contribuir para despesas comuns permanece quanto às parcelas não prescritas, (3) impossibilidade de parcelamento forçado contra vontade do credor"
+  }
+}

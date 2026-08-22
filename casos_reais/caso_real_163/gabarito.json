@@ -1,0 +1,37 @@
+{
+  "caso": "real-163-veiculo_venda",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1024374-28.2016.8.26.0576",
+  "parecer_esperado": {
+    "responsavel": "ambos",
+    "resultado": "parcialmente_procedente",
+    "valores": {
+      "reembolso_multa_anterior": 1360.12,
+      "reembolso_taxas_vistorias": 0.0,
+      "reembolso_multa_atraso_transferencia": 127.69,
+      "emprestimo_bancario": 0.0,
+      "lucros_cessantes": 0.0,
+      "danos_morais": 5000.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Ressarcimento de parcelas de empréstimo bancário contraído por terceiro (irmão do autor)",
+      "Lucros cessantes no valor pretendido com base na Lei 11.442/2007",
+      "Danos materiais no montante total de R$ 20.000,00 (acolhido apenas parcialmente)"
+    ],
+    "fundamentos": [
+      "O alienante tem dever de entregar veículo livre de embaraços administrativos que impeçam o pleno exercício da propriedade (art. 447 CC)",
+      "A proprietária registral F.S.M. responde perante terceiro adquirente de boa-fé pelos vícios de documentação do veículo",
+      "A substituição do motor, embora lícita e com nota fiscal, deveria ter sido regularizada junto ao DETRAN antes da venda",
+      "A multa anterior à venda (R$ 1.360,12) é de responsabilidade do vendedor conforme cláusula contratual, não sendo oponível ao comprador alegação de pagamento a intermediário",
+      "A multa por atraso na transferência decorreu da irregularidade do motor, não de desídia do autor",
+      "Lucros cessantes exigem prova concreta do ganho deixado de auferir; mera suposição matemática não configura dano indenizável (art. 402 CC)",
+      "Empréstimo bancário de terceiro constitui negócio autônomo, não caracteriza dano direto ou imediato (art. 403 CC)",
+      "A impossibilidade de trabalhar com veículo adquirido para sustento próprio e familiar, necessidade de vistorias reprovadas e registro policial superam mero aborrecimento, caracterizando dano moral"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato ou 'ambos' reconhecendo solidariedade entre F.S.M. e E.J.F.-ME",
+    "valores": "tolerância ±15% para cada rubrica; rubricas de empréstimo bancário e lucros cessantes devem ser 0; danos morais R$ 5.000,00 (±15%); multas com valores exatos quando comprovadas",
+    "fundamentos": "mínimo 3 fundamentos centrais: (1) dever do vendedor entregar veículo regularizado, (2) responsabilidade da proprietária registral por vícios documentais, (3) lucros cessantes exigem prova concreta não meramente hipotética, (4) dano moral configurado pela impossibilidade de trabalho e angústia gerada"
+  }
+}

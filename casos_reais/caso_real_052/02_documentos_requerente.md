@@ -1,0 +1,9 @@
+- Cédula de Crédito Bancário (contrato de financiamento nº 110790478 com Banco Pan S/A)
+- Documento do veículo VW/GOL, placas EUO-2345
+- Comprovante de devolução do veículo à loja (se houver protocolo)
+- Prints ou registros de comunicação com a loja L.F.G. B. Veículos
+- Contrato do segundo financiamento (Banco BV) referente ao CHEVROLET CELTA
+- Documento do veículo CHEVROLET CELTA
+- Boletos ou comprovantes de pagamento do financiamento junto ao Banco Pan
+- Certidão de gravame do veículo VW/GOL no DETRAN/SP
+- Documentos pessoais (RG, CPF, comprovante de residência)

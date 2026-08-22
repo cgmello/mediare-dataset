@@ -1,0 +1,5 @@
+- Cédula de Crédito Bancário nº 000015496829 (fls. 399-409) com assinatura da autora
+- Cédula de Crédito Bancário nº 000014979555 (fls. 410-418) com assinatura da autora
+- Comprovantes de pagamento/liberação dos valores contratados emitidos pelo sistema de pagamentos brasileiro
+- Documentos relativos à portabilidade de dívidas
+- Registros internos das operações bancárias

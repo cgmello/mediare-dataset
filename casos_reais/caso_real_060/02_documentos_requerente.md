@@ -1,0 +1,11 @@
+- Boletim de Ocorrência do acidente (04/08/2023)
+- Fotografias da via demonstrando irregularidades no asfalto e presença de areia
+- Fotografias do local do acidente com fumaça visível
+- Relatórios médicos e exames (raio-X) comprovando fraturas ósseas
+- Receituários médicos e notas fiscais de medicamentos
+- Comprovantes de renda como autônoma (período anterior ao acidente)
+- Orçamentos de reparos da motocicleta Honda Biz
+- Fotografias das lesões e cicatrizes
+- Laudo pericial médico atestando incapacidade temporária e sequelas permanentes
+- Documentos de habilitação e do veículo
+- Declaração de testemunha (moradora vizinha)

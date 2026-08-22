@@ -1,0 +1,5 @@
+- Cópia da petição inicial da ação nº 0000550-67.2009.8.26.0361 elaborada e protocolada em 07/01/2009
+- Cópia da réplica à contestação apresentada no processo
+- Cópia das contrarrazões recursais apresentadas em segundo grau
+- Notificações de revogação do mandato enviadas pelos requeridos em 24/04/2012
+- Comprovante de valor atribuído à causa na ação patrocinada (R$ 16.600,00)

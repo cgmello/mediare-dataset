@@ -1,0 +1,38 @@
+{
+  "caso": "real-013-locacao",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1016199-06.2025.8.26.0002",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "alugueis_encargos_vencidos": 528915.69,
+      "honorarios_contratuais": 105783.13,
+      "iptu": 26119.64,
+      "alugueis_vincendos_ate_desocupacao": 0.0,
+      "total": 660818.46
+    },
+    "obrigacoes_de_fazer": {
+      "desocupacao_imovel": "Despejo decretado com desocupação do imóvel comercial situado na Estrada do M'Boi Mirim"
+    },
+    "pedidos_rejeitados": [
+      "Suspensão do processo por recuperação judicial",
+      "Nulidade de citação",
+      "Limitação da cobrança à fração ideal de 1/6",
+      "Realização de perícia contábil",
+      "Necessidade de notificação extrajudicial prévia"
+    ],
+    "fundamentos": [
+      "Inadimplência comprovada dos aluguéis e encargos desde janeiro/2024 (14 meses)",
+      "Ausência de comprovação de pagamento pela requerida (não juntou recibos, comprovantes ou qualquer documento)",
+      "Legitimidade ativa do coproprietário reconhecida com base no art. 1.314 do CC (condômino pode exercer direitos sobre coisa comum)",
+      "Transmissão da locação aos herdeiros por força do art. 10 da Lei 8.245/91",
+      "Recuperação judicial não suspende automaticamente ação de despejo por falta de pagamento",
+      "Desnecessidade de perícia contábil nesta fase, podendo eventual divergência ser resolvida em cumprimento de sentença"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum: inadimplência comprovada + ausência de prova de pagamento pela ré + legitimidade do coproprietário"
+  }
+}

@@ -1,0 +1,4 @@
+- Alegação de contrato verbal para projeto ambiental completo no valor de R$ 350.000,00 (não comprovado documentalmente)
+- Planilha interna de controle de recebimentos alegando total de R$ 345.862,59
+- Documentos genéricos sobre serviços prestados (fls. 77/80)
+- Rol de testemunhas a serem ouvidas sobre a contratação

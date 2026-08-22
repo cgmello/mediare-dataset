@@ -1,0 +1,33 @@
+{
+  "caso": "real-114-vizinhanca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1042253-67.2024.8.26.0576",
+  "parecer_esperado": {
+    "responsavel": "parcial_ambos",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "danos_materiais": 0.0,
+      "danos_morais": 0.0,
+      "obrigacao_de_fazer_muro": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "reconstrucao_muro": "prejudicada - muro já reconstruído pelos réus antes da sentença"
+    },
+    "pedidos_rejeitados": [
+      "Indenização por danos materiais de R$ 30.000,00 - ausência de comprovação de desembolso pela autora",
+      "Indenização por danos morais de R$ 20.000,00 - transtornos não ultrapassaram meros dissabores; medidas mitigadoras foram adotadas (tapumes e reconstrução)"
+    ],
+    "fundamentos": [
+      "O muro divisório efetivamente desabou em decorrência da obra de demolição realizada no imóvel vizinho de propriedade do corréu Edson",
+      "Os réus adotaram providências para mitigar os danos, incluindo instalação de tapumes em 22/07/2024 e posterior reconstrução do muro",
+      "A autora, na qualidade de locatária, possui legitimidade para pleitear reparação por danos decorrentes de situação que afeta sua posse e segurança",
+      "Ausência de comprovação de danos materiais efetivamente suportados pela autora, que não realizou desembolsos financeiros",
+      "Os transtornos vivenciados, embora reais, foram mitigados pelas medidas adotadas e não alcançaram patamar de ofensa aos direitos da personalidade",
+      "A reconstrução do muro pelos réus, ainda que tardia, atendeu à obrigação de fazer, tornando prejudicado este pedido"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato ou aceitável 'requerido' (proprietário vizinho e proprietária do imóvel locado), dado que ambos participaram da reconstrução",
+    "valores": "tolerância ±15% por rubrica; todas as rubricas devem resultar em 0 (zero) - danos materiais não comprovados e danos morais não configurados; obrigação de fazer prejudicada",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) desabamento do muro vinculado à obra de demolição; (2) ausência de comprovação de danos materiais; (3) transtornos insuficientes para configurar dano moral; (4) medidas mitigadoras adotadas (tapumes e reconstrução)"
+  }
+}

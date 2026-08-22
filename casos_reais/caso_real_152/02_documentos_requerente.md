@@ -1,0 +1,6 @@
+- Documento de identidade (RG) de V.M.S.
+- Extratos do benefício previdenciário demonstrando os descontos mensais realizados pela AMBEC
+- Comprovante de recebimento do benefício previdenciário (INSS)
+- Prints de tela ou extratos bancários detalhados com a discriminação dos descontos
+- Declaração pessoal de próprio punho atestando que nunca solicitou filiação à associação
+- Histórico de descontos dos últimos meses

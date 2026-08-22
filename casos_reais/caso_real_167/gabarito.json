@@ -1,0 +1,46 @@
+{
+  "caso": "real-167-veiculo_venda",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1004844-42.2025.8.26.0602",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente_procedente",
+    "valores": {
+      "devolucao_entrada_pela_concessionaria": 0.0,
+      "devolucao_parcelas_pagas_financiamento_pelo_banco": 0.0,
+      "reembolso_despesas_transporte_uber": 0.0,
+      "reembolso_ipva_2025": 0.0,
+      "reembolso_licenciamento": 0.0,
+      "reembolso_transferencia": 0.0,
+      "danos_morais": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "concessionaria_devolver_entrada": "A corré Baccaro Veículos deverá restituir à autora todos os valores pagos a título de entrada na compra do veículo",
+      "banco_devolver_parcelas": "A corré Safra Crédito deverá restituir à autora todas as parcelas pagas do financiamento",
+      "declarar_inexigiveis_parcelas_pendentes": "Declarar inexigíveis as parcelas pendentes do contrato de financiamento",
+      "rescisao_contrato_compra_venda": "Rescindir o contrato de compra e venda do veículo",
+      "rescisao_contrato_financiamento": "Rescindir o contrato de financiamento coligado"
+    },
+    "pedidos_rejeitados": [
+      "Reembolso de despesas com Uber (não especificadas em valores nem comprovadas documentalmente na sentença)",
+      "Reembolso de IPVA 2025 (cláusula contratual expressa excluindo responsabilidade da concessionária)",
+      "Reembolso de licenciamento (cláusula contratual expressa excluindo responsabilidade)",
+      "Reembolso de transferência (cláusula contratual expressa excluindo responsabilidade)",
+      "Danos morais (sentença não concluída, mas típica rejeição em casos de mero descumprimento contratual)"
+    ],
+    "fundamentos": [
+      "Relação de consumo caracterizada com aplicação do CDC e inversão do ônus da prova em favor da autora hipossuficiente técnica e financeiramente",
+      "Vícios graves no veículo seminovo (defeito no travamento das portas e necessidade de troca de cabeçote) incompatíveis com veículo de apenas 3 anos, classificado como 'excelente' na vistoria prévia",
+      "Cinco entradas do veículo na concessionária em cinco meses sem solução efetiva dos problemas, tornando o bem inadequado ao uso pretendido, nos termos do art. 18 do CDC",
+      "Responsabilidade objetiva da concessionária pelos vícios do produto, sendo irrelevante a prestação de assistência (locação de veículo e reembolsos), que não sana o vício",
+      "Direito da consumidora à restituição imediata da quantia paga, conforme art. 18, §1º, II, do CDC, caracterizado o vício que torna o produto inadequado",
+      "Contratos coligados (compra e venda + financiamento) unidos por nexo funcional e interdependência, de modo que a rescisão de um implica automaticamente a rescisão do outro",
+      "Afastamento da decadência por reclamação tempestiva e ausência de resposta negativa inequívoca, persistindo tratativas para solução do problema",
+      "Cláusulas contratuais expressas eximem a concessionária de responsabilidade por IPVA, licenciamento e transferência"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato: 'requerido' (ambas as corrés, por fundamentos distintos - concessionária pelos vícios, banco por contrato coligado)",
+    "valores": "tolerância ±15% para valores de entrada e parcelas pagas (não especificados numericamente na sentença); rubricas negadas (Uber, IPVA, licenciamento, transferência, danos morais) devem ser 0",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) vícios graves incompatíveis com veículo seminovo; (2) aplicação do CDC com inversão do ônus da prova; (3) teoria dos contratos coligados justificando rescisão do financiamento; (4) art. 18, §1º, II do CDC garantindo restituição"
+  }
+}

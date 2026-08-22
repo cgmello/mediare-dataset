@@ -1,0 +1,8 @@
+- Contrato de Locação firmado em 07/01/2021
+- Laudo de vistoria do imóvel assinado pelo locatário em 11/01/2021
+- Comprovante de depósito da caução de R$ 6.900,00 em conta poupança
+- Planilhas de cálculo do débito locatício referente aos anos de 2021 e 2022
+- Certidão de imissão na posse realizada em 25/07/2023
+- Comprovante de propriedade do imóvel (matrícula ou escritura)
+- Notificações de cobrança enviadas aos locatários
+- Comprovantes de quitação de IPTU e demais encargos do imóvel

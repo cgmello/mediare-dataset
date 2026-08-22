@@ -1,0 +1,7 @@
+- Instrumento particular de compra e venda do trator, datado de 30/01/2024
+- Orçamentos de serviços mecânicos para reparo da transmissão
+- Comprovantes de pagamento dos serviços (sem nota fiscal)
+- Peças avariadas retiradas do trator (discos de fricção, componentes hidráulicos)
+- Contrato de prestação de serviços agrícolas (sem assinaturas)
+- Registro fotográfico dos defeitos apresentados
+- Histórico de tentativas de contato com o vendedor

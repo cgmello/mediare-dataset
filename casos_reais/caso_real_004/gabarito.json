@@ -1,0 +1,32 @@
+{
+  "caso": "real-004-locacao",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1014014-72.2024.8.26.0020",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "alugueis_vencidos_out2023_a_abr2025": 31605.36,
+      "multa_moratoria_20_porcento": 6321.07,
+      "juros_mora_1_porcento_mes": 0.0,
+      "correcao_monetaria": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "desocupacao_imovel": "cumprida voluntariamente em 26/04/2025",
+      "rescisao_contratual": "declarada por culpa dos requeridos"
+    },
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Revelia dos réus configura presunção de veracidade das alegações do autor quanto à existência da relação locatícia e ao inadimplemento",
+      "Inadimplemento comprovado desde outubro de 2023 constitui causa de rescisão contratual nos termos do artigo 9º, III, da Lei 8.245/91",
+      "Ausência de prova de pagamento ou fato extintivo do direito do autor",
+      "Obrigação de pagar aluguéis e encargos perdura até a efetiva desocupação ocorrida em 26/04/2025",
+      "Multa moratória de 20%, juros de 1% ao mês e correção monetária conforme cláusulas 5ª e 15ª do contrato e artigo 389 do Código Civil",
+      "Desocupação voluntária superveniente extinguiu o pedido de despejo, remanescendo o direito à cobrança dos valores devidos"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido",
+    "valores": "tolerância ±15% por rubrica; valor principal de R$ 31.605,36 refere-se ao débito acumulado; multa de 20% calculada sobre o principal; juros e correção aplicados desde cada vencimento até pagamento efetivo",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: revelia e presunção de veracidade, inadimplemento como causa de rescisão locatícia, ausência de prova de pagamento, aplicação de multa e encargos contratuais"
+  }
+}

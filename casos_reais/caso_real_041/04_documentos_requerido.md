@@ -1,0 +1,6 @@
+- Termo de garantia do veículo com prazo de cobertura
+- Ordens de serviço dos reparos realizados no veículo após a venda
+- Comprovantes de atendimento às solicitações da compradora
+- Documentos técnicos demonstrando a quilometragem do veículo na data da venda
+- Evidências de que a compradora realizou vistoria cautelar prévia
+- Documentos demonstrando gastos com publicidade do escritório de advocacia da autora (para impugnar justiça gratuita)

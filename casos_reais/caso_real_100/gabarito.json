@@ -1,0 +1,36 @@
+{
+  "caso": "real-100-vizinhanca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1003233-60.2024.8.26.0482",
+  "parecer_esperado": {
+    "responsavel": "requerente",
+    "resultado": "improcedente",
+    "valores": {
+      "danos_materiais": 0.0,
+      "danos_morais": 0.0,
+      "custas_processuais": 0.0,
+      "honorarios_advocaticios_percentual": 10.0
+    },
+    "obrigacoes_de_fazer": {
+      "realizacao_de_obras_pela_requerida": "negada"
+    },
+    "pedidos_rejeitados": [
+      "Obrigação de fazer obras para cessar infiltrações",
+      "Indenização por danos materiais",
+      "Indenização por danos morais de R$ 10.000,00"
+    ],
+    "fundamentos": [
+      "Laudo pericial constatou infiltrações e danos no imóvel da autora compatíveis com ação prolongada da umidade",
+      "Perícia não conseguiu confirmar a permanência das causas originais (piscina e árvore) apontadas como responsáveis pelas infiltrações",
+      "Quintal do imóvel da requerida encontra-se integralmente pavimentado com declividade adequada e sistema de drenagem funcional",
+      "Não foram constatados indícios de direcionamento de águas superficiais do imóvel da ré em direção ao imóvel da autora",
+      "Manifestações patológicas mostraram-se mais compatíveis com ausência ou deficiência de impermeabilização na face externa da alvenaria do próprio imóvel da autora",
+      "Ausência de nexo de causalidade entre eventuais obras da ré e os danos no imóvel da autora (art. 373, I, do CPC)",
+      "Autora não demonstrou de forma inequívoca que os danos decorrem de conduta da requerida"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - a responsabilidade recai sobre a própria requerente por não ter implementado sistema adequado de impermeabilização em seu imóvel",
+    "valores": "tolerância ±15% por rubrica; todas as rubricas indenizatórias devem ser 0 (zero); honorários advocatícios de 10% sobre o valor da causa para a requerida",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) existência de infiltrações comprovada por perícia, (2) ausência de comprovação de nexo causal entre imóvel da ré e os danos, (3) problema mais compatível com deficiência de impermeabilização do próprio imóvel da autora, (4) inexistência atual dos elementos causadores alegados (piscina/árvore) ou de direcionamento de águas"
+  }
+}

@@ -1,0 +1,10 @@
+- Comprovante de pagamento de R$ 13.000,00 à clínica requerida
+- Orçamento original do tratamento (R$ 14.250,00)
+- Prontuário odontológico da clínica requerida
+- Registros fotográficos das complicações pós-operatórias
+- Receitas médicas e prescrições do período pós-cirúrgico
+- Documentos de atendimentos hospitalares emergenciais
+- Relatório do especialista em cabeça e pescoço
+- Orçamento de tratamento reparador (R$ 5.300,00 de diferença)
+- Exames de imagem (tomografias, radiografias)
+- Atestados médicos relatando quadro infeccioso e perda dos implantes

@@ -1,0 +1,9 @@
+- Contrato de locação original
+- Termo manuscrito assinado pela locatária sobre reparos simples
+- Fotografias do estado do imóvel após a desocupação
+- Orçamentos de reparos necessários por danos causados pela locatária (R$ 1.782,00)
+- Faturas de energia elétrica em aberto (R$ 440,80)
+- Faturas de água em aberto (R$ 441,26)
+- Nota fiscal de serviço de chaveiro (R$ 280,00)
+- Comprovante de recibo de caução (R$ 6.000,00)
+- Novo contrato de locação com terceiro, demonstrando que o imóvel está habitável

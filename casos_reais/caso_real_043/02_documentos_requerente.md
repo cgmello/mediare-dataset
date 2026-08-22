@@ -1,0 +1,7 @@
+- Contrato de compra e venda do veículo Fiat Strada, datado de 3 de março de 2022
+- Contrato de financiamento junto ao Banco Santander (36 parcelas)
+- Documento de transferência do veículo Fiat Punto entregue como parte do pagamento
+- Orçamento de mecânico de confiança, datado de 20 de maio de 2022, no valor de R$ 4.220,00
+- Comprovantes ou registros das diversas devoluções do veículo para reparo (março a maio de 2022)
+- Fotografias ou registros dos defeitos apresentados pelo veículo
+- Eventual comunicação ou notificação à requerida sobre os problemas

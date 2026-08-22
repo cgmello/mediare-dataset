@@ -1,0 +1,10 @@
+- Atas de assembleias condominiais discutindo o problema de infiltrações
+- Notificações extrajudiciais enviadas ao Edifício D. Z.
+- Fotografias das infiltrações na garagem e churrasqueira
+- Fotografias mostrando o mau estado da área de lazer
+- Laudo técnico elaborado por engenheiro civil identificando os muros de arrimo e a estrutura da churrasqueira
+- Orçamentos de empresas especializadas para reparação dos danos
+- Comprovantes de despesas com tentativas de contenção dos vazamentos
+- Depoimentos de moradores relatando a impossibilidade de uso da churrasqueira
+- Registros fotográficos da umidade no solo e paredes
+- Documentação da servidão de passagem

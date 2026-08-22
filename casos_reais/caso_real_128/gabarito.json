@@ -1,0 +1,28 @@
+{
+  "caso": "real-128-condominio",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1002520-79.2025.8.26.0602",
+  "parecer_esperado": {
+    "responsavel": "parcial_ambos",
+    "resultado": "improcedente",
+    "valores": {
+      "danos_materiais": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Indenização por danos materiais de R$ 89.988,48"
+    ],
+    "fundamentos": [
+      "A sentença não foi completamente transcrita, mas do relatório é possível extrair que a requerida demonstrou ter informado todas as necessidades de manutenção e substituição de peças mediante orçamentos formais durante toda a vigência do contrato",
+      "Os problemas nos elevadores eram preexistentes à contratação da requerida, decorrentes de abandono da obra pela incorporadora, infiltrações crônicas e alagamentos",
+      "A requerida atuou dentro dos limites do contrato de manutenção preventiva e corretiva, sendo que intervenções adicionais dependiam de aprovação formal do condomínio mediante orçamentos",
+      "O condomínio tinha conhecimento da situação precária dos equipamentos desde antes da contratação e durante toda a execução do contrato, inclusive optando por não aprovar todos os orçamentos apresentados",
+      "O alagamento de 25/09/2023 constituiu evento de força maior que agravou significativamente os danos nos equipamentos, não sendo imputável à requerida",
+      "A correspondência de 02/07/2024 da engenheira Rosana reconheceu expressamente os serviços prestados, o comprometimento e os esforços da requerida, demonstrando boa-fé na execução contratual"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - a responsabilidade não é da requerida isoladamente, havendo concorrência de fatores externos (força maior e decisões do próprio condomínio)",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0 - no caso, danos materiais = 0.0",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) informação prévia e contínua das necessidades mediante orçamentos, (2) problemas preexistentes ao contrato, (3) alagamento como força maior, (4) não aprovação de todos os orçamentos pelo condomínio"
+  }
+}

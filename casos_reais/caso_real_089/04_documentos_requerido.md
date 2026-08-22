@@ -1,0 +1,8 @@
+- Cópia do contrato de prestação de serviços
+- Comprovantes de recebimento dos valores pagos pela autora
+- Documentos comprobatórios do aumento de preços de insumos durante a pandemia
+- Notícias e publicações sobre escassez de mão de obra no período
+- Cronograma original da obra
+- Registros de materiais e projetos entregues em 10/02/2021
+- Comprovante de mudança de endereço da sede da empresa
+- Documentação relativa às etapas executadas da obra

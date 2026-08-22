@@ -1,0 +1,8 @@
+- Ata da assembleia de eleição realizada em 06/05/2023
+- Convocação da assembleia geral extraordinária de 06/07/2024
+- Ata da assembleia de 06/07/2024 que deliberou pela destituição
+- Convenção condominial do Edifício M.C.
+- Escritura ou contrato de compra e venda da unidade autônoma (fevereiro/2024)
+- Atestado médico ou documentos comprobatórios do tratamento de saúde em 06/07/2024
+- Boletos ou cobranças de cotas condominiais de março e abril de 2024 no valor de R$ 2.588,67
+- Comprovantes de pagamento das cobranças questionadas

@@ -1,0 +1,34 @@
+{
+  "caso": "real-082-reforma",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1006216-96.2025.8.26.0320",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente (ação principal) e improcedente (reconvenção)",
+    "valores": {
+      "saldo_devido_empreitada": 20670.3,
+      "danos_emergentes_requerido": 0.0,
+      "lucros_cessantes_requerido": 0.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "Improcedência da ação principal",
+      "Compensação de prejuízos alegados pela ré",
+      "Indenização por danos emergentes de R$ 5.256,81",
+      "Indenização por lucros cessantes de R$ 37.000,00",
+      "Aplicação da exceção de contrato não cumprido"
+    ],
+    "fundamentos": [
+      "Existência de acordo posterior firmado em 28/05/2025 com reconhecimento expresso da dívida pela requerida",
+      "O acordo foi celebrado após a requerida ter pleno conhecimento do alegado atraso e dos vícios, configurando confissão extrajudicial válida",
+      "Ausência de comprovação de nexo causal entre os prejuízos alegados e a conduta da requerente",
+      "Atraso de apenas 14 dias não justifica a suspensão total dos pagamentos acordados posteriormente",
+      "Falta de prova de que a loja estaria apta a funcionar exatamente em 06/03/2025, considerando outras pendências (móveis, internet, estoque)",
+      "Despesas com funcionários e fornecedores reverteram em benefício da própria ré nos meses seguintes"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido deve arcar com o pagamento",
+    "valores": "tolerância ±15% para o valor principal de R$ 20.670,30; danos emergentes e lucros cessantes da reconvenção devem ser obrigatoriamente 0.0 (negados)",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) validade do acordo posterior como confissão de dívida, (2) conhecimento prévio dos fatos pela ré ao firmar o acordo, (3) ausência de nexo causal comprovado entre atraso e prejuízos alegados"
+  }
+}

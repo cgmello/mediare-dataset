@@ -1,0 +1,5 @@
+- Apólice de seguro Bradesco Auto/RE nº 0980.990.0244.028545, contratada em 27/02/2023
+- Condições gerais da apólice indicando Limite Máximo de Indenização (LMI) de R$ 50.000,00 para cobertura de Responsabilidade Civil Facultativa por Danos Materiais a Terceiros (RCF-DM)
+- Histórico de sinistros da seguradora demonstrando pagamentos parciais a outros terceiros envolvidos no mesmo acidente, totalizando R$ 40.523,51
+- Comprovante de saldo remanescente da apólice: R$ 9.476,49
+- Documento de propriedade do veículo Volkswagen T-Cross, placas FHH5A17

@@ -1,0 +1,31 @@
+{
+  "caso": "real-089-reforma",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1003068-43.2021.8.26.0506",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "restituicao_servicos_nao_executados": 154500.0,
+      "reparacao_vicios_sanaveis": 8300.0,
+      "danos_materiais_total": 162800.0,
+      "danos_morais": 30000.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Relação de consumo configurada, com responsabilidade objetiva da prestadora de serviços (CDC art. 14)",
+      "Atraso substancial na execução da obra: prazo final em março/2021, mas obra ainda na 7ª etapa (prevista para outubro/2020) quando da rescisão em fevereiro/2021",
+      "Serviço flagrantemente defeituoso: desmoronamentos da parede da caixa d'água sobre imóvel vizinho por duas vezes, demonstrando imperícia técnica",
+      "Pandemia de COVID-19 não constitui excludente de responsabilidade, pois contrato foi celebrado já durante cenário pandêmico e riscos ordinários da atividade devem ser absorvidos pela empreiteira",
+      "Vícios construtivos graves comprovados por perícia: anomalias sanáveis (R$ 8.300,00) e insanáveis (inobservância de recuos obrigatórios, impossibilitando habite-se)",
+      "Serviços não executados no valor de R$ 154.500,00 conforme apuração pericial técnica",
+      "Dano moral configurado pela frustração do sonho da casa própria, exposição a ação judicial movida por vizinho, constrangimento perante comunidade do condomínio, e vícios insanáveis que exigiriam demolição completa",
+      "Descumprimento de cláusulas contratuais de manutenção de ordem e limpeza, e violação do princípio da boa-fé objetiva"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum"
+  }
+}

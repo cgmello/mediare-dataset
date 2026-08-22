@@ -1,0 +1,7 @@
+- Fotografias detalhadas mostrando manchas de umidade no teto
+- Fotografias do bolor esverdeado nas paredes
+- Fotografias do descascamento da pintura e reboco deteriorado
+- Imagens dos danos em móveis causados pela infiltração
+- Orçamento detalhado de empresa especializada discriminando materiais e mão de obra no valor de R$ 7.370,00
+- Comprovante de propriedade ou posse do apartamento 52
+- Documentos do condomínio identificando a localização das unidades

@@ -1,0 +1,7 @@
+- Documento de identidade e CPF
+- Contrato/Garantia de Compra e Venda firmado em 02/12/2020 com a empresa requerida
+- Documento do veículo Fiat Palio Weekend ELX, placa AKP-5939, demonstrando registro em nome do requerente
+- Comprovantes de débitos de IPVA incidentes sobre o veículo
+- Comprovantes de multas de trânsito em nome do requerente
+- Certidão ou comprovante de negativação do nome
+- Consulta junto ao DETRAN demonstrando que o veículo permanece registrado em nome do requerente

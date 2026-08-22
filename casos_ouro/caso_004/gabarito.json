@@ -1,0 +1,26 @@
+{
+  "caso": "004-transito-engavetamento",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1037981-09.2024.8.26.0001 (21/08/2026)",
+  "parecer_esperado": {
+    "responsavel": "requerido_condutor_tcross",
+    "fundamentos": [
+      "presuncao de culpa de quem colide na traseira por nao guardar distancia de seguranca (CTB art. 29, II)",
+      "tese de parada brusca nao afasta a presuncao sem prova",
+      "lucros cessantes exigem prova do prejuizo liquido efetivo, nao apenas da diaria bruta"
+    ],
+    "valores": {
+      "danos_materiais": 18472.0,
+      "lucros_cessantes": 0.0,
+      "limite_seguradora": 9476.49
+    },
+    "pedidos_rejeitados": [
+      "lucros cessantes de R$ 10.660,00 - prova insuficiente do prejuizo liquido"
+    ],
+    "observacao": "seguradora responde apenas ate o saldo remanescente da apolice"
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "danos materiais +/- 10%; lucros cessantes devem ser negados ou reduzidos por falta de prova",
+    "fundamentos": "deve citar presuncao de culpa por colisao traseira"
+  }
+}

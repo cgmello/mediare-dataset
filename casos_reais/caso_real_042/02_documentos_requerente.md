@@ -1,0 +1,5 @@
+- Nota fiscal eletrônica da venda da bomba injetora, no valor de R$ 5.300,00
+- Boleto mercantil com vencimento em 28/04/2025
+- Comprovante de protesto do título
+- Contrato social ou documentos da empresa requerente
+- Cálculo de atualização do débito demonstrando o valor de R$ 5.764,43

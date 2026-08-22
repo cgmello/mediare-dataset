@@ -1,0 +1,30 @@
+{
+  "caso": "real-031-cobranca",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1006795-75.2024.8.26.0224",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "saldo_devedor_contrato": 10000.0,
+      "correcao_monetaria": "desde o inadimplemento",
+      "juros_moratorios": "legais desde a citação",
+      "honorarios_advocaticios": 2500.0,
+      "custas_processuais": "valor das custas efetivamente gastas"
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Contrato validamente celebrado em 31/03/2022 comprova a relação jurídica entre as partes",
+      "Serviços contratados foram efetivamente prestados conforme comprovantes de realização dos eventos em 17/08/2023 e 19/08/2023",
+      "Adimplemento parcial de apenas R$ 7.500,00 do total de R$ 17.500,00 restou comprovado",
+      "Revelia da parte requerida regularmente citada gera presunção de veracidade dos fatos alegados",
+      "Ausência de comprovação de quitação integral ou de qualquer causa extintiva, impeditiva ou modificativa do direito",
+      "Princípio da força obrigatória dos contratos e dever de adimplemento das obrigações assumidas"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas devem ser 0",
+    "fundamentos": "mínimo 2 fundamentos centrais em comum"
+  }
+}

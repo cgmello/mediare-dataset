@@ -1,0 +1,10 @@
+- Contrato de locação comercial original (08/05/2014) demonstrando prazo de 3 anos e aluguel de R$ 1.600,00
+- Cláusula sétima (parágrafo único) discriminando as obras sob responsabilidade da locatária
+- Cláusula nona prevendo renúncia expressa ao direito de retenção por benfeitorias
+- Cláusula décima primeira atribuindo à locatária a responsabilidade por alvarás e licenças
+- Termos de aditamento contratuais
+- Notificação extrajudicial de denúncia do contrato (27/04/2022, registrada em 01/06/2022)
+- Laudo de vistoria de saída do imóvel
+- Documentos demonstrando que a administradora atuou apenas como intermediária
+- Comprovantes de que não há assinatura da administradora como locadora no contrato
+- Certidão demonstrando ausência de ação renovatória no prazo legal

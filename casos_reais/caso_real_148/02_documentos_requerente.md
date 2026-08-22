@@ -1,0 +1,6 @@
+- Odontograma e serviços a executar (sem identificação completa, assinatura ou data)
+- Comprovante de pagamento do valor de R$ 10.000,00
+- Filmagem demonstrando os problemas com a prótese (sem comprovação formal de data)
+- Áudios de conversas relacionadas ao caso
+- Orçamentos de outros profissionais para refazer o tratamento
+- Exame radiográfico realizado em fevereiro de 2021

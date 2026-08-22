@@ -1,0 +1,7 @@
+- Contrato de prestação de serviços odontológicos firmado em agosto de 2018
+- Comprovante de pagamento de R$ 400,00 datado de 10/12/2022 referente à manutenção
+- Documentos pessoais (RG e CPF)
+- Prontuário odontológico da clínica requerida
+- Orçamento de novo tratamento odontológico reparador
+- Fotografias das condições bucais atuais
+- Eventuais prescrições médicas e atestados relacionados às dores

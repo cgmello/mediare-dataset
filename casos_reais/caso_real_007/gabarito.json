@@ -1,0 +1,44 @@
+{
+  "caso": "real-007-locacao",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1042555-91.2019.8.26.0602",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "aluguel_setembro_2019": 1000.0,
+      "aluguel_outubro_2019": 1000.0,
+      "aluguel_novembro_2019": 1000.0,
+      "multa_contratual_clausula_11": 3000.0,
+      "juros_mora_1_porcento_mes": 0.0,
+      "multa_moratoria_10_porcento": 0.0,
+      "encargos_cpfl": 0.0,
+      "encargos_saae": 0.0,
+      "iptu": 0.0,
+      "taxa_pintura": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "desocupacao_imovel": "Confirmada a rescisão contratual por culpa do locatário e tornada definitiva a desocupação do imóvel"
+    },
+    "pedidos_rejeitados": [
+      "Multa moratória de 10% (cláusula 8ª) - rejeitada por bis in idem com multa da cláusula 11ª",
+      "Cobrança de CPFL - ausência de comprovação documental",
+      "Cobrança de SAAE - ausência de comprovação documental",
+      "Cobrança de IPTU - ausência de comprovação documental",
+      "Taxa de pintura - ausência de comprovação documental",
+      "Reconhecimento de litigância de má-fé do requerido - exercício regular de defesa"
+    ],
+    "fundamentos": [
+      "Mora confessada pelo próprio réu quanto aos três meses de aluguel (setembro, outubro e novembro/2019)",
+      "Ausência de comprovação da devolução regular do imóvel mediante termo de entrega de chaves ou aceite dos locadores (art. 373, II, CPC)",
+      "Multa contratual da cláusula 11ª devida por infração a qualquer cláusula contratual",
+      "Encargos de CPFL, SAAE, IPTU e taxa de pintura não comprovados documentalmente pelos autores (art. 373, I, CPC)",
+      "Multa moratória de 10% (cláusula 8ª) configuraria bis in idem com multa da cláusula 11ª sobre o mesmo fato",
+      "Juros moratórios de 1% ao mês mantidos por incidirem sobre fato gerador distinto (período de inadimplência)"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerido é o único responsável pela mora e rescisão contratual",
+    "valores": "tolerância ±15% por rubrica; rubricas negadas (CPFL, SAAE, IPTU, taxa de pintura, multa 10%) devem ser 0; aluguéis de 3 meses + multa R$ 3.000,00 + juros 1% a.m. devem estar presentes",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) mora confessada, (2) ausência de prova da devolução do imóvel, (3) falta de comprovação documental dos encargos específicos, (4) bis in idem entre multas"
+  }
+}

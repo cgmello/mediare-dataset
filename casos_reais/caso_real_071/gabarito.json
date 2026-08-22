@@ -1,0 +1,33 @@
+{
+  "caso": "real-071-transito",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1016364-48.2022.8.26.0361",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "danos_materiais_reforma": 130000.0,
+      "danos_materiais_laudo_pericial": 4000.0,
+      "danos_morais": 10000.0,
+      "total_condenacao": 144000.0
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [
+      "custeio de despesas com mudança (indeferido liminarmente)",
+      "aluguel de imóvel durante obras (indeferido liminarmente)",
+      "expedição de ofício ao CAU (não mencionado na sentença como deferido)"
+    ],
+    "fundamentos": [
+      "Prova pericial judicial robusta e conclusiva que atestou a existência de vícios construtivos estruturais graves no imóvel, incluindo trincas, fissuras, desnivelamento e deformação de laje, com agravamento constatado em vistoria complementar",
+      "Responsabilidade solidária da profissional técnica N.M.P. demonstrada por documentação oficial (Alvará nº 75.023-00 e RRT nº 0000005669652) que a identifica como autora do projeto arquitetônico e responsável técnica pela execução da obra",
+      "Afastamento da prejudicial de decadência, aplicando-se o prazo prescricional decenal do art. 205 do Código Civil para pretensão indenizatória, e não o prazo do art. 445 CC ou art. 26 CDC, conforme jurisprudência pacífica do STJ",
+      "Garantia legal de 5 anos sobre solidez e segurança da obra (art. 618 CC) expressamente prevista no contrato, dentro da qual se manifestaram os vícios ocultos",
+      "Perito judicial alertou para agravamento dos vícios estruturais e recomendou desocupação do imóvel e notificação da Defesa Civil, demonstrando a gravidade dos problemas",
+      "Valores dos danos materiais comprovados por laudo pericial particular (R$ 4.000,00) e orçamentos de reforma estrutural (R$ 130.000,00), não eficazmente refutados pelos réus"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - todos os réus são solidariamente responsáveis (vendedores e responsável técnica)",
+    "valores": "tolerância ±15% por rubrica; rubricas: danos_materiais_reforma (130.000), danos_materiais_laudo_pericial (4.000), danos_morais (10.000); pedidos de mudança e aluguel foram indeferidos e devem ser 0",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) conclusão da perícia judicial atestando vícios estruturais graves, (2) responsabilidade solidária incluindo a profissional técnica como responsável pela obra conforme documentação oficial, (3) afastamento da decadência com aplicação do prazo prescricional decenal para ação indenizatória"
+  }
+}

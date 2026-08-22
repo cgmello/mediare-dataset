@@ -1,0 +1,8 @@
+- Permissão de uso outorgada em 12/06/2001
+- Contrato de compra e venda do imóvel no âmbito do programa habitacional de regularização fundiária
+- Fotografias dos danos estruturais (rachaduras nas paredes e pisos)
+- Fotografias das infiltrações de esgoto e águas pluviais
+- Orçamento de reparos no valor de R$ 6.040,85
+- Protocolo do processo administrativo nº 14.525/2021 junto à Prefeitura
+- Correspondências e notificações enviadas à construtora Santa Ângela
+- Comprovante de residência

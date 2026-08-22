@@ -1,0 +1,44 @@
+{
+  "caso": "real-010-locacao",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1017790-53.2023.8.26.0008",
+  "parecer_esperado": {
+    "responsavel": "ambos_culpa_concorrente",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "devolucao_caucao": 6000.0,
+      "rendimentos_poupanca_sobre_caucao": 0.0,
+      "reembolso_energia_pretérita": 500.0,
+      "compensacao_aluguel_proporcional": -1800.0,
+      "compensacao_contas_energia_agua_período_ocupacao": 0.0,
+      "indenização_danos_morais_requerente": 0.0,
+      "indenização_danos_materiais_requerido": 0.0,
+      "despesas_chaveiro": 0.0,
+      "indenização_danos_morais_requerido": 0.0
+    },
+    "obrigacoes_de_fazer": {
+      "consignacao_chaves": "Procedente - depositadas e aceitas judicialmente, termo final da locação em 16/10/2023",
+      "liquidacao_saldo_caucao": "Apuração em liquidação por cálculo aritmético do saldo da caução atualizada pela poupança, compensando débitos de aluguel proporcional e contas de consumo do período efetivo de ocupação"
+    },
+    "pedidos_rejeitados": [
+      "Danos morais de R$ 15.000,00 pleiteados pela locatária - configuração de mero aborrecimento cotidiano",
+      "Indenização por danos materiais ao imóvel de R$ 1.782,00 - ausência de vistoria bilateral e provas unilaterais insuficientes",
+      "Despesas de chaveiro de R$ 280,00 - causadas pela própria recusa indevida da locadora em receber as chaves",
+      "Danos morais de R$ 5.000,00 pleiteados pela locadora - ausência de prova de ofensa à honra",
+      "Tese de inabitabilidade estrutural do imóvel - afastada por perícia técnica que atestou integridade estrutural e plenas condições de uso"
+    ],
+    "fundamentos": [
+      "Direito potestativo do locatário de devolver o imóvel a qualquer tempo, vedada a recusa de recebimento das chaves pelo locador condicionada a reparos ou quitações (art. 38, Lei 8.245/91)",
+      "Laudo pericial conclusivo pela integridade estrutural do imóvel e plenas condições de habitabilidade, afastando tese de inabitabilidade",
+      "Caução deve ser restituída com rendimentos de poupança, admitida compensação judicial apenas com débitos locatícios comprovados (art. 38, §2º, Lei 8.245/91)",
+      "É devido aluguel proporcional de 27 dias (19/09/2023 a 16/10/2023) no valor de R$ 1.800,00",
+      "Cobrança de indenização por danos ao imóvel exige confronto entre vistorias inicial e de saída formais e bilaterais, não bastando vistorias unilaterais",
+      "Mero descumprimento contratual e aborrecimentos cotidianos não configuram danos morais indenizáveis, ausente violação a atributos da personalidade",
+      "Reembolso de energia elétrica devida à locatária quanto a parcelamentos de dívida pretérita da locadora, a apurar em liquidação com abatimento de R$ 250,00 já compensado"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "Match exato ou aceitável 'parcial_ambos' - ambas as partes tiveram razão e pretensões rejeitadas",
+    "valores": "Tolerância ±15% por rubrica; valores de liquidação futura podem ser indicados como 'a apurar'; caução base R$ 6.000,00; aluguel proporcional R$ 1.800,00 (débito); danos morais e materiais ao imóvel devem ser 0; reembolso energia base R$ 500,00 mas sujeito a apuração e abatimento",
+    "fundamentos": "Mínimo 3 fundamentos centrais em comum: (1) direito potestativo de devolução de chaves, (2) laudo pericial afastando inabitabilidade estrutural, (3) devolução de caução com compensação de débitos comprovados, (4) necessidade de vistoria bilateral para cobrança de danos, (5) rejeição de danos morais de ambas as partes"
+  }
+}

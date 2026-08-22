@@ -1,0 +1,9 @@
+- Contrato de empreitada assinado em 23/08/2022
+- Comprovantes de pagamento totalizando R$ 225.218,75
+- Laudo técnico elaborado por engenheiro F.D.B. atestando vícios construtivos
+- Fotografias demonstrando irregularidades estruturais e necessidade de retrabalho
+- Registros fotográficos da remoção do pilar e do reforço inadequado
+- Comprovantes de pagamento de dois meses de aluguel (R$ 8.247,26)
+- Contrato de locação do imóvel
+- Notificação extrajudicial enviada aos réus
+- Comprovante de envio/recebimento da notificação

@@ -1,0 +1,8 @@
+- Convenção de Condomínio registrada
+- Atas de assembleias condominiais
+- Boletos bancários das despesas condominiais do período (junho/2013 a junho/2024)
+- Comprovante de titularidade da unidade pela requerida
+- Planilha detalhada de cálculo do débito atualizado (R$ 37.578,21)
+- Demonstrativo discriminado das parcelas vencidas mês a mês
+- Comprovantes de tentativas de cobrança amigável (se houver)
+- Certidão de composição do condomínio

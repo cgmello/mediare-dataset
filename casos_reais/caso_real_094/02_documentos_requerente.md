@@ -1,0 +1,7 @@
+- Matrícula do imóvel situado na Rua O. D., nº 617
+- Laudo pericial técnico completo da ação de produção antecipada de provas (processo nº 1004304-72.2024.8.26.0361)
+- Fotografias dos danos: rachaduras em paredes, pisos, telhado e muro
+- Comprovante de residência
+- Documentos pessoais (RG, CPF)
+- Comprovantes de hipossuficiência financeira
+- Registro fotográfico do estado atual do imóvel

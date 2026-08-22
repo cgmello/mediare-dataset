@@ -1,0 +1,7 @@
+- Laudo de Vistoria Cautelar Prévia de Vizinhança realizada em 13/09/2021
+- Fotografias do imóvel do autor antes do início das obras (demonstrando trincas, rachaduras e umidade preexistentes)
+- Documentos técnicos da obra do Residencial Ilhas do Mar
+- Registro de início das obras (janeiro/fevereiro de 2022)
+- ART (Anotação de Responsabilidade Técnica) do engenheiro F.A.S.G.
+- Documentos societários da Habcasa Incorporadora e Construtora Ltda
+- Projeto aprovado do empreendimento

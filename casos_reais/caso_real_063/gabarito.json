@@ -1,0 +1,29 @@
+{
+  "caso": "real-063-transito",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1001778-17.2026.8.26.0506",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "indenizacao_danos_materiais": 59789.01,
+      "atualizacao_monetaria": "desde o desembolso",
+      "juros_de_mora": "desde o desembolso"
+    },
+    "obrigacoes_de_fazer": {},
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Responsabilidade subjetiva da concessionária de serviço público por omissão configurada pela culpa do serviço (faute du service)",
+      "Concessionária não se desincumbiu do ônus de comprovar adoção de medidas eficazes para impedir acesso de animais (ausência de cercas, muretas, arames farpados ou sinalização específica)",
+      "Mera fiscalização ocasional e esporádica não é suficiente para afastar ocorrência de acidentes envolvendo animais de grande porte",
+      "Presença de animais em rodovias é evento previsível, especialmente em regiões de pastagem, exigindo medidas preventivas da concessionária",
+      "Ausência de culpa do condutor segurado que trafegava com equipamentos de segurança e tentou evitar a colisão",
+      "Sub-rogação da seguradora nos direitos do segurado devidamente comprovada conforme artigo 94 da Lei 15.040/2024",
+      "Não comprovação de caso fortuito, força maior ou culpa exclusiva da vítima"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - deve ser 'requerido'",
+    "valores": "tolerância ±15% sobre R$ 59.789,01; deve incluir atualização monetária e juros desde o desembolso",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) responsabilidade subjetiva por omissão com culpa do serviço configurada; (2) ausência de medidas preventivas eficazes (cercas/sinalização); (3) fiscalização insuficiente; (4) previsibilidade do evento em região de pastagem"
+  }
+}

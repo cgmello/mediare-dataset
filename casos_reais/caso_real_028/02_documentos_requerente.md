@@ -1,0 +1,6 @@
+- Contrato de prestação de serviços educacionais assinado pelas partes
+- Planilha de cálculo discriminando as mensalidades vencidas e não pagas
+- Comprovantes de disponibilização dos serviços educacionais no período
+- Histórico de cobrança e notificações enviadas ao devedor
+- Documentos constitutivos da empresa (contrato social, CNPJ)
+- Procuração outorgando poderes ao representante legal

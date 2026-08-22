@@ -1,0 +1,7 @@
+- Nota fiscal da compra da bolsa no valor de R$ 2.399,00, datada de 20/12/2024
+- Fotografias do produto demonstrando o descascamento na parte interna da alça
+- Protocolo de atendimento na loja da requerida em 29/01/2025
+- Protocolo do Procon nº 0107688/2025, registrado em 10/02/2025
+- Histórico de mensagens trocadas com a empresa via aplicativo
+- Prints da página de venda do produto com descrição "100% couro legítimo"
+- Comprovante de pagamento (cartão de crédito ou transferência) no valor de R$ 2.399,00

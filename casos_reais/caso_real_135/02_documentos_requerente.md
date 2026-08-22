@@ -1,0 +1,8 @@
+- Certidão de óbito de A.G. (falecimento em 04/03/2021)
+- Certidão de óbito de M.L.P.G. (falecimento em 15/09/2023)
+- Documento que comprova a condição de herdeira
+- Comprovante de andamento do inventário nº 1009725-17.2022.8.26.0554 (espólio de A.G.)
+- Comprovante de andamento do inventário nº 1029615-05.2023.8.26.0554 (espólio de M.L.P.G.)
+- Documentação dos quatro imóveis situados em Santo André/SP que compõem o espólio
+- Comprovantes ou indícios da existência de contratos de locação dos imóveis
+- Pesquisa de valores de mercado para locação de imóvel similar ao ocupado pela corré (Av. Martim Francisco, nº 35)

@@ -1,0 +1,9 @@
+- Contrato de empreitada e fornecimento de materiais assinado em 08/11/2022
+- Notas fiscais emitidas e autorizadas pela requerida
+- Primeira notificação extrajudicial recebida em 06/03/2024
+- Comprovante de contratação de apólice de seguro em 28/02/2024
+- Segunda notificação extrajudicial recebida em 02/05/2024
+- Comprovantes de execução dos serviços de reforma
+- Planilha demonstrativa do saldo retido (R$ 76.344,41)
+- Eventuais registros fotográficos dos apartamentos reformados
+- Correspondências trocadas com a requerida

@@ -1,0 +1,10 @@
+- Boletim de Ocorrência do acidente (17/04/2024)
+- Certidão de óbito de K.D.M.
+- Documento de propriedade da motocicleta (CRLV)
+- Laudo pericial do veículo comprovando perda total
+- Comprovantes de residência demonstrando que a vítima residia com a requerente
+- Extratos bancários demonstrando auxílio financeiro prestado pela vítima
+- Fotografias do local do acidente
+- Relatório de atendimento da concessionária
+- Documentos pessoais da vítima (RG, CPF)
+- Declaração de dependência econômica

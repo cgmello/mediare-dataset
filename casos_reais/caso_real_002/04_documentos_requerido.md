@@ -1,0 +1,1 @@
+- Não foram apresentados documentos (réu não localizado, defesa por curador especial mediante negativa geral)

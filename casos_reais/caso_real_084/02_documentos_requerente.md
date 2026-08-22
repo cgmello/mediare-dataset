@@ -1,0 +1,9 @@
+- Contrato de empreitada global assinado em 12/09/2022
+- Comprovantes de pagamento no valor total de R$ 4.203.000,00
+- Laudo técnico da Puma Engenharia do Brasil Ltda. (custo R$ 20.000,00) atestando execução de apenas 8,75% da obra
+- Recibo de pagamento do laudo técnico
+- Registro fotográfico da obra na data da suspensão (01/02/2023)
+- Troca de e-mails e mensagens solicitando informações sobre projetos, materiais e prazos sem respostas adequadas
+- Comprovantes de pagamento de aluguéis do imóvel anterior
+- Comprovantes de pagamento de cotas condominiais do imóvel anterior
+- Cronograma contratual original prevendo conclusão em 14/03/2023

@@ -1,0 +1,7 @@
+- Instrumento Particular de Confissão de Dívida nº 218955, datado de 28/11/2016
+- Demonstrativos de Pagamento sobre Fornecimento de Leite (períodos anteriores a agosto/2017)
+- Planilha de cálculo do débito atualizado
+- Comprovantes das sete prestações pagas pelo requerido
+- Comprovante de pagamento parcial da oitava prestação
+- Documentos de identificação da empresa autora
+- Procuração

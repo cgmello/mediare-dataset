@@ -1,0 +1,12 @@
+- Cédula de crédito bancário (contrato de financiamento)
+- Documentos completos do financiamento
+- Documento do veículo (placa MWF-2B18)
+- Comprovante de pagamento da entrada de R$ 4.000,00
+- Comprovantes de pagamento das parcelas do financiamento
+- Comprovantes de inadimplência de duas parcelas
+- Declarações de hipossuficiência econômica
+- Comprovantes de desemprego de ambos os requerentes
+- Fotografias do veículo
+- Eventual orçamento ou laudo sobre defeito no cabeçote do motor
+- Comprovantes de gastos com tentativas de reparo e deslocamentos (totalizando R$ 5.766,00)
+- Tentativa de contato com o vendedor solicitando reparo

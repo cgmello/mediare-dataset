@@ -1,0 +1,11 @@
+- Nota fiscal da compra do notebook (10/11/2024) no valor de R$ 1.999,00
+- Comprovante de parcelamento no cartão de crédito (12 parcelas)
+- Faturas do cartão de crédito demonstrando os descontos das parcelas
+- Protocolo de entrada na assistência técnica (18/11/2024)
+- Laudo técnico da assistência autorizada (25/11/2024)
+- Orçamento de reparo no valor de R$ 2.021,00 (troca de placa mãe e bateria)
+- Relatório técnico completo indicando "soldagem mal executada" e exclusão de garantia
+- Manual do produto
+- Termo de garantia do fabricante
+- Fotografias do notebook
+- Comunicações/e-mails trocados com a loja e assistência técnica

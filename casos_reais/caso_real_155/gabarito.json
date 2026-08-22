@@ -1,0 +1,28 @@
+{
+  "caso": "real-155-servicos",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1056584-70.2024.8.26.0506",
+  "parecer_esperado": {
+    "responsavel": "requerido",
+    "resultado": "procedente",
+    "valores": {
+      "danos_morais": 8000.0
+    },
+    "obrigacoes_de_fazer": {
+      "reativacao_da_conta": "Restituição do acesso à conta do Instagram da autora (tutela de urgência confirmada e já cumprida)"
+    },
+    "pedidos_rejeitados": [],
+    "fundamentos": [
+      "Relação de consumo configurada com aplicação do CDC e inversão do ônus da prova em favor da parte hipossuficiente",
+      "Responsabilidade objetiva do fornecedor por falha na prestação de serviços (art. 14 do CDC), independentemente de culpa",
+      "Ação de terceiro fraudador que invade sistema de rede social constitui fortuito interno e risco inerente à atividade do provedor (art. 927, parágrafo único, do Código Civil)",
+      "Ausência de comprovação de culpa exclusiva da consumidora no fornecimento de senhas, caracterizando vício na segurança digital do aplicativo",
+      "Violação aos princípios da proteção da privacidade e dos dados pessoais previstos na Lei 12.965/2014 (Marco Civil da Internet)",
+      "Dano moral configurado pela exposição indevida, uso criminoso da conta por terceiros, abalo à imagem e credibilidade, agravado pela condição psicológica da autora e inércia da ré em resolver administrativamente"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - responsabilidade exclusiva da requerida (Facebook)",
+    "valores": "tolerância ±15% sobre R$ 8.000,00 para danos morais (faixa aceitável: R$ 6.800,00 a R$ 9.200,00)",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) responsabilidade objetiva CDC com inversão do ônus da prova; (2) fortuito interno/risco da atividade não exclui responsabilidade do provedor; (3) dano moral configurado pela exposição, uso criminoso da conta e inércia da ré, agravado pela condição psicológica da autora"
+  }
+}

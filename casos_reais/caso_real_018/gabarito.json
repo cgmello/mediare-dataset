@@ -1,0 +1,41 @@
+{
+  "caso": "real-018-locacao",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1025480-29.2025.8.26.0602",
+  "parecer_esperado": {
+    "responsavel": "parcial_ambos",
+    "resultado": "parcialmente procedente",
+    "valores": {
+      "aluguel_janeiro_2025": 0.0,
+      "aluguel_fevereiro_2025": 0.0,
+      "encargos_janeiro_2025": 0.0,
+      "encargos_fevereiro_2025": 0.0,
+      "multa_rescisoria_proporcional": "valor_a_recalcular_conforme_clausula_IX_item_A",
+      "abatimento_caucao_atualizada": "valor_a_calcular_conforme_atualizacao_contratual"
+    },
+    "obrigacoes_de_fazer": {
+      "recalculo_multa": "Recalcular multa rescisória em conformidade com cláusula IX, item A, do contrato e art. 4º da Lei 8.245/91, observada proporcionalidade",
+      "abatimento_caucao": "Abater caução devidamente atualizada do débito após exclusões e recálculo",
+      "nova_memoria_calculo": "Elaborar nova memória discriminada do débito observando critérios da sentença para prosseguimento da execução"
+    },
+    "pedidos_rejeitados": [
+      "Nulidade da citação no processo executivo",
+      "Afastamento integral da multa rescisória",
+      "Condenação da exequente por litigância de má-fé",
+      "Exigibilidade dos aluguéis e encargos de janeiro e fevereiro de 2025 nos valores integrais lançados",
+      "Valor integral de R$ 5.834,10 da multa sem aplicação do critério proporcional"
+    ],
+    "fundamentos": [
+      "Manifestação inequívoca da locatária de encerrar a locação no início de janeiro/2025 com adoção de providências concretas para restituição do imóvel antes do vencimento do aluguel de janeiro",
+      "Conjunto de comunicações demonstra que administradora iniciou procedimentos de vistoria em 09/01/2025, havendo demora na conclusão do procedimento que dependia também de sua atuação",
+      "Formalização posterior da entrega das chaves (06/02/2025) não pode prolongar indefinidamente obrigação de pagamento de aluguéis quando locatária já havia desocupado e adotado providências concretas para restituição",
+      "Exigência de reparos/pintura não constitui impedimento à conclusão da devolução, podendo danos ser objeto de apuração própria, mas não fundamento para prolongar relação locatícia (art. 23, III, Lei 8.245/91)",
+      "Rescisão antecipada por iniciativa da locatária enseja multa contratual prevista na cláusula IX, item A, com cálculo proporcional conforme art. 4º da Lei 8.245/91",
+      "Ausência de configuração de litigância de má-fé, pois controvérsia decorre de interpretação sobre momento de aperfeiçoamento da devolução, não de alteração deliberada da verdade"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato: parcial_ambos (locatária pela multa proporcional; locadora pelos aluguéis jan/fev indevidos)",
+    "valores": "tolerância ±15% apenas para multa rescisória recalculada; aluguéis e encargos de jan/fev devem ser exatamente 0.0; caução deve ser abatida com atualização contratual",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) providências concretas de devolução antes de jan/2025, (2) demora administrativa não pode prolongar cobrança de aluguéis, (3) multa proporcional devida por rescisão antecipada"
+  }
+}

@@ -1,0 +1,6 @@
+- Fotografias do veículo danificado (parte traseira)
+- Fotografia do veículo causador do acidente exibindo logotipo da empresa Transertão
+- Documento de propriedade do veículo Chevrolet Classic LS
+- Orçamento de reparação no valor de R$ 24.020,80
+- Comprovantes de despesas com transporte por aplicativo (Uber/99)
+- Boletim de Ocorrência do acidente de trânsito (se houver)

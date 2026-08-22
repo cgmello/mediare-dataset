@@ -1,0 +1,7 @@
+- Contrato de locação celebrado com o Condomínio Edifício G.
+- Apólice/certificado do título de capitalização emitido pela requerida
+- Comprovantes de pagamento das parcelas do título de capitalização
+- Correspondências trocadas com a requerida solicitando o resgate
+- Distrato ou comunicação de encerramento do contrato de locação
+- Comprovante de entrega das chaves do imóvel
+- Eventuais e-mails ou protocolos de atendimento negando o resgate

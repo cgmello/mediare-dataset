@@ -1,0 +1,41 @@
+{
+  "caso": "real-118-condominio",
+  "fonte": "Sentenca TJSP - CJPG - proc. 1007730-58.2025.8.26.0361",
+  "parecer_esperado": {
+    "responsavel": "requerente",
+    "resultado": "improcedente",
+    "valores": {
+      "restituicao_valores_cobrados_indevidamente": 0.0,
+      "compensacao_desconto_conselheiro": 0.0,
+      "indenizacao_enriquecimento_sem_causa": 0.0,
+      "multa_art_44_lei_8245": 0.0,
+      "multa_rescisoria_proporcional_devida_ao_requerido": 658.3
+    },
+    "obrigacoes_de_fazer": {
+      "liberacao_deposito_judicial": "Liberação da quantia de R$ 658,30 depositada judicialmente em favor do réu/locador a título de multa compensatória pela rescisão antecipada"
+    },
+    "pedidos_rejeitados": [
+      "Tutela de urgência para depósito judicial com suspensão de cobranças",
+      "Rescisão contratual por culpa do locador",
+      "Restituição de valores cobrados indevidamente",
+      "Compensação de abatimentos referentes à função de conselheiro",
+      "Indenização por enriquecimento sem causa",
+      "Aplicação da multa civil do art. 44 da Lei 8.245/91",
+      "Expedição de ofícios ao Ministério Público, CRECI e Corpo de Bombeiros",
+      "Condenação do réu por litigância de má-fé (pedido contraposto também rejeitado)"
+    ],
+    "fundamentos": [
+      "A estipulação de aluguel em modalidade global (pacote fechado) incluindo aluguel, IPTU e condomínio é plenamente válida e decorre da autonomia privada, dispensando discriminação mensal de rubricas nos recibos",
+      "Não restou demonstrado qualquer repasse de despesas extraordinárias ou débitos pretéritos do condomínio aos locatários, mantendo-se o valor fixo contratado de R$ 1.400,00 mensais",
+      "Eventuais descontos condominiais por exercício de função de conselheiro vinculam apenas a relação interna condomínio-unidade, não repercutindo no aluguel global ajustado, especialmente quando exercido irregularmente e por curto período",
+      "A cobrança individualizada de água após deliberação assemblear está em conformidade com a cláusula 7.4 do contrato e com o art. 23, VIII, da Lei 8.245/91, sendo encargo próprio do locatário",
+      "O art. 44 da Lei 8.245/91 aplica-se exclusivamente a habitações coletivas multifamiliares (cortiços), não a apartamentos individuais em condomínios edilícios tradicionais",
+      "A desocupação voluntária do imóvel pelos locatários aos 26 meses de contrato de 30 meses configura resilição unilateral por iniciativa dos locatários, não havendo culpa do locador, sendo devida a multa compensatória proporcional depositada"
+    ]
+  },
+  "criterios_equivalencia_sugeridos": {
+    "responsavel": "match exato - requerente assumiu culpa pela rescisão antecipada",
+    "valores": "tolerância ±15% na multa rescisória (R$ 658,30); todas as demais rubricas (restituições, compensações, indenizações, multa art. 44) devem ser exatamente 0",
+    "fundamentos": "mínimo 3 fundamentos centrais em comum: (1) validade do pacote fechado sem discriminação obrigatória, (2) inexistência de repasse de despesas extraordinárias, (3) legalidade da cobrança individualizada de água, (4) inaplicabilidade do art. 44 a condomínios tradicionais, (5) culpa dos locatários pela rescisão antecipada"
+  }
+}
