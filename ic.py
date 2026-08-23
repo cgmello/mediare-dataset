@@ -149,7 +149,8 @@ class MediareCommittee(gl.Contract):
                 "titulo executivo extrajudicial (CPC, art. 784, III). "
                 "Se houver mais de um requerido responsavel solidariamente, "
                 "o termo deve obriga-los pelo valor INTEGRAL em solidariedade, "
-                "sem dividir cotas."
+                "sem dividir cotas. Responda com o TEXTO do termo diretamente, "
+                "sem envolver em JSON."
             ),
             criteria=(
                 "The draft is VALID only if ALL hold: "
@@ -162,6 +163,14 @@ class MediareCommittee(gl.Contract):
                 "6) it contains no personal data beyond pseudonymized initials."
             ),
         )
+
+        # desembrulha caso o lider retorne o termo dentro de um JSON
+        t = termo.strip()
+        if t.startswith("{"):
+            try:
+                termo = list(json.loads(t).values())[0]
+            except Exception:
+                pass
 
         self.case_id = case_id
         self.case_url = case_url
