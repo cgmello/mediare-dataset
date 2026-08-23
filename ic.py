@@ -16,8 +16,6 @@ class MediareCommittee(gl.Contract):
       reads DATASET_BASE + case_id + ".json"
       round 1 -> structured opinion (comparative equivalence principle)
       round 2 -> settlement draft   (non-comparative equivalence principle)
-    If the human mediator wants changes, the platform publishes a new immutable
-    snapshot of the case (e.g. id "0002-v2") and calls again with the new id.
     """
 
     case_id: str
@@ -69,10 +67,11 @@ class MediareCommittee(gl.Contract):
                 "nao se aplicar; some na mesma chave rubricas da mesma natureza; "
                 "nao inclua correcao monetaria ou juros. "
                 "(b) use 'parcial_ambos' ou 'ambos_culpa_concorrente' SOMENTE "
-                "quando as DUAS partes tiverem contribuido causalmente para o "
-                "dano; rejeitar apenas parte dos pedidos NAO torna o caso "
-                "'parcial_ambos' - nesse caso o responsavel e a parte perdedora "
-                "e o resultado e 'parcialmente procedente'. "
+                "quando REQUERENTE E REQUERIDO (lados opostos da disputa) "
+                "tiverem contribuido causalmente para o dano; rejeitar apenas "
+                "parte dos pedidos NAO torna o caso 'parcial_ambos' - nesse "
+                "caso o responsavel e a parte perdedora e o resultado e "
+                "'parcialmente procedente'. "
                 "(c) 'responsavel' significa a parte que fica OBRIGADA a pagar "
                 "ou fazer algo em favor da outra (a parte perdedora). Se o "
                 "requerido deve pagar ao requerente, responsavel = 'requerido'. "
@@ -93,10 +92,16 @@ class MediareCommittee(gl.Contract):
                 "concedidos, sem somar nem subtrair coberturas de seguro. "
                 "(g) coerencia: se TODOS os valores forem 0.0 e nao houver "
                 "obrigacao de fazer, entao resultado = 'improcedente' e "
-                "responsavel = 'requerente'. Se houver culpa concorrente com "
-                "reparticao de valores, use responsavel = "
-                "'ambos_culpa_concorrente' e informe em 'principal' apenas a "
-                "quota devida ao requerente. "
+                "responsavel = 'requerente'. Se houver culpa concorrente entre "
+                "requerente e requerido com reparticao de valores, use "
+                "responsavel = 'ambos_culpa_concorrente' e informe em "
+                "'principal' apenas a quota devida ao requerente. "
+                "(h) polo passivo multiplo: quando houver mais de um requerido "
+                "(ex.: fabricante e revendedor solidarios), use responsavel = "
+                "'requerido', referindo-se ao polo passivo em conjunto - "
+                "solidariedade entre requeridos NAO e culpa concorrente. "
+                "A divisao interna entre os requeridos NAO reduz o total devido "
+                "ao requerente - informe sempre o valor integral. "
                 "Use apenas fatos presentes nos documentos. "
                 "Nao invente valores nem fatos."
             )
@@ -121,8 +126,9 @@ class MediareCommittee(gl.Contract):
                 "value of 0 in one must be 0 in the other; "
                 "4) 'danos_morais' is a matter of judicial discretion and may "
                 "differ freely - ignore it; "
-                "5) at least 2 of the 'fundamentos' are semantically "
-                "equivalent; "
+                "5) the 'fundamentos' of both outputs address the same central "
+                "legal issue of the case, even if worded differently or "
+                "emphasizing different aspects; "
                 "6) ignore 'confianca'."
             ),
         )
@@ -141,7 +147,10 @@ class MediareCommittee(gl.Contract):
                 "partes (pseudonimizadas), resumo do conflito, obrigacoes de "
                 "cada parte com valores e prazos, clausula de quitacao, "
                 "clausula de confidencialidade e clausula declarando o termo "
-                "titulo executivo extrajudicial (CPC, art. 784, III)."
+                "titulo executivo extrajudicial (CPC, art. 784, III). "
+                "Se houver mais de um requerido responsavel solidariamente, "
+                "o termo deve obriga-los pelo valor INTEGRAL em solidariedade, "
+                "sem dividir cotas."
             ),
             criteria=(
                 "The draft is VALID only if ALL hold: "
