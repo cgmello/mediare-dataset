@@ -6,3 +6,5 @@ sentencas.jsonl
 .venv/
 .DS_Store
 __pycache__/
+resultados/
+
