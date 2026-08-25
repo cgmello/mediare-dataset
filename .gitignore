@@ -8,3 +8,6 @@ sentencas.jsonl
 __pycache__/
 resultados/
 
+res_haiku/
+res_sonnet/
+res_sint/
