@@ -300,9 +300,13 @@ def modo_rodar(args, gabs):
     cli = fazer_cliente()
     path = os.path.join(args.out, "paineis.jsonl")
     feitos = ja_feitos(path)
-    ids = [c for c in sorted(gabs) if c not in feitos and c >= args.desde]
-    if args.limite:
-        ids = ids[:args.limite]
+    if args.casos:
+        ids = [c.strip().zfill(4) for c in args.casos.split(",") if c.strip()]
+        ids = [c for c in ids if c not in feitos]
+    else:
+        ids = [c for c in sorted(gabs) if c not in feitos and c >= args.desde]
+        if args.limite:
+            ids = ids[:args.limite]
     print(f"rodando {len(ids)} casos x {len(LENTES)} lentes ({len(feitos)} ja feitos)")
 
     def um(cid):
@@ -462,6 +466,7 @@ def main():
     ap.add_argument("--modelo", default=MODELO_PADRAO)
     ap.add_argument("--limite", type=int, default=0)
     ap.add_argument("--desde", default="")
+    ap.add_argument("--casos", default="", help="lista explicita: 0005,0018")
     ap.add_argument("--workers", type=int, default=4)
     for m in ("auditar", "normalizar", "rodar", "relatorio"):
         ap.add_argument(f"--{m}", action="store_true")
