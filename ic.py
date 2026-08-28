@@ -1,6 +1,9 @@
 # { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
 from genlayer import *
 
+# v8: (j) coerencia responsavel x valores — reparticao tem de chegar ao
+#     numero, nao so ao texto; e a lente estrita nao zera rubrica quando a
+#     duvida e de extensao, so quando falta o dano ou o nexo.
 # v7: principle trata parcial_ambos == ambos_culpa_concorrente. Medido no
 #     caso 0005 (tx 0x62b24377, UNDETERMINED apos 3 rotacoes): os 4 lideres
 #     concordavam no merito e discordavam so do rotulo da mesma categoria.
@@ -36,8 +39,16 @@ REGRAS = (
     "    e materia de execucao. Nunca limite o valor ao saldo da apolice.\n"
     "(g) coerencia: se todas as rubricas sao 0, o resultado e 'improcedente'.\n"
     "(h) varios reus = 'requerido'. Solidariedade nao e culpa concorrente.\n"
-    "(i) NAO faca contas de proporcao, media ou rateio. Informe o valor cheio\n"
-    "    de cada rubrica que voce considera devida, e 0.0 para as negadas.\n"
+    "(i) NAO invente proporcoes nem faca media entre cenarios possiveis.\n"
+    "    Informe o valor de cada rubrica que voce considera devida e 0.0\n"
+    "    para as negadas.\n"
+    "(j) COERENCIA entre 'responsavel' e 'valores': se 'responsavel' for\n"
+    "    'parcial_ambos' ou 'ambos_culpa_concorrente', os valores DEVEM\n"
+    "    refletir a reparticao — informe a parcela que cabe a parte\n"
+    "    responsavel, nunca o custo integral. Se os documentos comprovarem\n"
+    "    a reparticao mas nao permitirem apurar a proporcao exata, use 50/50.\n"
+    "    Concluir 'responsabilidade repartida' e reportar o valor integral e\n"
+    "    contradicao: o painel sera considerado incoerente.\n"
 )
 
 # ---------------------------------------------------------------- as tres lentes
@@ -50,7 +61,12 @@ LENTES = [
      "documentalmente comprovada de forma direta e integral. Na duvida sobre a "
      "extensao do dano, nega a rubrica. Para lucro cessante ou perda de renda, "
      "exija prova do prejuizo LIQUIDO (extratos de receita, declaracoes fiscais, "
-     "comprovantes de repasse); diaria bruta e tempo de imobilizacao nao bastam."),
+     "comprovantes de repasse); diaria bruta e tempo de imobilizacao nao bastam. "
+     "ATENCAO: seu rigor incide sobre a EXTENSAO do dano, nao sobre a "
+     "EXISTENCIA da obrigacao. Se o dano esta comprovado e a duvida e apenas "
+     "sobre quanto cabe a cada parte, NAO zere a rubrica: conceda a parcela "
+     "que o lastro documental sustenta. Zerar so quando faltar prova do "
+     "proprio dano ou do nexo causal."),
     ("ampla",
      "Voce aplica o padrao probatorio AMPLO: concede a rubrica quando os documentos "
      "tornam o dano razoavelmente demonstrado, admitindo inferencia logica a partir "
