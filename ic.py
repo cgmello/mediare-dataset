@@ -1,6 +1,9 @@
 # { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
 from genlayer import *
 
+# v7: principle trata parcial_ambos == ambos_culpa_concorrente. Medido no
+#     caso 0005 (tx 0x62b24377, UNDETERMINED apos 3 rotacoes): os 4 lideres
+#     concordavam no merito e discordavam so do rotulo da mesma categoria.
 # v6: (1) regra (d) permite rateio comprovado (culpa concorrente e merito,
 #         nao equidade); (2) _moda nunca devolve "divergente" - desempate
 #         deterministico por lente, empate vai para o campo informativo.
@@ -194,7 +197,9 @@ class MediareCommittee(gl.Contract):
             principle=(
                 "Compare os dois PAINEIS olhando SOMENTE o campo 'consolidado'. "
                 "Considere equivalentes se TODAS estas condicoes valerem: "
-                "(1) 'responsavel_majoritario' identico; "
+                "(1) 'responsavel_majoritario' identico, tratando "
+                "'parcial_ambos' e 'ambos_culpa_concorrente' como EQUIVALENTES "
+                "(os dois significam responsabilidade repartida entre as partes); "
                 "(2) 'resultado_majoritario' identico, tratando 'procedente' e "
                 "'parcialmente procedente' como equivalentes; "
                 "(3) os dois intervalos 'faixa_total' SE SOBREPOEM (basta "
