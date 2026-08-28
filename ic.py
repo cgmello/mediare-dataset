@@ -1,5 +1,8 @@
 # { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
 from genlayer import *
+
+# v5: principle sem a condicao de igualdade das listas "divergencias"
+# (era a condicao mais fragil: binario ~50/50 derivado de sorteio de LLM)
 import json
 
 DATASET_BASE = ("https://raw.githubusercontent.com/cgmello/mediare-dataset/"
@@ -166,15 +169,17 @@ class MediareCommittee(gl.Contract):
                 "'parcialmente procedente' como equivalentes; "
                 "(3) os dois intervalos 'faixa_total' SE SOBREPOEM (basta "
                 "interseccao nao vazia, nao precisam coincidir); uma faixa [0,0] "
-                "so equivale a outra [0,0]; "
-                "(4) a lista 'divergencias' contem os mesmos itens. "
+                "so equivale a outra [0,0]. "
                 "IGNORE completamente: o array 'teses', o campo "
-                "'faixas_por_rubrica', o campo 'totais_por_lente', a rubrica "
-                "danos_morais, a redacao dos fundamentos e a ordem de qualquer "
-                "lista. Diferenca sobre EM QUAL RUBRICA um valor foi lancado nao "
+                "'faixas_por_rubrica', o campo 'totais_por_lente', a lista "
+                "'divergencias', o campo 'unanime', a rubrica danos_morais, "
+                "a redacao dos fundamentos e a ordem de qualquer lista. "
+                "Em particular: um painel unanime e um painel divergente podem "
+                "ser equivalentes, desde que as tres condicoes acima valham. "
+                "Diferenca sobre EM QUAL RUBRICA um valor foi lancado nao "
                 "e divergencia, desde que o total bata. "
-                "Dois paineis que discordam sobre o merito mas mapeiam a MESMA "
-                "divergencia sao equivalentes - e esse o objetivo."
+                "Dois paineis cujas faixas compartilham valores descrevem a "
+                "mesma disputa - e esse o objetivo."
             ),
         )
 
