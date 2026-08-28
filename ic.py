@@ -1,8 +1,10 @@
 # { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
 from genlayer import *
 
-# v5: principle sem a condicao de igualdade das listas "divergencias"
-# (era a condicao mais fragil: binario ~50/50 derivado de sorteio de LLM)
+# v6: (1) regra (d) permite rateio comprovado (culpa concorrente e merito,
+#         nao equidade); (2) _moda nunca devolve "divergente" - desempate
+#         deterministico por lente, empate vai para o campo informativo.
+# v5: principle sem a condicao de igualdade das listas "divergencias".
 import json
 
 DATASET_BASE = ("https://raw.githubusercontent.com/cgmello/mediare-dataset/"
@@ -20,7 +22,12 @@ REGRAS = (
     "    eles vao em 'outros', jamais somados dentro de 'principal'.\n"
     "(b) 'parcial_ambos' so quando requerente E requerido contribuiram para o dano.\n"
     "(c) 'responsavel' e a parte OBRIGADA a pagar, nao a parte que errou moralmente.\n"
-    "(d) nao aplique reducao por equidade - isso e prerrogativa do mediador humano.\n"
+    "(d) NAO reduza valores por equidade, simpatia ou razoabilidade arbitraria.\n"
+    "    MAS, quando os documentos comprovarem culpa concorrente ou\n"
+    "    responsabilidade repartida, informe o valor QUE CABE A PARTE\n"
+    "    RESPONSAVEL, nao o custo integral (ex.: se a reparticao apurada\n"
+    "    e 50/50 sobre um custo de 100, o valor devido e 50).\n"
+    "    Rateio apurado nos documentos e materia de MERITO, nao equidade.\n"
     "(e) orcamentos de reparo SAO prova valida de dano material.\n"
     "(f) valores = total devido. Limite de apolice de seguro NAO altera o valor,\n"
     "    e materia de execucao. Nunca limite o valor ao saldo da apolice.\n"
@@ -65,14 +72,32 @@ SCHEMA = (
 RUBRICAS = ["principal", "multa", "outros"]   # danos_morais fica fora do EP
 
 
-def _moda(vals: list) -> str:
-    """Moda deterministica. Empate -> 'divergente'."""
+# ordem de prioridade para desempate; a lente jurisprudencial tem a palavra
+# final porque decide por presuncoes assentadas, nao por leitura de prova.
+DESEMPATE = ["jurisprudencial", "estrita", "ampla"]
+
+
+def _moda(teses: list, campo: str):
+    """Moda deterministica -> (valor, houve_empate).
+
+    NUNCA devolve 'divergente': esse valor era rejeicao automatica no EP,
+    porque nenhum validador o reproduz de forma estavel. No empate, vence a
+    lente de maior prioridade entre as empatadas; o empate vai para o campo
+    'empates', informativo para o mediador e ignorado pelo principle.
+    """
     cont = {}
-    for v in vals:
+    for t in teses:
+        v = t[campo]
         cont[v] = cont.get(v, 0) + 1
     topo = max(cont.values())
-    vencedores = sorted([k for k, v in cont.items() if v == topo])
-    return vencedores[0] if len(vencedores) == 1 else "divergente"
+    vencedores = [k for k, v in cont.items() if v == topo]
+    if len(vencedores) == 1:
+        return vencedores[0], False
+    for lente in DESEMPATE:
+        for t in teses:
+            if t["lente"] == lente and t[campo] in vencedores:
+                return t[campo], True
+    return sorted(vencedores)[0], True
 
 
 def _consolidar(teses: list) -> dict:
@@ -93,11 +118,14 @@ def _consolidar(teses: list) -> dict:
     divergencias = []
     if hi - lo > 0.01:
         divergencias.append("total")
-    resp = _moda([t["responsavel"] for t in teses])
-    resu = _moda([t["resultado"] for t in teses])
-    if resp == "divergente":
+    resp, resp_empate = _moda(teses, "responsavel")
+    resu, resu_empate = _moda(teses, "resultado")
+    # discordancia sobre QUEM paga e divergencia de merito: vai para a pauta.
+    if len(set(t["responsavel"] for t in teses)) > 1:
         divergencias.append("responsavel")
     divergencias = sorted(set(divergencias))
+    empates = sorted([c for c, e in (("responsavel", resp_empate),
+                                     ("resultado", resu_empate)) if e])
 
     return {
         "responsavel_majoritario": resp,
@@ -105,6 +133,8 @@ def _consolidar(teses: list) -> dict:
         "faixa_total": [lo, hi],
         "totais_por_lente": {t["lente"]: tot for t, tot in zip(teses, totais)},
         "faixas_por_rubrica": faixas,      # informativo; NAO gera divergencia
+        "responsavel_por_lente": {t["lente"]: t["responsavel"] for t in teses},
+        "empates": empates,          # informativo; o principle ignora
         "divergencias": divergencias,
         "unanime": len(divergencias) == 0,
         "n_teses": len(teses),
@@ -172,7 +202,8 @@ class MediareCommittee(gl.Contract):
                 "so equivale a outra [0,0]. "
                 "IGNORE completamente: o array 'teses', o campo "
                 "'faixas_por_rubrica', o campo 'totais_por_lente', a lista "
-                "'divergencias', o campo 'unanime', a rubrica danos_morais, "
+                "'divergencias', o campo 'unanime', o campo 'empates', o campo "
+                "'responsavel_por_lente', a rubrica danos_morais, "
                 "a redacao dos fundamentos e a ordem de qualquer lista. "
                 "Em particular: um painel unanime e um painel divergente podem "
                 "ser equivalentes, desde que as tres condicoes acima valham. "
