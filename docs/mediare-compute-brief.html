@@ -1,0 +1,446 @@
+<title>Mediare Committee</title>
+<style>
+:root{
+  --ground:#f7f7f8; --surface:#ffffff;
+  --ink:#1c2420; --ink-soft:#4c5652; --ink-faint:#8b948f; --line:#e3e6e4;
+  --accent:#2f8f66; --accent-soft:#e3f2ea; --accent-line:#bfe3d2;
+  --blue:#3f7fd6; --blue-soft:#e8f0fb; --blue-line:#bcd4f1;
+  --orange:#c07322; --orange-soft:#faf0e2; --orange-line:#ecd2ae;
+  --red:#c44f4f; --red-soft:#fbeaea; --red-line:#edc3c3;
+  --purple:#7c5cd6; --purple-soft:#efeafb;
+  --serif:"Iowan Old Style","Charter","Palatino",Georgia,serif;
+  --sans:-apple-system,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65}
+.wrap{display:flex;max-width:1180px;margin:0 auto}
+
+nav.toc{width:236px;flex:none;position:sticky;top:0;align-self:flex-start;max-height:100vh;
+  overflow-y:auto;padding:44px 18px 44px 26px;font-size:13.5px}
+nav.toc .brand{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--ink)}
+nav.toc .brand small{display:block;font-family:var(--sans);font-size:11px;font-weight:500;
+  color:var(--ink-faint);letter-spacing:1.2px;text-transform:uppercase;margin-top:5px}
+nav.toc ol{list-style:none;margin-top:26px}
+nav.toc a{display:flex;gap:9px;align-items:baseline;color:var(--ink-soft);text-decoration:none;
+  padding:6px 8px;border-radius:6px;line-height:1.35}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--accent-soft);color:var(--ink);outline:none}
+nav.toc a .n{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);min-width:16px}
+nav.toc .foot{margin-top:26px;padding:0 8px;font-size:11.5px;color:var(--ink-faint);line-height:1.5}
+
+main{flex:1;min-width:0;padding:44px 48px 110px}
+header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.4vw,44px);
+  line-height:1.12;letter-spacing:-0.01em;text-wrap:balance}
+header.hero p.lede{margin-top:16px;font-size:17.5px;color:var(--ink-soft);max-width:62ch;text-wrap:pretty}
+.chips{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.chips span{font-size:12px;font-weight:600;letter-spacing:.4px;padding:5px 12px;border-radius:999px;border:1px solid}
+.c-a{color:var(--accent);border-color:var(--accent-line);background:var(--accent-soft)}
+.c-b{color:var(--blue);border-color:var(--blue-line);background:var(--blue-soft)}
+.c-c{color:var(--orange);border-color:var(--orange-line);background:var(--orange-soft)}
+.chips a{text-decoration:none}
+.c-d{font-size:12px;font-weight:600;letter-spacing:.4px;padding:5px 12px;border-radius:999px;
+  border:1px solid var(--ink);background:var(--ink);color:var(--ground)}
+.c-d:hover,.c-d:focus-visible{background:var(--accent);border-color:var(--accent);color:#fff;outline:none}
+
+.summary{margin-top:34px;background:var(--surface);border:1px solid var(--line);
+  border-radius:12px;padding:22px 26px 24px;max-width:74ch}
+.summary .k{font-family:var(--mono);font-size:11px;letter-spacing:1.4px;text-transform:uppercase;
+  color:var(--accent);font-weight:600}
+.summary p{margin-top:12px;font-size:15.5px;max-width:none}
+.summary p:first-of-type{margin-top:10px}
+.summary .ask{margin-top:16px;padding-top:16px;border-top:1px solid var(--line);
+  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.summary .ask .fig{font-family:var(--serif);font-size:26px;font-weight:600;
+  font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--ink)}
+.summary .ask .txt{font-size:14.5px;color:var(--ink-soft);flex:1;min-width:220px}
+section{margin-top:64px}
+section>h2{font-family:var(--serif);font-weight:600;font-size:29px;letter-spacing:-0.01em;
+  line-height:1.2;text-wrap:balance;padding-top:18px;border-top:1px solid var(--line)}
+section>h2 .secno{font-family:var(--mono);font-size:14px;color:var(--accent);display:block;
+  margin-bottom:10px;letter-spacing:1px}
+h3{font-family:var(--serif);font-weight:600;font-size:20px;margin-top:34px;letter-spacing:-0.005em}
+p{margin-top:14px;max-width:70ch;text-wrap:pretty}
+section li{margin-top:8px;max-width:68ch}
+section ul,section ol{margin-top:12px;padding-left:24px}
+a{color:var(--accent)}
+strong{color:var(--ink)}
+code{font-family:var(--mono);font-size:.86em;background:#ebeeec;border-radius:5px;padding:2px 6px;color:#1f5c42}
+
+.plain{margin-top:22px;padding:16px 20px;background:var(--accent-soft);border-radius:10px;
+  border-left:3px solid var(--accent);max-width:74ch}
+.plain.warn{background:var(--orange-soft);border-left-color:var(--orange)}
+.plain.alt{background:var(--blue-soft);border-left-color:var(--blue)}
+.plain .k{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent)}
+.plain.warn .k{color:var(--orange)}
+.plain.alt .k{color:var(--blue)}
+.plain p{margin-top:6px;font-size:15px}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;
+  margin-top:26px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.stats div{background:var(--surface);padding:16px 18px}
+.stats .v{font-family:var(--serif);font-size:27px;font-weight:600;line-height:1.1;
+  font-variant-numeric:tabular-nums}
+.stats .l{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-faint);
+  font-weight:600;margin-top:7px}
+.stats .ci{font-family:var(--mono);font-size:11px;color:var(--ink-faint);margin-top:3px}
+
+.tablewrap{overflow-x:auto;margin-top:18px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th{text-align:left;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-faint);
+  font-weight:600;padding:12px 16px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:11px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td:first-child{font-family:var(--mono);font-size:12.5px;white-space:nowrap;color:#1f5c42}
+tbody tr:hover{background:#fafbfa}
+.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.muted{color:var(--ink-faint)}
+
+ol.steps{counter-reset:st;list-style:none;padding-left:0;margin-top:18px}
+ol.steps>li{counter-increment:st;position:relative;padding:0 0 0 46px;margin-top:18px;max-width:74ch}
+ol.steps>li::before{content:counter(st);position:absolute;left:0;top:1px;width:28px;height:28px;
+  border-radius:50%;background:var(--surface);border:1.5px solid var(--accent);color:var(--accent);
+  font-family:var(--mono);font-size:12.5px;font-weight:600;display:flex;align-items:center;justify-content:center}
+ol.steps>li>b:first-child{display:block;font-size:15.5px}
+
+/* ---- the deliverable: a rendered settlement draft */
+figure.termo{margin-top:28px;max-width:640px}
+figure.termo .paper{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  overflow:hidden;box-shadow:0 1px 2px rgba(28,36,32,.05),0 8px 24px -12px rgba(28,36,32,.18)}
+figure.termo .meta{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;
+  padding:10px 20px;border-bottom:1px solid var(--line);background:#fbfcfb;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.6px;color:var(--ink-faint)}
+figure.termo .meta .tag{color:var(--accent);font-weight:600}
+figure.termo .meta .hash{margin-left:auto;color:var(--accent);text-decoration:none;font-weight:600;
+  white-space:nowrap}
+figure.termo .meta .hash:hover,figure.termo .meta .hash:focus-visible{text-decoration:underline;outline:none}
+figure.termo .doc{padding:22px 20px 20px;font-family:var(--serif);font-size:11.5px;line-height:1.55}
+figure.termo .doc h5{text-align:center;font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  font-weight:600;margin-bottom:16px}
+figure.termo .cl{display:grid;grid-template-columns:124px 1fr;gap:5px 18px;
+  padding:11px 0;border-top:1px solid var(--line)}
+figure.termo .cl .en{font-family:var(--sans);font-size:9.5px;line-height:1.4;letter-spacing:.5px;
+  text-transform:uppercase;font-weight:600;color:var(--ink-faint);padding-top:2px}
+figure.termo .cl .pt b{display:block;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--ink);margin-bottom:4px}
+figure.termo .cl .pt{color:var(--ink-soft)}
+figure.termo .cl .pt em{font-style:normal;color:var(--ink);font-weight:600;
+  background:var(--accent-soft);padding:1px 4px;border-radius:3px}
+figure.termo .sign{margin-top:14px;padding-top:13px;border-top:1px solid var(--line);
+  display:flex;gap:24px;flex-wrap:wrap}
+figure.termo .sign div{flex:1;min-width:130px;border-top:1px solid var(--ink-faint);
+  padding-top:5px;font-family:var(--sans);font-size:9.5px;color:var(--ink-faint);letter-spacing:.4px}
+figure.termo figcaption{font-size:13px;color:var(--ink-faint);margin-top:14px;line-height:1.55}
+@media (max-width:640px){figure.termo .cl{grid-template-columns:1fr;gap:4px}}
+.phase{margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  overflow:hidden;max-width:78ch}
+.phase > header{display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+  padding:14px 20px;border-bottom:1px solid var(--line);background:#fbfcfb}
+.phase .ph{font-family:var(--mono);font-size:11px;letter-spacing:1.4px;text-transform:uppercase;
+  color:var(--ink-faint);font-weight:600}
+.phase .ph b{color:var(--accent)}
+.phase .amt{font-family:var(--serif);font-size:23px;font-weight:600;font-variant-numeric:tabular-nums;
+  white-space:nowrap}
+.phase .budget{display:flex;gap:0;border-bottom:1px solid var(--line)}
+.phase .budget div{flex:1;padding:11px 20px;border-right:1px solid var(--line)}
+.phase .budget div:last-child{border-right:none}
+.phase .budget .n{font-family:var(--serif);font-size:17px;font-weight:600;
+  font-variant-numeric:tabular-nums}
+.phase .budget .c{font-size:10.5px;letter-spacing:1px;text-transform:uppercase;
+  color:var(--ink-faint);font-weight:600;margin-top:3px}
+.phase h4{padding:16px 20px 0;font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:-0.005em}
+.phase .body{padding:0 20px 18px}
+.phase .body p{margin-top:10px;max-width:none}
+.phase ul{margin-top:10px;padding-left:20px}
+.phase li{margin-top:6px;max-width:none;font-size:15px}
+.phase .limit{margin-top:14px;padding:12px 16px;background:var(--orange-soft);border-radius:8px;
+  border-left:3px solid var(--orange);font-size:14.5px}
+.phase .limit b{display:block;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--orange);margin-bottom:4px}
+.phase.two .ph b{color:var(--blue)}
+.phase.two .limit{background:var(--accent-soft);border-left-color:var(--accent)}
+.phase.two .limit b{color:var(--accent)}
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-faint);max-width:74ch}
+@media (max-width:860px){
+  .wrap{flex-direction:column}
+  nav.toc{position:static;width:auto;max-height:none;padding:32px 26px 0}
+  nav.toc ol{display:flex;flex-wrap:wrap;gap:4px;margin-top:16px}
+  main{padding:28px 26px 80px}
+}
+</style>
+
+<div class="wrap">
+<nav class="toc">
+  <div class="brand">Mediare<small>Compute Brief</small></div>
+  <ol>
+    <li><a href="#s1"><span class="n">01</span><span>What we are building</span></a></li>
+    <li><a href="#s2"><span class="n">02</span><span>The dataset</span></a></li>
+    <li><a href="#s3"><span class="n">03</span><span>How the contract evolved</span></a></li>
+    <li><a href="#s4"><span class="n">04</span><span>What we can prove</span></a></li>
+    <li><a href="#s5"><span class="n">05</span><span>What compute unlocks</span></a></li>
+  </ol>
+  <div class="foot">Product mockup:<br><a href="https://mediarev1.netlify.app/">mediarev1.netlify.app</a><br><br>Code and data:<br><a href="https://github.com/cgmello/mediare-dataset">github.com/cgmello/<wbr>mediare-dataset</a></div>
+</nav>
+
+<main>
+<header class="hero">
+  <h1>Mediare conducts fully online extrajudicial mediations</h1>
+  <p class="lede">A committee of legally trained AI models analyzes each case by consensus — and qualified human mediators supervise and formalize every settlement.</p>
+  <div class="chips">
+    <span class="c-a">Public dataset · 500 cases</span>
+    <span class="c-b">GenLayer Intelligent Contract</span>
+    <span class="c-c">São Paulo state court rulings</span>
+    <a class="c-d" href="https://mediarev1.netlify.app/">Product mockup&nbsp;→</a>
+  </div>
+</header>
+
+<div class="summary">
+  <div class="k">In short</div>
+  <p>Mediare is a working demonstration that GenLayer's consensus protocol can decide something
+  harder than a price feed: the merits of a real legal dispute. A panel of AI readings interprets
+  the same Brazilian civil case under deliberately different evidentiary standards — disagreeing
+  about how strictly to weigh the proof, never about which side to favour — and independent
+  validators must agree on the consolidated result before the chain accepts it.</p>
+  <p>The first round of testing is done, against real rulings from the São Paulo state court, and
+  it shows the approach is viable. The consensus layer is stable — identical results reproduce
+  across independent deployments — and the panel's money range contains the court's own figure on
+  roughly six cases in ten. The same tests show precisely where the system still fails, and we
+  publish that too.</p>
+  <div class="ask">
+    <span class="fig">US$ 500</span>
+    <span class="txt">in LLM credits is what we need from the <strong>GenLayer
+    Foundation</strong> to tune and test the Intelligent Contract systematically, instead of one
+    variant at a time on a personal card. Section 05 sets out exactly what that buys, and what a
+    larger second phase would add.</span>
+  </div>
+</div>
+
+<section id="s1">
+  <h2><span class="secno">01</span>What we are building</h2>
+  <p>Brazil's Law 13.140/2015 makes extrajudicial mediation binding: a signed settlement is an enforceable instrument under CPC art. 784 III, with the same force as a court judgment. The bottleneck is not the law, it is preparation. A mediator needs to walk into the room already knowing what the documents support, what is genuinely contested, and what number range a court would find defensible.</p>
+  <p>Mediare produces exactly that document. Three <strong>lenses</strong> read the same case file and disagree by <em>evidentiary method</em> — strict, broad, and precedent-driven — not by which party they favour. A deterministic Python step consolidates them; no language model performs arithmetic or applies the final classification rule. The whole committee is one file — <a href="https://github.com/cgmello/mediare-dataset/blob/main/ic.py"><code>ic.py</code></a>, about 400 lines, prompts and consolidation included. The result is a range, a majority position, and a named dissent.</p>
+  <div class="plain">
+    <div class="k">Why a blockchain</div>
+    <p>The panel runs as a GenLayer Intelligent Contract. Five independent validators re-execute it and must agree under an equivalence principle before the result is accepted. A mediation agenda that both parties will rely on should not rest on one model's single sample — and the disagreement itself is recorded, permanently, for anyone to audit.</p>
+  </div>
+
+  <h3>What the committee actually hands over</h3>
+  <p>The panel's second output block is a draft settlement in Brazilian legal form, written from the range the lenses agreed on. It is the document the mediator opens the session with — a starting position both parties can react to, not a decision imposed on them. Below is a real one, verbatim, generated by the leader and accepted by the validators.</p>
+
+  <figure class="termo">
+    <div class="paper">
+      <div class="meta">
+        <span class="tag">EP1 · settlement block</span>
+        <span>case 0033 · FINALIZED · 3 of 5 validators agreed · tx 0x67299afe…</span>
+        <a class="hash" href="https://explorer-studio.genlayer.com/tx/0x67299afe9e7fbd54c855ee0c05ff96917ab1b0a1e8f91c621ea15c197acd863b">view on explorer&nbsp;↗</a>
+      </div>
+      <div class="doc">
+        <h5>Termo de Acordo Extrajudicial</h5>
+
+        <div class="cl">
+          <div class="en">The dispute, in two sentences</div>
+          <div class="pt"><b>2. Resumo do Conflito</b>
+            O Requerente prestou serviços médico‑hospitalares ao paciente Sr. G.S.O. entre
+            13/12/2022 e 30/12/2022, conforme termo de internação assinado pelo paciente. Parte
+            desses serviços foi negada cobertura pela operadora de plano de saúde “Bradesco
+            Saúde”, resultando em débito de <em>R$ 38.064,19</em> (trinta e oito mil, sessenta e
+            quatro reais e dezenove centavos), já atualizado, que permanece em aberto.</div>
+        </div>
+
+        <div class="cl">
+          <div class="en">Who owes what, and by when</div>
+          <div class="pt"><b>3. Obrigações das Partes com Valores e Prazos</b>
+            <strong>Requerido:</strong> Obriga‑se a pagar ao Requerente o valor total de
+            <em>R$ 38.064,19</em> (trinta e oito mil, sessenta e quatro reais e dezenove
+            centavos), em parcela única, no prazo máximo de <strong>30 (trinta) dias
+            corridos</strong> contados da assinatura deste acordo.<br>
+            <strong>Requerente:</strong> Obriga‑se a não promover qualquer medida judicial ou
+            extrajudicial de cobrança contra o Requerido, desde que o pagamento seja efetuado
+            dentro do prazo estabelecido.</div>
+        </div>
+
+        <div class="cl">
+          <div class="en">Full and final release</div>
+          <div class="pt"><b>4. Quitação</b>
+            O pagamento integral do valor acima mencionado, nos termos da cláusula 3, será
+            considerado como plena, geral e irrevogável quitação de todas as obrigações
+            decorrentes do presente litígio, nada mais podendo ser reclamado pelas partes a
+            respeito do objeto deste acordo.</div>
+        </div>
+
+        <div class="cl">
+          <div class="en">Why this is enforceable without a trial</div>
+          <div class="pt"><b>6. Título Executivo Extrajudicial</b>
+            Fica reconhecido que o presente Termo de Acordo Extrajudicial constitui título
+            executivo extrajudicial, nos termos do <em>art. 784, III, do Código de Processo
+            Civil</em>, podendo ser executado judicialmente caso o Requerido não cumpra a
+            obrigação de pagamento no prazo estipulado.</div>
+        </div>
+
+        <div class="sign">
+          <div>Requerente</div>
+          <div>Requerido</div>
+          <div>Mediador · assinatura e registro</div>
+        </div>
+      </div>
+    </div>
+    <figcaption><strong>Draft, not a signed instrument.</strong> Clauses 2, 3, 4 and 6 are reproduced verbatim from the transaction — compare them against the explorer. Clause 1 (party identification), clause 5 (confidentiality) and the signature block are omitted for space. The margin notes in English are added for this brief; everything inside the document is the system's own output. The R$ 38,064.19 figure is the panel's, and it matches the court's award on this case to the cent.</figcaption>
+  </figure>
+
+  <p>The human mediator is not removed from the loop. The contract's output is an agenda, not a settlement — the mediator reads it, runs the session, and signs. A <a href="https://mediarev1.netlify.app/">mockup of the platform</a> shows where that agenda lands for the parties and the mediator.</p>
+</section>
+
+<section id="s2">
+  <h2><span class="secno">02</span>The dataset</h2>
+  <p>We built the evaluation set ourselves, from primary sources, and published it.</p>
+  <div class="stats">
+    <div><div class="v">500</div><div class="l">Cases with labels</div></div>
+    <div><div class="v">244</div><div class="l">TJSP rulings scraped</div></div>
+    <div><div class="v">128</div><div class="l">Reference sample</div></div>
+    <div><div class="v">15</div><div class="l">Dispute categories</div></div>
+  </div>
+  <p>175 cases derive from real first-instance rulings of the São Paulo state court (TJSP), 319 are synthetic, 6 are hand-audited gold. Categories span the disputes that actually reach mediation in Brazil: neighbour damage, condominium, traffic, tenancy deposits, used-vehicle sales, renovation contracts, consumer goods.</p>
+  <h3>The labels were the real work</h3>
+  <p>The first labelling pass produced 530 distinct free-text value keys — <code>danos_materiais_deferidos</code>, <code>valor_pedido_A_B_S_S</code>, <code>total_condenacao_periodo</code>. A heuristic could trust only 44% of them, and the exclusions were not random. We rebuilt every label from the original ruling into a closed four-rubric vocabulary, after stripping party names, court numbers and addresses from the source text.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Label quality</th><th>Free-text keys</th><th>Closed vocabulary</th></tr></thead>
+    <tbody>
+      <tr><td>usable</td><td class="num">79 / 180 &nbsp;<span class="muted">(44%)</span></td><td class="num">133 / 180 &nbsp;<span class="muted">(74%)</span></td></tr>
+      <tr><td>self-consistent</td><td class="num">0 / 5 pairs</td><td class="num">5 / 5 pairs</td></tr>
+      <tr><td>cost to rebuild</td><td class="num muted">—</td><td class="num">US$ 1.90</td></tr>
+    </tbody>
+  </table></div>
+  <p>That middle row is the one we trust most. The dataset accidentally contained five court cases labelled twice under different IDs — an unplanned blind test. The old labels agreed with themselves on <strong>none</strong> of the five; the rebuilt labels agreed on <strong>all five</strong>. The old ruler had not merely excluded too much, it had confidently admitted wrong values.</p>
+
+  <h3>Follow one dispute end to end</h3>
+  <p>Case 0005 is a renovation contract: a terrace leaked, the ceiling and flooring were ruined, and the court found fault on both sides. It is the case that took us four contract versions to get right, and the three files below are everything the system sees and is judged against.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>File</th><th>What it is</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><a href="https://github.com/cgmello/mediare-dataset/blob/main/casos/0005.json">casos/0005.json</a></td>
+        <td>The input: each party's documents and pleading, as a mediator would receive them. No ruling, no outcome.</td>
+      </tr>
+      <tr>
+        <td><a href="https://github.com/cgmello/mediare-dataset/blob/main/gabaritos/0005.json">gabaritos/0005.json</a></td>
+        <td>The label: what the court actually decided — shared fault, and R$ 32,367.44, exactly half of the R$ 64,734.88 in proven damage.</td>
+      </tr>
+      <tr>
+        <td><a href="https://github.com/cgmello/mediare-dataset/blob/main/ic.py">ic.py</a></td>
+        <td>The committee: three lenses, the equivalence principle validators must agree on, and the deterministic consolidation.</td>
+      </tr>
+    </tbody>
+  </table></div>
+  <p>Early versions answered R$ 64,734.88 — the full damage, ignoring the split they had themselves concluded. Version 8 answers R$ 32,367.44, and five independent validators reproduced it.</p>
+</section>
+
+<section id="s3">
+  <h2><span class="secno">03</span>How the contract evolved</h2>
+  <p>Nine versions. The instructive ones are where a fix in one place exposed a defect somewhere else.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Ver</th><th>Change</th><th>What it taught</th></tr></thead>
+    <tbody>
+      <tr><td>v4</td><td>Consolidate on the <em>total</em>, not rubric by rubric</td><td>Two lenses reaching the same sum by different routes agree. Rubric placement is noise — in the labels too.</td></tr>
+      <tr><td>v5–v7</td><td>Successive edits to the equivalence principle</td><td>Iterating against a single on-chain transaction is not evidence. Each version was contradicted by the next run.</td></tr>
+      <tr><td>v8</td><td>Apportionment must reach the number</td><td>A panel concluding "shared fault" while reporting the full amount is incoherent. Fixed a case we had chased for four versions.</td></tr>
+      <tr><td>v9</td><td>Tolerant JSON parsing; no LLM arithmetic</td><td>The contract was crashing on unescaped quotes. Because the crash was <em>deterministic</em>, all validators reproduced it and the network returned <code>MAJORITY_AGREE</code> — a failure sold as consensus.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="plain warn">
+    <div class="k">The finding that changed our method</div>
+    <p>Our off-chain evaluation harness had its own JSON parser, so it measured code that was not the code running on-chain. Clean off-chain, broken on-chain, and we were reading the off-chain number. Harness and contract now execute literally the same functions, with only the model call injected.</p>
+  </div>
+  <p>We also ran a redesign that <em>failed</em>: splitting the panel into a merits stage and a valuation stage made results worse in both directions. Asked in the abstract whether an obligation exists, the lenses affirmed it 43% of the time versus 26% when forced to write a number. Quantification, it turns out, is the discipline that produces denial. The dead end is documented in the repository rather than deleted.</p>
+</section>
+
+<section id="s4">
+  <h2><span class="secno">04</span>What we can prove today</h2>
+  <p>Measured against the complete 128-case reference sample — same prompt, same model, 95% Wilson intervals. Getting to the end of it took three attempts, because the credit ran out twice mid-run.</p>
+  <div class="stats">
+    <div><div class="v">61.7%</div><div class="l">Range contains the court's figure</div><div class="ci">[53.1 – 69.7]</div></div>
+    <div><div class="v">64.1%</div><div class="l">Range narrow enough to negotiate from</div><div class="ci">[55.5 – 71.9]</div></div>
+    <div><div class="v">54.2%</div><div class="l">Awards money where the court awarded none</div><div class="ci">[40.3 – 67.4]</div></div>
+    <div><div class="v">18.8%</div><div class="l">Unanimous, precise, and wrong</div><div class="ci">[10.2 – 31.9]</div></div>
+  </div>
+  <p>The first two numbers are the product working: on roughly two thirds of cases a mediator would see a range that both contains the defensible answer and is tight enough to anchor a conversation. On-chain, 13 of 16 Studio transactions reached valid consensus, and identical ranges were reproduced across independent deployments — the consensus layer is stable.</p>
+  <p>The last two are the honest problem, and they are why we are asking for compute rather than declaring victory.</p>
+  <ul>
+    <li><strong>The committee does not know how to say no.</strong> Where the court awarded nothing, the panel still proposes money in 54% of cases, and in nine of them it does so unanimously, with a range of zero width. Three of those errors reproduce to the cent across two different models and four prompt versions — they are systematic, not sampling noise.</li>
+    <li><strong>Unanimity carries no information.</strong> Unanimous panels are right 58% of the time; divergent panels, 66%. We designed an auto-settlement path on the premise that agreement signals correctness. The data killed that premise, and the product now routes everything through a human.</li>
+  </ul>
+</section>
+
+<section id="s5">
+  <h2><span class="secno">05</span>What compute unlocks</h2>
+  <p>Everything above was funded out of pocket, and the shape of the work shows it: samples sized to what a personal card could absorb, variants tried one at a time instead of swept systematically, and a single measurement pass over 128 cases that had to be restarted twice when the credit ran out mid-run. Validator inference on GenLayer's test network is free; the evaluation that makes those runs worth starting is not. That budget bought a working system and an honest map of its failures. It does not stretch to fixing them.</p>
+  <p>The economics are unusually legible here, because every experiment has a known unit cost:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Unit</th><th>Tokens</th><th>Cost</th><th>What it buys</th></tr></thead>
+    <tbody>
+      <tr><td>1 eval pass</td><td class="num">1.22 M</td><td class="num">US$ 6.87</td><td>The full 128-case reference sample against one prompt or principle variant. Measured, not estimated: 949 k in, 268 k out on Sonnet.</td></tr>
+      <tr><td>1 model comparison</td><td class="num">3.7 M</td><td class="num">US$ 21</td><td>The same sample across three models as panel and as validator</td></tr>
+      <tr><td>1 eval pass at 1,500 cases</td><td class="num">14.3 M</td><td class="num">US$ 80</td><td>What one variant costs once the dataset reaches phase 2 scale</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted" style="font-size:14px">Token figures assume the measured input/output mix of 78/22. The
+  same budget goes roughly three times further on a smaller model, which is itself one of the
+  questions phase 1 answers.</p>
+
+  <h3>Two phases, and the second is not just more of the first</h3>
+  <p>Phase 1 finds out what to change. Phase 2 is what makes the answer trustworthy — and it is the only phase that can actually close the denial gap, because that failure lives in a part of the data we barely have.</p>
+
+  <div class="phase">
+    <header>
+      <span class="ph">Phase <b>1</b> · Find what to change</span>
+      <span class="amt">US$ 500</span>
+    </header>
+    <div class="budget">
+      <div><div class="n">≈ 90 M</div><div class="c">tokens on Sonnet</div></div>
+      <div><div class="n">≈ 265 M</div><div class="c">or on Haiku</div></div>
+      <div><div class="n">≈ 70</div><div class="c">eval passes</div></div>
+    </div>
+    <h4>Systematic tuning against the reference sample</h4>
+    <div class="body">
+      <p>Nine contract versions so far, almost all of them one variant at a time against whatever sample was to hand. That is how we ended up with changes contradicted by the next run.</p>
+      <ul>
+        <li>A sweep of roughly 20 prompt and equivalence-principle variants against all 128 reference cases, each with confidence intervals — about US$ 130, and it replaces guesswork with a ranking.</li>
+        <li>The model ladder: Haiku, Sonnet and Opus as panel members and as validators, to find the cheapest configuration that holds quality. A mediation platform for Brazilian small claims cannot run at frontier pricing per case. About US$ 60, or 11 million tokens.</li>
+        <li>Replication runs, so we can finally state how much of the measured error is the committee and how much is the ruler disagreeing with itself.</li>
+      </ul>
+      <div class="limit"><b>What phase 1 cannot settle</b>At 128 cases, only differences of roughly twenty points are distinguishable from noise. A real ten-point improvement — which is what we expect from good tuning — would look like nothing. Phase 1 produces strong candidates, not proof.</div>
+    </div>
+  </div>
+
+  <div class="phase two">
+    <header>
+      <span class="ph">Phase <b>2</b> · Prove it holds</span>
+      <span class="amt">US$ 2,000</span>
+    </header>
+    <div class="budget">
+      <div><div class="n">≈ 355 M</div><div class="c">tokens on Sonnet</div></div>
+      <div><div class="n">≈ 15 M</div><div class="c">to label the new cases</div></div>
+      <div><div class="n">≈ 24</div><div class="c">passes at 1,500 cases</div></div>
+    </div>
+    <h4>Ten times the data, aimed at the failure we cannot currently see</h4>
+    <div class="body">
+      <p>Court rulings are public and free to collect, so this is not about access to disputes. Every case has to be labelled from its ruling and then measured, and at 1,500 cases one evaluation pass costs around US$ 80, or 14 million tokens — and a study is never one pass.</p>
+      <ul>
+        <li>The dataset goes from 175 real cases to roughly 1,500, and — the number that matters — from <strong>48 cases where the court awarded nothing</strong> to roughly 400. The denial gap rests on those 48 today, which is why its confidence interval still spans twenty-seven points.</li>
+        <li>The phase 1 winner is re-measured at a sample size where a ten-point gain is actually detectable. Our power analysis puts that threshold near 1,000 clean cases.</li>
+        <li>On-chain validation at scale. Validator inference on GenLayer is free but each transaction takes 5 to 40 minutes; every credit spent off-chain is what makes those slow runs worth starting.</li>
+      </ul>
+      <div class="limit"><b>Why it has to be second</b>Phase 2 measures a specific configuration very well. Running it first would mean spending the larger budget proving out whichever variant we happened to guess — exactly the mistake this brief documents us making at small scale.</div>
+    </div>
+  </div>
+
+  <div class="plain alt">
+    <div class="k">Either way, it stays open</div>
+    <p>The dataset, the evaluation scripts, the contract and the measurements are public and will remain so, including the results that do not flatter the system. The two-stage panel that failed is in the repository with its numbers attached, and so is every ruler bug we found in our own measurements.</p>
+  </div>
+</section>
+
+<footer>
+  Numbers measured on the full 128-case reference sample. All code, labels and evaluation scripts are public at <a href="https://github.com/cgmello/mediare-dataset">github.com/cgmello/mediare-dataset</a>. Source court rulings are excluded from the repository because they carry unredacted party names.
+</footer>
+</main>
+</div>

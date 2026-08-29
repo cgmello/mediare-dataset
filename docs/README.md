@@ -1,0 +1,28 @@
+# docs/
+
+Material de comunicação do projeto. Não é código e nada aqui é executado.
+
+## mediare-compute-brief.html
+
+Brief de patrocínio dirigido à GenLayer Foundation, em inglês. Pedido de
+US$ 500 em créditos de LLM (fase 1) com uma fase 2 de US$ 2.000 descrita em
+seguida.
+
+Todos os números vêm de `RESULTADOS.md` e da rodada de referência sobre os
+128 casos de `casos_utilizaveis.txt`. Os orçamentos em tokens saem do consumo
+medido: 949.393 de entrada e 267.858 de saída por passada completa.
+
+Se os resultados mudarem, este documento precisa mudar junto — ele afirma
+números concretos com intervalo de confiança e convida o leitor a conferir.
+
+Publicado como página em claude.ai; o HTML aqui é a fonte.
+
+### O que ele expõe
+
+- A minuta do EP1 do caso 0033 reproduzida LITERALMENTE da transação
+  `0x67299afe…`, incluindo o nome da operadora citada na sentença pública do
+  TJSP. Reprodução literal foi escolha deliberada: o documento linka para o
+  explorer e convida à comparação, então qualquer reescrita criaria
+  divergência. Se for preciso mascarar, mascarar de forma VISÍVEL e dizer na
+  legenda.
+- O valor do pedido de patrocínio.
