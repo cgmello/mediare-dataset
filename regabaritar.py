@@ -31,7 +31,7 @@ ESQUEMA = (
     '"responsavel": "requerente|requerido|ambos_culpa_concorrente|nenhum", '
     '"revel": false, '
     '"valores": {"principal": 0.0, "multa": 0.0, "danos_morais": 0.0, "outros": 0.0}, '
-    '"iliquido": false, '
+    '"iliquido": false, "obrigacao_fazer": false, '
     '"confianca": "alta|media|baixa", '
     '"obs": "uma frase curta"}'
 )
@@ -59,9 +59,10 @@ NUNCA o que foi pedido: essa confusao e o defeito exato que estamos corrigindo.
     sucumbencia reciproca no merito ou culpa concorrente, use
     "ambos_culpa_concorrente". Improcedente sem condenacao: "nenhum".
 (i) revel: true se a sentenca menciona revelia do requerido.
-(k) Condenacao em OBRIGACAO DE FAZER (reparar, entregar, impermeabilizar,
-    reintegrar) nao tem valor patrimonial: as rubricas ficam 0.0 e a obs
-    explica. Nao converta a obrigacao em dinheiro nem use o valor da causa.
+(k) Condenacao em OBRIGACAO DE FAZER ou NAO FAZER (reparar, entregar,
+    impermeabilizar, reintegrar, abster-se) nao tem valor patrimonial: as
+    rubricas ficam 0.0, "obrigacao_fazer": true, e a obs explica. Nao
+    converta a obrigacao em dinheiro nem use o valor da causa.
 (j) confianca: "baixa" se o dispositivo for ambiguo ou o valor nao for
     apuravel do texto; "media" se voce teve que somar parcelas espalhadas;
     "alta" se o valor esta explicito no dispositivo.
@@ -118,6 +119,7 @@ def normalizar(o):
                                        + val["outros"], 2),
             "revel": bool(o.get("revel")),
             "iliquido": bool(o.get("iliquido")),
+            "obrigacao_fazer": bool(o.get("obrigacao_fazer")),
             "confianca": conf if conf in ("alta", "media", "baixa") else "baixa",
             "obs": str(o.get("obs") or "")[:200]}
 
@@ -128,8 +130,12 @@ def coerente(g):
     if g["resultado"] == "improcedente" and t > 0.01:
         return False, "improcedente com valor"
     if g["resultado"] in ("procedente", "parcialmente procedente") \
-            and t < 0.01 and not g["iliquido"]:
-        return False, "procedente com tudo zero e liquido"
+            and t < 0.01 and not g["iliquido"] and not g["obrigacao_fazer"]:
+        # procedente com zero E coerente quando a condenacao e obrigacao de
+        # fazer ou o valor foi remetido a liquidacao. Marcar isso como
+        # incoerente reintroduziria o vies que a regua nova veio corrigir:
+        # os casos de valor patrimonial zero sairiam da medicao de novo.
+        return False, "procedente com tudo zero, liquido e sem obrigacao"
     if g["responsavel"] == "nenhum" and t > 0.01:
         return False, "sem responsavel mas com valor"
     return True, "ok"
@@ -265,7 +271,9 @@ def modo_amostra(alvo_lista, args):
             print(f"                    total_patrimonial={novo['total_patrimonial']}  "
                   f"resultado={novo['resultado']}  resp={novo['responsavel']}")
             print(f"                    confianca={novo['confianca']} "
-                  f"iliquido={novo['iliquido']} coerente={ok} ({motivo})")
+                  f"iliquido={novo['iliquido']} "
+                  f"obrig_fazer={novo['obrigacao_fazer']} "
+                  f"coerente={ok} ({motivo})")
             print(f"                    obs: {novo['obs']}")
         else:
             print("  vocab FECHADO   : FALHOU (sem JSON)")
