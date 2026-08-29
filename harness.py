@@ -45,7 +45,8 @@ def carregar_contrato(path):
     ns = {}
     exec(compile(prefixo, path, "exec"), ns)
     preciso = ("REGRAS", "LENTES", "SCHEMA", "_consolidar",
-               "_painel_de", "_tese_de", "_json_do_modelo", "_num")
+               "_painel_de", "_tese_de", "_json_do_modelo", "_num",
+               "_painel2_de", "_consolidar2")
     faltando = [k for k in preciso if k not in ns]
     if faltando:
         sys.exit(f"contrato {path} nao expoe: {faltando}\n"
@@ -304,7 +305,12 @@ def modo_normalizar(args, gabs):
 
 def modo_rodar(args, gabs):
     ic = carregar_contrato(args.ic)
-    LENTES, _painel_de = ic["LENTES"], ic["_painel_de"]
+    LENTES = ic["LENTES"]
+    if args.estagios == 2:
+        _painel_de = ic["_painel2_de"]
+        print("painel de DOIS estagios (merito primeiro, valor depois)")
+    else:
+        _painel_de = ic["_painel_de"]
     cli = fazer_cliente()
     path = os.path.join(args.out, "paineis.jsonl")
     feitos = ja_feitos(path)
@@ -469,6 +475,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dataset", default=".")
     ap.add_argument("--ic", default="ic.py")
+    ap.add_argument("--estagios", type=int, default=1, choices=(1, 2),
+                    help="2 = merito primeiro, valor depois")
     ap.add_argument("--out", default="resultados")
     ap.add_argument("--modelo", default=MODELO_PADRAO)
     ap.add_argument("--limite", type=int, default=0)

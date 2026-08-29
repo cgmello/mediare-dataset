@@ -300,6 +300,171 @@ def _consolidar(teses: list) -> dict:
     }
 
 
+# ==================================================================== 2 ESTAGIOS
+# O painel de um estagio pede merito e valor na MESMA resposta, e a negacao so
+# existe como o numero 0.0 no meio de uma tabela de valores. Medido: em 18 casos
+# de condenacao zero, o painel propos valor positivo em 9 (50%), dois deles
+# unanimes e com faixa de largura zero (0041 e 0063), estaveis atraves de dois
+# modelos e quatro versoes de prompt.
+#
+# Aqui a pergunta binaria vem primeiro, SEM nenhum numero em jogo, e so os
+# pedidos que passam pela maioria chegam ao estagio de quantificacao.
+
+SCHEMA_M = (
+    '{"responsavel": "requerente|requerido|ambos_culpa_concorrente|parcial_ambos", '
+    '"resultado": "procedente|improcedente|parcialmente procedente", '
+    '"merito": {"principal": true, "multa": false, "outros": false}, '
+    '"razoes": {"principal": "por que procede ou nao", "multa": "...", "outros": "..."}}'
+)
+
+SCHEMA_V = '{"valores": {"principal": 0.0, "multa": 0.0, "outros": 0.0}}'
+
+REGRAS_M = (
+    "ESTAGIO 1 de 2 - MERITO. Nao informe NENHUM valor nesta etapa.\n"
+    "Para cada rubrica, decida se existe OBRIGACAO de indenizar - se o direito\n"
+    "foi demonstrado - independentemente de quanto ela valha.\n"
+    "(a) rubricas: principal (pedido principal), multa (clausula penal ou multa\n"
+    "    contratual ja devida), outros (lucros cessantes, despesas, restituicoes).\n"
+    "(b) 'false' e uma resposta legitima e frequente. Uma parcela dos casos reais\n"
+    "    e julgada improcedente: nao ha nexo causal, nao ha prova do dano, o\n"
+    "    pedido e juridicamente infundado, ou a obrigacao e de FAZER e nao de\n"
+    "    pagar. Marcar 'false' nesses casos e acertar, nao ser severo.\n"
+    "(c) o fato de a parte PEDIR um valor nao cria a obrigacao. Julgue o direito,\n"
+    "    nao a pretensao.\n"
+    "(d) multa cominatoria/astreinte e condenacao em obrigacao de fazer NAO sao\n"
+    "    rubricas pecuniarias: marque as tres como false se for so isso.\n"
+    "(e) 'responsavel' e a parte OBRIGADA a pagar. 'parcial_ambos' so quando\n"
+    "    requerente E requerido contribuiram para o dano.\n"
+    "(f) se todas as rubricas forem false, o resultado e 'improcedente'.\n"
+)
+
+REGRAS_V = (
+    "ESTAGIO 2 de 2 - VALOR. O merito ja foi decidido e nao esta em discussao.\n"
+    "Quantifique APENAS as rubricas listadas abaixo como procedentes.\n"
+    "(a) informe o total devido de cada rubrica, em numero puro.\n"
+    "(b) NAO some duas rubricas numa mesma chave.\n"
+    "(c) o valor PEDIDO pela parte nao e o valor devido: apure o montante que os\n"
+    "    documentos sustentam. Coincidir com o pedido e possivel, mas por prova,\n"
+    "    nunca por default.\n"
+    "(d) havendo culpa concorrente ou reparticao apurada nos documentos, informe\n"
+    "    a PARCELA que cabe a parte responsavel, nunca o custo integral. Se a\n"
+    "    reparticao esta comprovada mas a proporcao exata nao, use 50/50.\n"
+    "(e) NAO invente proporcoes nem faca media entre cenarios possiveis.\n"
+    "(f) orcamentos de reparo sao prova valida de dano material.\n"
+    "(g) limite de apolice de seguro NAO altera o valor devido.\n"
+    "(h) nao inclua juros, correcao monetaria, honorarios nem custas.\n"
+)
+
+
+def _tese2_de(pedir, nome, lente, corpo, tentativas=2):
+    """Uma tese em dois estagios. None se o estagio 1 nao produzir JSON."""
+    p1 = ("Voce e um mediador extrajudicial brasileiro (Lei 13.140/2015).\n"
+          + lente + "\n\n" + REGRAS_M
+          + "\nResponda SOMENTE com este JSON, sem markdown:\n" + SCHEMA_M
+          + "\n\nDOCUMENTOS DO CASO:\n" + corpo)
+    m = None
+    for _ in range(tentativas):
+        cand = _json_do_modelo(pedir(p1))
+        if (isinstance(cand, dict) and isinstance(cand.get("merito"), dict)
+                and cand.get("responsavel") is not None):
+            m = cand
+            break
+    if m is None:
+        return None
+
+    merito = {r: bool(m["merito"].get(r)) for r in RUBRICAS}
+    valores = {r: 0.0 for r in RUBRICAS}
+    aprovadas = [r for r in RUBRICAS if merito[r]]
+
+    if aprovadas:                      # sem rubrica aprovada, nao ha o que pedir
+        razoes = m.get("razoes") or {}
+        lista = "\n".join(f"  - {r}: {str(razoes.get(r, ''))[:200]}"
+                           for r in aprovadas)
+        p2 = ("Voce e um mediador extrajudicial brasileiro (Lei 13.140/2015).\n"
+              + lente + "\n\n" + REGRAS_V
+              + "\n\nRUBRICAS JULGADAS PROCEDENTES no estagio 1:\n" + lista
+              + "\n\nResponda SOMENTE com este JSON, sem markdown:\n" + SCHEMA_V
+              + "\n\nDOCUMENTOS DO CASO:\n" + corpo)
+        for _ in range(tentativas):
+            v = _json_do_modelo(pedir(p2))
+            if isinstance(v, dict) and isinstance(v.get("valores"), dict):
+                for r in aprovadas:
+                    valores[r] = round(_num(v["valores"].get(r, 0.0)), 2)
+                break
+
+    return {"lente": nome, "responsavel": m.get("responsavel"),
+            "resultado": m.get("resultado"), "merito": merito,
+            "razoes": {r: str((m.get("razoes") or {}).get(r, ""))[:300]
+                       for r in RUBRICAS},
+            "valores": valores}
+
+
+def _consolidar2(teses: list) -> dict:
+    """Duas camadas, ambas deterministicas. Primeiro o SE, depois o QUANTO."""
+    n = len(teses)
+    votos = {r: sum(1 for t in teses if t["merito"].get(r)) for r in RUBRICAS}
+    aprovadas = [r for r in RUBRICAS if votos[r] * 2 > n]
+
+    concede = [t for t in teses if any(t["merito"].get(r) for r in RUBRICAS)]
+    ha_obrigacao = len(concede) * 2 > n
+
+    if ha_obrigacao:
+        alinhadas = concede
+        totais = [round(sum(t["valores"].get(r, 0.0) for r in aprovadas), 2)
+                  for t in alinhadas]
+        lo, hi = (min(totais), max(totais)) if totais else (0.0, 0.0)
+    else:
+        # a maioria nega. A faixa e a conclusao, nao o resto de uma soma.
+        alinhadas = [t for t in teses if not any(t["merito"].get(r)
+                                                 for r in RUBRICAS)]
+        lo = hi = 0.0
+
+    dissidentes = [t["lente"] for t in teses if t not in alinhadas]
+    resp, resp_emp = _moda(teses, "responsavel")
+    resu, resu_emp = _moda(teses, "resultado")
+
+    div = []
+    if len(set(bool(any(t["merito"].get(r) for r in RUBRICAS))
+               for t in teses)) > 1:
+        div.append("merito")
+    if hi - lo > 0.01:
+        div.append("total")
+    if len(set(t["responsavel"] for t in teses)) > 1:
+        div.append("responsavel")
+
+    return {
+        "ha_obrigacao": ha_obrigacao,
+        "rubricas_aprovadas": aprovadas,
+        "votos_merito": votos,                 # quantas lentes aprovaram cada uma
+        "responsavel_majoritario": resp,
+        "resultado_majoritario": resu,
+        "faixa_total": [lo, hi],
+        "totais_por_lente": {t["lente"]: round(sum(t["valores"].get(r, 0.0)
+                                                   for r in RUBRICAS), 2)
+                             for t in teses},
+        "merito_por_lente": {t["lente"]: t["merito"] for t in teses},
+        "dissidentes": sorted(dissidentes),    # para a pauta do mediador
+        "empates": sorted([c for c, e in (("responsavel", resp_emp),
+                                          ("resultado", resu_emp)) if e]),
+        "divergencias": sorted(set(div)),
+        "unanime": not div,
+        "n_teses": n,
+    }
+
+
+def _painel2_de(pedir, corpo: str) -> dict:
+    teses = []
+    for nome, lente in LENTES:
+        t = _tese2_de(pedir, nome, lente, corpo)
+        if t is not None:
+            teses.append(t)
+    teses.sort(key=lambda t: t["lente"])
+    if not teses:
+        return {"teses": [], "consolidado": None,
+                "erro": "nenhuma lente produziu JSON valido"}
+    return {"teses": teses, "consolidado": _consolidar2(teses)}
+
+
 class MediareCommittee(gl.Contract):
     case_id: str
     case_url: str
