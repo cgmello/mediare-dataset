@@ -31,6 +31,7 @@ ESQUEMA = (
     '"responsavel": "requerente|requerido|ambos_culpa_concorrente|nenhum", '
     '"revel": false, '
     '"valores": {"principal": 0.0, "multa": 0.0, "danos_morais": 0.0, "outros": 0.0}, '
+    '"dano_estetico": 0.0, "honorarios_sucumbencia": 0.0, "astreinte_teto": 0.0, '
     '"iliquido": false, "obrigacao_fazer": false, '
     '"confianca": "alta|media|baixa", '
     '"obs": "uma frase curta"}'
@@ -59,8 +60,14 @@ NUNCA o que foi pedido: essa confusao e o defeito exato que estamos corrigindo.
     (caucao deduzida, credito a compensar, excesso a devolver) SUBTRAI do
     total - nunca soma. Se a deducao ja estiver embutida no valor que a
     sentenca declara devido, nao desconte de novo.
-(e3) Dano ESTETICO e extrapatrimonial, como o dano moral: lance em
-    "danos_morais", nunca em "outros".
+(e3) Ha tres campos SEPARADOS fora do objeto "valores". Informe neles o que
+    encontrar e NAO repita esses valores dentro de "valores":
+      dano_estetico          - indenizacao por dano estetico
+      honorarios_sucumbencia - honorarios de sucumbencia (de qualquer lado)
+      astreinte_teto         - teto da multa diaria/cominatoria, se houver
+    O que fazer com cada um e decidido depois, fora do seu alcance. Voce so
+    reporta. Se estiver em duvida sobre uma verba, prefira o campo separado a
+    forcar uma rubrica de "valores".
 (f) Pedido NEGADO vale 0.0. Sentenca improcedente: TODAS as rubricas 0.0.
 (g) Se o dispositivo remeter o valor a liquidacao ou arbitramento futuro,
     marque "iliquido": true e ponha 0.0 no que depende disso.
@@ -114,6 +121,16 @@ def normalizar(o):
     _num = ic["_num"]
     v = o.get("valores") or {}
     val = {k: round(_num(v.get(k, 0.0)), 2) for k in VOCAB}
+    # As tres verbas declaradas a parte sao tratadas AQUI, nao pelo modelo.
+    # Duas rodadas mostraram que ele cita a regra e faz o contrario: pos dano
+    # estetico em "outros" escrevendo "conforme instrucao (e3)", e moveu
+    # sucumbencia de "outros" para "principal" quando a regra ganhou excecao.
+    # A licao e a mesma do _consolidar do contrato: o LLM informa, o Python
+    # decide.
+    estetico = round(_num(o.get("dano_estetico", 0.0)), 2)
+    sucumb = round(_num(o.get("honorarios_sucumbencia", 0.0)), 2)
+    astreinte = round(_num(o.get("astreinte_teto", 0.0)), 2)
+    val["danos_morais"] = round(val["danos_morais"] + estetico, 2)
     res = (o.get("resultado") or "").strip().lower()
     if res not in ("procedente", "parcialmente procedente", "improcedente",
                    "extinto"):
@@ -126,6 +143,9 @@ def normalizar(o):
     return {"resultado": res, "responsavel": resp, "valores": val,
             "total_patrimonial": round(val["principal"] + val["multa"]
                                        + val["outros"], 2),
+            "dano_estetico": estetico,        # ja somado a danos_morais
+            "honorarios_sucumbencia": sucumb,  # informativo, nunca no total
+            "astreinte_teto": astreinte,       # informativo, nunca no total
             "revel": bool(o.get("revel")),
             "iliquido": bool(o.get("iliquido")),
             "obrigacao_fazer": bool(o.get("obrigacao_fazer")),
