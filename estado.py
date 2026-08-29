@@ -8,7 +8,7 @@
 O JSON-RPC cru devolve 'statusName' (camelCase) ou 'status' numerico; o SDK
 devolve 'status_name'. Aceita os tres.
 """
-import json, sys, os, urllib.request
+import json, sys, os, urllib.request, urllib.error
 
 RPC = os.environ.get("GL_RPC", "https://studio.genlayer.com/api")
 
@@ -29,12 +29,22 @@ def status_de(tx):
     return "?"
 
 def rpc(metodo, params):
+    # o WAF na frente do Studio devolve 403 para o User-Agent padrao do urllib
+    # ("Python-urllib/3.x"); com um UA de navegador/curl passa igual ao curl.
     req = urllib.request.Request(
         RPC, data=json.dumps({"jsonrpc": "2.0", "method": metodo,
                               "params": params, "id": 1}).encode(),
-        headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        d = json.load(r)
+        headers={"Content-Type": "application/json",
+                 "Accept": "application/json",
+                 "User-Agent": "curl/8.7.1"})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            d = json.load(r)
+    except urllib.error.HTTPError as e:
+        corpo = e.read()[:300].decode("utf-8", "replace")
+        sys.exit(f"HTTP {e.code} de {RPC}\n{corpo}")
+    except urllib.error.URLError as e:
+        sys.exit(f"sem resposta de {RPC}: {e.reason}")
     if "error" in d:
         sys.exit(f"RPC erro: {d['error']}")
     return d.get("result")
