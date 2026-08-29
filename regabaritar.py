@@ -50,8 +50,17 @@ NUNCA o que foi pedido: essa confusao e o defeito exato que estamos corrigindo.
 (c) danos_morais: indenizacao por dano moral deferida. Fica FORA do total
     patrimonial de proposito - o comite nao arbitra dano moral.
 (d) outros: valor patrimonial deferido que nao caiba nas anteriores.
-(e) NAO inclua juros, correcao monetaria, honorarios advocaticios, custas,
-    nem o valor da causa. Sao acessorios que o comite nao apura.
+(e) NAO inclua juros, correcao monetaria, custas, nem o valor da causa.
+    Honorarios de SUCUMBENCIA tambem ficam fora - sao acessorios da derrota,
+    nao da obrigacao. EXCECAO: quando os honorarios sao o PROPRIO OBJETO da
+    acao (advogado cobrando do cliente, arbitramento de honorarios
+    contratuais), eles sao o "principal".
+(e2) Valor DEDUZIDO, abatido, compensado ou a restituir a parte contraria
+    (caucao deduzida, credito a compensar, excesso a devolver) SUBTRAI do
+    total - nunca soma. Se a deducao ja estiver embutida no valor que a
+    sentenca declara devido, nao desconte de novo.
+(e3) Dano ESTETICO e extrapatrimonial, como o dano moral: lance em
+    "danos_morais", nunca em "outros".
 (f) Pedido NEGADO vale 0.0. Sentenca improcedente: TODAS as rubricas 0.0.
 (g) Se o dispositivo remeter o valor a liquidacao ou arbitramento futuro,
     marque "iliquido": true e ponha 0.0 no que depende disso.
@@ -164,8 +173,14 @@ def modo_rodar(alvo_lista, args):
     ic = harness.carregar_contrato("ic.py")
     path = os.path.join(args.out, "gabaritos_v2.jsonl")
     os.makedirs(args.out, exist_ok=True)
-    feitos = harness.ja_feitos(path)
-    fila = [(c, s, g) for c, s, g in alvo_lista if c not in feitos]
+    if args.casos:
+        pedidos = {c.strip().zfill(4) for c in args.casos.split(",") if c.strip()}
+        feitos = set()
+        fila = [(c, s, g) for c, s, g in alvo_lista if c in pedidos]
+        print("refazendo (a ultima linha de cada id prevalece na leitura)")
+    else:
+        feitos = harness.ja_feitos(path)
+        fila = [(c, s, g) for c, s, g in alvo_lista if c not in feitos]
     if args.limite:
         fila = fila[:args.limite]
     if not fila:
@@ -287,6 +302,8 @@ def main():
     ap.add_argument("--modelo", default="claude-haiku-4-5")
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--limite", type=int, default=0)
+    ap.add_argument("--casos", default="",
+                    help="refaz ids especificos, ignorando o que ja foi feito")
     ap.add_argument("--estimar", action="store_true")
     ap.add_argument("--amostra", type=int, default=0)
     ap.add_argument("--comparar", action="store_true")
