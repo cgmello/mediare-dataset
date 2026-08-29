@@ -69,6 +69,20 @@ def cava_endereco(o, visto=None):
                 return r
     return None
 
+def registrar(out, addr):
+    """acumula enderecos em <out>/contratos.txt, sem repetir"""
+    os.makedirs(out, exist_ok=True)
+    p = os.path.join(out, "contratos.txt")
+    atuais = [l.strip() for l in open(p, encoding="utf-8")] if os.path.exists(p) else []
+    if addr not in atuais:
+        with open(p, "a", encoding="utf-8") as f:
+            f.write(addr + "\n")
+    return p
+
+def conhecidos(out):
+    p = os.path.join(out, "contratos.txt")
+    return [l.strip() for l in open(p, encoding="utf-8")] if os.path.exists(p) else []
+
 def como_dict(o):
     if isinstance(o, dict):
         return o
@@ -113,6 +127,8 @@ def main():
     if a.tx:
         rec, st = esperar(cli, a.tx, a.timeout, a.poll)
         addr = cava_endereco(rec)
+        if addr:
+            registrar(a.out, addr)
         print(f"\n{a.tx}  {st}  ->  {addr or 'ENDERECO NAO ENCONTRADO'}")
         if not addr:
             json.dump(rec, open(os.path.join(a.out, "deploy_tx.json"), "w"),
@@ -137,12 +153,16 @@ def main():
                       ensure_ascii=False, default=str, indent=2)
             sys.exit(f"  receipt salvo em {a.out}/deploy_{i}.json - me mande as chaves")
         enderecos.append(addr)
+        registrar(a.out, addr)
         print(f"  -> {addr}   ({time.time()-ini:.0f}s)\n", flush=True)
 
+    todos = conhecidos(a.out) or enderecos
     print("=" * 70)
-    print("enderecos:", " ".join(enderecos))
+    print(f"enderecos em {a.out}/contratos.txt ({len(todos)}):")
+    for e in todos:
+        print("  " + e)
     print("\nrodar:")
-    args_c = " ".join(f"--contrato {e}" for e in enderecos)
+    args_c = " ".join(f"--contrato {e}" for e in todos)
     print(f"  python3 studio_runner.py {args_c} \\\n"
           f"    --casos 0002,0003,0004,0016,0021,0028,0029,0033,0039,0040,0043,0046,0048 \\\n"
           f"    --out {a.out} --timeout 900 --timeout-duro 2400")
