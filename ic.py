@@ -301,6 +301,32 @@ def _consolidar(teses: list) -> dict:
 
 
 # ==================================================================== 2 ESTAGIOS
+# RESULTADO: MEDIDO E PIOR. Nao usar sem refazer o desenho. Mantido no
+# repositorio como beco sem saida documentado.
+#
+# Pareado, 32 casos, mesmo modelo (sonnet-4-5), 1 estagio -> 2 estagios:
+#   casos de gabarito ZERO   - propos valor > 0 : 50% -> 83%   (pior)
+#   casos POSITIVOS          - contem o gabarito: 57% -> 36%   (pior)
+# Piorou nas DUAS direcoes: concede mais onde devia negar e nega mais onde
+# devia conceder. Nao ficou avaro, ficou menos discriminante.
+#
+# Por que, olhando os dados:
+#   taxa de rubricas concedidas por lente: 26% (valor > 0 no painel de 1
+#     estagio) -> 43% (merito = true no estagio 1). Perguntado em abstrato
+#     "existe obrigacao?", sem numero em jogo, afirmar sai barato.
+#   42% das aprovacoes do estagio 1 viram 0.0 no estagio 2: a lente aprova o
+#     merito e depois nao acha numero. Dai as faixas [0 .. X] que explodiram
+#     a largura.
+#   ha_obrigacao deu True em 18 de 18 casos de condenacao zero. O portao de
+#     maioria no merito nunca disparou uma vez.
+#
+# A hipotese era que quantificar ancorava o modelo em conceder. E o contrario:
+# QUANTIFICAR E A DISCIPLINA QUE PRODUZ A NEGACAO. Obrigada a escrever um
+# numero, a lente confronta a prova e escreve 0. Livre do numero, "ha uma
+# pretensao plausivel aqui" e barato de afirmar.
+#
+# Se alguem voltar a isso: a ordem inversa (quantificar primeiro, julgar
+# depois, com o numero a vista) e a variante que os dados nao descartam.
 # O painel de um estagio pede merito e valor na MESMA resposta, e a negacao so
 # existe como o numero 0.0 no meio de uma tabela de valores. Medido: em 18 casos
 # de condenacao zero, o painel propos valor positivo em 9 (50%), dois deles
