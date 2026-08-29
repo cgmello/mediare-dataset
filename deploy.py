@@ -12,6 +12,45 @@ por uma transacao que nao resolve (ver estado.py).
 """
 import argparse, json, os, sys, time
 
+NUM2NOME = {"0": "UNINITIALIZED", "1": "PENDING", "2": "PROPOSING",
+            "3": "COMMITTING", "4": "REVEALING", "5": "ACCEPTED",
+            "6": "UNDETERMINED", "7": "FINALIZED", "8": "CANCELED",
+            "9": "APPEAL_REVEALING", "10": "APPEAL_COMMITTING",
+            "11": "READY_TO_FINALIZE", "12": "VALIDATORS_TIMEOUT",
+            "13": "LEADER_TIMEOUT"}
+# para um deploy, ACCEPTED ja basta: o endereco existe e aceita chamadas.
+BONS = {"ACCEPTED", "FINALIZED"}
+RUINS = {"UNDETERMINED", "CANCELED", "VALIDATORS_TIMEOUT", "LEADER_TIMEOUT"}
+
+def status_de(tx):
+    for k in ("status_name", "statusName", "status"):
+        v = tx.get(k)
+        if v is not None:
+            return NUM2NOME.get(str(v), str(v).upper())
+    return "?"
+
+def esperar(cli, txh, timeout, poll):
+    """polling proprio: o wait_for_transaction_receipt do SDK exige o enum
+    TransactionStatus e estoura AttributeError ao montar a mensagem de erro."""
+    ini, ultimo = time.time(), None
+    while True:
+        tx = como_dict(cli.get_transaction(transaction_hash=txh))
+        st = status_de(tx)
+        if st != ultimo:
+            print(f"      {st}  ({time.time()-ini:.0f}s)", flush=True)
+            ultimo = st
+        if st in BONS:
+            return tx, st
+        if st in RUINS:
+            sys.exit(f"  deploy terminou em {st} - nao da para usar")
+        if time.time() - ini > timeout:
+            sys.exit(f"  deploy nao decidiu em {timeout}s (ultimo: {st})\n"
+                     f"  hash {txh}\n"
+                     f"  consulte depois: python3 estado.py {txh}\n"
+                     f"  e, se tiver virado ACCEPTED, pegue o endereco com:\n"
+                     f"    python3 deploy.py --tx {txh}")
+        time.sleep(poll)
+
 def cava_endereco(o, visto=None):
     """procura recursivamente qualquer chave de endereco de contrato"""
     if isinstance(o, dict):
@@ -46,6 +85,9 @@ def main():
     ap.add_argument("--ic", default="ic.py")
     ap.add_argument("--n", type=int, default=1, help="quantos enderecos deployar")
     ap.add_argument("--out", default="res_novo", help="pasta da conta.key")
+    ap.add_argument("--timeout", type=int, default=600, help="seg por deploy")
+    ap.add_argument("--poll", type=int, default=5)
+    ap.add_argument("--tx", default="", help="so resolve o endereco de um deploy ja enviado")
     a = ap.parse_args()
 
     if not os.path.exists(a.ic):
@@ -67,6 +109,17 @@ def main():
     print(f"contrato: {a.ic}  ({len(codigo)} bytes)\n")
 
     cli = create_client(chain=studionet)
+
+    if a.tx:
+        rec, st = esperar(cli, a.tx, a.timeout, a.poll)
+        addr = cava_endereco(rec)
+        print(f"\n{a.tx}  {st}  ->  {addr or 'ENDERECO NAO ENCONTRADO'}")
+        if not addr:
+            json.dump(rec, open(os.path.join(a.out, "deploy_tx.json"), "w"),
+                      ensure_ascii=False, default=str, indent=2)
+            print(f"receipt em {a.out}/deploy_tx.json - me mande as chaves")
+        return
+
     enderecos = []
     for i in range(a.n):
         ini = time.time()
@@ -75,8 +128,7 @@ def main():
         if not txh.startswith("0x"):
             txh = "0x" + txh
         print(f"[{i+1}/{a.n}] tx {txh}  aguardando...", flush=True)
-        rec = como_dict(cli.wait_for_transaction_receipt(
-            transaction_hash=txh, status="FINALIZED"))
+        rec, st = esperar(cli, txh, a.timeout, a.poll)
         addr = cava_endereco(rec)
         if not addr:
             print("  nao achei o endereco no receipt. Chaves de topo:",
