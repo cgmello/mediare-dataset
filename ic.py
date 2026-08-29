@@ -161,6 +161,27 @@ def _json_do_modelo(bruto: str):
     return None
 
 
+def _num(x) -> float:
+    """Converte para float sem nunca estourar. O modelo as vezes manda numero
+    como string, com R$, ponto de milhar e virgula decimal ("R$ 1.234,56").
+    float() nesses casos levanta ValueError - e ValueError dentro do painel
+    derruba a transacao inteira."""
+    if isinstance(x, (int, float)):
+        return float(x)
+    if not isinstance(x, str):
+        return 0.0
+    t = x.strip().replace("R$", "").replace(" ", "").replace("\u00a0", "")
+    if not t:
+        return 0.0
+    if "," in t:                       # formato brasileiro: 1.234,56
+        t = t.replace(".", "").replace(",", ".")
+    t = "".join(c for c in t if c in "0123456789.-")
+    try:
+        return float(t)
+    except ValueError:
+        return 0.0
+
+
 def _tese_valida(t) -> bool:
     return (isinstance(t, dict) and isinstance(t.get("valores"), dict)
             and t.get("responsavel") is not None
@@ -198,10 +219,10 @@ def _consolidar(teses: list) -> dict:
     """
     faixas = {}
     for r in RUBRICAS:
-        vs = [round(float(t["valores"].get(r, 0.0)), 2) for t in teses]
+        vs = [round(_num(t["valores"].get(r, 0.0)), 2) for t in teses]
         faixas[r] = [min(vs), max(vs)]
 
-    totais = [round(sum(float(t["valores"].get(r, 0.0)) for r in RUBRICAS), 2)
+    totais = [round(sum(_num(t["valores"].get(r, 0.0)) for r in RUBRICAS), 2)
               for t in teses]
     lo, hi = min(totais), max(totais)
 
@@ -273,7 +294,7 @@ class MediareCommittee(gl.Contract):
                 if t is None:
                     continue                # lente perdida; segue com as outras
                 t["lente"] = nome
-                t["valores"] = {k: round(float(t["valores"].get(k, 0.0) or 0.0), 2)
+                t["valores"] = {k: round(_num(t["valores"].get(k, 0.0)), 2)
                                 for k in ["principal", "multa", "danos_morais", "outros"]}
                 teses.append(t)
 
