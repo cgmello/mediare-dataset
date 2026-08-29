@@ -93,6 +93,18 @@ def extrair_metricas(cid: str, tx: dict, dur: float) -> dict:
         elif nd == 1: ep1 += 1
     m["disagree_ep0"], m["disagree_ep1"] = ep0, ep1
 
+    # ATENCAO: um contrato que estoura excecao e reproduzido igual por todos os
+    # nos, entao a rede da MAJORITY_AGREE e o status vira ACCEPTED. Isso e
+    # "consenso sobre nada" e nao pode contar como caso resolvido.
+    lr0 = (cd.get("leader_receipt") or [{}])
+    lr0 = lr0[0] if isinstance(lr0, list) and lr0 else {}
+    m["exec"] = lr0.get("execution_result")
+    if m["exec"] == "ERROR":
+        r = lr0.get("result") or {}
+        m["erro_contrato"] = (r.get("payload") if isinstance(r, dict) else str(r)) or "?"
+        st = ((lr0.get("genvm_result") or {}).get("stderr") or "").strip().splitlines()
+        m["erro_traceback"] = st[-1][:200] if st else ""
+
     # EP0 do lider da rodada final: consolidado do painel
     try:
         lr = (cd.get("leader_receipt") or [{}])[0]
@@ -203,8 +215,17 @@ def resumo(args):
     print(f"\n{'='*62}\nCONSENSO ON-CHAIN — {n} casos\n{'='*62}")
     for k, v in st.most_common():
         print(f"  {k:14s} {v:4d}  ({100*v/n:.0f}%)")
-    ok = [l for l in ls if l["status"] in ("FINALIZED", "ACCEPTED")]
+    crash = [l for l in ls if l.get("exec") == "ERROR"]
+    if crash:
+        print(f"\n  !! {len(crash)} caso(s) em que o CONTRATO estourou excecao.")
+        print("     Todos os nos reproduzem o mesmo erro, a rede da MAJORITY_AGREE")
+        print("     e o status vira ACCEPTED: e consenso sobre nada, nao vale.")
+        for l in crash:
+            print(f"     {l['id']}  {l['status']:12} {l.get('erro_traceback','')[:90]}")
+    ok = [l for l in ls if l["status"] in ("FINALIZED", "ACCEPTED")
+          and l.get("exec") != "ERROR"]
     und = [l for l in ls if l["status"] == "UNDETERMINED"]
+    print(f"\naceitos VALIDOS (sem crash): {len(ok)}/{n}")
     if ok:
         r1 = sum(1 for l in ok if l.get("rounds", 1) <= 1)
         print(f"\naceitos em 1 rodada       : {r1}/{len(ok)}")

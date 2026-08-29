@@ -96,6 +96,77 @@ RUBRICAS = ["principal", "multa", "outros"]   # danos_morais fica fora do EP
 DESEMPATE = ["jurisprudencial", "estrita", "ampla"]
 
 
+def _reparar_json(s: str) -> str:
+    """Conserta os dois defeitos que o modelo comete dentro de strings JSON:
+    aspas nao escapadas e quebras de linha cruas. Uma aspa so fecha a string
+    se o proximo caractere nao-espaco for , : } ou ] - caso contrario e aspa
+    interna e vira \\". Nao inventa estrutura: se a resposta estiver mesmo
+    quebrada, o parse falha depois e a lente e descartada."""
+    fora = {"\n": "\\n", "\r": "\\r", "\t": "\\t"}
+    out = []
+    dentro = False
+    esc = False
+    n = len(s)
+    for k in range(n):
+        ch = s[k]
+        if esc:
+            out.append(ch); esc = False; continue
+        if ch == "\\":
+            out.append(ch); esc = True; continue
+        if ch == '"':
+            if not dentro:
+                dentro = True; out.append(ch); continue
+            j = k + 1
+            while j < n and s[j] in " \t\r\n":
+                j += 1
+            if j >= n or s[j] in ",:}]":
+                dentro = False; out.append(ch)
+            else:
+                out.append('\\"')
+            continue
+        if dentro and ch in fora:
+            out.append(fora[ch]); continue
+        out.append(ch)
+    return "".join(out)
+
+
+def _json_do_modelo(bruto: str):
+    """Extrai UM objeto JSON da resposta. Devolve None se nao der.
+
+    json.loads(bruto[primeiro'{':ultimo'}']) - o que estava aqui antes -
+    quebra quando o modelo escreve qualquer coisa depois do objeto ou uma
+    aspa dentro de um fundamento. Duas transacoes do lote v8 morreram assim
+    (exit_code 1), e um crash vira consenso sobre nada: os validadores
+    reproduzem o mesmo erro e a rede ACEITA a falha.
+    """
+    b = bruto.strip()
+    if "```" in b:
+        partes = [p for p in b.split("```") if "{" in p]
+        if partes:
+            b = max(partes, key=len).lstrip()
+            if b.startswith("json"):
+                b = b[4:]
+    i = b.find("{")
+    if i < 0:
+        return None
+    b = b[i:]
+    dec = json.JSONDecoder()
+    for tentativa in (b, _reparar_json(b)):
+        try:
+            obj, _fim = dec.raw_decode(tentativa)   # UM objeto, ignora o resto
+            if isinstance(obj, dict):
+                return obj
+        except ValueError:
+            continue
+    return None
+
+
+def _tese_valida(t) -> bool:
+    return (isinstance(t, dict) and isinstance(t.get("valores"), dict)
+            and t.get("responsavel") is not None
+            and t.get("resultado") is not None)
+
+
 def _moda(teses: list, campo: str):
     """Moda deterministica -> (valor, houve_empate).
 
@@ -192,19 +263,28 @@ class MediareCommittee(gl.Contract):
                      + lente + "\n\n" + REGRAS
                      + "\nResponda SOMENTE com este JSON, sem markdown:\n" + SCHEMA
                      + "\n\nDOCUMENTOS DO CASO:\n" + corpo)
-                bruto = gl.nondet.exec_prompt(p).strip()
-                if bruto.startswith("```"):
-                    bruto = bruto.split("```")[1]
-                    if bruto.startswith("json"):
-                        bruto = bruto[4:]
-                ini, fim = bruto.find("{"), bruto.rfind("}")
-                t = json.loads(bruto[ini:fim + 1])
+                t = None
+                for _ in range(2):          # uma re-tentativa: o bloco e nao
+                    bruto = gl.nondet.exec_prompt(p)    # deterministico mesmo
+                    cand = _json_do_modelo(bruto)
+                    if _tese_valida(cand):
+                        t = cand
+                        break
+                if t is None:
+                    continue                # lente perdida; segue com as outras
                 t["lente"] = nome
-                t["valores"] = {k: round(float(t["valores"].get(k, 0.0)), 2)
+                t["valores"] = {k: round(float(t["valores"].get(k, 0.0) or 0.0), 2)
                                 for k in ["principal", "multa", "danos_morais", "outros"]}
                 teses.append(t)
 
             teses.sort(key=lambda t: t["lente"])          # ordem estavel
+            if not teses:
+                # nenhuma lente respondeu JSON utilizavel. Devolve um painel
+                # vazio EXPLICITO em vez de estourar: crash e aceito por
+                # maioria e vira "consenso" sobre nada.
+                return json.dumps({"teses": [], "consolidado": None,
+                                   "erro": "nenhuma lente produziu JSON valido"},
+                                  sort_keys=True, ensure_ascii=False)
             return json.dumps({"teses": teses, "consolidado": _consolidar(teses)},
                               sort_keys=True, ensure_ascii=False)
 
@@ -231,7 +311,10 @@ class MediareCommittee(gl.Contract):
                 "Diferenca sobre EM QUAL RUBRICA um valor foi lancado nao "
                 "e divergencia, desde que o total bata. "
                 "Dois paineis cujas faixas compartilham valores descrevem a "
-                "mesma disputa - e esse o objetivo."
+                "mesma disputa - e esse o objetivo. "
+                "EXCECAO: se em QUALQUER um dos dois paineis o campo "
+                "'consolidado' for null, os paineis NAO sao equivalentes - "
+                "um painel sem consolidado nao pode virar pauta."
             ),
         )
 

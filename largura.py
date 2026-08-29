@@ -63,6 +63,10 @@ def main():
 
             print(f"{cid:5} {st:13} {rot!s:>3} {fs:>26} {rs:>6} {gs:>12} {cont:>7}")
 
+            if d.get("exec") == "ERROR":
+                print(f"      ^ contrato estourou excecao: nao conta "
+                      f"({d.get('erro_traceback','')[:60]})")
+                continue
             if st != "ACCEPTED" and st != "FINALIZED":
                 continue
             aceitos += 1
