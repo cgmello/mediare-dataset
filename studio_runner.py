@@ -131,6 +131,7 @@ def rodar_caso(cli, conta, contrato, cid, args):
         txh_hex = "0x" + txh_hex
     print(f"    {cid}: tx enviada {txh_hex}", flush=True)
     ultimo = None
+    avisado = False
     while True:
         time.sleep(args.poll)
         tx = como_dict(cli.get_transaction(transaction_hash=txh_hex))
@@ -140,12 +141,22 @@ def rodar_caso(cli, conta, contrato, cid, args):
             ultimo = st
         if st in TERMINAIS:
             return tx, time.time() - ini
-        if time.time() - ini > args.timeout:
+        dt = time.time() - ini
+        if dt > args.timeout and not avisado:
+            avisado = True
+            print(f"    {cid}: AVISO passou de {args.timeout}s em {st} - "
+                  f"continuo esperando (o contrato serializa: desistir aqui "
+                  f"trava os proximos casos em PENDING)", flush=True)
+        if dt > args.timeout_duro:
             tx["_timeout"] = True
-            return tx, time.time() - ini
+            return tx, dt
 
-def worker(nome, cli, conta, contrato, fila, args, lock):
+def worker(nome, cli, conta, contrato, fila, args, lock, parar=None):
     while True:
+        if parar is not None and parar.is_set():
+            print(f"[{nome}] abortado: transacao anterior ficou sem resolver "
+                  f"na chain - os proximos casos so ficariam em PENDING", flush=True)
+            return
         try:
             cid = fila.get_nowait()
         except queue.Empty:
@@ -162,6 +173,13 @@ def worker(nome, cli, conta, contrato, fila, args, lock):
                 print(f"[{nome}] {cid}: {met['status']:12s} {met.get('result_name') or '':16s} "
                       f"rodadas={met['rounds']} rot={met['rotacoes']} {met['duracao_s']:.0f}s "
                       f"faixa={met.get('faixa_total')}", flush=True)
+            if tx.get("_timeout") and parar is not None:
+                parar.set()
+                print(f"[{nome}] {cid} nao resolveu na chain em "
+                      f"{args.timeout_duro}s. PARANDO o lote: o Studio executa "
+                      f"uma transacao por contrato de cada vez, entao seguir "
+                      f"para o proximo caso so o deixaria em PENDING. "
+                      f"Rode de novo depois - o script e resumivel.", flush=True)
         except Exception as e:
             with lock:
                 with open(os.path.join(args.out, "chain.jsonl"), "a", encoding="utf-8") as f:
@@ -214,7 +232,10 @@ def main():
     ap.add_argument("--casos", default="", help="lista explicita: 0002,0004")
     ap.add_argument("--desde", default="")
     ap.add_argument("--limite", type=int, default=30)
-    ap.add_argument("--timeout", type=int, default=900, help="seg por transacao")
+    ap.add_argument("--timeout", type=int, default=900,
+                help="seg por transacao antes de AVISAR (nao desiste)")
+    ap.add_argument("--timeout-duro", type=int, default=3600,
+                help="seg antes de desistir do caso e PARAR o lote")
     ap.add_argument("--poll", type=int, default=10)
     ap.add_argument("--relatorio", action="store_true")
     args = ap.parse_args()
@@ -266,10 +287,12 @@ def main():
     for c in ids:
         fila.put(c)
     lock = threading.Lock()
+    parar = threading.Event()
     ths = []
     for i, addr in enumerate(args.contrato):
         cli = create_client(chain=studionet)
-        t = threading.Thread(target=worker, args=(f"C{i}", cli, conta, addr, fila, args, lock),
+        t = threading.Thread(target=worker,
+                             args=(f"C{i}", cli, conta, addr, fila, args, lock, parar),
                              daemon=True)
         t.start(); ths.append(t)
     try:
