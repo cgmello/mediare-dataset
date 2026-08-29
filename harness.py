@@ -44,10 +44,15 @@ def carregar_contrato(path):
     prefixo = src.split("class MediareCommittee")[0].replace("from genlayer import *", "")
     ns = {}
     exec(compile(prefixo, path, "exec"), ns)
-    faltando = [k for k in ("REGRAS", "LENTES", "SCHEMA", "_consolidar") if k not in ns]
+    preciso = ("REGRAS", "LENTES", "SCHEMA", "_consolidar",
+               "_painel_de", "_tese_de", "_json_do_modelo", "_num")
+    faltando = [k for k in preciso if k not in ns]
     if faltando:
-        sys.exit(f"contrato {path} nao expoe: {faltando}")
-    return ns["REGRAS"], ns["LENTES"], ns["SCHEMA"], ns["_consolidar"]
+        sys.exit(f"contrato {path} nao expoe: {faltando}\n"
+                 "O harness roda o MESMO codigo de painel do contrato; sem\n"
+                 "essas funcoes a medicao off-chain nao diz nada sobre o\n"
+                 "comportamento on-chain.")
+    return ns
 
 
 # ---------------------------------------------------------------- gabaritos
@@ -186,6 +191,8 @@ def chamar(cli, modelo, prompt, max_tokens=4000, tentativas=4):
 
 
 def extrair_json(txt):
+    """Usado so pelo modo_normalizar (gabaritos), que nao passa pelo painel.
+    O painel usa _json_do_modelo do proprio ic.py - ver carregar_contrato."""
     t = txt.strip()
     # remove cercas ```json ... ``` mesmo com preambulo antes
     if "```" in t:
@@ -296,7 +303,8 @@ def modo_normalizar(args, gabs):
 
 
 def modo_rodar(args, gabs):
-    REGRAS, LENTES, SCHEMA, _consolidar = carregar_contrato(args.ic)
+    ic = carregar_contrato(args.ic)
+    LENTES, _painel_de = ic["LENTES"], ic["_painel_de"]
     cli = fazer_cliente()
     path = os.path.join(args.out, "paineis.jsonl")
     feitos = ja_feitos(path)
@@ -313,22 +321,21 @@ def modo_rodar(args, gabs):
         caso = json.load(open(os.path.join(args.dataset, "casos", f"{cid}.json"),
                               encoding="utf-8"))
         corpo = json.dumps(caso["documentos"], sort_keys=True, ensure_ascii=False)
-        teses, ti_tot, to_tot = [], 0, 0
-        for nome, lente in LENTES:
-            p = ("Voce e um mediador extrajudicial brasileiro (Lei 13.140/2015).\n"
-                 + lente + "\n\n" + REGRAS
-                 + "\nResponda SOMENTE com este JSON, sem markdown:\n" + SCHEMA
-                 + "\n\nDOCUMENTOS DO CASO:\n" + corpo)
+        uso = {"in": 0, "out": 0}
+
+        def pedir(p):
+            """o que o contrato faz com gl.nondet.exec_prompt"""
             txt, ti, to = chamar(cli, args.modelo, p, max_tokens=4000)
-            ti_tot += ti; to_tot += to
-            t = extrair_json(txt)
-            t["lente"] = nome
-            t["valores"] = {k: round(float(t.get("valores", {}).get(k, 0.0) or 0.0), 2)
-                            for k in ["principal", "multa", "danos_morais", "outros"]}
-            teses.append(t)
-        teses.sort(key=lambda x: x["lente"])
-        gravar(path, {"id": cid, "teses": teses, "consolidado": _consolidar(teses),
-                      "tokens_in": ti_tot, "tokens_out": to_tot, "modelo": args.modelo})
+            uso["in"] += ti; uso["out"] += to
+            return txt
+
+        # MESMA funcao que o contrato executa on-chain: prompt, parse,
+        # normalizacao, descarte de lente e consolidacao. So a chamada ao
+        # modelo muda. Se o painel quebrar aqui, quebra la.
+        painel = _painel_de(pedir, corpo)
+        gravar(path, {"id": cid, **painel,
+                      "tokens_in": uso["in"], "tokens_out": uso["out"],
+                      "modelo": args.modelo})
 
     erros = []
     with ThreadPoolExecutor(max_workers=args.workers) as ex:

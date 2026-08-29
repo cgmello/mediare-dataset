@@ -7,7 +7,8 @@ MODELO = sys.argv[1] if len(sys.argv) > 1 else "claude-sonnet-5"
 CASO   = sys.argv[2] if len(sys.argv) > 2 else "0001"
 MAXTOK = int(sys.argv[3]) if len(sys.argv) > 3 else 4000
 
-REGRAS, LENTES, SCHEMA, _ = harness.carregar_contrato("ic.py")
+ic = harness.carregar_contrato("ic.py")
+REGRAS, LENTES, SCHEMA = ic["REGRAS"], ic["LENTES"], ic["SCHEMA"]
 caso  = json.load(open(f"casos/{CASO}.json", encoding="utf-8"))
 corpo = json.dumps(caso["documentos"], sort_keys=True, ensure_ascii=False)
 nome, lente = LENTES[0]

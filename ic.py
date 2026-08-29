@@ -211,6 +211,54 @@ def _moda(teses: list, campo: str):
     return sorted(vencedores)[0], True
 
 
+def _prompt_lente(lente: str, corpo: str) -> str:
+    return ("Voce e um mediador extrajudicial brasileiro (Lei 13.140/2015).\n"
+            + lente + "\n\n" + REGRAS
+            + "\nResponda SOMENTE com este JSON, sem markdown:\n" + SCHEMA
+            + "\n\nDOCUMENTOS DO CASO:\n" + corpo)
+
+
+def _tese_de(pedir, nome: str, lente: str, corpo: str, tentativas: int = 2):
+    """Uma tese, ou None se o modelo nao produzir JSON utilizavel.
+
+    `pedir(prompt) -> str` e injetado: o contrato passa gl.nondet.exec_prompt e
+    o harness passa a chamada da API. Assim os dois percorrem EXATAMENTE o
+    mesmo caminho de prompt, parse e normalizacao.
+
+    Foi a divergencia entre esses dois caminhos que deixou o bug do parser
+    passar despercebido: o harness tinha extrair_json com raw_decode, o
+    contrato tinha json.loads de uma fatia. Off-chain limpo, on-chain
+    exit_code 1 - e crash de contrato vira consenso por maioria.
+    """
+    p = _prompt_lente(lente, corpo)
+    for _ in range(tentativas):          # o bloco e nao deterministico mesmo:
+        cand = _json_do_modelo(pedir(p))  # re-perguntar costuma resolver
+        if _tese_valida(cand):
+            cand["lente"] = nome
+            cand["valores"] = {k: round(_num(cand["valores"].get(k, 0.0)), 2)
+                               for k in ["principal", "multa", "danos_morais",
+                                         "outros"]}
+            return cand
+    return None
+
+
+def _painel_de(pedir, corpo: str) -> dict:
+    """Painel completo: as tres lentes, as perdidas descartadas."""
+    teses = []
+    for nome, lente in LENTES:
+        t = _tese_de(pedir, nome, lente, corpo)
+        if t is not None:
+            teses.append(t)
+    teses.sort(key=lambda t: t["lente"])              # ordem estavel
+    if not teses:
+        # nenhuma lente respondeu JSON utilizavel. Painel vazio EXPLICITO em
+        # vez de excecao: crash e reproduzido por todos os nos, aceito por
+        # maioria, e vira "consenso" sobre nada.
+        return {"teses": [], "consolidado": None,
+                "erro": "nenhuma lente produziu JSON valido"}
+    return {"teses": teses, "consolidado": _consolidar(teses)}
+
+
 def _consolidar(teses: list) -> dict:
     """TODA a agregacao e feita aqui, em Python. Nenhum LLM faz conta.
 
@@ -278,36 +326,8 @@ class MediareCommittee(gl.Contract):
             docs = json.loads(raw)["documentos"]
             corpo = json.dumps(docs, sort_keys=True, ensure_ascii=False)
 
-            teses = []
-            for nome, lente in LENTES:
-                p = ("Voce e um mediador extrajudicial brasileiro (Lei 13.140/2015).\n"
-                     + lente + "\n\n" + REGRAS
-                     + "\nResponda SOMENTE com este JSON, sem markdown:\n" + SCHEMA
-                     + "\n\nDOCUMENTOS DO CASO:\n" + corpo)
-                t = None
-                for _ in range(2):          # uma re-tentativa: o bloco e nao
-                    bruto = gl.nondet.exec_prompt(p)    # deterministico mesmo
-                    cand = _json_do_modelo(bruto)
-                    if _tese_valida(cand):
-                        t = cand
-                        break
-                if t is None:
-                    continue                # lente perdida; segue com as outras
-                t["lente"] = nome
-                t["valores"] = {k: round(_num(t["valores"].get(k, 0.0)), 2)
-                                for k in ["principal", "multa", "danos_morais", "outros"]}
-                teses.append(t)
-
-            teses.sort(key=lambda t: t["lente"])          # ordem estavel
-            if not teses:
-                # nenhuma lente respondeu JSON utilizavel. Devolve um painel
-                # vazio EXPLICITO em vez de estourar: crash e aceito por
-                # maioria e vira "consenso" sobre nada.
-                return json.dumps({"teses": [], "consolidado": None,
-                                   "erro": "nenhuma lente produziu JSON valido"},
-                                  sort_keys=True, ensure_ascii=False)
-            return json.dumps({"teses": teses, "consolidado": _consolidar(teses)},
-                              sort_keys=True, ensure_ascii=False)
+            painel_obj = _painel_de(gl.nondet.exec_prompt, corpo)
+            return json.dumps(painel_obj, sort_keys=True, ensure_ascii=False)
 
         parecer = gl.eq_principle.prompt_comparative(
             painel,
