@@ -153,10 +153,6 @@ def rodar_caso(cli, conta, contrato, cid, args):
 
 def worker(nome, cli, conta, contrato, fila, args, lock, parar=None):
     while True:
-        if parar is not None and parar.is_set():
-            print(f"[{nome}] abortado: transacao anterior ficou sem resolver "
-                  f"na chain - os proximos casos so ficariam em PENDING", flush=True)
-            return
         try:
             cid = fila.get_nowait()
         except queue.Empty:
@@ -173,13 +169,16 @@ def worker(nome, cli, conta, contrato, fila, args, lock, parar=None):
                 print(f"[{nome}] {cid}: {met['status']:12s} {met.get('result_name') or '':16s} "
                       f"rodadas={met['rounds']} rot={met['rotacoes']} {met['duracao_s']:.0f}s "
                       f"faixa={met.get('faixa_total')}", flush=True)
-            if tx.get("_timeout") and parar is not None:
-                parar.set()
-                print(f"[{nome}] {cid} nao resolveu na chain em "
-                      f"{args.timeout_duro}s. PARANDO o lote: o Studio executa "
-                      f"uma transacao por contrato de cada vez, entao seguir "
-                      f"para o proximo caso so o deixaria em PENDING. "
-                      f"Rode de novo depois - o script e resumivel.", flush=True)
+            if tx.get("_timeout"):
+                # o entupimento e POR CONTRATO: so este worker para. Os casos
+                # que sobraram na fila continuam com os outros enderecos.
+                print(f"[{nome}] {cid} nao resolveu em {args.timeout_duro}s no "
+                      f"contrato {contrato[:10]}... Esse endereco fica preso por "
+                      f"essa transacao, entao PARO este worker; os demais seguem. "
+                      f"Restam ~{fila.qsize()} casos na fila.", flush=True)
+                if parar is not None:
+                    parar.set()      # sinaliza que ao menos um endereco caiu
+                return
         except Exception as e:
             with lock:
                 with open(os.path.join(args.out, "chain.jsonl"), "a", encoding="utf-8") as f:
@@ -301,6 +300,14 @@ def main():
     except KeyboardInterrupt:
         print("\ninterrompido — o que terminou esta salvo; re-execute para continuar")
         return
+    if parar.is_set():
+        restantes = fila.qsize()
+        print(f"\nATENCAO: ao menos um endereco ficou preso por uma transacao "
+              f"que nao resolveu.")
+        if restantes:
+            print(f"Sobraram {restantes} casos na fila. Deploye enderecos "
+                  f"limpos e rode de novo (o script e resumivel):\n"
+                  f"  python3 deploy.py --n 2 --out {args.out}")
     resumo(args)
 
 
