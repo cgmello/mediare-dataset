@@ -5,12 +5,11 @@ so com eles. Casos ambiguos ficam com total=None e saem da pontuacao. Sem API.""
 import json, re, sys, os, collections
 import harness
 
-DEST = sys.argv[1] if len(sys.argv) > 1 else "res_haiku/gabaritos_norm.jsonl"
 
 RE_TOTAL   = re.compile(r"total|valor_bruto|valor_liquido|valor_final|condenacao|debito_total")
 RE_IGNORAR = re.compile(r"pedid|limite|teto|saldo|nao_cobrad|rejeitad|negad|arbitramento|liquidar")
 RE_DEDUZIR = re.compile(r"deducao|deduzir|abatimento|desconto|compensacao")
-RE_MORAL   = re.compile(r"moral")
+RE_MORAL   = re.compile(r"mora(l|is)|extrapatrimonia")
 RE_ACESSORIO = re.compile(r"juros|correcao|corrigid|honorario|sucumben|custas|atualiza")
 
 def avaliar(g):
@@ -56,34 +55,50 @@ def avaliar(g):
         total = round(total - acess, 2)
         if total < 0:
             return None, [], False, "acessorios maiores que o total"
+
+    # o EP ignora a rubrica danos_morais (ver RUBRICAS em ic.py): o comite so
+    # apura o patrimonial. Se o total do gabarito inclui moral, desconta para
+    # comparar a mesma grandeza.
+    moral = sum(v[k] for k in v if RE_MORAL.search(k) and v[k] > 0)
+    if moral:
+        total = round(total - moral, 2)
+        if total < 0:
+            return None, [], False, "danos morais maiores que o total"
+        if total == 0:
+            return None, [], False, "condenacao so em danos morais (fora do EP)"
     return total, usadas, True, "ok"
 
-gabs = harness.carregar_gabaritos(".")
-motivos = collections.Counter()
-conf_ids = []
-os.makedirs(os.path.dirname(DEST) or ".", exist_ok=True)
-with open(DEST, "w", encoding="utf-8") as out:
-    for cid, g in sorted(gabs.items()):
-        total, usadas, ok, motivo = avaliar(g)
-        motivos[motivo if not ok else "CONFIAVEL"] += 1
-        if ok:
-            conf_ids.append(cid)
-        out.write(json.dumps({"id": cid, "total": total if ok else None,
-                              "chaves_somadas": usadas, "classe": g["classe"],
-                              "confiavel": ok, "obs": motivo}, ensure_ascii=False) + "\n")
+def main():
+    DEST = sys.argv[1] if len(sys.argv) > 1 else "res_haiku/gabaritos_norm.jsonl"
+    gabs = harness.carregar_gabaritos(".")
+    motivos = collections.Counter()
+    conf_ids = []
+    os.makedirs(os.path.dirname(DEST) or ".", exist_ok=True)
+    with open(DEST, "w", encoding="utf-8") as out:
+        for cid, g in sorted(gabs.items()):
+            total, usadas, ok, motivo = avaliar(g)
+            motivos[motivo if not ok else "CONFIAVEL"] += 1
+            if ok:
+                conf_ids.append(cid)
+            out.write(json.dumps({"id": cid, "total": total if ok else None,
+                                  "chaves_somadas": usadas, "classe": g["classe"],
+                                  "confiavel": ok, "obs": motivo}, ensure_ascii=False) + "\n")
 
-print(f"{len(gabs)} gabaritos -> {DEST}\n")
-for m, n in motivos.most_common(12):
-    print(f"  {n:4d}  {m}")
-p95 = [c for c in conf_ids if c in sorted(gabs)[:95]]
-print(f"\nCONFIAVEIS no total : {len(conf_ids)}/500")
-print(f"CONFIAVEIS nos 95   : {len(p95)}/95   -> {p95}")
+    print(f"{len(gabs)} gabaritos -> {DEST}\n")
+    for m, n in motivos.most_common(12):
+        print(f"  {n:4d}  {m}")
+    p95 = [c for c in conf_ids if c in sorted(gabs)[:95]]
+    print(f"\nCONFIAVEIS no total : {len(conf_ids)}/500")
+    print(f"CONFIAVEIS nos 95   : {len(p95)}/95   -> {p95}")
 
-print("\nCONFERENCIA (resposta conhecida):")
-for cid, esp in (("0002",600.0), ("0004",18472.0), ("0006",0.0), ("0011",51806.28), ("0008",30888.0)):
-    t, u, ok, m = avaliar(gabs[cid])
-    if not ok:
-        print(f"  [fora] {cid}  excluido: {m}   (esperado {esp})")
-    else:
-        v = "OK  " if abs(t-esp) < 1 else "ERRO"
-        print(f"  [{v}] {cid}  apurado={t}  esperado={esp}  usou={u}")
+    print("\nCONFERENCIA (resposta conhecida):")
+    for cid, esp in (("0002",600.0), ("0004",18472.0), ("0006",0.0), ("0011",51806.28), ("0008",30888.0)):
+        t, u, ok, m = avaliar(gabs[cid])
+        if not ok:
+            print(f"  [fora] {cid}  excluido: {m}   (esperado {esp})")
+        else:
+            v = "OK  " if abs(t-esp) < 1 else "ERRO"
+            print(f"  [{v}] {cid}  apurado={t}  esperado={esp}  usou={u}")
+
+if __name__ == "__main__":
+    main()

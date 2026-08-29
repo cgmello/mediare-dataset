@@ -8,8 +8,6 @@ sentencas.jsonl
 __pycache__/
 resultados/
 
-res_haiku/
-res_sonnet/
-res_sint/
-res_v5/
-res_v6/
+# saidas de avaliacao (locais, nao versionar)
+res_*/
+*.stale*
