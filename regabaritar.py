@@ -42,7 +42,11 @@ NUNCA o que foi pedido: essa confusao e o defeito exato que estamos corrigindo.
 
 (a) principal: obrigacao principal deferida - alugueis vencidos, restituicao,
     danos materiais, comissao, devolucao de caucao, reembolso.
-(b) multa: multa contratual ou clausula penal deferida.
+(b) multa: APENAS multa contratual ou clausula penal ja devida, liquida.
+    NAO conte multa cominatoria / astreinte / multa diaria por descumprimento
+    de obrigacao de fazer, MESMO que a sentenca fixe um teto: ela so incide
+    se a parte descumprir no futuro, e portanto nao e valor devido hoje.
+    Nesses casos ponha multa 0.0 e registre na obs.
 (c) danos_morais: indenizacao por dano moral deferida. Fica FORA do total
     patrimonial de proposito - o comite nao arbitra dano moral.
 (d) outros: valor patrimonial deferido que nao caiba nas anteriores.
@@ -55,6 +59,9 @@ NUNCA o que foi pedido: essa confusao e o defeito exato que estamos corrigindo.
     sucumbencia reciproca no merito ou culpa concorrente, use
     "ambos_culpa_concorrente". Improcedente sem condenacao: "nenhum".
 (i) revel: true se a sentenca menciona revelia do requerido.
+(k) Condenacao em OBRIGACAO DE FAZER (reparar, entregar, impermeabilizar,
+    reintegrar) nao tem valor patrimonial: as rubricas ficam 0.0 e a obs
+    explica. Nao converta a obrigacao em dinheiro nem use o valor da causa.
 (j) confianca: "baixa" se o dispositivo for ambiguo ou o valor nao for
     apuravel do texto; "media" se voce teve que somar parcelas espalhadas;
     "alta" se o valor esta explicito no dispositivo.
