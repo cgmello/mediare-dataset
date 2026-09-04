@@ -6,6 +6,34 @@ Use `ic_v10_1.py`. O `ic.py` continua sendo a baseline v9 e não foi alterado.
 
 Classe do contrato: `MediareCommitteeV101`.
 
+Revisao atual: `10.1.1-experimental`, no mesmo arquivo e classe. Faca um novo
+deploy para executar a correcao; contratos ja implantados continuam com o
+codigo anterior.
+
+A revisao corrige omissoes nos prompts (limites de texto, centavos e formatos),
+aceita objeto JSON ou texto JSON valido sem reparar valores, e informa o erro
+de formato ao modelo na segunda tentativa. Continua exigindo tres lentes
+validas e conserva as regras de equivalencia da v10.1.
+
+Em caso de falha, o rollback agora identifica a etapa, o campo e as duas
+tentativas, por exemplo:
+
+```text
+LLM_INVALID_PANEL:lente=probatoria:1=RP01.comentario:TEXTO_1_A_240;2=RP01.comentario:TEXTO_1_A_240
+```
+
+`catalogo` indica falha na extracao; `lente=...` identifica a analise rejeitada;
+`CHAMADA_...` indica excecao ao chamar o provedor; `JSON_INVALIDO` indica texto
+que nao pode ser lido como JSON. O erro nao inclui o conteudo bruto do caso ou
+a mensagem do provedor. Um `Disagree` isolado ainda pode significar divergencia
+entre paineis ou falha local do validador: o booleano nao distingue esses motivos.
+
+Motivacao: transacao do caso 0005
+`0x635817c7409d12e54d09de8e50494a1dd429a4d9ceb7ed6126505942362b1faa`,
+encerrada como `UNDETERMINED` com tres rotacoes e `LLM_INVALID_PANEL`.
+O log original nao permite identificar qual resposta/campo causou a falha;
+esta revisao ainda precisa de confirmacao com modelos reais no Studio.
+
 Depois do deploy, chame:
 
 ```text

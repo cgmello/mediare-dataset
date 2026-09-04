@@ -2,10 +2,12 @@
 """Testes unitarios puros da consolidacao e equivalencia da v10.1."""
 
 import unittest
+import json
+from pathlib import Path
 
 
 def carregar():
-    src = open("ic_v10_1.py", encoding="utf-8").read()
+    src = Path(__file__).with_name("ic_v10_1.py").read_text(encoding="utf-8")
     prefixo = src.split("class MediareCommitteeV101")[0]
     prefixo = prefixo.replace("from genlayer import *", "")
     ns = {}
@@ -69,6 +71,66 @@ def painel(cat, teses):
 
 
 class V101Tests(unittest.TestCase):
+    def test_fluxo_completo_aceita_objetos_e_json_textual(self):
+        for textual in (False, True):
+            respostas = [catalogo()] + [
+                tese(nome, decisao("RP01", "conceder", 100000), decisao("RP02", "negar"))
+                for nome, _ in IC["LENTES"]
+            ]
+            chamadas = []
+            def pedir(prompt, **kwargs):
+                self.assertEqual(kwargs, {"response_format": "json"})
+                chamadas.append(prompt)
+                obj = respostas.pop(0)
+                return json.dumps(obj) if textual else obj
+            resultado = IC["_painel_de"](pedir, "resumos anonimizados")
+            self.assertTrue(IC["_painel_valido"](resultado))
+            self.assertEqual(len(chamadas), 4)
+
+    def test_retry_informa_campo_e_preserva_valor_da_nova_resposta(self):
+        boa = tese("probatoria", decisao("RP01", "conceder", 100000), decisao("RP02", "negar"))
+        ruim = json.loads(json.dumps(boa))
+        ruim["pedidos"][0]["comentario"] = "x" * 241
+        respostas = [ruim, boa]
+        prompts = []
+        def pedir(prompt, **kwargs):
+            prompts.append(prompt)
+            return respostas.pop(0)
+        resultado = IC["_tese_de"](pedir, "probatoria", "instrucao", "caso", catalogo())
+        self.assertIn("RP01.comentario:TEXTO_1_A_240", prompts[1])
+        self.assertEqual(resultado["pedidos"][0]["valor_centavos"], 100000)
+
+    def test_erro_final_identifica_lente_pedido_campo_e_tentativas(self):
+        ruim = tese("auditora", decisao("RP01", "conceder", 100000), decisao("RP02", "negar"))
+        ruim["pedidos"][0]["valor_centavos"] = "100000"
+        with self.assertRaisesRegex(ValueError, "LLM_INVALID_PANEL:lente=auditora:1=RP01.valor_centavos.*2=RP01.valor_centavos"):
+            IC["_tese_de"](lambda *a, **k: ruim, "auditora", "instrucao", "caso", catalogo())
+
+    def test_fontes_com_objetos_sao_rejeitadas_sem_typeerror(self):
+        self.assertFalse(IC["_lista_fontes_valida"]([{"id": "DR"}]))
+        self.assertFalse(IC["_lista_fontes_valida"]([["DR"]]))
+
+    def test_falha_catalogo_interrompe_antes_das_lentes(self):
+        chamadas = []
+        def pedir(prompt, **kwargs):
+            chamadas.append(prompt)
+            return {"pedidos": []}
+        with self.assertRaisesRegex(ValueError, "LLM_INVALID_PANEL:catalogo:1=pedidos:QUANTIDADE"):
+            IC["_painel_de"](pedir, "caso")
+        self.assertEqual(len(chamadas), 2)
+
+    def test_erro_provedor_preserva_tipo_sem_expor_mensagem(self):
+        def pedir(*args, **kwargs):
+            raise RuntimeError("mensagem privada do provedor")
+        with self.assertRaises(ValueError) as ctx:
+            IC["_catalogo_de"](pedir, "caso")
+        self.assertIn("CHAMADA_RuntimeError", str(ctx.exception))
+        self.assertNotIn("mensagem privada", str(ctx.exception))
+
+    def test_json_quebrado_nao_e_reparado_ou_transformado_em_zero(self):
+        with self.assertRaisesRegex(ValueError, "JSON_INVALIDO"):
+            IC["_catalogo_de"](lambda *a, **k: '{"pedidos":', "caso")
+
     def test_consolida_passou_e_controvertido_sem_esconder_zero(self):
         cat = catalogo()
         teses = [

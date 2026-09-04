@@ -18,7 +18,7 @@ definitiva deve receber IDs de pedidos ja gravados no caso de entrada.
 import json
 
 
-VERSAO = "10.1-experimental"
+VERSAO = "10.1.1-experimental"
 DATASET_BASE = (
     "https://raw.githubusercontent.com/cgmello/mediare-dataset/"
     "6bf13ae581afd08415c54d0d825543c21e34bff5/casos/"
@@ -122,6 +122,7 @@ def _lista_fontes_valida(xs) -> bool:
     return (
         isinstance(xs, list)
         and len(xs) <= len(FONTES)
+        and all(isinstance(x, str) for x in xs)
         and len(xs) == len(set(xs))
         and all(x in FONTES for x in xs)
     )
@@ -215,6 +216,9 @@ def _prompt_catalogo(corpo: str) -> str:
         "IDs: RP01, RP02... para pedidos do requerente, na ordem em que aparecem; "
         "RR01, RR02... para pedidos contrapostos do requerido. Ordene primeiro RP, "
         "depois RR. Se o valor nao estiver expresso, use null.\n"
+        "Use no maximo 16 pedidos. descricao: texto nao vazio com no maximo 400 "
+        "caracteres. valor_pedido_centavos: inteiro entre 0 e 1000000000000 ou null; "
+        "R$ 1.234,56 = 123456. Nunca use reais decimais, string ou booleano.\n"
         "modalidade: pagar|fazer|nao_fazer|declarar.\n"
         "natureza: principal|multa|danos_morais|outros|obrigacao_fazer|"
         "obrigacao_nao_fazer|declaratoria.\n"
@@ -244,36 +248,120 @@ def _prompt_lente(nome: str, instrucao: str, corpo: str, catalogo) -> str:
         "pedido_id, decisao, pagador, beneficiario, valor_centavos, "
         "fontes_favoraveis, fontes_contrarias, comentario. Use null para pagador "
         "e beneficiario quando a decisao nao for conceder.\n\n"
+        "decisao: conceder|negar|necessita_informacao|fora_de_escopo. "
+        "fontes_favoraveis e fontes_contrarias sao arrays de strings PR|RR|DR|DD "
+        "sem repeticao; use [] quando nao houver fonte. Para obrigacao nao monetaria "
+        "concedida, pagador identifica quem cumpre, beneficiario quem recebe, valor=0. "
+        "comentario: entre 1 e 240 caracteres. Nao use chave ou rotulo alternativo.\n"
         "<caso>\n" + corpo + "\n</caso>"
     )
 
 
-def _pedir_json(pedir, prompt: str, tentativas: int = 2):
-    for _ in range(tentativas):
+def _ler_objeto_json(pedir, prompt: str):
+    try:
+        obj = pedir(prompt, response_format="json")
+    except Exception as exc:
+        # Nao inclua mensagens do provedor ou o texto do caso nos erros.
+        raise ValueError("CHAMADA_" + type(exc).__name__) from None
+    if isinstance(obj, str):
         try:
-            obj = pedir(prompt, response_format="json")
-            if isinstance(obj, dict):
-                return obj
-        except Exception:
-            pass
-    return None
+            obj = json.loads(obj)
+        except ValueError:
+            raise ValueError("JSON_INVALIDO") from None
+    if not isinstance(obj, dict):
+        raise ValueError("RAIZ_DEVE_SER_OBJETO")
+    return obj
+
+
+def _erro_catalogo(obj) -> str:
+    if not isinstance(obj, dict) or not isinstance(obj.get("pedidos"), list):
+        return "pedidos:ARRAY_OBRIGATORIO"
+    ps = obj["pedidos"]
+    if not 1 <= len(ps) <= MAX_PEDIDOS:
+        return "pedidos:QUANTIDADE_1_A_16"
+    ids = []
+    for i, p in enumerate(ps):
+        prefixo = "pedidos[" + str(i) + "]."
+        if not isinstance(p, dict):
+            return prefixo + "OBJETO_OBRIGATORIO"
+        if not _pedido_id_valido(p.get("id")):
+            return prefixo + "id:FORMATO_RP01_OU_RR01"
+        ids.append(p["id"])
+        for campo in ("autor", "contra"):
+            if p.get(campo) not in PARTES:
+                return prefixo + campo + ":PARTE_INVALIDA"
+        if p["autor"] == p["contra"]:
+            return prefixo + "contra:PARTES_IGUAIS"
+        if p.get("modalidade") not in MODALIDADES:
+            return prefixo + "modalidade:ENUM_INVALIDO"
+        if p.get("natureza") not in NATUREZAS:
+            return prefixo + "natureza:ENUM_INVALIDO"
+        if not _valor_valido(p.get("valor_pedido_centavos"), aceita_nulo=True):
+            return prefixo + "valor_pedido_centavos:INTEIRO_OU_NULL"
+        if not _texto_curto(p.get("descricao"), 400):
+            return prefixo + "descricao:TEXTO_1_A_400"
+    if len(ids) != len(set(ids)):
+        return "pedidos:ID_DUPLICADO"
+    if ids != sorted(ids):
+        return "pedidos:ORDEM_RP_DEPOIS_RR"
+    return ""
+
+
+def _erro_tese(obj, catalogo, nome: str) -> str:
+    if not isinstance(obj, dict) or obj.get("lente") != nome:
+        return "lente:NOME_INCORRETO"
+    ds = obj.get("pedidos")
+    if not isinstance(ds, list) or len(ds) != len(catalogo["pedidos"]):
+        return "pedidos:COBERTURA_INCORRETA"
+    for d, p in zip(ds, catalogo["pedidos"]):
+        prefixo = p["id"] + "."
+        if not isinstance(d, dict):
+            return prefixo + "OBJETO_OBRIGATORIO"
+        if d.get("pedido_id") != p["id"]:
+            return prefixo + "pedido_id:ID_OU_ORDEM_INCORRETA"
+        if d.get("decisao") not in DECISOES:
+            return prefixo + "decisao:ENUM_INVALIDO"
+        if not _valor_valido(d.get("valor_centavos")):
+            return prefixo + "valor_centavos:INTEIRO_OBRIGATORIO"
+        for campo in ("fontes_favoraveis", "fontes_contrarias"):
+            if not _lista_fontes_valida(d.get(campo)):
+                return prefixo + campo + ":ARRAY_IDS_SEM_REPETICAO"
+        if not _texto_curto(d.get("comentario"), 240):
+            return prefixo + "comentario:TEXTO_1_A_240"
+        if not _decisao_valida(d, p):
+            return prefixo + "COERENCIA_DECISAO_VALOR_PARTES_FONTES"
+    return ""
+
+
+def _resposta_validada(pedir, prompt, etapa, verificar):
+    erros = []
+    original = prompt
+    for tentativa in range(2):
+        try:
+            obj = _ler_objeto_json(pedir, prompt)
+            erro = verificar(obj)
+        except ValueError as exc:
+            erro = str(exc)
+        if not erro:
+            return obj
+        erros.append(str(tentativa + 1) + "=" + erro)
+        prompt = original + "\n\nCORRECAO DE FORMATO: " + erro + (
+            "\nGere novamente o objeto completo obedecendo ao schema. "
+            "Nao mude o merito para satisfazer o formato."
+        )
+    raise ValueError("LLM_INVALID_PANEL:" + etapa + ":" + ";".join(erros))
 
 
 def _catalogo_de(pedir, corpo: str):
-    for _ in range(2):
-        obj = _pedir_json(pedir, _prompt_catalogo(corpo), tentativas=1)
-        if _catalogo_valido(obj):
-            return obj
-    return None
+    return _resposta_validada(pedir, _prompt_catalogo(corpo), "catalogo", _erro_catalogo)
 
 
 def _tese_de(pedir, nome: str, instrucao: str, corpo: str, catalogo):
     prompt = _prompt_lente(nome, instrucao, corpo, catalogo)
-    for _ in range(2):
-        obj = _pedir_json(pedir, prompt, tentativas=1)
-        if _tese_valida(obj, catalogo, nome):
-            return obj
-    return None
+    return _resposta_validada(
+        pedir, prompt, "lente=" + nome,
+        lambda obj: _erro_tese(obj, catalogo, nome),
+    )
 
 
 def _moda_valida(valores):
@@ -576,7 +664,10 @@ class MediareCommitteeV101(gl.Contract):
             if not isinstance(docs, dict):
                 raise gl.vm.UserError("CASO_SEM_DOCUMENTOS")
             corpo = json.dumps(docs, sort_keys=True, ensure_ascii=False)
-            painel = _painel_de(gl.nondet.exec_prompt, corpo)
+            try:
+                painel = _painel_de(gl.nondet.exec_prompt, corpo)
+            except ValueError as exc:
+                raise gl.vm.UserError(str(exc)) from None
             if painel is None:
                 raise gl.vm.UserError("LLM_INVALID_PANEL")
             return painel
