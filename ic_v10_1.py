@@ -18,7 +18,7 @@ definitiva deve receber IDs de pedidos ja gravados no caso de entrada.
 import json
 
 
-VERSAO = "10.1.2-experimental"
+VERSAO = "10.1.3-experimental"
 DATASET_BASE = (
     "https://raw.githubusercontent.com/cgmello/mediare-dataset/"
     "6bf13ae581afd08415c54d0d825543c21e34bff5/casos/"
@@ -209,13 +209,44 @@ def _decisao_valida(d, pedido) -> bool:
 
 
 def _valor_decisao_valido(d) -> bool:
+    return not _erro_valor_decisao(d)
+
+
+def _tipo_json(valor) -> str:
+    # Categorias fixas: nunca exponha valores ou textos recebidos do modelo.
+    if valor is None:
+        return "NULL"
+    if type(valor) is bool:
+        return "BOOLEANO"
+    if _eh_int(valor):
+        return "INTEIRO"
+    if isinstance(valor, float):
+        return "DECIMAL"
+    if isinstance(valor, str):
+        return "TEXTO"
+    if isinstance(valor, list):
+        return "ARRAY"
+    if isinstance(valor, dict):
+        return "OBJETO"
+    return "TIPO_INESPERADO"
+
+
+def _erro_valor_decisao(d) -> str:
+    decisao = d.get("decisao")
+    contexto = ";decisao=" + (decisao if decisao in DECISOES else "INVALIDA")
     if "valor_centavos" not in d:
-        return False
-    if d.get("decisao") in ("necessita_informacao", "fora_de_escopo"):
-        return d["valor_centavos"] is None
-    if d.get("decisao") == "negar":
-        return _eh_int(d["valor_centavos"]) and d["valor_centavos"] == 0
-    return _valor_valido(d["valor_centavos"])
+        return "CAMPO_AUSENTE" + contexto
+    valor = d["valor_centavos"]
+    contexto += ";recebido=" + _tipo_json(valor)
+    if decisao in ("necessita_informacao", "fora_de_escopo"):
+        return "" if valor is None else "ESPERADO_NULL" + contexto
+    if not _eh_int(valor):
+        return "ESPERADO_INTEIRO" + contexto
+    if decisao == "negar":
+        return "" if valor == 0 else "NEGACAO_EXIGE_ZERO" + contexto
+    if not _valor_valido(valor):
+        return "FORA_DO_LIMITE_0_A_1000000000000" + contexto
+    return ""
 
 
 def _tese_valida(obj, catalogo, nome_lente: str) -> bool:
@@ -280,18 +311,31 @@ def _prompt_lente(nome: str, instrucao: str, corpo: str, catalogo) -> str:
 
 def _ler_objeto_json(pedir, prompt: str):
     try:
-        obj = pedir(prompt, response_format="json")
+        # Transportar texto evita a conversao intermediaria de objetos JSON do
+        # SDK legado. O contrato interpreta null diretamente como None.
+        bruto = pedir(
+            "FORMATO DA RESPOSTA: retorne somente um objeto JSON valido, sem "
+            "cercas Markdown, preambulo ou texto fora do objeto. Use null literal "
+            "nos campos nulos; nao omita campos obrigatorios.\n\n" + prompt,
+            response_format="text",
+        )
     except Exception as exc:
         # Nao inclua mensagens do provedor ou o texto do caso nos erros.
         raise ValueError("CHAMADA_" + type(exc).__name__) from None
-    if isinstance(obj, str):
-        try:
-            obj = json.loads(obj)
-        except ValueError:
-            raise ValueError("JSON_INVALIDO") from None
+    if not isinstance(bruto, str):
+        raise ValueError("RESPOSTA_DEVE_SER_TEXTO;recebido=" + _tipo_json(bruto))
+    try:
+        obj = json.loads(bruto, parse_constant=_rejeitar_constante_json)
+    except ValueError:
+        raise ValueError("JSON_INVALIDO") from None
     if not isinstance(obj, dict):
         raise ValueError("RAIZ_DEVE_SER_OBJETO")
     return obj
+
+
+def _rejeitar_constante_json(_valor):
+    # NaN e Infinity nao pertencem ao JSON, mesmo que json.loads os aceite.
+    raise ValueError("JSON_INVALIDO")
 
 
 def _erro_catalogo(obj) -> str:
@@ -342,8 +386,14 @@ def _erro_tese(obj, catalogo, nome: str) -> str:
             return prefixo + "pedido_id:ID_OU_ORDEM_INCORRETA"
         if d.get("decisao") not in DECISOES:
             return prefixo + "decisao:ENUM_INVALIDO"
-        if not _valor_decisao_valido(d):
-            return prefixo + "valor_centavos:INTEIRO_PARA_CONCEDER_ZERO_PARA_NEGAR_NULL_PARA_INFO_OU_ESCOPO"
+        erro_valor = _erro_valor_decisao(d)
+        if erro_valor:
+            return prefixo + "valor_centavos:" + erro_valor
+        if d["decisao"] == "conceder":
+            if p["modalidade"] == "pagar" and d["valor_centavos"] == 0:
+                return prefixo + "valor_centavos:CONCESSAO_MONETARIA_EXIGE_POSITIVO"
+            if p["modalidade"] != "pagar" and d["valor_centavos"] != 0:
+                return prefixo + "valor_centavos:CONCESSAO_NAO_MONETARIA_EXIGE_ZERO"
         for campo in ("fontes_favoraveis", "fontes_contrarias"):
             if not _lista_fontes_valida(d.get(campo)):
                 return prefixo + campo + ":ARRAY_IDS_SEM_REPETICAO"

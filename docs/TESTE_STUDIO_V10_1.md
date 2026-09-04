@@ -6,11 +6,61 @@ Use `ic_v10_1.py`. O `ic.py` continua sendo a baseline v9 e não foi alterado.
 
 Classe do contrato: `MediareCommitteeV101`.
 
-Revisao atual: `10.1.2-experimental`, no mesmo arquivo e classe. Faca um novo
+Revisao atual: `10.1.3-experimental`, no mesmo arquivo e classe. Faca um novo
 deploy para executar a correcao; contratos ja implantados continuam com o
 codigo anterior.
 
-### O que muda na 10.1.2
+### O que muda na 10.1.3
+
+- Catalogo e tres lentes usam `response_format="text"`. O prompt exige somente
+  um objeto JSON, sem Markdown ou preambulo; `json.loads` interpreta esse texto
+  dentro do contrato, preservando campos com `null` explicito.
+- Retorno ja convertido em objeto e rejeitado (`RESPOSTA_DEVE_SER_TEXTO`). Nao
+  ha fallback para o transporte JSON legado, preenchimento de campo ausente,
+  conversao de strings em numeros ou reparacao silenciosa da resposta.
+- JSON malformado, cercas Markdown, NaN e Infinity causam `JSON_INVALIDO`.
+  A segunda tentativa continua pedindo a resposta completa, com o erro de
+  formato e sem orientar alteracao do merito.
+- O diagnostico de `valor_centavos` distingue campo ausente, tipo incorreto,
+  null esperado, negacao com valor diferente de zero, valor fora do limite e
+  concessao com valor incompativel com a modalidade do pedido. Quando aplicavel,
+  inclui a decisao e a categoria do tipo recebido, nunca o valor bruto.
+- Permanecem as tres lentes, as regras de equivalencia, o limite de duas
+  tentativas por etapa e um unico EP. O Termo de Opcao continua deterministico,
+  disponivel em `get_case()` depois de uma execucao bem-sucedida, sem nova
+  transacao de confirmacao.
+
+Exemplos dos novos detalhes de erro (precedidos por lente, pedido e tentativa):
+
+```text
+RP01.valor_centavos:CAMPO_AUSENTE;decisao=necessita_informacao
+RP01.valor_centavos:ESPERADO_NULL;decisao=necessita_informacao;recebido=INTEIRO
+RP01.valor_centavos:ESPERADO_INTEIRO;decisao=conceder;recebido=TEXTO
+RP01.valor_centavos:NEGACAO_EXIGE_ZERO;decisao=negar;recebido=INTEIRO
+```
+
+Motivacao: transacao do caso 0005
+`0x0aec2bd15c4fc4b5b66403b432ed5aa9c3a195bf3472386a9db56d5e8c67c6ad`,
+com resultado `ERROR`, rollback na lente probatoria e o mesmo erro generico de
+`RP01.valor_centavos` nas duas tentativas. O cabecalho mostra `FINALIZED`, mas
+o historico termina em `UNDETERMINED`; nenhum desses rotulos torna o rollback
+uma execucao bem-sucedida. O log nao revela o valor recebido. Perda de campos
+nulos no transporte legado e uma hipotese, nao causa comprovada dessa transacao.
+Nao houve recuperacao de paineis dos validadores: o protocolo nao os grava.
+
+Validacao local: 36 testes, incluindo transporte simulado que omite campos
+nulos no modo objeto, preservacao de null no texto, diagnosticos, retry,
+consolidacao, equivalencia e `analyze_case`/`get_case` com `gl` simulado.
+Esses testes nao executam o SDK/GenVM real nem chamadas a modelos. Ainda e
+necessario retestar no Studio; nao ha garantia de consenso ou acerto de merito.
+O modo texto tambem pode produzir respostas fora do formato; elas sao rejeitadas
+e passam pelo mesmo limite de retry.
+
+Reteste primeiro `analyze_case("5")`. Confirme a versao por `get_case()`, confira
+o resultado da execucao (nao apenas o status da transacao) e, se houver sucesso,
+leia `termo_opcao`. Se houver falha, guarde o novo payload completo de rollback.
+
+### Correcoes preservadas da 10.1.2
 
 - `necessita_informacao` e `fora_de_escopo` exigem `valor_centavos: null` nas
   teses. Campo ausente ou zero nessas decisoes e erro de schema.
@@ -38,7 +88,7 @@ mostrou tres abstencoes transformadas em `[0, 0]`. O snapshot estava em
 `COMMITTING`, com `NO_MAJORITY`; nao comprova finalizacao nem identifica os
 motivos individuais dos votos. O protocolo nao grava os paineis dos validadores.
 
-Foram executados 25 testes unitarios, incluindo respostas simuladas de LLM.
+Na revisao 10.1.2 foram executados 25 testes unitarios, incluindo respostas simuladas de LLM.
 Eles verificam formato, consolidacao, documento e equivalencia; nao demonstram
 melhora de merito ou consenso com modelos reais. O harness v9 nao e compativel
 diretamente com esse schema novo; uma futura comparacao off-chain deve manter
@@ -51,10 +101,11 @@ quantificado pode ser comparado ao valor do gabarito.
 
 ### Correcoes preservadas da 10.1.1
 
-A 10.1.1 corrigiu omissoes nos prompts (limites de texto, centavos e formatos),
-aceita objeto JSON ou texto JSON valido sem reparar valores, e informa o erro
-de formato ao modelo na segunda tentativa. Continua exigindo tres lentes
-validas e conserva as regras de equivalencia da v10.1.
+A 10.1.1 corrigiu omissoes nos prompts (limites de texto, centavos e formatos)
+e passou a informar o erro de formato ao modelo na segunda tentativa. Aceitava
+objeto JSON ou texto JSON valido; a 10.1.3 substitui essa leitura pelo transporte
+exclusivamente textual descrito acima. Continuam obrigatorias tres lentes
+validas e as regras de equivalencia da v10.1.
 
 Em caso de falha, o rollback agora identifica a etapa, o campo e as duas
 tentativas, por exemplo:
@@ -81,8 +132,8 @@ Depois do deploy, chame:
 analyze_case("0134")
 ```
 
-Quando a transação finalizar, consulte `get_case()` e guarde a resposta
-completa.
+Quando a execucao terminar com sucesso, consulte `get_case()` e guarde a
+resposta completa. `FINALIZED` com resultado `ERROR` nao gera um novo termo.
 
 ## Casos sugeridos para a primeira rodada
 

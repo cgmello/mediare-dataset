@@ -4,6 +4,7 @@
 import unittest
 import json
 from pathlib import Path
+from types import SimpleNamespace
 
 
 def carregar():
@@ -68,6 +69,34 @@ def painel(cat, teses):
         "teses": teses,
         "consolidado": IC["_consolidar"](cat, teses),
     }
+
+
+def contrato_simulado(pedir, validar=False):
+    """Executa o wrapper com gl simulado; nao substitui um teste no Studio."""
+    contagem = {"ep": 0}
+    class Retorno:
+        def __init__(self, obj):
+            self.calldata = obj
+    def run_nondet(lider, validador):
+        contagem["ep"] += 1
+        obj = lider()
+        transportado = json.loads(json.dumps(obj))
+        if validar and not validador(Retorno(transportado)):
+            raise RuntimeError("DISAGREE_SIMULADO")
+        return transportado
+    gl = SimpleNamespace(
+        Contract=object,
+        public=SimpleNamespace(write=lambda f: f, view=lambda f: f),
+        vm=SimpleNamespace(UserError=ValueError, Return=Retorno, run_nondet_unsafe=run_nondet),
+        nondet=SimpleNamespace(
+            exec_prompt=pedir,
+            web=SimpleNamespace(get=lambda url: SimpleNamespace(body=b'{"documentos": {}}')),
+        ),
+    )
+    src = Path(__file__).with_name("ic_v10_1.py").read_text(encoding="utf-8")
+    ns = {"gl": gl}
+    exec(compile(src.replace("from genlayer import *", ""), "ic_v10_1.py", "exec"), ns)
+    return ns["MediareCommitteeV101"](), contagem
 
 
 class V101Tests(unittest.TestCase):
@@ -172,18 +201,19 @@ class V101Tests(unittest.TestCase):
         self.assertEqual(respostas, [])
         self.assertNotIn("R$ 0,00", IC["_render_termo_opcao"]("0005", resultado))
 
-    def test_fluxo_completo_aceita_objetos_e_json_textual(self):
-        for textual in (False, True):
+    def test_fluxo_completo_exige_transporte_textual_em_todas_as_chamadas(self):
+        for prefixo, sufixo in (("", ""), (" \n", "\n ")):
             respostas = [catalogo()] + [
                 tese(nome, decisao("RP01", "conceder", 100000), decisao("RP02", "negar"))
                 for nome, _ in IC["LENTES"]
             ]
             chamadas = []
             def pedir(prompt, **kwargs):
-                self.assertEqual(kwargs, {"response_format": "json"})
+                self.assertEqual(kwargs, {"response_format": "text"})
+                self.assertIn("sem cercas Markdown", prompt)
                 chamadas.append(prompt)
                 obj = respostas.pop(0)
-                return json.dumps(obj) if textual else obj
+                return prefixo + json.dumps(obj) + sufixo
             resultado = IC["_painel_de"](pedir, "resumos anonimizados")
             self.assertTrue(IC["_painel_valido"](resultado))
             self.assertEqual(len(chamadas), 4)
@@ -196,7 +226,7 @@ class V101Tests(unittest.TestCase):
         prompts = []
         def pedir(prompt, **kwargs):
             prompts.append(prompt)
-            return respostas.pop(0)
+            return json.dumps(respostas.pop(0))
         resultado = IC["_tese_de"](pedir, "probatoria", "instrucao", "caso", catalogo())
         self.assertIn("RP01.comentario:TEXTO_1_A_240", prompts[1])
         self.assertEqual(resultado["pedidos"][0]["valor_centavos"], 100000)
@@ -205,7 +235,7 @@ class V101Tests(unittest.TestCase):
         ruim = tese("auditora", decisao("RP01", "conceder", 100000), decisao("RP02", "negar"))
         ruim["pedidos"][0]["valor_centavos"] = "100000"
         with self.assertRaisesRegex(ValueError, "LLM_INVALID_PANEL:lente=auditora:1=RP01.valor_centavos.*2=RP01.valor_centavos"):
-            IC["_tese_de"](lambda *a, **k: ruim, "auditora", "instrucao", "caso", catalogo())
+            IC["_tese_de"](lambda *a, **k: json.dumps(ruim), "auditora", "instrucao", "caso", catalogo())
 
     def test_fontes_com_objetos_sao_rejeitadas_sem_typeerror(self):
         self.assertFalse(IC["_lista_fontes_valida"]([{"id": "DR"}]))
@@ -215,7 +245,7 @@ class V101Tests(unittest.TestCase):
         chamadas = []
         def pedir(prompt, **kwargs):
             chamadas.append(prompt)
-            return {"pedidos": []}
+            return '{"pedidos": []}'
         with self.assertRaisesRegex(ValueError, "LLM_INVALID_PANEL:catalogo:1=pedidos:QUANTIDADE"):
             IC["_painel_de"](pedir, "caso")
         self.assertEqual(len(chamadas), 2)
@@ -231,6 +261,151 @@ class V101Tests(unittest.TestCase):
     def test_json_quebrado_nao_e_reparado_ou_transformado_em_zero(self):
         with self.assertRaisesRegex(ValueError, "JSON_INVALIDO"):
             IC["_catalogo_de"](lambda *a, **k: '{"pedidos":', "caso")
+
+    def test_leitura_preserva_null_explicito_e_ausencia_sem_coercao(self):
+        obj = IC["_ler_objeto_json"](
+            lambda *a, **k: '{"nulo": null, "zero": 0, "texto": "null", "itens": [null]}',
+            "caso",
+        )
+        self.assertIn("nulo", obj)
+        self.assertIsNone(obj["nulo"])
+        self.assertNotIn("ausente", obj)
+        self.assertEqual(obj["zero"], 0)
+        self.assertEqual(obj["texto"], "null")
+        self.assertEqual(obj["itens"], [None])
+
+    def test_leitura_rejeita_objetos_ja_convertidos_pelo_transporte(self):
+        for valor in ({"campo": None}, [], None, 123, True):
+            with self.subTest(valor=valor), self.assertRaisesRegex(ValueError, "RESPOSTA_DEVE_SER_TEXTO"):
+                IC["_ler_objeto_json"](lambda *a, **k: valor, "caso")
+
+    def test_leitura_rejeita_raizes_que_nao_sao_objetos(self):
+        for bruto in ('null', '[]', 'true', '0', '"texto"'):
+            with self.subTest(bruto=bruto), self.assertRaisesRegex(ValueError, "RAIZ_DEVE_SER_OBJETO"):
+                IC["_ler_objeto_json"](lambda *a, **k: bruto, "caso")
+
+    def test_leitura_nao_remove_markdown_nem_aceita_json_nao_padrao(self):
+        for bruto in ('```json\n{}\n```', 'Resposta: {}', '{} {}',
+                      '{"valor": NaN}', '{"valor": Infinity}', '{"valor": -Infinity}'):
+            with self.subTest(bruto=bruto), self.assertRaisesRegex(ValueError, "JSON_INVALIDO"):
+                IC["_ler_objeto_json"](lambda *a, **k: bruto, "caso")
+
+    def test_diagnostico_distingue_ausencia_tipo_e_incompatibilidade(self):
+        for tipo, valor, esperado in (
+            ("necessita_informacao", 0, "ESPERADO_NULL;decisao=necessita_informacao;recebido=INTEIRO"),
+            ("fora_de_escopo", "null", "ESPERADO_NULL;decisao=fora_de_escopo;recebido=TEXTO"),
+            ("negar", None, "ESPERADO_INTEIRO;decisao=negar;recebido=NULL"),
+            ("negar", 1, "NEGACAO_EXIGE_ZERO;decisao=negar;recebido=INTEIRO"),
+            ("conceder", "123", "ESPERADO_INTEIRO;decisao=conceder;recebido=TEXTO"),
+            ("conceder", True, "ESPERADO_INTEIRO;decisao=conceder;recebido=BOOLEANO"),
+            ("conceder", 123.0, "ESPERADO_INTEIRO;decisao=conceder;recebido=DECIMAL"),
+            ("conceder", -1, "FORA_DO_LIMITE_0_A_1000000000000;decisao=conceder;recebido=INTEIRO"),
+            ("conceder", 1_000_000_000_001, "FORA_DO_LIMITE_0_A_1000000000000;decisao=conceder;recebido=INTEIRO"),
+        ):
+            with self.subTest(tipo=tipo, valor=valor):
+                d = decisao("RP01", tipo)
+                d["valor_centavos"] = valor
+                obj = tese("probatoria", d, decisao("RP02", "negar"))
+                self.assertEqual(IC["_erro_tese"](obj, catalogo(), "probatoria"), "RP01.valor_centavos:" + esperado)
+                self.assertFalse(IC["_decisao_valida"](d, catalogo()["pedidos"][0]))
+        for tipo in IC["DECISOES"]:
+            d = decisao("RP01", tipo)
+            del d["valor_centavos"]
+            self.assertEqual(IC["_erro_valor_decisao"](d), "CAMPO_AUSENTE;decisao=" + tipo)
+
+    def test_diagnostico_identifica_valor_incompativel_com_modalidade(self):
+        for modalidade, valor, erro in (
+            ("pagar", 0, "CONCESSAO_MONETARIA_EXIGE_POSITIVO"),
+            ("declarar", 100, "CONCESSAO_NAO_MONETARIA_EXIGE_ZERO"),
+        ):
+            cat = catalogo()
+            cat["pedidos"][0]["modalidade"] = modalidade
+            obj = tese("probatoria", decisao("RP01", "conceder", valor), decisao("RP02", "negar"))
+            self.assertEqual(IC["_erro_tese"](obj, cat, "probatoria"), "RP01.valor_centavos:" + erro)
+
+    def test_retry_corrige_ausencia_para_null_sem_mudar_decisao(self):
+        boa = tese("probatoria", decisao("RP01", "necessita_informacao"), decisao("RP02", "negar"))
+        ruim = json.loads(json.dumps(boa))
+        del ruim["pedidos"][0]["valor_centavos"]
+        respostas = [ruim, boa]
+        prompts = []
+        def pedir(prompt, **kwargs):
+            prompts.append(prompt)
+            return json.dumps(respostas.pop(0))
+        resultado = IC["_tese_de"](pedir, "probatoria", "instrucao", "caso", catalogo())
+        self.assertIn("RP01.valor_centavos:CAMPO_AUSENTE;decisao=necessita_informacao", prompts[1])
+        self.assertIn("Nao mude o merito", prompts[1])
+        self.assertEqual(resultado, boa)
+
+    def test_rollback_nao_expoe_valor_bruto_nem_texto_privado(self):
+        segredo = "conteudo privado do caso"
+        ruim = tese("probatoria", decisao("RP01", "conceder", segredo), decisao("RP02", "negar"))
+        with self.assertRaises(ValueError) as ctx:
+            IC["_tese_de"](lambda *a, **k: json.dumps(ruim), "probatoria", "instrucao", segredo, catalogo())
+        erro = str(ctx.exception)
+        self.assertNotIn(segredo, erro)
+        self.assertIn("recebido=TEXTO", erro)
+        self.assertIn("1=RP01.valor_centavos:", erro)
+        self.assertIn("2=RP01.valor_centavos:", erro)
+
+    def test_transporte_simulado_perde_null_apenas_em_modo_objeto(self):
+        # Regressao simulada da hipotese de transporte, nao execucao real do SDK.
+        p = self.painel_simples(["necessita_informacao", "fora_de_escopo", "negar"])
+        p["catalogo"]["pedidos"][0]["valor_pedido_centavos"] = None
+        respostas = [p["catalogo"]] + p["teses"]
+        chamadas = []
+        def omitir_nulos(obj):
+            if isinstance(obj, dict):
+                return {k: omitir_nulos(v) for k, v in obj.items() if v is not None}
+            if isinstance(obj, list):
+                return [omitir_nulos(v) for v in obj]
+            return obj
+        self.assertNotIn("valor_centavos", omitir_nulos(p["teses"][0])["pedidos"][0])
+        def pedir(prompt, response_format):
+            chamadas.append(response_format)
+            obj = respostas.pop(0)
+            return json.dumps(obj) if response_format == "text" else omitir_nulos(obj)
+        resultado = IC["_painel_de"](pedir, "resumos anonimizados")
+        self.assertEqual(chamadas, ["text"] * 4)
+        self.assertTrue(IC["_painel_valido"](resultado))
+        self.assertIsNone(resultado["catalogo"]["pedidos"][0]["valor_pedido_centavos"])
+        self.assertIn("valor_centavos", resultado["teses"][0]["pedidos"][0])
+        self.assertIsNone(resultado["teses"][0]["pedidos"][0]["valor_centavos"])
+        self.assertIsNone(resultado["consolidado"]["faixa_total_centavos"])
+        self.assertIn("valor indeterminado", IC["_render_termo_opcao"]("0005", resultado))
+
+    def test_analyze_e_get_case_simulados_preservam_termo_com_um_ep(self):
+        p = self.painel_simples(["necessita_informacao"] * 3)
+        respostas = ([p["catalogo"]] + p["teses"]) * 2  # lider e validador
+        def pedir(prompt, **kwargs):
+            self.assertEqual(kwargs, {"response_format": "text"})
+            return json.dumps(respostas.pop(0))
+        contrato, contagem = contrato_simulado(pedir, validar=True)
+        contrato.analyze_case("5")
+        estado = json.loads(contrato.get_case())
+        self.assertEqual(contagem["ep"], 1)
+        self.assertEqual(respostas, [])
+        self.assertEqual(estado["case_id"], "0005")
+        self.assertEqual(estado["versao"], "10.1.3-experimental")
+        self.assertEqual(estado["status"], "termo_opcao_disponivel")
+        self.assertIsNone(json.loads(estado["painel"])["consolidado"]["faixa_total_centavos"])
+        self.assertIn("valor indeterminado", estado["termo_opcao"])
+        self.assertNotIn("R$ 0,00", estado["termo_opcao"])
+
+    def test_falha_de_formato_simulada_nao_grava_termo(self):
+        p = self.painel_simples(["necessita_informacao"] * 3)
+        ruim = p["teses"][0]
+        del ruim["pedidos"][0]["valor_centavos"]
+        respostas = [p["catalogo"], ruim, ruim]
+        contrato, contagem = contrato_simulado(lambda *a, **k: json.dumps(respostas.pop(0)))
+        with self.assertRaisesRegex(ValueError, "LLM_INVALID_PANEL:lente=probatoria:1=RP01.valor_centavos:CAMPO_AUSENTE"):
+            contrato.analyze_case("5")
+        self.assertEqual(contagem["ep"], 1)
+        self.assertEqual(respostas, [])
+        estado = json.loads(contrato.get_case())
+        self.assertEqual(estado["status"], "vazio")
+        self.assertEqual(estado["termo_opcao"], "")
+        self.assertEqual(estado["painel"], "")
 
     def test_consolida_passou_e_controvertido_sem_esconder_zero(self):
         cat = catalogo()
