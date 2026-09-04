@@ -18,7 +18,7 @@ definitiva deve receber IDs de pedidos ja gravados no caso de entrada.
 import json
 
 
-VERSAO = "10.1.3-experimental"
+VERSAO = "10.1.4-experimental"
 DATASET_BASE = (
     "https://raw.githubusercontent.com/cgmello/mediare-dataset/"
     "6bf13ae581afd08415c54d0d825543c21e34bff5/casos/"
@@ -26,6 +26,7 @@ DATASET_BASE = (
 
 MAX_PEDIDOS = 16
 MAX_VALOR_CENTAVOS = 1_000_000_000_000
+MAX_COMENTARIO_CARACTERES = 1200
 TOLERANCIA_VALOR = 0.15
 
 DECISOES = ("conceder", "negar", "necessita_informacao", "fora_de_escopo")
@@ -67,7 +68,8 @@ REGRAS_GERAIS = (
     "10. Multa futura, astreinte, honorarios e custos processuais nao entram no total "
     "patrimonial, salvo se forem objeto expresso e atualmente exigivel da mediacao.\n"
     "11. Uma concessao deve citar ao menos um dos IDs PR, RR, DR ou DD.\n"
-    "12. comentario deve explicar a conclusao em no maximo 240 caracteres.\n"
+    "12. comentario deve explicar a conclusao: prefira ate 240 caracteres, "
+    "mas use ate 1200 quando necessario para preservar a justificativa.\n"
     "13. Trabalhe com os resumos apresentados: nao ha acesso aos documentos "
     "originais. Nao exija pericia automaticamente por haver versoes opostas. "
     "Avalie o suporte de ambas as versoes.\n"
@@ -184,7 +186,7 @@ def _decisao_valida(d, pedido) -> bool:
         return False
     if not _lista_fontes_valida(d.get("fontes_contrarias")):
         return False
-    if not _texto_curto(d.get("comentario"), 240):
+    if _erro_comentario(d):
         return False
 
     pagador = d.get("pagador")
@@ -229,6 +231,24 @@ def _tipo_json(valor) -> str:
     if isinstance(valor, dict):
         return "OBJETO"
     return "TIPO_INESPERADO"
+
+
+def _erro_comentario(d) -> str:
+    if "comentario" not in d:
+        return "CAMPO_AUSENTE"
+    comentario = d["comentario"]
+    if not isinstance(comentario, str):
+        return "ESPERADO_TEXTO;recebido=" + _tipo_json(comentario)
+    if not comentario.strip():
+        return "TEXTO_VAZIO"
+    tamanho = len(comentario)
+    if tamanho > MAX_COMENTARIO_CARACTERES:
+        return (
+            "LIMITE_EXCEDIDO;caracteres=" + str(tamanho)
+            + ";limite=" + str(MAX_COMENTARIO_CARACTERES)
+            + ";excesso=" + str(tamanho - MAX_COMENTARIO_CARACTERES)
+        )
+    return ""
 
 
 def _erro_valor_decisao(d) -> str:
@@ -304,7 +324,9 @@ def _prompt_lente(nome: str, instrucao: str, corpo: str, catalogo) -> str:
         "fontes_favoraveis e fontes_contrarias sao arrays de strings PR|RR|DR|DD "
         "sem repeticao; use [] quando nao houver fonte. Para obrigacao nao monetaria "
         "concedida, pagador identifica quem cumpre, beneficiario quem recebe, valor=0. "
-        "comentario: entre 1 e 240 caracteres. Nao use chave ou rotulo alternativo.\n"
+        "comentario: texto nao vazio; prefira ate 240 caracteres. Limite de "
+        "aceitacao: 1200 caracteres, incluindo espacos e quebras de linha. "
+        "Preserve a justificativa. Nao use chave ou rotulo alternativo.\n"
         "<caso>\n" + corpo + "\n</caso>"
     )
 
@@ -397,8 +419,9 @@ def _erro_tese(obj, catalogo, nome: str) -> str:
         for campo in ("fontes_favoraveis", "fontes_contrarias"):
             if not _lista_fontes_valida(d.get(campo)):
                 return prefixo + campo + ":ARRAY_IDS_SEM_REPETICAO"
-        if not _texto_curto(d.get("comentario"), 240):
-            return prefixo + "comentario:TEXTO_1_A_240"
+        erro_comentario = _erro_comentario(d)
+        if erro_comentario:
+            return prefixo + "comentario:" + erro_comentario
         if not _decisao_valida(d, p):
             return prefixo + "COERENCIA_DECISAO_VALOR_PARTES_FONTES"
     return ""

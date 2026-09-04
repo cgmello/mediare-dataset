@@ -6,11 +6,61 @@ Use `ic_v10_1.py`. O `ic.py` continua sendo a baseline v9 e não foi alterado.
 
 Classe do contrato: `MediareCommitteeV101`.
 
-Revisao atual: `10.1.3-experimental`, no mesmo arquivo e classe. Faca um novo
+Revisao atual: `10.1.4-experimental`, no mesmo arquivo e classe. Faca um novo
 deploy para executar a correcao; contratos ja implantados continuam com o
 codigo anterior.
 
-### O que muda na 10.1.3
+### O que muda na 10.1.4
+
+- O comentario continua tendo orientacao de concisao de ate 240 caracteres,
+  mas o limite de aceitacao passa a 1200. Texto nao vazio e obrigatorio.
+- A contagem usa `len` da string Python, incluindo espacos e quebras de linha,
+  nao o tamanho em bytes UTF-8. Nao ha corte, normalizacao ou resumo automatico:
+  o texto aceito segue inteiro para o painel e o Termo de Opcao.
+- Uma unica validacao de comentario atende tanto a aceitacao de teses quanto
+  ao diagnostico de retry. Os erros distinguem campo ausente, tipo incorreto,
+  texto vazio e excesso de tamanho. No excesso, informam tamanho recebido,
+  limite e quantidade excedente, sem expor o comentario.
+- Permanecem transporte textual, duas tentativas por etapa, tres lentes,
+  valores, fontes, decisoes, regras de equivalencia e geracao deterministica
+  do termo em um unico EP. A redacao dos comentarios nao e comparada entre
+  paineis; sua validade estrutural continua obrigatoria.
+- Nao ha nova transacao. Comentarios maiores podem aumentar o volume de
+  tokens e de dados do painel/termo; o custo real deve ser observado no Studio.
+
+Exemplos dos novos diagnosticos:
+
+```text
+RP01.comentario:CAMPO_AUSENTE
+RP01.comentario:ESPERADO_TEXTO;recebido=NULL
+RP01.comentario:TEXTO_VAZIO
+RP01.comentario:LIMITE_EXCEDIDO;caracteres=1201;limite=1200;excesso=1
+```
+
+Motivacao: transacao do caso 0005
+`0x6040a9839a557f2189d8ac75d18f40a60089f965f72f6a9dccc456073da71636`,
+encerrada em `UNDETERMINED`, resultado `ERROR`/`MAJORITY_DISAGREE`, com rollback
+`RP01.comentario:TEXTO_1_A_240` nas duas tentativas da lente probatoria. Essa
+mensagem antiga nao distingue excesso, ausencia, tipo ou vazio; o log nao
+comprova que o comentario excedeu 240 caracteres. Nessas falhas, a validacao
+do valor de RP01 foi ultrapassada, mas isso nao comprova resolucao universal
+do problema de valores da revisao anterior.
+
+Tambem houve registros `SUCCESS` com `Disagree`; a causa de cada voto nao pode
+ser inferida desses rotulos. O protocolo nao grava os paineis dos validadores,
+e aumentar o limite de comentario nao garante consenso.
+
+Validacao local: 42 testes aprovados. Os novos testes cobrem tamanhos 1, 240,
+241, 1199, 1200 e excesso a partir de 1201, acentos, espacos, quebras de linha,
+tipos incorretos, ausencia, vazio, retry, privacidade dos erros, equivalencia
+com comentarios diferentes e preservacao integral no termo com `gl` simulado.
+Nao foram executados SDK/GenVM real ou modelos reais nesta validacao.
+
+Faca novo deploy e reteste `analyze_case("5")`. Confirme a versao
+`10.1.4-experimental` em `get_case()`. Em caso de sucesso, confira os comentarios
+completos e o termo; em caso de erro, guarde o payload de rollback e o log.
+
+### Correcoes preservadas da 10.1.3
 
 - Catalogo e tres lentes usam `response_format="text"`. O prompt exige somente
   um objeto JSON, sem Markdown ou preambulo; `json.loads` interpreta esse texto
@@ -48,7 +98,7 @@ uma execucao bem-sucedida. O log nao revela o valor recebido. Perda de campos
 nulos no transporte legado e uma hipotese, nao causa comprovada dessa transacao.
 Nao houve recuperacao de paineis dos validadores: o protocolo nao os grava.
 
-Validacao local: 36 testes, incluindo transporte simulado que omite campos
+Na revisao 10.1.3: 36 testes, incluindo transporte simulado que omite campos
 nulos no modo objeto, preservacao de null no texto, diagnosticos, retry,
 consolidacao, equivalencia e `analyze_case`/`get_case` com `gl` simulado.
 Esses testes nao executam o SDK/GenVM real nem chamadas a modelos. Ainda e

@@ -221,15 +221,16 @@ class V101Tests(unittest.TestCase):
     def test_retry_informa_campo_e_preserva_valor_da_nova_resposta(self):
         boa = tese("probatoria", decisao("RP01", "conceder", 100000), decisao("RP02", "negar"))
         ruim = json.loads(json.dumps(boa))
-        ruim["pedidos"][0]["comentario"] = "x" * 241
+        ruim["pedidos"][0]["comentario"] = "x" * 1201
         respostas = [ruim, boa]
         prompts = []
         def pedir(prompt, **kwargs):
             prompts.append(prompt)
             return json.dumps(respostas.pop(0))
         resultado = IC["_tese_de"](pedir, "probatoria", "instrucao", "caso", catalogo())
-        self.assertIn("RP01.comentario:TEXTO_1_A_240", prompts[1])
+        self.assertIn("RP01.comentario:LIMITE_EXCEDIDO;caracteres=1201;limite=1200;excesso=1", prompts[1])
         self.assertEqual(resultado["pedidos"][0]["valor_centavos"], 100000)
+        self.assertEqual(resultado, boa)
 
     def test_erro_final_identifica_lente_pedido_campo_e_tentativas(self):
         ruim = tese("auditora", decisao("RP01", "conceder", 100000), decisao("RP02", "negar"))
@@ -386,7 +387,7 @@ class V101Tests(unittest.TestCase):
         self.assertEqual(contagem["ep"], 1)
         self.assertEqual(respostas, [])
         self.assertEqual(estado["case_id"], "0005")
-        self.assertEqual(estado["versao"], "10.1.3-experimental")
+        self.assertEqual(estado["versao"], "10.1.4-experimental")
         self.assertEqual(estado["status"], "termo_opcao_disponivel")
         self.assertIsNone(json.loads(estado["painel"])["consolidado"]["faixa_total_centavos"])
         self.assertIn("valor indeterminado", estado["termo_opcao"])
@@ -406,6 +407,95 @@ class V101Tests(unittest.TestCase):
         self.assertEqual(estado["status"], "vazio")
         self.assertEqual(estado["termo_opcao"], "")
         self.assertEqual(estado["painel"], "")
+
+    def test_comentario_aceita_limites_sem_cortar_ou_normalizar(self):
+        for tamanho in (1, 240, 241, 1199, 1200):
+            with self.subTest(tamanho=tamanho):
+                # Acentos contam como caracteres Python, nao como bytes UTF-8.
+                comentario = "á" * tamanho
+                d = decisao("RP01", "conceder", 100000, comentario)
+                obj = tese("probatoria", d, decisao("RP02", "negar"))
+                self.assertEqual(IC["_erro_comentario"](d), "")
+                self.assertEqual(IC["_erro_tese"](obj, catalogo(), "probatoria"), "")
+                self.assertTrue(IC["_decisao_valida"](d, catalogo()["pedidos"][0]))
+                self.assertEqual(d["comentario"], comentario)
+        d = decisao("RP01", "conceder", 100000, "  justificativa\n")
+        self.assertEqual(IC["_erro_comentario"](d), "")
+        self.assertEqual(d["comentario"], "  justificativa\n")
+
+    def test_comentario_diagnostica_ausencia_tipo_vazio_e_excesso(self):
+        exemplos = [
+            ({}, "CAMPO_AUSENTE"),
+            ({"comentario": None}, "ESPERADO_TEXTO;recebido=NULL"),
+            ({"comentario": 123}, "ESPERADO_TEXTO;recebido=INTEIRO"),
+            ({"comentario": True}, "ESPERADO_TEXTO;recebido=BOOLEANO"),
+            ({"comentario": []}, "ESPERADO_TEXTO;recebido=ARRAY"),
+            ({"comentario": {}}, "ESPERADO_TEXTO;recebido=OBJETO"),
+            ({"comentario": ""}, "TEXTO_VAZIO"),
+            ({"comentario": " \t\n"}, "TEXTO_VAZIO"),
+            ({"comentario": "x" * 1201}, "LIMITE_EXCEDIDO;caracteres=1201;limite=1200;excesso=1"),
+            ({"comentario": "x" * 1500}, "LIMITE_EXCEDIDO;caracteres=1500;limite=1200;excesso=300"),
+            ({"comentario": "x" * 1200 + "\n"}, "LIMITE_EXCEDIDO;caracteres=1201;limite=1200;excesso=1"),
+        ]
+        for campo, erro in exemplos:
+            with self.subTest(erro=erro):
+                d = decisao("RP01", "conceder", 100000)
+                del d["comentario"]
+                d.update(campo)
+                obj = tese("probatoria", d, decisao("RP02", "negar"))
+                self.assertEqual(IC["_erro_comentario"](d), erro)
+                self.assertEqual(IC["_erro_tese"](obj, catalogo(), "probatoria"), "RP01.comentario:" + erro)
+                self.assertFalse(IC["_decisao_valida"](d, catalogo()["pedidos"][0]))
+
+    def test_comentario_longo_e_preservado_no_painel_e_termo_sem_retry(self):
+        p = self.painel_simples(["conceder"] * 3, [100000] * 3)
+        comentario = "Fundamento com ressalva. " * 45 + "RESSALVA FINAL PRESERVADA."
+        self.assertTrue(240 < len(comentario) <= 1200)
+        for t in p["teses"]:
+            t["pedidos"][0]["comentario"] = comentario
+        respostas = [p["catalogo"]] + p["teses"]
+        contrato, contagem = contrato_simulado(lambda *a, **k: json.dumps(respostas.pop(0)))
+        contrato.analyze_case("5")
+        estado = json.loads(contrato.get_case())
+        resultado = json.loads(estado["painel"])
+        self.assertEqual(contagem["ep"], 1)
+        self.assertEqual(respostas, [])
+        self.assertTrue(IC["_painel_valido"](resultado))
+        for t in resultado["teses"]:
+            self.assertEqual(t["pedidos"][0]["comentario"], comentario)
+        self.assertEqual(estado["termo_opcao"].count(comentario), 3)
+
+    def test_comentarios_distintos_nao_mudam_equivalencia_decisoria(self):
+        a = self.painel_simples(["conceder"] * 3, [100000] * 3)
+        b = json.loads(json.dumps(a))
+        for t in b["teses"]:
+            t["pedidos"][0]["comentario"] = "Justificativa alternativa. " * 40
+        b["consolidado"] = IC["_consolidar"](b["catalogo"], b["teses"])
+        self.assertTrue(IC["_paineis_equivalentes"](a, b))
+        self.assertTrue(IC["_paineis_equivalentes"](b, a))
+        b["teses"][0]["pedidos"][0]["comentario"] = "x" * 1201
+        b["consolidado"] = IC["_consolidar"](b["catalogo"], b["teses"])
+        self.assertFalse(IC["_paineis_equivalentes"](a, b))
+
+    def test_rollback_comentario_informa_medidas_sem_expor_texto(self):
+        segredo = "justificativa privada " * 70
+        ruim = tese("probatoria", decisao("RP01", "conceder", 100000, segredo), decisao("RP02", "negar"))
+        with self.assertRaises(ValueError) as ctx:
+            IC["_tese_de"](lambda *a, **k: json.dumps(ruim), "probatoria", "instrucao", "caso", catalogo())
+        erro = str(ctx.exception)
+        self.assertNotIn("justificativa privada", erro)
+        self.assertIn("1=RP01.comentario:LIMITE_EXCEDIDO", erro)
+        self.assertIn("2=RP01.comentario:LIMITE_EXCEDIDO", erro)
+        self.assertIn("caracteres=" + str(len(segredo)), erro)
+        self.assertIn("excesso=" + str(len(segredo) - 1200), erro)
+
+    def test_prompt_comentario_orienta_240_mas_permite_1200(self):
+        self.assertEqual(IC["MAX_COMENTARIO_CARACTERES"], 1200)
+        for nome, instrucao in IC["LENTES"]:
+            prompt = IC["_prompt_lente"](nome, instrucao, "caso", catalogo())
+            self.assertIn("prefira ate 240", prompt)
+            self.assertIn("Limite de aceitacao: 1200", prompt)
+            self.assertNotIn("no maximo 240", prompt)
 
     def test_consolida_passou_e_controvertido_sem_esconder_zero(self):
         cat = catalogo()
