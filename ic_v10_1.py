@@ -18,7 +18,7 @@ definitiva deve receber IDs de pedidos ja gravados no caso de entrada.
 import json
 
 
-VERSAO = "10.1.1-experimental"
+VERSAO = "10.1.2-experimental"
 DATASET_BASE = (
     "https://raw.githubusercontent.com/cgmello/mediare-dataset/"
     "6bf13ae581afd08415c54d0d825543c21e34bff5/casos/"
@@ -56,8 +56,9 @@ REGRAS_GERAIS = (
     "2. Analise cada pedido do catalogo exatamente uma vez e preserve pedido_id.\n"
     "3. Nao crie pedidos, partes, fatos, documentos ou valores.\n"
     "4. valor_centavos e o valor DEVIDO segundo esta lente, nunca apenas o valor pedido.\n"
-    "5. Use somente inteiros em centavos. R$ 1.234,56 = 123456.\n"
-    "6. Se decisao=negar, necessita_informacao ou fora_de_escopo, valor_centavos=0.\n"
+    "5. Valores conhecidos sao inteiros em centavos. R$ 1.234,56 = 123456.\n"
+    "6. Se decisao=negar, valor_centavos=0. Se necessita_informacao ou "
+    "fora_de_escopo, valor_centavos=null, nunca zero.\n"
     "7. Se modalidade=pagar e decisao=conceder, o valor deve ser positivo e "
     "pagador/beneficiario devem ser requerente ou requerido.\n"
     "8. Obrigacao de fazer, nao fazer ou declarar nao deve ser convertida em dinheiro.\n"
@@ -66,7 +67,17 @@ REGRAS_GERAIS = (
     "10. Multa futura, astreinte, honorarios e custos processuais nao entram no total "
     "patrimonial, salvo se forem objeto expresso e atualmente exigivel da mediacao.\n"
     "11. Uma concessao deve citar ao menos um dos IDs PR, RR, DR ou DD.\n"
-    "12. comentario deve explicar a conclusao em no maximo 240 caracteres."
+    "12. comentario deve explicar a conclusao em no maximo 240 caracteres.\n"
+    "13. Trabalhe com os resumos apresentados: nao ha acesso aos documentos "
+    "originais. Nao exija pericia automaticamente por haver versoes opostas. "
+    "Avalie o suporte de ambas as versoes.\n"
+    "14. Diferencie duvida sobre existencia/nexo da obrigacao de duvida sobre "
+    "sua extensao ou reparticao. Avalie contribuicoes causais de ambas as partes; "
+    "intervencao posterior nao exclui automaticamente uma falha anterior. "
+    "Se houver base para quantificar a parcela devida, conceda essa parcela. "
+    "Nao invente percentual, nao adote rateio fixo e nao copie o custo integral. "
+    "Se nao puder quantificar, use necessita_informacao e explique no comentario "
+    "o que esta sustentado e se falta nexo, valor ou proporcao."
 )
 
 LENTES = (
@@ -167,7 +178,7 @@ def _decisao_valida(d, pedido) -> bool:
     decisao = d.get("decisao")
     if decisao not in DECISOES:
         return False
-    if not _valor_valido(d.get("valor_centavos")):
+    if not _valor_decisao_valido(d):
         return False
     if not _lista_fontes_valida(d.get("fontes_favoraveis")):
         return False
@@ -192,9 +203,19 @@ def _decisao_valida(d, pedido) -> bool:
         if pedido["modalidade"] != "pagar" and valor != 0:
             return False
     else:
-        if valor != 0 or pagador is not None or beneficiario is not None:
+        if pagador is not None or beneficiario is not None:
             return False
     return True
+
+
+def _valor_decisao_valido(d) -> bool:
+    if "valor_centavos" not in d:
+        return False
+    if d.get("decisao") in ("necessita_informacao", "fora_de_escopo"):
+        return d["valor_centavos"] is None
+    if d.get("decisao") == "negar":
+        return _eh_int(d["valor_centavos"]) and d["valor_centavos"] == 0
+    return _valor_valido(d["valor_centavos"])
 
 
 def _tese_valida(obj, catalogo, nome_lente: str) -> bool:
@@ -321,8 +342,8 @@ def _erro_tese(obj, catalogo, nome: str) -> str:
             return prefixo + "pedido_id:ID_OU_ORDEM_INCORRETA"
         if d.get("decisao") not in DECISOES:
             return prefixo + "decisao:ENUM_INVALIDO"
-        if not _valor_valido(d.get("valor_centavos")):
-            return prefixo + "valor_centavos:INTEIRO_OBRIGATORIO"
+        if not _valor_decisao_valido(d):
+            return prefixo + "valor_centavos:INTEIRO_PARA_CONCEDER_ZERO_PARA_NEGAR_NULL_PARA_INFO_OU_ESCOPO"
         for campo in ("fontes_favoraveis", "fontes_contrarias"):
             if not _lista_fontes_valida(d.get(campo)):
                 return prefixo + campo + ":ARRAY_IDS_SEM_REPETICAO"
@@ -403,9 +424,21 @@ def _consolidar_pedido(pedido, decisoes) -> dict:
     else:
         tendencia = "sem_maioria"
 
-    valores = [d["valor_centavos"] for d in decisoes]
+    monetario = pedido["modalidade"] == "pagar"
+    valores = [d["valor_centavos"] for d in decisoes
+               if monetario and d["valor_centavos"] is not None]
+    faixa_quantificada = [min(valores), max(valores)] if valores else None
+    if not monetario:
+        estado_valor = "nao_monetario"
+    elif n_fora == 3:
+        estado_valor = "fora_de_escopo"
+    elif n_info or n_fora:
+        estado_valor = "indeterminado"
+    else:
+        estado_valor = "quantificado"
+    faixa = faixa_quantificada if estado_valor == "quantificado" else None
     flags = []
-    if min(valores) == 0 and max(valores) > 0:
+    if valores and min(valores) == 0 and max(valores) > 0:
         flags.append("ZERO_VERSUS_POSITIVO")
     if len(set(x for x in pagadores if x is not None)) > 1:
         flags.append("PAGADOR_DIVERGENTE")
@@ -425,7 +458,9 @@ def _consolidar_pedido(pedido, decisoes) -> dict:
         "tendencia": tendencia,
         "pagador": pagador,
         "beneficiario": beneficiario,
-        "faixa_centavos": [min(valores), max(valores)],
+        "estado_valor": estado_valor,
+        "faixa_centavos": faixa,
+        "faixa_quantificada_centavos": faixa_quantificada,
         "decisoes_por_lente": {
             nome: {
                 "decisao": d["decisao"],
@@ -447,15 +482,26 @@ def _consolidar(catalogo, teses) -> dict:
         por_pedido.append(_consolidar_pedido(pedido, decisoes))
 
     totais = {}
+    tem_monetario = any(p["modalidade"] == "pagar" for p in catalogo["pedidos"])
     for tese in teses:
-        total = sum(d["valor_centavos"] for d in tese["pedidos"])
+        valores = [d["valor_centavos"] for d, p in
+                   zip(tese["pedidos"], catalogo["pedidos"])
+                   if p["modalidade"] == "pagar"]
+        total = sum(valores) if valores and all(v is not None for v in valores) else None
         totais[tese["lente"]] = total
     valores_totais = list(totais.values())
+    total_quantificado = all(v is not None for v in valores_totais)
 
     return {
         "pedidos": por_pedido,
         "totais_por_lente_centavos": totais,
-        "faixa_total_centavos": [min(valores_totais), max(valores_totais)],
+        "faixa_total_centavos": (
+            [min(valores_totais), max(valores_totais)] if total_quantificado else None
+        ),
+        "estado_valor_total": (
+            "nao_monetario" if not tem_monetario else
+            "quantificado" if total_quantificado else "indeterminado"
+        ),
         "painel_completo": len(teses) == len(LENTES),
         "n_pedidos": len(por_pedido),
     }
@@ -488,6 +534,8 @@ def _perto(a: int, b: int) -> bool:
 
 
 def _faixas_equivalentes(a, b) -> bool:
+    if a is None or b is None:
+        return a is None and b is None
     return (
         isinstance(a, list)
         and isinstance(b, list)
@@ -525,6 +573,8 @@ def _consolidados_equivalentes(a, b) -> bool:
         return False
     if a.get("n_pedidos") != b.get("n_pedidos"):
         return False
+    if a.get("estado_valor_total") != b.get("estado_valor_total"):
+        return False
     if not _faixas_equivalentes(
         a.get("faixa_total_centavos"), b.get("faixa_total_centavos")
     ):
@@ -543,11 +593,16 @@ def _consolidados_equivalentes(a, b) -> bool:
         "pagador",
         "beneficiario",
         "flags",
+        "estado_valor",
     )
     for xa, xb in zip(pa, pb):
         if any(xa.get(c) != xb.get(c) for c in campos):
             return False
         if not _faixas_equivalentes(xa.get("faixa_centavos"), xb.get("faixa_centavos")):
+            return False
+        if not _faixas_equivalentes(
+            xa.get("faixa_quantificada_centavos"), xb.get("faixa_quantificada_centavos")
+        ):
             return False
     return True
 
@@ -589,27 +644,47 @@ def _brl(centavos: int) -> str:
 
 def _render_termo_opcao(case_id: str, painel) -> str:
     cons = painel["consolidado"]
-    lo, hi = cons["faixa_total_centavos"]
+    faixa_total = cons["faixa_total_centavos"]
+    if faixa_total is not None:
+        texto_total = _brl(faixa_total[0]) + " a " + _brl(faixa_total[1])
+    elif cons["estado_valor_total"] == "nao_monetario":
+        texto_total = "nao se aplica — apenas pedidos nao monetarios"
+    else:
+        texto_total = "indeterminado — ha pedido monetario sem quantificacao completa"
     linhas = [
         "# TERMO DE OPCAO — MEDIARE",
         "",
         "Caso: " + case_id,
         "Versao do comite: " + VERSAO,
         "Natureza: instrumento de apoio a mediacao; nao constitui acordo ou condenacao.",
-        "Faixa total dos cenarios: " + _brl(lo) + " a " + _brl(hi),
+        "Faixa total dos cenarios: " + texto_total,
         "",
         "## Pedidos analisados",
     ]
 
     for item in cons["pedidos"]:
-        p_lo, p_hi = item["faixa_centavos"]
+        faixa = item["faixa_centavos"]
+        if faixa is not None:
+            texto_faixa = _brl(faixa[0]) + " a " + _brl(faixa[1])
+        elif item["estado_valor"] == "nao_monetario":
+            texto_faixa = "nao se aplica — pedido nao monetario"
+        elif item["estado_valor"] == "fora_de_escopo":
+            texto_faixa = "nao avaliada — pedido fora de escopo"
+        else:
+            texto_faixa = "valor indeterminado — informacao ou avaliacao insuficiente"
         linhas.extend([
             "",
             "### " + item["pedido_id"] + " — " + item["descricao"],
             "Status: " + item["status"].replace("_", " "),
             "Tendencia: " + item["tendencia"].replace("_", " "),
-            "Faixa: " + _brl(p_lo) + " a " + _brl(p_hi),
+            "Faixa: " + texto_faixa,
         ])
+        parcial = item["faixa_quantificada_centavos"]
+        if faixa is None and parcial is not None:
+            linhas.append(
+                "Valores das lentes que quantificaram (parciais; nao formam faixa completa): "
+                + _brl(parcial[0]) + " a " + _brl(parcial[1])
+            )
         if item["pagador"] is not None:
             linhas.append(
                 "Partes: " + item["pagador"] + " paga/cumpre para " + item["beneficiario"]
@@ -621,9 +696,17 @@ def _render_termo_opcao(case_id: str, painel) -> str:
             d = item["decisoes_por_lente"][nome]
             fontes = sorted(set(d["fontes_favoraveis"] + d["fontes_contrarias"]))
             fonte_txt = ", ".join(fontes) if fontes else "nenhuma"
+            if item["modalidade"] != "pagar":
+                valor_txt = "valor nao aplicavel"
+            elif d["decisao"] == "fora_de_escopo":
+                valor_txt = "valor fora de escopo"
+            elif d["valor_centavos"] is None:
+                valor_txt = "valor indeterminado"
+            else:
+                valor_txt = _brl(d["valor_centavos"])
             linhas.append(
                 "- " + nome + ": " + d["decisao"].replace("_", " ")
-                + "; " + d["comentario"] + " [fontes: " + fonte_txt + "]"
+                + "; " + valor_txt + "; " + d["comentario"] + " [fontes: " + fonte_txt + "]"
             )
 
     linhas.extend([
