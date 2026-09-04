@@ -2,6 +2,18 @@
 
 Material de comunicação do projeto. Não é código e nada aqui é executado.
 
+## PROPOSTA_IC_V10.md
+
+Proposta técnica para a próxima versão do Intelligent Contract. Define a
+arquitetura por pedido, validação estrita, princípio de equivalência
+programático, Termo de Opção em execução única, plano experimental, métricas de
+promoção e uso dos US$ 500 de créditos do OpenRouter.
+
+## TESTE_STUDIO_V10_1.md
+
+Roteiro curto para fazer deploy do contrato experimental `ic_v10_1.py` no
+Studio, escolher os primeiros casos e registrar evidências comparáveis à v9.
+
 ## mediare-compute-brief.html
 
 Brief de patrocínio dirigido à GenLayer Foundation, em inglês. Pedido de
