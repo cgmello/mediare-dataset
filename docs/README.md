@@ -14,6 +14,13 @@ promoção e uso dos US$ 500 de créditos do OpenRouter.
 Roteiro curto para fazer deploy do contrato experimental `ic_v10_1.py` no
 Studio, escolher os primeiros casos e registrar evidências comparáveis à v9.
 
+## TESTE_STUDIO_V10_2.md
+
+Deploy e avaliacao da v10.2 experimental (`ic_v10_2.py`): conclusoes separadas
+de opcoes condicionais, bases/percentuais rastreaveis, formulas sem rateio
+inventado, auditoria sequencial e comparacao semantica no mesmo EP. Preserva
+a v10.1.4 para comparacao e descreve custos e limitacoes ainda nao validados.
+
 ## mediare-compute-brief.html
 
 Brief de patrocínio dirigido à GenLayer Foundation, em inglês. Pedido de
