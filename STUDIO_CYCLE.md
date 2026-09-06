@@ -122,6 +122,21 @@ Conta SDK: `0x6d96d47e3370A838F4414F63Ba79D1c8b9812bCf` (conta local existente).
 - v10.2.3: usa offset 4 do `Root.code` indireto (prefixo u32 de tamanho),
   com leitura unica do codigo. Teste de storage sem `data_offset` e sanitizacao
   de credenciais dos recibos adicionados; 97 testes locais passaram.
+  Upgrade e verificacao remota de hash funcionaram. Analise 0005, tx
+  `0x05ead024baaffe8ab8f256dc2e0e0bfe7dfa7d99933e7d6f51ebbf05f7216b53`,
+  terminou UNDETERMINED apos tres rotacoes, apesar de lideres com SUCCESS.
+  Nenhum termo aprovado foi lido. Um lider falhou em JSON no catalogo.
+  Os paineis dos **lideres** gravados mostram diferencas materiais: pedido
+  declaratorio concreto versus responsabilidade abstrata, e formula condicional
+  ora apta, ora rejeitada por nao fixar p. Isso nao revela motivos individuais
+  de Disagree dos validadores.
+- v10.2.4: delimita o objeto concreto do pedido declaratorio e o estatuto
+  das alegacoes/documentos resumidos; reforca que a auditoria avalia a
+  apresentacao condicional, nao exigibilidade imediata. Preserva comparador,
+  limites numericos e rejeicao de base/aceitacao inventada. Parser reconhece
+  apenas envelope `<think>...</think>` completo seguido de JSON (possivelmente
+  cercado), sem extrair objetos de prosa nem completar respostas truncadas.
+  Erros de sintaxe agora classificam o envelope sem expor texto do modelo.
 
 A implementacao oficial de [VLA no GenVM](https://github.com/genlayerlabs/genvm/blob/main/runners/genlayer-py-std/src/genlayer/storage/core.py)
 explica a diferenca entre iteracao por elemento e leitura em bloco. Os testes

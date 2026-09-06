@@ -23,7 +23,7 @@ import re
 import hashlib
 
 
-VERSAO = "10.2.3-experimental"
+VERSAO = "10.2.4-experimental"
 DATASET_BASE = (
     "https://raw.githubusercontent.com/cgmello/mediare-dataset/"
     "6bf13ae581afd08415c54d0d825543c21e34bff5/casos/"
@@ -334,6 +334,17 @@ def _prompt_lente_base(nome: str, instrucao: str, corpo: str, catalogo) -> str:
         "comentario: texto nao vazio; prefira ate 240 caracteres. Limite de "
         "aceitacao: 1200 caracteres, incluindo espacos e quebras de linha. "
         "Preserve a justificativa. Nao use chave ou rotulo alternativo.\n"
+        "DELIMITACAO DO OBJETO: julgue a providencia concreta descrita no pedido. "
+        "Num pedido declaratorio de responsabilidade por dano/vicio especifico, "
+        "reconhecer legitimidade, dever geral de cuidado ou garantia contratual em tese "
+        "NAO equivale a conceder a declaracao de responsabilidade por aquele evento. "
+        "Nao substitua o objeto concreto por uma declaracao abstrata mais facil de aceitar. "
+        "Se faltar nexo do evento, explicite essa lacuna; se houver suporte suficiente, "
+        "fundamente a conclusao concreta. Nao imponha abstencao como regra.\n"
+        "ESTATUTO DAS FONTES: resumo que relata foto, documento ou alegacao nao e "
+        "inspecao direta do original. Nao escreva 'aceito', 'admitido' ou 'incontroverso' "
+        "apenas porque a outra parte nao respondeu aquele ponto no resumo. Distingua "
+        "valor apresentado de base aceita por ambas as partes.\n"
         "<caso>\n" + corpo + "\n</caso>"
     )
 
@@ -356,7 +367,10 @@ def _ler_objeto_json(pedir, prompt: str):
     bruto = bruto.strip()
     if not bruto:
         raise ValueError("JSON_INVALIDO:VAZIO")
-    # Somente uma cerca externa completa; nunca extrair um objeto de prosa.
+    # Retirar apenas um envelope completo reconhecido, nunca buscar um objeto
+    # arbitrario em prosa nem completar JSON truncado.
+    if bruto.startswith("<think>") and "</think>" in bruto:
+        bruto = bruto.split("</think>", 1)[1].strip()
     if bruto.startswith("```json\n") and bruto.endswith("\n```"):
         bruto = bruto[8:-4].strip()
     elif bruto.startswith("```\n") and bruto.endswith("\n```"):
@@ -364,7 +378,10 @@ def _ler_objeto_json(pedir, prompt: str):
     try:
         obj = json.loads(bruto, parse_constant=_rejeitar_constante_json)
     except json.JSONDecodeError as exc:
-        raise ValueError("JSON_INVALIDO:SINTAXE;pos=" + str(exc.pos) + ";tamanho=" + str(len(bruto))) from None
+        tipo = ("CERCA" if bruto.startswith("```") else "MARCADOR" if bruto.startswith("<") else
+                "OBJETO_INICIADO" if bruto.startswith("{") else "TEXTO_EXTERNO" if "{" in bruto else "SEM_OBJETO")
+        raise ValueError("JSON_INVALIDO:SINTAXE;pos=" + str(exc.pos) + ";tamanho=" + str(len(bruto))
+                         + ";envelope=" + tipo) from None
     except ValueError:
         raise ValueError("JSON_INVALIDO:CONSTANTE_NAO_FINITA") from None
     if not isinstance(obj, dict):
@@ -891,6 +908,16 @@ valores/praticas inventados em texto. Uma formula sem percentual definido nao
 afirma divida: incerteza explicita por si so nao e motivo para rejeita-la.
 Se reformular, inclua na lacuna pergunta e impacto que ajudem a corrigir a opcao.
 Nao altere nem reescreva a opcao recebida: o termo mostrara o bloqueio e o motivo.
+
+TESTE DE UTILIDADE CONDICIONAL: audite se a opcao pode ser APRESENTADA para
+discussao, nao se ja pode ser executada como divida. Formula com p ainda aberto
+tem exatamente a funcao de organizar a negociacao; exigir percentual ja provado
+para permitir sua apresentacao confundiria formula com faixa ou condenacao.
+Ainda assim reformule se houver base sem suporte/escopo, aceitacao inventada,
+obrigacao incondicional, numero oculto, polo errado ou outro defeito concreto.
+Nao bloqueie SOMENTE porque o nexo, a base ou p aguardam concordancia expressa,
+quando essa condicao e ressalva estao claras. Sua conclusao devida continua
+independente e pode permanecer necessita_informacao mesmo com opcao apta.
 """
 
 CAMPO_COMUM = "pedido_id decisao pagador beneficiario valor_centavos fontes_favoraveis fontes_contrarias comentario sustentado controvertido lacuna"

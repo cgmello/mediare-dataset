@@ -471,8 +471,13 @@ class V102Tests(unittest.TestCase):
                 IC["_ler_objeto_json"](lambda *a, **k: bruto, "caso")
 
     def test_cerca_externa_completa_sem_extrair_prosa(self):
-        for bruto in ('```json\n{"v":null}\n```', '```\n{"v":null}\n```'):
+        for bruto in ('```json\n{"v":null}\n```', '```\n{"v":null}\n```',
+                      '<think>conteudo auxiliar</think>\n```json\n{"v":null}\n```'):
             self.assertEqual(IC["_ler_objeto_json"](lambda *a, **k: bruto, ""), {"v": None})
+        for bruto in ('<think>sem fechamento {"v":null}', '<think>x</think> prosa {"v":null}',
+                      '<think>x</think> {"v":null} {"v":0}'):
+            with self.assertRaises(ValueError):
+                IC["_ler_objeto_json"](lambda *a, **k: bruto, "")
 
     def test_diagnostico_sem_conteudo_privado(self):
         p = fixture()
@@ -499,6 +504,9 @@ class V102Tests(unittest.TestCase):
                 self.assertNotIn("SEM_SUPORTE", prompt)
             if i == 2:
                 self.assertIn(json.dumps(opcao(p), sort_keys=True, ensure_ascii=False), prompt)
+                self.assertIn("TESTE DE UTILIDADE CONDICIONAL", prompt)
+            self.assertIn("DELIMITACAO DO OBJETO", prompt)
+            self.assertIn("ESTATUTO DAS FONTES", prompt)
 
 
 if __name__ == "__main__":
