@@ -2,7 +2,8 @@
 
 Registro para o relatorio de evolucao. Datas em America/Sao_Paulo, salvo indicacao.
 Resultados negativos e versoes nao analisadas permanecem no historico.
-**Nenhuma versao desta campanha recebeu ainda validacao completa de consenso e utilidade.**
+**A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
+gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
 ## Politica de marcos — 2026-09-06
 
@@ -47,7 +48,7 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 - A credencial exposta nao e reproduzida neste changelog. Rotacao e correcao da
   serializacao no servidor dependem do time do Studio.
 
-## v17.0.0-experimental — 2026-09-06 — Termo conciso e factual
+## v17.0.0-experimental — 2026-09-06 — consenso; candidata recomendada
 
 Motivacao: a v16 resolveu a faixa e a leitura `passou/nao passou`, mas ainda
 despejava as tres lentes completas no Termo. A revisao encontrou repeticao e
@@ -61,7 +62,24 @@ afirmacoes juridicas gerais que nao estavam ancoradas nos quatro resumos do caso
   uso e indica explicitamente ausencia de faixa para opcao nao monetaria ou
   diligencia. Nao altera painel, prompts, consenso, EPs ou storage.
 - 150 testes locais aprovados, incluindo regressao que injeta tese juridica nas
-  lentes e confirma que ela nao aparece no Termo. Teste real pendente.
+  lentes e confirma que ela nao aparece no Termo.
+- Tag `ic-v17.0.0`, commit `a2d0546`. Snapshot SHA-256:
+  `4e7b7f94c942dd39da6487515578da9165ba706a90d3dd54ac07534709afa704`.
+- Upgrade FINALIZED/SUCCESS em 48,34s:
+  `0x83202e196c45a9f3ea2c365d1947f818565f542a15b1ffc55b1cd3017881bd68`.
+- Analise 0005 FINALIZED/SUCCESS/MAJORITY_AGREE, sem rotacao, em 303,34s:
+  `0xe1d7f88607335dcf1611d0713c1e57a32d58b224659844f8161faa3c4a5d6384`.
+- Tres validadores registraram `REVISOR_APROVA`; um pediu reformulacao e um teve
+  erro local/transporte. O quorum aprovou na primeira rodada.
+- Termo final: RP01 passou para discussao com formula e envelope de R$ 0,00 a
+  R$ 64.734,88; RP02 passou como diligencia tecnica. O documento separa ambos
+  das conclusoes definitivas ainda abertas e usa somente a sintese probatoria
+  como pauta factual. Painel completo continua armazenado.
+- Revisao de utilidade: candidato adequado para teste pelo mediador. Manter v16
+  e v15 como retornos recuperaveis; encerrar o loop porque novas revisoes sem
+  defeito concreto tenderiam a adicionar variabilidade, nao evidencia de melhora.
+- Acumulado final: 21 envios (1 deploy, 11 upgrades, 9 analises), muito abaixo
+  do teto de 1.000. Nenhuma transacao ficou pendente.
 
 ## v16.0.0-experimental — 2026-09-06 — consenso; faixa pronta para discussao
 
