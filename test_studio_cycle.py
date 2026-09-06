@@ -1,6 +1,5 @@
 """Controle do ciclo: testes sem rede, contas reais ou chamadas LLM."""
 import base64
-import copy
 import json
 from pathlib import Path
 from types import SimpleNamespace
@@ -152,6 +151,55 @@ class CycleTests(unittest.TestCase):
         self.studio.account.address = "0x" + "3" * 40
         with self.assertRaises(sc.CycleError):
             sc.Cycle(self.studio, self.temp.name)
+
+    def test_bootstrap_upgrade_owner_and_storage_preserved(self):
+        class Code(bytearray):
+            def truncate(self):
+                self.clear()
+            def slot(self):
+                return self
+            def data_offset(self):
+                return 4
+            def read(self, offset, size):
+                self.assert_offset = offset
+                return bytes(memoryview(self)[:size])
+        code, owners = Code(b"initial"), []
+        root = SimpleNamespace(code=SimpleNamespace(get=lambda: code), upgraders=SimpleNamespace(get=lambda: owners))
+        gl = SimpleNamespace(Contract=object, public=SimpleNamespace(write=lambda f: f, view=lambda f: f),
+                             storage=SimpleNamespace(Root=SimpleNamespace(get=lambda: root)),
+                             message=SimpleNamespace(sender_address=ADDR), vm=SimpleNamespace(UserError=ValueError))
+        for source, name in (("studio_bootstrap.py", "MediareStudioBootstrap"), ("ic_v10_2.py", "MediareCommitteeV102")):
+            ns = {"gl": gl}
+            exec(compile(Path(source).read_text().replace("from genlayer import *", ""), source, "exec"), ns)
+            c = ns[name]()
+            c.case_id, c.painel, c.termo_opcao = "0005", "previous panel", "previous term"
+            c.upgrade(b"replacement")
+            self.assertEqual(c.get_code_hash(), sc.sha(b"replacement"))
+            self.assertEqual(code.assert_offset, 4)
+            self.assertEqual((c.case_id, c.painel, c.termo_opcao), ("0005", "previous panel", "previous term"))
+            with self.assertRaisesRegex(ValueError, "CODIGO_VAZIO"):
+                c.upgrade(b"")
+            gl.message.sender_address = "unauthorized"
+            self.assertFalse(c.can_upgrade())
+            with self.assertRaisesRegex(ValueError, "UPGRADE_NAO_AUTORIZADO"):
+                c.upgrade(b"malicious")
+            self.assertEqual(bytes(code), b"replacement")
+            gl.message.sender_address = ADDR
+
+    def test_skip_requires_no_analysis_no_pending(self):
+        row = {"version": IC["VERSAO"], "finished": False}
+        self.c.m["versions"] = [row]
+        op = self.c.operation("upgrade", IC["VERSAO"])
+        with self.assertRaises(sc.CycleError):
+            self.c.skip("read failure")
+        self.c.submit(op, lambda: HASH)
+        self.c.wait(op)
+        self.c.skip("Hash getter timed out; replace with bulk read")
+        self.assertEqual(row["result"], "SKIPPED_BEFORE_ANALYSIS")
+        row["finished"] = False
+        self.c.m["ops"].append({"kind": "analyze_case", "version": IC["VERSAO"], "state": "done"})
+        with self.assertRaises(sc.CycleError):
+            self.c.skip("must not hide results")
 
 
 if __name__ == "__main__":

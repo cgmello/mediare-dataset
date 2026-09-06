@@ -210,6 +210,7 @@ class Studio:
 
     def read(self, addr, method):
         from genlayer_py.types import TransactionHashVariant
+        print(json.dumps({"consulta": method}), flush=True)
         return self.client.read_contract(address=addr, function_name=method, args=[],
                                          transaction_hash_variant=TransactionHashVariant.LATEST_FINAL)
 
@@ -437,14 +438,29 @@ class Cycle:
                 return
         print("Nenhuma rodada incompleta; preparar nova revisao e usar run.")
 
+    def skip(self, reason):
+        """Encerrar revisao antes da analise, somente sem transacao pendente."""
+        if not self.m or any(o["state"] != "done" for o in self.m["ops"]):
+            raise CycleError("Nao encerrar rodada com envio incerto/pendente")
+        rows = [v for v in self.m["versions"] if not v.get("finished")]
+        if len(rows) != 1 or not reason.strip():
+            raise CycleError("Exige uma rodada incompleta e motivo de revisao")
+        row = rows[0]
+        if any(o["kind"] == "analyze_case" and o.get("version") == row["version"] for o in self.m["ops"]):
+            raise CycleError("Analise ja registrada; retomar resultado, nao pular")
+        row.update(finished=True, result="SKIPPED_BEFORE_ANALYSIS", review=reason)
+        self.save()
+        print(json.dumps(row, ensure_ascii=False), flush=True)
+
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("action", choices=("inspect", "init", "run", "resume"))
+    ap.add_argument("action", choices=("inspect", "init", "run", "resume", "skip"))
     ap.add_argument("--key-file", required=True, help="arquivo de chave EXISTENTE, nunca valor da chave")
     ap.add_argument("--out", default="res_cycle_v10")
     ap.add_argument("--contract")
     ap.add_argument("--source")
+    ap.add_argument("--reason", help="justificativa obrigatoria de skip, registrada no journal")
     ap.add_argument("--max-versions", type=int)
     ap.add_argument("--case-id", default="5")
     ap.add_argument("--max-calls", type=int, default=1000, help="limite de envios (deploy + upgrades + analises), maximo 1000")
@@ -465,6 +481,8 @@ def main():
         ap.error("init exige --max-versions entre 1 e 499")
     if args.action == "run" and not args.source:
         ap.error("run exige --source")
+    if args.action == "skip" and not args.reason:
+        ap.error("skip exige --reason")
     os.umask(0o077)
     studio = Studio(args.key_file)
     if args.action == "inspect":
@@ -486,6 +504,8 @@ def main():
             c.initialize(args.max_versions, cid, args.contract, args.max_calls)
         elif args.action == "run":
             c.run(args.source)
+        elif args.action == "skip":
+            c.skip(args.reason)
         else:
             c.resume()
 

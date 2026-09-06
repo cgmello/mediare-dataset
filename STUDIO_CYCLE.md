@@ -71,6 +71,9 @@ usam a mesma pasta; nao coordena outras contas/clientes ou pastas independentes.
 - Timeout/RPC incerto interrompem envios. `resume` consulta a transacao ja
   registrada, inclusive recuperando o hash GenLayer de um recibo EVM conhecido.
   Sem hash recuperavel, exige inspecao manual: nunca reenviar por tentativa.
+- Se o upgrade terminou mas um defeito de getter impede iniciar a analise,
+  `skip --reason 'diagnostico' --execute` registra a revisao como nao analisada.
+  Nao permite pular transacao pendente/incerta nem analise ja registrada.
 - `UNDETERMINED` encerra a rodada sem sucesso; `FINALIZED/ERROR` tambem.
   Falhas de autorizacao, schema, identidade remota ou infraestrutura exigem
   diagnostico antes de continuar, nao repeticao indiscriminada.
@@ -101,3 +104,18 @@ Um caso aprovado nao demonstra generalizacao: ampliar casos e uma etapa posterio
 ```sh
 .venv/bin/python -m unittest test_ic_v10_1 test_ic_v10_2 test_studio_cycle
 ```
+
+## Registro da campanha de 06/09/2026
+
+Instancia: `0x7AC6360E36BEA2791FA45AFA2B18b277bD3a247B`.
+Conta SDK: `0x6d96d47e3370A838F4414F63Ba79D1c8b9812bCf` (conta local existente).
+
+- Bootstrap: FINALIZED/SUCCESS, tx `0x8a72ea80f8f2afc21da4734e22a52159ceff48c794b2582af1675ab1b6614881`.
+- v10.2.1: upgrade FINALIZED/SUCCESS, tx `0x298d7a601529e52c6615daf7d8b276fba809b4a5744f66079c468b9ef33774de`.
+  Nao analisada: getter de hash iterava `VLA[u8]` por byte e excedeu 30s nas leituras.
+- v10.2.2: substitui essa iteracao por `slot().read(data_offset(), len(code))`,
+  preservando SHA-256 e layout. Nao altera prompts/merito em relacao a v10.2.1.
+
+A implementacao oficial de [VLA no GenVM](https://github.com/genlayerlabs/genvm/blob/main/runners/genlayer-py-std/src/genlayer/storage/core.py)
+explica a diferenca entre iteracao por elemento e leitura em bloco. Os testes
+de mocks nao medem latencia de storage; o teste real revelou esse defeito.

@@ -23,7 +23,7 @@ import re
 import hashlib
 
 
-VERSAO = "10.2.1-experimental"
+VERSAO = "10.2.2-experimental"
 DATASET_BASE = (
     "https://raw.githubusercontent.com/cgmello/mediare-dataset/"
     "6bf13ae581afd08415c54d0d825543c21e34bff5/casos/"
@@ -1281,7 +1281,8 @@ class MediareCommitteeV102(gl.Contract):
 
     @gl.public.view
     def get_code_hash(self) -> str:
-        return hashlib.sha256(bytes(gl.storage.Root.get().code.get())).hexdigest()
+        code = gl.storage.Root.get().code.get()
+        return hashlib.sha256(code.slot().read(code.data_offset(), len(code))).hexdigest()
 
     @gl.public.view
     def can_upgrade(self) -> bool:

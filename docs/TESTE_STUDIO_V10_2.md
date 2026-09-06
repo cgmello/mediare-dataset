@@ -4,7 +4,13 @@
 
 Arquivo independente: `ic_v10_2.py`.
 Classe: `MediareCommitteeV102`.
-Versao retornada: `10.2-experimental`.
+Versao inicial: `10.2-experimental`. O arquivo acompanha as revisoes experimentais
+da serie: confira `VERSAO` ou `get_version()` para a revisao atual.
+
+Para o ciclo SDK com snapshots, upgrade e retomada, veja
+[STUDIO_CYCLE.md](../STUDIO_CYCLE.md). A instancia original v10.2 nao possui
+upgrade; desde v10.2.1, novas instancias permitem upgrade pelo deployer,
+preservando layout e sem executar novamente o construtor.
 
 Faca um novo deploy no Studio. `ic.py` (v9) e `ic_v10_1.py`
 (v10.1.4) permanecem inalterados para comparacao. O arquivo novo e autocontido:
