@@ -105,6 +105,8 @@ def contrato_simulado(respostas, validar=True, alterar_lider=None, docs=DOCS):
             raise RuntimeError("DISAGREE_SIMULADO")
         return obj
     gl = SimpleNamespace(Contract=object, public=SimpleNamespace(write=lambda f: f, view=lambda f: f),
+                         storage=SimpleNamespace(Root=SimpleNamespace(get=lambda: SimpleNamespace(upgraders=SimpleNamespace(get=lambda: [])))),
+                         message=SimpleNamespace(sender_address="deployer"),
                          vm=SimpleNamespace(UserError=ValueError, Return=Retorno, run_nondet_unsafe=run),
                          nondet=SimpleNamespace(exec_prompt=pedir, web=SimpleNamespace(get=web)))
     return carregar(gl)["MediareCommitteeV102"](), cont
@@ -324,7 +326,7 @@ class V102Tests(unittest.TestCase):
         self.assertEqual(c["ep"], 1)
         self.assertEqual(c["llm"], 8)
         self.assertEqual(c["web"], 2)
-        self.assertEqual(res["versao"], "10.2-experimental")
+        self.assertEqual(res["versao"], IC["VERSAO"])
         self.assertEqual(res["status"], "termo_opcao_disponivel")
         self.assertEqual(contrato.get_termo_opcao(), res["termo_opcao"])
         self.assertIn("Formula condicional:", res["termo_opcao"])
@@ -464,9 +466,39 @@ class V102Tests(unittest.TestCase):
             self.assertTrue(IC["_painel_valido"](reconsolidar(p)))
         bruto = '{"valor":null,"zero":0}'
         self.assertEqual(IC["_ler_objeto_json"](lambda *a, **k: bruto, "caso"), {"valor": None, "zero": 0})
-        for bruto in ('{} {}', '{"x":NaN}', '```json\n{}\n```'):
+        for bruto in ('{} {}', '{"x":NaN}', 'texto ```json\n{}\n```', '```json\n{}'):
             with self.assertRaises(ValueError):
                 IC["_ler_objeto_json"](lambda *a, **k: bruto, "caso")
+
+    def test_cerca_externa_completa_sem_extrair_prosa(self):
+        for bruto in ('```json\n{"v":null}\n```', '```\n{"v":null}\n```'):
+            self.assertEqual(IC["_ler_objeto_json"](lambda *a, **k: bruto, ""), {"v": None})
+
+    def test_diagnostico_sem_conteudo_privado(self):
+        p = fixture()
+        d = p["teses"][1]["pedidos"][0]
+        del d["opcao"]
+        d["segredo de pessoa"] = "valor confidencial"
+        e = IC["_erro_tese"](p["teses"][1], p["catalogo"], "jurisprudencial", p["teses"][:1])
+        self.assertIn("ausentes=opcao;extras=1", e)
+        self.assertNotIn("segredo", e)
+        with self.assertRaisesRegex(ValueError, "JSON_INVALIDO:SINTAXE;pos=1;tamanho=7"):
+            IC["_ler_objeto_json"](lambda *a, **k: '{privad', "")
+        with self.assertRaisesRegex(ValueError, "JSON_INVALIDO:VAZIO"):
+            IC["_ler_objeto_json"](lambda *a, **k: '  ', "")
+
+    def test_schema_por_papel_e_contexto_preserva_opcao(self):
+        p = fixture()
+        for i, (nome, instrucao) in enumerate(IC["LENTES"]):
+            prompt = IC["_prompt_lente"](nome, instrucao, CORPO, p["catalogo"], p["teses"][:i])
+            self.assertIn(IC["_campos_lente"](nome), prompt)
+            if i == 0:
+                self.assertNotIn("min_bps", prompt)
+                self.assertNotIn("SEM_SUPORTE", prompt)
+            if i == 1:
+                self.assertNotIn("SEM_SUPORTE", prompt)
+            if i == 2:
+                self.assertIn(json.dumps(opcao(p), sort_keys=True, ensure_ascii=False), prompt)
 
 
 if __name__ == "__main__":

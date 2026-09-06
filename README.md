@@ -18,6 +18,9 @@ Pass the contract a URL pinned to a commit (immutable - never use `main`):
 
 Verify integrity by comparing the content's SHA-256 against `manifest.json`.
 
+For versioned SDK tests, upgrades and resumable runs on Studio, see
+[STUDIO_CYCLE.md](STUDIO_CYCLE.md) (Portuguese).
+
 ## Notes
 
 - "real" cases were reconstructed from public court decisions (CJPG/TJSP), with
