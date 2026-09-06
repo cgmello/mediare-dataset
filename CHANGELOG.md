@@ -5,6 +5,25 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 **A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
 gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
+## Fase 2 multicase — 2026-09-06 — preparada
+
+- Nova campanha congelada na `v17.0.0-experimental`, sem upgrades entre casos:
+  exatamente 500 chamadas seriais de `analyze_case`, IDs 0001 a 0500, no contrato
+  `0x7AC6360E36BEA2791FA45AFA2B18b277bD3a247B`.
+- Intervalo mínimo persistido de 15 segundos depois de observar cada término.
+  Timeout ou envio incerto pausam a campanha; a retomada consulta o hash existente
+  e não repete a transação.
+- `studio_phase2.py` confere versão/SHA remoto e snapshot imutável, salva recibo
+  sanitizado, estado e Termo por caso e mantém `events.jsonl`, `cases.jsonl`,
+  `impressions.jsonl`, `summary.json` e `report.md` locais em `res_phase2_v17/`.
+- Os gabaritos não entram no IC. A triagem automática distingue satisfação estrita,
+  revisão de utilidade, problema de conteúdo e falha técnica. Fórmula com envelope
+  apenas 0%–100% não infla o total satisfatório: fica para revisão.
+- O relatório é cumulativo e contém impressão por caso. O balanço deve ser publicado
+  a cada 50 casos ou imediatamente diante de resultado relevante.
+- Quatro novos testes cobrem classificação, relatório, formato do ID e a garantia de
+  não persistir mensagem sensível em envio incerto. Suíte completa: 154 testes.
+
 ## Politica de marcos — 2026-09-06
 
 - A pedido do usuario, novos resultados relevantes orientam marcos **major**:
