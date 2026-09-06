@@ -171,17 +171,22 @@ class V102Tests(unittest.TestCase):
         n = c["pedidos"][0]["negociacao"]
         self.assertEqual(n["estado"], "condicional")
         self.assertIsNone(n["faixa_centavos"])
+        self.assertEqual(n["faixa_discussao_centavos"], [0, 100000])
         termo = IC["_render_termo_opcao"]("0005", p)
         self.assertIn("R$ 1.000,00 x p / 100", termo)
-        self.assertIn("NAO definida pelo comite", termo)
-        self.assertNotIn("R$ 0,00", termo)
+        self.assertIn("Envelope matematico para discussao (p de 0% a 100%): R$ 0,00 a R$ 1.000,00", termo)
+        self.assertIn("Nao e faixa probatoria nem recomendacao", termo)
+        self.assertIn("PASSOU PARA DISCUSSAO", termo)
+        self.assertIn("Nao passou como conclusao definitiva", termo)
         self.assertNotIn("sem maioria", termo)
         self.assertEqual(termo.count("# TERMO DE OPCAO"), 1)
+        self.assertEqual(termo.count("## Opcoes, premissas e proximos passos"), 1)
 
     def test_faixa_calculada_nao_altera_conclusao(self):
         p = fixture("faixa")
         n = p["consolidado"]["pedidos"][0]["negociacao"]
         self.assertEqual(n["faixa_centavos"], [40000, 60000])
+        self.assertEqual(n["faixa_discussao_centavos"], [40000, 60000])
         self.assertIsNone(p["consolidado"]["faixa_total_centavos"])
         self.assertIn("Faixa condicional de negociacao: R$ 400,00 a R$ 600,00", IC["_render_termo_opcao"]("0005", p))
 
@@ -267,6 +272,7 @@ class V102Tests(unittest.TestCase):
         p = fixture("faixa", bloqueada=True)
         self.assertTrue(IC["_painel_valido"](p))
         self.assertIsNone(p["consolidado"]["pedidos"][0]["negociacao"]["faixa_centavos"])
+        self.assertIsNone(p["consolidado"]["pedidos"][0]["negociacao"]["faixa_discussao_centavos"])
         termo = IC["_render_termo_opcao"]("0005", p)
         self.assertIn("Opcao retida", termo)
         self.assertIn("A premissa deve ser esclarecida.", termo)

@@ -138,6 +138,7 @@ class CycleTests(unittest.TestCase):
         result = sc.evaluate(state, IC["VERSAO"], "0005")
         self.assertEqual(result["merito"], "PENDENTE_REVISAO")
         self.assertEqual(result["pedidos"][0]["tipo"], "formula")
+        self.assertEqual(result["pedidos"][0]["faixa_discussao"], [0, 100000])
         with self.assertRaises(sc.CycleError):
             sc.evaluate(state, "10.2.999-experimental", "0005")
 

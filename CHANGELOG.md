@@ -47,7 +47,26 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 - A credencial exposta nao e reproduzida neste changelog. Rotacao e correcao da
   serializacao no servidor dependem do time do Studio.
 
-## v15.0.0-experimental — 2026-09-06 — voto sobre aptidao da proposta
+## v16.0.0-experimental — 2026-09-06 — Termo orientado ao mediador
+
+Motivacao: a v15 obteve consenso e gerou opcao util, mas o Termo ainda enfatizava
+`necessita informacao / valor indeterminado` e escondia a faixa discutivel dentro
+da formula. O usuario ja havia apontado que esse resultado isolado era ruim.
+
+- O resumo passa a separar explicitamente `PASSOU PARA DISCUSSAO` de `nao passou
+  como conclusao definitiva`, preservando a diferenca entre composicao e divida.
+- Para formula com base auditada, calcula envelope matematico de discussao entre
+  0% e 100% da base. No caso 0005 isso produz R$ 0,00 a R$ 64.734,88.
+- O texto declara que o envelope nao e faixa probatoria nem recomendacao, nao
+  escolhe ponto medio e deixa `p` para as partes. Faixa documental continua sendo
+  exibida separadamente quando os resumos realmente trouxerem percentuais.
+- A faixa de discussao e campo derivado distinto de `faixa_centavos`; conclusao
+  sobre valor devido permanece indeterminada. Opcao retida nao recebe envelope.
+- Nao altera prompts, criterio de consenso, numero de EPs ou storage. Corrige a
+  apresentacao e inclui a faixa no relatorio do runner. 149 testes aprovados;
+  teste real pendente.
+
+## v15.0.0-experimental — 2026-09-06 — consenso obtido; revisao de utilidade
 
 Motivacao: a v14 compartilhou a opcao do lider, mas ainda chamou o comparador de
 equivalencia do painel inteiro. Isso reprovou diferencas semanticas e de lacuna
@@ -65,7 +84,23 @@ mesmo quando o revisor considerava a mesma proposta apta para mediacao.
 - O prompt da auditora explicita os dois formatos JSON aceitos para reduzir as
   falhas de schema vistas nas rotacoes intermediarias da v14.
 - Mantem as tres lentes, um EP, Termo deterministico e nenhuma etapa humana
-  adicional no blockchain. 149 testes locais aprovados; teste real pendente.
+  adicional no blockchain. 149 testes locais aprovados. Tag `ic-v15.0.0`, commit
+  `3253aa7`. Snapshot SHA-256:
+  `b88a829d278a431db5528496ff81e6c1b3bdbffb3110ea4c551e32f1fbc0bbce`.
+- Upgrade FINALIZED/SUCCESS em 48,32s:
+  `0x5b1a0da5ba08bfa16c56c4005acd38f962bbdfe214782caa3f06c366187e6905`.
+- Analise 0005 FINALIZED/SUCCESS/MAJORITY_AGREE, sem rotacao, em 211,87s:
+  `0x094caa7992c4d7a43f6168b85d838e4160e14cb36f85a4a717de984a67dd84dc`.
+- Tres validadores registraram `REVISOR_APROVA`; um registrou
+  `REVISOR_REFORMULAR`. O quorum aprovou a mesma proposta sem exigir igualdade
+  das conclusoes independentes.
+- Termo gerado: RP01 com formula condicional `R$ 64.734,88 x p/100` e RP02 com
+  diligencia tecnica conjunta. Ambas foram auditadas como aptas pelo painel do
+  lider; conclusoes de responsabilidade e valor devido permaneceram abertas.
+- Revisao de utilidade: conteudo e fontes sao pertinentes, mas a abertura ainda
+  mostra valor indeterminado e nao traduz a formula em faixa clara ao mediador.
+  Manter como primeiro marco de consenso e iterar a apresentacao na v16.
+- Acumulado: 17 envios (1 deploy, 9 upgrades, 7 analises).
 
 ## v14.0.0-experimental — 2026-09-06 — sem consenso; proposta compartilhada validada
 

@@ -210,7 +210,8 @@ def evaluate(state, expected_version, cid):
         n = item.get("negociacao") or {}
         result["pedidos"].append({"id": item.get("pedido_id"), "conclusao": item.get("status"),
                                   "negociacao": n.get("estado"), "tipo": (n.get("opcao") or {}).get("tipo"),
-                                  "faixa_negociacao": n.get("faixa_centavos")})
+                                  "faixa_negociacao": n.get("faixa_centavos"),
+                                  "faixa_discussao": n.get("faixa_discussao_centavos")})
     return result
 
 

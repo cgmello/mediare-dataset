@@ -23,7 +23,7 @@ import re
 import hashlib
 
 
-VERSAO = "15.0.0-experimental"
+VERSAO = "16.0.0-experimental"
 DATASET_BASE = (
     "https://raw.githubusercontent.com/cgmello/mediare-dataset/"
     "6bf13ae581afd08415c54d0d825543c21e34bff5/casos/"
@@ -1254,6 +1254,17 @@ def _faixa_opcao(o):
     return [(b * c[x] + 5000) // 10000 for x in ("min_bps", "max_bps")]
 
 
+def _faixa_discussao(o, auditoria):
+    if auditoria["resultado"] != "apta":
+        return None
+    if o["tipo"] == "faixa":
+        return _faixa_opcao(o)
+    if o["tipo"] == "formula":
+        # p e percentual: 0..100% e o envelope, nao um resultado recomendado.
+        return [0, o["base"]["valor_centavos"]]
+    return None
+
+
 def _consolidar(catalogo, teses):
     c = _consolidar_base(catalogo, teses)
     for i, item in enumerate(c["pedidos"]):
@@ -1264,6 +1275,7 @@ def _consolidar(catalogo, teses):
             "estado": "retida_pela_auditoria" if a["resultado"] == "reformular" else
                       "sem_opcao" if o["tipo"] == "sem_opcao" else "condicional",
             "faixa_centavos": _faixa_opcao(o) if a["resultado"] == "apta" else None,
+            "faixa_discussao_centavos": _faixa_discussao(o, a),
         }
         item["analises"] = {
             t["lente"]: {k: t["pedidos"][i][k] for k in ("sustentado", "controvertido", "lacuna")}
@@ -1390,14 +1402,20 @@ def _render_termo_opcao(case_id, painel):
     ]
     for item in itens:
         n = item["negociacao"]
-        linhas.append("- " + item["pedido_id"] + ": " + _leitura_lentes(item)
-                      + "; negociacao: " + n["estado"].replace("_", " ") + " (" + n["opcao"]["tipo"] + ").")
+        f = n["faixa_discussao_centavos"]
+        faixa = ("; envelope para discussao: " + _brl(f[0]) + " a " + _brl(f[1])) if f is not None else ""
+        passou = "PASSOU PARA DISCUSSAO" if n["estado"] == "condicional" else "NAO PASSOU PELA AUDITORIA"
+        linhas.append("- " + item["pedido_id"] + ": " + passou + " (" + n["opcao"]["tipo"] + ")" + faixa + ".")
+        linhas.append("  Nao passou como conclusao definitiva: " + _leitura_lentes(item) + ".")
     linhas.extend(["", "## Opcoes, premissas e proximos passos", ""])
     for item in itens:
         n = item["negociacao"]
         o, a = n["opcao"], n["auditoria"]
         linhas.extend(["### " + item["pedido_id"] + " — " + item["descricao"], "",
-                       "Revisao auditora da opcao: " + a["resultado"] + ". " + a["motivo"]])
+                       ("O que passou: opcao apta para discussao." if a["resultado"] == "apta" else
+                        "O que nao passou: opcao retida pela auditoria."),
+                       "O que nao passou como conclusao definitiva: " + _leitura_lentes(item) + ".",
+                       "Comentario da auditoria: " + a["motivo"]])
         if n["estado"] == "retida_pela_auditoria":
             linhas.append("Opcao retida: nao apresentar como proposta validada. Riscos: " + ", ".join(a["riscos"]))
         else:
@@ -1416,8 +1434,10 @@ def _render_termo_opcao(case_id, painel):
                 if c["trecho"] is not None:
                     linhas.append("Criterio documentado [" + c["fonte"] + "]: " + c["trecho"])
             elif o["tipo"] == "formula":
+                f = n["faixa_discussao_centavos"]
                 linhas.append("Formula condicional: " + _brl(o["base"]["valor_centavos"]) + " x p / 100.")
-                linhas.append("p = participacao percentual a negociar, NAO definida pelo comite; sem faixa numerica sustentada.")
+                linhas.append("Envelope matematico para discussao (p de 0% a 100%): " + _brl(f[0]) + " a " + _brl(f[1]) + ".")
+                linhas.append("Nao e faixa probatoria nem recomendacao de resultado: p continua a ser negociado pelas partes.")
         for nome, _ in LENTES:
             analise = item["analises"][nome]
             linhas.append("")
