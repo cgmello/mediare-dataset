@@ -23,7 +23,7 @@ import re
 import hashlib
 
 
-VERSAO = "14.0.0-experimental"
+VERSAO = "15.0.0-experimental"
 DATASET_BASE = (
     "https://raw.githubusercontent.com/cgmello/mediare-dataset/"
     "6bf13ae581afd08415c54d0d825543c21e34bff5/casos/"
@@ -944,6 +944,9 @@ REGRAS_AUDITORIA = """
 Apenas a auditora acrescenta auditoria em cada pedido: objeto com exatamente
 resultado (apta|reformular), riscos (array sem repeticao de SEM_SUPORTE|VALOR_INVENTADO|
 DUPLA_CONTAGEM|ESCOPO|POLO|PREMISSA|OUTRO), motivo (texto 1 a 800 caracteres).
+Use literalmente um destes dois formatos, sem renomear campos nem acrescentar outros:
+{"resultado":"apta","riscos":[],"motivo":"justificativa especifica"}
+{"resultado":"reformular","riscos":["RISCO_DA_LISTA"],"motivo":"defeito especifico"}
 Revise a opcao jurisprudencial fornecida, NAO apenas sua propria conclusao.
 apta exige riscos=[]; reformular exige ao menos um risco e motivo especifico.
 Verifique base/percentuais/fontes, proposta e todas as premissas/ressalvas, inclusive
@@ -1055,6 +1058,26 @@ def _painel_revisor_de(pedir, corpo, lider):
         teses.append(tese)
     return {"versao": VERSAO, "catalogo": catalogo, "teses": teses,
             "consolidado": _consolidar(catalogo, teses)}
+
+
+def _revisor_aprova(lider, revisor):
+    if not _painel_valido(lider) or not _painel_valido(revisor):
+        _diag_consenso("REVISOR_SCHEMA")
+        return False
+    if not _catalogos_equivalentes(lider["catalogo"], revisor["catalogo"]):
+        _diag_consenso("REVISOR_CATALOGO")
+        return False
+    for dl, dr, da in zip(lider["teses"][1]["pedidos"],
+                          revisor["teses"][1]["pedidos"],
+                          revisor["teses"][2]["pedidos"]):
+        if dl["opcao"] != dr["opcao"]:
+            _diag_consenso("REVISOR_OPCAO_ALTERADA")
+            return False
+        if da["auditoria"]["resultado"] != "apta":
+            _diag_consenso("REVISOR_REFORMULAR")
+            return False
+    _diag_consenso("REVISOR_APROVA")
+    return True
 
 
 def _chaves(obj, chaves):
@@ -1502,9 +1525,7 @@ class MediareCommitteeExperimental(gl.Contract):
                 painel_validador = _painel_revisor_de(gl.nondet.exec_prompt, corpo, lider)
                 if painel_validador is None:
                     return False
-                return _paineis_equivalentes(
-                    resultado_lider.calldata, painel_validador, gl.nondet.exec_prompt
-                )
+                return _revisor_aprova(resultado_lider.calldata, painel_validador)
             except Exception:
                 _diag_consenso("ERRO_PAINEL_LOCAL_OU_TRANSPORTE")
                 return False

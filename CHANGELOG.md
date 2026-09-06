@@ -47,7 +47,27 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 - A credencial exposta nao e reproduzida neste changelog. Rotacao e correcao da
   serializacao no servidor dependem do time do Studio.
 
-## v14.0.0-experimental — 2026-09-06 — revisao da mesma proposta pelo consenso
+## v15.0.0-experimental — 2026-09-06 — voto sobre aptidao da proposta
+
+Motivacao: a v14 compartilhou a opcao do lider, mas ainda chamou o comparador de
+equivalencia do painel inteiro. Isso reprovou diferencas semanticas e de lacuna
+mesmo quando o revisor considerava a mesma proposta apta para mediacao.
+
+- O voto agora exige painel estruturalmente valido, catalogo compativel, opcao
+  exatamente igual a do lider e auditoria independente `apta` para cada pedido.
+- Conclusoes, comentarios e lacunas continuam sendo gerados independentemente,
+  mas diferencas de redacao ou avaliacao nao reprovam sozinhas uma opcao segura.
+- Conclusao local fora de escopo continua incompatibilizando proposta financeira;
+  auditoria `reformular`, opcao alterada, fonte falsa ou catalogo divergente
+  continuam produzindo Disagree.
+- O comparador semantico anterior sai do caminho de consenso, eliminando uma
+  chamada LLM por validador quando os requisitos deterministas ja foram atendidos.
+- O prompt da auditora explicita os dois formatos JSON aceitos para reduzir as
+  falhas de schema vistas nas rotacoes intermediarias da v14.
+- Mantem as tres lentes, um EP, Termo deterministico e nenhuma etapa humana
+  adicional no blockchain. 149 testes locais aprovados; teste real pendente.
+
+## v14.0.0-experimental — 2026-09-06 — sem consenso; proposta compartilhada validada
 
 Motivacao: a v13 ainda comparou propostas alternativas geradas separadamente;
 validadores divergiram sobretudo em auditoria, fontes, lacunas e estado da opcao.
@@ -69,8 +89,23 @@ revisada por conclusoes independentes dos validadores.
 - 148 testes locais aprovados, incluindo copia exata da proposta, rejeicao de
   opcao devolvida pelo modelo, catalogo divergente, conclusao contraria, auditoria
   contraria e nao propagacao de dados secretos de erros RPC.
-- Commits: `aeaeaba` (arquitetura) e commit de documentacao/hardening subsequente.
-  Tag planejada `ic-v14.0.0`; teste real pendente.
+- Commits: `aeaeaba` (arquitetura) e `fada976` (documentacao/hardening). Tag
+  `ic-v14.0.0` publicada. Snapshot SHA-256:
+  `5a8a7ece21ce51c86a400a2dfbf55d8642a20e9493ef9454fa6744be00c998d7`.
+- Upgrade FINALIZED/SUCCESS em 52,23s:
+  `0xef8d9b9475241c31d2ca0319e4c7e3d35b8c3cd3cd5e0c40481c9cbaa5b8fa69`.
+- Analise 0005:
+  `0x5c663b92b1e4d872a2ff1740c26a4fe8ae0458a2246d14e844d039ae2110de89`.
+- UNDETERMINED apos 3 rotacoes; 411,91s. Nenhum Termo aprovado. A primeira
+  rodada registrou um `REVISOR_APROVA`/Agree, mas os demais votos apontaram
+  SEMANTICA, lacuna probatoria e erro local/transporte.
+- Duas rotacoes tiveram lider sem retorno por `auditoria:SCHEMA_INVALIDO`. Na
+  ultima, dois revisores divergiram semanticamente e o comparador de outro falhou.
+- Os dois paineis de lider observados classificaram corretamente os pedidos e
+  propuseram formula `R$ 64.734,88 x p/100` para RP01 e diligencia para RP02,
+  ambas auditadas como aptas. O resultado sugere remover a equivalencia integral,
+  nao afrouxar checagem de fonte ou auditoria.
+- Acumulado: 15 envios (1 deploy, 8 upgrades, 6 analises).
 
 ## v13.0.0-experimental — 2026-09-06 — sem consenso
 

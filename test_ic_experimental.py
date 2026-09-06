@@ -388,32 +388,27 @@ class V102Tests(unittest.TestCase):
         self.assertEqual(c["llm"], 4)
         self.assertEqual(contrato.status, "vazio")
 
-    def test_wrapper_consulta_semantica_quando_redacao_local_muda(self):
+    def test_wrapper_aceita_redacao_local_distinta_quando_auditoria_aprova(self):
         a, b = fixture(), fixture()
         b["teses"][1]["pedidos"][0]["comentario"] = "O orcamento consta no resumo, mas a responsabilidade proporcional e controvertida."
         reconsolidar(b)
         respostas = copy.deepcopy([a["catalogo"]] + a["teses"]) + respostas_revisor(b)
-        respostas.append({"equivalentes": True, "motivo": "Mesmas condicoes, redacao diferente."})
         contrato, c = contrato_simulado(respostas)
         contrato.analyze_case("5")
-        self.assertEqual(c["llm"], 9)
+        self.assertEqual(c["llm"], 8)
         self.assertEqual(c["ep"], 1)
         self.assertEqual(respostas, [])
-        self.assertNotIn('"consolidado":', c["prompts"][-1])
+        self.assertIn("LENTE AUDITORA", c["prompts"][-1])
         self.assertEqual(json.loads(contrato.get_case())["painel"], json.dumps(a, ensure_ascii=False, sort_keys=True))
 
-    def test_erro_semantico_ou_false_nao_grava_estado(self):
-        for resposta in ({"equivalentes": False, "motivo": "Premissa diferente."}, {"equivalentes": "sim", "motivo": "x"}):
-            a, b = fixture(), fixture()
-            b["teses"][1]["pedidos"][0]["sustentado"] = "O requerido reconheceu toda a responsabilidade."
-            reconsolidar(b)
-            respostas = copy.deepcopy([a["catalogo"]] + a["teses"]) + respostas_revisor(b) + [resposta, resposta]
-            contrato, c = contrato_simulado(respostas)
-            with self.assertRaisesRegex(RuntimeError, "DISAGREE_SIMULADO"):
-                contrato.analyze_case("5")
-            self.assertEqual(contrato.get_termo_opcao(), "")
-            self.assertEqual(contrato.status, "vazio")
-            self.assertLessEqual(c["llm"], 10)
+    def test_revisor_nao_chama_comparador_semantico(self):
+        a, b = fixture(), fixture()
+        b["teses"][1]["pedidos"][0]["sustentado"] = "Ha suporte parcial, interpretado de forma independente."
+        respostas = copy.deepcopy([a["catalogo"]] + a["teses"]) + respostas_revisor(b)
+        contrato, c = contrato_simulado(respostas)
+        contrato.analyze_case("5")
+        self.assertEqual(c["llm"], 8)
+        self.assertEqual(respostas, [])
 
     def test_revisor_anexa_proposta_exata_sem_mutar_lider(self):
         p = fixture()
@@ -470,6 +465,20 @@ class V102Tests(unittest.TestCase):
             contrato.analyze_case("5")
         self.assertEqual(c["llm"], 8)
         self.assertEqual(contrato.get_termo_opcao(), "")
+
+    def test_criterio_revisor_exige_opcao_identica_e_auditoria_apta(self):
+        lider, revisor = fixture(), fixture()
+        revisor["teses"][0]["pedidos"][0]["comentario"] = "Redacao independente."
+        reconsolidar(revisor)
+        self.assertTrue(IC["_revisor_aprova"](lider, revisor))
+
+        alterada = copy.deepcopy(revisor)
+        opcao(alterada)["premissa"] = "Outra premissa."
+        reconsolidar(alterada)
+        self.assertFalse(IC["_revisor_aprova"](lider, alterada))
+
+        bloqueada = fixture(bloqueada=True)
+        self.assertFalse(IC["_revisor_aprova"](lider, bloqueada))
 
     def test_retry_da_opcao_nao_muda_merito_e_nao_expoe_fonte(self):
         p = fixture()
