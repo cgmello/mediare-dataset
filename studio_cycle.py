@@ -30,6 +30,17 @@ class CycleError(RuntimeError):
     pass
 
 
+def redact(data):
+    """Recibos do Studio podem incluir segredos de node_config; nao persisti-los."""
+    if isinstance(data, dict):
+        return {k: ("[REDACTED]" if re.sub(r"[^a-z]", "", k.lower()) in
+                    {"privatekey", "apikey", "secret", "password", "accesstoken", "authorization"}
+                    else redact(v)) for k, v in data.items()}
+    if isinstance(data, list):
+        return [redact(v) for v in data]
+    return data
+
+
 def sha(code):
     return hashlib.sha256(code).hexdigest()
 
@@ -40,7 +51,7 @@ def write_json(path, data):
     fd, tmp = tempfile.mkstemp(prefix=".journal-", dir=path.parent)
     try:
         with os.fdopen(fd, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
+            json.dump(redact(data), f, ensure_ascii=False, indent=2)
             f.flush()
             os.fsync(f.fileno())
         os.replace(tmp, path)

@@ -37,7 +37,8 @@ class MediareStudioBootstrap(gl.Contract):
     @gl.public.view
     def get_code_hash(self) -> str:
         code = gl.storage.Root.get().code.get()
-        return hashlib.sha256(code.slot().read(code.data_offset(), len(code))).hexdigest()
+        # Root.code e um VLA indireto: u32 de tamanho seguido pelos bytes.
+        return hashlib.sha256(code.slot().read(4, len(code))).hexdigest()
 
     @gl.public.view
     def can_upgrade(self) -> bool:

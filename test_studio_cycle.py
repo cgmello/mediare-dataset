@@ -158,8 +158,6 @@ class CycleTests(unittest.TestCase):
                 self.clear()
             def slot(self):
                 return self
-            def data_offset(self):
-                return 4
             def read(self, offset, size):
                 self.assert_offset = offset
                 return bytes(memoryview(self)[:size])
@@ -200,6 +198,13 @@ class CycleTests(unittest.TestCase):
         self.c.m["ops"].append({"kind": "analyze_case", "version": IC["VERSAO"], "state": "done"})
         with self.assertRaises(sc.CycleError):
             self.c.skip("must not hide results")
+
+    def test_receipt_secrets_redacted_before_persistence(self):
+        obj = {"node_config": [{"private_key": "sensitive", "apiKey": "sensitive", "address": ADDR}]}
+        sc.write_json(Path(self.temp.name) / "secret-test.json", obj)
+        saved = (Path(self.temp.name) / "secret-test.json").read_text()
+        self.assertNotIn("sensitive", saved)
+        self.assertIn(ADDR, saved)
 
 
 if __name__ == "__main__":

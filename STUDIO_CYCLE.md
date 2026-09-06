@@ -81,6 +81,8 @@ usam a mesma pasta; nao coordena outras contas/clientes ou pastas independentes.
 Nao ha cobranca automatica nem estimativa monetaria inventada. O registro
 inclui gas/estatisticas apenas quando o recibo os fornece. Os arquivos de
 resultado contem dados do caso: permanecem locais e ignorados pelo Git.
+Campos de credenciais eventualmente retornados em `node_config` sao
+substituidos por `[REDACTED]` antes de salvar recibos.
 
 ## Avaliacao e criterio de parada
 
@@ -115,6 +117,11 @@ Conta SDK: `0x6d96d47e3370A838F4414F63Ba79D1c8b9812bCf` (conta local existente).
   Nao analisada: getter de hash iterava `VLA[u8]` por byte e excedeu 30s nas leituras.
 - v10.2.2: substitui essa iteracao por `slot().read(data_offset(), len(code))`,
   preservando SHA-256 e layout. Nao altera prompts/merito em relacao a v10.2.1.
+  Upgrade FINALIZED/SUCCESS, tx `0x146bcd7f86ab40f73e26203a25c7cc7415534f350c6b2b329ad8c2c6a1bb262e`.
+  Nao analisada: SDK fixado nao possui `VLA.data_offset()` (AttributeError real).
+- v10.2.3: usa offset 4 do `Root.code` indireto (prefixo u32 de tamanho),
+  com leitura unica do codigo. Teste de storage sem `data_offset` e sanitizacao
+  de credenciais dos recibos adicionados; 97 testes locais passaram.
 
 A implementacao oficial de [VLA no GenVM](https://github.com/genlayerlabs/genvm/blob/main/runners/genlayer-py-std/src/genlayer/storage/core.py)
 explica a diferenca entre iteracao por elemento e leitura em bloco. Os testes
