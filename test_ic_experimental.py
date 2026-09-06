@@ -3,6 +3,7 @@
 import copy
 import json
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -113,6 +114,24 @@ def contrato_simulado(respostas, validar=True, alterar_lider=None, docs=DOCS):
 
 
 class V102Tests(unittest.TestCase):
+    def test_diagnostico_identifica_campo_sem_mudar_comparacao(self):
+        a, b = fixture(), fixture()
+        opcao(b)["fontes"] = ["DR"]
+        codes = []
+        with patch.dict(IC, {"_diag_consenso": codes.append}):
+            self.assertFalse(IC["_paineis_equivalentes"](a, reconsolidar(b)))
+        self.assertIn("OPCOES_FONTES", codes)
+        a, b = fixture(), fixture()
+        b["catalogo"]["pedidos"][0]["valor_pedido_centavos"] = None
+        with patch.dict(IC, {"_diag_consenso": codes.append}):
+            self.assertFalse(IC["_catalogos_equivalentes"](a["catalogo"], b["catalogo"]))
+        self.assertIn("CATALOGO_VALOR_NULO", codes)
+        b = fixture()
+        b["consolidado"]["pedidos"][0]["status"] = "passou"
+        with patch.dict(IC, {"_diag_consenso": codes.append}):
+            self.assertFalse(IC["_consolidados_equivalentes"](a["consolidado"], b["consolidado"]))
+        self.assertIn("CONCLUSAO_STATUS", codes)
+
     def test_cinco_tipos_validos_e_tres_lentes_sequenciais(self):
         for p in (fixture(), fixture("faixa"), fixture("nao_monetaria", modalidade="declarar"),
                   fixture("diligencia"), fixture("sem_opcao", "negar")):

@@ -149,9 +149,12 @@ class CycleTests(unittest.TestCase):
 
     def test_extract_only_fixed_diagnostic_format(self):
         tx = receipt()
-        tx["consensus_history"] = {"validator_results": [{"mode": "validator", "vote": "disagree",
-            "genvm_result": {"stdout": "texto privado\nMEDIARE_DIAG:OPCOES\nMEDIARE_DIAG:valor privado\n"}}]}
-        self.assertEqual(sc.summary(tx)["diagnosticos"], [{"mode": "validator", "vote": "disagree", "codes": ["OPCOES"]}])
+        rec = {"mode": "validator", "vote": "disagree",
+               "genvm_result": {"stdout": "texto privado\nMEDIARE_DIAG:OPCOES\nMEDIARE_DIAG:valor privado\n"}}
+        tx["consensus_history"] = {"consensus_results": [{"validator_results": [rec], "monitoring": {"mirror": rec}}]}
+        self.assertEqual(sc.summary(tx)["diagnosticos"], [{"round": 0, "mode": "validator", "vote": "disagree", "codes": ["OPCOES"]}])
+        tx["consensus_data"]["validators"] = [rec]
+        self.assertEqual(len(sc.summary(tx)["diagnosticos"]), 1)
 
     def test_account_binding(self):
         self.studio.account.address = "0x" + "3" * 40

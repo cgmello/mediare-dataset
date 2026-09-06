@@ -113,11 +113,6 @@ def summary(tx):
     diagnostics = []
     def collect(obj):
         if isinstance(obj, dict):
-            g = obj.get("genvm_result") or {}
-            if isinstance(g, dict):
-                codes = re.findall(r"(?m)^MEDIARE_DIAG:([A-Z_]+)$", g.get("stdout") or "")
-                if codes:
-                    diagnostics.append({"mode": obj.get("mode"), "vote": obj.get("vote"), "codes": codes})
             if obj.get("execution_result") == "ERROR":
                 raw = obj.get("result")
                 if isinstance(raw, str):
@@ -134,6 +129,25 @@ def summary(tx):
                 collect(v)
     collect(tx.get("consensus_data"))
     collect(tx.get("consensus_history"))
+    # Monitoring e consensus_data repetem recibos do historico. Nao percorrer
+    # recursivamente esses espelhos para contar diagnosticos/votos.
+    rounds = (tx.get("consensus_history") or {}).get("consensus_results") or []
+    def diag(rec, index):
+        if not isinstance(rec, dict):
+            return
+        g = rec.get("genvm_result") or {}
+        codes = re.findall(r"(?m)^MEDIARE_DIAG:([A-Z_]+)$", g.get("stdout") or "")
+        if codes:
+            diagnostics.append({"round": index, "mode": rec.get("mode"), "vote": rec.get("vote"), "codes": codes})
+    for i, round_result in enumerate(rounds):
+        for key in ("leader_result", "validator_results"):
+            for rec in round_result.get(key) or []:
+                diag(rec, i)
+    if not rounds:
+        data = tx.get("consensus_data") or {}
+        for rec in data.get("validators") or []:
+            diag(rec, None)
+        diag(lr, None)
     return {"status": status_de(tx), "exec": execution(tx), "result_name": tx.get("result_name"),
             "rotacoes": tx.get("rotation_count"), "rodadas": tx.get("num_of_rounds"),
             "erros": sorted(set(errors)), "gas_usado": lr.get("gas_used"),

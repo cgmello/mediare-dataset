@@ -23,7 +23,7 @@ import re
 import hashlib
 
 
-VERSAO = "11.0.0-experimental"
+VERSAO = "12.0.0-experimental"
 DATASET_BASE = (
     "https://raw.githubusercontent.com/cgmello/mediare-dataset/"
     "6bf13ae581afd08415c54d0d825543c21e34bff5/casos/"
@@ -656,19 +656,25 @@ def _faixas_equivalentes(a, b) -> bool:
 
 def _catalogos_equivalentes(a, b) -> bool:
     if not _catalogo_valido(a) or not _catalogo_valido(b):
+        _diag_consenso("CATALOGO_SCHEMA")
         return False
     if len(a["pedidos"]) != len(b["pedidos"]):
+        _diag_consenso("CATALOGO_QUANTIDADE")
         return False
     campos = ("id", "autor", "contra", "modalidade", "natureza")
     for pa, pb in zip(a["pedidos"], b["pedidos"]):
-        if any(pa[c] != pb[c] for c in campos):
-            return False
+        for c in campos:
+            if pa[c] != pb[c]:
+                _diag_consenso("CATALOGO_" + c.upper())
+                return False
         va = pa["valor_pedido_centavos"]
         vb = pb["valor_pedido_centavos"]
         if va is None or vb is None:
             if va is not None or vb is not None:
+                _diag_consenso("CATALOGO_VALOR_NULO")
                 return False
         elif not _perto(va, vb):
+            _diag_consenso("CATALOGO_VALOR_TOLERANCIA")
             return False
     return True
 
@@ -679,12 +685,15 @@ def _consolidados_equivalentes(a, b) -> bool:
     if not a.get("painel_completo") or not b.get("painel_completo"):
         return False
     if a.get("n_pedidos") != b.get("n_pedidos"):
+        _diag_consenso("CONCLUSAO_QUANTIDADE")
         return False
     if a.get("estado_valor_total") != b.get("estado_valor_total"):
+        _diag_consenso("CONCLUSAO_ESTADO_VALOR_TOTAL")
         return False
     if not _faixas_equivalentes(
         a.get("faixa_total_centavos"), b.get("faixa_total_centavos")
     ):
+        _diag_consenso("CONCLUSAO_FAIXA_TOTAL")
         return False
 
     pa = a.get("pedidos")
@@ -703,13 +712,17 @@ def _consolidados_equivalentes(a, b) -> bool:
         "estado_valor",
     )
     for xa, xb in zip(pa, pb):
-        if any(xa.get(c) != xb.get(c) for c in campos):
-            return False
+        for c in campos:
+            if xa.get(c) != xb.get(c):
+                _diag_consenso("CONCLUSAO_" + c.upper())
+                return False
         if not _faixas_equivalentes(xa.get("faixa_centavos"), xb.get("faixa_centavos")):
+            _diag_consenso("CONCLUSAO_FAIXA_PEDIDO")
             return False
         if not _faixas_equivalentes(
             xa.get("faixa_quantificada_centavos"), xb.get("faixa_quantificada_centavos")
         ):
+            _diag_consenso("CONCLUSAO_FAIXA_QUANTIFICADA")
             return False
     return True
 
@@ -1160,24 +1173,35 @@ def _estrutura_opcoes_equivalente(a, b):
     for xa, xb in zip(a["consolidado"]["pedidos"], b["consolidado"]["pedidos"]):
         na, nb = xa["negociacao"], xb["negociacao"]
         if na["estado"] != nb["estado"] or na["auditoria"]["resultado"] != nb["auditoria"]["resultado"]:
+            _diag_consenso("OPCOES_ESTADO_AUDITORIA")
             return False
         if sorted(na["auditoria"]["riscos"]) != sorted(nb["auditoria"]["riscos"]):
+            _diag_consenso("OPCOES_RISCOS")
             return False
         oa, ob = na["opcao"], nb["opcao"]
         for k in ("tipo", "pagador", "beneficiario"):
             if oa[k] != ob[k]:
+                _diag_consenso("OPCOES_" + k.upper())
                 return False
         if sorted(oa["fontes"]) != sorted(ob["fontes"]):
+            _diag_consenso("OPCOES_FONTES")
             return False
         ba, bb = oa["base"], ob["base"]
         if (ba is None) != (bb is None):
+            _diag_consenso("OPCOES_BASE_PRESENTE")
             return False
-        if ba is not None and any(ba[k] != bb[k] for k in ("valor_centavos", "natureza", "fonte")):
-            return False
-        if any(oa["criterio"][k] != ob["criterio"][k] for k in ("tipo", "min_bps", "max_bps", "fonte")):
-            return False
+        if ba is not None:
+            for k in ("valor_centavos", "natureza", "fonte"):
+                if ba[k] != bb[k]:
+                    _diag_consenso("OPCOES_BASE_" + k.upper())
+                    return False
+        for k in ("tipo", "min_bps", "max_bps", "fonte"):
+            if oa["criterio"][k] != ob["criterio"][k]:
+                _diag_consenso("OPCOES_CRITERIO_" + k.upper())
+                return False
         for nome, _ in LENTES:
             if xa["analises"][nome]["lacuna"]["dimensao"] != xb["analises"][nome]["lacuna"]["dimensao"]:
+                _diag_consenso("OPCOES_LACUNA_" + nome.upper())
                 return False
     return True
 

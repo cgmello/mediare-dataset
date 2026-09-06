@@ -34,7 +34,24 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 - Paineis de **lideres** podem aparecer nos recibos de EP; paineis dos validadores
   nao sao gravados. Nao atribuir causa individual a voto Disagree sem diagnostico.
 
-## v11.0.0-experimental — 2026-09-06 — candidata, ainda nao avaliada no Studio
+## v12.0.0-experimental — 2026-09-06 — candidata de diagnostico por campo
+
+Motivacao: a v11 confirmou que o Studio preserva os codigos fixos de stdout,
+mas os grupos CATALOGO/OPCOES ainda nao identificavam o campo divergente.
+
+- Detalha diagnosticos de catalogo (quantidade, IDs, polos, modalidade, natureza,
+  null/valor), conclusao (status, tendencia, flags, polos, faixas) e opcoes
+  (auditoria, riscos, tipo, fontes, base, criterio e dimensao de lacuna por lente).
+- Nenhuma nova permissao de aprovar: os mesmos testes de equivalencia continuam
+  rejeitando as mesmas diferencas. Nao registra valores nem textos dos paineis.
+- Runner agora extrai diagnosticos apenas das listas de recibos por rodada,
+  evitando duplicatas que aparecem em monitoring/consensus_data. A primeira
+  contagem exibida no chat usava a coleta recursiva e nao deve ser usada como
+  numero de validadores distintos no relatorio; os tipos de erro eram reais.
+- 141 testes locais aprovados, incluindo deteccao do campo e espelhos de recibos.
+- Tag planejada: `ic-v12.0.0`. Resultado on-chain pendente.
+
+## v11.0.0-experimental — 2026-09-06 — sem consenso; diagnosticos confirmados
 
 Primeiro marco major apos a mudanca da politica de versionamento. Incorpora o
 trabalho que estava sendo preparado como v10.2.5, que nao foi publicado nem
@@ -66,7 +83,24 @@ A causa individual das demais discordancias permanece desconhecida.
 140 testes locais aprovados: baseline v10.1, v10.2.4 preservada, candidata major,
 controle do ciclo, credenciais, limites, retomada e rollback simulado.
 Isso nao demonstra consenso, qualidade juridica nem rollback real no Studio.
-Tag planejada: `ic-v11.0.0` no commit do marco. Resultado on-chain pendente.
+Tag publicada: `ic-v11.0.0`, commit `ad1d69d`.
+Snapshot SHA-256: `e57713bb33f75dc578ea7e8719b9966e22d9a06f01f47adeb221d604ecaebb8e`.
+
+### Resultado real
+
+- Upgrade FINALIZED/SUCCESS e identidade remota conferida:
+  `0x1ed759aa6095999d411847cc6e94d57a81d79abeb0da86f314a95e150d68c8e4`.
+- Analise 0005: `0xdf5e46ae75759a2394341ce4b614bf86e3b5421a103b4a4964f90565a3e0d4af`.
+- UNDETERMINED apos 3 rotacoes; 457,67s ate observar o desfecho.
+  Lideres com SUCCESS nao atingiram consenso.
+- **Resultado relevante:** codigos fixos apareceram em stdout de recibos de
+  validadores: OPCOES, CATALOGO, LIDER_SEM_RETORNO e ERRO_PAINEL_LOCAL_OU_TRANSPORTE.
+  Nao sao paineis gravados nem
+  justificativas juridicas livres. Nao inferir o campo preciso dos dois primeiros.
+- Um lider falhou na probatoria: RP02 esperava null e recebeu inteiro;
+  na correcao, RR01 falhou em coerencia de decisao/valor/partes/fontes.
+- Nenhum Termo aprovado. Manter como marco de observabilidade, nao de qualidade.
+- Acumulado ao final: 9 envios, sendo 1 deploy, 5 upgrades e 3 analises.
 
 ## v10.2.4-experimental — 2026-09-06 — sem consenso
 
