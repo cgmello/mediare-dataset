@@ -215,6 +215,14 @@ class CycleTests(unittest.TestCase):
         self.assertNotIn("sensitive", saved)
         self.assertIn(ADDR, saved)
 
+    def test_rpc_error_never_propagates_remote_message_or_data(self):
+        obj = {"error": {"code": -32000, "message": "internal sensitive value",
+                         "data": {"node_config": {"private_key": "remote-secret"}}}}
+        rendered = str(sc.safe_rpc_error(obj, "gen_call"))
+        self.assertEqual(rendered, "RPC_ERROR:-32000:gen_call")
+        self.assertNotIn("sensitive", rendered)
+        self.assertNotIn("remote-secret", rendered)
+
     def test_rollback_uses_recorded_snapshot_and_no_analysis(self):
         code = Path("ic_experimental.py").read_bytes()
         self.c.stage("milestone.py", code)

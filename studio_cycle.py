@@ -30,6 +30,13 @@ class CycleError(RuntimeError):
     pass
 
 
+def safe_rpc_error(obj, method):
+    """Nunca propagar message/data: o Studio pode incluir node_config sensivel."""
+    error = obj.get("error") if isinstance(obj, dict) else None
+    code = error.get("code", "UNKNOWN") if isinstance(error, dict) else "UNKNOWN"
+    return CycleError("RPC_ERROR:" + str(code) + ":" + str(method))
+
+
 def redact(data):
     """Recibos do Studio podem incluir segredos de node_config; nao persisti-los."""
     if isinstance(data, dict):
@@ -230,7 +237,7 @@ class Studio:
             r.raise_for_status()
             obj = r.json()
             if obj.get("error"):
-                raise CycleError("RPC_ERROR:" + str(obj["error"].get("code")) + ":" + str(method))
+                raise safe_rpc_error(obj, method)
             if method == "eth_sendRawTransaction" and self.after_send:
                 self.after_send(obj["result"])
             return obj

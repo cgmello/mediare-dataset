@@ -34,7 +34,45 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 - Paineis de **lideres** podem aparecer nos recibos de EP; paineis dos validadores
   nao sao gravados. Nao atribuir causa individual a voto Disagree sem diagnostico.
 
-## v13.0.0-experimental — 2026-09-06 — candidata de classificacao do catalogo
+### Seguranca operacional — 2026-09-06
+
+- Uma leitura diagnostica `gen_call` contra o Studio devolveu, dentro do objeto
+  JSON-RPC de erro, configuracao interna com `node_config.private_key` de um
+  validador. O objeto bruto foi acidentalmente exibido no registro da sessao.
+- A chave local da conta da campanha nao foi exibida. Nao houve teste, uso ou
+  publicacao Git da credencial retornada pelo Studio.
+- Recibos locais foram ressanitizados. O runner persiste redacao recursiva e
+  reduz erros RPC a `codigo+metodo`, descartando `message` e `data`; excecoes do
+  SDK nao imprimem traceback. Teste de regressao cobre explicitamente esse caso.
+- A credencial exposta nao e reproduzida neste changelog. Rotacao e correcao da
+  serializacao no servidor dependem do time do Studio.
+
+## v14.0.0-experimental — 2026-09-06 — revisao da mesma proposta pelo consenso
+
+Motivacao: a v13 ainda comparou propostas alternativas geradas separadamente;
+validadores divergiram sobretudo em auditoria, fontes, lacunas e estado da opcao.
+O usuario autorizou testar, em major separada, uma unica proposta do lider sendo
+revisada por conclusoes independentes dos validadores.
+
+- O lider continua gerando catalogo e as tres lentes. Cada validador ainda forma
+  catalogo, leitura probatoria, conclusao jurisprudencial e auditoria proprios.
+- A opcao jurisprudencial do lider e inserida pelo codigo no painel revisor. O
+  modelo nao pode gerar, copiar ou substituir a proposta recebida.
+- A conclusao do revisor pode contrariar a proposta. Incompatibilidade vira voto
+  contrario fora do retry de formato, evitando pressionar o modelo a concordar.
+- Catalogo divergente interrompe cedo. Citacoes do lider continuam verificadas
+  contra os quatro blocos resumidos; a auditora local pode exigir reformulacao.
+- Mantem tres lentes, um unico EP, cinco campos de storage e Termo deterministico,
+  sem confirmacao humana adicional no blockchain.
+- Risco deliberado: todos veem a proposta do lider, o que pode produzir ancoragem.
+  A independencia de conclusoes, fontes e auditoria e a mitigacao testada.
+- 148 testes locais aprovados, incluindo copia exata da proposta, rejeicao de
+  opcao devolvida pelo modelo, catalogo divergente, conclusao contraria, auditoria
+  contraria e nao propagacao de dados secretos de erros RPC.
+- Commits: `aeaeaba` (arquitetura) e commit de documentacao/hardening subsequente.
+  Tag planejada `ic-v14.0.0`; teste real pendente.
+
+## v13.0.0-experimental — 2026-09-06 — sem consenso
 
 Motivacao: na primeira rodada da v12, o lider chamou ressarcimento de reparos
 materiais de danos_morais; os validadores corretamente recusaram CATALOGO_NATUREZA.
@@ -45,10 +83,19 @@ materiais de danos_morais; os validadores corretamente recusaram CATALOGO_NATURE
   naturezas. Validacao estrutural recusa combinacoes incoerentes; pagar so admite
   categorias monetarias. Isso nao prova o merito da classificacao moral/material,
   que continua dependente do conteudo e do consenso.
-- Mantem comparador e geracao independente de propostas. A alternativa de
-  validadores revisarem a mesma proposta do lider foi submetida ao usuario;
-  nao foi implementada nesta candidata.
-- 142 testes locais aprovados. Tag planejada `ic-v13.0.0`; teste real pendente.
+- Manteve comparador e geracao independente de propostas. A alternativa de
+  validadores revisarem a mesma proposta do lider nao foi implementada aqui.
+- 142 testes locais aprovados. Tag `ic-v13.0.0`, commit `11e00dc`.
+- Snapshot SHA-256:
+  `bc5835f5bc33b3441849a7630e34d0aee55476ba5f7ee787ab7b305262c2ea57`.
+- Upgrade FINALIZED/SUCCESS:
+  `0x104ee52a48642b44848b1a122b2c18696b763d05667aa0665a078a3a9874576d`.
+- Analise 0005:
+  `0x919d95ea9fcd15cc149e49ca5e9482f4b0bcbd11c6b9aade8fa2e307f9f21a27`.
+- UNDETERMINED apos 3 rotacoes; 1.008,70s ate observar o desfecho. Nenhum
+  Termo aprovado. Diagnosticos apontaram divergencias em auditoria, lacuna
+  probatoria, fontes, status da conclusao, riscos e erro do comparador.
+- Acumulado: 13 envios (1 deploy, 7 upgrades, 5 analises).
 
 ## v12.0.0-experimental — 2026-09-06 — sem consenso; campos divergentes identificados
 
