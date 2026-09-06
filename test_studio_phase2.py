@@ -5,7 +5,7 @@ import unittest
 from types import SimpleNamespace
 
 from studio_cycle import CycleError, write_json
-from studio_phase2 import Phase2, classify_success, render_report
+from studio_phase2 import Phase2, classify_failure, classify_success, committed_success, render_report
 
 
 VERSION = "17.0.0-experimental"
@@ -70,6 +70,19 @@ class Phase2Tests(unittest.TestCase):
         self.assertIn("FORMULA_COM_ENVELOPE_ZERO_A_CEM", broad["motivos"])
         retained = classify_success(state_with("faixa", "retida_pela_auditoria"), valid)
         self.assertEqual(retained["label"], "INSATISFATORIO_CONTEUDO")
+
+    def test_finalized_leader_execution_does_not_override_disagree_consensus(self):
+        tx = {
+            "statusName": "FINALIZED",
+            "result_name": "MAJORITY_DISAGREE",
+            "consensus_data": {"leader_receipt": {"execution_result": "SUCCESS"}},
+        }
+        self.assertFalse(committed_success(tx))
+        impression = classify_failure({"result_name": "MAJORITY_DISAGREE"})
+        self.assertEqual(impression["motivos"], ["CONSENSO_MAJORITY_DISAGREE"])
+
+        tx["result_name"] = "MAJORITY_AGREE"
+        self.assertTrue(committed_success(tx))
 
     def test_uncertain_send_never_persists_remote_exception_message(self):
         with tempfile.TemporaryDirectory() as tmp:

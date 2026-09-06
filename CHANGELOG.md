@@ -21,8 +21,13 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
   apenas 0%–100% não infla o total satisfatório: fica para revisão.
 - O relatório é cumulativo e contém impressão por caso. O balanço deve ser publicado
   a cada 50 casos ou imediatamente diante de resultado relevante.
-- Quatro novos testes cobrem classificação, relatório, formato do ID e a garantia de
-  não persistir mensagem sensível em envio incerto. Suíte completa: 154 testes.
+- Cinco novos testes cobrem classificação, consenso, relatório, formato do ID e a
+  garantia de não persistir mensagem sensível em envio incerto. Suíte completa:
+  155 testes.
+- Primeiras execuções revelaram que `FINALIZED` e o `SUCCESS` do recibo do líder
+  podem coexistir com `MAJORITY_DISAGREE`; nesse caso o estado é revertido. A
+  campanha passou a exigir os três sinais juntos antes de ler o Termo, evitando
+  atribuir ao caso atual o estado preservado de uma análise anterior.
 
 ## Politica de marcos — 2026-09-06
 

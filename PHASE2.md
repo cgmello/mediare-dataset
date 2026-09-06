@@ -20,9 +20,9 @@ O contrato esperado é `0x7AC6360E36BEA2791FA45AFA2B18b277bD3a247B`.
 
 O relatório separa disponibilidade técnica de utilidade:
 
-- `SATISFATORIO_AUTOMATICO`: FINALIZED/SUCCESS, painel/Termo íntegros, ao menos
-  uma opção acionável, nenhuma opção retida e nenhuma fórmula cujo único envelope
-  seja 0%–100%.
+- `SATISFATORIO_AUTOMATICO`: FINALIZED/SUCCESS **e** MAJORITY_AGREE,
+  painel/Termo íntegros, ao menos uma opção acionável, nenhuma opção retida e
+  nenhuma fórmula cujo único envelope seja 0%–100%.
 - `REVISAR_UTILIDADE`: execução íntegra, mas opção aberta demais, somente
   diligência ou algum pedido sem opção.
 - `INSATISFATORIO_CONTEUDO`: painel aceito com cobertura inválida ou opção retida.
@@ -31,6 +31,11 @@ O relatório separa disponibilidade técnica de utilidade:
 Essa triagem é deliberadamente estrita e não certifica correção jurídica. Depois
 dos 500 casos, o alinhamento semântico com os gabaritos será avaliado fora do IC,
 sem contaminar as respostas geradas.
+
+`execution_result=SUCCESS` isolado descreve a execução do líder. Se o resultado
+do consenso for `MAJORITY_DISAGREE`, o estado é revertido mesmo quando a transação
+aparece como `FINALIZED`; o runner classifica esse caso como falha técnica e não
+lê o estado anterior como se pertencesse ao caso atual.
 
 ## Execução e retomada
 

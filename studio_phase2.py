@@ -151,10 +151,12 @@ def classify_success(state, evaluation):
 
 
 def classify_failure(tx_summary):
+    reason = ("CONSENSO_MAJORITY_DISAGREE" if tx_summary.get("result_name") == "MAJORITY_DISAGREE"
+              else "TRANSACAO_SEM_SUCESSO_CONFIRMADO")
     return {
         "label": "INSATISFATORIO_TECNICO",
         "satisfatorio": False,
-        "motivos": ["TRANSACAO_SEM_FINALIZED_SUCCESS"],
+        "motivos": [reason],
         "pedidos": 0,
         "status_pedidos": {},
         "tipos_opcao": {},
@@ -163,6 +165,11 @@ def classify_failure(tx_summary):
         "status_transacao": tx_summary.get("status"),
         "execucao": tx_summary.get("exec"),
     }
+
+
+def committed_success(tx):
+    """Execucao do lider so grava estado quando o consenso tambem aprova."""
+    return successful(tx) and tx.get("result_name") == "MAJORITY_AGREE"
 
 
 def result_files(out):
@@ -222,7 +229,7 @@ def render_report(out, manifest):
         "",
         "## Como interpretar",
         "",
-        "`SATISFATORIO_AUTOMATICO` exige FINALIZED/SUCCESS, Termo íntegro, painel completo, ao menos uma opção acionável, nenhuma opção retida e nenhuma fórmula cujo único envelope seja 0%–100%. `REVISAR_UTILIDADE` indica execução válida, mas utilidade ainda ampla ou dependente de diligência. A classificação não certifica acerto jurídico; os gabaritos não são enviados ao IC e o alinhamento semântico será revisto após a campanha.",
+        "`SATISFATORIO_AUTOMATICO` exige FINALIZED/SUCCESS com MAJORITY_AGREE, Termo íntegro, painel completo, ao menos uma opção acionável, nenhuma opção retida e nenhuma fórmula cujo único envelope seja 0%–100%. `REVISAR_UTILIDADE` indica execução válida, mas utilidade ainda ampla ou dependente de diligência. A classificação não certifica acerto jurídico; os gabaritos não são enviados ao IC e o alinhamento semântico será revisto após a campanha.",
         "",
         "## Totais",
         "",
@@ -416,7 +423,7 @@ class Phase2:
             "completed_at": row.get("terminal_at"),
             "benchmark_semantico": "PENDENTE_REVISAO_POSTERIOR",
         }
-        if successful(tx):
+        if committed_success(tx):
             state = decode_state(self.s.read(self.m["contract"], "get_case"))
             term = self.s.read(self.m["contract"], "get_termo_opcao")
             if term != state.get("termo_opcao"):
