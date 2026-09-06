@@ -276,7 +276,7 @@ class V102Tests(unittest.TestCase):
         termo = IC["_render_termo_opcao"]("0005", p)
         self.assertIn("Opcao retida", termo)
         self.assertIn("A premissa deve ser esclarecida.", termo)
-        self.assertIn("Pergunta — auditora", termo)
+        self.assertIn("Pergunta para a mediacao", termo)
         self.assertNotIn("Faixa condicional de negociacao:", termo)
 
     def test_auditoria_invalida_nao_passa(self):
@@ -293,9 +293,21 @@ class V102Tests(unittest.TestCase):
     def test_termo_mostra_fontes_premissas_e_efeito_das_respostas(self):
         termo = IC["_render_termo_opcao"]("0005", fixture())
         for texto in ("Premissa:", "Ressalva:", "Base discutida, nao divida:", "Trecho-base [DR]",
-                      "favoraveis: DR; contrarias: RR", "O que muda com a resposta:", "Nao somar as opcoes"):
+                      "Suporte indicado nos resumos:", "Controversia factual:",
+                      "O que muda com a resposta:", "Nao somar as opcoes"):
             self.assertIn(texto, termo)
         self.assertEqual(termo, IC["_render_termo_opcao"]("0005", fixture()))
+
+    def test_termo_nao_despeja_teses_juridicas_das_lentes(self):
+        p = fixture()
+        p["teses"][1]["pedidos"][0]["sustentado"] = "TESE JURIDICA NAO ANCORADA"
+        p["teses"][2]["pedidos"][0]["controvertido"] = "OUTRA TESE JURIDICA"
+        reconsolidar(p)
+        termo = IC["_render_termo_opcao"]("0005", p)
+        self.assertNotIn("TESE JURIDICA NAO ANCORADA", termo)
+        self.assertNotIn("OUTRA TESE JURIDICA", termo)
+        self.assertNotIn("Detalhamento das conclusoes", termo)
+        self.assertIn("painel JSON preserva as tres lentes", termo)
 
     def test_render_independe_da_ordem_das_chaves_no_transporte(self):
         p = fixture()
@@ -307,7 +319,7 @@ class V102Tests(unittest.TestCase):
         termo = IC["_render_termo_opcao"]("0005", p)
         self.assertNotIn("Formula condicional:", termo)
         self.assertNotIn("R$ 0,00", termo)
-        self.assertIn("pedido nao monetario", termo)
+        self.assertIn("opcao nao monetaria", termo)
 
     def test_alterar_consolidado_auditoria_ou_faixa_invalida_painel(self):
         for alterar in (

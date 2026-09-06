@@ -23,7 +23,7 @@ import re
 import hashlib
 
 
-VERSAO = "16.0.0-experimental"
+VERSAO = "17.0.0-experimental"
 DATASET_BASE = (
     "https://raw.githubusercontent.com/cgmello/mediare-dataset/"
     "6bf13ae581afd08415c54d0d825543c21e34bff5/casos/"
@@ -1438,20 +1438,25 @@ def _render_termo_opcao(case_id, painel):
                 linhas.append("Formula condicional: " + _brl(o["base"]["valor_centavos"]) + " x p / 100.")
                 linhas.append("Envelope matematico para discussao (p de 0% a 100%): " + _brl(f[0]) + " a " + _brl(f[1]) + ".")
                 linhas.append("Nao e faixa probatoria nem recomendacao de resultado: p continua a ser negociado pelas partes.")
-        for nome, _ in LENTES:
-            analise = item["analises"][nome]
-            linhas.append("")
-            linhas.extend(["Suporte — " + nome + ": " + analise["sustentado"],
-                           "Controversia — " + nome + ": " + analise["controvertido"]])
-            l = analise["lacuna"]
-            if l["dimensao"] != "nenhuma":
-                linhas.extend(["Pergunta — " + nome + " (" + l["dimensao"] + "): " + l["pergunta"],
-                               "O que muda com a resposta: " + l["impacto"]])
+            elif o["tipo"] == "nao_monetaria":
+                linhas.append("Faixa financeira: nao se aplica — opcao nao monetaria.")
+            elif o["tipo"] == "diligencia":
+                linhas.append("Faixa financeira: nao se aplica — diligencia previa.")
+        # O Termo e pauta de mediacao, nao laudo. A lente probatoria fornece a
+        # sintese factual mais adequada; as tres leituras integrais permanecem
+        # no painel JSON para auditoria, sem despejar teses juridicas no Termo.
+        analise = item["analises"]["probatoria"]
+        linhas.extend(["", "Suporte indicado nos resumos: " + analise["sustentado"],
+                       "Controversia factual: " + analise["controvertido"]])
+        l = analise["lacuna"]
+        if l["dimensao"] != "nenhuma":
+            linhas.extend(["Pergunta para a mediacao (" + l["dimensao"] + "): " + l["pergunta"],
+                           "O que muda com a resposta: " + l["impacto"]])
         linhas.append("")
-    detalhes = _render_pedidos_base(case_id, painel)
-    total = next(l for l in detalhes.splitlines() if l.startswith("Total das conclusoes"))
-    linhas.extend(["## Detalhamento das conclusoes (separado das opcoes)", "", total,
-                   detalhes.split("## Pedidos analisados", 1)[1]])
+    linhas.extend(["## Observacoes de uso", "",
+                   "O Termo organiza alternativas e perguntas; nao fixa responsabilidade ou valor devido.",
+                   "O painel JSON preserva as tres lentes completas para auditoria tecnica.",
+                   "O mediador pode discutir p e as diligencias com ambas as partes, sem tratar o envelope como recomendacao."])
     # Quebras explicitas no Markdown para os campos nao virarem um unico
     # paragrafo no Studio; nao alterar o conteudo dos comentarios.
     return "\n".join(

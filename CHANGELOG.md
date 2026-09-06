@@ -47,7 +47,23 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 - A credencial exposta nao e reproduzida neste changelog. Rotacao e correcao da
   serializacao no servidor dependem do time do Studio.
 
-## v16.0.0-experimental — 2026-09-06 — Termo orientado ao mediador
+## v17.0.0-experimental — 2026-09-06 — Termo conciso e factual
+
+Motivacao: a v16 resolveu a faixa e a leitura `passou/nao passou`, mas ainda
+despejava as tres lentes completas no Termo. A revisao encontrou repeticao e
+afirmacoes juridicas gerais que nao estavam ancoradas nos quatro resumos do caso.
+
+- O Termo passa a mostrar somente proposta, premissa, ressalva, auditoria, faixa,
+  suporte e controversia probatorios e uma pergunta factual com seu impacto.
+- As lentes jurisprudencial e auditora integrais continuam no painel JSON para
+  auditoria tecnica, mas deixam de ser apresentadas como laudo ao mediador.
+- Remove o longo detalhamento de conclusoes repetidas. Acrescenta observacoes de
+  uso e indica explicitamente ausencia de faixa para opcao nao monetaria ou
+  diligencia. Nao altera painel, prompts, consenso, EPs ou storage.
+- 150 testes locais aprovados, incluindo regressao que injeta tese juridica nas
+  lentes e confirma que ela nao aparece no Termo. Teste real pendente.
+
+## v16.0.0-experimental — 2026-09-06 — consenso; faixa pronta para discussao
 
 Motivacao: a v15 obteve consenso e gerou opcao util, mas o Termo ainda enfatizava
 `necessita informacao / valor indeterminado` e escondia a faixa discutivel dentro
@@ -63,8 +79,22 @@ da formula. O usuario ja havia apontado que esse resultado isolado era ruim.
 - A faixa de discussao e campo derivado distinto de `faixa_centavos`; conclusao
   sobre valor devido permanece indeterminada. Opcao retida nao recebe envelope.
 - Nao altera prompts, criterio de consenso, numero de EPs ou storage. Corrige a
-  apresentacao e inclui a faixa no relatorio do runner. 149 testes aprovados;
-  teste real pendente.
+  apresentacao e inclui a faixa no relatorio do runner. 149 testes aprovados.
+- Tag `ic-v16.0.0`, commit `c054968`. Snapshot SHA-256:
+  `ae59082b996d7224164b0ca8b42d094a9ab782d9f9ab201b3a1541411bf88ad7`.
+- Upgrade FINALIZED/SUCCESS em 48,17s:
+  `0x269de5abcaf6da23f92583ec37c2288ebaa431708fa2d6741981e6f22808c634`.
+- Analise 0005 FINALIZED/SUCCESS/MAJORITY_AGREE em 242,79s, com uma rotacao:
+  `0x5c45edaa88600c36acf71d7c888e72526c6c851aff4c3b36c0297282d8dfd834`.
+- A primeira rodada foi corretamente recusada por CATALOGO_QUANTIDADE. Na
+  segunda, tres revisores aprovaram e dois pediram reformulacao; quorum obtido.
+- Termo confirmou RP01 `PASSOU PARA DISCUSSAO`, formula sobre R$ 64.734,88 e
+  envelope R$ 0,00 a R$ 64.734,88; RP02 passou como diligencia. Nenhuma das duas
+  virou conclusao definitiva de responsabilidade ou valor devido.
+- Revisao de utilidade: o resumo resolve a queixa original, mas o detalhamento
+  das tres lentes e longo e pode expor teses juridicas gerais nao ancoradas nos
+  resumos. Preservar v16 como marco funcional e simplificar o Termo na v17.
+- Acumulado: 19 envios (1 deploy, 10 upgrades, 8 analises).
 
 ## v15.0.0-experimental — 2026-09-06 — consenso obtido; revisao de utilidade
 
