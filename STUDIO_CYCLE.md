@@ -1,4 +1,4 @@
-# Ciclo supervisionado de testes v10.x.y
+# Ciclo supervisionado de testes e marcos major
 
 `studio_runner.py` ja acessa o Studio pelo SDK, mas e um runner de lotes da v9:
 nao instala revisoes nem faz upgrade. `studio_cycle.py` executa uma rodada por
@@ -39,6 +39,19 @@ nunca a chave privada na linha de comando. Nao commitar `res_*`.
 .venv/bin/python studio_cycle.py run --key-file res_v9/conta.key --out res_cycle_v10_2 --source ic_v10_2.py --execute
 .venv/bin/python studio_cycle.py resume --key-file res_v9/conta.key --out res_cycle_v10_2 --execute
 ```
+
+Desde a politica de marcos major, use `--source ic_experimental.py` para a
+candidata atual. `ic_v10_2.py` preserva a v10.2.4. O historico para relatorio
+esta em [CHANGELOG.md](CHANGELOG.md); tags `ic-vM.x.y` preservam marcos no Git.
+Para restaurar somente o codigo de um snapshot ja registrado:
+
+```sh
+.venv/bin/python studio_cycle.py rollback --key-file res_v9/conta.key --out res_cycle_v10_2 --version 10.2.4-experimental --reason 'Descrever a regressao observada' --execute
+```
+
+Nao executamos esse exemplo automaticamente. Rollback tambem respeita limite,
+prazo, pausa e autenticacao. Nao desfaz transacoes nem restaura estado/Termo antigo.
+`resume` tambem retoma um rollback interrompido, sem novo envio.
 
 `init --contract ENDERECO` reutiliza somente uma instancia atualizavel e
 autorizada para a conta local. `inspect` e somente leitura.
@@ -104,7 +117,7 @@ Cada correcao deve ter revisao propria, testes de regressao e commit descritivo.
 Um caso aprovado nao demonstra generalizacao: ampliar casos e uma etapa posterior.
 
 ```sh
-.venv/bin/python -m unittest test_ic_v10_1 test_ic_v10_2 test_studio_cycle
+.venv/bin/python -m unittest test_ic_v10_1 test_ic_v10_2 test_ic_experimental test_studio_cycle
 ```
 
 ## Registro da campanha de 06/09/2026

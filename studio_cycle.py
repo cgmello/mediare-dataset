@@ -69,8 +69,10 @@ def version_of(code):
     versions = [n.value.value for n in tree.body if isinstance(n, ast.Assign)
                 and any(isinstance(t, ast.Name) and t.id == "VERSAO" for t in n.targets)
                 and isinstance(n.value, ast.Constant)]
-    if len(versions) != 1 or not isinstance(versions[0], str) or not re.fullmatch(r"10\.\d+\.\d+-experimental", versions[0]):
-        raise CycleError("O candidato deve declarar VERSAO=10.x.y-experimental literal")
+    if (len(versions) != 1 or not isinstance(versions[0], str)
+            or not re.fullmatch(r"[1-9]\d*\.\d+\.\d+-experimental", versions[0])
+            or int(versions[0].split('.')[0]) < 10):
+        raise CycleError("O candidato deve declarar VERSAO=M.x.y-experimental literal, major >= 10")
     classes = [n for n in tree.body if isinstance(n, ast.ClassDef) and any(
         isinstance(b, ast.Attribute) and b.attr == "Contract" for b in n.bases)]
     if len(classes) != 1:
@@ -108,8 +110,14 @@ def execution(tx):
 def summary(tx):
     lr = final_receipt(tx)
     errors = []
+    diagnostics = []
     def collect(obj):
         if isinstance(obj, dict):
+            g = obj.get("genvm_result") or {}
+            if isinstance(g, dict):
+                codes = re.findall(r"(?m)^MEDIARE_DIAG:([A-Z_]+)$", g.get("stdout") or "")
+                if codes:
+                    diagnostics.append({"mode": obj.get("mode"), "vote": obj.get("vote"), "codes": codes})
             if obj.get("execution_result") == "ERROR":
                 raw = obj.get("result")
                 if isinstance(raw, str):
@@ -130,6 +138,7 @@ def summary(tx):
             "rotacoes": tx.get("rotation_count"), "rodadas": tx.get("num_of_rounds"),
             "erros": sorted(set(errors)), "gas_usado": lr.get("gas_used"),
             "execution_stats": lr.get("execution_stats"),
+            "diagnosticos": diagnostics,
             "custo_monetario": None}  # nao inventar conversao de gas/tokens em dinheiro
 
 
@@ -376,6 +385,8 @@ class Cycle:
     def run(self, source):
         if not self.m or not self.m.get("contract"):
             raise CycleError("Inicialize/retome o bootstrap primeiro")
+        if self.unfinished_restore():
+            raise CycleError("Rollback sem verificacao final; use resume")
         code = Path(source).read_bytes()
         version, digest = version_of(code), sha(code)
         rows = [v for v in self.m["versions"] if v["version"] == version]
@@ -443,11 +454,56 @@ class Cycle:
             raise CycleError("Ciclo inexistente")
         if not self.m.get("contract"):
             self.finish_deploy(self.operation("deploy"))
+        restore = self.unfinished_restore()
+        if restore:
+            self.finish_rollback(restore)
+            return
         for row in self.m["versions"]:
             if not row.get("finished"):
                 self.continue_round(row)
                 return
         print("Nenhuma rodada incompleta; preparar nova revisao e usar run.")
+
+    def unfinished_restore(self):
+        if not self.m:
+            return None
+        return next((o for o in self.m["ops"] if o["kind"] == "rollback" and not o.get("restore_result")), None)
+
+    def rollback(self, version, reason):
+        if (not self.m or not self.m.get("contract") or self.unfinished_restore()
+                or any(o["state"] != "done" for o in self.m["ops"])
+                or any(not v.get("finished") for v in self.m["versions"])):
+            raise CycleError("Finalize/retome a rodada atual antes de rollback")
+        rows = [v for v in self.m["versions"] if v["version"] == version]
+        if len(rows) != 1 or not reason.strip():
+            raise CycleError("Rollback exige versao registrada e motivo")
+        row = rows[0]
+        code = (self.out / row["snapshot"]).read_bytes()
+        if sha(code) != row["sha256"] or version_of(code) != version:
+            raise CycleError("Snapshot de rollback nao corresponde ao registro")
+        self.check_budget()
+        self.check_upgrade(self.m["contract"])
+        # ID proprio: voltar duas vezes ao mesmo marco sao duas operacoes,
+        # mas retomar uma operacao interrompida nunca e um novo envio.
+        op = self.operation("rollback", version + "#" + str(len(self.m["ops"]) + 1))
+        op.update(target_version=version, sha256=row["sha256"], snapshot=row["snapshot"], reason=reason)
+        self.save()
+        self.submit(op, lambda: self.s.client.write_contract(address=self.m["contract"], function_name="upgrade",
+                    args=[code], account=self.s.account))
+        self.finish_rollback(op)
+
+    def finish_rollback(self, op):
+        if not successful(self.wait(op)):
+            op["restore_result"] = "FAILED"
+            self.save()
+            raise CycleError("Rollback nao confirmado; conferir recibo")
+        addr = self.m["contract"]
+        if self.s.read(addr, "get_version") != op["target_version"] or self.s.read(addr, "get_code_hash") != op["sha256"]:
+            raise CycleError("Rollback sem identidade remota confirmada; somente retomar consultas")
+        op["restore_result"] = "VERIFIED"
+        self.save()
+        print(json.dumps({"rollback": op["target_version"], "hash": op["hash"],
+                          "status": "VERIFIED", "aviso": "Codigo restaurado; estado/termo anterior nao e desfeito"}), flush=True)
 
     def skip(self, reason):
         """Encerrar revisao antes da analise, somente sem transacao pendente."""
@@ -466,11 +522,12 @@ class Cycle:
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("action", choices=("inspect", "init", "run", "resume", "skip"))
+    ap.add_argument("action", choices=("inspect", "init", "run", "resume", "skip", "rollback"))
     ap.add_argument("--key-file", required=True, help="arquivo de chave EXISTENTE, nunca valor da chave")
     ap.add_argument("--out", default="res_cycle_v10")
     ap.add_argument("--contract")
     ap.add_argument("--source")
+    ap.add_argument("--version", help="versao exata registrada para rollback")
     ap.add_argument("--reason", help="justificativa obrigatoria de skip, registrada no journal")
     ap.add_argument("--max-versions", type=int)
     ap.add_argument("--case-id", default="5")
@@ -494,6 +551,8 @@ def main():
         ap.error("run exige --source")
     if args.action == "skip" and not args.reason:
         ap.error("skip exige --reason")
+    if args.action == "rollback" and (not args.version or not args.reason):
+        ap.error("rollback exige --version e --reason")
     os.umask(0o077)
     studio = Studio(args.key_file)
     if args.action == "inspect":
@@ -517,6 +576,8 @@ def main():
             c.run(args.source)
         elif args.action == "skip":
             c.skip(args.reason)
+        elif args.action == "rollback":
+            c.rollback(args.version, args.reason)
         else:
             c.resume()
 

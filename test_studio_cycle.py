@@ -9,7 +9,7 @@ import unittest
 from unittest.mock import Mock, patch
 
 import studio_cycle as sc
-from test_ic_v10_2 import fixture, IC
+from test_ic_experimental import fixture, IC
 
 
 HASH = "0x" + "1" * 64
@@ -104,7 +104,7 @@ class CycleTests(unittest.TestCase):
             self.c.operation("upgrade", "10.2.1-experimental")
 
     def test_snapshot_and_version_contract(self):
-        code = Path("ic_v10_2.py").read_bytes()
+        code = Path("ic_experimental.py").read_bytes()
         self.assertEqual(sc.version_of(code), IC["VERSAO"])
         self.c.stage("candidate.py", code)
         with self.assertRaises(sc.CycleError):
@@ -117,10 +117,10 @@ class CycleTests(unittest.TestCase):
     def test_version_limit_before_network(self):
         self.c.m["versions"] = [{"version": "10.1.9-experimental", "finished": True}]
         with self.assertRaisesRegex(sc.CycleError, "Limite de versoes"):
-            self.c.run("ic_v10_2.py")
+            self.c.run("ic_experimental.py")
 
     def test_mismatched_remote_hash_prevents_analysis(self):
-        code = Path("ic_v10_2.py").read_bytes()
+        code = Path("ic_experimental.py").read_bytes()
         row = {"version": IC["VERSAO"], "snapshot": "v.py", "sha256": sc.sha(code)}
         self.c.stage("v.py", code)
         op = self.c.operation("upgrade", IC["VERSAO"])
@@ -147,6 +147,12 @@ class CycleTests(unittest.TestCase):
         self.assertEqual(sc.summary(tx)["erros"], ["LLM_INVALID_PANEL"])
         self.assertIsNone(sc.summary(tx)["custo_monetario"])
 
+    def test_extract_only_fixed_diagnostic_format(self):
+        tx = receipt()
+        tx["consensus_history"] = {"validator_results": [{"mode": "validator", "vote": "disagree",
+            "genvm_result": {"stdout": "texto privado\nMEDIARE_DIAG:OPCOES\nMEDIARE_DIAG:valor privado\n"}}]}
+        self.assertEqual(sc.summary(tx)["diagnosticos"], [{"mode": "validator", "vote": "disagree", "codes": ["OPCOES"]}])
+
     def test_account_binding(self):
         self.studio.account.address = "0x" + "3" * 40
         with self.assertRaises(sc.CycleError):
@@ -166,7 +172,7 @@ class CycleTests(unittest.TestCase):
         gl = SimpleNamespace(Contract=object, public=SimpleNamespace(write=lambda f: f, view=lambda f: f),
                              storage=SimpleNamespace(Root=SimpleNamespace(get=lambda: root)),
                              message=SimpleNamespace(sender_address=ADDR), vm=SimpleNamespace(UserError=ValueError))
-        for source, name in (("studio_bootstrap.py", "MediareStudioBootstrap"), ("ic_v10_2.py", "MediareCommitteeV102")):
+        for source, name in (("studio_bootstrap.py", "MediareStudioBootstrap"), ("ic_experimental.py", "MediareCommitteeExperimental")):
             ns = {"gl": gl}
             exec(compile(Path(source).read_text().replace("from genlayer import *", ""), source, "exec"), ns)
             c = ns[name]()
@@ -205,6 +211,28 @@ class CycleTests(unittest.TestCase):
         saved = (Path(self.temp.name) / "secret-test.json").read_text()
         self.assertNotIn("sensitive", saved)
         self.assertIn(ADDR, saved)
+
+    def test_rollback_uses_recorded_snapshot_and_no_analysis(self):
+        code = Path("ic_experimental.py").read_bytes()
+        self.c.stage("milestone.py", code)
+        self.c.m["versions"] = [{"version": IC["VERSAO"], "snapshot": "milestone.py", "sha256": sc.sha(code), "finished": True}]
+        self.c.check_upgrade = Mock()
+        self.studio.client = SimpleNamespace(write_contract=Mock(return_value=HASH))
+        self.studio.read = Mock(side_effect=[IC["VERSAO"], sc.sha(code)])
+        self.c.rollback(IC["VERSAO"], "Regressao medida na revisao posterior")
+        self.studio.client.write_contract.assert_called_once()
+        call = self.studio.client.write_contract.call_args.kwargs
+        self.assertEqual(call["function_name"], "upgrade")
+        self.assertEqual(call["args"], [code])
+        self.assertEqual(self.c.m["ops"][0]["restore_result"], "VERIFIED")
+        self.assertEqual(len(self.c.m["ops"]), 1)
+
+    def test_rollback_refuses_pending_or_unregistered(self):
+        with self.assertRaises(sc.CycleError):
+            self.c.rollback("11.0.0-experimental", "x")
+        self.c.operation("analyze_case", "11.0.0-experimental")
+        with self.assertRaises(sc.CycleError):
+            self.c.rollback("11.0.0-experimental", "x")
 
 
 if __name__ == "__main__":

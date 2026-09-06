@@ -20,6 +20,7 @@ Verify integrity by comparing the content's SHA-256 against `manifest.json`.
 
 For versioned SDK tests, upgrades and resumable runs on Studio, see
 [STUDIO_CYCLE.md](STUDIO_CYCLE.md) (Portuguese).
+Milestones, failed experiments and report notes: [CHANGELOG.md](CHANGELOG.md).
 
 ## Notes
 
