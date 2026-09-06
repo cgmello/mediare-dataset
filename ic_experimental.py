@@ -23,7 +23,7 @@ import re
 import hashlib
 
 
-VERSAO = "12.0.0-experimental"
+VERSAO = "13.0.0-experimental"
 DATASET_BASE = (
     "https://raw.githubusercontent.com/cgmello/mediare-dataset/"
     "6bf13ae581afd08415c54d0d825543c21e34bff5/casos/"
@@ -146,6 +146,14 @@ def _lista_fontes_valida(xs) -> bool:
     )
 
 
+def _natureza_compativel(p) -> bool:
+    correspondencia = {"fazer": "obrigacao_fazer", "nao_fazer": "obrigacao_nao_fazer", "declarar": "declaratoria"}
+    modalidade = p.get("modalidade")
+    if modalidade in correspondencia:
+        return p.get("natureza") == correspondencia[modalidade]
+    return modalidade == "pagar" and p.get("natureza") in ("principal", "multa", "danos_morais", "outros")
+
+
 def _catalogo_valido(obj) -> bool:
     if not isinstance(obj, dict) or not isinstance(obj.get("pedidos"), list):
         return False
@@ -168,6 +176,8 @@ def _catalogo_valido(obj) -> bool:
         if p.get("modalidade") not in MODALIDADES:
             return False
         if p.get("natureza") not in NATUREZAS:
+            return False
+        if not _natureza_compativel(p):
             return False
         if "valor_pedido_centavos" not in p or not _valor_valido(p.get("valor_pedido_centavos"), aceita_nulo=True):
             return False
@@ -301,6 +311,17 @@ def _prompt_catalogo(corpo: str) -> str:
         "modalidade: pagar|fazer|nao_fazer|declarar.\n"
         "natureza: principal|multa|danos_morais|outros|obrigacao_fazer|"
         "obrigacao_nao_fazer|declaratoria.\n"
+        "SIGNIFICADO DAS CATEGORIAS: principal inclui cobranca, restituicao e "
+        "ressarcimento de despesas, custos de reparo e danos MATERIAIS. Danos "
+        "materiais NAO sao danos_morais. danos_morais e somente compensacao "
+        "extrapatrimonial expressamente pedida (honra, dignidade, sofrimento etc.), "
+        "nunca o custo de recompor um bem. A palavra indenizacao sozinha nao "
+        "autoriza classificar como moral. multa e penalidade pecuniaria pedida. "
+        "outros e residual monetario: nao o use quando uma categoria especifica se aplica.\n"
+        "CORRESPONDENCIA OBRIGATORIA: modalidade=fazer implica natureza=obrigacao_fazer; "
+        "nao_fazer implica obrigacao_nao_fazer; declarar implica declaratoria. "
+        "Para pagar, natureza e principal, multa, danos_morais ou outros. "
+        "Pedido de declarar responsabilidade concreta nao vira obrigacao de fazer.\n"
         "Retorne objeto JSON com uma unica chave 'pedidos'. Cada item deve ter "
         "exatamente: id, autor, contra, modalidade, natureza, "
         "valor_pedido_centavos, descricao. autor/contra: requerente|requerido.\n\n"
@@ -417,6 +438,8 @@ def _erro_catalogo(obj) -> str:
             return prefixo + "modalidade:ENUM_INVALIDO"
         if p.get("natureza") not in NATUREZAS:
             return prefixo + "natureza:ENUM_INVALIDO"
+        if not _natureza_compativel(p):
+            return prefixo + "natureza:INCOMPATIVEL_COM_MODALIDADE"
         if "valor_pedido_centavos" not in p or not _valor_valido(p.get("valor_pedido_centavos"), aceita_nulo=True):
             return prefixo + "valor_pedido_centavos:INTEIRO_OU_NULL"
         if not _texto_curto(p.get("descricao"), 400):

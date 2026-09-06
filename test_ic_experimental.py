@@ -114,6 +114,22 @@ def contrato_simulado(respostas, validar=True, alterar_lider=None, docs=DOCS):
 
 
 class V102Tests(unittest.TestCase):
+    def test_natureza_compativel_e_distincao_material_moral_no_prompt(self):
+        cat = fixture()["catalogo"]
+        p = cat["pedidos"][0]
+        for modalidade, natureza in (("fazer", "obrigacao_fazer"), ("nao_fazer", "obrigacao_nao_fazer"), ("declarar", "declaratoria")):
+            p.update(modalidade=modalidade, natureza=natureza, valor_pedido_centavos=None)
+            self.assertEqual(IC["_erro_catalogo"](cat), "")
+            self.assertTrue(IC["_catalogo_valido"](cat))
+            p["natureza"] = "principal"
+            self.assertIn("INCOMPATIVEL_COM_MODALIDADE", IC["_erro_catalogo"](cat))
+            self.assertFalse(IC["_catalogo_valido"](cat))
+        p.update(modalidade="pagar", natureza="danos_morais", valor_pedido_centavos=10000)
+        self.assertTrue(IC["_catalogo_valido"](cat))  # merito continua sujeito as fontes/consenso
+        prompt = IC["_prompt_catalogo"](CORPO)
+        self.assertIn("materiais NAO sao danos_morais", prompt)
+        self.assertIn("CORRESPONDENCIA OBRIGATORIA", prompt)
+
     def test_diagnostico_identifica_campo_sem_mudar_comparacao(self):
         a, b = fixture(), fixture()
         opcao(b)["fontes"] = ["DR"]

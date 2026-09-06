@@ -34,7 +34,23 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 - Paineis de **lideres** podem aparecer nos recibos de EP; paineis dos validadores
   nao sao gravados. Nao atribuir causa individual a voto Disagree sem diagnostico.
 
-## v12.0.0-experimental — 2026-09-06 — candidata de diagnostico por campo
+## v13.0.0-experimental — 2026-09-06 — candidata de classificacao do catalogo
+
+Motivacao: na primeira rodada da v12, o lider chamou ressarcimento de reparos
+materiais de danos_morais; os validadores corretamente recusaram CATALOGO_NATUREZA.
+
+- Explicita principal como cobranca/restituicao/ressarcimento material e reserva
+  danos_morais a compensacao extrapatrimonial expressamente pedida.
+- Define correspondencia obrigatoria entre fazer/nao_fazer/declarar e suas
+  naturezas. Validacao estrutural recusa combinacoes incoerentes; pagar so admite
+  categorias monetarias. Isso nao prova o merito da classificacao moral/material,
+  que continua dependente do conteudo e do consenso.
+- Mantem comparador e geracao independente de propostas. A alternativa de
+  validadores revisarem a mesma proposta do lider foi submetida ao usuario;
+  nao foi implementada nesta candidata.
+- 142 testes locais aprovados. Tag planejada `ic-v13.0.0`; teste real pendente.
+
+## v12.0.0-experimental — 2026-09-06 — sem consenso; campos divergentes identificados
 
 Motivacao: a v11 confirmou que o Studio preserva os codigos fixos de stdout,
 mas os grupos CATALOGO/OPCOES ainda nao identificavam o campo divergente.
@@ -49,7 +65,18 @@ mas os grupos CATALOGO/OPCOES ainda nao identificavam o campo divergente.
   contagem exibida no chat usava a coleta recursiva e nao deve ser usada como
   numero de validadores distintos no relatorio; os tipos de erro eram reais.
 - 141 testes locais aprovados, incluindo deteccao do campo e espelhos de recibos.
-- Tag planejada: `ic-v12.0.0`. Resultado on-chain pendente.
+- Tag publicada: `ic-v12.0.0`, commit `1d650d6`.
+- Snapshot SHA-256: `acc21a1c2c8104eff129ed67563d98bf17e0b2d6c0fdaea0891686fd99a45bb1`.
+- Upgrade FINALIZED/SUCCESS:
+  `0x1879ec607c28c3f78727602686296046318db70427a59a0fd1f0a2ffb739a2e8`.
+- Analise 0005: `0x40d84230b072db2e49285acc2144ac524299dc267268e8b3ed600e8513a840c4`.
+- UNDETERMINED apos 3 rotacoes; 494,61s ate observar o desfecho. Sem Termo aprovado.
+- Diagnosticos confirmaram CATALOGO_NATUREZA, OPCOES_RISCOS,
+  OPCOES_ESTADO_AUDITORIA e OPCOES_FONTES. A primeira rejeicao protegeu contra
+  erro real do lider (reparo material rotulado como moral), nao mero formato.
+- Outros campos de auditoria/fontes divergiram em rodadas posteriores; os
+  codigos nao mostram o conteudo integral das propostas locais dos validadores.
+- Acumulado: 11 envios (1 deploy, 6 upgrades, 4 analises).
 
 ## v11.0.0-experimental — 2026-09-06 — sem consenso; diagnosticos confirmados
 
