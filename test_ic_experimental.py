@@ -74,6 +74,13 @@ def opcao(p):
     return p["teses"][1]["pedidos"][0]["opcao"]
 
 
+def respostas_revisor(p):
+    respostas = copy.deepcopy([p["catalogo"]] + p["teses"])
+    for d in respostas[2]["pedidos"]:
+        del d["opcao"]
+    return respostas
+
+
 def erro_opcao(p, corpo=CORPO):
     return IC["_erro_opcao"](opcao(p), p["catalogo"]["pedidos"][0], p["teses"][1]["pedidos"][0], corpo)
 
@@ -354,7 +361,7 @@ class V102Tests(unittest.TestCase):
 
     def test_pipeline_real_do_wrapper_simulado_um_ep_e_getters(self):
         p = fixture()
-        respostas = copy.deepcopy(([p["catalogo"]] + p["teses"]) * 2)
+        respostas = copy.deepcopy([p["catalogo"]] + p["teses"]) + respostas_revisor(p)
         contrato, c = contrato_simulado(respostas)
         contrato.analyze_case("5")
         res = json.loads(contrato.get_case())
@@ -383,9 +390,9 @@ class V102Tests(unittest.TestCase):
 
     def test_wrapper_consulta_semantica_quando_redacao_local_muda(self):
         a, b = fixture(), fixture()
-        opcao(b)["ressalva"] = "Evitar somar pedidos sobrepostos para o mesmo reparo."
+        b["teses"][1]["pedidos"][0]["comentario"] = "O orcamento consta no resumo, mas a responsabilidade proporcional e controvertida."
         reconsolidar(b)
-        respostas = copy.deepcopy([a["catalogo"]] + a["teses"] + [b["catalogo"]] + b["teses"])
+        respostas = copy.deepcopy([a["catalogo"]] + a["teses"]) + respostas_revisor(b)
         respostas.append({"equivalentes": True, "motivo": "Mesmas condicoes, redacao diferente."})
         contrato, c = contrato_simulado(respostas)
         contrato.analyze_case("5")
@@ -398,15 +405,71 @@ class V102Tests(unittest.TestCase):
     def test_erro_semantico_ou_false_nao_grava_estado(self):
         for resposta in ({"equivalentes": False, "motivo": "Premissa diferente."}, {"equivalentes": "sim", "motivo": "x"}):
             a, b = fixture(), fixture()
-            opcao(b)["premissa"] = "Exige que o requerido reconheca toda a responsabilidade."
+            b["teses"][1]["pedidos"][0]["sustentado"] = "O requerido reconheceu toda a responsabilidade."
             reconsolidar(b)
-            respostas = copy.deepcopy([a["catalogo"]] + a["teses"] + [b["catalogo"]] + b["teses"] + [resposta, resposta])
+            respostas = copy.deepcopy([a["catalogo"]] + a["teses"]) + respostas_revisor(b) + [resposta, resposta]
             contrato, c = contrato_simulado(respostas)
             with self.assertRaisesRegex(RuntimeError, "DISAGREE_SIMULADO"):
                 contrato.analyze_case("5")
             self.assertEqual(contrato.get_termo_opcao(), "")
             self.assertEqual(contrato.status, "vazio")
             self.assertLessEqual(c["llm"], 10)
+
+    def test_revisor_anexa_proposta_exata_sem_mutar_lider(self):
+        p = fixture()
+        original = copy.deepcopy(p)
+        respostas = respostas_revisor(p)
+        prompts = []
+        def pedir(prompt, **kwargs):
+            prompts.append(prompt)
+            return json.dumps(respostas.pop(0))
+        local = IC["_painel_revisor_de"](pedir, CORPO, p)
+        self.assertEqual(opcao(local), opcao(p))
+        self.assertEqual(p, original)
+        opcao(local)["premissa"] = "alterada localmente"
+        self.assertEqual(p, original)
+        self.assertIn("Nao gere, copie nem devolva opcao", prompts[2])
+        self.assertIn("<opcoes_lider>", prompts[2])
+        self.assertNotIn("proponha UMA opcao", prompts[2])
+        self.assertIn("DADOS NAO CONFIAVEIS", prompts[2])
+        self.assertEqual(len(prompts), 4)
+
+    def test_revisor_recusa_opcao_devolvida_pelo_modelo(self):
+        p = fixture()
+        self.assertIn("CAMPOS_REVISORA_INVALIDOS", IC["_erro_tese_revisora"](p["teses"][1], p["catalogo"]))
+        self.assertEqual(IC["_erro_tese_revisora"](respostas_revisor(p)[2], p["catalogo"]), "")
+
+    def test_revisor_catalogo_divergente_interrompe_antes_das_lentes(self):
+        p = fixture()
+        cat = copy.deepcopy(p["catalogo"])
+        cat["pedidos"][0]["natureza"] = "danos_morais"
+        respostas = copy.deepcopy([p["catalogo"]] + p["teses"]) + [cat]
+        contrato, c = contrato_simulado(respostas)
+        with self.assertRaisesRegex(RuntimeError, "DISAGREE_SIMULADO"):
+            contrato.analyze_case("5")
+        self.assertEqual(c["llm"], 5)
+        self.assertEqual(contrato.get_termo_opcao(), "")
+
+    def test_revisor_conclusao_incompativel_nao_sofre_retry_de_merito(self):
+        p = fixture()
+        local = respostas_revisor(p)
+        local[2]["pedidos"][0]["decisao"] = "fora_de_escopo"
+        respostas = copy.deepcopy([p["catalogo"]] + p["teses"]) + local[:3]
+        contrato, c = contrato_simulado(respostas)
+        with self.assertRaisesRegex(RuntimeError, "DISAGREE_SIMULADO"):
+            contrato.analyze_case("5")
+        self.assertEqual(c["llm"], 7)
+        self.assertEqual(respostas, [])
+        self.assertEqual(contrato.get_termo_opcao(), "")
+
+    def test_auditora_local_pode_rejeitar_mesma_proposta(self):
+        p = fixture()
+        respostas = copy.deepcopy([p["catalogo"]] + p["teses"]) + respostas_revisor(fixture(bloqueada=True))
+        contrato, c = contrato_simulado(respostas)
+        with self.assertRaisesRegex(RuntimeError, "DISAGREE_SIMULADO"):
+            contrato.analyze_case("5")
+        self.assertEqual(c["llm"], 8)
+        self.assertEqual(contrato.get_termo_opcao(), "")
 
     def test_retry_da_opcao_nao_muda_merito_e_nao_expoe_fonte(self):
         p = fixture()
