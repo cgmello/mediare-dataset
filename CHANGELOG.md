@@ -37,6 +37,11 @@ nas lentes jurisprudencial e probatória.
   v17. Gates e regra de parada a cada 50 estão em `V18_CANARY.md`.
 - 163 testes locais aprovados. Snapshot SHA-256:
   `945c8e33eafec4c37731070d1285321455f44dbc6184e7329be5c6a372e73175`.
+- Upgrade `FINALIZED/SUCCESS`, com versão e hash remoto verificados e sem análise
+  adicional: `0x3ae67ce12e7efbf2ddfae7416aab2180a7f0079d8a8e97c17a5e5fd9b364db81`.
+- Primeiro lote v18 inicializado com exatamente os casos 0001–0050. Caso 0001
+  enviado em `0x00a55358090b2a0257302cb6de28723c3ceaedf788adf92a581d03e1f3f43207`;
+  runner serial ativo com intervalo mínimo de 15 segundos e parada após 50.
 
 ## Fase 2A — 2026-09-07 — baseline v17 encerrado antecipadamente
 
@@ -47,7 +52,10 @@ nas lentes jurisprudencial e probatória.
   e 4 na auditora. Diagnósticos agregados incluíram `LIDER_SEM_RETORNO` 326,
   `REVISOR_CATALOGO` 166 e `CATALOGO_QUANTIDADE` 123 ocorrências.
 - O caso 0051 já estava transmitido no momento da parada e foi somente acompanhado
-  até o término. Nenhum caso a partir do 0052 foi enviado.
+  até o término: também terminou `UNDETERMINED/ERROR`, elevando o fechamento para
+  46 falhas técnicas em 51 processados. Nenhum caso a partir do 0052 foi enviado.
+- O manifesto foi encerrado de forma persistente após o caso 0051; 449 itens
+  permaneceram na fila histórica e o runner recusa retomada dessa campanha.
 - O relatório de causa, exemplos e hipótese seguinte está em `PHASE2A_REPORT.md`.
 - A campanha avança em blocos de 50 e sempre para para reavaliação.
 

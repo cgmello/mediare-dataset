@@ -8,8 +8,10 @@ A campanha da `v17.0.0-experimental` foi encerrada antecipadamente. Nos primeiro
 sem uma hipótese razoável de melhora dentro da mesma versão.
 
 O caso 0051 já havia sido enviado quando a decisão de parada foi tomada. Ele foi
-apenas acompanhado até o estado terminal, sem envio do caso 0052. O manifesto
-local registra o encerramento e impede retomada acidental.
+apenas acompanhado até o estado terminal, sem envio do caso 0052. Também terminou
+`UNDETERMINED/ERROR`; o fechamento definitivo ficou em 51 processados, com 46
+falhas técnicas, 4 casos para revisão de utilidade e 1 problema de conteúdo. O
+manifesto local registra o encerramento e impede retomada acidental.
 
 ## Resultado que motivou a parada
 
