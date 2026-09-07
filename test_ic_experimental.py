@@ -52,19 +52,24 @@ def fixture(tipo="formula", decisao="necessita_informacao", modalidade="pagar", 
         o["fontes"] = []
     teses = []
     for nome, _ in IC["LENTES"]:
-        d = {"pedido_id": "RP01", "decisao": decisao,
-             "valor_centavos": None if decisao in ("necessita_informacao", "fora_de_escopo") else
-                                100000 if decisao == "conceder" and modalidade == "pagar" else 0,
-             "pagador": "requerido" if decisao == "conceder" else None,
-             "beneficiario": "requerente" if decisao == "conceder" else None,
-             "fontes_favoraveis": ["DR"], "fontes_contrarias": ["RR"], "comentario": "Ha suporte, mas a proporcao e discutida.",
-             "sustentado": "O resumo contem orcamento de reparo.", "controvertido": "A proporcao atribuivel a cada parte.",
-             "lacuna": copy.deepcopy(l)}
-        if nome == "jurisprudencial":
-            d["opcao"] = o
         if nome == "auditora":
-            d["auditoria"] = {"resultado": "reformular" if bloqueada else "apta", "riscos": ["PREMISSA"] if bloqueada else [],
-                              "motivo": "A premissa deve ser esclarecida." if bloqueada else "Opcao explicitamente condicional com base identificada."}
+            d = {"pedido_id": "RP01", "auditoria": {
+                "resultado": "reformular" if bloqueada else "apta",
+                "riscos": ["PREMISSA"] if bloqueada else [],
+                "motivo": "A premissa deve ser esclarecida." if bloqueada else "Opcao explicitamente condicional com base identificada.",
+                "conflitos_com": [],
+            }}
+        else:
+            d = {"pedido_id": "RP01", "decisao": decisao,
+                 "valor_centavos": None if decisao in ("necessita_informacao", "fora_de_escopo") else
+                                    100000 if decisao == "conceder" and modalidade == "pagar" else 0,
+                 "pagador": "requerido" if decisao == "conceder" else None,
+                 "beneficiario": "requerente" if decisao == "conceder" else None,
+                 "fontes_favoraveis": ["DR"], "fontes_contrarias": ["RR"], "comentario": "Ha suporte, mas a proporcao e discutida.",
+                 "sustentado": "O resumo contem orcamento de reparo.", "controvertido": "A proporcao atribuivel a cada parte.",
+                 "lacuna": copy.deepcopy(l)}
+            if nome == "jurisprudencial":
+                d["opcao"] = o
         teses.append({"lente": nome, "pedidos": [d]})
     return {"versao": IC["VERSAO"], "catalogo": cat, "teses": teses,
             "consolidado": IC["_consolidar"](cat, teses)}
@@ -163,13 +168,29 @@ class V102Tests(unittest.TestCase):
             self.assertFalse(IC["_consolidados_equivalentes"](a["consolidado"], b["consolidado"]))
         self.assertIn("CONCLUSAO_STATUS", codes)
 
-    def test_cinco_tipos_validos_e_tres_lentes_sequenciais(self):
+    def test_cinco_tipos_gerados_e_tres_lentes_sequenciais(self):
         for p in (fixture(), fixture("faixa"), fixture("nao_monetaria", modalidade="declarar"),
                   fixture("diligencia"), fixture("sem_opcao", "negar")):
             with self.subTest(tipo=opcao(p)["tipo"]):
                 self.assertTrue(IC["_painel_valido"](p))
                 for i, t in enumerate(p["teses"]):
                     self.assertEqual(IC["_erro_tese"](t, p["catalogo"], t["lente"], p["teses"][:i], CORPO), "")
+
+    def test_falha_da_opcao_e_localizada_sem_perder_conclusoes(self):
+        p = fixture()
+        d = p["teses"][1]["pedidos"][0]
+        d["opcao"] = {"tipo": "faixa"}
+        IC["_normalizar_tese_modelo"](p["teses"][1], p["catalogo"], "jurisprudencial", CORPO, p["teses"][:1])
+        self.assertEqual(d["opcao"]["tipo"], "opcao_nao_validada")
+        self.assertEqual(IC["_erro_opcao"](d["opcao"], p["catalogo"]["pedidos"][0], d, CORPO), "")
+        self.assertEqual(d["decisao"], "necessita_informacao")
+
+    def test_auditoria_exige_id_quando_detecta_dupla_contagem(self):
+        p = fixture()
+        a = p["teses"][2]["pedidos"][0]["auditoria"]
+        a.update(resultado="reformular", riscos=["DUPLA_CONTAGEM"], conflitos_com=[])
+        self.assertEqual(IC["_erro_auditoria"](a, p["teses"][2]["pedidos"][0], p["catalogo"], p["catalogo"]["pedidos"][0]),
+                         "DUPLA_CONTAGEM_EXIGE_CONFLITO_IDENTIFICADO")
 
     def test_indeterminado_pode_ter_formula_sem_virar_divida(self):
         p = fixture()
@@ -299,6 +320,27 @@ class V102Tests(unittest.TestCase):
         self.assertIn("Pergunta para a mediacao", termo)
         self.assertNotIn("Faixa condicional de negociacao:", termo)
 
+    def test_reparo_e_reauditoria_ocorrem_uma_unica_vez(self):
+        p = fixture("formula", bloqueada=True)
+        final = fixture("formula", bloqueada=False)["teses"][2]
+        respostas = [{"pedidos": [{"pedido_id": "RP01", "opcao": copy.deepcopy(opcao(p))}]}, final]
+        prompts = []
+        def pedir(prompt, **kwargs):
+            prompts.append(prompt)
+            return json.dumps(respostas.pop(0), ensure_ascii=False)
+        teses = IC["_aplicar_reparo_uma_vez"](pedir, CORPO, p["catalogo"], copy.deepcopy(p["teses"]))
+        self.assertEqual(teses[2]["pedidos"][0]["auditoria"]["resultado"], "apta")
+        self.assertEqual(len(prompts), 2)
+        self.assertIn("UMA unica correcao", prompts[0])
+        self.assertIn("AUDITORIA DO CONJUNTO", prompts[1])
+
+    def test_falha_no_reparo_preserva_opcao_retida(self):
+        p = fixture("formula", bloqueada=True)
+        original = copy.deepcopy(p["teses"])
+        teses = IC["_aplicar_reparo_uma_vez"](
+            lambda *a, **k: '{"pedidos":[]}', CORPO, p["catalogo"], p["teses"])
+        self.assertEqual(teses, original)
+
     def test_auditoria_invalida_nao_passa(self):
         for resultado, riscos in (("apta", ["PREMISSA"]), ("reformular", []), ("apta", [{"risco": "PREMISSA"}])):
             p = fixture()
@@ -306,8 +348,8 @@ class V102Tests(unittest.TestCase):
             d["auditoria"].update(resultado=resultado, riscos=riscos)
             self.assertNotEqual(IC["_erro_auditoria"](d["auditoria"], d), "")
         p = fixture()
-        d = p["teses"][2]["pedidos"][0]
-        d["decisao"] = "fora_de_escopo"
+        d = p["teses"][1]["pedidos"][0]
+        d.update(decisao="fora_de_escopo", valor_centavos=None, pagador=None, beneficiario=None)
         self.assertIn("FORA_DE_ESCOPO", IC["_erro_tese"](p["teses"][2], p["catalogo"], "auditora", p["teses"][:2], CORPO))
 
     def test_termo_mostra_fontes_premissas_e_efeito_das_respostas(self):
@@ -330,13 +372,11 @@ class V102Tests(unittest.TestCase):
     def test_termo_nao_despeja_teses_juridicas_das_lentes(self):
         p = fixture()
         p["teses"][1]["pedidos"][0]["sustentado"] = "TESE JURIDICA NAO ANCORADA"
-        p["teses"][2]["pedidos"][0]["controvertido"] = "OUTRA TESE JURIDICA"
         reconsolidar(p)
         termo = IC["_render_termo_opcao"]("0005", p)
         self.assertNotIn("TESE JURIDICA NAO ANCORADA", termo)
-        self.assertNotIn("OUTRA TESE JURIDICA", termo)
         self.assertNotIn("Detalhamento das conclusoes", termo)
-        self.assertIn("painel JSON preserva as tres lentes", termo)
+        self.assertIn("duas conclusoes independentes e a auditoria refutadora", termo)
 
     def test_render_independe_da_ordem_das_chaves_no_transporte(self):
         p = fixture()
@@ -445,7 +485,11 @@ class V102Tests(unittest.TestCase):
         self.assertEqual(c["ep"], 1)
         self.assertEqual(respostas, [])
         self.assertIn("Nao regenere o painel", c["prompts"][-1])
-        self.assertEqual(json.loads(contrato.get_case())["painel"], json.dumps(a, ensure_ascii=False, sort_keys=True))
+        esperado = copy.deepcopy(a)
+        IC["_normalizar_tese_modelo"](esperado["teses"][1], esperado["catalogo"],
+                                       "jurisprudencial", CORPO, esperado["teses"][:1])
+        reconsolidar(esperado)
+        self.assertEqual(json.loads(contrato.get_case())["painel"], json.dumps(esperado, ensure_ascii=False, sort_keys=True))
 
     def test_revisor_compacto_nao_chama_comparador_semantico(self):
         a = fixture()
@@ -570,8 +614,9 @@ class V102Tests(unittest.TestCase):
         p = fixture("faixa", "conceder")
         pedido = p["catalogo"]["pedidos"][0]
         pedido.update(id="RR01", autor="requerido", contra="requerente")
-        for t in p["teses"]:
+        for t in p["teses"][:2]:
             t["pedidos"][0].update(pedido_id="RR01", pagador="requerente", beneficiario="requerido")
+        p["teses"][2]["pedidos"][0]["pedido_id"] = "RR01"
         opcao(p).update(pagador="requerente", beneficiario="requerido")
         self.assertTrue(IC["_painel_valido"](reconsolidar(p)))
         p["teses"][0]["pedidos"][0].update(pagador="requerido", beneficiario="requerente")
@@ -622,11 +667,11 @@ class V102Tests(unittest.TestCase):
     def test_limites_textuais_e_null_preservados(self):
         for n in (240, 241, 600):
             p = fixture()
-            for t in p["teses"]:
+            for t in p["teses"][:2]:
                 t["pedidos"][0]["comentario"] = "á" * n
             self.assertTrue(IC["_painel_valido"](reconsolidar(p)))
         p = fixture()
-        for t in p["teses"]:
+        for t in p["teses"][:2]:
             t["pedidos"][0]["comentario"] = "á" * 601
         self.assertFalse(IC["_painel_valido"](reconsolidar(p)))
         bruto = '{"valor":null,"zero":0}'
@@ -657,21 +702,21 @@ class V102Tests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "JSON_INVALIDO:VAZIO"):
             IC["_ler_objeto_json"](lambda *a, **k: '  ', "")
 
-    def test_criterio_diagnostico_e_correcao_com_schema_completo(self):
+    def test_criterio_invalido_retem_so_a_opcao_sem_nova_tentativa(self):
         p = fixture()
         original = copy.deepcopy(p["teses"][1])
         del opcao(p)["criterio"]["min_bps"]
         e = erro_opcao(p)
         self.assertEqual(e, "CRITERIO_INVALIDO:ausentes=min_bps;extras=0")
-        respostas = [p["teses"][1], original]
+        respostas = [p["teses"][1]]
         prompts = []
         def pedir(prompt, **kwargs):
             prompts.append(prompt)
             return json.dumps(respostas.pop(0))
         result = IC["_tese_de"](pedir, "jurisprudencial", "", CORPO, p["catalogo"], p["teses"][:1])
-        self.assertEqual(result, original)
-        self.assertIn("ausentes=min_bps;extras=0", prompts[1])
-        self.assertIn('"min_bps":null,"max_bps":null,"fonte":null,"trecho":null', prompts[1])
+        self.assertEqual(result["pedidos"][0]["opcao"]["tipo"], "opcao_nao_validada")
+        self.assertEqual(len(prompts), 1)
+        self.assertEqual(result["pedidos"][0]["decisao"], original["pedidos"][0]["decisao"])
         opcao(p)["criterio"] = None
         self.assertEqual(erro_opcao(p), "CRITERIO_INVALIDO:recebido=NULL;esperado=OBJETO")
 
@@ -688,8 +733,12 @@ class V102Tests(unittest.TestCase):
             if i == 2:
                 self.assertIn(json.dumps(opcao(p), sort_keys=True, ensure_ascii=False), prompt)
                 self.assertIn("TESTE DE UTILIDADE CONDICIONAL", prompt)
-            self.assertIn("DELIMITACAO DO OBJETO", prompt)
-            self.assertIn("ESTATUTO DAS FONTES", prompt)
+            if nome != "auditora":
+                self.assertIn("DELIMITACAO DO OBJETO", prompt)
+                self.assertIn("ESTATUTO DAS FONTES", prompt)
+            else:
+                self.assertIn("Nao produza uma terceira conclusao", prompt)
+                self.assertNotIn("comentario sustentado controvertido lacuna", prompt)
 
 
 if __name__ == "__main__":

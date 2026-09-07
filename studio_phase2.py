@@ -34,9 +34,15 @@ from studio_cycle import (
 )
 
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 DEFAULT_CONTRACT = "0x7AC6360E36BEA2791FA45AFA2B18b277bD3a247B"
 LABELS = (
+    "APTO_INTEGRAL",
+    "APTO_PARCIAL_COM_RETENCOES",
+    "SOMENTE_DILIGENCIAS",
+    "SEM_OPCAO_APROVADA",
+    "FALHA_TECNICA",
+    # Legado: preserva a leitura dos lotes v17/v18 sem reclassifica-los.
     "SATISFATORIO_AUTOMATICO",
     "REVISAR_UTILIDADE",
     "INSATISFATORIO_CONTEUDO",
@@ -110,7 +116,8 @@ def classify_success(state, evaluation):
     option_types = Counter()
     negotiation_states = Counter()
     broad_formula = False
-    actionable = 0
+    approved_options = 0
+    diligences = 0
 
     for item in items:
         statuses[str(item.get("status") or "ausente")] += 1
@@ -120,34 +127,39 @@ def classify_success(state, evaluation):
         option = neg.get("opcao") or {}
         otype = str(option.get("tipo") or "ausente")
         option_types[otype] += 1
-        if otype != "sem_opcao":
-            actionable += 1
+        if nstate == "condicional" and otype in {"faixa", "formula", "nao_monetaria"}:
+            approved_options += 1
+        if nstate == "condicional" and otype == "diligencia":
+            diligences += 1
         if otype == "formula":
             discussion = neg.get("faixa_discussao_centavos")
             base = (option.get("base") or {}).get("valor_centavos")
             if neg.get("faixa_centavos") is None and discussion == [0, base]:
                 broad_formula = True
 
-    if negotiation_states.get("retida_pela_auditoria"):
+    retained = negotiation_states.get("retida_pela_auditoria", 0)
+    if retained:
         reasons.append("OPCAO_RETIDA_PELA_AUDITORIA")
     if not items or evaluation.get("execucao_valida") is not True:
         reasons.append("PAINEL_SEM_COBERTURA_VALIDA")
-    if reasons:
-        label = "INSATISFATORIO_CONTEUDO"
+        label = "FALHA_TECNICA"
+    elif approved_options and retained:
+        label = "APTO_PARCIAL_COM_RETENCOES"
+    elif approved_options:
+        label = "APTO_INTEGRAL"
+    elif diligences:
+        label = "SOMENTE_DILIGENCIAS"
     else:
-        if actionable == 0:
-            reasons.append("SEM_OPCAO_ACIONAVEL")
-        if broad_formula:
-            reasons.append("FORMULA_COM_ENVELOPE_ZERO_A_CEM")
-        if actionable and all(t in {"diligencia", "sem_opcao"} for t in option_types):
-            reasons.append("SOMENTE_DILIGENCIA")
-        if negotiation_states.get("sem_opcao"):
-            reasons.append("HA_PEDIDO_SEM_OPCAO")
-        label = "REVISAR_UTILIDADE" if reasons else "SATISFATORIO_AUTOMATICO"
+        label = "SEM_OPCAO_APROVADA"
+        reasons.append("SEM_OPCAO_ACIONAVEL")
+    if broad_formula:
+        reasons.append("FORMULA_COM_ENVELOPE_ZERO_A_CEM")
+    if negotiation_states.get("sem_opcao"):
+        reasons.append("HA_PEDIDO_SEM_OPCAO")
 
     return {
         "label": label,
-        "satisfatorio": label == "SATISFATORIO_AUTOMATICO",
+        "satisfatorio": label in {"APTO_INTEGRAL", "APTO_PARCIAL_COM_RETENCOES"},
         "motivos": sorted(set(reasons)),
         "pedidos": len(items),
         "status_pedidos": dict(sorted(statuses.items())),
@@ -161,7 +173,7 @@ def classify_failure(tx_summary):
     reason = ("CONSENSO_MAJORITY_DISAGREE" if tx_summary.get("result_name") == "MAJORITY_DISAGREE"
               else "TRANSACAO_SEM_SUCESSO_CONFIRMADO")
     return {
-        "label": "INSATISFATORIO_TECNICO",
+        "label": "FALHA_TECNICA",
         "satisfatorio": False,
         "motivos": [reason],
         "pedidos": 0,
@@ -201,6 +213,8 @@ def render_report(out, manifest):
 
     total = len(manifest["case_ids"])
     done = len(results)
+    useful = (labels.get("APTO_INTEGRAL", 0) + labels.get("APTO_PARCIAL_COM_RETENCOES", 0)
+              + labels.get("SATISFATORIO_AUTOMATICO", 0) + labels.get("REVISAR_UTILIDADE", 0))
     summary_obj = {
         "schema_version": SCHEMA_VERSION,
         "updated_at": utc_now(),
@@ -238,11 +252,11 @@ def render_report(out, manifest):
         "",
         f"Atualizado em `{summary_obj['updated_at']}`. IC `{manifest['version']}` no contrato `{manifest['contract']}`.",
         "",
-        f"Progresso: **{done}/{total}** casos; **{labels.get('SATISFATORIO_AUTOMATICO', 0)}** satisfatórios na triagem automática estrita.",
+        f"Progresso: **{done}/{total}** casos; **{useful}** Termos integral ou parcialmente úteis na triagem operacional.",
         "",
         "## Como interpretar",
         "",
-        "`SATISFATORIO_AUTOMATICO` exige FINALIZED/SUCCESS com MAJORITY_AGREE, Termo íntegro, painel completo, ao menos uma opção acionável, nenhuma opção retida e nenhuma fórmula cujo único envelope seja 0%–100%. `REVISAR_UTILIDADE` indica execução válida, mas utilidade ainda ampla ou dependente de diligência. A classificação não certifica acerto jurídico; os gabaritos não são enviados ao IC e o alinhamento semântico será revisto após a campanha.",
+        "`APTO_INTEGRAL` tem opção aprovada e nenhuma retenção; `APTO_PARCIAL_COM_RETENCOES` preserva opções aprovadas e identifica separadamente as retidas; `SOMENTE_DILIGENCIAS` organiza apenas perguntas; `SEM_OPCAO_APROVADA` não oferece alternativa validada; `FALHA_TECNICA` não produziu Termo válido. A classificação não certifica acerto jurídico; os gabaritos não são enviados ao IC e o alinhamento semântico permanece uma avaliação externa.",
         "",
         "## Totais",
         "",
@@ -255,9 +269,9 @@ def render_report(out, manifest):
             "",
         ]
     lines += [f"| {label} | {labels.get(label, 0)} |" for label in LABELS]
-    lines += ["", f"Rotações totais: **{rotations}**.", "", "## Por origem", "", "| Origem | Processados | Satisfatórios | Revisar | Conteúdo | Técnico |", "|---|---:|---:|---:|---:|---:|"]
+    lines += ["", f"Rotações totais: **{rotations}**.", "", "## Por origem", "", "| Origem | Processados | Integral | Parcial | Diligências | Sem opção | Falha técnica |", "|---|---:|---:|---:|---:|---:|---:|"]
     for origin, counts in sorted(origins.items()):
-        lines.append(f"| {origin} | {sum(counts.values())} | {counts['SATISFATORIO_AUTOMATICO']} | {counts['REVISAR_UTILIDADE']} | {counts['INSATISFATORIO_CONTEUDO']} | {counts['INSATISFATORIO_TECNICO']} |")
+        lines.append(f"| {origin} | {sum(counts.values())} | {counts['APTO_INTEGRAL']} | {counts['APTO_PARCIAL_COM_RETENCOES']} | {counts['SOMENTE_DILIGENCIAS']} | {counts['SEM_OPCAO_APROVADA']} | {counts['FALHA_TECNICA']} |")
     lines += ["", "## Impressão por caso", "", "| Caso | Origem | Categoria | Transação | Impressão | Motivos | Termo |", "|---|---|---|---|---|---|---|"]
     for result in results:
         imp = result["impressao"]

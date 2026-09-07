@@ -5,6 +5,39 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 **A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
 gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
+## v19.0.0-experimental — 2026-09-07 — candidata para repetição dos 50 casos
+
+Motivação: a v18 obteve 38/50 consensos e 31/50 Termos úteis quando os casos
+mistos são contados corretamente, mas ainda descartou painéis por falhas locais
+da opção e aprovou, no caso 0027, uma multa possivelmente sobreposta.
+
+- A lente jurisprudencial escolhe os campos decisórios da opção, enquanto o
+  contrato deriva pagador/beneficiário, ancora os trechos literais já escolhidos
+  e redige proposta, premissa e ressalva com modelos determinísticos. O modelo
+  devolve `AUTO` nesses campos mecânicos, reduzindo volume e variabilidade.
+- Erro restrito à opção deixa de invalidar todas as conclusões do painel. O
+  contrato substitui somente a opção por `opcao_nao_validada`, mantém as três
+  análises e força retenção explícita no Termo.
+- A auditoria passa a examinar todas as opções em conjunto e retorna
+  `conflitos_com` com IDs de pedidos. `DUPLA_CONTAGEM` só é válido com outro ID
+  identificado, cobrindo multas, encargos, bases, fatos e pedidos alternativos.
+- A auditora deixa de produzir uma terceira conclusão repetida: sua saída contém
+  somente `pedido_id` e o teste refutador da opção. As conclusões independentes
+  permanecem nas lentes probatória e jurisprudencial.
+- Uma opção marcada para reformulação pode passar por exatamente um reparo
+  dirigido e uma reauditoria. O reparo não pode mudar decisão/lacuna nem criar
+  fonte, valor ou percentual; erro nessa etapa preserva a retenção original.
+- O runner adota cinco classes: `APTO_INTEGRAL`,
+  `APTO_PARCIAL_COM_RETENCOES`, `SOMENTE_DILIGENCIAS`,
+  `SEM_OPCAO_APROVADA` e `FALHA_TECNICA`. Assim, uma retenção local não apaga
+  as opções aprovadas do mesmo Termo.
+- Gabaritos permanecem fora do IC e dos prompts. Utilidade operacional e
+  aderência ao benchmark são dimensões independentes no relatório local.
+- 167 testes locais aprovados antes do upgrade. SHA-256 do candidato:
+  `e83d3c1f902078805020c098bd0a1b54c11d0aceb31b1a83de001f3cc5a8cd61`.
+  Plano, gates e comparação com a v18: `V19_BATCH1_PLAN.md`; relatório-base:
+  `V18_BATCH1_REPORT.md`.
+
 ## Lote comparativo v18 — 2026-09-07 — encerrado em 50; não avançar
 
 - A campanha 0001–0050 terminou e foi encerrada de forma persistente. Nenhum

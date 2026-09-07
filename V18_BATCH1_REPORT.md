@@ -103,3 +103,9 @@ decisão, valor, partes e fontes.
 
 Depois dos testes locais, a v19 deve repetir novamente os casos 0001–0050. Somente
 um resultado que supere os gates autoriza o próximo bloco de 50.
+
+## Encaminhamento
+
+A proposta acima foi implementada na `v19.0.0-experimental`. A definição exata
+do novo lote, as mudanças efetivamente incorporadas e os gates estão registrados
+em `V19_BATCH1_PLAN.md`. Este relatório permanece congelado como baseline da v18.

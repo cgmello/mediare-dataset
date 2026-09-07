@@ -68,15 +68,25 @@ class Phase2Tests(unittest.TestCase):
         with self.assertRaises(CycleError):
             discover_cases(root, 3, ["0001", "0001", "0182"])
 
-    def test_strict_impression_distinguishes_range_and_broad_formula(self):
+    def test_taxonomia_distingue_opcao_integral_retencao_e_formula(self):
         valid = {"execucao_valida": True}
         self.assertEqual(classify_success(state_with("faixa"), valid)["label"],
-                         "SATISFATORIO_AUTOMATICO")
+                         "APTO_INTEGRAL")
         broad = classify_success(state_with("formula"), valid)
-        self.assertEqual(broad["label"], "REVISAR_UTILIDADE")
+        self.assertEqual(broad["label"], "APTO_INTEGRAL")
         self.assertIn("FORMULA_COM_ENVELOPE_ZERO_A_CEM", broad["motivos"])
         retained = classify_success(state_with("faixa", "retida_pela_auditoria"), valid)
-        self.assertEqual(retained["label"], "INSATISFATORIO_CONTEUDO")
+        self.assertEqual(retained["label"], "SEM_OPCAO_APROVADA")
+
+        mixed = state_with("faixa")
+        panel = json.loads(mixed["painel"])
+        retained_item = json.loads(json.dumps(panel["consolidado"]["pedidos"][0]))
+        retained_item["pedido_id"] = "RP02"
+        retained_item["negociacao"]["estado"] = "retida_pela_auditoria"
+        panel["consolidado"]["pedidos"].append(retained_item)
+        mixed["painel"] = json.dumps(panel)
+        self.assertEqual(classify_success(mixed, valid)["label"],
+                         "APTO_PARCIAL_COM_RETENCOES")
 
     def test_finalized_leader_execution_does_not_override_disagree_consensus(self):
         tx = {
