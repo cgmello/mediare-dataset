@@ -5,6 +5,29 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 **A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
 gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
+## Lote comparativo v18 — 2026-09-07 — encerrado em 50; não avançar
+
+- A campanha 0001–0050 terminou e foi encerrada de forma persistente. Nenhum
+  próximo bloco foi iniciado.
+- Na mesma amostra, a v18 elevou `MAJORITY_AGREE` de 5/50 para 38/50 e reduziu
+  rotações de 142 para 59. O tempo mediano caiu de 611s para 263s.
+- Resultado operacional v18: 3 `SATISFATORIO_AUTOMATICO`, 20
+  `REVISAR_UTILIDADE`, 15 `INSATISFATORIO_CONTEUDO` e 12
+  `INSATISFATORIO_TECNICO`.
+- Gates: consenso falhou (76% < 80%); integridade passou (0 inconsistências em
+  38 Termos); utilidade estrita falhou (23/50 < 26); dominância estrutural passou
+  por margem estreita (`LIDER_SEM_RETORNO` em 24/50); revisão manual falhou.
+- A triagem de utilidade é excessivamente severa: 8 dos 15 Termos com retenção
+  também continham opções aprovadas, exatamente o formato parcial pedido para o
+  mediador. A próxima versão deve separar retenção parcial de inutilidade total.
+- A amostra manual dos três supostos satisfatórios encontrou defeito material no
+  0027: a auditoria aprovou multa que o gabarito rejeita por sobreposição. Os
+  casos 0030 e 0041 foram úteis, mas mais cautelosos que o desfecho esperado.
+- Persistem 57 `LLM_INVALID_PANEL`, sobretudo na lente jurisprudencial (38), e
+  líder sem retorno em 24 casos. A recomendação é criar v19 com saída de opção
+  menor, auditoria cruzada entre pedidos e uma reformulação dirigida no máximo.
+- Relatório completo e proposta: `V18_BATCH1_REPORT.md`.
+
 ## v18.0.0-experimental — 2026-09-07 — candidata para lote comparativo de 50 casos
 
 Motivacao: a campanha multicase da v17 mostrou apenas 5 `MAJORITY_AGREE` nos
