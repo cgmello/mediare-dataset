@@ -59,7 +59,7 @@ A v18 ataca os grupos de falha sem remover as verificações materiais:
 
 ## Próxima medição
 
-A seleção fixa em `canary_v18.json` contém 30 casos diversos. Os critérios de
-saída estão em `V18_CANARY.md`. A campanha de 500 não será reiniciada apenas por
-melhora pontual: depende de consenso, integridade do estado/Termo, utilidade da
-pauta e ausência de um erro estrutural dominante.
+A seleção fixa em `canary_v18.json` repete os casos 0001–0050 para uma comparação
+direta entre versões. Os critérios de saída estão em `V18_CANARY.md`. O bloco
+seguinte não será iniciado apenas por melhora pontual: depende de consenso,
+integridade do estado/Termo, utilidade da pauta e ausência de erro dominante.

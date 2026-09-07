@@ -5,7 +5,7 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 **A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
 gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
-## v18.0.0-experimental — 2026-09-07 — candidata para canario de 30 casos
+## v18.0.0-experimental — 2026-09-07 — candidata para lote comparativo de 50 casos
 
 Motivacao: a campanha multicase da v17 mostrou apenas 5 `MAJORITY_AGREE` nos
 primeiros 50 casos. Os diagnósticos foram dominados por ausência de retorno do
@@ -32,8 +32,9 @@ nas lentes jurisprudencial e probatória.
 - O runner aceita seleção explícita sem reposição por `--case-ids-file`, registra
   encerramento irreversível de campanha e instala uma versão em modo
   `--upgrade-only`, persistido inclusive após retomada.
-- Canário pré-registrado em `canary_v18.json`: 6 casos ouro, 12 reais e 12
-  sintéticos. Gates e regra de parada estão em `V18_CANARY.md`.
+- Após a criação do marco, a estratégia de avaliação foi ampliada antes do
+  primeiro envio: `canary_v18.json` fixa os mesmos casos 0001–0050 do baseline
+  v17. Gates e regra de parada a cada 50 estão em `V18_CANARY.md`.
 - 163 testes locais aprovados. Snapshot SHA-256:
   `945c8e33eafec4c37731070d1285321455f44dbc6184e7329be5c6a372e73175`.
 
@@ -48,7 +49,7 @@ nas lentes jurisprudencial e probatória.
 - O caso 0051 já estava transmitido no momento da parada e foi somente acompanhado
   até o término. Nenhum caso a partir do 0052 foi enviado.
 - O relatório de causa, exemplos e hipótese seguinte está em `PHASE2A_REPORT.md`.
-- A campanha de 500 não será retomada antes de a v18 superar o canário de 30.
+- A campanha avança em blocos de 50 e sempre para para reavaliação.
 
 ## Fase 2 multicase — 2026-09-06 — preparada
 

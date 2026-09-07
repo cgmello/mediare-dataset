@@ -3,8 +3,8 @@
 A Fase 2 executa um código congelado em casos previamente definidos, em série.
 Não faz upgrade nem altera o IC durante uma campanha. A primeira campanha da v17
 foi encerrada antecipadamente como baseline 2A porque 45 dos primeiros 50 casos
-tiveram `MAJORITY_DISAGREE`. A v18 começa por um canário fixo de 30 casos; uma
-nova rodada de 500 só será iniciada se o canário superar os gates documentados.
+tiveram `MAJORITY_DISAGREE`. A v18 começa repetindo exatamente os casos 0001–0050
+e para para reavaliação. Cada bloco seguinte terá no máximo mais 50 casos.
 
 ## Segurança e separação do benchmark
 
@@ -78,10 +78,10 @@ ainda na fila são preservados, mas `run` e `resume` passam a recusar novos envi
   --reason "Baseline encerrado após evidência suficiente"
 ```
 
-## Canário fixo da v18
+## Primeiro lote fixo da v18
 
-`canary_v18.json` fixa, antes da execução, 30 IDs: 6 casos ouro, 12 reais e 12
-sintéticos. Isso evita escolher exemplos favoráveis depois de observar resultados.
+`canary_v18.json` fixa, antes da execução, os IDs 0001–0050. Isso permite comparar
+as versões na mesma janela e evita escolher exemplos favoráveis depois do resultado.
 
 ```sh
 .venv/bin/python studio_phase2.py init \
@@ -89,14 +89,14 @@ sintéticos. Isso evita escolher exemplos favoráveis depois de observar resulta
   --out res_canary_v18 \
   --source ic_experimental.py \
   --contract 0x7AC6360E36BEA2791FA45AFA2B18b277bD3a247B \
-  --case-ids-file canary_v18.json --max-cases 30 --delay 15 --execute
+  --case-ids-file canary_v18.json --max-cases 50 --delay 15 --execute
 
 .venv/bin/python studio_phase2.py run \
   --key-file res_v9/conta.key \
   --out res_canary_v18 --delay 15 --execute
 ```
 
-Gates para autorizar outra campanha de 500:
+Gates para autorizar o próximo bloco de 50:
 
 - pelo menos 80% das transações com `MAJORITY_AGREE`;
 - nenhuma inconsistência entre estado, painel e Termo;
@@ -104,8 +104,8 @@ Gates para autorizar outra campanha de 500:
   `REVISAR_UTILIDADE`;
 - nenhum erro sistemático dominante de catálogo, JSON, fonte ou opção.
 
-Falhar em qualquer gate encerra o canário e abre outra rodada de melhoria; não
-há continuação automática para os 500 casos.
+Falhar em qualquer gate encerra o lote e abre outra rodada de melhoria; não há
+continuação automática para os 500 casos.
 
 O processamento de uma análise no Studio pode levar vários minutos. Por isso, 500
 casos devem levar dezenas de horas, embora o intervalo adicional seja de 15 segundos.
