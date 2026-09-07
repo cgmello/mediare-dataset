@@ -131,6 +131,29 @@ class CycleTests(unittest.TestCase):
             self.c.continue_round(row)
         self.assertEqual(len(self.c.m["ops"]), 1)
 
+    def test_upgrade_only_verifies_identity_without_analysis(self):
+        code = Path("ic_experimental.py").read_bytes()
+        row = {"version": IC["VERSAO"], "snapshot": "v.py", "sha256": sc.sha(code)}
+        self.c.stage("v.py", code)
+        self.studio.client = SimpleNamespace(write_contract=Mock(return_value=HASH))
+        self.studio.read = Mock(side_effect=[IC["VERSAO"], sc.sha(code)])
+        self.c.continue_round(row, upgrade_only=True)
+        self.assertEqual(row["result"], "UPGRADE_ONLY_VERIFIED")
+        self.assertEqual([op["kind"] for op in self.c.m["ops"]], ["upgrade"])
+
+    def test_upgrade_only_mode_survives_resume(self):
+        code = Path("ic_experimental.py").read_bytes()
+        row = {"version": IC["VERSAO"], "snapshot": "v.py", "sha256": sc.sha(code),
+               "upgrade_only": True, "finished": False}
+        self.c.stage("v.py", code)
+        self.c.m["versions"] = [row]
+        self.c.save()
+        self.studio.client = SimpleNamespace(write_contract=Mock(return_value=HASH))
+        self.studio.read = Mock(side_effect=[IC["VERSAO"], sc.sha(code)])
+        self.c.resume()
+        self.assertEqual(row["result"], "UPGRADE_ONLY_VERIFIED")
+        self.assertEqual([op["kind"] for op in self.c.m["ops"]], ["upgrade"])
+
     def test_evaluation_does_not_certify_legal_merit(self):
         p = fixture()
         state = {"versao": IC["VERSAO"], "case_id": "0005", "status": "termo_opcao_disponivel",

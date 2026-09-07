@@ -5,6 +5,51 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 **A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
 gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
+## v18.0.0-experimental — 2026-09-07 — candidata para canario de 30 casos
+
+Motivacao: a campanha multicase da v17 mostrou apenas 5 `MAJORITY_AGREE` nos
+primeiros 50 casos. Os diagnósticos foram dominados por ausência de retorno do
+líder, divergência/recontagem do catálogo e schemas longos inválidos, especialmente
+nas lentes jurisprudencial e probatória.
+
+- O líder mantém catálogo, lentes probatória, jurisprudencial e auditora e o Termo
+  determinístico. O validador deixa de regenerar esse painel completo e devolve
+  uma revisão compacta da mesma proposta, com quatro booleanos por pedido:
+  fidelidade, conclusões defensáveis, fontes compatíveis e opção segura.
+- O novo voto aceita redações e leituras alternativas defensáveis, mas continua
+  recusando omissão de pedido, fonte incompatível, conclusão indefensável ou
+  tratamento inseguro da opção. O objetivo é retirar variabilidade acidental,
+  não pressionar o validador a concordar.
+- Limites dos textos caem para 500/600 caracteres; respostas inválidas ganham uma
+  terceira tentativa com instrução explícita de concisão.
+- Campos mecânicos de pagador/beneficiário são derivados do catálogo. Uma citação
+  inválida de base ou proporção pode ser substituída somente por trecho literal
+  da mesma fonte que já contenha exatamente o valor/proporção escolhido pelo
+  modelo; valor, fonte e mérito não são corrigidos pelo código.
+- O Termo passa a distinguir conclusão que passou, conclusão que não passou,
+  opção retida e ausência coerente de opção. Sufixos inventados como `DR1` são
+  apresentados como o ID real `DR`.
+- O runner aceita seleção explícita sem reposição por `--case-ids-file`, registra
+  encerramento irreversível de campanha e instala uma versão em modo
+  `--upgrade-only`, persistido inclusive após retomada.
+- Canário pré-registrado em `canary_v18.json`: 6 casos ouro, 12 reais e 12
+  sintéticos. Gates e regra de parada estão em `V18_CANARY.md`.
+- 163 testes locais aprovados. Snapshot SHA-256:
+  `945c8e33eafec4c37731070d1285321455f44dbc6184e7329be5c6a372e73175`.
+
+## Fase 2A — 2026-09-07 — baseline v17 encerrado antecipadamente
+
+- A decisão de parada usou os primeiros 50 resultados: 45
+  `MAJORITY_DISAGREE`, 5 `MAJORITY_AGREE`, nenhum `SATISFATORIO_AUTOMATICO`,
+  4 `REVISAR_UTILIDADE` e 1 `INSATISFATORIO_CONTEUDO`.
+- Houve 105 `LLM_INVALID_PANEL`: 68 na lente jurisprudencial, 33 na probatória
+  e 4 na auditora. Diagnósticos agregados incluíram `LIDER_SEM_RETORNO` 326,
+  `REVISOR_CATALOGO` 166 e `CATALOGO_QUANTIDADE` 123 ocorrências.
+- O caso 0051 já estava transmitido no momento da parada e foi somente acompanhado
+  até o término. Nenhum caso a partir do 0052 foi enviado.
+- O relatório de causa, exemplos e hipótese seguinte está em `PHASE2A_REPORT.md`.
+- A campanha de 500 não será retomada antes de a v18 superar o canário de 30.
+
 ## Fase 2 multicase — 2026-09-06 — preparada
 
 - Nova campanha congelada na `v17.0.0-experimental`, sem upgrades entre casos:

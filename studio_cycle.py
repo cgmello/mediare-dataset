@@ -404,7 +404,7 @@ class Cycle:
         if self.s.read(addr, "can_upgrade") is not True:
             raise CycleError("A conta local nao e autorizada a atualizar este contrato")
 
-    def run(self, source):
+    def run(self, source, upgrade_only=False):
         if not self.m or not self.m.get("contract"):
             raise CycleError("Inicialize/retome o bootstrap primeiro")
         if self.unfinished_restore():
@@ -416,6 +416,8 @@ class Cycle:
             row = rows[0]
             if row["sha256"] != digest:
                 raise CycleError("Mesma versao com outro codigo: incremente a revisao")
+            if bool(row.get("upgrade_only")) != bool(upgrade_only):
+                raise CycleError("Modo da rodada difere do registro; use resume")
             if row.get("finished"):
                 print(json.dumps(row, ensure_ascii=False), flush=True)
                 return
@@ -431,12 +433,14 @@ class Cycle:
             self.s.client.get_contract_schema_for_code(code)
             snapshot = version + ".py"
             self.stage(snapshot, code)
-            row = {"version": version, "sha256": digest, "snapshot": snapshot, "finished": False}
+            row = {"version": version, "sha256": digest, "snapshot": snapshot,
+                   "upgrade_only": bool(upgrade_only), "finished": False}
             self.m["versions"].append(row)
             self.save()
-        self.continue_round(row)
+        self.continue_round(row, upgrade_only=upgrade_only)
 
-    def continue_round(self, row):
+    def continue_round(self, row, upgrade_only=False):
+        upgrade_only = bool(upgrade_only or row.get("upgrade_only"))
         addr, version = self.m["contract"], row["version"]
         code = (self.out / row["snapshot"]).read_bytes()
         if sha(code) != row["sha256"]:
@@ -450,6 +454,11 @@ class Cycle:
             return
         if self.s.read(addr, "get_version") != version or self.s.read(addr, "get_code_hash") != row["sha256"]:
             raise CycleError("Versao/hash remoto nao correspondem ao snapshot; parar antes de analyze_case")
+        if upgrade_only:
+            row.update(finished=True, result="UPGRADE_ONLY_VERIFIED")
+            self.save()
+            print(json.dumps(row, ensure_ascii=False), flush=True)
+            return
         op = self.operation("analyze_case", version)
         if op["state"] == "prepared":
             self.submit(op, lambda: self.s.client.write_contract(address=addr, function_name="analyze_case",
@@ -557,6 +566,7 @@ def main():
     ap.add_argument("--poll", type=int, default=15)
     ap.add_argument("--timeout", type=int, default=1200)
     ap.add_argument("--execute", action="store_true", help="autoriza envios dentro do ciclo configurado")
+    ap.add_argument("--upgrade-only", action="store_true", help="instala e verifica a versao sem chamar analyze_case")
     args = ap.parse_args()
     if not 1 <= args.poll <= 60 or args.timeout < args.poll:
         ap.error("poll deve estar entre 1 e 60 e timeout >= poll")
@@ -571,6 +581,8 @@ def main():
         ap.error("init exige --max-versions entre 1 e 499")
     if args.action == "run" and not args.source:
         ap.error("run exige --source")
+    if args.upgrade_only and args.action != "run":
+        ap.error("--upgrade-only so pode ser usado com run")
     if args.action == "skip" and not args.reason:
         ap.error("skip exige --reason")
     if args.action == "rollback" and (not args.version or not args.reason):
@@ -595,7 +607,7 @@ def main():
         if args.action == "init":
             c.initialize(args.max_versions, cid, args.contract, args.max_calls)
         elif args.action == "run":
-            c.run(args.source)
+            c.run(args.source, upgrade_only=args.upgrade_only)
         elif args.action == "skip":
             c.skip(args.reason)
         elif args.action == "rollback":

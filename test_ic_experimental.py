@@ -75,10 +75,18 @@ def opcao(p):
 
 
 def respostas_revisor(p):
-    respostas = copy.deepcopy([p["catalogo"]] + p["teses"])
-    for d in respostas[2]["pedidos"]:
-        del d["opcao"]
-    return respostas
+    return [revisao(p)]
+
+
+def revisao(p, catalogo_completo=True, **campos):
+    itens = []
+    for pedido in p["catalogo"]["pedidos"]:
+        item = {"pedido_id": pedido["id"], "pedido_fiel": True,
+                "conclusoes_defensaveis": True, "fontes_compativeis": True,
+                "tratamento_opcao_seguro": True}
+        item.update(campos)
+        itens.append(item)
+    return {"catalogo_completo": catalogo_completo, "pedidos": itens}
 
 
 def erro_opcao(p, corpo=CORPO):
@@ -178,6 +186,18 @@ class V102Tests(unittest.TestCase):
         self.assertIn("Nao e faixa probatoria nem recomendacao", termo)
         self.assertIn("PASSOU PARA DISCUSSAO", termo)
         self.assertIn("Nao passou como conclusao definitiva", termo)
+
+    def test_termo_distingue_conclusao_aprovada_e_sem_opcao(self):
+        concedida = fixture("nao_monetaria", "conceder", modalidade="declarar")
+        termo = IC["_render_termo_opcao"]("0005", concedida)
+        self.assertIn("Conclusao sobre o pedido: PASSOU", termo)
+        self.assertNotIn("Nao passou como conclusao definitiva", termo)
+
+        negada = fixture("sem_opcao", "negar")
+        termo = IC["_render_termo_opcao"]("0005", negada)
+        self.assertIn("SEM OPCAO DE COMPOSICAO", termo)
+        self.assertIn("Conclusao sobre o pedido: NAO PASSOU", termo)
+        self.assertNotIn("NAO PASSOU PELA AUDITORIA", termo)
         self.assertNotIn("sem maioria", termo)
         self.assertEqual(termo.count("# TERMO DE OPCAO"), 1)
         self.assertEqual(termo.count("## Opcoes, premissas e proximos passos"), 1)
@@ -298,6 +318,15 @@ class V102Tests(unittest.TestCase):
             self.assertIn(texto, termo)
         self.assertEqual(termo, IC["_render_termo_opcao"]("0005", fixture()))
 
+    def test_termo_normaliza_ids_de_fontes_inventados_em_texto_livre(self):
+        p = fixture()
+        p["teses"][0]["pedidos"][0]["sustentado"] = "DR1 apoia; DD27 contradiz; PR e RR permanecem."
+        reconsolidar(p)
+        termo = IC["_render_termo_opcao"]("0005", p)
+        self.assertIn("DR apoia; DD contradiz; PR e RR permanecem", termo)
+        self.assertNotIn("DR1", termo)
+        self.assertNotIn("DD27", termo)
+
     def test_termo_nao_despeja_teses_juridicas_das_lentes(self):
         p = fixture()
         p["teses"][1]["pedidos"][0]["sustentado"] = "TESE JURIDICA NAO ANCORADA"
@@ -384,7 +413,7 @@ class V102Tests(unittest.TestCase):
         contrato.analyze_case("5")
         res = json.loads(contrato.get_case())
         self.assertEqual(c["ep"], 1)
-        self.assertEqual(c["llm"], 8)
+        self.assertEqual(c["llm"], 5)
         self.assertEqual(c["web"], 2)
         self.assertEqual(res["versao"], IC["VERSAO"])
         self.assertEqual(res["status"], "termo_opcao_disponivel")
@@ -392,6 +421,7 @@ class V102Tests(unittest.TestCase):
         self.assertIn("Formula condicional:", res["termo_opcao"])
         self.assertIn('"lente": "probatoria"', c["prompts"][2])
         self.assertIn('"opcao":', c["prompts"][3])
+        self.assertIn("catalogo_completo", c["prompts"][4])
         self.assertEqual(respostas, [])
 
     def test_validador_checa_citacao_lider_na_fonte_real(self):
@@ -406,29 +436,26 @@ class V102Tests(unittest.TestCase):
         self.assertEqual(c["llm"], 4)
         self.assertEqual(contrato.status, "vazio")
 
-    def test_wrapper_aceita_redacao_local_distinta_quando_auditoria_aprova(self):
-        a, b = fixture(), fixture()
-        b["teses"][1]["pedidos"][0]["comentario"] = "O orcamento consta no resumo, mas a responsabilidade proporcional e controvertida."
-        reconsolidar(b)
-        respostas = copy.deepcopy([a["catalogo"]] + a["teses"]) + respostas_revisor(b)
+    def test_wrapper_aceita_proposta_defensavel_sem_regenerar_painel(self):
+        a = fixture()
+        respostas = copy.deepcopy([a["catalogo"]] + a["teses"]) + respostas_revisor(a)
         contrato, c = contrato_simulado(respostas)
         contrato.analyze_case("5")
-        self.assertEqual(c["llm"], 8)
+        self.assertEqual(c["llm"], 5)
         self.assertEqual(c["ep"], 1)
         self.assertEqual(respostas, [])
-        self.assertIn("LENTE AUDITORA", c["prompts"][-1])
+        self.assertIn("Nao regenere o painel", c["prompts"][-1])
         self.assertEqual(json.loads(contrato.get_case())["painel"], json.dumps(a, ensure_ascii=False, sort_keys=True))
 
-    def test_revisor_nao_chama_comparador_semantico(self):
-        a, b = fixture(), fixture()
-        b["teses"][1]["pedidos"][0]["sustentado"] = "Ha suporte parcial, interpretado de forma independente."
-        respostas = copy.deepcopy([a["catalogo"]] + a["teses"]) + respostas_revisor(b)
+    def test_revisor_compacto_nao_chama_comparador_semantico(self):
+        a = fixture()
+        respostas = copy.deepcopy([a["catalogo"]] + a["teses"]) + respostas_revisor(a)
         contrato, c = contrato_simulado(respostas)
         contrato.analyze_case("5")
-        self.assertEqual(c["llm"], 8)
+        self.assertEqual(c["llm"], 5)
         self.assertEqual(respostas, [])
 
-    def test_revisor_anexa_proposta_exata_sem_mutar_lider(self):
+    def test_revisao_compacta_nao_muta_lider(self):
         p = fixture()
         original = copy.deepcopy(p)
         respostas = respostas_revisor(p)
@@ -436,27 +463,25 @@ class V102Tests(unittest.TestCase):
         def pedir(prompt, **kwargs):
             prompts.append(prompt)
             return json.dumps(respostas.pop(0))
-        local = IC["_painel_revisor_de"](pedir, CORPO, p)
-        self.assertEqual(opcao(local), opcao(p))
+        local = IC["_revisao_de"](pedir, CORPO, p)
+        self.assertEqual(local, revisao(p))
         self.assertEqual(p, original)
-        opcao(local)["premissa"] = "alterada localmente"
-        self.assertEqual(p, original)
-        self.assertIn("Nao gere, copie nem devolva opcao", prompts[2])
-        self.assertIn("<opcoes_lider>", prompts[2])
-        self.assertNotIn("proponha UMA opcao", prompts[2])
-        self.assertIn("DADOS NAO CONFIAVEIS", prompts[2])
-        self.assertEqual(len(prompts), 4)
+        self.assertIn("Nao regenere o painel", prompts[0])
+        self.assertIn("<painel_lider>", prompts[0])
+        self.assertNotIn("proponha UMA opcao", prompts[0])
+        self.assertEqual(len(prompts), 1)
 
-    def test_revisor_recusa_opcao_devolvida_pelo_modelo(self):
+    def test_revisor_recusa_schema_longo_ou_campo_extra(self):
         p = fixture()
-        self.assertIn("CAMPOS_REVISORA_INVALIDOS", IC["_erro_tese_revisora"](p["teses"][1], p["catalogo"]))
-        self.assertEqual(IC["_erro_tese_revisora"](respostas_revisor(p)[2], p["catalogo"]), "")
+        self.assertEqual(IC["_erro_revisao"](revisao(p), p["catalogo"]), "")
+        self.assertNotEqual(IC["_erro_revisao"](p["teses"][1], p["catalogo"]), "")
+        ruim = revisao(p)
+        ruim["pedidos"][0]["motivo"] = "campo livre nao permitido"
+        self.assertEqual(IC["_erro_revisao"](ruim, p["catalogo"]), "REVISAO_ITEM_INVALIDO")
 
-    def test_revisor_catalogo_divergente_interrompe_antes_das_lentes(self):
+    def test_revisor_catalogo_incompleto_rejeita_sem_regenerar(self):
         p = fixture()
-        cat = copy.deepcopy(p["catalogo"])
-        cat["pedidos"][0]["natureza"] = "danos_morais"
-        respostas = copy.deepcopy([p["catalogo"]] + p["teses"]) + [cat]
+        respostas = copy.deepcopy([p["catalogo"]] + p["teses"]) + [revisao(p, catalogo_completo=False)]
         contrato, c = contrato_simulado(respostas)
         with self.assertRaisesRegex(RuntimeError, "DISAGREE_SIMULADO"):
             contrato.analyze_case("5")
@@ -465,53 +490,64 @@ class V102Tests(unittest.TestCase):
 
     def test_revisor_conclusao_incompativel_nao_sofre_retry_de_merito(self):
         p = fixture()
-        local = respostas_revisor(p)
-        local[2]["pedidos"][0]["decisao"] = "fora_de_escopo"
-        respostas = copy.deepcopy([p["catalogo"]] + p["teses"]) + local[:3]
+        respostas = copy.deepcopy([p["catalogo"]] + p["teses"]) + [revisao(p, conclusoes_defensaveis=False)]
         contrato, c = contrato_simulado(respostas)
         with self.assertRaisesRegex(RuntimeError, "DISAGREE_SIMULADO"):
             contrato.analyze_case("5")
-        self.assertEqual(c["llm"], 7)
+        self.assertEqual(c["llm"], 5)
         self.assertEqual(respostas, [])
         self.assertEqual(contrato.get_termo_opcao(), "")
 
-    def test_auditora_local_pode_rejeitar_mesma_proposta(self):
+    def test_revisor_pode_rejeitar_tratamento_da_opcao(self):
         p = fixture()
-        respostas = copy.deepcopy([p["catalogo"]] + p["teses"]) + respostas_revisor(fixture(bloqueada=True))
+        respostas = copy.deepcopy([p["catalogo"]] + p["teses"]) + [revisao(p, tratamento_opcao_seguro=False)]
         contrato, c = contrato_simulado(respostas)
         with self.assertRaisesRegex(RuntimeError, "DISAGREE_SIMULADO"):
             contrato.analyze_case("5")
-        self.assertEqual(c["llm"], 8)
+        self.assertEqual(c["llm"], 5)
         self.assertEqual(contrato.get_termo_opcao(), "")
 
-    def test_criterio_revisor_exige_opcao_identica_e_auditoria_apta(self):
-        lider, revisor = fixture(), fixture()
-        revisor["teses"][0]["pedidos"][0]["comentario"] = "Redacao independente."
-        reconsolidar(revisor)
-        self.assertTrue(IC["_revisor_aprova"](lider, revisor))
+    def test_criterio_revisor_exige_todos_os_booleanos(self):
+        lider = fixture()
+        self.assertTrue(IC["_revisor_aprova"](lider, revisao(lider)))
+        for campo in ("pedido_fiel", "conclusoes_defensaveis", "fontes_compativeis", "tratamento_opcao_seguro"):
+            with self.subTest(campo=campo):
+                self.assertFalse(IC["_revisor_aprova"](lider, revisao(lider, **{campo: False})))
 
-        alterada = copy.deepcopy(revisor)
-        opcao(alterada)["premissa"] = "Outra premissa."
-        reconsolidar(alterada)
-        self.assertFalse(IC["_revisor_aprova"](lider, alterada))
-
-        bloqueada = fixture(bloqueada=True)
-        self.assertFalse(IC["_revisor_aprova"](lider, bloqueada))
-
-    def test_retry_da_opcao_nao_muda_merito_e_nao_expoe_fonte(self):
+    def test_citacao_da_opcao_e_ancorada_sem_retry_ou_vazamento(self):
         p = fixture()
         ruim = copy.deepcopy(p["teses"][1])
         ruim["pedidos"][0]["opcao"]["base"]["trecho"] = "citacao privada inexistente R$ 1.000,00"
-        respostas = [ruim, p["teses"][1]]
+        respostas = [ruim]
         prompts = []
         def pedir(prompt, **kwargs):
             prompts.append(prompt)
             return json.dumps(respostas.pop(0))
         res = IC["_tese_de"](pedir, "jurisprudencial", "instrucao", CORPO, p["catalogo"], p["teses"][:1])
-        self.assertEqual(res, p["teses"][1])
-        self.assertIn("RP01.opcao:BASE_CITACAO_NAO_LOCALIZADA", prompts[1])
-        self.assertNotIn("citacao privada inexistente", prompts[1])
-        self.assertIn("Nao mude o merito", prompts[1])
+        trecho = res["pedidos"][0]["opcao"]["base"]["trecho"]
+        self.assertIn("R$ 1.000,00", trecho)
+        self.assertNotIn("citacao privada inexistente", trecho)
+        self.assertEqual(len(prompts), 1)
+
+    def test_campos_mecanicos_da_opcao_sao_derivados_do_catalogo(self):
+        p = fixture()
+        tese = copy.deepcopy(p["teses"][1])
+        opc = tese["pedidos"][0]["opcao"]
+        opc.update(pagador="requerente", beneficiario="requerido")
+        IC["_normalizar_tese_modelo"](tese, p["catalogo"], "jurisprudencial", CORPO)
+        self.assertEqual((opc["pagador"], opc["beneficiario"]), ("requerido", "requerente"))
+        self.assertEqual(IC["_erro_tese"](tese, p["catalogo"], "jurisprudencial", p["teses"][:1], CORPO), "")
+
+    def test_terceira_tentativa_recupera_json_truncado(self):
+        p = fixture()
+        respostas = ["{", "```json\n{", json.dumps(p["catalogo"])]
+        chamadas = []
+        def pedir(prompt, **kwargs):
+            chamadas.append(prompt)
+            return respostas.pop(0)
+        self.assertEqual(IC["_catalogo_de"](pedir, CORPO), p["catalogo"])
+        self.assertEqual(len(chamadas), 3)
+        self.assertIn("uma frase curta", chamadas[-1])
 
     def test_pedidos_relacionados_nao_somam_opcoes_automaticamente(self):
         p = fixture("faixa")
@@ -544,8 +580,8 @@ class V102Tests(unittest.TestCase):
     def test_schema_nao_relaxa_fontes_textos_ou_opcao_obrigatoria(self):
         for alterar in (
             lambda d: d.update(fontes_favoraveis=[{"id": "DR"}]),
-            lambda d: d.update(sustentado="x" * 801),
-            lambda d: d.update(comentario="x" * 1201),
+            lambda d: d.update(sustentado="x" * 501),
+            lambda d: d.update(comentario="x" * 601),
             lambda d: d.pop("opcao"),
             lambda d: d.update(auditoria={"resultado": "apta"}),
         ):
@@ -561,7 +597,7 @@ class V102Tests(unittest.TestCase):
         contrato, c = contrato_simulado(respostas, validar=False)
         with self.assertRaisesRegex(ValueError, "LLM_INVALID_PANEL:lente=auditora"):
             contrato.analyze_case("5")
-        self.assertEqual(c["llm"], 5)
+        self.assertEqual(c["llm"], 6)
         self.assertEqual(contrato.termo_opcao, "")
 
     def test_schema_nao_aceita_catalogo_com_null_omitido(self):
@@ -584,11 +620,15 @@ class V102Tests(unittest.TestCase):
         self.assertEqual(erro_opcao(p, corpo), "PROPORCAO_CITACAO_NAO_LOCALIZADA")
 
     def test_limites_textuais_e_null_preservados(self):
-        for n in (240, 241, 1200):
+        for n in (240, 241, 600):
             p = fixture()
             for t in p["teses"]:
                 t["pedidos"][0]["comentario"] = "á" * n
             self.assertTrue(IC["_painel_valido"](reconsolidar(p)))
+        p = fixture()
+        for t in p["teses"]:
+            t["pedidos"][0]["comentario"] = "á" * 601
+        self.assertFalse(IC["_painel_valido"](reconsolidar(p)))
         bruto = '{"valor":null,"zero":0}'
         self.assertEqual(IC["_ler_objeto_json"](lambda *a, **k: bruto, "caso"), {"valor": None, "zero": 0})
         for bruto in ('{} {}', '{"x":NaN}', 'texto ```json\n{}\n```', '```json\n{}'):

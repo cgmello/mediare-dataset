@@ -5,7 +5,7 @@ import unittest
 from types import SimpleNamespace
 
 from studio_cycle import CycleError, write_json
-from studio_phase2 import Phase2, classify_failure, classify_success, committed_success, render_report
+from studio_phase2 import Phase2, classify_failure, classify_success, committed_success, discover_cases, render_report
 
 
 VERSION = "17.0.0-experimental"
@@ -61,6 +61,13 @@ class FakeStudio:
 
 
 class Phase2Tests(unittest.TestCase):
+    def test_explicit_canary_selection_is_ordered_and_does_not_expand(self):
+        root = Path(__file__).parent
+        selected = ["0006", "0001", "0182"]
+        self.assertEqual(discover_cases(root, 3, selected), selected)
+        with self.assertRaises(CycleError):
+            discover_cases(root, 3, ["0001", "0001", "0182"])
+
     def test_strict_impression_distinguishes_range_and_broad_formula(self):
         valid = {"execucao_valida": True}
         self.assertEqual(classify_success(state_with("faixa"), valid)["label"],
@@ -126,6 +133,18 @@ class Phase2Tests(unittest.TestCase):
             campaign.submit("0005", campaign.m["cases"]["0005"])
             self.assertEqual(studio.client.calls[0]["args"], ["5"])
 
+    def test_closed_campaign_refuses_resume(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            write_json(out / "phase2.json", {
+                "account": "0x" + "a" * 40, "chain_id": 61999,
+                "closed_at": "2026-09-07T00:00:00Z", "close_reason": "baseline",
+                "cases": {}, "case_ids": [],
+            })
+            campaign = Phase2(FakeStudio(), out)
+            with self.assertRaisesRegex(CycleError, "Campanha encerrada"):
+                campaign.run()
+
     def test_report_counts_and_writes_per_case_impressions(self):
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp)
@@ -133,6 +152,9 @@ class Phase2Tests(unittest.TestCase):
                 "version": VERSION,
                 "contract": "0x" + "b" * 40,
                 "case_ids": ["0001", "0002"],
+                "closed_at": "2026-09-07T00:00:00Z",
+                "closed_after": 2,
+                "close_reason": "baseline concluido",
             }
             base = {
                 "origem": "ouro", "categoria": "teste", "version": VERSION,
@@ -156,8 +178,10 @@ class Phase2Tests(unittest.TestCase):
             report = render_report(out, manifest)
             self.assertEqual(report["processed"], 2)
             self.assertEqual(report["labels"]["SATISFATORIO_AUTOMATICO"], 1)
+            self.assertEqual(report["closed_after"], 2)
             self.assertEqual(len((out / "impressions.jsonl").read_text().splitlines()), 2)
             self.assertIn("0002", (out / "report.md").read_text())
+            self.assertIn("baseline concluido", (out / "report.md").read_text())
 
 
 if __name__ == "__main__":

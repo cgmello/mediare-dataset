@@ -1,8 +1,10 @@
-# Fase 2 — campanha multicase da v17
+# Fase 2 — campanhas multicase
 
-A Fase 2 executa o mesmo código congelado da `v17.0.0-experimental` nos 500
-casos do dataset, em série. Não faz upgrade e não altera o IC durante a campanha.
-O contrato esperado é `0x7AC6360E36BEA2791FA45AFA2B18b277bD3a247B`.
+A Fase 2 executa um código congelado em casos previamente definidos, em série.
+Não faz upgrade nem altera o IC durante uma campanha. A primeira campanha da v17
+foi encerrada antecipadamente como baseline 2A porque 45 dos primeiros 50 casos
+tiveram `MAJORITY_DISAGREE`. A v18 começa por um canário fixo de 30 casos; uma
+nova rodada de 500 só será iniciada se o canário superar os gates documentados.
 
 ## Segurança e separação do benchmark
 
@@ -29,7 +31,7 @@ O relatório separa disponibilidade técnica de utilidade:
 - `INSATISFATORIO_TECNICO`: transação sem FINALIZED/SUCCESS.
 
 Essa triagem é deliberadamente estrita e não certifica correção jurídica. Depois
-dos 500 casos, o alinhamento semântico com os gabaritos será avaliado fora do IC,
+da campanha, o alinhamento semântico com os gabaritos será avaliado fora do IC,
 sem contaminar as respostas geradas.
 
 `execution_result=SUCCESS` isolado descreve a execução do líder. Se o resultado
@@ -68,15 +70,52 @@ Consultas locais não precisam da chave nem acessam o Studio:
 .venv/bin/python studio_phase2.py report --out res_phase2_v17
 ```
 
+Uma campanha sem caso ativo pode ser encerrada de forma persistente. Os casos
+ainda na fila são preservados, mas `run` e `resume` passam a recusar novos envios:
+
+```sh
+.venv/bin/python studio_phase2.py close --out res_phase2_v17 \
+  --reason "Baseline encerrado após evidência suficiente"
+```
+
+## Canário fixo da v18
+
+`canary_v18.json` fixa, antes da execução, 30 IDs: 6 casos ouro, 12 reais e 12
+sintéticos. Isso evita escolher exemplos favoráveis depois de observar resultados.
+
+```sh
+.venv/bin/python studio_phase2.py init \
+  --key-file res_v9/conta.key \
+  --out res_canary_v18 \
+  --source ic_experimental.py \
+  --contract 0x7AC6360E36BEA2791FA45AFA2B18b277bD3a247B \
+  --case-ids-file canary_v18.json --max-cases 30 --delay 15 --execute
+
+.venv/bin/python studio_phase2.py run \
+  --key-file res_v9/conta.key \
+  --out res_canary_v18 --delay 15 --execute
+```
+
+Gates para autorizar outra campanha de 500:
+
+- pelo menos 80% das transações com `MAJORITY_AGREE`;
+- nenhuma inconsistência entre estado, painel e Termo;
+- maioria dos Termos útil para a pauta do mediador, ainda que parte fique em
+  `REVISAR_UTILIDADE`;
+- nenhum erro sistemático dominante de catálogo, JSON, fonte ou opção.
+
+Falhar em qualquer gate encerra o canário e abre outra rodada de melhoria; não
+há continuação automática para os 500 casos.
+
 O processamento de uma análise no Studio pode levar vários minutos. Por isso, 500
 casos devem levar dezenas de horas, embora o intervalo adicional seja de 15 segundos.
 
 ## Artefatos locais
 
-Tudo fica em `res_phase2_v17/`, ignorado pelo Git:
+Tudo fica no diretório de saída da campanha, ignorado pelo Git:
 
-- `phase2.json`: journal retomável e orçamento de exatamente 500 envios;
-- `events.jsonl`: log operacional append-only das 500 rodadas;
+- `phase2.json`: journal retomável e orçamento dos IDs previamente selecionados;
+- `events.jsonl`: log operacional append-only das rodadas;
 - `cases.jsonl`: resultados consolidados;
 - `impressions.jsonl`: classificação e motivos compactos por caso;
 - `report.md` e `summary.json`: relatório cumulativo;

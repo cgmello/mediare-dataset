@@ -81,13 +81,20 @@ def load_case(dataset, cid):
     return obj
 
 
-def discover_cases(dataset, maximum=500):
+def discover_cases(dataset, maximum=500, selected=None):
     root = Path(dataset)
     files = sorted((root / "casos").glob("[0-9][0-9][0-9][0-9].json"))
-    ids = [p.stem for p in files]
-    expected = [f"{n:04d}" for n in range(1, maximum + 1)]
-    if ids != expected:
-        raise CycleError(f"Dataset deve conter exatamente os casos 0001..{maximum:04d}")
+    available = [p.stem for p in files]
+    if selected is None:
+        ids = available
+        expected = [f"{n:04d}" for n in range(1, maximum + 1)]
+        if ids != expected:
+            raise CycleError(f"Dataset deve conter exatamente os casos 0001..{maximum:04d}")
+    else:
+        ids = selected
+        if (len(ids) != maximum or len(set(ids)) != len(ids)
+                or any(not re.fullmatch(r"\d{4}", cid) or cid not in available for cid in ids)):
+            raise CycleError("Selecao deve conter IDs existentes, unicos e com quatro digitos")
     missing = [cid for cid in ids if not (root / "gabaritos" / (cid + ".json")).is_file()]
     if missing:
         raise CycleError("Gabaritos locais ausentes; primeiro ID: " + missing[0])
@@ -207,6 +214,12 @@ def render_report(out, manifest):
         "rotations": rotations,
         "diagnostics": dict(sorted(diagnostics.items())),
     }
+    if manifest.get("closed_at"):
+        summary_obj.update(
+            closed_at=manifest["closed_at"],
+            closed_after=manifest.get("closed_after", done),
+            close_reason=manifest.get("close_reason"),
+        )
     write_json(Path(out) / "summary.json", summary_obj)
 
     impressions = []
@@ -236,6 +249,11 @@ def render_report(out, manifest):
         "| Classificação | Casos |",
         "|---|---:|",
     ]
+    if manifest.get("closed_at"):
+        lines[6:6] = [
+            f"Campanha encerrada após **{manifest.get('closed_after', done)}** casos: {manifest.get('close_reason', 'motivo não informado')}.",
+            "",
+        ]
     lines += [f"| {label} | {labels.get(label, 0)} |" for label in LABELS]
     lines += ["", f"Rotações totais: **{rotations}**.", "", "## Por origem", "", "| Origem | Processados | Satisfatórios | Revisar | Conteúdo | Técnico |", "|---|---:|---:|---:|---:|---:|"]
     for origin, counts in sorted(origins.items()):
@@ -270,10 +288,10 @@ class Phase2:
         self.m["updated_at"] = utc_now()
         write_json(self.path, self.m)
 
-    def initialize(self, dataset, source, contract, maximum, delay):
+    def initialize(self, dataset, source, contract, maximum, delay, selected=None):
         if self.m:
             raise CycleError("Campanha ja inicializada; use run/resume")
-        ids = discover_cases(dataset, maximum)
+        ids = discover_cases(dataset, maximum, selected)
         code = Path(source).read_bytes()
         version = version_of(code)
         digest = sha(code)
@@ -449,6 +467,8 @@ class Phase2:
     def run(self, stop_after=0):
         if not self.m:
             raise CycleError("Campanha inexistente; use init")
+        if self.m.get("closed_at"):
+            raise CycleError("Campanha encerrada: " + self.m.get("close_reason", "sem motivo registrado"))
         self.verify_identity()
         completed_this_run = 0
         for cid in self.m["case_ids"]:
@@ -481,32 +501,49 @@ def local_status(out):
 
 def parser():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("action", choices=("init", "run", "resume", "status", "report"))
+    p.add_argument("action", choices=("init", "run", "resume", "status", "report", "close"))
     p.add_argument("--out", default="res_phase2_v17")
     p.add_argument("--key-file")
     p.add_argument("--dataset", default=".")
     p.add_argument("--source", default="ic_experimental.py")
     p.add_argument("--contract", default=DEFAULT_CONTRACT)
-    p.add_argument("--max-cases", type=int, default=500)
+    p.add_argument("--max-cases", type=int)
+    p.add_argument("--case-ids-file")
     p.add_argument("--delay", type=float, default=15)
     p.add_argument("--poll", type=float, default=15)
     p.add_argument("--timeout", type=float, default=3600)
     p.add_argument("--stop-after", type=int, default=0)
+    p.add_argument("--reason", help="motivo obrigatorio para encerrar a campanha")
     p.add_argument("--execute", action="store_true")
     return p
 
 
 def main():
     args = parser().parse_args()
-    if args.action in {"status", "report"}:
+    if args.action in {"status", "report", "close"}:
         manifest = read_json(Path(args.out) / "phase2.json")
+        if args.action == "close":
+            if not args.reason or not args.reason.strip():
+                raise CycleError("close exige --reason")
+            active = [cid for cid, row in manifest["cases"].items()
+                      if row["state"] in {"sending", "uncertain", "pending", "finalizing"}]
+            if active:
+                raise CycleError("Nao encerrar com caso ativo: " + active[0])
+            if not manifest.get("closed_at"):
+                done = sum(row["state"] == "done" for row in manifest["cases"].values())
+                manifest.update(closed_at=utc_now(), closed_after=done,
+                                close_reason=args.reason.strip())
+                write_json(Path(args.out) / "phase2.json", manifest)
+                append_event(args.out, "campaign_closed", completed=done,
+                             reason=args.reason.strip())
+                render_report(args.out, manifest)
         value = local_status(args.out) if args.action == "status" else render_report(args.out, manifest)
         print(json.dumps(value, ensure_ascii=False, indent=2))
         return
     if not args.execute or not args.key_file:
         raise CycleError("init/run/resume exigem --execute e --key-file")
-    if args.max_cases != 500 or args.delay < 15:
-        raise CycleError("Fase 2 autorizada para exatamente 500 casos e delay minimo de 15 segundos")
+    if args.delay < 15:
+        raise CycleError("Campanhas Studio exigem delay minimo de 15 segundos")
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True, mode=0o700)
     lock = (out / "phase2.lock").open("w")
@@ -517,7 +554,18 @@ def main():
     studio = Studio(args.key_file)
     campaign = Phase2(studio, out, poll=args.poll, timeout=args.timeout)
     if args.action == "init":
-        campaign.initialize(args.dataset, args.source, args.contract, args.max_cases, args.delay)
+        selected = None
+        if args.case_ids_file:
+            selected_obj = read_json(args.case_ids_file)
+            selected = selected_obj.get("case_ids") if isinstance(selected_obj, dict) else selected_obj
+            if not isinstance(selected, list) or not all(isinstance(cid, str) for cid in selected):
+                raise CycleError("Arquivo de selecao deve ser array ou objeto com case_ids")
+        maximum = args.max_cases if args.max_cases is not None else (len(selected) if selected else 500)
+        if selected is None and maximum != 500:
+            raise CycleError("Campanha parcial exige --case-ids-file explicito")
+        if not 1 <= maximum <= 500:
+            raise CycleError("Quantidade de casos deve ficar entre 1 e 500")
+        campaign.initialize(args.dataset, args.source, args.contract, maximum, args.delay, selected)
         print(json.dumps(local_status(out), ensure_ascii=False, indent=2))
         return
     pid_path = out / "runner.pid"
