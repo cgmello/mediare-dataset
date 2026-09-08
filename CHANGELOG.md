@@ -31,6 +31,11 @@ técnicas, 24 rotações, 16 painéis inválidos e nenhuma inconsistência nos 4
   da nova execução: `V20_BATCH1_PLAN.md` e `canary_v20.json`.
 - 172 testes locais aprovados. SHA-256 do candidato:
   `d2b719467cf96874244a4e5990c501c0b93ef5d900dc0bc93480e71e43cbadf4`.
+- Upgrade `FINALIZED/SUCCESS` e versão/hash remoto verificados, sem executar caso
+  durante a instalação: `0x95da380703534119ef4a2bec45f7d3b2132ec50884d6216328a875d933a104b3`.
+- O lote comparativo v20 foi inicializado com exatamente os casos 0001–0050 em
+  `res_canary_v20/`; runner serial persistente ativo, intervalo mínimo de 15
+  segundos e parada obrigatória após 50 resultados.
 
 ## v19.0.0-experimental — 2026-09-07 — candidata para repetição dos 50 casos
 
