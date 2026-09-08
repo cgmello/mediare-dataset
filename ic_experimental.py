@@ -1,7 +1,7 @@
 # { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
 from genlayer import *
 
-"""Mediare IC experimental — marco v19 para canario multicase no Studio.
+"""Mediare IC experimental — marco v20 para canario multicase no Studio.
 
 Objetivos desta versao de transicao:
 - usar os casos v9 atuais, sem migracao previa do dataset;
@@ -15,7 +15,9 @@ Objetivos desta versao de transicao:
 - fazer os validadores auditarem a mesma proposta do lider com resposta compacta;
 - reduzir divergencia de catalogo e falhas de JSON sem afrouxar fontes ou merito;
 - localizar falhas de opcao sem descartar conclusoes validas do painel;
-- auditar sobreposicoes entre pedidos e permitir um unico reparo dirigido.
+- auditar sobreposicoes entre pedidos e permitir um unico reparo dirigido;
+- recuperar opcoes condicionais somente a partir de bases literalmente ancoradas;
+- distinguir conflito impeditivo de alternativa segura com ressalva de nao cumulacao.
 
 Limitacao conhecida: o catalogo de pedidos ainda e extraido por LLM. A versao
 definitiva deve receber IDs de pedidos ja gravados no caso de entrada.
@@ -26,7 +28,7 @@ import re
 import hashlib
 
 
-VERSAO = "19.0.0-experimental"
+VERSAO = "20.0.0-experimental"
 DATASET_BASE = (
     "https://raw.githubusercontent.com/cgmello/mediare-dataset/"
     "6bf13ae581afd08415c54d0d825543c21e34bff5/casos/"
@@ -1040,12 +1042,20 @@ participacao ainda dependem de concordancia; indique na lacuna uma pergunta
 concreta e o efeito da resposta. NAO sugira numeros/percentuais ocultos nos textos.
 Use quando existir base pertinente mas faltar proporcao sustentada. Nao apresente
 faixa numerica se nao houver limites documentados. Nao converta desconhecido em zero.
+Se o pedido monetario tiver valor literal no resumo e a lacuna for nexo, valor
+devido ou proporcao, prefira formula condicional a diligencia: o valor pedido e
+apenas base de conversa e p permanece aberto. Diligencia fica para situacoes em
+que nem sequer exista base literal segura ou em que a pergunta seja de escopo ou
+cumprimento e precise ser respondida antes de formular qualquer alternativa.
 
 Para nao_monetaria/diligencia/sem_opcao: base=null, criterio.tipo=sem_calculo e
 demais campos do criterio=null. nao_monetaria apenas para pedido nao monetario:
 descreva a providencia proposta, sem afirmar acordo ou inventar prazos/custos.
 diligencia exige lacuna concreta. sem_opcao apenas se decisao=negar ou fora_de_escopo:
 explique por que nao propor e nao use como fuga de um pedido indeterminado.
+Para pedido nao monetario concreto, prefira nao_monetaria condicionada a uma
+diligencia generica quando a providencia catalogada puder ser discutida sem
+inventar prazo, custo ou extensao.
 
 SAIDA COMPACTA: concentre sua escolha em tipo, fontes, base e criterio.
 Nos campos proposta, premissa e ressalva devolva literalmente "AUTO"; em
@@ -1057,14 +1067,18 @@ e reservado ao contrato quando uma opcao gerada nao passa na validacao local.
 
 REGRAS_AUDITORIA = """
 Apenas a auditora acrescenta auditoria em cada pedido: objeto com exatamente
-resultado (apta|reformular), riscos (array sem repeticao de SEM_SUPORTE|VALOR_INVENTADO|
+resultado (apta|apta_com_ressalva|reformular), riscos (array sem repeticao de SEM_SUPORTE|VALOR_INVENTADO|
 DUPLA_CONTAGEM|ESCOPO|POLO|PREMISSA|OUTRO), motivo (uma frase, texto 1 a 500 caracteres)
 e conflitos_com (array sem repeticao de pedido_id do mesmo catalogo, sem o proprio ID).
-Use literalmente um destes dois formatos, sem renomear campos nem acrescentar outros:
+Use literalmente um destes tres formatos, sem renomear campos nem acrescentar outros:
 {"resultado":"apta","riscos":[],"motivo":"justificativa especifica","conflitos_com":[]}
+{"resultado":"apta_com_ressalva","riscos":["DUPLA_CONTAGEM"],"motivo":"apresentar somente como alternativa nao cumulativa","conflitos_com":["RP02"]}
 {"resultado":"reformular","riscos":["RISCO_DA_LISTA"],"motivo":"defeito especifico","conflitos_com":["RP02"]}
 Revise a opcao jurisprudencial fornecida, NAO apenas sua propria conclusao.
-apta exige riscos=[]; reformular exige ao menos um risco e motivo especifico.
+apta exige riscos=[] e conflitos_com=[]. apta_com_ressalva exige exatamente o
+risco DUPLA_CONTAGEM, ao menos um conflito e uma opcao que ja deixe explicito
+que nao pode ser somada: ela passa apenas como alternativa nao cumulativa.
+reformular exige ao menos um risco e motivo especifico.
 Verifique base/percentuais/fontes, proposta e todas as premissas/ressalvas, inclusive
 valores/praticas inventados em texto. Uma formula sem percentual definido nao
 afirma divida: incerteza explicita por si so nao e motivo para rejeita-la.
@@ -1077,6 +1091,14 @@ ou pedidos alternativos; liste os IDs relacionados em conflitos_com. Diferencie
 penalidade autonoma de cobranca duplicada, mas nao presuma autonomia apenas porque
 o pedido recebeu outro nome. Verifique tambem se aprovar uma opcao contradiz a
 conclusao ou a ressalva de outro pedido. apta exige conflitos_com=[].
+
+Nao retenha uma opcao SOMENTE porque ela se relaciona ou se sobrepoe a outra,
+quando puder ser apresentada com seguranca como alternativa nao cumulativa e a
+ressalva ja proibir a soma. Nesse caso use apta_com_ressalva. Continue usando
+reformular se houver qualquer outro risco, base/escopo incorreto, falta de
+suporte, polo errado, premissa insegura ou se a propria opcao continuar
+materialmente indevida mesmo como alternativa. Multa pelo mesmo fato gerador
+nao passa apenas por receber outro nome.
 
 TESTE DE UTILIDADE CONDICIONAL: audite se a opcao pode ser APRESENTADA para
 discussao, nao se ja pode ser executada como divida. Formula com p ainda aberto
@@ -1334,6 +1356,79 @@ def _redacao_opcao(o, pedido, d):
         o["ressalva"] = "O pedido pode ser revisto se houver nova informacao pertinente."
 
 
+def _fontes_para_opcao(d, opcao=None):
+    fontes = []
+    candidatos = ((opcao or {}).get("fontes") or []) + (d.get("fontes_favoraveis") or []) + (d.get("fontes_contrarias") or [])
+    for fonte in candidatos:
+        if fonte in FONTES and fonte not in fontes:
+            fontes.append(fonte)
+    return fontes
+
+
+def _formula_sobre_valor_pedido(pedido, d, corpo, opcao=None):
+    """Usa o pedido como pauta, nunca como divida, somente com ancora literal."""
+    if (pedido.get("modalidade") != "pagar" or d.get("decisao") in ("negar", "fora_de_escopo")
+            or (d.get("lacuna") or {}).get("dimensao") not in ("nexo", "valor", "proporcao")):
+        return None
+    valor = pedido.get("valor_pedido_centavos")
+    if not _eh_int(valor) or valor <= 0:
+        return None
+    trecho = _trecho_ancorado(corpo, "PR", valores=[valor])
+    if trecho is None:
+        return None
+    fontes = _fontes_para_opcao(d, opcao)
+    if "PR" not in fontes:
+        fontes.insert(0, "PR")
+    o = {
+        "tipo": "formula", "proposta": "AUTO", "premissa": "AUTO", "ressalva": "AUTO",
+        "fontes": fontes, "pagador": None, "beneficiario": None,
+        "base": {"valor_centavos": valor, "natureza": "pedido", "fonte": "PR", "trecho": trecho},
+        "criterio": {"tipo": "proporcao_a_negociar", "min_bps": None, "max_bps": None,
+                     "fonte": None, "trecho": None},
+    }
+    _redacao_opcao(o, pedido, d)
+    o["pagador"], o["beneficiario"] = pedido["contra"], pedido["autor"]
+    return o
+
+
+def _opcao_estrutural_segura(pedido, d, corpo, opcao, erro):
+    """Downgrade conservador: nunca cria cifra, percentual, fonte ou novo pedido."""
+    tipo = opcao.get("tipo") if isinstance(opcao, dict) else None
+    if tipo == "faixa" and erro.startswith("PROPORCAO_"):
+        candidata = json.loads(json.dumps(opcao, ensure_ascii=False))
+        candidata["tipo"] = "formula"
+        candidata["criterio"] = {"tipo": "proporcao_a_negociar", "min_bps": None,
+                                  "max_bps": None, "fonte": None, "trecho": None}
+        _redacao_opcao(candidata, pedido, d)
+        candidata["pagador"], candidata["beneficiario"] = pedido["contra"], pedido["autor"]
+        if not _erro_opcao(candidata, pedido, d, corpo):
+            return candidata
+
+    formula = _formula_sobre_valor_pedido(pedido, d, corpo, opcao)
+    if formula is not None and not _erro_opcao(formula, pedido, d, corpo):
+        return formula
+
+    fontes = _fontes_para_opcao(d, opcao)
+    if pedido.get("modalidade") != "pagar" and d.get("decisao") not in ("negar", "fora_de_escopo") and fontes:
+        candidata = {"tipo": "nao_monetaria", "proposta": "AUTO", "premissa": "AUTO",
+                     "ressalva": "AUTO", "fontes": fontes, "pagador": None,
+                     "beneficiario": None, "base": None, "criterio": _criterio_sem_calculo()}
+        _redacao_opcao(candidata, pedido, d)
+        candidata["pagador"], candidata["beneficiario"] = pedido["contra"], pedido["autor"]
+        if not _erro_opcao(candidata, pedido, d, corpo):
+            return candidata
+
+    if (d.get("decisao") not in ("negar", "fora_de_escopo") and fontes
+            and (d.get("lacuna") or {}).get("dimensao") != "nenhuma"):
+        candidata = {"tipo": "diligencia", "proposta": "AUTO", "premissa": "AUTO",
+                     "ressalva": "AUTO", "fontes": fontes, "pagador": None,
+                     "beneficiario": None, "base": None, "criterio": _criterio_sem_calculo()}
+        _redacao_opcao(candidata, pedido, d)
+        if not _erro_opcao(candidata, pedido, d, corpo):
+            return candidata
+    return None
+
+
 def _normalizar_tese_modelo(obj, catalogo, nome, corpo, anteriores=None):
     """Repara campos mecanicos e isola opcao invalida sem alterar o merito."""
     if not isinstance(obj, dict):
@@ -1355,6 +1450,11 @@ def _normalizar_tese_modelo(obj, catalogo, nome, corpo, anteriores=None):
             if isinstance(opcao_anterior, dict) and opcao_anterior.get("tipo") == "opcao_nao_validada":
                 a.update(resultado="reformular", riscos=["OUTRO"], conflitos_com=[],
                          motivo="Opcao retida porque nao passou na validacao estrutural local.")
+            elif (a.get("resultado") == "reformular" and a.get("riscos") == ["DUPLA_CONTAGEM"]
+                  and isinstance(a.get("conflitos_com"), list) and a["conflitos_com"]
+                  and isinstance(opcao_anterior, dict)
+                  and "somar" in opcao_anterior.get("ressalva", "").lower()):
+                a["resultado"] = "apta_com_ressalva"
         return
     if nome != "jurisprudencial":
         return
@@ -1388,9 +1488,15 @@ def _normalizar_tese_modelo(obj, catalogo, nome, corpo, anteriores=None):
                 trecho = _trecho_ancorado(corpo, fonte, percentuais=[minimo, maximo])
                 if trecho is not None:
                     criterio["trecho"] = trecho
+        if o.get("tipo") == "diligencia":
+            formula = _formula_sobre_valor_pedido(pedido, d, corpo, o)
+            if formula is not None:
+                o = formula
+                d["opcao"] = o
         erro = _erro_opcao(o, pedido, d, corpo)
         if erro:
-            d["opcao"] = _opcao_nao_validada(pedido, erro)
+            recuperada = _opcao_estrutural_segura(pedido, d, corpo, o, erro)
+            d["opcao"] = recuperada if recuperada is not None else _opcao_nao_validada(pedido, erro)
 
 
 def _erro_opcao(o, pedido, d, corpo=None):
@@ -1463,7 +1569,8 @@ def _erro_opcao(o, pedido, d, corpo=None):
 
 
 def _erro_auditoria(a, d, catalogo=None, pedido=None):
-    if not _chaves(a, "resultado riscos motivo conflitos_com") or a["resultado"] not in ("apta", "reformular"):
+    if (not _chaves(a, "resultado riscos motivo conflitos_com")
+            or a["resultado"] not in ("apta", "apta_com_ressalva", "reformular")):
         return "SCHEMA_INVALIDO"
     rs = a["riscos"]
     if not isinstance(rs, list) or any(not isinstance(r, str) or r not in RISCOS for r in rs) or len(set(rs)) != len(rs):
@@ -1479,6 +1586,8 @@ def _erro_auditoria(a, d, catalogo=None, pedido=None):
         return "CONFLITOS_INVALIDOS"
     if a["resultado"] == "apta" and (rs or conflitos):
         return "APTA_EXIGE_RISCOS_E_CONFLITOS_VAZIOS"
+    if a["resultado"] == "apta_com_ressalva" and (rs != ["DUPLA_CONTAGEM"] or not conflitos):
+        return "APTA_COM_RESSALVA_EXIGE_SOMENTE_DUPLA_CONTAGEM_E_CONFLITO"
     if a["resultado"] == "reformular" and not rs:
         return "REFORMULAR_EXIGE_RISCO"
     if ("DUPLA_CONTAGEM" in rs) != bool(conflitos):
@@ -1504,7 +1613,7 @@ def _erro_tese(obj, catalogo, nome, anteriores, corpo=None):
                 return prefixo + "auditoria:" + erro
             opcao = anteriores[1]["pedidos"][indice]["opcao"]
             if (anteriores[1]["pedidos"][indice]["decisao"] == "fora_de_escopo"
-                    and d["auditoria"]["resultado"] == "apta"
+                    and d["auditoria"]["resultado"] != "reformular"
                     and opcao["tipo"] != "sem_opcao"):
                 return prefixo + "auditoria:FORA_DE_ESCOPO_EXIGE_REFORMULAR_OPCAO"
         return ""
@@ -1542,7 +1651,7 @@ def _faixa_opcao(o):
 
 
 def _faixa_discussao(o, auditoria):
-    if auditoria["resultado"] != "apta":
+    if auditoria["resultado"] == "reformular":
         return None
     if o["tipo"] == "faixa":
         return _faixa_opcao(o)
@@ -1561,7 +1670,7 @@ def _consolidar(catalogo, teses):
             "opcao": o, "auditoria": a,
             "estado": "retida_pela_auditoria" if a["resultado"] == "reformular" else
                       "sem_opcao" if o["tipo"] == "sem_opcao" else "condicional",
-            "faixa_centavos": _faixa_opcao(o) if a["resultado"] == "apta" else None,
+            "faixa_centavos": _faixa_opcao(o) if a["resultado"] != "reformular" else None,
             "faixa_discussao_centavos": _faixa_discussao(o, a),
         }
         item["analises"] = {
@@ -1715,8 +1824,9 @@ def _render_termo_opcao(case_id, painel):
         n = item["negociacao"]
         o, a = n["opcao"], n["auditoria"]
         situacao_opcao = (
-            "O que nao passou: opcao retida pela auditoria." if a["resultado"] != "apta" else
+            "O que nao passou: opcao retida pela auditoria." if a["resultado"] == "reformular" else
             "Opcao de composicao: nenhuma, coerente com a conclusao negativa ou fora de escopo." if o["tipo"] == "sem_opcao" else
+            "O que passou com ressalva: apresentar somente como alternativa nao cumulativa." if a["resultado"] == "apta_com_ressalva" else
             "O que passou: opcao apta para discussao."
         )
         linhas.extend(["### " + item["pedido_id"] + " — " + item["descricao"], "",
@@ -1728,6 +1838,8 @@ def _render_termo_opcao(case_id, painel):
             if a["conflitos_com"]:
                 linhas.append("Possivel sobreposicao ou conflito com: " + ", ".join(a["conflitos_com"]) + ".")
         else:
+            if a["resultado"] == "apta_com_ressalva":
+                linhas.append("Alerta de nao cumulacao com: " + ", ".join(a["conflitos_com"]) + ".")
             linhas.extend(["Proposta: " + o["proposta"], "Premissa: " + o["premissa"],
                            "Ressalva: " + o["ressalva"], "Fontes da opcao: " + (", ".join(o["fontes"]) or "nenhuma")])
             if o["pagador"] is not None:

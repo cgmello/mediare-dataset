@@ -5,6 +5,33 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 **A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
 gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
+## v20.0.0-experimental — 2026-09-08 — candidata para repetição dos 50 casos
+
+Motivação: a v19 consolidou uma melhora importante — 47/50 consensos, três falhas
+técnicas, 24 rotações, 16 painéis inválidos e nenhuma inconsistência nos 47 Termos
+— mas entregou opção integral ou parcial em 29/50 casos, abaixo da meta de 35.
+
+- Preserva integralmente a arquitetura da v19, inclusive as três lentes, o Termo
+  determinístico, a auditoria cruzada, o reparo único e a retenção correta da
+  multa do caso 0027.
+- Um pedido monetário com lacuna de nexo, valor ou proporção pode gerar fórmula
+  `valor pedido × p` somente quando o valor está literalmente ancorado na PR.
+  O Termo mantém a indicação de que a base é pauta de discussão, não dívida.
+- Uma faixa cuja proporção não esteja documentada pode ser rebaixada para fórmula
+  com percentual aberto, preservando a base válida e removendo o número sem fonte.
+- Uma opção monetária incompatível com pedido não monetário pode ser recuperada
+  como opção não monetária condicionada, sem inventar prazo, custo ou extensão.
+- A auditoria admite `apta_com_ressalva` apenas quando o único risco é
+  `DUPLA_CONTAGEM`, há outro pedido identificado e a redação já proíbe soma. O
+  Termo apresenta os IDs conflitantes como alternativas não cumulativas.
+- Qualquer risco adicional — inclusive escopo, suporte, valor, polo ou premissa —
+  continua exigindo reformulação. A flexibilização não alcança o defeito material
+  corrigido no caso 0027.
+- Relatório consolidado da v19: `V19_BATCH1_REPORT.md`. Hipótese, amostra e gates
+  da nova execução: `V20_BATCH1_PLAN.md` e `canary_v20.json`.
+- 172 testes locais aprovados. SHA-256 do candidato:
+  `d2b719467cf96874244a4e5990c501c0b93ef5d900dc0bc93480e71e43cbadf4`.
+
 ## v19.0.0-experimental — 2026-09-07 — candidata para repetição dos 50 casos
 
 Motivação: a v18 obteve 38/50 consensos e 31/50 Termos úteis quando os casos

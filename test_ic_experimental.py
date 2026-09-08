@@ -176,14 +176,24 @@ class V102Tests(unittest.TestCase):
                 for i, t in enumerate(p["teses"]):
                     self.assertEqual(IC["_erro_tese"](t, p["catalogo"], t["lente"], p["teses"][:i], CORPO), "")
 
-    def test_falha_da_opcao_e_localizada_sem_perder_conclusoes(self):
+    def test_falha_da_opcao_recupera_formula_ancorada_sem_perder_conclusoes(self):
         p = fixture()
         d = p["teses"][1]["pedidos"][0]
         d["opcao"] = {"tipo": "faixa"}
         IC["_normalizar_tese_modelo"](p["teses"][1], p["catalogo"], "jurisprudencial", CORPO, p["teses"][:1])
-        self.assertEqual(d["opcao"]["tipo"], "opcao_nao_validada")
+        self.assertEqual(d["opcao"]["tipo"], "formula")
         self.assertEqual(IC["_erro_opcao"](d["opcao"], p["catalogo"]["pedidos"][0], d, CORPO), "")
         self.assertEqual(d["decisao"], "necessita_informacao")
+
+    def test_opcao_irrecuperavel_ainda_e_retida_localmente(self):
+        p = fixture()
+        p["catalogo"]["pedidos"][0]["valor_pedido_centavos"] = 99900
+        d = p["teses"][1]["pedidos"][0]
+        d["fontes_favoraveis"] = []
+        d["fontes_contrarias"] = []
+        d["opcao"] = {"tipo": "desconhecida"}
+        IC["_normalizar_tese_modelo"](p["teses"][1], p["catalogo"], "jurisprudencial", CORPO, p["teses"][:1])
+        self.assertEqual(d["opcao"]["tipo"], "opcao_nao_validada")
 
     def test_auditoria_exige_id_quando_detecta_dupla_contagem(self):
         p = fixture()
@@ -191,6 +201,39 @@ class V102Tests(unittest.TestCase):
         a.update(resultado="reformular", riscos=["DUPLA_CONTAGEM"], conflitos_com=[])
         self.assertEqual(IC["_erro_auditoria"](a, p["teses"][2]["pedidos"][0], p["catalogo"], p["catalogo"]["pedidos"][0]),
                          "DUPLA_CONTAGEM_EXIGE_CONFLITO_IDENTIFICADO")
+
+    def test_dupla_contagem_isolada_passa_com_ressalva_sem_afrouxar_outros_riscos(self):
+        p = fixture()
+        pedido2 = copy.deepcopy(p["catalogo"]["pedidos"][0])
+        pedido2["id"] = "RP02"
+        p["catalogo"]["pedidos"].append(pedido2)
+        for tese in p["teses"]:
+            d2 = copy.deepcopy(tese["pedidos"][0])
+            d2["pedido_id"] = "RP02"
+            tese["pedidos"].append(d2)
+        a = p["teses"][2]["pedidos"][0]["auditoria"]
+        a.update(resultado="reformular", riscos=["DUPLA_CONTAGEM"], conflitos_com=["RP02"],
+                 motivo="As opcoes cobrem a mesma base.")
+        IC["_normalizar_tese_modelo"](p["teses"][2], p["catalogo"], "auditora", CORPO, p["teses"][:2])
+        self.assertEqual(a["resultado"], "apta_com_ressalva")
+        self.assertEqual(IC["_erro_auditoria"](a, p["teses"][2]["pedidos"][0], p["catalogo"], p["catalogo"]["pedidos"][0]), "")
+        reconsolidar(p)
+        self.assertTrue(IC["_painel_valido"](p))
+        termo = IC["_render_termo_opcao"]("0005", p)
+        self.assertIn("O que passou com ressalva", termo)
+        self.assertIn("Alerta de nao cumulacao com: RP02", termo)
+
+        q = fixture()
+        q["catalogo"]["pedidos"].append(copy.deepcopy(pedido2))
+        for tese in q["teses"]:
+            d2 = copy.deepcopy(tese["pedidos"][0])
+            d2["pedido_id"] = "RP02"
+            tese["pedidos"].append(d2)
+        aq = q["teses"][2]["pedidos"][0]["auditoria"]
+        aq.update(resultado="reformular", riscos=["DUPLA_CONTAGEM", "ESCOPO"],
+                  conflitos_com=["RP02"], motivo="Ha conflito e base fora do escopo.")
+        IC["_normalizar_tese_modelo"](q["teses"][2], q["catalogo"], "auditora", CORPO, q["teses"][:2])
+        self.assertEqual(aq["resultado"], "reformular")
 
     def test_indeterminado_pode_ter_formula_sem_virar_divida(self):
         p = fixture()
@@ -207,6 +250,20 @@ class V102Tests(unittest.TestCase):
         self.assertIn("Nao e faixa probatoria nem recomendacao", termo)
         self.assertIn("PASSOU PARA DISCUSSAO", termo)
         self.assertIn("Nao passou como conclusao definitiva", termo)
+
+    def test_diligencia_monetaria_vira_formula_so_com_valor_literal_ancorado(self):
+        p = fixture("diligencia")
+        IC["_normalizar_tese_modelo"](p["teses"][1], p["catalogo"], "jurisprudencial", CORPO, p["teses"][:1])
+        o = opcao(p)
+        self.assertEqual(o["tipo"], "formula")
+        self.assertEqual(o["base"]["natureza"], "pedido")
+        self.assertEqual(o["base"]["fonte"], "PR")
+        self.assertEqual(o["base"]["valor_centavos"], 100000)
+
+        q = fixture("diligencia")
+        q["catalogo"]["pedidos"][0]["valor_pedido_centavos"] = 99900
+        IC["_normalizar_tese_modelo"](q["teses"][1], q["catalogo"], "jurisprudencial", CORPO, q["teses"][:1])
+        self.assertEqual(opcao(q)["tipo"], "diligencia")
 
     def test_termo_distingue_conclusao_aprovada_e_sem_opcao(self):
         concedida = fixture("nao_monetaria", "conceder", modalidade="declarar")
@@ -260,6 +317,13 @@ class V102Tests(unittest.TestCase):
         opcao(p)["criterio"].update(min_bps=4000, fonte="RR")
         self.assertEqual(erro_opcao(p), "PROPORCAO_CITACAO_NAO_LOCALIZADA")
 
+    def test_faixa_com_percentual_nao_ancorado_e_rebaixada_para_formula(self):
+        p = fixture("faixa")
+        opcao(p)["criterio"].update(min_bps=5000, max_bps=5000)
+        IC["_normalizar_tese_modelo"](p["teses"][1], p["catalogo"], "jurisprudencial", CORPO, p["teses"][:1])
+        self.assertEqual(opcao(p)["tipo"], "formula")
+        self.assertEqual(opcao(p)["base"]["valor_centavos"], 100000)
+
     def test_regex_monetario_e_percentual_nao_muda_unidades(self):
         self.assertEqual(IC["_valores_citados"]("R$ 64.734,88 e R$ 1234,56"), [6473488, 123456])
         self.assertEqual(IC["_valores_citados"]("-10,00 e 10.25"), [])
@@ -287,6 +351,12 @@ class V102Tests(unittest.TestCase):
         self.assertEqual(erro_opcao(p), "PARTES_INCOMPATIVEIS_COM_PEDIDO")
         self.assertEqual(erro_opcao(fixture("faixa", modalidade="declarar")), "PEDIDO_NAO_MONETARIO")
         self.assertEqual(erro_opcao(fixture("nao_monetaria")), "NAO_MONETARIA_EXIGE_MODALIDADE_COMPATIVEL")
+
+    def test_tipo_monetario_em_pedido_nao_monetario_vira_opcao_nao_monetaria(self):
+        p = fixture("faixa", modalidade="declarar")
+        IC["_normalizar_tese_modelo"](p["teses"][1], p["catalogo"], "jurisprudencial", CORPO, p["teses"][:1])
+        self.assertEqual(opcao(p)["tipo"], "nao_monetaria")
+        self.assertEqual(opcao(p)["pagador"], "requerido")
 
     def test_fora_de_escopo_e_sem_opcao_nao_sao_escape(self):
         self.assertEqual(erro_opcao(fixture("sem_opcao")), "SEM_OPCAO_NAO_PERMITIDA_PARA_INDETERMINADO_OU_CONCESSAO")
@@ -702,7 +772,7 @@ class V102Tests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "JSON_INVALIDO:VAZIO"):
             IC["_ler_objeto_json"](lambda *a, **k: '  ', "")
 
-    def test_criterio_invalido_retem_so_a_opcao_sem_nova_tentativa(self):
+    def test_criterio_invalido_recupera_formula_sem_nova_tentativa(self):
         p = fixture()
         original = copy.deepcopy(p["teses"][1])
         del opcao(p)["criterio"]["min_bps"]
@@ -714,7 +784,7 @@ class V102Tests(unittest.TestCase):
             prompts.append(prompt)
             return json.dumps(respostas.pop(0))
         result = IC["_tese_de"](pedir, "jurisprudencial", "", CORPO, p["catalogo"], p["teses"][:1])
-        self.assertEqual(result["pedidos"][0]["opcao"]["tipo"], "opcao_nao_validada")
+        self.assertEqual(result["pedidos"][0]["opcao"]["tipo"], "formula")
         self.assertEqual(len(prompts), 1)
         self.assertEqual(result["pedidos"][0]["decisao"], original["pedidos"][0]["decisao"])
         opcao(p)["criterio"] = None
