@@ -1,0 +1,46 @@
+{
+  "aceite": {
+    "termo_opcao_id": "TO-001",
+    "todos_concordam": true
+  },
+  "partes": {
+    "requerente": {
+      "nome": "PREENCHER: nome completo do requerente",
+      "cpf_cnpj": "PREENCHER: CPF ou CNPJ",
+      "qualificacao": "PREENCHER: nacionalidade, estado civil e profissão ou tipo societário e representação",
+      "endereco": "PREENCHER: endereço completo"
+    },
+    "requerido": {
+      "nome": "PREENCHER: nome completo do requerido",
+      "cpf_cnpj": "PREENCHER: CPF ou CNPJ",
+      "qualificacao": "PREENCHER: nacionalidade, estado civil e profissão ou tipo societário e representação",
+      "endereco": "PREENCHER: endereço completo"
+    }
+  },
+  "mediador": {
+    "nome": "PREENCHER: nome do mediador",
+    "qualificacao": "PREENCHER: mediador extrajudicial e eventual registro"
+  },
+  "local": "São Paulo/SP",
+  "data_assinatura": "2026-09-09",
+  "resumo_conflito": "PREENCHER: resumo objetivo dos fatos e do objeto efetivamente submetido à mediação",
+  "pagamentos": {
+    "RP01": {
+      "vencimento": "2026-10-09",
+      "forma": "PIX para a chave informada por escrito pelo requerente, mediante comprovante"
+    }
+  },
+  "obrigacoes": {},
+  "inadimplemento": {
+    "multa_percentual": "2",
+    "juros_mensais_percentual": "1",
+    "correcao_indice": "IPCA"
+  },
+  "confidencialidade": true,
+  "foro": "Comarca de São Paulo/SP",
+  "assinatura": {
+    "partes_e_mediador": true,
+    "duas_testemunhas": true
+  },
+  "advogados": []
+}

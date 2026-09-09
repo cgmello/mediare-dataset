@@ -48,6 +48,29 @@ O limite padrão é 256 combinações. Se o painel exceder esse valor, o script 
 sem gerar uma lista parcial; o limite só pode ser ampliado explicitamente com
 `--max-combinations`.
 
+### Termo Final de Mediação (off-chain)
+
+Depois que todas as partes escolherem um Termo de Opção, `termo_acordo.py` gera
+o acordo final. Ele exige aceite unânime, qualificação das partes, dados do
+mediador, resumo do conflito, pagamento e assinatura. Para fórmula, o percentual
+deve estar fechado; para faixa, deve ser escolhido um valor exato dentro dela.
+
+Copie `dados_acordo.exemplo.json`, preencha-o localmente com os dados reais e não
+versione o arquivo preenchido. Para o caso com uma única fórmula:
+
+    python3 termo_acordo.py get-case.json \
+      --dados dados-acordo-0005.json \
+      --termo TO-001 \
+      --percentual RP01=60 \
+      --format html \
+      -o acordo-0005.html
+
+Se houver somente uma fórmula em todo o painel, `--percentual 60` também é aceito.
+Opções do tipo faixa usam, por exemplo, `--valor RP01=38.840,93`. As saídas podem
+ser `markdown`, `json` ou `html`; nenhum documento é gravado quando a validação
+falha. Critérios formais, fontes oficiais e limites do modelo estão em
+[docs/TERMO_ACORDO_FORMAL.md](docs/TERMO_ACORDO_FORMAL.md).
+
 ## Notes
 
 - "real" cases were reconstructed from public court decisions (CJPG/TJSP), with

@@ -7,6 +7,26 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
 ## Pós-processador off-chain de Termos — 2026-09-09
 
+- Adicionado `termo_acordo.py`, segundo estágio determinístico que converte um
+  cenário aceito em Termo Final de Mediação e Acordo Extrajudicial. Ele exige
+  aceite unânime, dados formais completos e fechamento de toda fórmula/faixa.
+- Fórmulas usam percentual explícito e aritmética decimal; o valor final é
+  arredondado ao centavo e escrito em algarismos e por extenso. Faixas recusam
+  valores fora dos limites aprovados. Valores ou percentuais de pedidos não
+  aceitos também são rejeitados.
+- Identidade, qualificação e endereço vêm de arquivo off-chain separado: o
+  gerador não tenta reconstruir dados pessoais a partir dos casos anonimizados.
+- O documento identifica objeto, obrigações, pagador, beneficiário, forma e data
+  de pagamento, quitação específica após cumprimento, assinaturas e somente as
+  cláusulas opcionais expressamente configuradas.
+- Pesquisa e avaliação do modelo visual registradas em
+  `docs/TERMO_ACORDO_FORMAL.md`, com Lei de Mediação, CPC, Código Civil e materiais
+  do CNJ como fontes primárias. O exemplo apresentava boa síntese, mas precisava
+  qualificação, local/data, pagamento mais preciso e coerência entre a referência
+  ao art. 784, III, do CPC e a ausência de duas testemunhas.
+- Adicionados exemplo de dados formais e testes de aceite, cálculo, limites,
+  campos obrigatórios, valor por extenso, CLI e HTML seguro para impressão.
+
 - `termo_mediador.py` recebe diretamente o JSON de `get_case`, inclusive quando
   a resposta ou o campo `painel` estão codificados como strings JSON.
 - Cada opção aprovada origina escolhas de aceitar/não aceitar. O script gera as

@@ -11,3 +11,9 @@ resultados/
 # saidas de avaliacao (locais, nao versionar)
 res_*/
 *.stale*
+
+# dados pessoais e acordos finais gerados localmente
+dados-acordo-*.json
+acordo-*.md
+acordo-*.json
+acordo-*.html
