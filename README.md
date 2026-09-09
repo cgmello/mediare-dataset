@@ -88,6 +88,31 @@ declara que não possui validade e todos os campos de assinatura são suprimidos
 No modo final, os blocos de assinatura repetem o CPF ou CNPJ de cada parte para
 facilitar sua identificação e conferência no momento da assinatura.
 
+### Avaliação local via OpenRouter
+
+`openrouter_runner.py` executa o snapshot congelado da v20 com cinco modelos,
+preserva respostas intermediárias, votos, tokens, latência e custos e permite
+retomada sem cobrar novamente chamadas já concluídas. O quórum local é apenas um
+instrumento analítico: ele não reproduz nem substitui o consenso do Studio.
+
+A chave pode ser fornecida pelo ambiente ou por arquivo local ignorado pelo Git:
+
+    chmod 600 .openrouter.key
+    python3 openrouter_runner.py init --max-cost 10
+    python3 openrouter_runner.py run \
+      --api-key-file .openrouter.key \
+      --case-limit 10
+
+O primeiro comando congela 50 casos e a configuração. `--case-limit 10` processa
+somente dez casos novos; uma execução posterior com `resume` continua no caso 11
+sem repetir as chamadas anteriores. O limite de US$ 10 é persistente e independente
+do limite nominal da chave. O relatório único para o investidor é atualizado em
+`OPENROUTER_V20_INVESTOR_REPORT.html`.
+
+Cada caso possui cinco papéis de modelo (um líder e quatro revisores), mas o líder
+executa catálogo e lentes em requisições separadas. Assim, dez casos correspondem
+a 50 avaliações de papéis e normalmente a pelo menos 80 chamadas HTTP reais.
+
 ## Notes
 
 - "real" cases were reconstructed from public court decisions (CJPG/TJSP), with

@@ -5,6 +5,33 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 **A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
 gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
+## Avaliação v20 — Studio holdout e OpenRouter — 2026-09-09
+
+- Iniciado holdout fora da amostra com os casos 0051–0100 e o snapshot v20
+  congelado. Como a instância histórica não mantinha bytecode, foi implantado o
+  bootstrap `0xCb46400C0bD70a694673ED28f6A9Adec6915aCae` e instalada a mesma v20,
+  SHA-256 `d2b719467cf96874244a4e5990c501c0b93ef5d900dc0bc93480e71e43cbadf4`.
+  Deploy: `0xfc6c6f93ebd7301578adb51991ff746a45d9314cf7159eaecb594dc521c5c212`;
+  upgrade: `0x0088af450dc6e0c7ce18cb2b319be03724df62e638811f8d3222054a0d1bd34b`.
+- Adicionado `openrouter_runner.py`, que importa as funções do snapshot exato da
+  v20 e executa líder rotativo mais quatro revisores. Respostas, hashes de prompt,
+  votos, diagnósticos, tokens, latência e custo informado pela API são mantidos
+  localmente; a chave nunca é persistida nos resultados.
+- O cache por chamada torna a retomada idempotente: resposta concluída não é
+  solicitada nem cobrada novamente. Há teto de gasto, consultas sanitizadas de
+  saldo, espera entre requisições e parada imediata para erros de autenticação,
+  pagamento ou autorização.
+- O relatório em inglês foi consolidado em um único HTML:
+  `OPENROUTER_V20_INVESTOR_REPORT.html`. Ele reúne ganho experimental, comparação
+  Studio/OpenRouter, resultados, tempo, custo e proposta de uso do crédito.
+- A primeira etapa local foi limitada aos casos 0001–0010 dentro da campanha
+  definitiva 0001–0050. São 50 papéis de modelo; como o líder chama catálogo e
+  lentes separadamente, a contagem real esperada é de pelo menos 80 requisições.
+- A chave foi validada com uma geração mínima. O endpoint de conta informou
+  US$ 1.120,00 em créditos históricos e US$ 1.106,973649132 de uso, saldo próximo
+  de US$ 13,03. O limite de US$ 500 da chave é autorização de gasto, não saldo.
+- Cinco testes unitários do runner aprovados antes do piloto.
+
 ## Pós-processador off-chain de Termos — 2026-09-09
 
 - Os blocos de assinatura do acordo final passam a repetir o documento do

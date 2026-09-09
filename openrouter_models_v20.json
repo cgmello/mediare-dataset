@@ -1,0 +1,15 @@
+{
+  "description": "Five-model local committee approximating the diversity observed in Studio v20 validators. Leadership rotates by case; the other four models review the same proposal.",
+  "models": [
+    "anthropic/claude-sonnet-4.6",
+    "openai/gpt-5.4",
+    "z-ai/glm-5.3",
+    "deepseek/deepseek-v4-pro",
+    "mistralai/mistral-medium-3-5"
+  ],
+  "reviewer_quorum": 3,
+  "provider": {
+    "data_collection": "deny",
+    "allow_fallbacks": true
+  }
+}
