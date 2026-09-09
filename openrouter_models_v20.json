@@ -8,6 +8,13 @@
     "mistralai/mistral-medium-3-5"
   ],
   "reviewer_quorum": 3,
+  "model_options": {
+    "z-ai/glm-5.3": {
+      "reasoning": {
+        "effort": "low"
+      }
+    }
+  },
   "provider": {
     "data_collection": "deny",
     "allow_fallbacks": true

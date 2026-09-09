@@ -10,6 +10,7 @@ from openrouter_runner import (
     RunnerError,
     load_contract,
     load_models,
+    reconciled_campaign_cost,
     render_report,
     total_cost,
 )
@@ -18,9 +19,11 @@ from openrouter_runner import (
 class FakeClient:
     def __init__(self):
         self.calls = 0
+        self.request_attempts = 0
 
     def complete(self, model, prompt, max_tokens):
         self.calls += 1
+        self.request_attempts += 1
         return {
             "text": '{"ok":true}',
             "request_id": "gen-test",
@@ -37,6 +40,15 @@ class FakeClient:
 
 
 class OpenRouterRunnerTests(unittest.TestCase):
+    def test_campaign_cost_uses_key_delta_when_itemized_responses_are_incomplete(self):
+        manifest = {
+            "account_start": {"key_usage_usd": "1.25"},
+            "account_latest": {"key_usage_usd": "3.75"},
+        }
+        actual, delta = reconciled_campaign_cost(manifest, "2.10")
+        self.assertEqual(str(actual), "2.50")
+        self.assertEqual(str(delta), "2.50")
+
     def test_loads_exact_v20_functions(self):
         ic = load_contract("res_canary_v20/20.0.0-experimental.py")
         self.assertEqual(ic["VERSAO"], "20.0.0-experimental")
@@ -48,10 +60,11 @@ class OpenRouterRunnerTests(unittest.TestCase):
         self.assertEqual(captured.getvalue().strip(), "MEDIARE_DIAG:REVISOR_APROVA")
 
     def test_model_config_has_five_models_and_quorum_three(self):
-        models, quorum, provider = load_models("openrouter_models_v20.json")
+        models, quorum, provider, model_options = load_models("openrouter_models_v20.json")
         self.assertEqual(len(models), 5)
         self.assertEqual(quorum, 3)
         self.assertEqual(provider["data_collection"], "deny")
+        self.assertEqual(model_options["z-ai/glm-5.3"]["reasoning"]["effort"], "low")
 
     def test_replay_cache_avoids_second_api_charge(self):
         with tempfile.TemporaryDirectory() as directory:

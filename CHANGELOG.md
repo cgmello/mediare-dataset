@@ -31,6 +31,30 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
   US$ 1.120,00 em créditos históricos e US$ 1.106,973649132 de uso, saldo próximo
   de US$ 13,03. O limite de US$ 500 da chave é autorização de gasto, não saldo.
 - Cinco testes unitários do runner aprovados antes do piloto.
+- Piloto concluído nos casos 0001–0010: 103 requisições HTTP, 808.949 tokens
+  itemizados e US$ 2,248825110 de custo reconciliado pela variação de uso da
+  própria chave. Médias: US$ 0,224882511 por caso, US$ 0,021833 por requisição
+  e 288,5 segundos de execução ativa por caso.
+- Oito líderes produziram painel válido e útil; seis atingiram o quórum analítico
+  local. Os casos 0001–0006 coincidiram com o Studio tanto em consenso quanto na
+  classe operacional. A classe coincidiu em 7/10 no total.
+- Os casos 0007–0008 tiveram opção integral do líder, mas somente 2/4 revisores:
+  DeepSeek recusou compatibilidade das fontes e Mistral falhou no schema booleano
+  após três tentativas. O 0009 falhou na auditora do líder DeepSeek; o 0010 falhou
+  na coerência entre concessão monetária e valor nulo do líder Mistral.
+- O piloto detectou respostas cobradas sem conteúdo final em modelos de raciocínio.
+  O runner passou a contabilizar respostas vazias, tentativas HTTP e custo por
+  variação do uso da chave. GLM 5.3 foi estabilizado com esforço `low`; o próximo
+  lote deve controlar também o orçamento de raciocínio do DeepSeek antes de
+  promovê-lo novamente a líder.
+- Projeção linear: US$ 11,2441 para 50 casos e US$ 112,4413 para 500. Os 40 casos
+  restantes custariam cerca de US$ 8,9953; o saldo real ao fim do piloto era
+  US$ 10,7775. Apesar de suficiente na projeção, o teto persistente da campanha
+  continua em US$ 10 e não será elevado sem nova decisão.
+- Relatório único em inglês gerado em `OPENROUTER_V20_INVESTOR_REPORT.html`, com
+  comparação Studio/OpenRouter, observação de cada caso, telemetria por modelo,
+  tempo, custo reconciliado, projeções e plano condicional para o grant. Suíte
+  completa concluída com 206 testes aprovados.
 
 ## Pós-processador off-chain de Termos — 2026-09-09
 

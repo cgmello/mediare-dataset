@@ -131,6 +131,7 @@ def load_models(path):
     models = value.get("models") if isinstance(value, dict) else None
     quorum = value.get("reviewer_quorum") if isinstance(value, dict) else None
     provider = value.get("provider") if isinstance(value, dict) else None
+    model_options = value.get("model_options", {}) if isinstance(value, dict) else None
     if (not isinstance(models, list) or len(models) < 3 or len(set(models)) != len(models)
             or any(not isinstance(model, str) or "/" not in model for model in models)):
         raise RunnerError("model config must contain at least three unique OpenRouter slugs")
@@ -138,7 +139,12 @@ def load_models(path):
         raise RunnerError("reviewer_quorum must fit the reviewer count")
     if not isinstance(provider, dict):
         raise RunnerError("model config must contain provider preferences")
-    return models, quorum, provider
+    if not isinstance(model_options, dict) or any(
+        model not in models or not isinstance(options, dict)
+        for model, options in model_options.items()
+    ):
+        raise RunnerError("model_options must map configured models to objects")
+    return models, quorum, provider, model_options
 
 
 def key_from(args):
@@ -163,7 +169,7 @@ def decimal_cost(value):
 
 
 class OpenRouterClient:
-    def __init__(self, api_key, provider, delay=1.0, timeout=300):
+    def __init__(self, api_key, provider, model_options=None, delay=1.0, timeout=300):
         try:
             import requests
         except ImportError as exc:
@@ -176,10 +182,14 @@ class OpenRouterClient:
             "X-OpenRouter-Title": "Mediare IC v20 local evaluation",
         }
         self.provider = provider
+        self.model_options = model_options or {}
         self.delay = max(0.0, float(delay))
         self.timeout = timeout
         self.last_request = 0.0
         self.fatal_error = None
+        self.last_error = None
+        self.last_error_metadata = {}
+        self.request_attempts = 0
 
     def _get_json(self, url):
         try:
@@ -216,6 +226,10 @@ class OpenRouterClient:
         }
 
     def complete(self, model, prompt, max_tokens):
+        self.last_error = None
+        self.last_error_metadata = {}
+        attempts_before = self.request_attempts
+        request_started = time.monotonic()
         remaining = self.delay - (time.monotonic() - self.last_request)
         if remaining > 0:
             time.sleep(remaining)
@@ -225,10 +239,12 @@ class OpenRouterClient:
             "max_tokens": max_tokens,
             "provider": self.provider,
         }
+        payload.update(self.model_options.get(model, {}))
         last_code = None
         for attempt in range(4):
             started = time.monotonic()
             try:
+                self.request_attempts += 1
                 response = self.session.post(
                     OPENROUTER_URL, headers=self.headers, json=payload, timeout=self.timeout,
                 )
@@ -238,9 +254,11 @@ class OpenRouterClient:
                     if attempt < 3:
                         time.sleep(min(2 ** attempt, 8))
                         continue
-                    raise RunnerError("OPENROUTER_HTTP_" + str(response.status_code))
+                    self.last_error = "OPENROUTER_HTTP_" + str(response.status_code)
+                    raise RunnerError(self.last_error)
                 if response.status_code >= 400:
                     error = "OPENROUTER_HTTP_" + str(response.status_code)
+                    self.last_error = error
                     if response.status_code in (401, 402, 403):
                         self.fatal_error = error
                     raise RunnerError(error)
@@ -252,27 +270,46 @@ class OpenRouterClient:
                 if attempt < 3:
                     time.sleep(min(2 ** attempt, 8))
                     continue
-                raise RunnerError("OPENROUTER_TRANSPORT_" + type(exc).__name__) from None
+                self.last_error = "OPENROUTER_TRANSPORT_" + type(exc).__name__
+                raise RunnerError(self.last_error) from None
             choices = body.get("choices") if isinstance(body, dict) else None
             message = choices[0].get("message") if isinstance(choices, list) and choices else None
             text = message.get("content") if isinstance(message, dict) else None
-            if not isinstance(text, str) or not text.strip():
-                raise RunnerError("OPENROUTER_EMPTY_TEXT")
             usage = body.get("usage") if isinstance(body.get("usage"), dict) else {}
-            if usage.get("cost") is None:
-                raise RunnerError("OPENROUTER_COST_MISSING")
-            return {
-                "text": text,
+            metadata = {
                 "request_id": str(body.get("id") or ""),
-                "requested_model": model,
                 "served_model": str(body.get("model") or model),
                 "provider": str(body.get("provider") or "not_reported"),
                 "prompt_tokens": int(usage.get("prompt_tokens") or 0),
                 "completion_tokens": int(usage.get("completion_tokens") or 0),
                 "total_tokens": int(usage.get("total_tokens") or 0),
-                "cost_usd": format(decimal_cost(usage["cost"]), "f"),
-                "duration_seconds": round(time.monotonic() - started, 3),
+                "cost_usd": (
+                    format(decimal_cost(usage["cost"]), "f")
+                    if usage.get("cost") is not None else "0"
+                ),
+            }
+            if not isinstance(text, str) or not text.strip():
+                self.last_error = "OPENROUTER_EMPTY_TEXT"
+                self.last_error_metadata = metadata
+                raise RunnerError(self.last_error)
+            if usage.get("cost") is None:
+                self.last_error = "OPENROUTER_COST_MISSING"
+                self.last_error_metadata = metadata
+                raise RunnerError(self.last_error)
+            self.last_error = None
+            return {
+                "text": text,
+                "request_id": metadata["request_id"],
+                "requested_model": model,
+                "served_model": metadata["served_model"],
+                "provider": metadata["provider"],
+                "prompt_tokens": metadata["prompt_tokens"],
+                "completion_tokens": metadata["completion_tokens"],
+                "total_tokens": metadata["total_tokens"],
+                "cost_usd": metadata["cost_usd"],
+                "duration_seconds": round(time.monotonic() - request_started, 3),
                 "http_status": response.status_code,
+                "http_attempts": self.request_attempts - attempts_before,
             }
         raise RunnerError("OPENROUTER_HTTP_" + str(last_code or "UNKNOWN"))
 
@@ -280,10 +317,11 @@ class OpenRouterClient:
 def total_cost(out):
     total = Decimal("0")
     count = 0
-    for path in (Path(out) / "calls").glob("*/*.jsonl"):
-        for row in load_jsonl(path):
-            total += decimal_cost(row.get("cost_usd", "0"))
-            count += 1
+    for directory in ("calls", "call-errors"):
+        for path in (Path(out) / directory).glob("*/*.jsonl"):
+            for row in load_jsonl(path):
+                total += decimal_cost(row.get("cost_usd", "0"))
+                count += int(row.get("http_attempts") or 1)
     return total, count
 
 
@@ -291,9 +329,15 @@ def call_stats(out, case_id=None):
     root = Path(out) / "calls"
     paths = root.glob(f"{case_id}/*.jsonl") if case_id else root.glob("*/*.jsonl")
     rows = [row for path in paths for row in load_jsonl(path)]
+    error_root = Path(out) / "call-errors"
+    error_paths = (
+        error_root.glob(f"{case_id}/*.jsonl") if case_id
+        else error_root.glob("*/*.jsonl")
+    )
+    errors = [row for path in error_paths for row in load_jsonl(path)]
     completed = []
     started = []
-    for row in rows:
+    for row in rows + errors:
         try:
             end = datetime.fromisoformat(row["completed_at"].replace("Z", "+00:00"))
             completed.append(end)
@@ -304,12 +348,17 @@ def call_stats(out, case_id=None):
     if completed and started:
         wall = max(end.timestamp() for end in completed) - min(started)
     return {
-        "api_calls": len(rows),
-        "cost_usd": format(sum((decimal_cost(row.get("cost_usd", 0)) for row in rows), Decimal("0")), "f"),
-        "prompt_tokens": sum(int(row.get("prompt_tokens") or 0) for row in rows),
-        "completion_tokens": sum(int(row.get("completion_tokens") or 0) for row in rows),
-        "total_tokens": sum(int(row.get("total_tokens") or 0) for row in rows),
-        "api_duration_seconds": round(sum(float(row.get("duration_seconds") or 0) for row in rows), 3),
+        "successful_responses": len(rows),
+        "failed_logical_calls": len(errors),
+        "http_requests": (
+            sum(int(row.get("http_attempts") or 1) for row in rows)
+            + sum(int(row.get("http_attempts") or 1) for row in errors)
+        ),
+        "cost_usd": format(sum((decimal_cost(row.get("cost_usd", 0)) for row in rows + errors), Decimal("0")), "f"),
+        "prompt_tokens": sum(int(row.get("prompt_tokens") or 0) for row in rows + errors),
+        "completion_tokens": sum(int(row.get("completion_tokens") or 0) for row in rows + errors),
+        "total_tokens": sum(int(row.get("total_tokens") or 0) for row in rows + errors),
+        "api_duration_seconds": round(sum(float(row.get("duration_seconds") or 0) for row in rows + errors), 3),
         "wall_seconds": round(max(0.0, wall), 3),
     }
 
@@ -341,7 +390,27 @@ class ReplayCaller:
         spent, _ = total_cost(self.out)
         if spent >= self.budget:
             raise RunnerError("LOCAL_BUDGET_LIMIT_REACHED")
-        result = self.client.complete(self.model, prompt, self.max_tokens)
+        attempts_before = self.client.request_attempts
+        call_started = time.monotonic()
+        try:
+            result = self.client.complete(self.model, prompt, self.max_tokens)
+        except RunnerError as exc:
+            append_jsonl(
+                self.out / "call-errors" / self.case_id
+                / (safe_name(self.role + "-" + self.model) + ".jsonl"),
+                {
+                    "case_id": self.case_id,
+                    "role": self.role,
+                    "requested_model": self.model,
+                    "prompt_sha256": digest,
+                    "error_code": str(exc),
+                    "http_attempts": self.client.request_attempts - attempts_before,
+                    "duration_seconds": round(time.monotonic() - call_started, 3),
+                    "completed_at": utc_now(),
+                    **self.client.last_error_metadata,
+                },
+            )
+            raise
         number = self.index + 1
         response_path = (
             self.out / "responses" / self.case_id
@@ -402,6 +471,8 @@ def process_case(manifest, out, client, ic, dataset, case_id):
             raise RunnerError("LOCAL_LEADER_INVALID_PANEL")
     except Exception as exc:
         leader_error = str(exc)[:500] if isinstance(exc, (RunnerError, ValueError)) else type(exc).__name__
+        if client.last_error:
+            leader_error += "|client=" + client.last_error
     if client.fatal_error:
         raise RunnerError(client.fatal_error)
     spent_after_leader, _ = total_cost(out)
@@ -427,10 +498,13 @@ def process_case(manifest, out, client, ic, dataset, case_id):
                     "review": review,
                 })
             except Exception as exc:
+                diagnostic = str(exc)[:500] if isinstance(exc, (RunnerError, ValueError)) else type(exc).__name__
+                if client.last_error:
+                    diagnostic += "|client=" + client.last_error
                 reviews.append({
                     "model": model,
                     "vote": "error",
-                    "diagnostic": str(exc)[:500] if isinstance(exc, (RunnerError, ValueError)) else type(exc).__name__,
+                    "diagnostic": diagnostic,
                     "review": None,
                 })
             if client.fatal_error:
@@ -473,10 +547,12 @@ def process_case(manifest, out, client, ic, dataset, case_id):
         "reviewer_quorum": manifest["reviewer_quorum"],
         "local_consensus": local_consensus,
         "studio_baseline": studio_baseline(dataset, case_id),
-        "elapsed_seconds": case_stats["wall_seconds"] or round(time.monotonic() - started, 3),
+        # This is active execution time for the current invocation. Historical
+        # API latency remains in the immutable per-call metadata after a resume.
+        "elapsed_seconds": round(time.monotonic() - started, 3),
         "api_duration_seconds": case_stats["api_duration_seconds"],
         "case_cost_usd": case_stats["cost_usd"],
-        "case_api_calls": case_stats["api_calls"],
+        "case_api_calls": case_stats["http_requests"],
         "prompt_tokens": case_stats["prompt_tokens"],
         "completion_tokens": case_stats["completion_tokens"],
         "total_tokens": case_stats["total_tokens"],
@@ -499,15 +575,33 @@ def money(value):
     return "$" + f"{Decimal(str(value)):,.4f}"
 
 
+def reconciled_campaign_cost(manifest, itemized):
+    start = manifest.get("account_start") or {}
+    latest = manifest.get("account_latest") or {}
+    try:
+        key_delta = (
+            Decimal(str(latest["key_usage_usd"]))
+            - Decimal(str(start["key_usage_usd"]))
+        )
+    except (KeyError, InvalidOperation, TypeError, ValueError):
+        key_delta = Decimal("0")
+    return max(Decimal(str(itemized)), key_delta, Decimal("0")), max(key_delta, Decimal("0"))
+
+
 def render_report(manifest, out, report_path):
     results = all_results(out)
-    spent, calls = total_cost(out)
+    itemized_spent, _ = total_cost(out)
+    spent, key_usage_delta = reconciled_campaign_cost(manifest, itemized_spent)
     completed = len(results)
     total_seconds = sum(Decimal(str(row.get("elapsed_seconds") or 0)) for row in results)
     avg_cost = spent / completed if completed else Decimal("0")
     avg_time = total_seconds / completed if completed else Decimal("0")
     aggregate_calls = call_stats(out)
+    calls = aggregate_calls["http_requests"]
+    avg_http_cost = spent / calls if calls else Decimal("0")
+    projected_50 = avg_cost * 50
     projected_500 = avg_cost * 500
+    projected_remaining_campaign = avg_cost * (len(manifest["case_ids"]) - completed)
     budget = Decimal(str(manifest["program_credit_usd"]))
     remaining = max(Decimal("0"), budget - spent)
     local_agree = sum(row["local_consensus"] == "LOCAL_MAJORITY_AGREE" for row in results)
@@ -526,9 +620,15 @@ def render_report(manifest, out, report_path):
         (row.get("leader_impression") or {}).get("label") == row["studio_baseline"].get("label")
         for row in comparable
     )
-    completed_word = "Complete" if completed == len(manifest["case_ids"]) else "In progress"
+    completed_word = (
+        "Complete" if completed == len(manifest["case_ids"])
+        else "Pilot checkpoint" if completed == 10
+        else "In progress"
+    )
     account_start = manifest.get("account_start") or {}
     account_end = manifest.get("account_latest") or account_start
+    live_balance = Decimal(str(account_end.get("account_available_balance_usd", 0)))
+    continuation_headroom = live_balance - projected_remaining_campaign
     allocations = [
         ("Targeted reproduction and v21 candidate development", Decimal("0.25")),
         ("Cross-model and repeated-run robustness checks", Decimal("0.25")),
@@ -546,6 +646,18 @@ def render_report(manifest, out, report_path):
         baseline = row.get("studio_baseline") or {}
         impression = row.get("leader_impression") or {}
         reviewer = f"{row['reviewer_agree']}/{row['reviewer_total']} agree"
+        if row.get("leader_error"):
+            observation = "No valid leader panel: " + str(row["leader_error"])
+        else:
+            exceptions = [
+                f"{item['model']}: {item['diagnostic']}"
+                for item in row.get("reviewers", []) if item.get("vote") != "agree"
+            ]
+            observation = (
+                f"Valid {impression.get('label') or 'unclassified'} leader output; "
+                f"{reviewer}."
+                + (" Exceptions: " + "; ".join(exceptions) if exceptions else "")
+            )
         rows.append(
             "<tr>"
             f"<td>{escape(row['case_id'])}</td><td>{escape(str(row.get('category') or '—'))}</td>"
@@ -556,10 +668,29 @@ def render_report(manifest, out, report_path):
             f"<td>{int(row.get('case_api_calls') or 0)}</td>"
             f"<td>{money(row.get('case_cost_usd') or 0)}</td>"
             f"<td>{float(row.get('elapsed_seconds') or 0):.1f}s</td>"
+            f"<td>{escape(observation)}</td>"
             "</tr>"
         )
     if not rows:
-        rows.append('<tr><td colspan="11">The OpenRouter campaign has not started yet.</td></tr>')
+        rows.append('<tr><td colspan="12">The OpenRouter campaign has not started yet.</td></tr>')
+    model_rows = []
+    for model in manifest["models"]:
+        successful = []
+        failed = []
+        for path in (Path(out) / "calls").glob("*/*.jsonl"):
+            successful.extend(row for row in load_jsonl(path) if row.get("requested_model") == model)
+        for path in (Path(out) / "call-errors").glob("*/*.jsonl"):
+            failed.extend(row for row in load_jsonl(path) if row.get("requested_model") == model)
+        model_cost = sum(
+            (decimal_cost(row.get("cost_usd", 0)) for row in successful + failed), Decimal("0")
+        )
+        model_requests = sum(int(row.get("http_attempts") or 1) for row in successful + failed)
+        model_tokens = sum(int(row.get("total_tokens") or 0) for row in successful + failed)
+        model_rows.append(
+            f"<tr><td><code>{escape(model)}</code></td><td>{model_requests}</td>"
+            f"<td>{len(successful)}</td><td>{len(failed)}</td><td>{model_tokens:,}</td>"
+            f"<td>{money(model_cost)}</td></tr>"
+        )
     allocation_rows = "".join(
         f"<tr><td>{escape(label)}</td><td>{share * 100:.0f}%</td><td>{money(remaining * share)}</td></tr>"
         for label, share in allocations
@@ -623,7 +754,7 @@ def render_report(manifest, out, report_path):
 
   <h2>Methodology</h2>
   <p>The runner imports the exact v20 source snapshot (<code>{escape(manifest['source_sha256'])}</code>) and executes its own catalog, three lenses, validation, one-shot repair, consolidation, deterministic Term rendering, compact reviewer prompt and reviewer decision functions. Benchmark answers are not included in model prompts.</p>
-  <p>One model leads each case in round-robin order; the other four review the same proposal. Local acceptance requires {manifest['reviewer_quorum']} reviewer approvals. Requests use free-form model output so that the same IC parser and correction loop are exercised; strict structured output is intentionally not used in the fidelity run.</p>
+  <p>One model leads each case in round-robin order; the other four review the same proposal. Local acceptance requires {manifest['reviewer_quorum']} reviewer approvals. Requests use free-form model output so that the same IC parser and correction loop are exercised; strict structured output is intentionally not used in the fidelity run. GLM 5.3 uses explicit low reasoning effort because its mandatory default maximum reasoning exhausted the completion budget during the pilot and returned billed responses without final text.</p>
   <ul>{model_list}</ul>
   <p>OpenRouter requests deny provider data collection where supported by routing policy. Each persisted call contains model identity, prompt hash, token counts, reported USD cost and latency. API credentials are never written to campaign logs.</p>
 
@@ -635,18 +766,27 @@ def render_report(manifest, out, report_path):
     <div class="card"><span>API calls</span><strong>{calls}</strong></div>
   </div>
   <p>Against the stored Studio v20 baseline, local consensus classification currently matches {consensus_matches}/{len(comparable)} cases ({pct(consensus_matches,len(comparable))}); the operational output label matches {label_matches}/{len(comparable)} ({pct(label_matches,len(comparable))}). These are calibration metrics, not legal-accuracy scores.</p>
+  <div class="callout"><strong>Pilot reading:</strong> cases 0001–0006 matched the Studio consensus and operational class. Cases 0007–0008 produced useful leader options but failed the local reviewer quorum, exposing source and reviewer-schema concerns. Cases 0009–0010 failed during leader construction even though their stored Studio runs finalized successfully. This makes the local runner valuable as a diagnostic complement, while also demonstrating why it cannot substitute for protocol execution.</div>
 
   <h3>Per-case observations</h3>
   <table>
-    <thead><tr><th>Case</th><th>Category</th><th>Leader</th><th>Panel</th><th>Reviewers</th><th>Local result</th><th>Local utility</th><th>Studio v20</th><th>HTTP calls</th><th>Cost</th><th>Time</th></tr></thead>
+    <thead><tr><th>Case</th><th>Category</th><th>Leader</th><th>Panel</th><th>Reviewers</th><th>Local result</th><th>Local utility</th><th>Studio v20</th><th>HTTP calls</th><th>Cost</th><th>Time</th><th>Observation</th></tr></thead>
     <tbody>{''.join(rows)}</tbody>
   </table>
 
+  <h3>Model-level telemetry</h3>
+  <table>
+    <thead><tr><th>Requested model</th><th>HTTP requests</th><th>Reusable responses</th><th>Failed logical calls</th><th>Itemized tokens</th><th>Itemized cost</th></tr></thead>
+    <tbody>{''.join(model_rows)}</tbody>
+  </table>
+
   <h2>Time and cost</h2>
-  <p>The {completed} completed executions consumed {calls} HTTP model calls and {aggregate_calls['total_tokens']:,} tokens ({aggregate_calls['prompt_tokens']:,} prompt and {aggregate_calls['completion_tokens']:,} completion), with {float(total_seconds):.1f} aggregate case wall-seconds and {money(spent)} in OpenRouter charges reported by the API. The observed average is {money(avg_cost)} and {float(avg_time):.1f} seconds per case. At the same model mix and without volume discounts, a simple 500-case projection is {money(projected_500)}. The projection is directional: repair retries, provider routing and case complexity change token use.</p>
+  <p>The {completed} completed executions consumed {calls} HTTP model requests and {aggregate_calls['total_tokens']:,} itemized tokens ({aggregate_calls['prompt_tokens']:,} prompt and {aggregate_calls['completion_tokens']:,} completion), with {float(total_seconds):.1f} aggregate active case-seconds. Successful and metadata-bearing responses itemize {money(itemized_spent)}; the key-level usage delta is {money(key_usage_delta)}. The report conservatively uses the greater value, <strong>{money(spent)}</strong>, as actual campaign spend because providers may charge an empty response that has no reusable model text.</p>
+  <p>The observed averages are <strong>{money(avg_cost)} per case</strong>, <strong>{money(avg_http_cost)} per HTTP request</strong>, and <strong>{float(avg_time):.1f} seconds per case</strong>. At the same model mix, the projected cost is {money(projected_50)} for 50 cases and {money(projected_500)} for 500 cases. These projections are directional: repair retries, provider routing and case complexity change token use.</p>
+  <p>The remaining {len(manifest['case_ids']) - completed} cases in this 50-case campaign are projected to cost {money(projected_remaining_campaign)}. Against the current live account balance of {money(live_balance)}, this leaves projected headroom of {money(max(Decimal('0'), continuation_headroom))}{' and no immediate funding shortfall' if continuation_headroom >= 0 else ' with a projected funding shortfall of ' + money(-continuation_headroom)}.</p>
 
   <h2>Proposed use of the remaining GenLayer-sponsored credit</h2>
-  <p>Campaign budget: {money(budget)}. Measured campaign spend: {money(spent)}. Planning balance against the announced grant: <strong>{money(remaining)}</strong>. This planning balance is not the same as the live account balance.</p>
+  <p>Announced program credit: {money(budget)}. Measured campaign spend: {money(spent)}. Planning balance against the announced grant: <strong>{money(remaining)}</strong>. This planning balance is not the same as the live account balance. The pilot campaign also has a separate persisted safety ceiling of {money(manifest.get('max_cost_usd', 0))}; increasing it requires an explicit decision after this checkpoint.</p>
   <p>At the latest authenticated snapshot, the API reported an account balance of <strong>{money(account_end.get('account_available_balance_usd', 0))}</strong>, from {money(account_end.get('account_total_credits_usd', 0))} in historical credits minus {money(account_end.get('account_total_usage_usd', 0))} in historical usage. The API key itself reported a remaining spending limit of {money(account_end.get('key_limit_remaining_usd', 0))}. A key limit controls authorization; it does not fund the account. Therefore, the allocation below is contingent on the sponsored balance being available or replenished.</p>
   <table><thead><tr><th>Experiment class</th><th>Share</th><th>Provisional allocation</th></tr></thead><tbody>{allocation_rows}</tbody></table>
   <p>Every future run should have a durable cost ceiling, stop after repeated authentication/provider failures, preserve a frozen IC and model configuration, and produce a comparable report. Studio confirmation remains mandatory before promoting any candidate IC version.</p>
@@ -665,6 +805,9 @@ def render_report(manifest, out, report_path):
     <li><a href="https://openrouter.ai/docs/api_reference/overview">OpenRouter API reference</a></li>
     <li><a href="https://openrouter.ai/docs/guides/routing/provider-selection">OpenRouter provider routing</a></li>
     <li><a href="https://openrouter.ai/docs/guides/features/structured-outputs">OpenRouter structured outputs</a></li>
+    <li><a href="https://openrouter.ai/docs/guides/best-practices/reasoning-tokens">OpenRouter reasoning-token controls</a></li>
+    <li><a href="https://openrouter.ai/docs/api/api-reference/api-keys/get-current-key">OpenRouter current-key limits</a></li>
+    <li><a href="https://openrouter.ai/docs/api/api-reference/credits/get-credits">OpenRouter account credits</a></li>
   </ul>
   <footer>Prepared for GenLayer as the sponsor of the US$500 OpenRouter evaluation credit. Mediare v20 remains experimental.</footer>
 </main></body></html>
@@ -676,6 +819,8 @@ def render_report(manifest, out, report_path):
         "total": len(manifest["case_ids"]),
         "api_calls": calls,
         "cost_usd": format(spent, "f"),
+        "itemized_cost_usd": format(itemized_spent, "f"),
+        "key_usage_delta_usd": format(key_usage_delta, "f"),
         "average_cost_usd": format(avg_cost, "f"),
         "average_time_seconds": float(avg_time),
         "prompt_tokens": aggregate_calls["prompt_tokens"],
@@ -699,7 +844,7 @@ def initialize(args):
     source = Path(args.source).read_bytes()
     ic = load_contract(args.source)
     ids = load_selection(args.selection)
-    models, quorum, provider = load_models(args.models)
+    models, quorum, provider, model_options = load_models(args.models)
     for cid in ids:
         load_case(args.dataset, cid)
     out.mkdir(parents=True, exist_ok=True)
@@ -717,6 +862,7 @@ def initialize(args):
         "models": models,
         "reviewer_quorum": quorum,
         "provider": provider,
+        "model_options": model_options,
         "max_cost_usd": format(Decimal(str(args.max_cost)), "f"),
         "program_credit_usd": format(Decimal(str(args.program_credit)), "f"),
         "max_tokens": args.max_tokens,
@@ -739,7 +885,8 @@ def run_campaign(args):
     ic = load_contract(snapshot)
     api_key = key_from(args)
     client = OpenRouterClient(
-        api_key, manifest["provider"], delay=manifest["delay_seconds"], timeout=args.timeout,
+        api_key, manifest["provider"], manifest.get("model_options"),
+        delay=manifest["delay_seconds"], timeout=args.timeout,
     )
     snapshot = client.account_snapshot()
     if "account_start" not in manifest:
@@ -753,7 +900,8 @@ def run_campaign(args):
             continue
         if args.case_limit is not None and run_completed >= args.case_limit:
             break
-        spent, _ = total_cost(out)
+        itemized_spent, _ = total_cost(out)
+        spent, _ = reconciled_campaign_cost(manifest, itemized_spent)
         if spent >= Decimal(manifest["max_cost_usd"]):
             raise RunnerError("LOCAL_BUDGET_LIMIT_REACHED")
         append_jsonl(out / "events.jsonl", {"event": "case_started", "case_id": case_id, "at": utc_now()})
@@ -762,6 +910,8 @@ def run_campaign(args):
             "event": "case_completed", "case_id": case_id,
             "local_consensus": result["local_consensus"], "at": utc_now(),
         })
+        manifest["account_latest"] = client.account_snapshot()
+        atomic_json(out / "campaign.json", manifest)
         summary = render_report(manifest, out, args.report)
         print(json.dumps({
             "case": case_id, "completed": summary["completed"],
