@@ -373,6 +373,15 @@ def _nome_papel(resultado, papel):
     return resultado["partes"].get(papel, {}).get("nome", papel)
 
 
+def _rotulo_documento(valor):
+    quantidade = len(re.sub(r"\D", "", valor))
+    if quantidade == 11:
+        return "CPF"
+    if quantidade == 14:
+        return "CNPJ"
+    return "CPF/CNPJ"
+
+
 def renderizar_markdown(resultado):
     req = resultado["partes"]["requerente"]
     rdo = resultado["partes"]["requerido"]
@@ -449,8 +458,10 @@ def renderizar_markdown(resultado):
         ])
     else:
         linhas.extend([
-            "---", f"**{req['nome']}**  ", "Requerente", "",
-            "---", f"**{rdo['nome']}**  ", "Requerido", "",
+            "---", f"**{req['nome']}**  ",
+            f"{_rotulo_documento(req['cpf_cnpj'])}: {req['cpf_cnpj']}  ", "Requerente", "",
+            "---", f"**{rdo['nome']}**  ",
+            f"{_rotulo_documento(rdo['cpf_cnpj'])}: {rdo['cpf_cnpj']}  ", "Requerido", "",
             "---", f"**{resultado['mediador']['nome']}**  ", "Mediador", "",
         ])
         for advogado in resultado["advogados"]:

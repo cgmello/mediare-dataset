@@ -85,6 +85,8 @@ modelo com `--rascunho`:
 Nesse modo, identidades e endereços são substituídos por personagens e números
 inequivocamente fictícios. O HTML recebe marcação visual de simulação, o texto
 declara que não possui validade e todos os campos de assinatura são suprimidos.
+No modo final, os blocos de assinatura repetem o CPF ou CNPJ de cada parte para
+facilitar sua identificação e conferência no momento da assinatura.
 
 ## Notes
 

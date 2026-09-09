@@ -48,8 +48,8 @@ def dados(aceite=True):
     return {
         "aceite": {"termo_opcao_id": "TO-001", "todos_concordam": aceite},
         "partes": {
-            "requerente": {"nome": "Ana", "cpf_cnpj": "111", "qualificacao": "brasileira", "endereco": "Rua A"},
-            "requerido": {"nome": "Empresa B", "cpf_cnpj": "222", "qualificacao": "sociedade empresária", "endereco": "Rua B"},
+            "requerente": {"nome": "Ana", "cpf_cnpj": "123.456.789-00", "qualificacao": "brasileira", "endereco": "Rua A"},
+            "requerido": {"nome": "Empresa B", "cpf_cnpj": "12.345.678/0001-90", "qualificacao": "sociedade empresária", "endereco": "Rua B"},
         },
         "mediador": {"nome": "Mediador C", "qualificacao": "mediador extrajudicial"},
         "local": "São Paulo/SP",
@@ -71,7 +71,15 @@ class TermoAcordoTests(unittest.TestCase):
         self.assertIn("60% da base de R$ 64.734,88", texto)
         self.assertIn("09/10/2026", texto)
         self.assertIn("## Testemunhas", texto)
+        self.assertIn("**Ana**  \nCPF: 123.456.789-00", texto)
+        self.assertIn("**Empresa B**  \nCNPJ: 12.345.678/0001-90", texto)
         self.assertIn("quitação será concedida somente após o cumprimento integral", texto)
+
+    def test_assinatura_usa_rotulo_generico_para_documento_nao_classificavel(self):
+        entrada = dados()
+        entrada["partes"]["requerente"]["cpf_cnpj"] = "documento estrangeiro ABC-123"
+        resultado = gerar_acordo(resposta(), entrada, {"RP01": "60"})
+        self.assertIn("CPF/CNPJ: documento estrangeiro ABC-123", resultado["texto_markdown"])
 
     def test_recusa_sem_aceite_unanime(self):
         with self.assertRaisesRegex(ErroTermoAcordo, "aceite.todos_concordam"):

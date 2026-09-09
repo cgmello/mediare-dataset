@@ -7,6 +7,11 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
 ## Pós-processador off-chain de Termos — 2026-09-09
 
+- Os blocos de assinatura do acordo final passam a repetir o documento do
+  requerente e do requerido. O rótulo é inferido pela quantidade de dígitos
+  (`CPF`, `CNPJ` ou, quando indeterminável, `CPF/CNPJ`). O modo rascunho continua
+  sem campos de assinatura.
+
 - O gerador final passa a aceitar `--rascunho` para demonstrações com o arquivo
   de exemplo ainda não preenchido. O modo substitui todas as identidades por
   personagens, documentos e endereços inequivocamente fictícios; exibe alertas
