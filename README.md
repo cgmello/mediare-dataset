@@ -22,6 +22,26 @@ For versioned SDK tests, upgrades and resumable runs on Studio, see
 [STUDIO_CYCLE.md](STUDIO_CYCLE.md) (Portuguese).
 Milestones, failed experiments and report notes: [CHANGELOG.md](CHANGELOG.md).
 
+### Termos para o mediador (off-chain)
+
+`termo_mediador.py` recebe a resposta JSON de `get_case` e gera um documento
+objetivo para cada combinação válida entre aceitar e não aceitar as opções que o
+IC aprovou. Opções marcadas como não cumulativas nunca aparecem aceitas juntas;
+opções retidas permanecem apenas como pendências explicadas. O texto fixo é
+produzido em português com acentuação e as faixas numéricas são preservadas.
+
+Gerar Markdown a partir de um arquivo:
+
+    python3 termo_mediador.py get-case.json -o termos-0005.md
+
+Gerar JSON estruturado por pipe:
+
+    cat get-case.json | python3 termo_mediador.py - --format json -o termos-0005.json
+
+O limite padrão é 256 combinações. Se o painel exceder esse valor, o script falha
+sem gerar uma lista parcial; o limite só pode ser ampliado explicitamente com
+`--max-combinations`.
+
 ## Notes
 
 - "real" cases were reconstructed from public court decisions (CJPG/TJSP), with

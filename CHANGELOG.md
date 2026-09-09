@@ -5,6 +5,23 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 **A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
 gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
+## Pós-processador off-chain de Termos — 2026-09-09
+
+- `termo_mediador.py` recebe diretamente o JSON de `get_case`, inclusive quando
+  a resposta ou o campo `painel` estão codificados como strings JSON.
+- Cada opção aprovada origina escolhas de aceitar/não aceitar. O script gera todas
+  as combinações válidas, apresenta primeiro o cenário com mais aceitações e
+  exclui combinações que somariam opções declaradas não cumulativas.
+- Faixas e fórmulas permanecem numéricas; descrições, pendências e decisões são
+  apresentadas de forma determinística, curta e com acentuação em português.
+- Opções retidas nunca são promovidas pelo pós-processamento: aparecem em todos
+  os cenários somente com os riscos registrados pela auditoria.
+- A saída pode ser Markdown para uso humano ou JSON estruturado para integração.
+  O limite padrão de 256 combinações falha de forma explícita, sem truncamento.
+- O retorno real de `get_case` do caso 0005 foi usado como teste de aceitação:
+  gerou dois Termos, preservou a faixa de R$ 0,00 a R$ 64.734,88 e manteve RP02
+  retida. A suíte completa terminou com 183 testes aprovados.
+
 ## v20.0.0-experimental — 2026-09-08 — candidata para repetição dos 50 casos
 
 Motivação: a v19 consolidou uma melhora importante — 47/50 consensos, três falhas
