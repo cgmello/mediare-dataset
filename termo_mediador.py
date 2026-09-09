@@ -183,10 +183,13 @@ def _combinacoes_validas(aprovados, maximo):
     if maximo < 1:
         raise ErroTermoMediador("max_combinations deve ser pelo menos 1")
     if not aprovados:
-        return [tuple()]
+        return []
     ids = [item.get("pedido_id") for item in aprovados]
     resultado = []
     for escolhas in itertools.product((True, False), repeat=len(aprovados)):
+        # Um documento sem nenhuma opção aceita não é um Termo de Opção útil.
+        if not any(escolhas):
+            continue
         aceitos = {ids[i] for i, escolha in enumerate(escolhas) if escolha}
         invalida = any(
             escolhas[i] and bool(_conflitos(item) & aceitos)
@@ -257,57 +260,54 @@ def _texto_opcao_rejeitada(item):
     )
 
 
-def _texto_item_nao_aprovado(item):
-    pedido_id = item.get("pedido_id", "sem ID")
-    negociacao = _negociacao(item)
-    auditoria = negociacao.get("auditoria") or {}
-    riscos = [RISCO_PT.get(risco, corrigir_portugues(str(risco)).lower()) for risco in auditoria.get("riscos") or []]
-    if negociacao.get("estado") == "retida_pela_auditoria" or auditoria.get("resultado") == "reformular":
-        final = "; riscos: " + ", ".join(riscos) if riscos else ""
-        return f"A opção do {pedido_id} não é apresentada porque foi retida pela auditoria{final}."
-    if negociacao.get("estado") == "sem_opcao" or (negociacao.get("opcao") or {}).get("tipo") == "sem_opcao":
-        return f"O {pedido_id} não possui opção de composição aprovada."
-    return f"O {pedido_id} permanece sem alternativa aprovada no painel."
-
-
 def _fontes_opcao(item):
     fontes = ((_negociacao(item).get("opcao") or {}).get("fontes") or [])
     return ", ".join(str(fonte) for fonte in fontes) or "não informadas"
+
+
+def _identificacao_pedido(item):
+    pedido_id = item.get("pedido_id", "sem ID")
+    partes = [
+        f"**{pedido_id}** identifica o pedido relativo a: {_descricao(item)}.",
+        _resumo_decisorio(item),
+    ]
+    if _opcao_aprovada(item):
+        partes.append("Há uma opção condicional disponível para discussão.")
+    else:
+        negociacao = _negociacao(item)
+        auditoria = negociacao.get("auditoria") or {}
+        riscos = [
+            RISCO_PT.get(risco, corrigir_portugues(str(risco)).lower())
+            for risco in auditoria.get("riscos") or []
+        ]
+        if riscos:
+            partes.append("A alternativa foi retida pela auditoria por: " + ", ".join(riscos) + ".")
+        partes.append("Por isso, nenhuma opção de Termo é apresentada para este pedido.")
+    return " ".join(partes)
 
 
 def _renderizar_termo(numero, case_id, versao, pedidos, aprovados, escolhas):
     escolhidos = {id(item): escolhas[i] for i, item in enumerate(aprovados)}
     aceitos = [item for item in aprovados if escolhidos[id(item)]]
     rejeitados = [item for item in aprovados if not escolhidos[id(item)]]
-    nao_aprovados = [item for item in pedidos if not _opcao_aprovada(item)]
 
     linhas = [
-        f"# Termo de Opção {numero} — Mediare", "",
+        f"# Termo de Opção Nr. {numero}", "",
         f"**Caso:** {case_id}  ",
         f"**Versão de origem:** {versao}  ",
-        "**Finalidade:** cenário objetivo para discussão pelo mediador; não constitui acordo, decisão ou reconhecimento de dívida.",
+        "**Finalidade:** cenário objetivo para discussão pelo mediador.",
         "", "## Identificação dos pedidos", "",
     ]
     for item in pedidos:
-        linhas.append(
-            f"- **{item.get('pedido_id')}** identifica o pedido relativo a: {_descricao(item)}."
-        )
+        linhas.append("- " + _identificacao_pedido(item))
     linhas.extend(["", "## Cenário", ""])
     if aceitos:
         for item in aceitos:
             linhas.append("- " + _texto_opcao_aceita(item))
-            linhas.append("  " + _resumo_decisorio(item))
     if rejeitados:
         for item in rejeitados:
             linhas.append("- " + _texto_opcao_rejeitada(item))
-            linhas.append("  " + _resumo_decisorio(item))
-    if not aprovados:
-        linhas.append("- O painel não contém opção aprovada para composição.")
-
     linhas.extend(["", "## Valores e condições das opções aceitas", ""])
-    if not aceitos:
-        linhas.append("Nenhuma opção foi aceita neste cenário.")
-        linhas.append("")
     for item in aceitos:
         negociacao = _negociacao(item)
         opcao = negociacao.get("opcao") or {}
@@ -325,19 +325,8 @@ def _renderizar_termo(numero, case_id, versao, pedidos, aprovados, escolhas):
         linhas.append("- Fontes indicadas no painel: " + _fontes_opcao(item) + ".")
         linhas.append("")
 
-    linhas.extend(["## Pontos pendentes ou não aprovados", ""])
-    pendentes = rejeitados + nao_aprovados
-    if not pendentes:
-        linhas.append("Não há outro pedido pendente neste cenário.")
-    for item in rejeitados:
-        linhas.append("- " + _texto_opcao_rejeitada(item))
-        linhas.append("  " + _resumo_decisorio(item))
-    for item in nao_aprovados:
-        linhas.append("- " + _texto_item_nao_aprovado(item))
-        linhas.append("  " + _resumo_decisorio(item))
-
     linhas.extend([
-        "", "## Registro da sessão de mediação", "",
+        "## Registro da sessão de mediação", "",
         "- [ ] Cenário selecionado pelas partes",
         "- [ ] Cenário rejeitado pelas partes",
         "- [ ] Necessita de nova proposta",
@@ -346,7 +335,7 @@ def _renderizar_termo(numero, case_id, versao, pedidos, aprovados, escolhas):
     texto = "\n".join(linhas).rstrip() + "\n"
     return {
         "id": f"TO-{numero:03d}",
-        "titulo": f"Termo de Opção {numero}",
+        "titulo": f"Termo de Opção Nr. {numero}",
         "escolhas": [
             {"pedido_id": item.get("pedido_id"), "decisao": "aceitar" if escolhidos[id(item)] else "não aceitar"}
             for item in aprovados
@@ -370,11 +359,15 @@ def gerar_termos(resposta, max_combinations=256):
         "versao_origem": versao,
         "opcoes_aprovadas": [item.get("pedido_id") for item in aprovados],
         "combinacoes_total": len(termos),
+        "status": "termos_disponiveis" if termos else "sem_termo_valido",
+        "motivo_sem_termo": None if termos else "nenhuma_opcao_aprovada",
         "termos": termos,
     }
 
 
 def renderizar_markdown(resultado):
+    if not resultado["termos"]:
+        return "# Nenhum Termo de Opção disponível\n\nO painel não contém opção aprovada para composição.\n"
     return "\n\n---\n\n".join(termo["texto_markdown"].rstrip() for termo in resultado["termos"]) + "\n"
 
 
@@ -446,6 +439,13 @@ def renderizar_html(resultado):
         + "\n</article>"
         for termo in resultado["termos"]
     )
+    if not artigos:
+        artigos = (
+            '<section class="termo aviso">\n'
+            '<h1>Nenhum Termo de Opção disponível</h1>\n'
+            '<p>O painel não contém opção aprovada para composição.</p>\n'
+            '</section>'
+        )
     titulo = escape(f"Termos de Opção — Caso {resultado['case_id']}", quote=True)
     return f"""<!doctype html>
 <html lang="pt-BR">

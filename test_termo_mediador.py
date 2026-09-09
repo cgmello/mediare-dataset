@@ -59,13 +59,14 @@ def resposta(*pedidos):
 
 
 class TermoMediadorTests(unittest.TestCase):
-    def test_uma_opcao_aprovada_gera_aceite_e_nao_aceite(self):
+    def test_uma_opcao_aprovada_gera_somente_termo_com_aceite(self):
         resultado = gerar_termos(resposta(item("RP01")))
-        self.assertEqual(resultado["combinacoes_total"], 2)
+        self.assertEqual(resultado["combinacoes_total"], 1)
         self.assertEqual(resultado["termos"][0]["escolhas"][0]["decisao"], "aceitar")
-        self.assertEqual(resultado["termos"][1]["escolhas"][0]["decisao"], "não aceitar")
         texto = renderizar_markdown(resultado)
-        self.assertIn("Termo de Opção 1", texto)
+        self.assertIn("Termo de Opção Nr. 1", texto)
+        self.assertNotIn("Termo de Opção Nr. 2", texto)
+        self.assertNotIn("não constitui acordo", texto)
         self.assertIn("R$ 0,00 a R$ 100,00", texto)
         self.assertIn("percentual (%) a definir", texto)
         self.assertIn("O percentual (%) será definido pelas partes", texto)
@@ -81,16 +82,15 @@ class TermoMediadorTests(unittest.TestCase):
         self.assertIn("As partes aceitam negociar o RP01, usando", texto)
         self.assertNotIn("RP01 —", texto)
 
-    def test_duas_opcoes_independentes_geram_quatro_combinacoes(self):
+    def test_duas_opcoes_independentes_geram_tres_termos_com_aceite(self):
         resultado = gerar_termos(resposta(item("RP01"), item("RP02", "nao_monetaria")))
-        self.assertEqual(resultado["combinacoes_total"], 4)
+        self.assertEqual(resultado["combinacoes_total"], 3)
         self.assertEqual(
             [[e["decisao"] for e in termo["escolhas"]] for termo in resultado["termos"]],
             [
                 ["aceitar", "aceitar"],
                 ["aceitar", "não aceitar"],
                 ["não aceitar", "aceitar"],
-                ["não aceitar", "não aceitar"],
             ],
         )
 
@@ -98,7 +98,7 @@ class TermoMediadorTests(unittest.TestCase):
         a = item("RP01", auditoria="apta_com_ressalva", conflitos=["RP02"])
         b = item("RP02", auditoria="apta_com_ressalva", conflitos=["RP01"])
         resultado = gerar_termos(resposta(a, b))
-        self.assertEqual(resultado["combinacoes_total"], 3)
+        self.assertEqual(resultado["combinacoes_total"], 2)
         self.assertNotIn(["aceitar", "aceitar"], [
             [e["decisao"] for e in termo["escolhas"]] for termo in resultado["termos"]
         ])
@@ -108,16 +108,23 @@ class TermoMediadorTests(unittest.TestCase):
         retida["negociacao"]["auditoria"]["riscos"] = ["ESCOPO", "PREMISSA"]
         resultado = gerar_termos(resposta(item("RP01"), retida))
         self.assertEqual(resultado["opcoes_aprovadas"], ["RP01"])
-        self.assertEqual(resultado["combinacoes_total"], 2)
-        texto = resultado["termos"][0]["texto_markdown"]
-        self.assertIn("retida pela auditoria; riscos: escopo, premissa", texto)
-        self.assertIn("As lentes probatória e jurisprudencial convergiram", texto)
-
-    def test_sem_opcao_aprovada_gera_um_documento_explicativo(self):
-        resultado = gerar_termos(resposta(item("RP01", "sem_opcao", "sem_opcao")))
         self.assertEqual(resultado["combinacoes_total"], 1)
+        texto = resultado["termos"][0]["texto_markdown"]
+        self.assertIn("As lentes probatória e jurisprudencial convergiram", texto)
+        self.assertIn("A alternativa foi retida pela auditoria por: escopo, premissa", texto)
+        self.assertIn("nenhuma opção de Termo é apresentada para este pedido", texto)
+        self.assertNotIn("Pontos pendentes ou não aprovados", texto)
+
+    def test_sem_opcao_aprovada_nao_gera_termo(self):
+        resultado = gerar_termos(resposta(item("RP01", "sem_opcao", "sem_opcao")))
+        self.assertEqual(resultado["combinacoes_total"], 0)
         self.assertEqual(resultado["opcoes_aprovadas"], [])
-        self.assertIn("não contém opção aprovada", resultado["termos"][0]["texto_markdown"])
+        self.assertEqual(resultado["status"], "sem_termo_valido")
+        self.assertEqual(resultado["termos"], [])
+        self.assertIn("Nenhum Termo de Opção disponível", renderizar_markdown(resultado))
+        pagina = renderizar_html(resultado)
+        self.assertIn("Nenhum Termo de Opção disponível", pagina)
+        self.assertNotIn('<article class="termo">', pagina)
 
     def test_correcao_de_portugues_preserva_caixa(self):
         self.assertEqual(
@@ -156,8 +163,8 @@ class TermoMediadorTests(unittest.TestCase):
         with patch("sys.stdin", io.StringIO(entrada)), patch("sys.stdout", saida):
             main(["-", "--format", "json"])
         objeto = json.loads(saida.getvalue())
-        self.assertEqual(objeto["combinacoes_total"], 2)
-        self.assertIn("Opção", objeto["termos"][0]["titulo"])
+        self.assertEqual(objeto["combinacoes_total"], 1)
+        self.assertEqual(objeto["termos"][0]["titulo"], "Termo de Opção Nr. 1")
 
     def test_html_e_autocontido_imprimivel_e_escapa_dados_do_painel(self):
         malicioso = item("RP01")
@@ -168,7 +175,7 @@ class TermoMediadorTests(unittest.TestCase):
         self.assertIn('<html lang="pt-BR">', pagina)
         self.assertIn('<meta charset="utf-8">', pagina)
         self.assertIn("@media print", pagina)
-        self.assertEqual(pagina.count('<article class="termo">'), 2)
+        self.assertEqual(pagina.count('<article class="termo">'), 1)
         self.assertIn("R$ 0,00 a R$ 100,00", pagina)
         self.assertIn("&lt;script&gt;", pagina)
         self.assertNotIn("<script>alert", pagina)
@@ -179,6 +186,7 @@ class TermoMediadorTests(unittest.TestCase):
         with patch("sys.stdin", io.StringIO(entrada)), patch("sys.stdout", saida):
             main(["-", "--format", "html"])
         self.assertIn("<title>Termos de Opção — Caso 0005</title>", saida.getvalue())
+        self.assertIn("Termo de Opção Nr. 1", saida.getvalue())
 
 
 if __name__ == "__main__":

@@ -9,9 +9,10 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
 - `termo_mediador.py` recebe diretamente o JSON de `get_case`, inclusive quando
   a resposta ou o campo `painel` estão codificados como strings JSON.
-- Cada opção aprovada origina escolhas de aceitar/não aceitar. O script gera todas
-  as combinações válidas, apresenta primeiro o cenário com mais aceitações e
-  exclui combinações que somariam opções declaradas não cumulativas.
+- Cada opção aprovada origina escolhas de aceitar/não aceitar. O script gera as
+  combinações válidas com ao menos uma opção aceita, apresenta primeiro o cenário
+  com mais aceitações e exclui tanto a rejeição total quanto combinações que
+  somariam opções declaradas não cumulativas.
 - Faixas e fórmulas permanecem numéricas; descrições, pendências e decisões são
   apresentadas de forma determinística, curta e com acentuação em português.
 - Opções retidas nunca são promovidas pelo pós-processamento: aparecem em todos
@@ -28,6 +29,10 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
   identificação anterior ao cenário. O restante do documento usa somente o ID,
   sem repetir a descrição longa, e fórmulas exibem “percentual (%) a definir” em
   vez da variável técnica `p`.
+- Os títulos passam a usar `Termo de Opção Nr. N`. A identificação de cada pedido
+  incorpora a conclusão das lentes e informa quando nenhuma opção é apresentável;
+  pedidos retidos não são repetidos como alternativas. A finalidade fica restrita
+  a “cenário objetivo para discussão pelo mediador”.
 
 ## v20.0.0-experimental — 2026-09-08 — candidata para repetição dos 50 casos
 

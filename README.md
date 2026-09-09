@@ -25,10 +25,12 @@ Milestones, failed experiments and report notes: [CHANGELOG.md](CHANGELOG.md).
 ### Termos para o mediador (off-chain)
 
 `termo_mediador.py` recebe a resposta JSON de `get_case` e gera um documento
-objetivo para cada combinação válida entre aceitar e não aceitar as opções que o
-IC aprovou. Opções marcadas como não cumulativas nunca aparecem aceitas juntas;
-opções retidas permanecem apenas como pendências explicadas. O texto fixo é
-produzido em português com acentuação e as faixas numéricas são preservadas.
+objetivo para cada combinação válida que contenha ao menos uma opção aceita entre
+as opções que o IC aprovou. A combinação que rejeita todas as opções não produz
+Termo. Opções marcadas como não cumulativas nunca aparecem aceitas juntas; opções
+retidas são explicadas na identificação dos pedidos e não viram alternativas. O
+texto fixo é produzido em português com acentuação e as faixas numéricas são
+preservadas.
 
 Gerar Markdown a partir de um arquivo:
 
