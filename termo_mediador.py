@@ -48,7 +48,8 @@ ACENTOS = {
     "diligencias": "diligências", "divida": "dívida", "documentacao": "documentação",
     "execucao": "execução", "extensao": "extensão",
     "formula": "fórmula", "formulas": "fórmulas", "informacao": "informação",
-    "imovel": "imóvel", "indenizacao": "indenização", "informacoes": "informações",
+    "imovel": "imóvel", "indenizacao": "indenização", "infiltracao": "infiltração",
+    "infiltracoes": "infiltrações", "informacoes": "informações",
     "juridica": "jurídica", "liquida": "líquida", "liquido": "líquido",
     "mediacao": "mediação", "merito": "mérito", "monetaria": "monetária",
     "monetario": "monetário", "nao": "não", "numero": "número", "numeros": "números",
@@ -223,7 +224,6 @@ def _resumo_decisorio(item):
 
 def _texto_opcao_aceita(item):
     pedido_id = item.get("pedido_id", "sem ID")
-    descricao = _descricao(item)
     negociacao = _negociacao(item)
     opcao = negociacao.get("opcao") or {}
     tipo = opcao.get("tipo")
@@ -236,39 +236,38 @@ def _texto_opcao_aceita(item):
 
     if tipo == "formula":
         base = _brl((opcao.get("base") or {}).get("valor_centavos"))
-        complemento = f", usando a base de {base} e percentual p a definir" if base else ""
+        complemento = f", usando a base de {base} e percentual (%) a definir" if base else ""
         if faixa_texto:
             complemento += f", dentro da faixa de {faixa_texto}"
-        return f"As partes aceitam negociar o {pedido_id} — {descricao}{complemento}."
+        return f"As partes aceitam negociar o {pedido_id}{complemento}."
     if tipo == "faixa":
         complemento = f", na faixa de {faixa_texto}" if faixa_texto else ""
-        return f"As partes aceitam compor o {pedido_id} — {descricao}{complemento}."
+        return f"As partes aceitam compor o {pedido_id}{complemento}."
     if tipo == "nao_monetaria":
-        return f"As partes aceitam discutir uma solução não monetária para o {pedido_id} — {descricao}."
+        return f"As partes aceitam discutir uma solução não monetária para o {pedido_id}."
     pergunta = (((item.get("analises") or {}).get("probatoria") or {}).get("lacuna") or {}).get("pergunta")
     detalhe = ": " + corrigir_portugues(pergunta).strip().rstrip(".") if pergunta else ""
-    return f"As partes aceitam realizar a diligência necessária ao {pedido_id} — {descricao}{detalhe}."
+    return f"As partes aceitam realizar a diligência necessária ao {pedido_id}{detalhe}."
 
 
 def _texto_opcao_rejeitada(item):
     return (
-        f"As partes não adotam, neste cenário, a opção referente ao {item.get('pedido_id', 'sem ID')} — "
-        f"{_descricao(item)}. O pedido permanece sem composição."
+        f"As partes não adotam, neste cenário, a opção referente ao {item.get('pedido_id', 'sem ID')}. "
+        "O pedido permanece sem composição."
     )
 
 
 def _texto_item_nao_aprovado(item):
     pedido_id = item.get("pedido_id", "sem ID")
-    descricao = _descricao(item)
     negociacao = _negociacao(item)
     auditoria = negociacao.get("auditoria") or {}
     riscos = [RISCO_PT.get(risco, corrigir_portugues(str(risco)).lower()) for risco in auditoria.get("riscos") or []]
     if negociacao.get("estado") == "retida_pela_auditoria" or auditoria.get("resultado") == "reformular":
         final = "; riscos: " + ", ".join(riscos) if riscos else ""
-        return f"A opção do {pedido_id} — {descricao} não é apresentada porque foi retida pela auditoria{final}."
+        return f"A opção do {pedido_id} não é apresentada porque foi retida pela auditoria{final}."
     if negociacao.get("estado") == "sem_opcao" or (negociacao.get("opcao") or {}).get("tipo") == "sem_opcao":
-        return f"O {pedido_id} — {descricao} não possui opção de composição aprovada."
-    return f"O {pedido_id} — {descricao} permanece sem alternativa aprovada no painel."
+        return f"O {pedido_id} não possui opção de composição aprovada."
+    return f"O {pedido_id} permanece sem alternativa aprovada no painel."
 
 
 def _fontes_opcao(item):
@@ -287,8 +286,13 @@ def _renderizar_termo(numero, case_id, versao, pedidos, aprovados, escolhas):
         f"**Caso:** {case_id}  ",
         f"**Versão de origem:** {versao}  ",
         "**Finalidade:** cenário objetivo para discussão pelo mediador; não constitui acordo, decisão ou reconhecimento de dívida.",
-        "", "## Cenário", "",
+        "", "## Identificação dos pedidos", "",
     ]
+    for item in pedidos:
+        linhas.append(
+            f"- **{item.get('pedido_id')}** identifica o pedido relativo a: {_descricao(item)}."
+        )
+    linhas.extend(["", "## Cenário", ""])
     if aceitos:
         for item in aceitos:
             linhas.append("- " + _texto_opcao_aceita(item))
@@ -307,11 +311,11 @@ def _renderizar_termo(numero, case_id, versao, pedidos, aprovados, escolhas):
     for item in aceitos:
         negociacao = _negociacao(item)
         opcao = negociacao.get("opcao") or {}
-        linhas.append(f"### {item.get('pedido_id')} — {_descricao(item)}")
+        linhas.append(f"### {item.get('pedido_id')}")
         linhas.append("")
         linhas.append("- " + _texto_opcao_aceita(item))
         if opcao.get("tipo") == "formula":
-            linhas.append("- O percentual `p` será definido pelas partes; a faixa é um limite de discussão, não um valor devido.")
+            linhas.append("- O percentual (%) será definido pelas partes; a faixa é um limite de discussão, não um valor devido.")
         elif opcao.get("tipo") == "faixa":
             linhas.append("- O valor final deverá permanecer dentro da faixa indicada.")
         auditoria = negociacao.get("auditoria") or {}

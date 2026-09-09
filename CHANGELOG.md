@@ -22,7 +22,12 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
 - O limite padrão de 256 combinações falha de forma explícita, sem truncamento.
 - O retorno real de `get_case` do caso 0005 foi usado como teste de aceitação:
   gerou dois Termos, preservou a faixa de R$ 0,00 a R$ 64.734,88 e manteve RP02
-  retida. Após a inclusão do HTML, a suíte completa terminou com 185 testes aprovados.
+  retida. Após os refinamentos de apresentação, a suíte completa terminou com
+  186 testes aprovados.
+- Os códigos `RPxx` passam a ser definidos uma única vez, numa seção de
+  identificação anterior ao cenário. O restante do documento usa somente o ID,
+  sem repetir a descrição longa, e fórmulas exibem “percentual (%) a definir” em
+  vez da variável técnica `p`.
 
 ## v20.0.0-experimental — 2026-09-08 — candidata para repetição dos 50 casos
 

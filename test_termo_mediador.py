@@ -67,8 +67,19 @@ class TermoMediadorTests(unittest.TestCase):
         texto = renderizar_markdown(resultado)
         self.assertIn("Termo de Opção 1", texto)
         self.assertIn("R$ 0,00 a R$ 100,00", texto)
-        self.assertIn("percentual `p`", texto)
+        self.assertIn("percentual (%) a definir", texto)
+        self.assertIn("O percentual (%) será definido pelas partes", texto)
+        self.assertNotIn("percentual `p`", texto)
         self.assertIn("convergiram em necessidade de informação adicional", texto)
+
+    def test_pedido_e_explicado_uma_vez_antes_do_cenario(self):
+        texto = gerar_termos(resposta(item("RP01")))["termos"][0]["texto_markdown"]
+        descricao = "Reparação e responsabilização por infiltração"
+        self.assertLess(texto.index("## Identificação dos pedidos"), texto.index("## Cenário"))
+        self.assertIn(f"**RP01** identifica o pedido relativo a: {descricao}.", texto)
+        self.assertEqual(texto.count(descricao), 1)
+        self.assertIn("As partes aceitam negociar o RP01, usando", texto)
+        self.assertNotIn("RP01 —", texto)
 
     def test_duas_opcoes_independentes_geram_quatro_combinacoes(self):
         resultado = gerar_termos(resposta(item("RP01"), item("RP02", "nao_monetaria")))
