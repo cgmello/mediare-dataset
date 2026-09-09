@@ -7,6 +7,7 @@ as opções que o painel já marcou como aptas para discussão.
 """
 
 import argparse
+from html import escape
 import itertools
 import json
 from pathlib import Path
@@ -373,6 +374,120 @@ def renderizar_markdown(resultado):
     return "\n\n---\n\n".join(termo["texto_markdown"].rstrip() for termo in resultado["termos"]) + "\n"
 
 
+def _html_inline(texto):
+    """Renderiza o subconjunto inline produzido pelo próprio script."""
+    seguro = escape(texto, quote=True)
+    seguro = re.sub(r"`([^`]+)`", r"<code>\1</code>", seguro)
+    seguro = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", seguro)
+    return seguro
+
+
+def _markdown_para_html_fragmento(markdown):
+    """Converte somente o Markdown determinístico acima, sempre escapando dados."""
+    saida = []
+    lista_aberta = False
+    item_aberto = False
+
+    def fechar_lista():
+        nonlocal lista_aberta, item_aberto
+        if item_aberto:
+            saida.append("</li>")
+            item_aberto = False
+        if lista_aberta:
+            saida.append("</ul>")
+            lista_aberta = False
+
+    for linha in markdown.splitlines():
+        if not linha.strip():
+            fechar_lista()
+            continue
+        titulo = re.match(r"^(#{1,3})\s+(.+)$", linha)
+        if titulo:
+            fechar_lista()
+            nivel = len(titulo.group(1))
+            saida.append(f"<h{nivel}>{_html_inline(titulo.group(2))}</h{nivel}>")
+            continue
+        if linha == "---":
+            fechar_lista()
+            saida.append('<hr class="separador">')
+            continue
+        if linha.startswith("- "):
+            if not lista_aberta:
+                saida.append("<ul>")
+                lista_aberta = True
+            if item_aberto:
+                saida.append("</li>")
+            conteudo = linha[2:]
+            if conteudo.startswith("[ ] "):
+                conteudo = '<span class="caixa" aria-hidden="true">☐</span> ' + _html_inline(conteudo[4:])
+            else:
+                conteudo = _html_inline(conteudo)
+            saida.append("<li>" + conteudo)
+            item_aberto = True
+            continue
+        if linha.startswith("  ") and item_aberto:
+            saida.append('<div class="nota-item">' + _html_inline(linha.strip()) + "</div>")
+            continue
+        fechar_lista()
+        saida.append("<p>" + _html_inline(linha.rstrip()) + "</p>")
+    fechar_lista()
+    return "\n".join(saida)
+
+
+def renderizar_html(resultado):
+    """Gera HTML único, autocontido, seguro e preparado para impressão A4."""
+    artigos = "\n".join(
+        '<article class="termo">\n'
+        + _markdown_para_html_fragmento(termo["texto_markdown"])
+        + "\n</article>"
+        for termo in resultado["termos"]
+    )
+    titulo = escape(f"Termos de Opção — Caso {resultado['case_id']}", quote=True)
+    return f"""<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{titulo}</title>
+  <style>
+    :root {{ color-scheme: light; font-family: Arial, Helvetica, sans-serif; }}
+    * {{ box-sizing: border-box; }}
+    body {{ margin: 0; background: #eef2f6; color: #1f2937; line-height: 1.5; }}
+    main {{ width: min(900px, calc(100% - 32px)); margin: 32px auto; }}
+    .termo {{ background: #fff; margin: 0 0 32px; padding: 48px 56px;
+              border: 1px solid #d8e0e8; border-radius: 8px;
+              box-shadow: 0 8px 24px rgba(15, 35, 55, .08); }}
+    h1 {{ margin: 0 0 24px; padding-bottom: 14px; color: #17324d;
+          font-size: 1.8rem; border-bottom: 2px solid #2f6f8f; }}
+    h2 {{ margin: 30px 0 12px; color: #234a65; font-size: 1.25rem; }}
+    h3 {{ margin: 22px 0 10px; color: #315c75; font-size: 1.05rem; }}
+    p {{ margin: 8px 0; }}
+    ul {{ margin: 8px 0 16px; padding-left: 24px; }}
+    li {{ margin: 8px 0; }}
+    .nota-item {{ margin-top: 4px; color: #4b5563; }}
+    .caixa {{ display: inline-block; width: 1.2em; font-size: 1.15em; }}
+    code {{ padding: .08em .3em; border-radius: 3px; background: #edf2f7;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }}
+    .separador {{ border: 0; border-top: 1px solid #ccd5de; margin: 32px 0; }}
+    @page {{ size: A4; margin: 18mm; }}
+    @media print {{
+      body {{ background: #fff; }}
+      main {{ width: auto; margin: 0; }}
+      .termo {{ margin: 0; padding: 0; border: 0; border-radius: 0;
+                box-shadow: none; break-after: page; page-break-after: always; }}
+      .termo:last-child {{ break-after: auto; page-break-after: auto; }}
+    }}
+  </style>
+</head>
+<body>
+<main>
+{artigos}
+</main>
+</body>
+</html>
+"""
+
+
 def escrever_saida(conteudo, destino):
     if destino == "-":
         sys.stdout.write(conteudo)
@@ -386,15 +501,17 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("entrada", help="arquivo com a resposta JSON de get_case, ou - para stdin")
     parser.add_argument("--output", "-o", default="-", help="arquivo de saída, ou - para stdout")
-    parser.add_argument("--format", choices=("markdown", "json"), default="markdown")
+    parser.add_argument("--format", choices=("markdown", "json", "html"), default="markdown")
     parser.add_argument("--max-combinations", type=int, default=256)
     args = parser.parse_args(argv)
     try:
         resultado = gerar_termos(carregar_resposta(args.entrada), args.max_combinations)
-        conteudo = (
-            renderizar_markdown(resultado) if args.format == "markdown"
-            else json.dumps(resultado, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
-        )
+        if args.format == "markdown":
+            conteudo = renderizar_markdown(resultado)
+        elif args.format == "html":
+            conteudo = renderizar_html(resultado)
+        else:
+            conteudo = json.dumps(resultado, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
         escrever_saida(conteudo, args.output)
     except (ErroTermoMediador, OSError) as exc:
         parser.exit(2, f"erro: {exc}\n")

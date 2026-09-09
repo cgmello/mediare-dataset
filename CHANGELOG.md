@@ -16,11 +16,13 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
   apresentadas de forma determinística, curta e com acentuação em português.
 - Opções retidas nunca são promovidas pelo pós-processamento: aparecem em todos
   os cenários somente com os riscos registrados pela auditoria.
-- A saída pode ser Markdown para uso humano ou JSON estruturado para integração.
-  O limite padrão de 256 combinações falha de forma explícita, sem truncamento.
+- A saída pode ser Markdown, JSON estruturado ou HTML autocontido. O HTML usa
+  UTF-8, layout responsivo e folha de impressão A4, com um Termo por página, e
+  escapa todo conteúdo dinâmico recebido do painel.
+- O limite padrão de 256 combinações falha de forma explícita, sem truncamento.
 - O retorno real de `get_case` do caso 0005 foi usado como teste de aceitação:
   gerou dois Termos, preservou a faixa de R$ 0,00 a R$ 64.734,88 e manteve RP02
-  retida. A suíte completa terminou com 183 testes aprovados.
+  retida. Após a inclusão do HTML, a suíte completa terminou com 185 testes aprovados.
 
 ## v20.0.0-experimental — 2026-09-08 — candidata para repetição dos 50 casos
 

@@ -38,6 +38,10 @@ Gerar JSON estruturado por pipe:
 
     cat get-case.json | python3 termo_mediador.py - --format json -o termos-0005.json
 
+Gerar HTML autocontido, pronto para navegador ou impressão em PDF:
+
+    python3 termo_mediador.py get-case.json --format html -o termos.html
+
 O limite padrão é 256 combinações. Se o painel exceder esse valor, o script falha
 sem gerar uma lista parcial; o limite só pode ser ampliado explicitamente com
 `--max-combinations`.

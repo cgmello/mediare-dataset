@@ -11,6 +11,7 @@ from termo_mediador import (
     corrigir_portugues,
     gerar_termos,
     main,
+    renderizar_html,
     renderizar_markdown,
 )
 
@@ -146,6 +147,27 @@ class TermoMediadorTests(unittest.TestCase):
         objeto = json.loads(saida.getvalue())
         self.assertEqual(objeto["combinacoes_total"], 2)
         self.assertIn("Opção", objeto["termos"][0]["titulo"])
+
+    def test_html_e_autocontido_imprimivel_e_escapa_dados_do_painel(self):
+        malicioso = item("RP01")
+        malicioso["descricao"] = "Reparação <script>alert('x')</script>"
+        resultado = gerar_termos(resposta(malicioso))
+        pagina = renderizar_html(resultado)
+        self.assertTrue(pagina.startswith("<!doctype html>"))
+        self.assertIn('<html lang="pt-BR">', pagina)
+        self.assertIn('<meta charset="utf-8">', pagina)
+        self.assertIn("@media print", pagina)
+        self.assertEqual(pagina.count('<article class="termo">'), 2)
+        self.assertIn("R$ 0,00 a R$ 100,00", pagina)
+        self.assertIn("&lt;script&gt;", pagina)
+        self.assertNotIn("<script>alert", pagina)
+
+    def test_cli_emite_html(self):
+        entrada = json.dumps(resposta(item("RP01")), ensure_ascii=False)
+        saida = io.StringIO()
+        with patch("sys.stdin", io.StringIO(entrada)), patch("sys.stdout", saida):
+            main(["-", "--format", "html"])
+        self.assertIn("<title>Termos de Opção — Caso 0005</title>", saida.getvalue())
 
 
 if __name__ == "__main__":
