@@ -55,6 +55,10 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
   comparação Studio/OpenRouter, observação de cada caso, telemetria por modelo,
   tempo, custo reconciliado, projeções e plano condicional para o grant. Suíte
   completa concluída com 206 testes aprovados.
+- Após revisar o piloto, o usuário autorizou a retomada dos 40 casos. O runner
+  ganhou ação explícita e auditável `set-budget`; o teto total será elevado de
+  US$ 10 para US$ 12, permitindo no máximo cerca de US$ 9,66 adicionais após a
+  liquidação tardia do piloto. O saldo conferido antes da retomada era US$ 10,6893.
 
 ## Pós-processador off-chain de Termos — 2026-09-09
 

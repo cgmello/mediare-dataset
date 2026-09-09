@@ -9,8 +9,10 @@ from openrouter_runner import (
     ReplayCaller,
     RunnerError,
     load_contract,
+    load_jsonl,
     load_models,
     reconciled_campaign_cost,
+    raise_budget,
     render_report,
     total_cost,
 )
@@ -40,6 +42,23 @@ class FakeClient:
 
 
 class OpenRouterRunnerTests(unittest.TestCase):
+    def test_budget_raise_is_explicit_and_audited(self):
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory)
+            (out / "campaign.json").write_text(json.dumps({
+                "max_cost_usd": "10", "program_credit_usd": "500",
+                "case_ids": [], "models": [], "reviewer_quorum": 0,
+                "source_sha256": "test",
+            }))
+            args = type("Args", (), {
+                "out": str(out), "max_cost": 12,
+                "report": str(out / "report.html"),
+            })()
+            result = raise_budget(args)
+            self.assertEqual(json.loads((out / "campaign.json").read_text())["max_cost_usd"], "12")
+            self.assertEqual(load_jsonl(out / "events.jsonl")[0]["event"], "budget_raised")
+            self.assertEqual(result["total"], 0)
+
     def test_campaign_cost_uses_key_delta_when_itemized_responses_are_incomplete(self):
         manifest = {
             "account_start": {"key_usage_usd": "1.25"},

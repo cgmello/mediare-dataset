@@ -923,9 +923,34 @@ def run_campaign(args):
     return render_report(manifest, out, args.report)
 
 
+def raise_budget(args):
+    if args.max_cost is None:
+        raise RunnerError("set-budget requires --max-cost")
+    out = Path(args.out)
+    manifest_path = out / "campaign.json"
+    manifest = read_json(manifest_path)
+    previous = Decimal(str(manifest["max_cost_usd"]))
+    requested = Decimal(str(args.max_cost))
+    if requested <= previous:
+        raise RunnerError("new budget must be greater than current budget")
+    if requested > Decimal(str(manifest["program_credit_usd"])):
+        raise RunnerError("new budget exceeds announced program credit")
+    manifest["max_cost_usd"] = format(requested, "f")
+    atomic_json(manifest_path, manifest)
+    append_jsonl(out / "events.jsonl", {
+        "event": "budget_raised",
+        "previous_max_cost_usd": format(previous, "f"),
+        "new_max_cost_usd": format(requested, "f"),
+        "at": utc_now(),
+    })
+    return render_report(manifest, out, args.report)
+
+
 def parser():
     value = argparse.ArgumentParser(description=__doc__)
-    value.add_argument("action", choices=("init", "run", "resume", "status", "report"))
+    value.add_argument(
+        "action", choices=("init", "run", "resume", "status", "report", "set-budget")
+    )
     value.add_argument("--out", default=DEFAULT_OUT)
     value.add_argument("--source", default=DEFAULT_SOURCE)
     value.add_argument("--selection", default=DEFAULT_SELECTION)
@@ -957,6 +982,8 @@ def main(argv=None):
         result = initialize(args)
     elif args.action in {"run", "resume"}:
         result = run_campaign(args)
+    elif args.action == "set-budget":
+        result = raise_budget(args)
     else:
         manifest = read_json(Path(args.out) / "campaign.json")
         result = render_report(manifest, args.out, args.report)
