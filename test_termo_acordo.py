@@ -101,6 +101,27 @@ class TermoAcordoTests(unittest.TestCase):
         with self.assertRaisesRegex(ErroTermoAcordo, "ainda não preenchido"):
             gerar_acordo(resposta(), incompleto, {"RP01": "60"})
 
+    def test_rascunho_substitui_identidades_marca_saida_e_remove_assinaturas(self):
+        modelo = dados()
+        modelo["partes"]["requerente"]["nome"] = "PREENCHER: nome"
+        modelo["mediador"]["nome"] = "PREENCHER: mediador"
+        resultado = gerar_acordo(resposta(), modelo, {"RP01": "60"}, rascunho=True)
+        self.assertTrue(resultado["rascunho"])
+        self.assertEqual(resultado["partes"]["requerente"]["nome"], "Marina Alves de Souza")
+        texto = resultado["texto_markdown"]
+        self.assertIn("RASCUNHO — SIMULAÇÃO SEM VALIDADE", texto)
+        self.assertIn("DADOS FICTÍCIOS. NÃO ASSINAR", texto)
+        self.assertIn("Campos de assinatura suprimidos", texto)
+        self.assertNotIn("## Testemunhas", texto)
+        self.assertNotIn("____________________________________", texto)
+
+    def test_rascunho_html_tem_marcacao_visual(self):
+        resultado = gerar_acordo(resposta(), dados(), {"RP01": "60"}, rascunho=True)
+        html = renderizar_html(resultado)
+        self.assertIn('<body class="rascunho">', html)
+        self.assertIn("border: 5px solid #a61b1b", html)
+        self.assertIn("DADOS FICTÍCIOS", html)
+
     def test_opcao_nao_monetaria_exige_prestacao_responsavel_e_prazo(self):
         entrada = dados()
         entrada["pagamentos"] = {}
@@ -129,6 +150,22 @@ class TermoAcordoTests(unittest.TestCase):
             with patch("sys.stdout", saida):
                 main([str(entrada), "--dados", str(formais), "--percentual", "60", "--format", "json"])
             self.assertEqual(json.loads(saida.getvalue())["obrigacoes"][0]["centavos"], 3884093)
+
+    def test_cli_rascunho_aceita_arquivo_modelo_nao_preenchido(self):
+        modelo = dados()
+        modelo["partes"]["requerente"]["nome"] = "PREENCHER: nome"
+        with tempfile.TemporaryDirectory() as tmp:
+            entrada = Path(tmp) / "get-case.json"
+            formais = Path(tmp) / "dados.json"
+            entrada.write_text(json.dumps(resposta()), encoding="utf-8")
+            formais.write_text(json.dumps(modelo), encoding="utf-8")
+            saida = io.StringIO()
+            with patch("sys.stdout", saida):
+                main([
+                    str(entrada), "--dados", str(formais), "--percentual", "60",
+                    "--rascunho", "--format", "html",
+                ])
+            self.assertIn("SIMULAÇÃO SEM VALIDADE", saida.getvalue())
 
     def test_valores_por_extenso(self):
         self.assertEqual(valor_por_extenso(100), "um real")

@@ -76,6 +76,10 @@ sem ajustes como padrão final:
   incluídos quando informados expressamente.
 - O documento informa a origem do cenário para rastreabilidade, mas não reproduz
   raciocínios das lentes nem apresenta o IC como autor da decisão.
+- `--rascunho` existe somente para demonstração: substitui todas as identidades
+  por dados fictícios e inválidos, aplica avisos visuais de ausência de validade
+  e remove os campos de assinatura. O modo normal continua recusando qualquer
+  marcador `PREENCHER`.
 
 Antes da assinatura, o mediador deve conferir identidade e poderes de
 representação, consentimento, valores, datas, dados de pagamento, escopo da

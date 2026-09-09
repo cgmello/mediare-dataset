@@ -7,6 +7,12 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
 ## Pós-processador off-chain de Termos — 2026-09-09
 
+- O gerador final passa a aceitar `--rascunho` para demonstrações com o arquivo
+  de exemplo ainda não preenchido. O modo substitui todas as identidades por
+  personagens, documentos e endereços inequivocamente fictícios; exibe alertas
+  de simulação sem validade em Markdown/HTML/JSON e suprime assinaturas e
+  testemunhas. Sem a diretiva, a validação estrita dos dados reais permanece.
+
 - Adicionado `termo_acordo.py`, segundo estágio determinístico que converte um
   cenário aceito em Termo Final de Mediação e Acordo Extrajudicial. Ele exige
   aceite unânime, dados formais completos e fechamento de toda fórmula/faixa.

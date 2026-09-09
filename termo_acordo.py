@@ -7,6 +7,7 @@ formais essenciais. O script não substitui a revisão jurídica do caso concret
 """
 
 import argparse
+from copy import deepcopy
 from datetime import date
 from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 from html import escape
@@ -41,6 +42,38 @@ def _texto(objeto, campo):
     if valor.upper().startswith("PREENCHER"):
         raise ErroTermoAcordo(f"campo obrigatório ainda não preenchido: {campo}")
     return valor
+
+
+def _dados_ficticios(dados):
+    """Substitui identidades por personagens inequivocamente fictícios."""
+    simulados = deepcopy(dados)
+    simulados["aceite"] = {
+        **(simulados.get("aceite") if isinstance(simulados.get("aceite"), dict) else {}),
+        "todos_concordam": True,
+    }
+    simulados["partes"] = {
+        "requerente": {
+            "nome": "Marina Alves de Souza",
+            "cpf_cnpj": "000.000.000-00 (número fictício e inválido)",
+            "qualificacao": "brasileira, arquiteta, solteira",
+            "endereco": "Rua Exemplo, nº 100, Bairro Modelo, São Paulo/SP, CEP 00000-000 (endereço fictício)",
+        },
+        "requerido": {
+            "nome": "Construtora Horizonte Azul Ltda.",
+            "cpf_cnpj": "00.000.000/0000-00 (número fictício e inválido)",
+            "qualificacao": "sociedade empresária limitada, representada por Carlos Lima",
+            "endereco": "Avenida Demonstração, nº 200, Bairro Modelo, São Paulo/SP, CEP 00000-000 (endereço fictício)",
+        },
+    }
+    simulados["mediador"] = {
+        "nome": "Renata Oliveira",
+        "qualificacao": "mediadora extrajudicial, registro demonstrativo nº MED-0000",
+    }
+    if not isinstance(simulados.get("resumo_conflito"), str) or simulados["resumo_conflito"].upper().startswith("PREENCHER"):
+        simulados["resumo_conflito"] = (
+            "Controvérsia simulada sobre reparação de danos no imóvel, usada exclusivamente para visualizar o modelo"
+        )
+    return simulados
 
 
 def _decimal(valor, nome):
@@ -249,9 +282,14 @@ def _dados_monetarios(item, percentuais, valores, pagamentos):
     }
 
 
-def gerar_acordo(resposta, dados, percentuais=None, valores=None, termo_id=None, max_combinations=256):
+def gerar_acordo(
+    resposta, dados, percentuais=None, valores=None, termo_id=None,
+    max_combinations=256, rascunho=False,
+):
     if not isinstance(dados, dict):
         raise ErroTermoAcordo("dados formais devem ser um objeto JSON")
+    if rascunho:
+        dados = _dados_ficticios(dados)
     aceite = dados.get("aceite")
     if not isinstance(aceite, dict) or aceite.get("todos_concordam") is not True:
         raise ErroTermoAcordo("o acordo exige aceite.todos_concordam=true")
@@ -325,6 +363,7 @@ def gerar_acordo(resposta, dados, percentuais=None, valores=None, termo_id=None,
         "foro": dados.get("foro") if isinstance(dados.get("foro"), str) else None,
         "duas_testemunhas": assinatura.get("duas_testemunhas") is True,
         "advogados": dados.get("advogados") if isinstance(dados.get("advogados"), list) else [],
+        "rascunho": bool(rascunho),
     }
     resultado["texto_markdown"] = renderizar_markdown(resultado)
     return resultado
@@ -337,7 +376,13 @@ def _nome_papel(resultado, papel):
 def renderizar_markdown(resultado):
     req = resultado["partes"]["requerente"]
     rdo = resultado["partes"]["requerido"]
-    linhas = [
+    linhas = []
+    if resultado["rascunho"]:
+        linhas.extend([
+            "# RASCUNHO — SIMULAÇÃO SEM VALIDADE", "",
+            "> **DADOS FICTÍCIOS. NÃO ASSINAR. ESTE DOCUMENTO NÃO CONSTITUI ACORDO NEM TÍTULO EXECUTIVO.**", "",
+        ])
+    linhas.extend([
         "# TERMO FINAL DE MEDIAÇÃO E ACORDO EXTRAJUDICIAL", "",
         f"**Caso de referência:** {resultado['case_id']}  ",
         f"**Cenário aceito:** {resultado['termo_opcao_id']}  ",
@@ -349,7 +394,7 @@ def renderizar_markdown(resultado):
         "As partes acima identificadas declaram que participaram voluntariamente da mediação, compreenderam seus termos e, por livre manifestação de vontade, celebram o presente acordo.", "",
         "## 2. Resumo e objeto do conflito", "", resultado["resumo_conflito"].rstrip(".") + ".", "",
         "O acordo limita-se aos seguintes pedidos:", "",
-    ]
+    ])
     for ob in resultado["obrigacoes"]:
         linhas.append(f"- **{ob['pedido_id']}:** {ob['descricao']}.")
     linhas.extend(["", "## 3. Obrigações assumidas", ""])
@@ -396,25 +441,34 @@ def renderizar_markdown(resultado):
     linhas.extend([
         "E, por estarem de acordo, assinam o presente Termo.", "",
         f"{resultado['local']}, {resultado['data_assinatura']}.", "",
-        "---", f"**{req['nome']}**  ", "Requerente", "",
-        "---", f"**{rdo['nome']}**  ", "Requerido", "",
-        "---", f"**{resultado['mediador']['nome']}**  ", "Mediador", "",
     ])
-    for advogado in resultado["advogados"]:
-        if isinstance(advogado, dict) and advogado.get("nome") and advogado.get("oab"):
-            linhas.extend(["---", f"**{advogado['nome']} — {advogado['oab']}**  ", "Advogado(a)", ""])
-    if resultado["duas_testemunhas"]:
+    if resultado["rascunho"]:
         linhas.extend([
-            "## Testemunhas", "",
-            "1. ____________________________________  ", "Nome:  ", "CPF:", "",
-            "2. ____________________________________  ", "Nome:  ", "CPF:", "",
+            "## Assinaturas", "",
+            "**Campos de assinatura suprimidos no modo rascunho. Gere novamente sem `--rascunho`, após preencher e conferir os dados reais.**", "",
         ])
+    else:
+        linhas.extend([
+            "---", f"**{req['nome']}**  ", "Requerente", "",
+            "---", f"**{rdo['nome']}**  ", "Requerido", "",
+            "---", f"**{resultado['mediador']['nome']}**  ", "Mediador", "",
+        ])
+        for advogado in resultado["advogados"]:
+            if isinstance(advogado, dict) and advogado.get("nome") and advogado.get("oab"):
+                linhas.extend(["---", f"**{advogado['nome']} — {advogado['oab']}**  ", "Advogado(a)", ""])
+        if resultado["duas_testemunhas"]:
+            linhas.extend([
+                "## Testemunhas", "",
+                "1. ____________________________________  ", "Nome:  ", "CPF:", "",
+                "2. ____________________________________  ", "Nome:  ", "CPF:", "",
+            ])
     return "\n".join(linhas).rstrip() + "\n"
 
 
 def renderizar_html(resultado):
     corpo = _markdown_para_html_fragmento(resultado["texto_markdown"])
     titulo = escape(f"Termo Final de Mediação — Caso {resultado['case_id']}", quote=True)
+    classe = ' class="rascunho"' if resultado["rascunho"] else ""
     return f"""<!doctype html>
 <html lang="pt-BR">
 <head>
@@ -431,11 +485,15 @@ def renderizar_html(resultado):
     h3 {{ font-size: 1rem; margin: 20px 0 8px; }}
     p, li {{ text-align: justify; }}
     hr {{ border: 0; border-top: 1px solid #555; margin: 42px 0 5px; width: 55%; }}
+    .rascunho main {{ border: 5px solid #a61b1b; }}
+    .rascunho h1:first-child, .rascunho blockquote {{ color: #8b1111; }}
+    .rascunho::before {{ content: "RASCUNHO · DADOS FICTÍCIOS"; position: fixed; inset: 45% auto auto 8%; z-index: 2; color: rgba(139, 17, 17, .09); font: bold 4rem Arial, sans-serif; transform: rotate(-24deg); pointer-events: none; }}
+    blockquote {{ margin: 18px 0 30px; padding: 14px 18px; border: 2px solid #a61b1b; background: #fff4f4; }}
     @page {{ size: A4; margin: 18mm; }}
     @media print {{ body {{ background: white; }} main {{ width: auto; margin: 0; padding: 0; box-shadow: none; }} }}
   </style>
 </head>
-<body><main>{corpo}</main></body>
+<body{classe}><main>{corpo}</main></body>
 </html>
 """
 
@@ -466,6 +524,10 @@ def main(argv=None):
     parser.add_argument("--termo", help="ID do cenário, por exemplo TO-001")
     parser.add_argument("--percentual", action="append", default=[], help="PEDIDO=PERCENTUAL; pode repetir")
     parser.add_argument("--valor", action="append", default=[], help="PEDIDO=REAIS para opção de faixa; pode repetir")
+    parser.add_argument(
+        "--rascunho", action="store_true",
+        help="simula identidades fictícias, marca a saída sem validade e suprime assinaturas",
+    )
     parser.add_argument("--format", choices=("markdown", "json", "html"), default="markdown")
     parser.add_argument("--output", "-o", default="-", help="arquivo de saída, ou - para stdout")
     parser.add_argument("--max-combinations", type=int, default=256)
@@ -486,6 +548,7 @@ def main(argv=None):
         resultado = gerar_acordo(
             resposta, carregar_dados(args.dados), percentuais, valores,
             termo_id=args.termo, max_combinations=args.max_combinations,
+            rascunho=args.rascunho,
         )
         if args.format == "markdown":
             conteudo = resultado["texto_markdown"]

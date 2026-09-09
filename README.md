@@ -71,6 +71,21 @@ ser `markdown`, `json` ou `html`; nenhum documento é gravado quando a validaç�
 falha. Critérios formais, fontes oficiais e limites do modelo estão em
 [docs/TERMO_ACORDO_FORMAL.md](docs/TERMO_ACORDO_FORMAL.md).
 
+Para apenas visualizar o resultado sem preencher dados pessoais, use o próprio
+modelo com `--rascunho`:
+
+    python3 termo_acordo.py get-case.json \
+      --dados dados_acordo.exemplo.json \
+      --termo TO-001 \
+      --percentual RP01=60 \
+      --rascunho \
+      --format html \
+      -o acordo-0005.html
+
+Nesse modo, identidades e endereços são substituídos por personagens e números
+inequivocamente fictícios. O HTML recebe marcação visual de simulação, o texto
+declara que não possui validade e todos os campos de assinatura são suprimidos.
+
 ## Notes
 
 - "real" cases were reconstructed from public court decisions (CJPG/TJSP), with
