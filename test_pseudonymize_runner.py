@@ -1,0 +1,95 @@
+import json
+from decimal import Decimal
+from pathlib import Path
+import tempfile
+import unittest
+
+from pseudonymize_runner import (
+    audit_output,
+    clean_date,
+    initials,
+    initialize,
+    local_entities,
+    merged_entities,
+    parse_detector,
+    replace_all,
+    replacement_map,
+)
+from openrouter_runner import RunnerError
+
+
+PROCESS = "1234567-89.2025.8.26.0001"
+
+
+class PseudonymizeRunnerTests(unittest.TestCase):
+    def test_initials_ignore_portuguese_particles(self):
+        self.assertEqual(initials("Maria de Souza da Silva"), "M.S.S.")
+        self.assertEqual(initials("CLÍNICA EXEMPLO REGIONAL LTDA"), "C.E.R.L.")
+
+    def test_contaminated_date_keeps_only_date(self):
+        self.assertEqual(clean_date("27/07/2026 corpo indevido"), "27/07/2026")
+
+    def test_detector_requires_exact_source_substrings(self):
+        source = '{"texto":"Maria Exemplo compareceu"}'
+        valid = parse_detector(
+            '{"entities":[{"text":"Maria Exemplo","kind":"person"}]}', source
+        )
+        self.assertEqual(valid[0]["text"], "Maria Exemplo")
+        with self.assertRaisesRegex(RunnerError, "DETECTOR_ENTITY_INVALID"):
+            parse_detector(
+                '{"entities":[{"text":"Pessoa Inventada","kind":"person"}]}', source
+            )
+
+    def test_local_application_preserves_facts_and_removes_identifiers(self):
+        original = {
+            "processo": PROCESS,
+            "magistrado": "Maria de Souza da Silva",
+            "data": "01/09/2026",
+            "texto": (
+                f"Processo Digital nº: {PROCESS} Requerente: João de Teste "
+                "Requerido: CLÍNICA EXEMPLO LTDA VISTOS. JOÃO DE TESTE pagou R$ 400,00."
+            ),
+        }
+        detected = [
+            {"text": PROCESS, "kind": "case_number"},
+            {"text": "Maria de Souza da Silva", "kind": "person"},
+            {"text": "João de Teste", "kind": "person"},
+            {"text": "CLÍNICA EXEMPLO LTDA", "kind": "private_organization"},
+        ]
+        entities = merged_entities([local_entities(original), detected])
+        replacements = replacement_map(entities, PROCESS, "0501")
+        record = dict(original)
+        record["processo"] = "0501"
+        record["magistrado"] = replace_all(record["magistrado"], replacements)
+        record["texto"] = replace_all(record["texto"], replacements)
+        self.assertEqual(record["magistrado"], "M.S.S.")
+        self.assertIn("J.T. pagou R$ 400,00", record["texto"])
+        self.assertIn("C.E.L.", record["texto"])
+        self.assertNotIn(PROCESS, record["texto"])
+        self.assertEqual(audit_output(record, original, replacements), [])
+
+    def test_initialize_requires_two_models_and_zdr(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "source.jsonl"
+            source.write_text(json.dumps({
+                "processo": PROCESS, "texto": "texto de teste suficientemente simples"
+            }) + "\n", encoding="utf-8")
+            config = root / "models.json"
+            config.write_text(json.dumps({
+                "models": ["model/a", "model/b"],
+                "provider": {"zdr": True, "data_collection": "deny"},
+                "max_tokens": 1000,
+            }), encoding="utf-8")
+            args = type("Args", (), {
+                "out": str(root / "out"), "input": str(source),
+                "start_line": 1, "count": 1, "first_id": 501,
+                "models": str(config), "max_cost": Decimal("2"),
+            })()
+            manifest = initialize(args)
+            self.assertTrue(manifest["provider"]["zdr"])
+            self.assertEqual(manifest["first_internal_id"], 501)
+
+
+if __name__ == "__main__":
+    unittest.main()

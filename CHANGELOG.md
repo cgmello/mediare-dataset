@@ -7,6 +7,14 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
 ## Candidatas v21 e fechamento da v20 — 2026-09-10
 
+- Criado o runner retomável de pseudonimização para as 500 novas decisões. Dois
+  modelos de alta qualidade detectam entidades independentemente, mas todas as
+  substituições são aplicadas local e deterministicamente para preservar fatos,
+  datas e valores. IDs internos 0501–1000, iniciais sem partículas portuguesas,
+  revisão de cada processo, cache privado, auditoria local, ZDR obrigatório,
+  proibição de coleta e teto de US$ 30 estão documentados em
+  `PSEUDONYMIZATION_PLAN.md`.
+
 - A v20 foi congelada como baseline após 100 casos no Studio: 95
   `MAJORITY_AGREE`, 96 `FINALIZED`, 52 `APTO_INTEGRAL`, 27
   `APTO_PARCIAL_COM_RETENCOES`, oito `SOMENTE_DILIGENCIAS`, oito
