@@ -15,6 +15,18 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
   atribuição sem somar deltas sobrepostos de campanhas paralelas, e toda
   diferença permanece visível como reconciliação. O gerador pode atualizar o
   mesmo HTML periodicamente durante campanhas ativas.
+- O mesmo relatório agora resume a evolução empírica da v1 à v20 e registra
+  separadamente a estimativa histórica de US$ 20 em chamadas diretas à API da
+  Anthropic. A estimativa não reduz o grant OpenRouter: uma tentativa de
+  conferência retornou 401 porque a sessão OAuth disponível não possui acesso
+  Admin, requisito oficial do endpoint de custos. Um futuro CSV da página Usage
+  poderá substituir a estimativa sem alterar a contabilidade auditada da chave.
+- A campanha de pseudonimização parou no 0616 após três respostas do segundo
+  detector conterem entidade não literal. O runner agora filtra somente a
+  entidade inválida na última tentativa, marca o processo `needs_review` e
+  continua o lote usando o detector independente e a varredura determinística.
+  O total de chamadas passou a incluir tentativas inválidas e retries, não
+  apenas os dois resultados finais de processos concluídos.
 
 - Criado o runner retomável de pseudonimização para as 500 novas decisões. Dois
   modelos de alta qualidade detectam entidades independentemente, mas todas as

@@ -15,6 +15,7 @@ from pseudonymize_runner import (
     parse_detector,
     replace_all,
     replacement_map,
+    total_calls,
     total_cost,
 )
 from openrouter_runner import RunnerError
@@ -114,6 +115,35 @@ class PseudonymizeRunnerTests(unittest.TestCase):
             self.assertEqual(client.calls, 2)
             self.assertEqual(entities[0]["text"], "Maria Exemplo")
             self.assertEqual(total_cost(out), Decimal("0.3"))
+            self.assertEqual(total_calls(out), 2)
+
+    def test_third_entity_failure_is_filtered_and_flagged_for_review(self):
+        class FakeClient:
+            def __init__(self):
+                self.calls = 0
+
+            def complete(self, model, prompt, max_tokens):
+                self.calls += 1
+                return {
+                    "text": json.dumps({"entities": [
+                        {"text": "Maria Exemplo", "kind": "person"},
+                        {"text": "Pessoa Inventada", "kind": "person"},
+                    ]}),
+                    "cost_usd": str(Decimal(self.calls) / 10),
+                }
+
+        with tempfile.TemporaryDirectory() as directory:
+            client = FakeClient()
+            out = Path(directory)
+            entities, metadata = cached_detection(
+                client, out, "0616", "model/a", "prompt", 1000,
+                '{"texto":"Maria Exemplo"}',
+            )
+            self.assertEqual(entities, [{"text": "Maria Exemplo", "kind": "person"}])
+            self.assertTrue(metadata["detector_partial"])
+            self.assertEqual(metadata["invalid_entities_dropped"], 1)
+            self.assertEqual(total_cost(out), Decimal("0.6"))
+            self.assertEqual(total_calls(out), 3)
 
 
 if __name__ == "__main__":

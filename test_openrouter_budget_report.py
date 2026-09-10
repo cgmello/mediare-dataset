@@ -36,6 +36,10 @@ class OpenRouterBudgetReportTests(unittest.TestCase):
             self.assertEqual(schema["cost"], 2)
             self.assertGreater(ledger["reconciliation"], 0)
             self.assertEqual(ledger["remaining"], 487.5)
+            self.assertEqual(ledger["historical_external_estimate"], 20)
+            self.assertEqual(ledger["total_project_cost"], 32.5)
+            historical = next(row for row in ledger["rows"] if "Anthropic" in row["activity"])
+            self.assertFalse(historical["grant_scope"])
 
     def test_ledger_falls_back_to_newer_local_receipts(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -57,6 +61,10 @@ class OpenRouterBudgetReportTests(unittest.TestCase):
             self.assertIn("US$500 Grant Ledger", html)
             self.assertIn("v21-schema candidate", html)
             self.assertIn("Collection of 500 public decisions", html)
+            self.assertIn("How the project reached v20", html)
+            self.assertIn("v1 prototype", html)
+            self.assertIn("Earlier Anthropic API cost", html)
+            self.assertIn("estimated, outside the grant", html)
             self.assertIn("single consolidated OpenRouter grant-cost report", html)
             self.assertLess(len(html), 15000)
 

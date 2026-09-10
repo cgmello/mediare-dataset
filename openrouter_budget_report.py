@@ -22,6 +22,7 @@ PROGRAM_BUDGET_USD = Decimal("500")
 DEFAULT_REPORT = "OPENROUTER_BUDGET_REPORT.html"
 DEFAULT_SNAPSHOT = "res_openrouter_budget/account_snapshot.json"
 INITIAL_VALIDATION_COST = Decimal("0.000006452")
+HISTORICAL_ANTHROPIC_ESTIMATE_USD = Decimal("20")
 
 
 def as_decimal(value, default="0"):
@@ -83,9 +84,20 @@ def build_ledger(root, account=None):
             "calls": int(summary.get("api_calls") or 0),
             "cost": cost,
             "status": status or ("complete" if completed == total and total else "in progress"),
+            "grant_scope": True,
         }
 
     rows = [
+        {
+            "date": "2026-08-22/09-08",
+            "activity": "v1–v20 early experiments — Anthropic API",
+            "tests": 0,
+            "target": 0,
+            "calls": None,
+            "cost": HISTORICAL_ANTHROPIC_ESTIMATE_USD,
+            "status": "user estimate; Admin API verification unavailable",
+            "grant_scope": False,
+        },
         {
             "date": "2026-09-09",
             "activity": "Initial API-key validation",
@@ -94,6 +106,7 @@ def build_ledger(root, account=None):
             "calls": 1,
             "cost": INITIAL_VALIDATION_COST,
             "status": "complete",
+            "grant_scope": True,
         },
         eval_row("v20 baseline", v20, "2026-09-09/10", reconciled=True),
         {
@@ -104,6 +117,7 @@ def build_ledger(root, account=None):
             "calls": 0,
             "cost": Decimal("0"),
             "status": "complete — offline scraper",
+            "grant_scope": True,
         },
         eval_row("v21-schema candidate", schema, "2026-09-10"),
         eval_row("v21-catalog candidate", catalog, "2026-09-10"),
@@ -116,11 +130,12 @@ def build_ledger(root, account=None):
             "calls": int(pseudo.get("api_calls") or 0),
             "cost": as_decimal(pseudo.get("cost_usd")),
             "status": str(pseudo.get("status") or "not started").replace("_", " "),
+            "grant_scope": True,
         },
     ]
 
     control_total = as_decimal(account.get("key_usage_usd"))
-    attributed = sum((row["cost"] for row in rows), Decimal("0"))
+    attributed = sum((row["cost"] for row in rows if row["grant_scope"]), Decimal("0"))
     reconciliation = max(Decimal("0"), control_total - attributed)
     if reconciliation:
         rows.append({
@@ -131,6 +146,7 @@ def build_ledger(root, account=None):
             "calls": 0,
             "cost": reconciliation,
             "status": "tracked — allocated as receipts settle",
+            "grant_scope": True,
         })
     # If the latest stored account snapshot lags local receipts, keep the
     # report arithmetically honest and mark the control total as provisional.
@@ -144,6 +160,8 @@ def build_ledger(root, account=None):
         "reconciliation": reconciliation,
         "spent": effective_total,
         "remaining": remaining,
+        "historical_external_estimate": HISTORICAL_ANTHROPIC_ESTIMATE_USD,
+        "total_project_cost": effective_total + HISTORICAL_ANTHROPIC_ESTIMATE_USD,
         "snapshot_lag": attributed > control_total,
     }
 
@@ -167,8 +185,9 @@ def render_html(ledger):
             "<tr>"
             f"<td>{escape(row['date'])}</td>"
             f"<td>{escape(row['activity'])}</td>"
-            f"<td>{progress}</td><td>{row['calls']}</td>"
+            f"<td>{progress}</td><td>{row['calls'] if row['calls'] is not None else '—'}</td>"
             f"<td>{money(row['cost'])}</td><td>{average}</td>"
+            f"<td>{'OpenRouter grant' if row['grant_scope'] else 'Pre-grant / external'}</td>"
             f"<td>{escape(row['status'])}</td>"
             "</tr>"
         )
@@ -186,17 +205,20 @@ def render_html(ledger):
 <title>Mediare — OpenRouter US$500 Grant Ledger</title>
 <style>
 :root{{--ink:#172235;--muted:#607086;--blue:#315efb;--line:#dce3ef;--pale:#eef3ff;font-family:Inter,Arial,sans-serif}}
-*{{box-sizing:border-box}}body{{margin:0;background:#f3f6fa;color:var(--ink);line-height:1.45}}main{{width:min(1080px,calc(100% - 28px));margin:28px auto;background:#fff;padding:44px 52px;box-shadow:0 8px 28px #17223512}}
-h1{{margin:.15rem 0;font-size:2rem}}h2{{margin-top:32px;border-bottom:2px solid var(--line);padding-bottom:7px}}.eyebrow{{color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:.07em}}.muted,footer{{color:var(--muted)}}.cards{{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}}.card{{border:1px solid var(--line);border-radius:10px;padding:16px}}.card strong{{display:block;font-size:1.55rem}}table{{width:100%;border-collapse:collapse;font-size:.92rem}}th,td{{border:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}}th{{background:var(--pale)}}.note{{background:var(--pale);border-left:4px solid var(--blue);padding:13px 16px}}footer{{margin-top:34px;border-top:1px solid var(--line);padding-top:14px;font-size:.86rem}}@media(max-width:720px){{main{{padding:28px 18px}}.cards{{grid-template-columns:1fr}}table{{display:block;overflow:auto}}}}@media print{{body{{background:#fff}}main{{margin:0;padding:0;width:auto;box-shadow:none}}}}
+*{{box-sizing:border-box}}body{{margin:0;background:#f3f6fa;color:var(--ink);line-height:1.45}}main{{width:min(1120px,calc(100% - 28px));margin:28px auto;background:#fff;padding:44px 52px;box-shadow:0 8px 28px #17223512}}
+h1{{margin:.15rem 0;font-size:2rem}}h2{{margin-top:32px;border-bottom:2px solid var(--line);padding-bottom:7px}}.eyebrow{{color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:.07em}}.muted,footer{{color:var(--muted)}}.cards{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}}.card{{border:1px solid var(--line);border-radius:10px;padding:16px}}.card strong{{display:block;font-size:1.55rem}}table{{width:100%;border-collapse:collapse;font-size:.92rem}}th,td{{border:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}}th{{background:var(--pale)}}.note{{background:var(--pale);border-left:4px solid var(--blue);padding:13px 16px}}footer{{margin-top:34px;border-top:1px solid var(--line);padding-top:14px;font-size:.86rem}}@media(max-width:880px){{.cards{{grid-template-columns:1fr 1fr}}}}@media(max-width:720px){{main{{padding:28px 18px}}.cards{{grid-template-columns:1fr}}table{{display:block;overflow:auto}}}}@media print{{body{{background:#fff}}main{{margin:0;padding:0;width:auto;box-shadow:none}}}}
 </style></head><body><main>
 <div class="eyebrow">Consolidated cost report · GenLayer-sponsored OpenRouter budget</div>
 <h1>US$500 Grant Ledger</h1>
 <p class="muted">Updated {now_local:%Y-%m-%d %H:%M:%S} America/Sao_Paulo ({now_utc:%Y-%m-%d %H:%M:%S} UTC)</p>
-<div class="cards"><div class="card">Authorized budget<strong>{money(PROGRAM_BUDGET_USD, 2)}</strong></div><div class="card">Spent to date<strong>{money(spent)}</strong><span>{pct:.2f}% of budget</span></div><div class="card">Budget remaining<strong>{money(remaining)}</strong></div></div>
+<h2>How the project reached v20</h2>
+<p>Mediare progressed from a first v1 prototype on 22 August 2026 to the v20 baseline through short empirical cycles: deploy or run the IC in GenLayer Studio, inspect consensus and operational failures, refine one bounded behavior, and retest. Early iterations also used direct Anthropic API calls; from v20 onward, the local OpenRouter runner added reproducible per-model diagnostics and cost receipts, while Studio remained the authority for real protocol consensus.</p>
+<div class="cards"><div class="card">Authorized OpenRouter budget<strong>{money(PROGRAM_BUDGET_USD, 2)}</strong></div><div class="card">OpenRouter spent to date<strong>{money(spent)}</strong><span>{pct:.2f}% of budget</span></div><div class="card">OpenRouter budget remaining<strong>{money(remaining)}</strong></div><div class="card">Earlier Anthropic API cost<strong>{money(ledger['historical_external_estimate'], 2)}</strong><span>estimated, outside the grant</span></div></div>
 <p class="note"><strong>Accounting rule.</strong> {escape(snapshot_note)} Campaign attribution uses per-call receipts, never overlapping campaign-level key deltas. Any difference is retained as reconciliation until OpenRouter settlement and local receipts align.</p>
 <h2>Spend ledger</h2>
-<table><thead><tr><th>Date</th><th>Version / activity</th><th>Completed</th><th>API calls</th><th>Total cost</th><th>Cost per completed unit</th><th>Status</th></tr></thead><tbody>{''.join(rows)}</tbody></table>
+<table><thead><tr><th>Date</th><th>Version / activity</th><th>Completed</th><th>API calls</th><th>Total cost</th><th>Cost per completed unit</th><th>Funding scope</th><th>Status</th></tr></thead><tbody>{''.join(rows)}</tbody></table>
 <p class="muted">Account snapshot: {captured}. Live account cash balance: {live_text}. The account auto-top-up and the US$500 key authorization are different controls; this report measures consumption against the authorized US$500 project budget.</p>
+<p class="muted">The earlier Anthropic amount is the user's approximate estimate for direct API experiments during v1–v20. An automated check was attempted on 10 September 2026, but the available OAuth session lacked Admin API access. Anthropic documents that organization cost reporting requires an Admin credential; the estimate can be replaced by a Console Usage CSV export. Estimated total project API cost including that pre-grant amount: <strong>{money(ledger['total_project_cost'])}</strong>.</p>
 <h2>Current plan for the remaining budget</h2>
 <table><thead><tr><th>Priority</th><th>Control</th></tr></thead><tbody>
 <tr><td>Finish and compare v21-schema, v21-catalog and v21-options</td><td>Same 50 cases and model matrix; select only after regression gates.</td></tr>
@@ -205,6 +227,7 @@ h1{{margin:.15rem 0;font-size:2rem}}h2{{margin-top:32px;border-bottom:2px solid 
 <tr><td>Reserve the unspent balance for holdouts, robustness and new cases</td><td>Every new paid campaign must have a persisted ceiling and appear in this same ledger.</td></tr>
 </tbody></table>
 <p>No cost is omitted because it is small or unsuccessful. Failed/billed calls and delayed settlement remain included through the key-level control total.</p>
+<p class="muted">Source: <a href="https://platform.claude.com/docs/en/manage-claude/usage-cost-api">Anthropic Usage and Cost API</a>.</p>
 <footer>Prepared for GenLayer. This file is the single consolidated OpenRouter grant-cost report and is regenerated as campaigns progress.</footer>
 </main></body></html>"""
 

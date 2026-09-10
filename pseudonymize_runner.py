@@ -130,7 +130,7 @@ def source_digest(rows: list[tuple[int, dict]]) -> str:
     return sha256_bytes(canonical.encode("utf-8"))
 
 
-def parse_detector(value: str, source: str) -> list[dict[str, str]]:
+def _parse_detector(value: str, source: str, drop_invalid: bool) -> tuple[list[dict[str, str]], int]:
     stripped = value.strip()
     if stripped.startswith("```"):
         stripped = re.sub(r"^```(?:json)?\s*|\s*```$", "", stripped, flags=re.I)
@@ -142,8 +142,12 @@ def parse_detector(value: str, source: str) -> list[dict[str, str]]:
         raise RunnerError("DETECTOR_SCHEMA_INVALID")
     result = []
     seen = set()
+    dropped = 0
     for item in root["entities"]:
         if not isinstance(item, dict) or set(item) != {"text", "kind"}:
+            if drop_invalid:
+                dropped += 1
+                continue
             raise RunnerError("DETECTOR_ENTITY_INVALID")
         text = item["text"]
         kind = item["kind"]
@@ -152,12 +156,19 @@ def parse_detector(value: str, source: str) -> list[dict[str, str]]:
             or not isinstance(kind, str) or kind not in VALID_KINDS
             or text.casefold() not in source.casefold()
         ):
+            if drop_invalid:
+                dropped += 1
+                continue
             raise RunnerError("DETECTOR_ENTITY_INVALID")
         key = (text.casefold(), kind)
         if key not in seen:
             seen.add(key)
             result.append({"text": text, "kind": kind})
-    return result
+    return result, dropped
+
+
+def parse_detector(value: str, source: str) -> list[dict[str, str]]:
+    return _parse_detector(value, source, False)[0]
 
 
 def local_entities(record: dict) -> list[dict[str, str]]:
@@ -273,6 +284,18 @@ def cached_detection(client, out: Path, internal_id: str, model: str, prompt: st
         try:
             entities = parse_detector(raw, source)
         except RunnerError as exc:
+            if attempt == 3 and str(exc) == "DETECTOR_ENTITY_INVALID":
+                # A syntactically valid detector response may contain one
+                # normalized or hallucinated entity among otherwise exact
+                # substrings. Keep only exact entities, flag the record for
+                # human review, and let the independent detector plus local
+                # deterministic sweep protect the output.
+                entities, dropped = _parse_detector(raw, source, True)
+                response["detector_partial"] = True
+                response["invalid_entities_dropped"] = dropped
+                payload = {"prompt_sha256": prompt_hash, "entities": entities, "metadata": response}
+                atomic_json(cache_path, payload)
+                return entities, response
             append_jsonl(
                 out / "call-errors" / internal_id / (safe_slug(model) + ".jsonl"),
                 {
@@ -305,6 +328,18 @@ def total_cost(out: Path) -> Decimal:
                 value = json.loads(line)
                 cost += decimal_cost(value.get("metadata", {}).get("cost_usd", 0))
     return cost
+
+
+def total_calls(out: Path) -> int:
+    calls = 0
+    for path in (out / "cache").glob("*/*.json"):
+        calls += int(read_json(path).get("metadata", {}).get("http_attempts") or 1)
+    for path in (out / "call-errors").glob("*/*.jsonl"):
+        with path.open(encoding="utf-8") as stream:
+            for line in stream:
+                value = json.loads(line)
+                calls += int(value.get("metadata", {}).get("http_attempts") or 1)
+    return calls
 
 
 def rebuild_jsonl(out: Path) -> None:
@@ -361,7 +396,7 @@ def status(out: Path) -> dict:
         "accepted": sum(row.get("status") == "accepted" for row in results),
         "needs_review": sum(row.get("status") == "needs_review" for row in results),
         "total": manifest["count"],
-        "api_calls": sum(len(row.get("model_metadata", [])) for row in results),
+        "api_calls": total_calls(out),
         "cost_usd": format(total_cost(out), "f"),
     }
     atomic_json(out / "summary.json", value)
@@ -415,6 +450,8 @@ def run(args) -> dict:
             record["magistrado"] = replace_all(record["magistrado"], replacements)
         record["texto"] = replace_all(record["texto"], replacements)
         failures = audit_output(record, original, replacements)
+        if any(call.get("detector_partial") for call in metadata):
+            failures.append("DETECTOR_PARTIAL_OUTPUT")
         agreement = detector_agreement(detections[0], detections[1])
         state = "accepted" if not failures else "needs_review"
         record["pseudonimizacao"] = {
