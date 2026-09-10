@@ -7,6 +7,15 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
 ## Candidatas v21 e fechamento da v20 — 2026-09-10
 
+- Criado `OPENROUTER_BUDGET_REPORT.html`, o único relatório contábil
+  consolidado para os US$ 500 patrocinados pela GenLayer. A tabela sucinta
+  registra desde a validação inicial e a campanha v20 até candidatas v21,
+  coleta e pseudonimização, sempre com testes, chamadas, custo, média e status.
+  O uso acumulado da chave é o total de controle; recibos por chamada fazem a
+  atribuição sem somar deltas sobrepostos de campanhas paralelas, e toda
+  diferença permanece visível como reconciliação. O gerador pode atualizar o
+  mesmo HTML periodicamente durante campanhas ativas.
+
 - Criado o runner retomável de pseudonimização para as 500 novas decisões. Dois
   modelos de alta qualidade detectam entidades independentemente, mas todas as
   substituições são aplicadas local e deterministicamente para preservar fatos,
