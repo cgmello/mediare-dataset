@@ -31,6 +31,9 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
 - Adicionado comparador reprodutível para as três campanhas v21. A classificação
   automática aplica gates antes das métricas de utilidade e nunca promove uma
   candidata sem inspeção manual dos casos alterados e confirmação no Studio.
+- Adicionado orquestrador retomável que aguarda uma campanha v21 já ativa,
+  executa as candidatas restantes estritamente em sequência e para no checkpoint
+  de seleção manual. O cache do runner continua impedindo cobrança duplicada.
 - O coletor CJPG foi refeito para expansão em lotes retomáveis de no máximo 50,
   deduplicação incremental, intervalo mínimo, relatório sem conteúdo judicial e
   proteção contra corpo de sentença absorvido como metadado. A coleta não chama

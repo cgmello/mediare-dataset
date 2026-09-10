@@ -4,6 +4,7 @@ import tempfile
 import unittest
 
 from compare_v21 import candidate_metrics, rank_key, render_html
+from v21_campaign_orchestrator import completed
 
 
 class CompareV21Tests(unittest.TestCase):
@@ -46,6 +47,18 @@ class CompareV21Tests(unittest.TestCase):
         self.assertGreater(rank_key(passed), rank_key(failed))
         html = render_html([{**passed, "status": "in_progress"}, failed])
         self.assertIn("No candidate is eligible yet", html)
+
+    def test_orchestrator_requires_exactly_fifty_complete_cases(self):
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory)
+            (out / "summary.json").write_text(json.dumps({
+                "completed": 49, "total": 50,
+            }), encoding="utf-8")
+            self.assertFalse(completed(out))
+            (out / "summary.json").write_text(json.dumps({
+                "completed": 50, "total": 50,
+            }), encoding="utf-8")
+            self.assertTrue(completed(out))
 
 
 if __name__ == "__main__":
