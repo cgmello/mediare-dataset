@@ -233,7 +233,6 @@ h1{{margin:.15rem 0;font-size:2rem}}h2{{margin-top:32px;border-bottom:2px solid 
 <tr><td>Reserve the unspent balance for holdouts, robustness and new cases</td><td>Every new paid campaign must have a persisted ceiling and appear in this same ledger.</td></tr>
 </tbody></table>
 <p>No cost is omitted because it is small or unsuccessful. Failed/billed calls and delayed settlement remain included through the key-level control total.</p>
-<p class="muted">Source: <a href="https://platform.claude.com/docs/en/manage-claude/usage-cost-api">Anthropic Usage and Cost API</a>.</p>
 <footer>Prepared for GenLayer. This file is the single consolidated OpenRouter grant-cost report and is regenerated as campaigns progress.</footer>
 </main></body></html>"""
 

@@ -5,6 +5,12 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 **A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
 gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
+## Relatório consolidado OpenRouter — 2026-09-10
+
+- Removido o link para a documentação de Usage and Cost da Anthropic, pois as
+  campanhas atuais são faturadas e conciliadas pelo OpenRouter. A despesa
+  histórica anterior ao grant continua identificada apenas como estimativa.
+
 ## Candidatas v21 e fechamento da v20 — 2026-09-10
 
 - Criado `OPENROUTER_BUDGET_REPORT.html`, o único relatório contábil

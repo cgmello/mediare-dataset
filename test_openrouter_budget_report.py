@@ -72,6 +72,8 @@ class OpenRouterBudgetReportTests(unittest.TestCase):
             self.assertIn("estimated, outside the grant", html)
             self.assertIn("491 accepted; 9 need review", html)
             self.assertIn("single consolidated OpenRouter grant-cost report", html)
+            self.assertNotIn("Anthropic Usage and Cost API", html)
+            self.assertNotIn("platform.claude.com/docs/en/manage-claude/usage-cost-api", html)
             self.assertLess(len(html), 15000)
 
 
