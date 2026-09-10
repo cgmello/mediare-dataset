@@ -13,6 +13,9 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
 - Substituída a coluna `Funding scope` por `Tokens`, com o consumo total
   registrado por campanha; a pseudonimização dos 500 processos consumiu
   4.660.192 tokens.
+- Acrescentada uma linha `TOTAL` ao final da tabela para somar chamadas de API,
+  tokens conhecidos e custo; o custo inclui a estimativa histórica de US$ 20,
+  explicitamente identificada na própria linha.
 
 ## Candidatas v21 e fechamento da v20 — 2026-09-10
 

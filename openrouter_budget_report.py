@@ -164,6 +164,8 @@ def build_ledger(root, account=None):
     # report arithmetically honest and mark the control total as provisional.
     effective_total = max(control_total, attributed)
     remaining = max(Decimal("0"), PROGRAM_BUDGET_USD - effective_total)
+    total_api_calls = sum(row["calls"] or 0 for row in rows)
+    total_tokens = sum(row["tokens"] or 0 for row in rows)
     return {
         "rows": rows,
         "account": account,
@@ -174,6 +176,8 @@ def build_ledger(root, account=None):
         "remaining": remaining,
         "historical_external_estimate": HISTORICAL_ANTHROPIC_ESTIMATE_USD,
         "total_project_cost": effective_total + HISTORICAL_ANTHROPIC_ESTIMATE_USD,
+        "total_api_calls": total_api_calls,
+        "total_tokens": total_tokens,
         "snapshot_lag": attributed > control_total,
     }
 
@@ -219,7 +223,7 @@ def render_html(ledger):
 <style>
 :root{{--ink:#172235;--muted:#607086;--blue:#315efb;--line:#dce3ef;--pale:#eef3ff;font-family:Inter,Arial,sans-serif}}
 *{{box-sizing:border-box}}body{{margin:0;background:#f3f6fa;color:var(--ink);line-height:1.45}}main{{width:min(1120px,calc(100% - 28px));margin:28px auto;background:#fff;padding:44px 52px;box-shadow:0 8px 28px #17223512}}
-h1{{margin:.15rem 0;font-size:2rem}}h2{{margin-top:32px;border-bottom:2px solid var(--line);padding-bottom:7px}}.eyebrow{{color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:.07em}}.muted,footer{{color:var(--muted)}}.cards{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}}.card{{border:1px solid var(--line);border-radius:10px;padding:16px}}.card strong{{display:block;font-size:1.55rem}}table{{width:100%;border-collapse:collapse;font-size:.92rem}}th,td{{border:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}}th{{background:var(--pale)}}.note{{background:var(--pale);border-left:4px solid var(--blue);padding:13px 16px}}footer{{margin-top:34px;border-top:1px solid var(--line);padding-top:14px;font-size:.86rem}}@media(max-width:880px){{.cards{{grid-template-columns:1fr 1fr}}}}@media(max-width:720px){{main{{padding:28px 18px}}.cards{{grid-template-columns:1fr}}table{{display:block;overflow:auto}}}}@media print{{body{{background:#fff}}main{{margin:0;padding:0;width:auto;box-shadow:none}}}}
+h1{{margin:.15rem 0;font-size:2rem}}h2{{margin-top:32px;border-bottom:2px solid var(--line);padding-bottom:7px}}.eyebrow{{color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:.07em}}.muted,footer{{color:var(--muted)}}.cards{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}}.card{{border:1px solid var(--line);border-radius:10px;padding:16px}}.card strong{{display:block;font-size:1.55rem}}table{{width:100%;border-collapse:collapse;font-size:.92rem}}th,td{{border:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}}th{{background:var(--pale)}}tfoot td{{background:var(--pale);font-weight:700}}.note{{background:var(--pale);border-left:4px solid var(--blue);padding:13px 16px}}footer{{margin-top:34px;border-top:1px solid var(--line);padding-top:14px;font-size:.86rem}}@media(max-width:880px){{.cards{{grid-template-columns:1fr 1fr}}}}@media(max-width:720px){{main{{padding:28px 18px}}.cards{{grid-template-columns:1fr}}table{{display:block;overflow:auto}}}}@media print{{body{{background:#fff}}main{{margin:0;padding:0;width:auto;box-shadow:none}}}}
 </style></head><body><main>
 <div class="eyebrow">Consolidated cost report · GenLayer-sponsored OpenRouter budget</div>
 <h1>US$500 Grant Ledger</h1>
@@ -229,7 +233,7 @@ h1{{margin:.15rem 0;font-size:2rem}}h2{{margin-top:32px;border-bottom:2px solid 
 <div class="cards"><div class="card">Authorized OpenRouter budget<strong>{money(PROGRAM_BUDGET_USD, 2)}</strong></div><div class="card">OpenRouter spent to date<strong>{money(spent)}</strong><span>{pct:.2f}% of budget</span></div><div class="card">OpenRouter budget remaining<strong>{money(remaining)}</strong></div><div class="card">Earlier Anthropic API cost<strong>{money(ledger['historical_external_estimate'], 2)}</strong><span>estimated, outside the grant</span></div></div>
 <p class="note"><strong>Accounting rule.</strong> {escape(snapshot_note)} Campaign attribution uses per-call receipts, never overlapping campaign-level key deltas. Any difference is retained as reconciliation until OpenRouter settlement and local receipts align.</p>
 <h2>Spend ledger</h2>
-<table><thead><tr><th>Date</th><th>Version / activity</th><th>Completed</th><th>API calls</th><th>Tokens</th><th>Total cost</th><th>Cost per completed unit</th><th>Status</th></tr></thead><tbody>{''.join(rows)}</tbody></table>
+<table><thead><tr><th>Date</th><th>Version / activity</th><th>Completed</th><th>API calls</th><th>Tokens</th><th>Total cost</th><th>Cost per completed unit</th><th>Status</th></tr></thead><tbody>{''.join(rows)}</tbody><tfoot><tr><td colspan="3">TOTAL</td><td>{ledger['total_api_calls']:,}</td><td>{ledger['total_tokens']:,}</td><td>{money(ledger['total_project_cost'])}</td><td>—</td><td>Known calls/tokens; cost includes the US$20 pre-grant estimate</td></tr></tfoot></table>
 <p class="muted">Account snapshot: {captured}. Live account cash balance: {live_text}. The account auto-top-up and the US$500 key authorization are different controls; this report measures consumption against the authorized US$500 project budget.</p>
 <p class="muted">The earlier Anthropic amount is the user's approximate estimate for direct API experiments during v1–v20. An automated check was attempted on 10 September 2026, but the available OAuth session lacked Admin API access. Anthropic documents that organization cost reporting requires an Admin credential; the estimate can be replaced by a Console Usage CSV export. Estimated total project API cost including that pre-grant amount: <strong>{money(ledger['total_project_cost'])}</strong>.</p>
 <h2>Current plan for the remaining budget</h2>

@@ -74,6 +74,20 @@ class OpenRouterBudgetReportTests(unittest.TestCase):
             self.assertIn("<th>Tokens</th>", html)
             self.assertIn("4,660,192", html)
             self.assertNotIn("<th>Funding scope</th>", html)
+            self.assertIn('<td colspan="3">TOTAL</td>', html)
+            self.assertIn("Known calls/tokens; cost includes the US$20 pre-grant estimate", html)
+            self.assertEqual(
+                ledger["total_api_calls"],
+                sum(row["calls"] or 0 for row in ledger["rows"]),
+            )
+            self.assertEqual(
+                ledger["total_tokens"],
+                sum(row["tokens"] or 0 for row in ledger["rows"]),
+            )
+            self.assertEqual(
+                ledger["total_project_cost"],
+                sum((row["cost"] for row in ledger["rows"]), start=0),
+            )
             self.assertIn("single consolidated OpenRouter grant-cost report", html)
             self.assertNotIn("Anthropic Usage and Cost API", html)
             self.assertNotIn("platform.claude.com/docs/en/manage-claude/usage-cost-api", html)
