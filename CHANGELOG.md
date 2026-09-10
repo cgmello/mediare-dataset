@@ -64,6 +64,10 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
   percorreu 33 páginas, sem erros ou chamadas de LLM. O staging privado chegou
   a 594 processos únicos, totalizando 350 dos 500 adicionais. Telemetria em
   `dataset_expansion_batch_07.json`.
+- Oitavo lote concluído com 50 novas decisões da busca de locação. A retomada
+  percorreu 38 páginas, sem erros ou chamadas de LLM. O staging privado chegou
+  a 644 processos únicos, totalizando 400 dos 500 adicionais. Telemetria em
+  `dataset_expansion_batch_08.json`.
 
 ## Avaliação v20 — Studio holdout e OpenRouter — 2026-09-09
 
