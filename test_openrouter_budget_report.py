@@ -52,6 +52,11 @@ class OpenRouterBudgetReportTests(unittest.TestCase):
 
     def test_html_is_concise_and_contains_budget_controls(self):
         with tempfile.TemporaryDirectory() as directory:
+            write_summary(
+                directory, "res_pseudonymization_0501_1000", completed=500,
+                accepted=491, needs_review=9, total=500, api_calls=1035,
+                cost_usd="15.91735175", status="complete",
+            )
             ledger = build_ledger(directory, {
                 "key_usage_usd": "12.53",
                 "captured_at": "2026-09-10T00:00:00Z",
@@ -65,6 +70,7 @@ class OpenRouterBudgetReportTests(unittest.TestCase):
             self.assertIn("v1 prototype", html)
             self.assertIn("Earlier Anthropic API cost", html)
             self.assertIn("estimated, outside the grant", html)
+            self.assertIn("491 accepted; 9 need review", html)
             self.assertIn("single consolidated OpenRouter grant-cost report", html)
             self.assertLess(len(html), 15000)
 

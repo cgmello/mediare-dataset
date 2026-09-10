@@ -68,6 +68,12 @@ def build_ledger(root, account=None):
     catalog = campaign_summary(root, "res_openrouter_v21_catalog_0001_0050")
     options = campaign_summary(root, "res_openrouter_v21_options_0001_0050")
     pseudo = campaign_summary(root, "res_pseudonymization_0501_1000")
+    pseudo_completed = int(pseudo.get("completed") or 0)
+    pseudo_accepted = int(pseudo.get("accepted") or 0)
+    pseudo_review = int(pseudo.get("needs_review") or 0)
+    pseudo_state = str(pseudo.get("status") or "not started").replace("_", " ")
+    if pseudo_completed:
+        pseudo_state += f" — {pseudo_accepted} accepted; {pseudo_review} need review"
 
     def eval_row(label, summary, date, status=None, reconciled=False):
         completed = int(summary.get("completed") or 0)
@@ -125,11 +131,11 @@ def build_ledger(root, account=None):
         {
             "date": "2026-09-10+",
             "activity": "Dual-model pseudonymization (IDs 0501–1000)",
-            "tests": int(pseudo.get("completed") or 0),
+            "tests": pseudo_completed,
             "target": int(pseudo.get("total") or 500),
             "calls": int(pseudo.get("api_calls") or 0),
             "cost": as_decimal(pseudo.get("cost_usd")),
-            "status": str(pseudo.get("status") or "not started").replace("_", " "),
+            "status": pseudo_state,
             "grant_scope": True,
         },
     ]

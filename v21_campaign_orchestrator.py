@@ -59,6 +59,18 @@ def write_status(path: Path, **values) -> None:
     temporary.replace(path)
 
 
+def ensure_itemized_cost_basis(out: Path) -> None:
+    """Keep shared-key activity from contaminating a candidate's ceiling."""
+    path = out / "campaign.json"
+    manifest = read_json(path)
+    if not manifest or manifest.get("cost_basis") == "itemized_receipts":
+        return
+    manifest["cost_basis"] = "itemized_receipts"
+    temporary = path.with_suffix(".tmp")
+    temporary.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    temporary.replace(path)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--api-key-file", default=".openrouter.key")
@@ -76,6 +88,7 @@ def main() -> int:
     with log_path.open("a", encoding="utf-8") as log:
         for name, out_name, report in CAMPAIGNS:
             out = Path(out_name)
+            ensure_itemized_cost_basis(out)
             while not completed(out) and external_runner_active(out_name):
                 summary = read_json(out / "summary.json")
                 write_status(

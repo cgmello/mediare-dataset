@@ -27,6 +27,17 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
   continua o lote usando o detector independente e a varredura determinística.
   O total de chamadas passou a incluir tentativas inválidas e retries, não
   apenas os dois resultados finais de processos concluídos.
+- Pseudonimização 0501–1000 concluída: 500/500 processos, 491 aceitos
+  automaticamente e nove retidos para revisão conservadora, todos por saída
+  parcial de detector. Foram 1.035 chamadas, 4.660.192 tokens, 6.728 entidades
+  substituídas e US$ 15,91735175 de custo total (US$ 0,0318 por processo).
+  O relatório consolidado apresenta conclusão, aceite e retenções na própria
+  linha de custo da atividade.
+- A v21-schema parou em 34/50 porque o teto da campanha atribuía à candidata a
+  variação total de uma chave compartilhada enquanto a pseudonimização rodava.
+  As três candidatas v21 agora usam seus próprios recibos itemizados para teto
+  e custo, mantendo o delta global apenas para reconciliação. Isso evita dupla
+  contagem e permite retomar exatamente do caso 0035.
 
 - Criado o runner retomável de pseudonimização para as 500 novas decisões. Dois
   modelos de alta qualidade detectam entidades independentemente, mas todas as

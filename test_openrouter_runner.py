@@ -68,6 +68,16 @@ class OpenRouterRunnerTests(unittest.TestCase):
         self.assertEqual(str(actual), "2.50")
         self.assertEqual(str(delta), "2.50")
 
+    def test_concurrent_campaign_cost_uses_only_its_itemized_receipts(self):
+        manifest = {
+            "cost_basis": "itemized_receipts",
+            "account_start": {"key_usage_usd": "1.25"},
+            "account_latest": {"key_usage_usd": "13.75"},
+        }
+        actual, delta = reconciled_campaign_cost(manifest, "2.10")
+        self.assertEqual(str(actual), "2.10")
+        self.assertEqual(str(delta), "12.50")
+
     def test_loads_exact_v20_functions(self):
         ic = load_contract("res_canary_v20/20.0.0-experimental.py")
         self.assertEqual(ic["VERSAO"], "20.0.0-experimental")

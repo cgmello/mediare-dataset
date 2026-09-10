@@ -586,7 +586,13 @@ def reconciled_campaign_cost(manifest, itemized):
         )
     except (KeyError, InvalidOperation, TypeError, ValueError):
         key_delta = Decimal("0")
-    return max(Decimal(str(itemized)), key_delta, Decimal("0")), max(key_delta, Decimal("0"))
+    itemized = Decimal(str(itemized))
+    if manifest.get("cost_basis") == "itemized_receipts":
+        # Required when multiple campaigns share one key concurrently: the
+        # key delta is still reported for reconciliation, but it cannot be
+        # attributed to this campaign or used as its stop condition.
+        return max(itemized, Decimal("0")), max(key_delta, Decimal("0"))
+    return max(itemized, key_delta, Decimal("0")), max(key_delta, Decimal("0"))
 
 
 def render_report(manifest, out, report_path):

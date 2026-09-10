@@ -4,7 +4,7 @@ import tempfile
 import unittest
 
 from compare_v21 import candidate_metrics, rank_key, render_html
-from v21_campaign_orchestrator import completed
+from v21_campaign_orchestrator import completed, ensure_itemized_cost_basis
 
 
 class CompareV21Tests(unittest.TestCase):
@@ -59,6 +59,16 @@ class CompareV21Tests(unittest.TestCase):
                 "completed": 50, "total": 50,
             }), encoding="utf-8")
             self.assertTrue(completed(out))
+
+    def test_orchestrator_marks_v21_campaign_for_shared_key_accounting(self):
+        with tempfile.TemporaryDirectory() as directory:
+            out = Path(directory)
+            (out / "campaign.json").write_text(json.dumps({
+                "version": "21.0.0-test", "max_cost_usd": "15",
+            }), encoding="utf-8")
+            ensure_itemized_cost_basis(out)
+            manifest = json.loads((out / "campaign.json").read_text(encoding="utf-8"))
+            self.assertEqual(manifest["cost_basis"], "itemized_receipts")
 
 
 if __name__ == "__main__":
