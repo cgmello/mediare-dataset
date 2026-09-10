@@ -42,6 +42,10 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
   lote parcial, sem perda dos itens já coletados; outras categorias completaram
   o lote. `dataset_expansion_batch_01.json` registra somente telemetria e zero
   chamadas de LLM; `sentencas.jsonl` continua local e ignorado pelo Git.
+- Segundo lote concluído com 50 novas decisões da busca de locação, sem erros e
+  sem chamadas de LLM. O acervo bruto local chegou a 344 processos únicos, ou
+  100 dos 500 adicionais planejados. Telemetria em
+  `dataset_expansion_batch_02.json`.
 
 ## Avaliação v20 — Studio holdout e OpenRouter — 2026-09-09
 
