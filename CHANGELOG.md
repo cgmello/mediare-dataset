@@ -14,8 +14,9 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
   registrado por campanha; a pseudonimização dos 500 processos consumiu
   4.660.192 tokens.
 - Acrescentada uma linha `TOTAL` ao final da tabela para somar chamadas de API,
-  tokens conhecidos e custo; o custo inclui a estimativa histórica de US$ 20,
-  explicitamente identificada na própria linha.
+  tokens conhecidos e custo exclusivo do grant OpenRouter. A estimativa
+  histórica de US$ 20 foi excluída desse total e recebeu destaque visual para
+  diferenciá-la das despesas cobertas pelo orçamento de US$ 500.
 
 ## Candidatas v21 e fechamento da v20 — 2026-09-10
 

@@ -75,7 +75,10 @@ class OpenRouterBudgetReportTests(unittest.TestCase):
             self.assertIn("4,660,192", html)
             self.assertNotIn("<th>Funding scope</th>", html)
             self.assertIn('<td colspan="3">TOTAL</td>', html)
-            self.assertIn("Known calls/tokens; cost includes the US$20 pre-grant estimate", html)
+            self.assertIn('<tr class="historical-external">', html)
+            self.assertIn("Total refers only to the US$500 OpenRouter budget", html)
+            self.assertIn("the US$20 pre-grant estimate is excluded", html)
+            self.assertIn("<td>US$ 15.9174</td>", html)
             self.assertEqual(
                 ledger["total_api_calls"],
                 sum(row["calls"] or 0 for row in ledger["rows"]),
@@ -85,8 +88,8 @@ class OpenRouterBudgetReportTests(unittest.TestCase):
                 sum(row["tokens"] or 0 for row in ledger["rows"]),
             )
             self.assertEqual(
-                ledger["total_project_cost"],
-                sum((row["cost"] for row in ledger["rows"]), start=0),
+                ledger["total_openrouter_cost"],
+                sum((row["cost"] for row in ledger["rows"] if row["grant_scope"]), start=0),
             )
             self.assertIn("single consolidated OpenRouter grant-cost report", html)
             self.assertNotIn("Anthropic Usage and Cost API", html)
