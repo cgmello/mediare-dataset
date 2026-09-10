@@ -36,6 +36,12 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
   proteção contra corpo de sentença absorvido como metadado. A coleta não chama
   LLM; o plano da transformação posterior e a avaliação CourtListener/RECAP
   estão em `DATASET_EXPANSION_PLAN.md`.
+- Primeiro lote de expansão concluído: 50 novas decisões públicas, sendo 40 da
+  busca de cobrança e dez de consumo. O acervo bruto local passou de 244 para
+  294 processos únicos. Uma resposta HTTP da busca de cobrança falhou depois do
+  lote parcial, sem perda dos itens já coletados; outras categorias completaram
+  o lote. `dataset_expansion_batch_01.json` registra somente telemetria e zero
+  chamadas de LLM; `sentencas.jsonl` continua local e ignorado pelo Git.
 
 ## Avaliação v20 — Studio holdout e OpenRouter — 2026-09-09
 

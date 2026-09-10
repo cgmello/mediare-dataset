@@ -1,0 +1,19 @@
+{
+  "status": "complete",
+  "requested": 50,
+  "collected": 50,
+  "known_after": 294,
+  "by_category": {
+    "cobranca": 40,
+    "consumo": 10
+  },
+  "errors": [
+    {
+      "categoria": "cobranca",
+      "erro": "HTTPError"
+    }
+  ],
+  "output": "sentencas.jsonl",
+  "contains_raw_decision_text": true,
+  "llm_calls": 0
+}
