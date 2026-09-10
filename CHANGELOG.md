@@ -46,6 +46,9 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
   sem chamadas de LLM. O acervo bruto local chegou a 344 processos únicos, ou
   100 dos 500 adicionais planejados. Telemetria em
   `dataset_expansion_batch_02.json`.
+- Terceiro lote concluído com mais 50 decisões da busca de locação, sem erros ou
+  chamadas de LLM. O staging privado chegou a 394 processos únicos, totalizando
+  150 dos 500 adicionais. Telemetria em `dataset_expansion_batch_03.json`.
 
 ## Avaliação v20 — Studio holdout e OpenRouter — 2026-09-09
 
