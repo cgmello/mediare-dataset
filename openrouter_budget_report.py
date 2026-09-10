@@ -88,6 +88,7 @@ def build_ledger(root, account=None):
             "tests": completed,
             "target": total,
             "calls": int(summary.get("api_calls") or 0),
+            "tokens": int(summary.get("total_tokens") or 0),
             "cost": cost,
             "status": status or ("complete" if completed == total and total else "in progress"),
             "grant_scope": True,
@@ -100,6 +101,7 @@ def build_ledger(root, account=None):
             "tests": 0,
             "target": 0,
             "calls": None,
+            "tokens": None,
             "cost": HISTORICAL_ANTHROPIC_ESTIMATE_USD,
             "status": "user estimate; Admin API verification unavailable",
             "grant_scope": False,
@@ -110,6 +112,7 @@ def build_ledger(root, account=None):
             "tests": 0,
             "target": 0,
             "calls": 1,
+            "tokens": None,
             "cost": INITIAL_VALIDATION_COST,
             "status": "complete",
             "grant_scope": True,
@@ -121,6 +124,7 @@ def build_ledger(root, account=None):
             "tests": 500,
             "target": 500,
             "calls": 0,
+            "tokens": 0,
             "cost": Decimal("0"),
             "status": "complete — offline scraper",
             "grant_scope": True,
@@ -134,6 +138,7 @@ def build_ledger(root, account=None):
             "tests": pseudo_completed,
             "target": int(pseudo.get("total") or 500),
             "calls": int(pseudo.get("api_calls") or 0),
+            "tokens": int(pseudo.get("total_tokens") or 0),
             "cost": as_decimal(pseudo.get("cost_usd")),
             "status": pseudo_state,
             "grant_scope": True,
@@ -150,6 +155,7 @@ def build_ledger(root, account=None):
             "tests": 0,
             "target": 0,
             "calls": 0,
+            "tokens": None,
             "cost": reconciliation,
             "status": "tracked — allocated as receipts settle",
             "grant_scope": True,
@@ -186,14 +192,15 @@ def render_html(ledger):
     rows = []
     for row in ledger["rows"]:
         progress = "—" if not row["target"] else f"{row['tests']}/{row['target']}"
+        tokens = "—" if row["tokens"] is None else f"{row['tokens']:,}"
         average = "—" if not row["tests"] or not row["cost"] else money(row["cost"] / row["tests"])
         rows.append(
             "<tr>"
             f"<td>{escape(row['date'])}</td>"
             f"<td>{escape(row['activity'])}</td>"
             f"<td>{progress}</td><td>{row['calls'] if row['calls'] is not None else '—'}</td>"
+            f"<td>{tokens}</td>"
             f"<td>{money(row['cost'])}</td><td>{average}</td>"
-            f"<td>{'OpenRouter grant' if row['grant_scope'] else 'Pre-grant / external'}</td>"
             f"<td>{escape(row['status'])}</td>"
             "</tr>"
         )
@@ -222,7 +229,7 @@ h1{{margin:.15rem 0;font-size:2rem}}h2{{margin-top:32px;border-bottom:2px solid 
 <div class="cards"><div class="card">Authorized OpenRouter budget<strong>{money(PROGRAM_BUDGET_USD, 2)}</strong></div><div class="card">OpenRouter spent to date<strong>{money(spent)}</strong><span>{pct:.2f}% of budget</span></div><div class="card">OpenRouter budget remaining<strong>{money(remaining)}</strong></div><div class="card">Earlier Anthropic API cost<strong>{money(ledger['historical_external_estimate'], 2)}</strong><span>estimated, outside the grant</span></div></div>
 <p class="note"><strong>Accounting rule.</strong> {escape(snapshot_note)} Campaign attribution uses per-call receipts, never overlapping campaign-level key deltas. Any difference is retained as reconciliation until OpenRouter settlement and local receipts align.</p>
 <h2>Spend ledger</h2>
-<table><thead><tr><th>Date</th><th>Version / activity</th><th>Completed</th><th>API calls</th><th>Total cost</th><th>Cost per completed unit</th><th>Funding scope</th><th>Status</th></tr></thead><tbody>{''.join(rows)}</tbody></table>
+<table><thead><tr><th>Date</th><th>Version / activity</th><th>Completed</th><th>API calls</th><th>Tokens</th><th>Total cost</th><th>Cost per completed unit</th><th>Status</th></tr></thead><tbody>{''.join(rows)}</tbody></table>
 <p class="muted">Account snapshot: {captured}. Live account cash balance: {live_text}. The account auto-top-up and the US$500 key authorization are different controls; this report measures consumption against the authorized US$500 project budget.</p>
 <p class="muted">The earlier Anthropic amount is the user's approximate estimate for direct API experiments during v1–v20. An automated check was attempted on 10 September 2026, but the available OAuth session lacked Admin API access. Anthropic documents that organization cost reporting requires an Admin credential; the estimate can be replaced by a Console Usage CSV export. Estimated total project API cost including that pre-grant amount: <strong>{money(ledger['total_project_cost'])}</strong>.</p>
 <h2>Current plan for the remaining budget</h2>

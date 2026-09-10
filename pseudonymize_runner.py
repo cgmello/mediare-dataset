@@ -342,6 +342,18 @@ def total_calls(out: Path) -> int:
     return calls
 
 
+def total_tokens(out: Path) -> int:
+    tokens = 0
+    for path in (out / "cache").glob("*/*.json"):
+        tokens += int(read_json(path).get("metadata", {}).get("total_tokens") or 0)
+    for path in (out / "call-errors").glob("*/*.jsonl"):
+        with path.open(encoding="utf-8") as stream:
+            for line in stream:
+                value = json.loads(line)
+                tokens += int(value.get("metadata", {}).get("total_tokens") or 0)
+    return tokens
+
+
 def rebuild_jsonl(out: Path) -> None:
     rows = []
     for path in sorted((out / "results").glob("*.json")):
@@ -397,6 +409,7 @@ def status(out: Path) -> dict:
         "needs_review": sum(row.get("status") == "needs_review" for row in results),
         "total": manifest["count"],
         "api_calls": total_calls(out),
+        "total_tokens": total_tokens(out),
         "cost_usd": format(total_cost(out), "f"),
     }
     atomic_json(out / "summary.json", value)

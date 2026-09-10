@@ -17,6 +17,7 @@ from pseudonymize_runner import (
     replacement_map,
     total_calls,
     total_cost,
+    total_tokens,
 )
 from openrouter_runner import RunnerError
 
@@ -103,7 +104,11 @@ class PseudonymizeRunnerTests(unittest.TestCase):
                 text = "not-json" if self.calls == 1 else (
                     '{"entities":[{"text":"Maria Exemplo","kind":"person"}]}'
                 )
-                return {"text": text, "cost_usd": str(self.calls / 10)}
+                return {
+                    "text": text,
+                    "cost_usd": str(self.calls / 10),
+                    "total_tokens": self.calls * 100,
+                }
 
         with tempfile.TemporaryDirectory() as directory:
             client = FakeClient()
@@ -116,6 +121,7 @@ class PseudonymizeRunnerTests(unittest.TestCase):
             self.assertEqual(entities[0]["text"], "Maria Exemplo")
             self.assertEqual(total_cost(out), Decimal("0.3"))
             self.assertEqual(total_calls(out), 2)
+            self.assertEqual(total_tokens(out), 300)
 
     def test_third_entity_failure_is_filtered_and_flagged_for_review(self):
         class FakeClient:
@@ -130,6 +136,7 @@ class PseudonymizeRunnerTests(unittest.TestCase):
                         {"text": "Pessoa Inventada", "kind": "person"},
                     ]}),
                     "cost_usd": str(Decimal(self.calls) / 10),
+                    "total_tokens": self.calls * 100,
                 }
 
         with tempfile.TemporaryDirectory() as directory:
@@ -144,6 +151,7 @@ class PseudonymizeRunnerTests(unittest.TestCase):
             self.assertEqual(metadata["invalid_entities_dropped"], 1)
             self.assertEqual(total_cost(out), Decimal("0.6"))
             self.assertEqual(total_calls(out), 3)
+            self.assertEqual(total_tokens(out), 600)
 
 
 if __name__ == "__main__":

@@ -55,7 +55,7 @@ class OpenRouterBudgetReportTests(unittest.TestCase):
             write_summary(
                 directory, "res_pseudonymization_0501_1000", completed=500,
                 accepted=491, needs_review=9, total=500, api_calls=1035,
-                cost_usd="15.91735175", status="complete",
+                total_tokens=4660192, cost_usd="15.91735175", status="complete",
             )
             ledger = build_ledger(directory, {
                 "key_usage_usd": "12.53",
@@ -71,6 +71,9 @@ class OpenRouterBudgetReportTests(unittest.TestCase):
             self.assertIn("Earlier Anthropic API cost", html)
             self.assertIn("estimated, outside the grant", html)
             self.assertIn("491 accepted; 9 need review", html)
+            self.assertIn("<th>Tokens</th>", html)
+            self.assertIn("4,660,192", html)
+            self.assertNotIn("<th>Funding scope</th>", html)
             self.assertIn("single consolidated OpenRouter grant-cost report", html)
             self.assertNotIn("Anthropic Usage and Cost API", html)
             self.assertNotIn("platform.claude.com/docs/en/manage-claude/usage-cost-api", html)

@@ -10,6 +10,9 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
 - Removido o link para a documentação de Usage and Cost da Anthropic, pois as
   campanhas atuais são faturadas e conciliadas pelo OpenRouter. A despesa
   histórica anterior ao grant continua identificada apenas como estimativa.
+- Substituída a coluna `Funding scope` por `Tokens`, com o consumo total
+  registrado por campanha; a pseudonimização dos 500 processos consumiu
+  4.660.192 tokens.
 
 ## Candidatas v21 e fechamento da v20 — 2026-09-10
 
