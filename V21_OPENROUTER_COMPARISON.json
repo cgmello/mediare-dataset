@@ -1,0 +1,25 @@
+{
+  "candidates": [
+    {
+      "name": "v21-schema",
+      "path": "res_openrouter_v21_schema_0001_0050",
+      "status": "not_initialized",
+      "completed": 0,
+      "total": 50
+    },
+    {
+      "name": "v21-catalog",
+      "path": "res_openrouter_v21_catalog_0001_0050",
+      "status": "not_initialized",
+      "completed": 0,
+      "total": 50
+    },
+    {
+      "name": "v21-options",
+      "path": "res_openrouter_v21_options_0001_0050",
+      "status": "not_initialized",
+      "completed": 0,
+      "total": 50
+    }
+  ]
+}

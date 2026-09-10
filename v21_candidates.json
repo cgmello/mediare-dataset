@@ -1,0 +1,39 @@
+{
+  "baseline": {
+    "source": "res_canary_v20/20.0.0-experimental.py",
+    "version": "20.0.0-experimental"
+  },
+  "cases": "canary_v20.json",
+  "candidates": [
+    {
+      "id": "schema",
+      "source": "ic_v21_schema.py",
+      "version": "21.0.0-schema-experimental",
+      "hypothesis": "Replace ambiguous reviewer booleans with a closed failure-code schema without changing approval semantics."
+    },
+    {
+      "id": "catalog",
+      "source": "ic_v21_catalog.py",
+      "version": "21.0.0-catalog-experimental",
+      "hypothesis": "Define material request identity more objectively to reduce catalog disagreements without accepting omissions or invented requests."
+    },
+    {
+      "id": "options",
+      "source": "ic_v21_options.py",
+      "version": "21.0.0-options-experimental",
+      "hypothesis": "Improve declaratory and safely anchored conditional options while preserving audit and source barriers."
+    }
+  ],
+  "openrouter_gates": {
+    "minimum_valid_leader_panels": 45,
+    "minimum_useful_leader_outputs": 40,
+    "maximum_schema_failures": 0,
+    "unsafe_promoted_options": 0
+  },
+  "studio_gates": {
+    "minimum_majority_agree": 47,
+    "maximum_technical_failures": 2,
+    "minimum_integral_or_partial": 40,
+    "state_panel_term_inconsistencies": 0
+  }
+}

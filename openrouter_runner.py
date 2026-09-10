@@ -169,7 +169,8 @@ def decimal_cost(value):
 
 
 class OpenRouterClient:
-    def __init__(self, api_key, provider, model_options=None, delay=1.0, timeout=300):
+    def __init__(self, api_key, provider, model_options=None, delay=1.0, timeout=300,
+                 evaluation_title="Mediare IC local evaluation"):
         try:
             import requests
         except ImportError as exc:
@@ -179,7 +180,7 @@ class OpenRouterClient:
         self.headers = {
             "Authorization": "Bearer " + api_key,
             "Content-Type": "application/json",
-            "X-OpenRouter-Title": "Mediare IC v20 local evaluation",
+            "X-OpenRouter-Title": evaluation_title,
         }
         self.provider = provider
         self.model_options = model_options or {}
@@ -697,12 +698,24 @@ def render_report(manifest, out, report_path):
     )
     model_list = "".join(f"<li><code>{escape(model)}</code></li>" for model in manifest["models"])
     generated = utc_now()
+    version = str(manifest.get("version") or "experimental")
+    total_cases = len(manifest["case_ids"])
+    pilot_reading = (
+        "cases 0001–0006 matched the Studio consensus and operational class. Cases "
+        "0007–0008 produced useful leader options but failed the local reviewer quorum, "
+        "exposing source and reviewer-schema concerns. Cases 0009–0010 failed during "
+        "leader construction even though their stored Studio runs finalized successfully."
+        if version == "20.0.0-experimental" else
+        "this candidate is compared against the same frozen cases, model rotation and "
+        "Studio v20 baseline. Candidate results must improve their target metric without "
+        "weakening source, audit, catalog-completeness or fail-closed checks."
+    )
     html = f"""<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mediare v20 — OpenRouter Experimental Evaluation</title>
+  <title>Mediare {escape(version)} — OpenRouter Experimental Evaluation</title>
   <style>
     :root {{ --ink:#172235; --muted:#5b6778; --blue:#315efb; --pale:#eef3ff; --line:#dce3ef; font-family:Inter,Arial,sans-serif; }}
     * {{ box-sizing:border-box; }} body {{ margin:0; background:#f3f6fa; color:var(--ink); line-height:1.55; }}
@@ -722,13 +735,13 @@ def render_report(manifest, out, report_path):
 </head>
 <body><main>
   <div class="eyebrow">Investor technical report · GenLayer-sponsored API credit</div>
-  <h1>Mediare v20: Local OpenRouter Evaluation and Studio Complementarity</h1>
-  <p class="subtitle">Generated {escape(generated)} · Status: <span class="status">{completed_word} — {completed}/50 cases</span></p>
+  <h1>Mediare {escape(version)}: Local OpenRouter Evaluation and Studio Complementarity</h1>
+  <p class="subtitle">Generated {escape(generated)} · Status: <span class="status">{completed_word} — {completed}/{total_cases} cases</span></p>
 
   <h2>Executive summary</h2>
   <p>GenLayer provided US$500 in OpenRouter API credits to expand the empirical evaluation of the Mediare Intelligent Contract. The local campaign does not replace Studio or claim protocol consensus. Its purpose is to expose intermediate model behavior that Studio correctly keeps outside chain state, accelerate controlled comparisons, and reserve Studio for authoritative protocol validation.</p>
   <div class="cards">
-    <div class="card"><span>Cases completed</span><strong>{completed}/50</strong></div>
+    <div class="card"><span>Cases completed</span><strong>{completed}/{total_cases}</strong></div>
     <div class="card"><span>Actual API spend</span><strong>{money(spent)}</strong></div>
     <div class="card"><span>Average per case</span><strong>{money(avg_cost)}</strong></div>
     <div class="card"><span>Average wall time</span><strong>{float(avg_time):.1f}s</strong></div>
@@ -742,7 +755,7 @@ def render_report(manifest, out, report_path):
       <tr><td>Real protocol consensus</td><td>Yes — authoritative</td><td>No — explicitly simulated</td></tr>
       <tr><td>Final leader panel</td><td>Available after accepted execution</td><td>Available for every valid leader run</td></tr>
       <tr><td>Panel/output produced by each model</td><td>Not persisted by the protocol</td><td>Retained locally for diagnosis</td></tr>
-      <tr><td>Individual reviewer criteria</td><td>Vote only</td><td>Per-request booleans and failure code</td></tr>
+      <tr><td>Individual reviewer criteria</td><td>Vote only</td><td>Per-request criteria and failure code</td></tr>
       <tr><td>Raw response before parsing</td><td>Not available as campaign evidence</td><td>Stored locally with prompt hash</td></tr>
       <tr><td>Controlled v20/v21 A/B comparison</td><td>Slow and subject to validator allocation</td><td>Repeatable with a frozen model matrix</td></tr>
       <tr><td>Model and provider control</td><td>Studio policy set</td><td>Explicit OpenRouter model slugs and routing policy</td></tr>
@@ -753,7 +766,7 @@ def render_report(manifest, out, report_path):
   <div class="callout"><strong>Interpretation boundary:</strong> a local pass is evidence about prompt behavior and cross-model review stability. It is never evidence that GenLayer consensus will finalize the same proposal.</div>
 
   <h2>Methodology</h2>
-  <p>The runner imports the exact v20 source snapshot (<code>{escape(manifest['source_sha256'])}</code>) and executes its own catalog, three lenses, validation, one-shot repair, consolidation, deterministic Term rendering, compact reviewer prompt and reviewer decision functions. Benchmark answers are not included in model prompts.</p>
+  <p>The runner imports the exact {escape(version)} source snapshot (<code>{escape(manifest['source_sha256'])}</code>) and executes its own catalog, three lenses, validation, one-shot repair, consolidation, deterministic Term rendering, compact reviewer prompt and reviewer decision functions. Benchmark answers are not included in model prompts.</p>
   <p>One model leads each case in round-robin order; the other four review the same proposal. Local acceptance requires {manifest['reviewer_quorum']} reviewer approvals. Requests use free-form model output so that the same IC parser and correction loop are exercised; strict structured output is intentionally not used in the fidelity run. GLM 5.3 uses explicit low reasoning effort because its mandatory default maximum reasoning exhausted the completion budget during the pilot and returned billed responses without final text.</p>
   <ul>{model_list}</ul>
   <p>OpenRouter requests deny provider data collection where supported by routing policy. Each persisted call contains model identity, prompt hash, token counts, reported USD cost and latency. API credentials are never written to campaign logs.</p>
@@ -766,7 +779,7 @@ def render_report(manifest, out, report_path):
     <div class="card"><span>API calls</span><strong>{calls}</strong></div>
   </div>
   <p>Against the stored Studio v20 baseline, local consensus classification currently matches {consensus_matches}/{len(comparable)} cases ({pct(consensus_matches,len(comparable))}); the operational output label matches {label_matches}/{len(comparable)} ({pct(label_matches,len(comparable))}). These are calibration metrics, not legal-accuracy scores.</p>
-  <div class="callout"><strong>Pilot reading:</strong> cases 0001–0006 matched the Studio consensus and operational class. Cases 0007–0008 produced useful leader options but failed the local reviewer quorum, exposing source and reviewer-schema concerns. Cases 0009–0010 failed during leader construction even though their stored Studio runs finalized successfully. This makes the local runner valuable as a diagnostic complement, while also demonstrating why it cannot substitute for protocol execution.</div>
+  <div class="callout"><strong>Experiment reading:</strong> {escape(pilot_reading)} This makes the local runner valuable as a diagnostic complement, while also demonstrating why it cannot substitute for protocol execution.</div>
 
   <h3>Per-case observations</h3>
   <table>
@@ -783,7 +796,7 @@ def render_report(manifest, out, report_path):
   <h2>Time and cost</h2>
   <p>The {completed} completed executions consumed {calls} HTTP model requests and {aggregate_calls['total_tokens']:,} itemized tokens ({aggregate_calls['prompt_tokens']:,} prompt and {aggregate_calls['completion_tokens']:,} completion), with {float(total_seconds):.1f} aggregate active case-seconds. Successful and metadata-bearing responses itemize {money(itemized_spent)}; the key-level usage delta is {money(key_usage_delta)}. The report conservatively uses the greater value, <strong>{money(spent)}</strong>, as actual campaign spend because providers may charge an empty response that has no reusable model text.</p>
   <p>The observed averages are <strong>{money(avg_cost)} per case</strong>, <strong>{money(avg_http_cost)} per HTTP request</strong>, and <strong>{float(avg_time):.1f} seconds per case</strong>. At the same model mix, the projected cost is {money(projected_50)} for 50 cases and {money(projected_500)} for 500 cases. These projections are directional: repair retries, provider routing and case complexity change token use.</p>
-  <p>The remaining {len(manifest['case_ids']) - completed} cases in this 50-case campaign are projected to cost {money(projected_remaining_campaign)}. Against the current live account balance of {money(live_balance)}, this leaves projected headroom of {money(max(Decimal('0'), continuation_headroom))}{' and no immediate funding shortfall' if continuation_headroom >= 0 else ' with a projected funding shortfall of ' + money(-continuation_headroom)}.</p>
+  <p>The remaining {len(manifest['case_ids']) - completed} cases in this {total_cases}-case campaign are projected to cost {money(projected_remaining_campaign)}. Against the current live account balance of {money(live_balance)}, this leaves projected headroom of {money(max(Decimal('0'), continuation_headroom))}{' and no immediate funding shortfall' if continuation_headroom >= 0 else ' with a projected funding shortfall of ' + money(-continuation_headroom)}.</p>
 
   <h2>Proposed use of the remaining GenLayer-sponsored credit</h2>
   <p>Announced program credit: {money(budget)}. Measured campaign spend: {money(spent)}. Planning balance against the announced grant: <strong>{money(remaining)}</strong>. This planning balance is not the same as the live account balance. The pilot campaign also has a separate persisted safety ceiling of {money(manifest.get('max_cost_usd', 0))}; increasing it requires an explicit decision after this checkpoint.</p>
@@ -797,7 +810,7 @@ def render_report(manifest, out, report_path):
     <li>The local reviewer quorum is an analytical convention, not a reconstruction of GenLayer consensus.</li>
     <li>Operational usefulness does not certify Brazilian-law correctness or fairness.</li>
     <li>Cases are summarized and anonymized; the evaluation cannot recover unavailable original evidence.</li>
-    <li>The first 50 cases are calibration data. Later v21 validation must use untouched cases.</li>
+    <li>Cases used for candidate development are calibration data. Final validation must use untouched cases.</li>
   </ul>
 
   <h2>Sources</h2>
@@ -809,7 +822,7 @@ def render_report(manifest, out, report_path):
     <li><a href="https://openrouter.ai/docs/api/api-reference/api-keys/get-current-key">OpenRouter current-key limits</a></li>
     <li><a href="https://openrouter.ai/docs/api/api-reference/credits/get-credits">OpenRouter account credits</a></li>
   </ul>
-  <footer>Prepared for GenLayer as the sponsor of the US$500 OpenRouter evaluation credit. Mediare v20 remains experimental.</footer>
+  <footer>Prepared for GenLayer as the sponsor of the US$500 OpenRouter evaluation credit. Mediare {escape(version)} remains experimental.</footer>
 </main></body></html>
 """
     atomic_text(report_path, html)
@@ -887,6 +900,7 @@ def run_campaign(args):
     client = OpenRouterClient(
         api_key, manifest["provider"], manifest.get("model_options"),
         delay=manifest["delay_seconds"], timeout=args.timeout,
+        evaluation_title="Mediare IC " + str(manifest["version"]) + " local evaluation",
     )
     snapshot = client.account_snapshot()
     if "account_start" not in manifest:

@@ -5,6 +5,38 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 **A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
 gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
+## Candidatas v21 e fechamento da v20 — 2026-09-10
+
+- A v20 foi congelada como baseline após 100 casos no Studio: 95
+  `MAJORITY_AGREE`, 96 `FINALIZED`, 52 `APTO_INTEGRAL`, 27
+  `APTO_PARCIAL_COM_RETENCOES`, oito `SOMENTE_DILIGENCIAS`, oito
+  `SEM_OPCAO_APROVADA`, cinco falhas técnicas e 56 rotações.
+- O holdout 0051–0100 confirmou 39/50 opções integrais ou parciais. Casos 0062,
+  0082 e 0083 falharam tecnicamente; catálogo e tratamento da opção foram os
+  diagnósticos dominantes nas discordâncias.
+- A campanha local v20 terminou 50/50: 42 painéis de líder válidos, 37 saídas
+  úteis, 20 maiorias locais, 519 requisições, 4.714.908 tokens e US$ 11,2932
+  de gasto reconciliado. O relatório do investidor foi atualizado com os 50
+  resultados.
+- Criadas três candidatas independentes a partir do mesmo snapshot: `v21-schema`
+  substitui os booleanos ambíguos da revisão por enums de falha fechados;
+  `v21-catalog` define a unidade material de pedido; `v21-options` especializa
+  declarações e bases documentais condicionais.
+- Nenhuma candidata relaxa fonte literal, auditoria, dupla contagem, polos,
+  distinção entre base e dívida ou falha fechada. Hipóteses, gates e ordem de
+  seleção estão em `V21_EXPERIMENT_PLAN.md`; o baseline consolidado está em
+  `V20_FINAL_REPORT.md`.
+- O runner OpenRouter e o relatório HTML deixaram de presumir a versão v20; cada
+  campanha agora registra e apresenta a versão real do snapshot congelado.
+- Adicionado comparador reprodutível para as três campanhas v21. A classificação
+  automática aplica gates antes das métricas de utilidade e nunca promove uma
+  candidata sem inspeção manual dos casos alterados e confirmação no Studio.
+- O coletor CJPG foi refeito para expansão em lotes retomáveis de no máximo 50,
+  deduplicação incremental, intervalo mínimo, relatório sem conteúdo judicial e
+  proteção contra corpo de sentença absorvido como metadado. A coleta não chama
+  LLM; o plano da transformação posterior e a avaliação CourtListener/RECAP
+  estão em `DATASET_EXPANSION_PLAN.md`.
+
 ## Avaliação v20 — Studio holdout e OpenRouter — 2026-09-09
 
 - Iniciado holdout fora da amostra com os casos 0051–0100 e o snapshot v20
