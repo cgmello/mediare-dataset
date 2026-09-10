@@ -6,6 +6,7 @@ import unittest
 
 from pseudonymize_runner import (
     audit_output,
+    cached_detection,
     clean_date,
     initials,
     initialize,
@@ -14,6 +15,7 @@ from pseudonymize_runner import (
     parse_detector,
     replace_all,
     replacement_map,
+    total_cost,
 )
 from openrouter_runner import RunnerError
 
@@ -89,6 +91,29 @@ class PseudonymizeRunnerTests(unittest.TestCase):
             manifest = initialize(args)
             self.assertTrue(manifest["provider"]["zdr"])
             self.assertEqual(manifest["first_internal_id"], 501)
+
+    def test_invalid_detector_response_is_retried_and_charged(self):
+        class FakeClient:
+            def __init__(self):
+                self.calls = 0
+
+            def complete(self, model, prompt, max_tokens):
+                self.calls += 1
+                text = "not-json" if self.calls == 1 else (
+                    '{"entities":[{"text":"Maria Exemplo","kind":"person"}]}'
+                )
+                return {"text": text, "cost_usd": str(self.calls / 10)}
+
+        with tempfile.TemporaryDirectory() as directory:
+            client = FakeClient()
+            out = Path(directory)
+            entities, _ = cached_detection(
+                client, out, "0501", "model/a", "prompt", 1000,
+                '{"texto":"Maria Exemplo"}',
+            )
+            self.assertEqual(client.calls, 2)
+            self.assertEqual(entities[0]["text"], "Maria Exemplo")
+            self.assertEqual(total_cost(out), Decimal("0.3"))
 
 
 if __name__ == "__main__":

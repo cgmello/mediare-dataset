@@ -82,6 +82,12 @@ def atomic_json(path: Path, value: object) -> None:
     temporary.replace(path)
 
 
+def append_jsonl(path: Path, value: object) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8") as stream:
+        stream.write(json.dumps(value, ensure_ascii=False, sort_keys=True) + "\n")
+
+
 def read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -260,17 +266,44 @@ def cached_detection(client, out: Path, internal_id: str, model: str, prompt: st
         if cached.get("prompt_sha256") != prompt_hash:
             raise RunnerError("CACHE_PROMPT_CHANGED")
         return cached["entities"], cached["metadata"]
-    response = client.complete(model, prompt, max_tokens)
-    entities = parse_detector(response.pop("text"), source)
-    payload = {"prompt_sha256": prompt_hash, "entities": entities, "metadata": response}
-    atomic_json(cache_path, payload)
-    return entities, response
+    active_prompt = prompt
+    for attempt in range(1, 4):
+        response = client.complete(model, active_prompt, max_tokens)
+        raw = response.pop("text")
+        try:
+            entities = parse_detector(raw, source)
+        except RunnerError as exc:
+            append_jsonl(
+                out / "call-errors" / internal_id / (safe_slug(model) + ".jsonl"),
+                {
+                    "attempt": attempt,
+                    "error": str(exc),
+                    "metadata": response,
+                    "response_sha256": sha256_bytes(raw.encode("utf-8")),
+                },
+            )
+            if attempt == 3:
+                raise
+            active_prompt = prompt + (
+                "\nCORRECTION: Your prior response did not satisfy the exact JSON schema. "
+                "Return only the required object, with exact substrings from INPUT."
+            )
+            continue
+        payload = {"prompt_sha256": prompt_hash, "entities": entities, "metadata": response}
+        atomic_json(cache_path, payload)
+        return entities, response
+    raise RunnerError("DETECTOR_RETRY_EXHAUSTED")
 
 
 def total_cost(out: Path) -> Decimal:
     cost = Decimal("0")
     for path in (out / "cache").glob("*/*.json"):
         cost += decimal_cost(read_json(path).get("metadata", {}).get("cost_usd", 0))
+    for path in (out / "call-errors").glob("*/*.jsonl"):
+        with path.open(encoding="utf-8") as stream:
+            for line in stream:
+                value = json.loads(line)
+                cost += decimal_cost(value.get("metadata", {}).get("cost_usd", 0))
     return cost
 
 

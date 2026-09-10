@@ -36,6 +36,9 @@ permanecer desativado na conta.
 - Campanha total: 500 processos, duas chamadas principais por processo.
 - Teto persistente inicial: US$ 30.
 - Cache local permite retomada sem repetir chamadas concluídas.
+- Respostas que não obedecem ao JSON recebem até duas correções; seus metadados
+  e custos entram no orçamento, mas o conteúdo potencialmente identificável não
+  é gravado nos logs de erro.
 - Logs de terminal contêm somente ID interno, estado, progresso e custo.
 
 Depois da pseudonimização, outro estágio selecionará decisões aproveitáveis e

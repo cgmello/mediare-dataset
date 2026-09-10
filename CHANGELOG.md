@@ -14,6 +14,12 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
   revisão de cada processo, cache privado, auditoria local, ZDR obrigatório,
   proibição de coleta e teto de US$ 30 estão documentados em
   `PSEUDONYMIZATION_PLAN.md`.
+- Canário 0501–0505 concluído: cinco de cinco saídas aceitas, zero identificador
+  residual detectado, metadados selecionados, valores e datas preservados, dez
+  chamadas e US$ 0,12525. A concordância entre os dois detectores variou de 64%
+  a 100%; a união conservadora substituiu de seis a 25 entidades por decisão.
+  Respostas de detector fora do schema agora recebem até duas correções e todos
+  os custos, inclusive de tentativas inválidas, entram no teto persistente.
 
 - A v20 foi congelada como baseline após 100 casos no Studio: 95
   `MAJORITY_AGREE`, 96 `FINALIZED`, 52 `APTO_INTEGRAL`, 27
