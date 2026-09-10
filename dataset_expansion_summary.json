@@ -1,0 +1,18 @@
+{
+  "status": "raw_collection_complete",
+  "started_with_unique_processes": 244,
+  "batches": 10,
+  "requested_additional": 500,
+  "collected_additional": 500,
+  "known_after": 744,
+  "by_category": {
+    "locacao": 450,
+    "cobranca": 40,
+    "consumo": 10
+  },
+  "llm_calls": 0,
+  "openrouter_cost_usd": "0",
+  "raw_output": "sentencas.jsonl",
+  "raw_output_versioned": false,
+  "next_stage": "local privacy filtering and summarized-case generation"
+}

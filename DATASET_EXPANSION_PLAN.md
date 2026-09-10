@@ -7,6 +7,10 @@ A fonte continua sendo o CJPG/TJSP. A expansão será feita em dez lotes de até
 gera um relatório apenas com contagens, categorias e erros técnicos; o texto
 integral das decisões permanece na área local ignorada pelo Git.
 
+**Coleta concluída em 2026-09-10:** dez lotes adicionaram 500 decisões, levando
+o staging privado de 244 a 744 processos únicos. A transformação em casos
+resumidos permanece como etapa separada e ainda não foi executada.
+
 ## Duas etapas diferentes
 
 1. **Coleta pública:** `coletar_cjpg.py` consulta o site do TJSP, pagina os

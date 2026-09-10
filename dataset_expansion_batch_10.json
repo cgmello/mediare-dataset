@@ -1,0 +1,13 @@
+{
+  "status": "complete",
+  "requested": 50,
+  "collected": 50,
+  "known_after": 744,
+  "by_category": {
+    "locacao": 50
+  },
+  "errors": [],
+  "output": "sentencas.jsonl",
+  "contains_raw_decision_text": true,
+  "llm_calls": 0
+}
