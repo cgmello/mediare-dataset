@@ -1,6 +1,15 @@
+import json
+from pathlib import Path
 import unittest
 
-from analyze_v21_cases import error_origin, panel_details, transition
+from analyze_v21_cases import (
+    compact_en,
+    error_origin,
+    panel_details,
+    render_html_en,
+    signal_en,
+    transition,
+)
 
 
 def row(*, valid=True, label="APTO_INTEGRAL", agree=True, studio="MAJORITY_AGREE", diagnostic=None):
@@ -17,6 +26,23 @@ def row(*, valid=True, label="APTO_INTEGRAL", agree=True, studio="MAJORITY_AGREE
 
 
 class AnalyzeV21CasesTests(unittest.TestCase):
+    def test_english_translation_covers_dynamic_case_signals(self):
+        self.assertEqual(signal_en("painel válido perdido"), "valid panel lost")
+        self.assertEqual(signal_en("pedidos 3→2"), "requests 3→2")
+        details = panel_details(row())
+        self.assertIn("valid; useful; Agree", compact_en(details))
+
+    def test_english_report_translates_headings_and_verdicts(self):
+        analysis = json.loads(
+            Path("V21_CASE_BY_CASE_ANALYSIS.json").read_text(encoding="utf-8")
+        )
+        html = render_html_en(analysis)
+        self.assertIn("Paired experiment · 50 cases", html)
+        self.assertIn("Preliminary conclusion", html)
+        self.assertIn("improvement", html)
+        self.assertIn('href="V21_CASE_BY_CASE_ANALYSIS.html"', html)
+        self.assertNotIn("Conclusão preliminar", html)
+
     def test_error_origin_separates_generation_from_local_rule(self):
         self.assertEqual(
             error_origin("LLM_INVALID_PANEL:lente=probatoria:1=CHAMADA_RunnerError"),

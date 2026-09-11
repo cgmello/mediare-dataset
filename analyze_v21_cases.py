@@ -17,6 +17,24 @@ CANDIDATES = (
     ("v21-options", "res_openrouter_v21_options_0001_0050"),
 )
 USEFUL_LABELS = {"APTO_INTEGRAL", "APTO_PARCIAL_COM_RETENCOES"}
+VERDICT_EN = {
+    "melhora": "improvement",
+    "regressão": "regression",
+    "misto": "mixed",
+    "alterado": "changed",
+    "estável": "stable",
+}
+CATEGORY_EN = {
+    "001-locacao-vicios-ocultos": "001-tenancy-hidden-defects",
+    "002-cobranca-curso": "002-course-fee-collection",
+    "003-consumo-piscina": "003-consumer-swimming-pool",
+    "004-transito-engavetamento": "004-multi-vehicle-collision",
+    "005-reforma-empreitada": "005-renovation-contract",
+    "006-vizinhanca-infiltracao": "006-neighbor-water-infiltration",
+    "cobranca": "debt collection",
+    "consumo": "consumer",
+    "locacao": "tenancy",
+}
 
 
 def read_json(path: Path) -> dict:
@@ -191,6 +209,62 @@ def compact(details: dict) -> str:
     )
 
 
+def error_origin_en(value: str | None) -> str:
+    if not value:
+        return "unknown"
+    stage, _, kind = value.partition("/")
+    stages = {
+        "painel": "panel",
+        "probatoria": "evidentiary",
+        "jurisprudencial": "case-law",
+        "auditora": "auditor",
+    }
+    kinds = {
+        "mista": "mixed",
+        "geração/API": "generation/API",
+        "regra local": "local rule",
+    }
+    return f"{stages.get(stage, stage)}/{kinds.get(kind, kind)}"
+
+
+def compact_en(details: dict) -> str:
+    valid = "valid" if details["valid"] else f"error ({error_origin_en(details['error_origin'])})"
+    useful = "useful" if details["useful"] else "withheld"
+    consensus = "Agree" if details["local_majority_agree"] else "Disagree"
+    match = "matches Studio" if details["studio_match"] else "differs from Studio"
+    if details["studio_match"] is None:
+        match = "Studio n/a"
+    return (
+        f"{valid}; {useful}; {consensus}; {match}; "
+        f"{details['requests']} requests; reviewers {details['reviewer_agree']}/{details['reviewer_total']}"
+    )
+
+
+def signal_en(value: str) -> str:
+    exact = {
+        "painel válido recuperado": "valid panel recovered",
+        "painel válido perdido": "valid panel lost",
+        "saída útil recuperada": "useful output recovered",
+        "saída útil perdida": "useful output lost",
+        "maioria local conquistada": "local majority gained",
+        "maioria local perdida": "local majority lost",
+        "alinhamento com Studio conquistado": "Studio alignment gained",
+        "alinhamento com Studio perdido": "Studio alignment lost",
+        "composição das opções mudou": "option composition changed",
+    }
+    if value in exact:
+        return exact[value]
+    prefixes = {
+        "erros de formato do revisor ": "reviewer format errors ",
+        "pedidos ": "requests ",
+        "rótulo ": "label ",
+    }
+    for source, target in prefixes.items():
+        if value.startswith(source):
+            return target + value[len(source):]
+    return value
+
+
 def aggregate(name: str, rows: list[dict], summary: dict, baseline_summary: dict) -> dict:
     comparisons = [row["comparisons"][name] for row in rows]
     details = [row["versions"][name] for row in rows]
@@ -287,6 +361,10 @@ def case_list(values: list[str]) -> str:
     return ", ".join(values) if values else "nenhum"
 
 
+def case_list_en(values: list[str]) -> str:
+    return ", ".join(values) if values else "none"
+
+
 def render_html(analysis: dict) -> str:
     baseline = analysis["baseline"]
     score_rows = []
@@ -353,6 +431,7 @@ def render_html(analysis: dict) -> str:
 *{{box-sizing:border-box}}body{{margin:0;background:#f3f6fa;color:var(--ink);line-height:1.45}}main{{width:min(1500px,calc(100% - 28px));margin:28px auto;background:#fff;padding:42px}}h1{{margin:.2rem 0}}h2{{margin-top:34px;border-bottom:2px solid var(--line);padding-bottom:7px}}h3{{margin-bottom:6px}}.eyebrow{{color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:.07em}}.note{{background:var(--pale);border-left:5px solid var(--blue);padding:14px 18px}}.caution{{background:#fff4cc;border-left:5px solid #c08a00;padding:14px 18px}}table{{border-collapse:collapse;width:100%;font-size:.86rem}}th,td{{border:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}}th{{background:var(--pale);position:sticky;top:0}}small{{color:var(--muted)}}.badge{{display:inline-block;border-radius:999px;padding:2px 8px;margin-bottom:5px;font-weight:700}}.melhora{{background:#dff6e8;color:#19653a}}.regressão{{background:#ffe2e0;color:#8b211b}}.misto{{background:#fff0c9;color:#725000}}.alterado{{background:#e6ecff;color:#2947a8}}.estável{{background:#edf0f4;color:#4d5968}}section{{border-bottom:1px solid var(--line)}}@media(max-width:900px){{main{{padding:24px 14px}}table{{display:block;overflow:auto}}}}@media print{{body{{background:#fff}}main{{margin:0;padding:0;width:auto}}th{{position:static}}}}
 </style></head><body><main>
 <div class="eyebrow">Experimento pareado · 50 casos</div><h1>v20 × candidatas v21</h1>
+<p><strong>Idioma:</strong> Português · <a href="V21_CASE_BY_CASE_ANALYSIS_EN.html">English</a></p>
 <p>Esta análise compara resultados operacionais obtidos sobre os mesmos casos. Ela mede validade do painel, utilidade para mediação, votação local, alinhamento com o resultado observado no Studio e robustez do formato do revisor. Não é um gabarito jurídico de mérito.</p>
 <div class="note"><strong>Conclusão preliminar.</strong> A v21-schema é a melhor fundação técnica porque eliminou 35 falhas de formato dos revisores sem piora agregada observada de validade e utilidade. A v21-options comprovou a correção de opções declaratórias em 26/26 ocorrências e trouxe o melhor sinal de consenso. A v21-catalog mostrou consolidações úteis, mas ainda exige revisão de fidelidade nos casos alterados. Se for obrigatório escolher uma candidata intacta, escolha schema; o melhor próximo experimento é uma híbrida schema + correção declaratória de options.</div>
 <div class="caution"><strong>Limite causal.</strong> As execuções usam os mesmos casos e modelos, mas as respostas das LLMs não são determinísticas. A mudança schema ocorre somente depois da geração do painel; portanto, seus três painéis recuperados e três perdidos são variação de execução, não efeito possível do novo formato do revisor. Na options, quatro dos cinco painéis perdidos falharam na lente probatória, antes da etapa alterada. Os deltas de validade abaixo são observações, não causalidade automática.</div>
@@ -370,6 +449,92 @@ def render_html(analysis: dict) -> str:
 </main></body></html>"""
 
 
+def render_html_en(analysis: dict) -> str:
+    baseline = analysis["baseline"]
+    score_rows = []
+    detail_blocks = []
+    for candidate in analysis["candidates"]:
+        outcomes = candidate["outcomes"]
+        score_rows.append(
+            "<tr>"
+            f"<td><strong>{escape(candidate['name'])}</strong></td>"
+            f"<td>{candidate['valid']} ({delta(candidate['valid_delta'])})</td>"
+            f"<td>{candidate['useful']} ({delta(candidate['useful_delta'])})</td>"
+            f"<td>{candidate['majority']} ({delta(candidate['majority_delta'])})</td>"
+            f"<td>{candidate['studio_matches']} ({delta(candidate['studio_delta'])})</td>"
+            f"<td>{candidate['reviewer_invalid']} ({delta(candidate['reviewer_invalid_delta'])})</td>"
+            f"<td>{candidate['requests']} ({delta(candidate['requests_delta'])})</td>"
+            f"<td>{outcomes.get('melhora', 0)} / {outcomes.get('regressão', 0)} / {outcomes.get('misto', 0)}</td>"
+            f"<td>{candidate['api_calls']:,}</td><td>{candidate['tokens']:,}</td>"
+            f"<td>US$ {Decimal(candidate['cost_usd']):.4f}</td>"
+            "</tr>"
+        )
+        detail_blocks.append(
+            f"<section><h3>{escape(candidate['name'])} × v20</h3>"
+            f"<p><strong>Validity recovered:</strong> {case_list_en(candidate['validity_recovered_cases'])}. "
+            f"<strong>Validity lost:</strong> {case_list_en(candidate['validity_lost_cases'])}.</p>"
+            f"<p><strong>Usefulness gained:</strong> {case_list_en(candidate['usefulness_gained_cases'])}. "
+            f"<strong>Usefulness lost:</strong> {case_list_en(candidate['usefulness_lost_cases'])}.</p>"
+            f"<p><strong>Local majority gained:</strong> {case_list_en(candidate['majority_gained_cases'])}. "
+            f"<strong>Local majority lost:</strong> {case_list_en(candidate['majority_lost_cases'])}.</p>"
+            f"<p>Declaratory options with neutral parties: {candidate['declaratory_neutral_parties']}/"
+            f"{candidate['declaratory_options']}; DR/DD documentary bases used: {candidate['documentary_bases']}; "
+            f"catalogued requests: {candidate['requests']} ({delta(candidate['requests_delta'])}).</p>"
+            "</section>"
+        )
+    case_rows = []
+    for row in analysis["cases"]:
+        cells = []
+        for name, _ in CANDIDATES:
+            item = row["comparisons"][name]
+            details = row["versions"][name]
+            signals = []
+            if item["positive"]:
+                signals.append("+ " + "; ".join(signal_en(value) for value in item["positive"]))
+            if item["negative"]:
+                signals.append("− " + "; ".join(signal_en(value) for value in item["negative"]))
+            if item["factual"]:
+                signals.append("Δ " + "; ".join(signal_en(value) for value in item["factual"]))
+            signal_text = "<br>".join(escape(value) for value in signals) or "no measured change"
+            verdict = VERDICT_EN[item["verdict"]]
+            cells.append(
+                f'<td><span class="badge {escape(item["verdict"])}">{escape(verdict)}</span>'
+                f"<div>{escape(compact_en(details))}</div><small>{signal_text}</small></td>"
+            )
+        case_rows.append(
+            "<tr>"
+            f"<td>{escape(row['case_id'])}</td>"
+            f"<td>{escape(CATEGORY_EN.get(row['category'], row['category']))}</td>"
+            f"<td>{escape(compact_en(row['versions']['v20']))}</td>"
+            + "".join(cells)
+            + "</tr>"
+        )
+    return f"""<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mediare — case-by-case analysis: v20 × v21</title>
+<style>
+:root{{--ink:#172235;--muted:#607086;--blue:#315efb;--line:#dce3ef;--pale:#eef3ff;font-family:Inter,Arial,sans-serif}}
+*{{box-sizing:border-box}}body{{margin:0;background:#f3f6fa;color:var(--ink);line-height:1.45}}main{{width:min(1500px,calc(100% - 28px));margin:28px auto;background:#fff;padding:42px}}h1{{margin:.2rem 0}}h2{{margin-top:34px;border-bottom:2px solid var(--line);padding-bottom:7px}}h3{{margin-bottom:6px}}.eyebrow{{color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:.07em}}.note{{background:var(--pale);border-left:5px solid var(--blue);padding:14px 18px}}.caution{{background:#fff4cc;border-left:5px solid #c08a00;padding:14px 18px}}table{{border-collapse:collapse;width:100%;font-size:.86rem}}th,td{{border:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}}th{{background:var(--pale);position:sticky;top:0}}small{{color:var(--muted)}}.badge{{display:inline-block;border-radius:999px;padding:2px 8px;margin-bottom:5px;font-weight:700}}.melhora{{background:#dff6e8;color:#19653a}}.regressão{{background:#ffe2e0;color:#8b211b}}.misto{{background:#fff0c9;color:#725000}}.alterado{{background:#e6ecff;color:#2947a8}}.estável{{background:#edf0f4;color:#4d5968}}section{{border-bottom:1px solid var(--line)}}@media(max-width:900px){{main{{padding:24px 14px}}table{{display:block;overflow:auto}}}}@media print{{body{{background:#fff}}main{{margin:0;padding:0;width:auto}}th{{position:static}}}}
+</style></head><body><main>
+<div class="eyebrow">Paired experiment · 50 cases</div><h1>v20 × v21 candidates</h1>
+<p><strong>Language:</strong> <a href="V21_CASE_BY_CASE_ANALYSIS.html">Português</a> · English</p>
+<p>This analysis compares operational results obtained from the same cases. It measures panel validity, usefulness for mediation, local voting, alignment with the result observed in Studio, and reviewer-format robustness. It is not a legal-merits answer key.</p>
+<div class="note"><strong>Preliminary conclusion.</strong> v21-schema is the strongest technical foundation because it eliminated 35 reviewer-format failures without an observed aggregate decline in validity or usefulness. v21-options validated the declaratory-option correction in all 26 occurrences and produced the strongest consensus signal. v21-catalog produced useful consolidations but still requires fidelity review in changed cases. If one intact candidate must be selected, choose schema; the strongest next experiment is a hybrid combining schema with the declaratory correction from options.</div>
+<div class="caution"><strong>Causal limitation.</strong> The runs use the same cases and models, but LLM responses are non-deterministic. The schema change applies only after leader-panel generation; therefore, its three recovered and three lost panels are run-to-run variation, not a possible effect of the new reviewer format. In options, four of the five lost panels failed in the evidentiary lens, before the modified stage. The validity deltas below are observations, not automatic evidence of causation.</div>
+<h2>Aggregate scorecard</h2>
+<p>v20 reference: {baseline['valid']} valid panels, {baseline['useful']} useful outputs, {baseline['majority']} local majorities, {baseline['studio_matches']} Studio alignments, {baseline['reviewer_invalid']} reviewer-format failures, and {baseline['requests']} catalogued requests.</p>
+<table><thead><tr><th>Candidate</th><th>Valid (Δ)</th><th>Useful (Δ)</th><th>Majorities (Δ)</th><th>Studio (Δ)</th><th>Format failures (Δ)</th><th>Requests (Δ)</th><th>Improvement / regression / mixed</th><th>API calls</th><th>Tokens</th><th>Cost</th></tr></thead><tbody>{''.join(score_rows)}</tbody></table>
+<h2>Reading the isolated changes</h2>
+<ul><li><strong>Schema:</strong> reduced reviewer-format failures from 35 to zero. Substantive rejections increased from 32 to 75, showing that reviewers were able to answer within the protocol and then flag content issues; this explains why greater structural robustness did not automatically produce more Agree votes.</li><li><strong>Catalog:</strong> produced 146 requests versus 192 in v20. In inspected cases 0015, 0017, 0018, 0023, and 0048, the reduction removed duplicates, internal calculation components, and defenses treated as counterclaims. Because the dataset has no legal ground truth for request catalogues, every changed catalogue still requires human fidelity review.</li><li><strong>Options:</strong> all 26 observed declaratory options correctly had no payer or beneficiary, compared with 0/17 in v20. It gained seven local majorities and seven Studio alignments. Expanding documentary bases showed no aggregate gain: 22 DR/DD bases were used, compared with 27 in v20.</li></ul>
+<h2>Relevant transitions</h2>{''.join(detail_blocks)}
+<h2>Analysis of all 50 cases</h2>
+<p><span class="badge melhora">improvement</span> means only positive signals; <span class="badge regressão">regression</span> means only negative signals; <span class="badge misto">mixed</span> combines a gain and a loss; “changed” records a content change without an indicator change; “stable” means no change in the measured indicators.</p>
+<table><thead><tr><th>Case</th><th>Category</th><th>v20</th><th>v21-schema × v20</th><th>v21-catalog × v20</th><th>v21-options × v20</th></tr></thead><tbody>{''.join(case_rows)}</tbody></table>
+<h2>Recommendation</h2>
+<ol><li>Use <strong>v21-schema</strong> as the foundation for the reviewer protocol.</li><li>Incorporate only the validated declaratory-option correction from <strong>v21-options</strong>; do not yet promote the documentary-base expansion.</li><li>Review the <strong>v21-catalog</strong> consolidations in changed cases and incorporate only rules that do not omit expressly requested remedies.</li><li>Run the hybrid first on cases that lost validity or usefulness and on those that gained local majority; only then repeat all 50.</li><li>If it preserves at least 42 valid panels and 38 useful outputs while retaining part of the consensus gain, promote it to Studio for cases 101–150.</li></ol>
+</main></body></html>"""
+
+
 def main() -> int:
     root = Path(".")
     analysis = build_analysis(root)
@@ -378,6 +543,9 @@ def main() -> int:
     )
     Path("V21_CASE_BY_CASE_ANALYSIS.html").write_text(
         render_html(analysis), encoding="utf-8"
+    )
+    Path("V21_CASE_BY_CASE_ANALYSIS_EN.html").write_text(
+        render_html_en(analysis), encoding="utf-8"
     )
     print(json.dumps({row["name"]: row["outcomes"] for row in analysis["candidates"]}, ensure_ascii=False))
     return 0

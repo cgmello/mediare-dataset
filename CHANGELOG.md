@@ -5,6 +5,13 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 **A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
 gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
+## Tradução do relatório v20 × v21 — 2026-09-11
+
+- Adicionada uma versão inglesa integral e reproduzível do relatório pareado de
+  50 casos. Cabeçalhos, metodologia, limitações, conclusões, recomendações,
+  categorias, veredictos e sinais dinâmicos de cada caso foram traduzidos; o
+  relatório original em português foi preservado.
+
 ## Backlog v23 — nomenclatura — 2026-09-11
 
 - Registrada em `V23_BACKLOG.md` a proposta de reservar `RR` para a fonte

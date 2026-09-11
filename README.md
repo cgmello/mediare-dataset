@@ -22,6 +22,10 @@ For versioned SDK tests, upgrades and resumable runs on Studio, see
 [STUDIO_CYCLE.md](STUDIO_CYCLE.md) (Portuguese).
 Milestones, failed experiments and report notes: [CHANGELOG.md](CHANGELOG.md).
 
+The paired v20 × v21 analysis is available in
+[Portuguese](V21_CASE_BY_CASE_ANALYSIS.html) and
+[English](V21_CASE_BY_CASE_ANALYSIS_EN.html).
+
 ### Termos para o mediador (off-chain)
 
 `termo_mediador.py` recebe a resposta JSON de `get_case` e gera um documento
