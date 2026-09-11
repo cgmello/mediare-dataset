@@ -1,0 +1,31 @@
+{
+  "source": "ic_v23.py",
+  "source_sha256": "b82a49141927e961b4d03414edcd1193c1784d6486569f67a09a4e7562ae469a",
+  "version": "23.1.0-experimental",
+  "baseline": "22.0.0-experimental",
+  "scope": "catalog-only",
+  "changes": {
+    "identifiers": "RP para pedidos do requerente e CR somente para contrapedidos materiais e autônomos do requerido.",
+    "material_unit": "Consolida acessórios, componentes, diligências e formulações do mesmo resultado.",
+    "literal_value": "Valor final derivado ou calculado permanece nulo no campo numérico.",
+    "review_evidence": "Objeção exige tipo, ID, fonte, evidência e correção; VALOR_INFERIDO impossível sobre null ou contradito pela própria evidência é normalizado.",
+    "targeted_preservation": "Preserva retenção de caução expressamente contraposta e separa ajuste de cálculo de devolução de saldo."
+  },
+  "preserved_from_v22": [
+    "Lentes probatória, jurisprudencial e auditora.",
+    "Schema das conclusões e falhas PEDIDO|CONCLUSAO|FONTES|OPCAO.",
+    "Opções declaratórias neutras, reparo único e Termo determinístico.",
+    "Regras de fontes, polos, valores devidos e dupla contagem."
+  ],
+  "selection": "v23_cases.json",
+  "initial_gate_cases": 13,
+  "correction_gate": "pelo menos 6 de 7",
+  "preservation_gate": "no máximo 1 regressão em 6",
+  "gate_result": {
+    "status": "approved",
+    "corrections": "6/7",
+    "preservations": "6/6",
+    "remaining_issue": "0029 ainda pode receber valor calculado pelo líder",
+    "next_checkpoint": "20 sentinelas da v22"
+  }
+}

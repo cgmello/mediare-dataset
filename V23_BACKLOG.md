@@ -66,3 +66,17 @@ A auditoria manual dos 20 casos sentinela está documentada em
 
 - Corrigir: 0008, 0017, 0023, 0026, 0029, 0033 e 0035.
 - Preservar: 0001, 0015, 0018, 0020, 0024 e 0031.
+
+## Resultado implementado
+
+A implementação e o gate estão documentados em `V23_GATE_REPORT.md`.
+A v23.1 atingiu 6/7 correções e preservou 6/6 controles. O caso 0029 continua
+como regressão prioritária porque um líder ainda pode calcular R$ 23.400,00 a
+partir de 12 × R$ 1.950,00 apesar da proibição textual.
+
+Próximos itens:
+
+- repetir os 20 sentinelas da v22 com o snapshot v23.1 congelado;
+- tratar separadamente falhas de lente/auditoria e latência do DeepSeek;
+- avaliar regra determinística para impedir valor catalogado que não esteja
+  literalmente ancorado na fonte, sem depender apenas da instrução à LLM.

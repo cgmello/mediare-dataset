@@ -15,7 +15,7 @@ from pathlib import Path
 import time
 from zoneinfo import ZoneInfo
 
-from openrouter_runner import OpenRouterClient, atomic_json, atomic_text
+from openrouter_runner import OpenRouterClient, atomic_json, atomic_text, call_stats
 
 
 PROGRAM_BUDGET_USD = Decimal("500")
@@ -23,6 +23,14 @@ DEFAULT_REPORT = "OPENROUTER_BUDGET_REPORT.html"
 DEFAULT_SNAPSHOT = "res_openrouter_budget/account_snapshot.json"
 INITIAL_VALIDATION_COST = Decimal("0.000006452")
 HISTORICAL_ANTHROPIC_ESTIMATE_USD = Decimal("20")
+V23_DEVELOPMENT_DIRS = (
+    "res_openrouter_v23_0001_0050",
+    "res_openrouter_v23_0_1_0001_0050",
+    "res_openrouter_v23_0_2_0001_0050",
+    "res_openrouter_v23_1_targeted",
+    "res_openrouter_v23_1_gate",
+    "res_openrouter_v23_1_remaining",
+)
 
 
 def as_decimal(value, default="0"):
@@ -42,6 +50,23 @@ def read_json(path, default=None):
 
 def campaign_summary(root, directory):
     return read_json(Path(root) / directory / "summary.json")
+
+
+def aggregate_call_receipts(root, directories):
+    totals = {
+        "api_calls": 0, "prompt_tokens": 0, "completion_tokens": 0,
+        "total_tokens": 0, "cost_usd": Decimal("0"), "completed": 0,
+    }
+    for directory in directories:
+        path = Path(root) / directory
+        stats = call_stats(path)
+        totals["api_calls"] += int(stats.get("http_requests") or 0)
+        totals["prompt_tokens"] += int(stats.get("prompt_tokens") or 0)
+        totals["completion_tokens"] += int(stats.get("completion_tokens") or 0)
+        totals["total_tokens"] += int(stats.get("total_tokens") or 0)
+        totals["cost_usd"] += as_decimal(stats.get("cost_usd"))
+        totals["completed"] += len(list((path / "results").glob("[0-9][0-9][0-9][0-9].json")))
+    return totals
 
 
 def latest_stored_account(root):
@@ -68,6 +93,7 @@ def build_ledger(root, account=None):
     catalog = campaign_summary(root, "res_openrouter_v21_catalog_0001_0050")
     options = campaign_summary(root, "res_openrouter_v21_options_0001_0050")
     v22 = campaign_summary(root, "res_openrouter_v22_0001_0050")
+    v23 = aggregate_call_receipts(root, V23_DEVELOPMENT_DIRS)
     pseudo = campaign_summary(root, "res_pseudonymization_0501_1000")
     pseudo_completed = int(pseudo.get("completed") or 0)
     pseudo_accepted = int(pseudo.get("accepted") or 0)
@@ -137,6 +163,17 @@ def build_ledger(root, account=None):
             "v22 hybrid sentinel", v22, "2026-09-11",
             status="complete — planned 20-case sentinel sample", target_override=20,
         ),
+        {
+            "date": "2026-09-11",
+            "activity": "v23 catalog development and regression gates",
+            "tests": v23["completed"],
+            "target": v23["completed"],
+            "calls": v23["api_calls"],
+            "tokens": v23["total_tokens"],
+            "cost": v23["cost_usd"],
+            "status": "complete — 6/7 corrections; 6/6 preserved; interrupted calls included",
+            "grant_scope": True,
+        },
         {
             "date": "2026-09-10+",
             "activity": "Dual-model pseudonymization (IDs 0501–1000)",
@@ -245,8 +282,8 @@ h1{{margin:.15rem 0;font-size:2rem}}h2{{margin-top:32px;border-bottom:2px solid 
 <p class="muted">The earlier Anthropic amount is the user's approximate estimate for direct API experiments during v1–v20. An automated check was attempted on 10 September 2026, but the available OAuth session lacked Admin API access. Anthropic documents that organization cost reporting requires an Admin credential; the estimate can be replaced by a Console Usage CSV export. Estimated total project API cost including that pre-grant amount: <strong>{money(ledger['total_project_cost'])}</strong>.</p>
 <h2>Current plan for the remaining budget</h2>
 <table><thead><tr><th>Priority</th><th>Control</th></tr></thead><tbody>
-<tr><td>Develop v23 from the v22 catalog audit</td><td>Run deterministic regression checks before any new paid campaign.</td></tr>
-<tr><td>Validate v23 on the 20-case sentinel set</td><td>OpenRouter for diagnostics; Studio confirmation has no OpenRouter API cost.</td></tr>
+<tr><td>Validate v23.1 on the 20-case sentinel set</td><td>Preserve the 6/7 correction and 6/6 preservation gates before Studio.</td></tr>
+<tr><td>Improve panel-generation stability</td><td>Diagnose DeepSeek latency and lens/auditor retries separately from catalog quality.</td></tr>
 <tr><td>Review the nine pseudonymized decisions held for inspection</td><td>No additional API cost unless a targeted repair is approved.</td></tr>
 <tr><td>Reserve the unspent balance for holdouts, robustness and new cases</td><td>Every new paid campaign must have a persisted ceiling and appear in this same ledger.</td></tr>
 </tbody></table>

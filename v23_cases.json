@@ -1,0 +1,14 @@
+{
+  "name": "v23-catalog-regression-gate",
+  "description": "Os primeiros 13 casos formam o gate: sete a corrigir e seis a preservar. Os 37 restantes permitem retomar a campanha sem criar outra seleção.",
+  "correction_cases": 7,
+  "preservation_cases": 6,
+  "case_ids": [
+    "0008", "0017", "0023", "0026", "0029", "0033", "0035",
+    "0001", "0015", "0018", "0020", "0024", "0031",
+    "0002", "0003", "0004", "0005", "0006", "0007", "0009", "0010", "0011", "0012",
+    "0013", "0014", "0016", "0019", "0021", "0022", "0025", "0027", "0028", "0030",
+    "0032", "0034", "0036", "0037", "0038", "0039", "0040", "0041", "0042", "0043",
+    "0044", "0045", "0046", "0047", "0048", "0049", "0050"
+  ]
+}

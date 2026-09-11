@@ -5,6 +5,28 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 **A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
 gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
+## v23.1 — catálogo material auditável — 2026-09-11
+
+- Criado o snapshot `23.1.0-experimental`, derivado integralmente da v22 e com
+  mudanças limitadas ao catálogo e à sua revisão.
+- Novos painéis usam `RP01...` para pedidos do requerente e `CR01...` somente
+  para contrapedidos materiais e autônomos do requerido. `RR` permanece como ID
+  da fonte Resposta do Requerido; scripts off-chain continuam aceitando IDs
+  históricos como dados opacos.
+- Defesas, preliminares, perícias, diligências, componentes internos e
+  acessórios da mesma cobrança deixaram de gerar pedidos autônomos. Retenção de
+  caução expressamente contraposta e devolução de saldo autônoma foram
+  preservadas.
+- `REVISOR_CATALOGO` agora exige falha estruturada com tipo, ID, fonte,
+  evidência e correção. `VALOR_INFERIDO` impossível sobre `null` ou contradito
+  pelo mesmo valor literal na evidência é normalizado deterministicamente.
+- O gate final atingiu 6/7 correções e 6/6 preservações. O caso 0029 continua
+  pendente por cálculo estocástico de valor; falhas posteriores de lente em
+  0026/0033 e latência do DeepSeek foram separadas do resultado de catálogo.
+- O desenvolvimento v23 completo, incluindo dois canários, rechecagens,
+  chamadas incompletas e interrupções, consumiu 254 chamadas, 1.839.082 tokens
+  e US$ 4,442201659683.
+
 ## Tradução do relatório v20 × v21 — 2026-09-11
 
 - Adicionada uma versão inglesa integral e reproduzível do relatório pareado de
