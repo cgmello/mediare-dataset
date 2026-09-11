@@ -127,7 +127,252 @@
     },
     "persistent_material_risk": [
       "0050"
-    ]
+    ],
+    "technical_retries": {
+      "summary": {
+        "api_calls": 33,
+        "average_cost_usd": "0.1931079146230",
+        "average_time_seconds": 445.07425,
+        "completed": 4,
+        "completion_tokens": 103438,
+        "cost_usd": "0.7724316584920",
+        "itemized_cost_usd": "0.7724316584920",
+        "key_usage_delta_usd": "0.678673573",
+        "local_majority_agree": 1,
+        "prompt_tokens": 242585,
+        "studio_comparable": 4,
+        "studio_consensus_matches": 1,
+        "total": 50,
+        "total_tokens": 346023,
+        "updated_at": "2026-09-11T20:36:58Z",
+        "useful_leader_outputs": 2,
+        "valid_leader_panels": 2
+      },
+      "recovered_valid_panels": [
+        "0017",
+        "0048"
+      ],
+      "recovered_majorities": [
+        "0048"
+      ],
+      "persistent_technical_failures": [
+        "0013",
+        "0033"
+      ],
+      "cases": [
+        {
+          "case_id": "0013",
+          "original": {
+            "valid": false,
+            "error": "LLM_INVALID_PANEL:lente=probatoria:1=CHAMADA_RunnerError;2=CHAMADA_RunnerError;3=CHAMADA_RunnerError|client=OPENROUTER_EMPTY_TEXT",
+            "error_kind": "modelo/transporte",
+            "consensus": "LOCAL_MAJORITY_DISAGREE",
+            "label": null,
+            "request_count": 0,
+            "request_ids": [],
+            "rp": 0,
+            "counterclaims": 0,
+            "reviewer_agree": 0,
+            "reviewer_disagree": 0,
+            "reviewer_error": 0,
+            "catalog_objections": 0,
+            "other_objections": 0,
+            "format_errors": 0,
+            "api_calls": 4,
+            "tokens": 47878,
+            "cost_usd": "0.110700475428",
+            "elapsed_seconds": 746.824
+          },
+          "retry": {
+            "valid": false,
+            "error": "LLM_INVALID_PANEL:lente=probatoria:1=CHAMADA_RunnerError;2=CHAMADA_RunnerError;3=CHAMADA_RunnerError|client=OPENROUTER_EMPTY_TEXT",
+            "error_kind": "modelo/transporte",
+            "consensus": "LOCAL_MAJORITY_DISAGREE",
+            "label": null,
+            "request_count": 0,
+            "request_ids": [],
+            "rp": 0,
+            "counterclaims": 0,
+            "reviewer_agree": 0,
+            "reviewer_disagree": 0,
+            "reviewer_error": 0,
+            "catalog_objections": 0,
+            "other_objections": 0,
+            "format_errors": 0,
+            "api_calls": 4,
+            "tokens": 48643,
+            "cost_usd": "0.11774643556",
+            "elapsed_seconds": 496.211
+          },
+          "assessment": {
+            "technical": "Falha técnica persistente",
+            "semantic": "Não avaliável: não houve painel nem revisão RP/CR.",
+            "conclusion": "DeepSeek voltou a falhar na lente probatória com resposta vazia; separar modelo/provedor do catálogo."
+          }
+        },
+        {
+          "case_id": "0017",
+          "original": {
+            "valid": false,
+            "error": "LLM_INVALID_PANEL:lente=auditora:1=RP04.auditoria:MOTIVO_OBRIGATORIO;2=RP04.auditoria:DUPLA_CONTAGEM_EXIGE_CONFLITO_IDENTIFICADO;3=RP04.auditoria:DUPLA_CONTAGEM_EXIGE_CONFLITO_IDENTIFICADO",
+            "error_kind": "validação da auditora",
+            "consensus": "LOCAL_MAJORITY_DISAGREE",
+            "label": null,
+            "request_count": 0,
+            "request_ids": [],
+            "rp": 0,
+            "counterclaims": 0,
+            "reviewer_agree": 0,
+            "reviewer_disagree": 0,
+            "reviewer_error": 0,
+            "catalog_objections": 0,
+            "other_objections": 0,
+            "format_errors": 0,
+            "api_calls": 6,
+            "tokens": 55099,
+            "cost_usd": "0.282921",
+            "elapsed_seconds": 159.518
+          },
+          "retry": {
+            "valid": true,
+            "error": null,
+            "error_kind": null,
+            "consensus": "LOCAL_MAJORITY_DISAGREE",
+            "label": "APTO_INTEGRAL",
+            "request_count": 6,
+            "request_ids": [
+              "RP01",
+              "RP02",
+              "RP03",
+              "RP04",
+              "CR01",
+              "CR02"
+            ],
+            "rp": 4,
+            "counterclaims": 2,
+            "reviewer_agree": 1,
+            "reviewer_disagree": 2,
+            "reviewer_error": 1,
+            "catalog_objections": 0,
+            "other_objections": 2,
+            "format_errors": 1,
+            "api_calls": 10,
+            "tokens": 139361,
+            "cost_usd": "0.3516164340685",
+            "elapsed_seconds": 283.369
+          },
+          "assessment": {
+            "technical": "Painel recuperado",
+            "semantic": "Catálogo materialmente fiel: 4 RP e 2 CR expressamente formulados no pedido contraposto.",
+            "conclusion": "Houve 1 aprovação, 2 objeções a CR01 e 1 erro de formato. A fonte contém pedido contraposto expresso e a mesma estrutura já havia obtido 3–1 na v23.1."
+          }
+        },
+        {
+          "case_id": "0033",
+          "original": {
+            "valid": false,
+            "error": "LLM_INVALID_PANEL:lente=auditora:1=RP01.auditoria:DUPLA_CONTAGEM_EXIGE_CONFLITO_IDENTIFICADO;2=RP01.auditoria:APTA_COM_RESSALVA_EXIGE_SOMENTE_DUPLA_CONTAGEM_E_CONFLITO;3=RP01.auditoria:APTA_COM_RESSALVA_EXIGE_SOMENTE_DUPLA_CONTAGEM_E_CONFLITO",
+            "error_kind": "validação da auditora",
+            "consensus": "LOCAL_MAJORITY_DISAGREE",
+            "label": null,
+            "request_count": 0,
+            "request_ids": [],
+            "rp": 0,
+            "counterclaims": 0,
+            "reviewer_agree": 0,
+            "reviewer_disagree": 0,
+            "reviewer_error": 0,
+            "catalog_objections": 0,
+            "other_objections": 0,
+            "format_errors": 0,
+            "api_calls": 6,
+            "tokens": 25544,
+            "cost_usd": "0.0456660",
+            "elapsed_seconds": 20.078
+          },
+          "retry": {
+            "valid": false,
+            "error": "LLM_INVALID_PANEL:lente=auditora:1=RP01.auditoria:APTA_COM_RESSALVA_EXIGE_SOMENTE_DUPLA_CONTAGEM_E_CONFLITO;2=RP01.auditoria:APTA_COM_RESSALVA_EXIGE_SOMENTE_DUPLA_CONTAGEM_E_CONFLITO;3=RP01.auditoria:APTA_COM_RESSALVA_EXIGE_SOMENTE_DUPLA_CONTAGEM_E_CONFLITO",
+            "error_kind": "validação da auditora",
+            "consensus": "LOCAL_MAJORITY_DISAGREE",
+            "label": null,
+            "request_count": 0,
+            "request_ids": [],
+            "rp": 0,
+            "counterclaims": 0,
+            "reviewer_agree": 0,
+            "reviewer_disagree": 0,
+            "reviewer_error": 0,
+            "catalog_objections": 0,
+            "other_objections": 0,
+            "format_errors": 0,
+            "api_calls": 6,
+            "tokens": 25411,
+            "cost_usd": "0.0449025",
+            "elapsed_seconds": 19.15
+          },
+          "assessment": {
+            "technical": "Falha técnica persistente",
+            "semantic": "Não avaliável nesta execução; rodada anterior confirmou um único RP sem falso CR.",
+            "conclusion": "Mistral repetiu uma ressalva fora do conjunto permitido na lente auditora; é incompatibilidade de formato/instrução."
+          }
+        },
+        {
+          "case_id": "0048",
+          "original": {
+            "valid": false,
+            "error": "LLM_INVALID_PANEL:lente=probatoria:1=CHAMADA_RunnerError;2=CHAMADA_RunnerError;3=CHAMADA_RunnerError|client=OPENROUTER_EMPTY_TEXT",
+            "error_kind": "modelo/transporte",
+            "consensus": "LOCAL_MAJORITY_DISAGREE",
+            "label": null,
+            "request_count": 0,
+            "request_ids": [],
+            "rp": 0,
+            "counterclaims": 0,
+            "reviewer_agree": 0,
+            "reviewer_disagree": 0,
+            "reviewer_error": 0,
+            "catalog_objections": 0,
+            "other_objections": 0,
+            "format_errors": 0,
+            "api_calls": 4,
+            "tokens": 47208,
+            "cost_usd": "0.113278871672",
+            "elapsed_seconds": 671.819
+          },
+          "retry": {
+            "valid": true,
+            "error": null,
+            "error_kind": null,
+            "consensus": "LOCAL_MAJORITY_AGREE",
+            "label": "APTO_INTEGRAL",
+            "request_count": 3,
+            "request_ids": [
+              "RP01",
+              "CR01",
+              "CR02"
+            ],
+            "rp": 1,
+            "counterclaims": 2,
+            "reviewer_agree": 4,
+            "reviewer_disagree": 0,
+            "reviewer_error": 0,
+            "catalog_objections": 0,
+            "other_objections": 0,
+            "format_errors": 0,
+            "api_calls": 13,
+            "tokens": 132608,
+            "cost_usd": "0.2581662888635",
+            "elapsed_seconds": 981.567
+          },
+          "assessment": {
+            "technical": "Painel recuperado",
+            "semantic": "3 pedidos negociáveis coerentes: RP01 e CR01/CR02 expressamente contrapostos.",
+            "conclusion": "Recuperação completa com aprovação unânime 4–0; a falha anterior era transitória, embora a execução tenha sido lenta."
+          }
+        }
+      ]
+    }
   },
   "cases": [
     {
@@ -166,7 +411,8 @@
           "format_errors": 0,
           "api_calls": 12,
           "tokens": 166256,
-          "cost_usd": "0.546337450755"
+          "cost_usd": "0.546337450755",
+          "elapsed_seconds": 344.776
         },
         "v23.1": {
           "valid": true,
@@ -195,7 +441,8 @@
           "format_errors": 1,
           "api_calls": 12,
           "tokens": 182207,
-          "cost_usd": "0.50866029534"
+          "cost_usd": "0.50866029534",
+          "elapsed_seconds": 310.673
         }
       }
     },
@@ -230,7 +477,8 @@
           "format_errors": 0,
           "api_calls": 10,
           "tokens": 51214,
-          "cost_usd": "0.12193120971"
+          "cost_usd": "0.12193120971",
+          "elapsed_seconds": 84.718
         },
         "v23.1": {
           "valid": true,
@@ -254,7 +502,8 @@
           "format_errors": 0,
           "api_calls": 8,
           "tokens": 46566,
-          "cost_usd": "0.1165491435"
+          "cost_usd": "0.1165491435",
+          "elapsed_seconds": 92.634
         }
       }
     },
@@ -289,7 +538,8 @@
           "format_errors": 0,
           "api_calls": 11,
           "tokens": 69708,
-          "cost_usd": "0.12296435444"
+          "cost_usd": "0.12296435444",
+          "elapsed_seconds": 139.922
         },
         "v23.1": {
           "valid": true,
@@ -312,7 +562,8 @@
           "format_errors": 0,
           "api_calls": 8,
           "tokens": 51441,
-          "cost_usd": "0.10139699652"
+          "cost_usd": "0.10139699652",
+          "elapsed_seconds": 139.137
         }
       }
     },
@@ -343,7 +594,8 @@
           "format_errors": 0,
           "api_calls": 4,
           "tokens": 48756,
-          "cost_usd": "0.10347328863"
+          "cost_usd": "0.10347328863",
+          "elapsed_seconds": 522.507
         },
         "v23.1": {
           "valid": false,
@@ -363,7 +615,8 @@
           "format_errors": 0,
           "api_calls": 4,
           "tokens": 47878,
-          "cost_usd": "0.110700475428"
+          "cost_usd": "0.110700475428",
+          "elapsed_seconds": 746.824
         }
       }
     },
@@ -402,7 +655,8 @@
           "format_errors": 0,
           "api_calls": 11,
           "tokens": 115721,
-          "cost_usd": "0.241067532235"
+          "cost_usd": "0.241067532235",
+          "elapsed_seconds": 317.388
         },
         "v23.1": {
           "valid": true,
@@ -429,7 +683,8 @@
           "format_errors": 0,
           "api_calls": 10,
           "tokens": 93142,
-          "cost_usd": "0.20172214752"
+          "cost_usd": "0.20172214752",
+          "elapsed_seconds": 157.142
         }
       }
     },
@@ -471,7 +726,8 @@
           "format_errors": 0,
           "api_calls": 10,
           "tokens": 162157,
-          "cost_usd": "0.499571788925"
+          "cost_usd": "0.499571788925",
+          "elapsed_seconds": 332.822
         },
         "v23.1": {
           "valid": false,
@@ -491,7 +747,8 @@
           "format_errors": 0,
           "api_calls": 6,
           "tokens": 55099,
-          "cost_usd": "0.282921"
+          "cost_usd": "0.282921",
+          "elapsed_seconds": 159.518
         }
       }
     },
@@ -524,7 +781,8 @@
           "format_errors": 0,
           "api_calls": 10,
           "tokens": 50160,
-          "cost_usd": "0.12031505518"
+          "cost_usd": "0.12031505518",
+          "elapsed_seconds": 112.006
         },
         "v23.1": {
           "valid": true,
@@ -546,7 +804,8 @@
           "format_errors": 0,
           "api_calls": 10,
           "tokens": 52695,
-          "cost_usd": "0.11870955142"
+          "cost_usd": "0.11870955142",
+          "elapsed_seconds": 116.98
         }
       }
     },
@@ -579,7 +838,8 @@
           "format_errors": 0,
           "api_calls": 8,
           "tokens": 35752,
-          "cost_usd": "0.062447815204"
+          "cost_usd": "0.062447815204",
+          "elapsed_seconds": 88.674
         },
         "v23.1": {
           "valid": true,
@@ -601,7 +861,8 @@
           "format_errors": 0,
           "api_calls": 8,
           "tokens": 36873,
-          "cost_usd": "0.06731467476"
+          "cost_usd": "0.06731467476",
+          "elapsed_seconds": 68.972
         }
       }
     },
@@ -636,7 +897,8 @@
           "format_errors": 0,
           "api_calls": 8,
           "tokens": 62461,
-          "cost_usd": "0.1285876074195"
+          "cost_usd": "0.1285876074195",
+          "elapsed_seconds": 347.418
         },
         "v23.1": {
           "valid": true,
@@ -661,7 +923,8 @@
           "format_errors": 0,
           "api_calls": 10,
           "tokens": 97404,
-          "cost_usd": "0.184934248913"
+          "cost_usd": "0.184934248913",
+          "elapsed_seconds": 642.266
         }
       }
     },
@@ -695,7 +958,8 @@
           "format_errors": 0,
           "api_calls": 10,
           "tokens": 54867,
-          "cost_usd": "0.105676733469"
+          "cost_usd": "0.105676733469",
+          "elapsed_seconds": 107.312
         },
         "v23.1": {
           "valid": true,
@@ -717,7 +981,8 @@
           "format_errors": 0,
           "api_calls": 10,
           "tokens": 47780,
-          "cost_usd": "0.08955868312"
+          "cost_usd": "0.08955868312",
+          "elapsed_seconds": 95.642
         }
       }
     },
@@ -752,7 +1017,8 @@
           "format_errors": 0,
           "api_calls": 8,
           "tokens": 65858,
-          "cost_usd": "0.186710492684"
+          "cost_usd": "0.186710492684",
+          "elapsed_seconds": 133.771
         },
         "v23.1": {
           "valid": true,
@@ -776,7 +1042,8 @@
           "format_errors": 0,
           "api_calls": 8,
           "tokens": 66130,
-          "cost_usd": "0.18559943924"
+          "cost_usd": "0.18559943924",
+          "elapsed_seconds": 148.292
         }
       }
     },
@@ -814,7 +1081,8 @@
           "format_errors": 0,
           "api_calls": 9,
           "tokens": 83992,
-          "cost_usd": "0.202000707855"
+          "cost_usd": "0.202000707855",
+          "elapsed_seconds": 139.08
         },
         "v23.1": {
           "valid": true,
@@ -839,7 +1107,8 @@
           "format_errors": 0,
           "api_calls": 10,
           "tokens": 73306,
-          "cost_usd": "0.18394149298"
+          "cost_usd": "0.18394149298",
+          "elapsed_seconds": 113.937
         }
       }
     },
@@ -874,7 +1143,8 @@
           "format_errors": 0,
           "api_calls": 8,
           "tokens": 76541,
-          "cost_usd": "0.1540422749915"
+          "cost_usd": "0.1540422749915",
+          "elapsed_seconds": 227.862
         },
         "v23.1": {
           "valid": true,
@@ -898,7 +1168,8 @@
           "format_errors": 0,
           "api_calls": 9,
           "tokens": 72333,
-          "cost_usd": "0.14500581392"
+          "cost_usd": "0.14500581392",
+          "elapsed_seconds": 169.247
         }
       }
     },
@@ -931,7 +1202,8 @@
           "format_errors": 0,
           "api_calls": 12,
           "tokens": 64808,
-          "cost_usd": "0.10447911529"
+          "cost_usd": "0.10447911529",
+          "elapsed_seconds": 224.427
         },
         "v23.1": {
           "valid": true,
@@ -953,7 +1225,8 @@
           "format_errors": 0,
           "api_calls": 8,
           "tokens": 50890,
-          "cost_usd": "0.100559027021"
+          "cost_usd": "0.100559027021",
+          "elapsed_seconds": 341.409
         }
       }
     },
@@ -987,7 +1260,8 @@
           "format_errors": 0,
           "api_calls": 8,
           "tokens": 43034,
-          "cost_usd": "0.085101275609"
+          "cost_usd": "0.085101275609",
+          "elapsed_seconds": 114.566
         },
         "v23.1": {
           "valid": false,
@@ -1007,7 +1281,8 @@
           "format_errors": 0,
           "api_calls": 6,
           "tokens": 25544,
-          "cost_usd": "0.0456660"
+          "cost_usd": "0.0456660",
+          "elapsed_seconds": 20.078
         }
       }
     },
@@ -1041,7 +1316,8 @@
           "format_errors": 0,
           "api_calls": 9,
           "tokens": 65081,
-          "cost_usd": "0.186259908191"
+          "cost_usd": "0.186259908191",
+          "elapsed_seconds": 126.075
         },
         "v23.1": {
           "valid": true,
@@ -1063,7 +1339,8 @@
           "format_errors": 0,
           "api_calls": 10,
           "tokens": 59378,
-          "cost_usd": "0.16896326238"
+          "cost_usd": "0.16896326238",
+          "elapsed_seconds": 103.676
         }
       }
     },
@@ -1099,7 +1376,8 @@
           "format_errors": 0,
           "api_calls": 10,
           "tokens": 77358,
-          "cost_usd": "0.181678355451"
+          "cost_usd": "0.181678355451",
+          "elapsed_seconds": 138.344
         },
         "v23.1": {
           "valid": true,
@@ -1124,7 +1402,8 @@
           "format_errors": 0,
           "api_calls": 12,
           "tokens": 94867,
-          "cost_usd": "0.21000856362"
+          "cost_usd": "0.21000856362",
+          "elapsed_seconds": 128.291
         }
       }
     },
@@ -1159,7 +1438,8 @@
           "format_errors": 0,
           "api_calls": 8,
           "tokens": 56179,
-          "cost_usd": "0.1038994712635"
+          "cost_usd": "0.1038994712635",
+          "elapsed_seconds": 84.921
         },
         "v23.1": {
           "valid": true,
@@ -1182,7 +1462,8 @@
           "format_errors": 0,
           "api_calls": 8,
           "tokens": 52845,
-          "cost_usd": "0.10142441312"
+          "cost_usd": "0.10142441312",
+          "elapsed_seconds": 81.319
         }
       }
     },
@@ -1213,7 +1494,8 @@
           "format_errors": 0,
           "api_calls": 3,
           "tokens": 36391,
-          "cost_usd": "0.10322368"
+          "cost_usd": "0.10322368",
+          "elapsed_seconds": 593.206
         },
         "v23.1": {
           "valid": false,
@@ -1233,7 +1515,8 @@
           "format_errors": 0,
           "api_calls": 4,
           "tokens": 47208,
-          "cost_usd": "0.113278871672"
+          "cost_usd": "0.113278871672",
+          "elapsed_seconds": 671.819
         }
       }
     },
@@ -1270,7 +1553,8 @@
           "format_errors": 0,
           "api_calls": 11,
           "tokens": 91477,
-          "cost_usd": "0.183769529116"
+          "cost_usd": "0.183769529116",
+          "elapsed_seconds": 124.844
         },
         "v23.1": {
           "valid": true,
@@ -1296,7 +1580,8 @@
           "format_errors": 0,
           "api_calls": 10,
           "tokens": 91087,
-          "cost_usd": "0.19153409918"
+          "cost_usd": "0.19153409918",
+          "elapsed_seconds": 188.444
         }
       }
     }

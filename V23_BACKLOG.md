@@ -77,8 +77,14 @@ partir de 12 × R$ 1.950,00 apesar da proibição textual.
 Próximos itens:
 
 - os 20 sentinelas da v22 foram repetidos com o snapshot v23.1 congelado;
-- tratar separadamente falhas de lente/auditoria nos casos 0013, 0017, 0033
-  e 0048, sem reabrir as regras de catálogo aprovadas;
+- a repetição técnica dos casos 0013, 0017, 0033 e 0048 foi concluída sem
+  alterar o IC: 0017 e 0048 recuperaram painéis, enquanto 0013 e 0033
+  permaneceram falhas técnicas;
+- tratar a resposta vazia do DeepSeek em 0013 e a deriva de formato da auditora
+  Mistral em 0033 como problemas de robustez separados da semântica RP/CR;
+- manter 0017 como sentinela de consistência dos revisores: a fonte contém
+  pedido contraposto expresso, mas a nova rodada teve 1 aprovação, 2 objeções
+  e 1 erro de formato, após 3–1 anterior, sem mudança da regra material;
 - registrar o caso 0050 como risco de sobreposição: `RP03` pede todos os
   valores pagos e `RP04` inclui entrada e parcelas dentro dos danos materiais;
 - avaliar regra determinística para impedir valor catalogado que não esteja
@@ -92,3 +98,15 @@ As objeções `REVISOR_CATALOGO` caíram de 16 para 6. Dos sete `Disagree`, quat
 foram falhas técnicas, dois foram dominados por rigor excessivo ou variação de
 revisor e um foi misto. A direção do catálogo foi aprovada, mas a robustez
 técnica e a sobreposição do caso 0050 permanecem no backlog.
+
+## Resultado da repetição técnica
+
+As quatro repetições usaram o mesmo snapshot e o mesmo modelo líder da rodada
+original. Foram 33 chamadas, 346.023 tokens e US$ 0,772431658492:
+
+| Caso | Estabilidade técnica | Leitura RP/CR |
+|---|---|---|
+| 0013 | falha persistente; nenhum painel | não avaliável |
+| 0017 | painel recuperado; 1 aprovação, 2 objeções, 1 erro | 4 RP + 2 CR fiéis ao pedido contraposto; variação dos revisores |
+| 0033 | falha persistente na auditora | rodada anterior sustenta 1 RP e nenhum falso CR |
+| 0048 | painel recuperado; 4–0 | RP01 + CR01/CR02 coerentes com as pretensões expressas |

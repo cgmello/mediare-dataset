@@ -28,6 +28,11 @@ class AnalyzeV23CasesTests(unittest.TestCase):
         self.assertIn("13/20", html)
         self.assertIn("0050", html)
         self.assertIn("possível sobreposição", html)
+        retries = analysis["summary"]["technical_retries"]
+        self.assertEqual(retries["recovered_valid_panels"], ["0017", "0048"])
+        self.assertEqual(retries["recovered_majorities"], ["0048"])
+        self.assertEqual(retries["persistent_technical_failures"], ["0013", "0033"])
+        self.assertIn("Repetição dirigida dos quatro casos técnicos", html)
 
 
 if __name__ == "__main__":

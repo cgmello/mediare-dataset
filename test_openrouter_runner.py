@@ -14,6 +14,7 @@ from openrouter_runner import (
     reconciled_campaign_cost,
     raise_budget,
     render_report,
+    select_run_cases,
     total_cost,
 )
 
@@ -42,6 +43,19 @@ class FakeClient:
 
 
 class OpenRouterRunnerTests(unittest.TestCase):
+    def test_targeted_cases_preserve_manifest_order_for_model_rotation(self):
+        manifest_ids = [f"{number:04d}" for number in range(1, 51)]
+        selected = select_run_cases(manifest_ids, "0048,0013,0033,0017")
+        self.assertEqual(selected, ["0013", "0017", "0033", "0048"])
+        self.assertEqual([manifest_ids.index(case_id) for case_id in selected], [12, 16, 32, 47])
+
+    def test_targeted_cases_reject_unknown_or_duplicate_ids(self):
+        manifest_ids = [f"{number:04d}" for number in range(1, 51)]
+        with self.assertRaisesRegex(RunnerError, "not found"):
+            select_run_cases(manifest_ids, "0051")
+        with self.assertRaisesRegex(RunnerError, "unique four-digit"):
+            select_run_cases(manifest_ids, "0013,0013")
+
     def test_budget_raise_is_explicit_and_audited(self):
         with tempfile.TemporaryDirectory() as directory:
             out = Path(directory)

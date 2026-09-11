@@ -69,6 +69,23 @@ um catálogo adicional do caso 0015:
 
 Essas falhas pertencem às lentes/retries, não ao gate semântico de catálogo.
 
+### Repetição técnica posterior
+
+Os quatro casos foram repetidos com o mesmo snapshot e os mesmos líderes, sem
+qualquer alteração no IC:
+
+- 0013 repetiu a falha de resposta vazia do DeepSeek e não formou painel;
+- 0017 formou painel com 4 RP + 2 CR e chegou à revisão, mas teve 1 aprovação,
+  2 objeções a CR01 e 1 erro de formato; o pedido contraposto está expresso na
+  fonte;
+- 0033 repetiu a deriva de formato do Mistral na lente auditora e não formou
+  painel;
+- 0048 formou painel e foi aprovado por unanimidade 4–0.
+
+Assim, 0013 e 0033 permanecem na trilha técnica; 0048 foi uma falha transitória;
+e 0017 passou da trilha de disponibilidade para uma análise de consistência dos
+revisores. Nenhum desses resultados justifica reabrir a semântica RP/CR.
+
 ## Contabilidade completa da v23
 
 Todas as versões canário, gates, rechecagens, respostas incompletas e chamadas
@@ -83,7 +100,8 @@ interrompidas foram somadas a partir dos recibos locais:
 | v23.1 gate principal e chamada parcial | 65 | 515.740 | US$ 1,2017 |
 | v23.1 preservações restantes | 38 | 236.675 | US$ 0,5769 |
 | v23.1 sentinelas pareados com v22 | 171 | 1.344.673 | US$ 3,2284 |
-| **Total v23** | **425** | **3.183.755** | **US$ 7,6706** |
+| v23.1 repetição técnica de quatro casos | 33 | 346.023 | US$ 0,7724 |
+| **Total v23** | **458** | **3.529.778** | **US$ 8,4431** |
 
 ## Resultado do gate de 20 sentinelas
 
@@ -95,5 +113,6 @@ A execução pareada está documentada em `V23_CASE_BY_CASE_ANALYSIS.html`:
 - objeções `REVISOR_CATALOGO` reduzidas de 16 para 6;
 - risco persistente de sobreposição material identificado no caso 0050.
 
-O próximo gate deve repetir 0013, 0017, 0033 e 0048 sem mudar a semântica de
-catálogo, e manter 0050 no conjunto de regressão para futura deduplicação.
+O próximo trabalho técnico deve concentrar-se em 0013/0033 e na consistência de
+revisão do 0017, sem mudar a semântica de catálogo. O caso 0050 permanece no
+conjunto de regressão para futura deduplicação.

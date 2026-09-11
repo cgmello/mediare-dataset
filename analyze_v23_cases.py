@@ -17,6 +17,31 @@ CASE_IDS = (
 )
 BASELINE_DIR = "res_openrouter_v22_0001_0050"
 CANDIDATE_DIR = "res_openrouter_v23_1_sentinels"
+TECHNICAL_RETRY_DIR = "res_openrouter_v23_1_technical_retries"
+TECHNICAL_RETRY_IDS = ("0013", "0017", "0033", "0048")
+
+TECHNICAL_RETRY_ASSESSMENTS = {
+    "0013": {
+        "technical": "Falha técnica persistente",
+        "semantic": "Não avaliável: não houve painel nem revisão RP/CR.",
+        "conclusion": "DeepSeek voltou a falhar na lente probatória com resposta vazia; separar modelo/provedor do catálogo.",
+    },
+    "0017": {
+        "technical": "Painel recuperado",
+        "semantic": "Catálogo materialmente fiel: 4 RP e 2 CR expressamente formulados no pedido contraposto.",
+        "conclusion": "Houve 1 aprovação, 2 objeções a CR01 e 1 erro de formato. A fonte contém pedido contraposto expresso e a mesma estrutura já havia obtido 3–1 na v23.1.",
+    },
+    "0033": {
+        "technical": "Falha técnica persistente",
+        "semantic": "Não avaliável nesta execução; rodada anterior confirmou um único RP sem falso CR.",
+        "conclusion": "Mistral repetiu uma ressalva fora do conjunto permitido na lente auditora; é incompatibilidade de formato/instrução.",
+    },
+    "0048": {
+        "technical": "Painel recuperado",
+        "semantic": "3 pedidos negociáveis coerentes: RP01 e CR01/CR02 expressamente contrapostos.",
+        "conclusion": "Recuperação completa com aprovação unânime 4–0; a falha anterior era transitória, embora a execução tenha sido lenta.",
+    },
+}
 
 # Julgamentos humanos desta rodada. Eles avaliam fidelidade do catálogo e causa
 # operacional; não substituem parecer jurídico sobre o mérito do conflito.
@@ -174,6 +199,7 @@ def summarize_result(row: dict) -> dict:
         "api_calls": int(row.get("case_api_calls") or 0),
         "tokens": int(row.get("total_tokens") or 0),
         "cost_usd": str(row.get("case_cost_usd") or "0"),
+        "elapsed_seconds": float(row.get("elapsed_seconds") or 0),
     }
 
 
@@ -234,6 +260,33 @@ def build_analysis(root: Path) -> dict:
         if item["versions"]["v22"]["consensus"] == "LOCAL_MAJORITY_AGREE"
         and item["versions"]["v23.1"]["consensus"] != "LOCAL_MAJORITY_AGREE"
     ]
+    retry_folder = root / TECHNICAL_RETRY_DIR
+    retry_raw = {
+        case_id: read_json(retry_folder / "results" / f"{case_id}.json")
+        for case_id in TECHNICAL_RETRY_IDS
+    }
+    technical_retries = {
+        "summary": read_json(retry_folder / "summary.json"),
+        "recovered_valid_panels": [
+            case_id for case_id, row in retry_raw.items() if not row.get("leader_error")
+        ],
+        "recovered_majorities": [
+            case_id for case_id, row in retry_raw.items()
+            if row.get("local_consensus") == "LOCAL_MAJORITY_AGREE"
+        ],
+        "persistent_technical_failures": [
+            case_id for case_id, row in retry_raw.items() if row.get("leader_error")
+        ],
+        "cases": [
+            {
+                "case_id": case_id,
+                "original": summarize_result(raw["v23.1"][case_id]),
+                "retry": summarize_result(retry_raw[case_id]),
+                "assessment": TECHNICAL_RETRY_ASSESSMENTS[case_id],
+            }
+            for case_id in TECHNICAL_RETRY_IDS
+        ],
+    }
     return {
         "method": (
             "paired operational and human catalog review over the same 20 cases; "
@@ -253,6 +306,7 @@ def build_analysis(root: Path) -> dict:
                 "mixed_local_option_and_reviewer_excess": ["0029"],
             },
             "persistent_material_risk": ["0050"],
+            "technical_retries": technical_retries,
         },
         "cases": rows,
     }
@@ -302,6 +356,20 @@ def render_html(analysis: dict) -> str:
             f"<p>{escape(assessment['catalog'])}</p><small>{escape(assessment['cause'])}</small></td>"
             "</tr>"
         )
+    retry = summary["technical_retries"]
+    retry_rows = []
+    for item in retry["cases"]:
+        assessment = item["assessment"]
+        retry_rows.append(
+            "<tr>"
+            f"<td><strong>{item['case_id']}</strong></td>"
+            f"<td>{escape(compact(item['original']))}<br><small>{item['original']['elapsed_seconds']:.1f} s</small></td>"
+            f"<td>{escape(compact(item['retry']))}<br><small>{item['retry']['elapsed_seconds']:.1f} s</small></td>"
+            f"<td><strong>{escape(assessment['technical'])}</strong><br>{escape(assessment['conclusion'])}</td>"
+            f"<td>{escape(assessment['semantic'])}</td>"
+            "</tr>"
+        )
+    retry_summary = retry["summary"]
     return f"""<!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mediare — análise pareada v22 × v23.1</title>
@@ -326,10 +394,15 @@ def render_html(analysis: dict) -> str:
 </tbody></table>
 <h2>Diagnóstico dos sete Disagree da v23.1</h2>
 <ul><li><strong>Falhas técnicas:</strong> 0013, 0017, 0033 e 0048.</li><li><strong>Rigor excessivo ou variação dos revisores:</strong> 0008 e 0018.</li><li><strong>Misto:</strong> 0029 — catálogo melhor, opção defeituosa corretamente retida e revisores que trataram retenção/fragmentação como falha fatal.</li></ul>
+<h2>Repetição dirigida dos quatro casos técnicos</h2>
+<p>Os quatro casos foram repetidos com o mesmo snapshot v23.1 e a mesma posição na rotação de líderes. O filtro de execução não alterou a lista de 50 casos do manifesto. A rodada consumiu {retry_summary['api_calls']} chamadas, {retry_summary['total_tokens']:,} tokens e US$ {Decimal(str(retry_summary['cost_usd'])):.4f}.</p>
+<div class="cards"><div class="card">Casos repetidos<strong>4/4</strong></div><div class="card">Painéis recuperados<strong>{len(retry['recovered_valid_panels'])}/4</strong><span>{', '.join(retry['recovered_valid_panels'])}</span></div><div class="card">Maiorias recuperadas<strong>{len(retry['recovered_majorities'])}/4</strong><span>{', '.join(retry['recovered_majorities'])}</span></div><div class="card">Falhas técnicas persistentes<strong>{len(retry['persistent_technical_failures'])}/4</strong><span>{', '.join(retry['persistent_technical_failures'])}</span></div></div>
+<table><thead><tr><th>Caso</th><th>Rodada original</th><th>Repetição técnica</th><th>Estabilidade técnica</th><th>Semântica RP/CR</th></tr></thead><tbody>{''.join(retry_rows)}</tbody></table>
+<div class="note"><strong>Leitura separada.</strong> <code>0013</code> e <code>0033</code> continuam como falhas técnicas sem painel comparável. <code>0048</code> recuperou painel e unanimidade, provando que sua falha anterior era transitória. <code>0017</code> recuperou o painel, mas revelou variação dos revisores sobre um CR explicitamente pedido; isso deve ser analisado como consistência da revisão, não como indisponibilidade do modelo nem como regressão automática do catálogo.</div>
 <h2>Análise caso a caso</h2>
 <table><thead><tr><th>Caso</th><th>v22</th><th>v23.1</th><th>Avaliação humana</th></tr></thead><tbody>{''.join(rows)}</tbody></table>
 <h2>Recomendação</h2>
-<ol><li><strong>Manter congelada a v23.1</strong>; não reabrir agora suas regras de catálogo.</li><li>Tratar falhas de modelo/transporte e da auditora como trilha técnica separada, sem alterar semântica RP/CR.</li><li>Adicionar ao backlog futuro uma verificação de sobreposição como a observada no caso 0050.</li><li>Usar os 20 resultados como aprovação da direção de catálogo, mas repetir os quatro casos técnicos antes de ampliar a amostra ou promover a versão ao Studio.</li></ol>
+<ol><li><strong>Manter congelada a semântica RP/CR da v23.1</strong>; a repetição não demonstrou regressão material.</li><li>Tratar `0013` e `0033` na trilha técnica de estabilidade de lentes/modelos.</li><li>Rever a consistência dos revisores no `0017`, sem fragmentar automaticamente os cinco componentes materiais de CR01.</li><li>Manter `0048` como controle de variância e `0050` como sentinela de sobreposição material.</li></ol>
 </main></body></html>"""
 
 

@@ -126,6 +126,21 @@ def load_selection(path):
     return ids
 
 
+def select_run_cases(manifest_case_ids, include_cases=None):
+    """Select a targeted subset without changing the frozen rotation order."""
+    if include_cases is None:
+        return list(manifest_case_ids)
+    requested = [case_id.strip() for case_id in include_cases.split(",") if case_id.strip()]
+    if (not requested or len(set(requested)) != len(requested)
+            or any(not re.fullmatch(r"\d{4}", case_id) for case_id in requested)):
+        raise RunnerError("--include-cases must contain unique four-digit case IDs")
+    missing = sorted(set(requested) - set(manifest_case_ids))
+    if missing:
+        raise RunnerError("--include-cases not found in campaign: " + ", ".join(missing))
+    requested_set = set(requested)
+    return [case_id for case_id in manifest_case_ids if case_id in requested_set]
+
+
 def load_models(path):
     value = read_json(path)
     models = value.get("models") if isinstance(value, dict) else None
@@ -914,8 +929,9 @@ def run_campaign(args):
     manifest["account_latest"] = snapshot
     atomic_json(out / "campaign.json", manifest)
     complete = {row["case_id"] for row in all_results(out)}
+    target_case_ids = select_run_cases(manifest["case_ids"], args.include_cases)
     run_completed = 0
-    for case_id in manifest["case_ids"]:
+    for case_id in target_case_ids:
         if case_id in complete:
             continue
         if args.case_limit is not None and run_completed >= args.case_limit:
@@ -986,6 +1002,11 @@ def parser():
     value.add_argument(
         "--case-limit", type=int,
         help="process at most this many new cases in the current invocation",
+    )
+    value.add_argument(
+        "--include-cases",
+        help=("comma-separated case IDs to process; the full campaign ordering remains "
+              "authoritative for leader-model rotation"),
     )
     return value
 

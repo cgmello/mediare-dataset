@@ -5,6 +5,27 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 **A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
 gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
+## v23.1 — repetição técnica dirigida — 2026-09-11
+
+- Repetidos somente os casos 0013, 0017, 0033 e 0048 com o mesmo snapshot
+  v23.1 e os mesmos líderes da rodada sentinela. O novo filtro
+  `--include-cases` preserva a posição no manifesto e, portanto, não altera a
+  rotação de modelos.
+- 0013 repetiu a resposta vazia do DeepSeek sem formar painel; 0033 repetiu a
+  ressalva inválida do Mistral na lente auditora. Ambos permanecem falhas
+  técnicas sem evidência semântica RP/CR nova.
+- 0017 recuperou painel completo com 4 RP + 2 CR, mas teve 1 aprovação, 2
+  objeções a CR01 e 1 erro de formato. O texto-fonte contém um “Pedido
+  Contraposto” expresso com as duas disposições, e a mesma estrutura já havia
+  sido aprovada 3–1.
+- 0048 recuperou painel completo e foi aprovado por unanimidade 4–0, mostrando
+  que a falha anterior era transitória, embora a execução tenha sido lenta.
+- A repetição consumiu 33 chamadas, 346.023 tokens e US$ 0,772431658492. O
+  desenvolvimento v23 acumulado passou a 458 chamadas, 3.529.778 tokens e
+  US$ 8,443081517829.
+- A análise técnica e semântica separada foi incorporada ao relatório
+  `V23_CASE_BY_CASE_ANALYSIS.html`; nenhuma regra do IC foi modificada.
+
 ## v23.1 — validação pareada de 20 sentinelas — 2026-09-11
 
 - Concluída a repetição dos 20 casos sentinela da v22 com o snapshot v23.1:

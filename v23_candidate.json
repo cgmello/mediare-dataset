@@ -26,7 +26,7 @@
     "corrections": "6/7",
     "preservations": "6/6",
     "remaining_issue": "0029 teve o valor derivado corrigido; 0050 mantém risco de sobreposição entre RP03 e RP04",
-    "next_checkpoint": "repetir falhas técnicas 0013, 0017, 0033 e 0048"
+    "next_checkpoint": "corrigir robustez técnica de 0013/0033 e avaliar consistência dos revisores em 0017 sem mudar a semântica RP/CR"
   },
   "sentinel_result": {
     "status": "catalog_direction_approved_with_technical_followup",
@@ -37,6 +37,18 @@
     "baseline_valid_panels": "18/20",
     "catalog_objections": "6 contra 16 na v22",
     "cost_usd": "3.228448199654",
+    "report": "V23_CASE_BY_CASE_ANALYSIS.html"
+  },
+  "technical_retry_result": {
+    "status": "completed_without_ic_change",
+    "cases": "4/4",
+    "recovered_valid_panels": ["0017", "0048"],
+    "recovered_local_majority": ["0048"],
+    "persistent_technical_failures": ["0013", "0033"],
+    "semantic_reviewer_followup": ["0017"],
+    "api_calls": 33,
+    "tokens": 346023,
+    "cost_usd": "0.7724316584920",
     "report": "V23_CASE_BY_CASE_ANALYSIS.html"
   }
 }
