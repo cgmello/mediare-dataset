@@ -5,6 +5,15 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 **A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
 gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
+## Backlog v23 — nomenclatura — 2026-09-11
+
+- Registrada em `V23_BACKLOG.md` a proposta de reservar `RR` para a fonte
+  “Resposta do Requerido” e renomear os contrapedidos do requerido de `RR01...`
+  para `CR01...`. `RP01...` permanece identificando pedidos do requerente.
+- A futura mudança deverá produzir `CR` somente em novas análises e preservar a
+  leitura de painéis históricos com `RR01...`, sem alterar mérito, valores,
+  opções ou regras de consenso.
+
 ## v22 híbrida — 2026-09-11
 
 - Criado o snapshot autônomo `22.0.0-experimental` (híbrido), composto a partir da
