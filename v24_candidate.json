@@ -1,7 +1,8 @@
 {
-  "source": "ic_v23_2.py",
-  "source_sha256": "50f7f73dca9b8931b1473bd5f424a6548d1a1f4d882303d2ed3e40a553c5be9a",
-  "version": "23.2.1-experimental",
+  "source": "ic_v24.py",
+  "source_sha256": "10d10da731431d44af174d430734f08925ae1099d3697bf7d61555384b4bd54e",
+  "version": "24.0.0-experimental",
+  "display_version": "v24",
   "baseline": {
     "source": "ic_v23.py",
     "source_sha256": "b82a49141927e961b4d03414edcd1193c1784d6486569f67a09a4e7562ae469a",
@@ -19,7 +20,7 @@
     "case_0017": "Require every PEDIDO reviewer objection to include a structured same-ID catalog defect with source evidence and a concrete correction.",
     "control_0048": "When an impossible VALOR_INFERIDO objection is normalized, remove only its redundant PEDIDO code and preserve all other reviewer objections; give mandatory-reasoning GLM additional local output headroom."
   },
-  "local_model_config": "openrouter_models_v23_2.json",
+  "local_model_config": "openrouter_models_v24.json",
   "gate": {
     "selection": "v22_cases.json",
     "case_ids": ["0013", "0017", "0033"],
@@ -43,7 +44,7 @@
       }
     },
     "controls": {
-      "0048": "v23.2.1 clean rerun produced a valid panel and 4/4 agree",
+      "0048": "the clean final rerun produced a valid panel and 4/4 agree",
       "0050": "4/4 agree while preserving explicit RP01/RP02 and RP03/RP04 overlap conflicts"
     },
     "cost": {
@@ -52,5 +53,10 @@
       "usd": "1.469412900654"
     },
     "next_checkpoint": "run the same 20-case sentinel sample before any Studio promotion"
+  },
+  "versioning": {
+    "public_policy": "major-only: v24, v25, v26",
+    "runtime_literal": "24.0.0-experimental is retained only for Studio tooling compatibility",
+    "provenance": "the internal technical snapshots that formed this candidate are consolidated as v24; no paid calls were repeated for the rename"
   }
 }

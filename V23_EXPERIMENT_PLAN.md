@@ -57,9 +57,9 @@ mesmo modelo líder observado na v23.0.2. A rechecagem usa `--case-limit 3` para
 medir somente as correções de inexigibilidade defensiva, separação do saldo da
 caução e retenção expressamente contraposta.
 
-## Gate técnico v23.2.1
+## Gate técnico v24
 
-A v23.2.1 mantém o prompt e o validador de catálogo RP/CR idênticos à v23.1.
+A v24 mantém o prompt e o validador de catálogo RP/CR idênticos à v23.
 O gate separa três dimensões:
 
 - disponibilidade do líder: 0013 e 0048 não podem voltar a consumir todo o

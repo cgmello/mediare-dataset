@@ -5,10 +5,14 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 **A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
 gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
-## v23.2.1 — robustez técnica com semântica congelada — 2026-09-11
+Desde a v24, as versões públicas avançam apenas por números inteiros (`v24`,
+`v25`, `v26`), conforme `VERSIONING.md`. O sufixo interno `.0.0-experimental`
+existe somente para compatibilidade com as ferramentas do Studio.
 
-- Criada a candidata v23.2.1 sem alterar o prompt nem o validador do catálogo
-  RP/CR da v23.1.
+## v24 — robustez técnica com semântica congelada — 2026-09-11
+
+- Os protótipos técnicos internos posteriores à v23 foram consolidados como
+  v24, sem alterar o prompt nem o validador do catálogo RP/CR da v23.
 - O raciocínio opcional do DeepSeek foi desativado no gate OpenRouter; 0013 e
   0048 voltaram a produzir painéis válidos em vez de esgotar 10.000 tokens sem
   conteúdo.
@@ -24,6 +28,7 @@ gerado constitui acordo, condenacao ou validacao juridica de merito.**
   conflitos RP01↔RP02 e RP03↔RP04.
 - As duas rodadas consumiram 65 chamadas, 622.771 tokens e
   US$ 1,469412900654. A candidata avançou somente para o gate de 20 sentinelas.
+- A mudança do nome para v24 não alterou a lógica e não repetiu chamadas pagas.
 
 ## v23.1 — repetição técnica dirigida — 2026-09-11
 

@@ -111,9 +111,9 @@ original. Foram 33 chamadas, 346.023 tokens e US$ 0,772431658492:
 | 0033 | falha persistente na auditora | rodada anterior sustenta 1 RP e nenhum falso CR |
 | 0048 | painel recuperado; 4–0 | RP01 + CR01/CR02 coerentes com as pretensões expressas |
 
-## Evolução técnica v23.2.1
+## Evolução técnica v24
 
-A v23.2.1 resolveu os três alvos sem reabrir a semântica RP/CR:
+A v24 resolveu os três alvos sem reabrir a semântica RP/CR da v23:
 
 - 0013 passou a formar painel; o empate 2–2 remanescente é de mérito/revisão;
 - 0017 obteve aprovação unânime 4–0 com 4 RP + 2 CR preservados;
@@ -121,5 +121,5 @@ A v23.2.1 resolveu os três alvos sem reabrir a semântica RP/CR:
 - 0048 confirmou a recuperação do DeepSeek e terminou 4–0 em repetição limpa;
 - 0050 preservou conflitos explícitos de dupla contagem e terminou 4–0.
 
-Próximo item: repetir os 20 sentinelas com o snapshot v23.2.1 antes de qualquer
-promoção ao Studio. O relatório está em `V23_2_TECHNICAL_GATE_REPORT.md`.
+Próximo item: repetir os 20 sentinelas com o snapshot v24 antes de qualquer
+promoção ao Studio. O relatório está em `V24_TECHNICAL_GATE_REPORT.md`.

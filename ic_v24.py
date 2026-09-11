@@ -1,7 +1,7 @@
 # { "Depends": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6" }
 from genlayer import *
 
-"""Mediare IC experimental — v23.2 robustez tecnica do painel.
+"""Mediare IC experimental — v24: robustez tecnica do painel.
 
 Objetivos desta versao de transicao:
 - usar os casos v9 atuais, sem migracao previa do dataset;
@@ -34,7 +34,7 @@ import re
 import hashlib
 
 
-VERSAO = "23.2.1-experimental"
+VERSAO = "24.0.0-experimental"
 DATASET_BASE = (
     "https://raw.githubusercontent.com/cgmello/mediare-dataset/"
     "6bf13ae581afd08415c54d0d825543c21e34bff5/casos/"
