@@ -90,7 +90,7 @@ facilitar sua identificação e conferência no momento da assinatura.
 
 ### Avaliação local via OpenRouter
 
-`openrouter_runner.py` executa o snapshot congelado da v20 com cinco modelos,
+`openrouter_runner.py` executa um snapshot congelado do IC com cinco modelos,
 preserva respostas intermediárias, votos, tokens, latência e custos e permite
 retomada sem cobrar novamente chamadas já concluídas. O quórum local é apenas um
 instrumento analítico: ele não reproduz nem substitui o consenso do Studio.
@@ -112,6 +112,24 @@ do limite nominal da chave. O relatório único para o investidor é atualizado 
 Cada caso possui cinco papéis de modelo (um líder e quatro revisores), mas o líder
 executa catálogo e lentes em requisições separadas. Assim, dez casos correspondem
 a 50 avaliações de papéis e normalmente a pelo menos 80 chamadas HTTP reais.
+
+A v22 híbrida está em `ic_v22.py`. Sua ordem de casos coloca 20 sentinelas antes
+dos outros 30, permitindo um checkpoint pago antes da campanha completa:
+
+    python3 openrouter_runner.py init \
+      --source ic_v22.py \
+      --selection v22_cases.json \
+      --out res_openrouter_v22_0001_0050 \
+      --report OPENROUTER_V22_REPORT.html \
+      --max-cost 15
+    python3 openrouter_runner.py run \
+      --out res_openrouter_v22_0001_0050 \
+      --report OPENROUTER_V22_REPORT.html \
+      --api-key-file .openrouter.key \
+      --case-limit 20
+
+Os critérios para retomar os 30 casos restantes e, depois, promover o snapshot
+ao Studio estão em [V22_EXPERIMENT_PLAN.md](V22_EXPERIMENT_PLAN.md).
 
 ## Notes
 

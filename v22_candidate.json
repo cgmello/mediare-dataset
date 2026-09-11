@@ -1,0 +1,19 @@
+{
+  "source": "ic_v22.py",
+  "source_sha256": "66c4300440f36fb95c927e5ab464e11cbad0fe6be2e77c36c3b1061101d0a466",
+  "version": "22.0.0-experimental",
+  "baseline": "20.0.0-experimental",
+  "composition": {
+    "schema": "Lista fechada de falhas do revisor e semântica fail-closed da v21-schema.",
+    "catalog": "Identidade material, deduplicação conservadora e separação entre defesa e contrapedido da v21-catalog.",
+    "options": "Opções declaratórias sem pagador/beneficiário e redação de reconhecimento consensual da v21-options."
+  },
+  "explicitly_excluded": [
+    "Ampliação de bases monetárias originadas em DR/DD da v21-options.",
+    "Consolidação de providências autônomas ou não materialmente idênticas.",
+    "Qualquer relaxamento de fonte literal, auditoria, polos, dupla contagem ou falha fechada."
+  ],
+  "selection": "v22_cases.json",
+  "targeted_checkpoint_cases": 20,
+  "full_comparison_cases": 50
+}

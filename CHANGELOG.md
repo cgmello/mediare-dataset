@@ -5,6 +5,24 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 **A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
 gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
+## v22 híbrida — 2026-09-11
+
+- Criado o snapshot autônomo `22.0.0-experimental` (híbrido), composto a partir da
+  v20 e das contribuições isoladas avaliadas nas três v21.
+- Incorporado integralmente o schema fechado da `v21-schema`, que eliminou as
+  falhas de formato do revisor sem relaxar a reprovação.
+- Incorporadas da `v21-catalog` apenas as regras conservadoras de identidade
+  material: deduplicar a mesma providência, preservar resultados autônomos e
+  não converter contestação ou pedido de improcedência em contrapedido.
+- Incorporada da `v21-options` somente a correção comprovada das opções
+  declaratórias, agora sem pagador/beneficiário e redigidas como reconhecimento
+  consensual. A ampliação de bases monetárias DR/DD foi deliberadamente excluída.
+- Adicionados testes determinísticos, manifesto com SHA-256 e uma ordem de 50
+  casos que coloca 20 sentinelas no primeiro checkpoint da futura campanha.
+- Registrado em `AGENTS.md` que este é um projeto pessoal e privado da Mediare e
+  que as skills `genlayer-start-work` e `genlayer-finish-work` não devem ser
+  usadas neste repositório.
+
 ## Análise pareada v20 × candidatas v21 — 2026-09-10
 
 - Comparados individualmente os mesmos 50 casos da v20 contra `v21-schema`,
