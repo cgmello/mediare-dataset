@@ -5,6 +5,28 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 **A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
 gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
+## Análise pareada v20 × candidatas v21 — 2026-09-10
+
+- Comparados individualmente os mesmos 50 casos da v20 contra `v21-schema`,
+  `v21-catalog` e `v21-options`. O relatório HTML e o JSON registram por caso
+  validade, utilidade para mediação, maioria local, alinhamento com o Studio,
+  falhas de formato, número de pedidos e composição das opções.
+- A `v21-schema` preservou 42 painéis válidos, elevou as saídas úteis de 37 para
+  38 e eliminou as 35 falhas de formato dos revisores. Como essa mudança atua
+  somente após a geração do líder, variações nos painéis de líder foram
+  classificadas como estocásticas, não como efeito causal do schema.
+- A `v21-options` produziu 26/26 opções declaratórias sem pagador ou
+  beneficiário, corrigindo um problema presente em 17/17 ocorrências da v20, e
+  ganhou sete maiorias locais e sete alinhamentos com o Studio. A ampliação de
+  bases documentais não mostrou ganho agregado e não foi recomendada.
+- A `v21-catalog` reduziu os pedidos de 192 para 146 e removeu redundâncias
+  visíveis nos casos inspecionados, mas caiu para 36 painéis válidos e 34 úteis.
+  As consolidações precisam de validação humana de fidelidade antes de promoção.
+- Recomendação registrada: criar uma candidata híbrida baseada em schema,
+  incorporar apenas a correção declaratória comprovada de options e selecionar
+  regras de catalog somente quando não omitirem providências expressas. Testar
+  primeiro os casos de regressão/ganho e depois repetir os 50 casos completos.
+
 ## Relatório consolidado OpenRouter — 2026-09-10
 
 - Removido o link para a documentação de Usage and Cost da Anthropic, pois as

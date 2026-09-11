@@ -3,23 +3,65 @@
     {
       "name": "v21-schema",
       "path": "res_openrouter_v21_schema_0001_0050",
-      "status": "not_initialized",
-      "completed": 0,
-      "total": 50
+      "version": "21.0.0-schema-experimental",
+      "status": "complete",
+      "completed": 50,
+      "total": 50,
+      "valid_leader_panels": 42,
+      "useful_leader_outputs": 38,
+      "local_majority_agree": 18,
+      "reviewer_structural_failures": 0,
+      "cost_usd": "9.215008059460",
+      "diagnostics": {
+        "REVISOR_OPCAO": 26,
+        "REVISOR_CATALOGO": 23,
+        "REVISOR_CONCLUSAO": 15,
+        "REVISOR_PEDIDO": 7,
+        "REVISOR_FONTES": 4
+      },
+      "automatic_gates_pass": false
     },
     {
       "name": "v21-catalog",
       "path": "res_openrouter_v21_catalog_0001_0050",
-      "status": "not_initialized",
-      "completed": 0,
-      "total": 50
+      "version": "21.0.0-catalog-experimental",
+      "status": "complete",
+      "completed": 50,
+      "total": 50,
+      "valid_leader_panels": 36,
+      "useful_leader_outputs": 34,
+      "local_majority_agree": 24,
+      "reviewer_structural_failures": 29,
+      "cost_usd": "9.76236396210",
+      "diagnostics": {
+        "LLM_INVALID_PANEL:revisao_compacta:1=REVISAO_BOOLEANO_INVALIDO;2=REVISAO_BOOLEANO_INVALIDO;3=REVISAO_BOOLEANO_INVALIDO": 29,
+        "REVISOR_CATALOGO": 15,
+        "REVISOR_CONCLUSAO": 2,
+        "REVISOR_OPCAO": 2,
+        "REVISOR_PEDIDO": 1
+      },
+      "automatic_gates_pass": false
     },
     {
       "name": "v21-options",
       "path": "res_openrouter_v21_options_0001_0050",
-      "status": "not_initialized",
-      "completed": 0,
-      "total": 50
+      "version": "21.0.0-options-experimental",
+      "status": "complete",
+      "completed": 50,
+      "total": 50,
+      "valid_leader_panels": 39,
+      "useful_leader_outputs": 35,
+      "local_majority_agree": 27,
+      "reviewer_structural_failures": 33,
+      "cost_usd": "10.852586456495",
+      "diagnostics": {
+        "LLM_INVALID_PANEL:revisao_compacta:1=REVISAO_BOOLEANO_INVALIDO;2=REVISAO_BOOLEANO_INVALIDO;3=REVISAO_BOOLEANO_INVALIDO": 33,
+        "REVISOR_CATALOGO": 12,
+        "REVISOR_OPCAO": 3,
+        "REVISOR_CONCLUSAO": 3,
+        "REVISOR_PEDIDO": 2
+      },
+      "automatic_gates_pass": false
     }
   ]
 }

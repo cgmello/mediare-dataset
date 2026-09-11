@@ -3,11 +3,16 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from compare_v21 import candidate_metrics, rank_key, render_html
+from compare_v21 import candidate_metrics, is_structural_diagnostic, rank_key, render_html
 from v21_campaign_orchestrator import completed, ensure_itemized_cost_basis
 
 
 class CompareV21Tests(unittest.TestCase):
+    def test_invalid_panel_diagnostic_is_structural(self):
+        self.assertTrue(is_structural_diagnostic(
+            "LLM_INVALID_PANEL:revisao_compacta:1=REVISAO_BOOLEANO_INVALIDO"
+        ))
+
     def test_metrics_count_structural_failures_and_useful_outputs(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -47,6 +52,17 @@ class CompareV21Tests(unittest.TestCase):
         self.assertGreater(rank_key(passed), rank_key(failed))
         html = render_html([{**passed, "status": "in_progress"}, failed])
         self.assertIn("No candidate is eligible yet", html)
+
+    def test_html_reports_complete_campaigns_that_miss_gates(self):
+        failed = {
+            "name": "failed", "status": "complete", "automatic_gates_pass": False,
+            "valid_leader_panels": 42, "useful_leader_outputs": 38,
+            "local_majority_agree": 20, "reviewer_structural_failures": 0,
+            "completed": 50, "total": 50,
+        }
+        html = render_html([failed])
+        self.assertIn("All campaigns are complete", html)
+        self.assertIn("V21_CASE_BY_CASE_ANALYSIS.html", html)
 
     def test_orchestrator_requires_exactly_fifty_complete_cases(self):
         with tempfile.TemporaryDirectory() as directory:

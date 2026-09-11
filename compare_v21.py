@@ -28,6 +28,12 @@ STRUCTURAL_DIAGNOSTICS = {
 }
 
 
+def is_structural_diagnostic(diagnostic: str) -> bool:
+    return diagnostic in STRUCTURAL_DIAGNOSTICS or diagnostic.startswith(
+        "LLM_INVALID_PANEL:"
+    )
+
+
 def read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -72,7 +78,7 @@ def candidate_metrics(root: Path, name: str, relative: str) -> dict:
         "reviewer_structural_failures": sum(
             count
             for diagnostic, count in diagnostic_counts.items()
-            if diagnostic in STRUCTURAL_DIAGNOSTICS
+            if is_structural_diagnostic(diagnostic)
         ),
         "cost_usd": (read_json(folder / "summary.json").get("cost_usd")
                      if (folder / "summary.json").exists() else "0"),
@@ -115,12 +121,21 @@ def render_html(rows: list[dict]) -> str:
             f"<td>{'pass' if row.get('automatic_gates_pass') else 'pending/fail'}</td>"
             "</tr>"
         )
-    decision = (
-        f"Provisional metric winner: <strong>{escape(best)}</strong>. "
-        "Promotion still requires manual inspection of changed cases and Studio validation."
-        if best else
-        "No candidate is eligible yet. Complete all campaigns and inspect changed cases before promotion."
-    )
+    if best:
+        decision = (
+            f"Provisional metric winner: <strong>{escape(best)}</strong>. "
+            "Promotion still requires manual inspection of changed cases and Studio validation."
+        )
+    elif complete:
+        decision = (
+            "All campaigns are complete, but no candidate passed every automatic gate. "
+            "Inspect the paired case-by-case analysis before composing the next candidate."
+        )
+    else:
+        decision = (
+            "No candidate is eligible yet. Complete all campaigns and inspect changed cases "
+            "before promotion."
+        )
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>Mediare v21 comparison</title>
 <style>body{{font:16px/1.5 Arial,sans-serif;color:#172235;max-width:1100px;margin:40px auto;padding:0 20px}}table{{border-collapse:collapse;width:100%}}th,td{{border:1px solid #dce3ef;padding:10px;text-align:left}}th{{background:#eef3ff}}.callout{{margin:24px 0;padding:16px;border-left:5px solid #315efb;background:#eef3ff}}</style>
@@ -128,6 +143,7 @@ def render_html(rows: list[dict]) -> str:
 <p>All candidates use the same 50 cases, five-model rotation, reviewer quorum and cost accounting. Automatic gates are necessary but not sufficient.</p>
 <table><thead><tr><th>Candidate</th><th>Completed</th><th>Valid leaders</th><th>Useful outputs</th><th>Local majorities</th><th>Structural failures</th><th>Cost</th><th>Gates</th></tr></thead><tbody>{''.join(body)}</tbody></table>
 <div class="callout">{decision}</div>
+<p><a href="V21_CASE_BY_CASE_ANALYSIS.html">Open the paired v20 × v21 analysis for all 50 cases.</a></p>
 <p>Selection priority: safety gates, valid leader panels, useful outputs, local majorities, structural failures, then cost. Local majority is diagnostic and does not reproduce GenLayer consensus.</p>
 </body></html>"""
 
