@@ -26,18 +26,28 @@ class OpenRouterBudgetReportTests(unittest.TestCase):
                 api_calls=100, cost_usd="7", itemized_cost_usd="2",
                 key_usage_delta_usd="7",
             )
+            write_summary(
+                root, "res_openrouter_v22_0001_0050", completed=20, total=50,
+                api_calls=180, total_tokens=1477771,
+                cost_usd="3.6", itemized_cost_usd="3.5",
+            )
             write_summary(root, "res_pseudonymization_0501_1000", completed=5, total=500,
                           api_calls=10, cost_usd="0.1", status="in_progress")
-            account = {"key_usage_usd": "12.5", "captured_at": "2026-09-10T00:00:00Z"}
+            account = {"key_usage_usd": "16.5", "captured_at": "2026-09-10T00:00:00Z"}
             ledger = build_ledger(root, account)
-            self.assertEqual(ledger["spent"], 12.5)
+            self.assertEqual(ledger["spent"], 16.5)
             # The v21 key delta of 7 is ignored; only its $2 receipts count.
             schema = next(row for row in ledger["rows"] if row["activity"] == "v21-schema candidate")
             self.assertEqual(schema["cost"], 2)
+            v22 = next(row for row in ledger["rows"] if row["activity"] == "v22 hybrid sentinel")
+            self.assertEqual(v22["cost"], 3.5)
+            self.assertEqual(v22["tokens"], 1477771)
+            self.assertEqual(v22["target"], 20)
+            self.assertEqual(v22["status"], "complete — planned 20-case sentinel sample")
             self.assertGreater(ledger["reconciliation"], 0)
-            self.assertEqual(ledger["remaining"], 487.5)
+            self.assertEqual(ledger["remaining"], 483.5)
             self.assertEqual(ledger["historical_external_estimate"], 20)
-            self.assertEqual(ledger["total_project_cost"], 32.5)
+            self.assertEqual(ledger["total_project_cost"], 36.5)
             historical = next(row for row in ledger["rows"] if "Anthropic" in row["activity"])
             self.assertFalse(historical["grant_scope"])
 
@@ -65,6 +75,7 @@ class OpenRouterBudgetReportTests(unittest.TestCase):
             html = render_html(ledger)
             self.assertIn("US$500 Grant Ledger", html)
             self.assertIn("v21-schema candidate", html)
+            self.assertIn("v22 hybrid sentinel", html)
             self.assertIn("Collection of 500 public decisions", html)
             self.assertIn("How the project reached v20", html)
             self.assertIn("v1 prototype", html)

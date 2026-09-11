@@ -39,3 +39,30 @@ gera contrapedido.
   fonte em pedido.
 - A alteração é de nomenclatura e legibilidade; não deve mudar conclusões,
   valores, opções ou regras de consenso.
+
+## Regras materiais identificadas na auditoria da v22
+
+A auditoria manual dos 20 casos sentinela está documentada em
+`V22_CATALOG_AUDIT.md`. Ela acrescenta os seguintes itens à v23:
+
+- não transformar improcedência, negativa de responsabilidade, inexigibilidade,
+  redução ou recálculo puramente defensivo em `CR`;
+- tratar simples abatimento como defesa ligada ao `RP`, mas admitir `CR` quando
+  houver pedido autônomo de devolução de saldo ou reconhecimento de crédito;
+- consolidar principal, multa, juros e correção quando forem acessórios de uma
+  única cobrança;
+- não transformar componentes internos, perícias, meios de prova ou diligências
+  em pedidos autônomos;
+- não separar declaração/reconhecimento e pagamento quando ambos descreverem o
+  mesmo resultado material;
+- preencher valor numérico apenas quando o montante final estiver literalmente
+  expresso, sem multiplicação ou inferência feita pelo modelo;
+- exigir que `REVISOR_CATALOGO` informe tipo da falha, ID afetado, âncora da
+  fonte e correção esperada;
+- reservar `disagree` para falhas que alterem materialmente o conjunto
+  negociável, aceitando decomposições alternativas fiéis e sem dupla contagem.
+
+## Casos de regressão prioritários
+
+- Corrigir: 0008, 0017, 0023, 0026, 0029, 0033 e 0035.
+- Preservar: 0001, 0015, 0018, 0020, 0024 e 0031.
