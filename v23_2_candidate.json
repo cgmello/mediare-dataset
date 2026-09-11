@@ -1,0 +1,56 @@
+{
+  "source": "ic_v23_2.py",
+  "source_sha256": "50f7f73dca9b8931b1473bd5f424a6548d1a1f4d882303d2ed3e40a553c5be9a",
+  "version": "23.2.1-experimental",
+  "baseline": {
+    "source": "ic_v23.py",
+    "source_sha256": "b82a49141927e961b4d03414edcd1193c1784d6486569f67a09a4e7562ae469a",
+    "version": "23.1.0-experimental"
+  },
+  "scope": "technical-only",
+  "semantic_freeze": {
+    "rp_cr_catalog_prompt": "byte-equivalent to v23.1",
+    "catalog_validator": "unchanged",
+    "decision_and_option_rules": "unchanged"
+  },
+  "changes": {
+    "case_0013": "Disable optional DeepSeek reasoning in the local OpenRouter gate so the 10,000-token ceiling remains available for the required JSON answer.",
+    "case_0033": "Map unanchored DUPLA_CONTAGEM to a fail-closed PREMISSA/reformular state instead of rejecting the whole panel.",
+    "case_0017": "Require every PEDIDO reviewer objection to include a structured same-ID catalog defect with source evidence and a concrete correction.",
+    "control_0048": "When an impossible VALOR_INFERIDO objection is normalized, remove only its redundant PEDIDO code and preserve all other reviewer objections; give mandatory-reasoning GLM additional local output headroom."
+  },
+  "local_model_config": "openrouter_models_v23_2.json",
+  "gate": {
+    "selection": "v22_cases.json",
+    "case_ids": ["0013", "0017", "0033"],
+    "preserve_manifest_rotation": true,
+    "success_conditions": [
+      "0013 forms a valid panel without exhausting output tokens on hidden reasoning",
+      "0033 forms a valid fail-closed panel rather than failing audit enum validation",
+      "0017 reviewer PEDIDO objections are either evidenced or corrected"
+    ]
+  },
+  "gate_result": {
+    "status": "approved_for_20_case_sentinel",
+    "primary_gate": {
+      "cases": ["0013", "0017", "0033"],
+      "valid_panels": "3/3",
+      "local_majority": "2/3",
+      "details": {
+        "0013": "technical recovery; 2 agree and 2 substantive objections",
+        "0017": "4/4 agree; 4 RP and 2 CR preserved",
+        "0033": "4/4 agree; audit concern preserved as reformular/SEM_SUPORTE"
+      }
+    },
+    "controls": {
+      "0048": "v23.2.1 clean rerun produced a valid panel and 4/4 agree",
+      "0050": "4/4 agree while preserving explicit RP01/RP02 and RP03/RP04 overlap conflicts"
+    },
+    "cost": {
+      "api_calls": 65,
+      "tokens": 622771,
+      "usd": "1.469412900654"
+    },
+    "next_checkpoint": "run the same 20-case sentinel sample before any Studio promotion"
+  }
+}

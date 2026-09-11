@@ -56,3 +56,19 @@ da mesma campanha congelada.
 mesmo modelo líder observado na v23.0.2. A rechecagem usa `--case-limit 3` para
 medir somente as correções de inexigibilidade defensiva, separação do saldo da
 caução e retenção expressamente contraposta.
+
+## Gate técnico v23.2.1
+
+A v23.2.1 mantém o prompt e o validador de catálogo RP/CR idênticos à v23.1.
+O gate separa três dimensões:
+
+- disponibilidade do líder: 0013 e 0048 não podem voltar a consumir todo o
+  teto de saída em raciocínio sem produzir JSON;
+- coerência estrutural da auditora: 0033 deve preservar a preocupação de forma
+  fail-closed sem inventar conflito com outro pedido;
+- consistência dos revisores: 0017 só pode receber `PEDIDO` com falha de
+  catálogo estruturada, fonte, evidência e correção.
+
+Os controles 0048 e 0050 verificam, respectivamente, repetibilidade do
+DeepSeek e preservação de sobreposição real. Após aprovação, a próxima etapa é
+repetir os mesmos 20 sentinelas antes de qualquer promoção ao Studio.

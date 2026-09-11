@@ -5,6 +5,26 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 **A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
 gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
+## v23.2.1 — robustez técnica com semântica congelada — 2026-09-11
+
+- Criada a candidata v23.2.1 sem alterar o prompt nem o validador do catálogo
+  RP/CR da v23.1.
+- O raciocínio opcional do DeepSeek foi desativado no gate OpenRouter; 0013 e
+  0048 voltaram a produzir painéis válidos em vez de esgotar 10.000 tokens sem
+  conteúdo.
+- Risco `DUPLA_CONTAGEM` sem ID conflitante passou a ser preservado de modo
+  fail-closed como reformulação de premissa, corrigindo a deriva estrutural da
+  auditora em 0033.
+- Revisores que usam `PEDIDO` agora precisam fornecer defeito estruturado para
+  o mesmo ID. A normalização remove somente o `PEDIDO` ligado a
+  `VALOR_INFERIDO` impossível e preserva os demais códigos de objeção.
+- Gate primário: 3/3 painéis válidos; 0017 e 0033 fecharam 4–0, enquanto 0013
+  ficou 2–2 por objeções substantivas, não por falha técnica.
+- Controles: 0048 fechou 4–0 em repetição limpa; 0050 fechou 4–0 preservando os
+  conflitos RP01↔RP02 e RP03↔RP04.
+- As duas rodadas consumiram 65 chamadas, 622.771 tokens e
+  US$ 1,469412900654. A candidata avançou somente para o gate de 20 sentinelas.
+
 ## v23.1 — repetição técnica dirigida — 2026-09-11
 
 - Repetidos somente os casos 0013, 0017, 0033 e 0048 com o mesmo snapshot
