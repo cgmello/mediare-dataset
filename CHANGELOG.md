@@ -5,6 +5,22 @@ Resultados negativos e versoes nao analisadas permanecem no historico.
 **A v17 obteve consenso e foi recomendada para teste com mediador; nenhum Termo
 gerado constitui acordo, condenacao ou validacao juridica de merito.**
 
+## v23.1 — validação pareada de 20 sentinelas — 2026-09-11
+
+- Concluída a repetição dos 20 casos sentinela da v22 com o snapshot v23.1:
+  13/20 maiorias locais contra 11/20 na v22, com ganhos nos casos 0001 e 0015
+  e nenhuma maioria perdida.
+- A taxa de votos `Agree` dos revisores subiu de 49/72 (68,1%) para 50/64
+  (78,1%), e as objeções `REVISOR_CATALOGO` caíram de 16 para 6.
+- Os painéis válidos caíram de 18 para 16 por falhas técnicas: recorrências do
+  líder DeepSeek em 0013/0048 e falhas da lente auditora em 0017/0033. Essas
+  falhas foram separadas das mudanças de catálogo.
+- O caso 0050 revelou possível sobreposição persistente entre `RP03` e `RP04`,
+  apesar da aprovação por 3–1; o risco foi preservado no backlog para evitar
+  otimização cega por consenso.
+- A rodada sentinela consumiu 171 chamadas, 1.344.673 tokens e US$ 3,228448199654.
+  O relatório pareado reproduzível está em `V23_CASE_BY_CASE_ANALYSIS.html`.
+
 ## v23.1 — catálogo material auditável — 2026-09-11
 
 - Criado o snapshot `23.1.0-experimental`, derivado integralmente da v22 e com

@@ -1,0 +1,1304 @@
+{
+  "method": "paired operational and human catalog review over the same 20 cases; court-answer keys are contextual evidence, not mediation ground truth",
+  "summary": {
+    "v22": {
+      "api_calls": 180,
+      "average_cost_usd": "0.177176882320925",
+      "average_time_seconds": 215.23195,
+      "completed": 20,
+      "completion_tokens": 240793,
+      "cost_usd": "3.5435376464185",
+      "itemized_cost_usd": "3.5435376464185",
+      "key_usage_delta_usd": "3.535153128",
+      "local_majority_agree": 11,
+      "prompt_tokens": 1236978,
+      "studio_comparable": 20,
+      "studio_consensus_matches": 11,
+      "total": 50,
+      "total_tokens": 1477771,
+      "updated_at": "2026-09-11T13:28:33Z",
+      "useful_leader_outputs": 15,
+      "valid_leader_panels": 18
+    },
+    "v23.1": {
+      "api_calls": 171,
+      "average_cost_usd": "0.1614224099827",
+      "average_time_seconds": 224.815,
+      "completed": 20,
+      "completion_tokens": 242093,
+      "cost_usd": "3.228448199654",
+      "itemized_cost_usd": "3.228448199654",
+      "key_usage_delta_usd": "3.207184590",
+      "local_majority_agree": 13,
+      "prompt_tokens": 1102580,
+      "studio_comparable": 20,
+      "studio_consensus_matches": 13,
+      "total": 50,
+      "total_tokens": 1344673,
+      "updated_at": "2026-09-11T19:40:37Z",
+      "useful_leader_outputs": 13,
+      "valid_leader_panels": 16
+    },
+    "reviewers_v22": {
+      "total": 72,
+      "agree": 49,
+      "disagree": 23,
+      "error": 0,
+      "agree_rate": 0.6805555555555556,
+      "catalog_objections": 16,
+      "by_model": {
+        "anthropic/claude-sonnet-4.6": {
+          "agree": 14
+        },
+        "deepseek/deepseek-v4-pro": {
+          "disagree": 5,
+          "agree": 11
+        },
+        "mistralai/mistral-medium-3-5": {
+          "disagree": 10,
+          "agree": 4
+        },
+        "openai/gpt-5.4": {
+          "disagree": 6,
+          "agree": 8
+        },
+        "z-ai/glm-5.3": {
+          "agree": 12,
+          "disagree": 2
+        }
+      }
+    },
+    "reviewers_v23.1": {
+      "total": 64,
+      "agree": 50,
+      "disagree": 13,
+      "error": 1,
+      "agree_rate": 0.78125,
+      "catalog_objections": 6,
+      "by_model": {
+        "anthropic/claude-sonnet-4.6": {
+          "agree": 12,
+          "disagree": 1
+        },
+        "deepseek/deepseek-v4-pro": {
+          "agree": 11,
+          "disagree": 3
+        },
+        "mistralai/mistral-medium-3-5": {
+          "error": 1,
+          "agree": 6,
+          "disagree": 6
+        },
+        "openai/gpt-5.4": {
+          "agree": 10,
+          "disagree": 2
+        },
+        "z-ai/glm-5.3": {
+          "agree": 11,
+          "disagree": 1
+        }
+      }
+    },
+    "majority_gained_cases": [
+      "0001",
+      "0015"
+    ],
+    "majority_lost_cases": [],
+    "classifications": {
+      "melhoria": 9,
+      "falha técnica": 2,
+      "misto": 3,
+      "estável": 6
+    },
+    "disagreement_diagnosis": {
+      "technical": [
+        "0013",
+        "0017",
+        "0033",
+        "0048"
+      ],
+      "reviewer_excess_or_variation": [
+        "0008",
+        "0018"
+      ],
+      "mixed_local_option_and_reviewer_excess": [
+        "0029"
+      ]
+    },
+    "persistent_material_risk": [
+      "0050"
+    ]
+  },
+  "cases": [
+    {
+      "case_id": "0001",
+      "category": "001-locacao-vicios-ocultos",
+      "assessment": {
+        "verdict": "melhoria",
+        "catalog": "Mesmos cinco RP e três contrapedidos materiais; RR01–RR03 foram corretamente renomeados para CR01–CR03.",
+        "cause": "A maioria foi recuperada. Três revisores aprovaram; o erro de formato do Mistral não revelou defeito material."
+      },
+      "versions": {
+        "v22": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_DISAGREE",
+          "label": "APTO_PARCIAL_COM_RETENCOES",
+          "request_count": 8,
+          "request_ids": [
+            "RP01",
+            "RP02",
+            "RP03",
+            "RP04",
+            "RP05",
+            "RR01",
+            "RR02",
+            "RR03"
+          ],
+          "rp": 5,
+          "counterclaims": 3,
+          "reviewer_agree": 1,
+          "reviewer_disagree": 3,
+          "reviewer_error": 0,
+          "catalog_objections": 1,
+          "other_objections": 2,
+          "format_errors": 0,
+          "api_calls": 12,
+          "tokens": 166256,
+          "cost_usd": "0.546337450755"
+        },
+        "v23.1": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_PARCIAL_COM_RETENCOES",
+          "request_count": 8,
+          "request_ids": [
+            "RP01",
+            "RP02",
+            "RP03",
+            "RP04",
+            "RP05",
+            "CR01",
+            "CR02",
+            "CR03"
+          ],
+          "rp": 5,
+          "counterclaims": 3,
+          "reviewer_agree": 3,
+          "reviewer_disagree": 0,
+          "reviewer_error": 1,
+          "catalog_objections": 0,
+          "other_objections": 0,
+          "format_errors": 1,
+          "api_calls": 12,
+          "tokens": 182207,
+          "cost_usd": "0.50866029534"
+        }
+      }
+    },
+    {
+      "case_id": "0007",
+      "category": "locacao",
+      "assessment": {
+        "verdict": "melhoria",
+        "catalog": "Preservou três pedidos e corrigiu a desocupação de modalidade declaratória para obrigação de fazer.",
+        "cause": "Consenso unânime preservado; mudança pequena e materialmente correta."
+      },
+      "versions": {
+        "v22": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_INTEGRAL",
+          "request_count": 3,
+          "request_ids": [
+            "RP01",
+            "RP02",
+            "RP03"
+          ],
+          "rp": 3,
+          "counterclaims": 0,
+          "reviewer_agree": 4,
+          "reviewer_disagree": 0,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 10,
+          "tokens": 51214,
+          "cost_usd": "0.12193120971"
+        },
+        "v23.1": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_INTEGRAL",
+          "request_count": 3,
+          "request_ids": [
+            "RP01",
+            "RP02",
+            "RP03"
+          ],
+          "rp": 3,
+          "counterclaims": 0,
+          "reviewer_agree": 4,
+          "reviewer_disagree": 0,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 8,
+          "tokens": 46566,
+          "cost_usd": "0.1165491435"
+        }
+      }
+    },
+    {
+      "case_id": "0008",
+      "category": "locacao",
+      "assessment": {
+        "verdict": "melhoria",
+        "catalog": "Consolidou a multa de 10% como acessório da cobrança principal, reduzindo três pedidos para dois sem omitir resultado autônomo.",
+        "cause": "Disagree por empate: Mistral exigiu valor final não disponível e DeepSeek marcou RP01 sem justificativa estruturada. Predomina rigor excessivo/variação, não erro de catálogo."
+      },
+      "versions": {
+        "v22": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_DISAGREE",
+          "label": "APTO_INTEGRAL",
+          "request_count": 3,
+          "request_ids": [
+            "RP01",
+            "RP02",
+            "RP03"
+          ],
+          "rp": 3,
+          "counterclaims": 0,
+          "reviewer_agree": 2,
+          "reviewer_disagree": 2,
+          "reviewer_error": 0,
+          "catalog_objections": 2,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 11,
+          "tokens": 69708,
+          "cost_usd": "0.12296435444"
+        },
+        "v23.1": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_DISAGREE",
+          "label": "APTO_INTEGRAL",
+          "request_count": 2,
+          "request_ids": [
+            "RP01",
+            "RP02"
+          ],
+          "rp": 2,
+          "counterclaims": 0,
+          "reviewer_agree": 2,
+          "reviewer_disagree": 2,
+          "reviewer_error": 0,
+          "catalog_objections": 1,
+          "other_objections": 1,
+          "format_errors": 0,
+          "api_calls": 8,
+          "tokens": 51441,
+          "cost_usd": "0.10139699652"
+        }
+      }
+    },
+    {
+      "case_id": "0013",
+      "category": "locacao",
+      "assessment": {
+        "verdict": "falha técnica",
+        "catalog": "Nenhum catálogo comparável foi produzido em qualquer versão.",
+        "cause": "O mesmo líder DeepSeek falhou na lente probatória: JSON inválido na v22 e resposta vazia/transporte na v23. Não é efeito da regra de catálogo."
+      },
+      "versions": {
+        "v22": {
+          "valid": false,
+          "error": "LLM_INVALID_PANEL:lente=probatoria:1=JSON_INVALIDO:SINTAXE;pos=4711;tamanho=4731;envelope=OBJETO_INICIADO;2=JSON_INVALIDO:SINTAXE;pos=4425;tamanho=4487;envelope=OBJETO_INICIADO;3=JSON_INVALIDO:SINTAXE;pos=2906;tamanho=2906;envelope=OBJETO_INICIADO",
+          "error_kind": "modelo/transporte",
+          "consensus": "LOCAL_MAJORITY_DISAGREE",
+          "label": null,
+          "request_count": 0,
+          "request_ids": [],
+          "rp": 0,
+          "counterclaims": 0,
+          "reviewer_agree": 0,
+          "reviewer_disagree": 0,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 4,
+          "tokens": 48756,
+          "cost_usd": "0.10347328863"
+        },
+        "v23.1": {
+          "valid": false,
+          "error": "LLM_INVALID_PANEL:lente=probatoria:1=CHAMADA_RunnerError;2=CHAMADA_RunnerError;3=CHAMADA_RunnerError|client=OPENROUTER_EMPTY_TEXT",
+          "error_kind": "modelo/transporte",
+          "consensus": "LOCAL_MAJORITY_DISAGREE",
+          "label": null,
+          "request_count": 0,
+          "request_ids": [],
+          "rp": 0,
+          "counterclaims": 0,
+          "reviewer_agree": 0,
+          "reviewer_disagree": 0,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 4,
+          "tokens": 47878,
+          "cost_usd": "0.110700475428"
+        }
+      }
+    },
+    {
+      "case_id": "0015",
+      "category": "locacao",
+      "assessment": {
+        "verdict": "melhoria",
+        "catalog": "Removeu RR01, pois valores já pagos são abatimento/defesa e não contrapedido autônomo.",
+        "cause": "Passou de empate 2–2 para aprovação unânime 4–0."
+      },
+      "versions": {
+        "v22": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_DISAGREE",
+          "label": "APTO_PARCIAL_COM_RETENCOES",
+          "request_count": 7,
+          "request_ids": [
+            "RP01",
+            "RP02",
+            "RP03",
+            "RP04",
+            "RP05",
+            "RP06",
+            "RR01"
+          ],
+          "rp": 6,
+          "counterclaims": 1,
+          "reviewer_agree": 2,
+          "reviewer_disagree": 2,
+          "reviewer_error": 0,
+          "catalog_objections": 1,
+          "other_objections": 1,
+          "format_errors": 0,
+          "api_calls": 11,
+          "tokens": 115721,
+          "cost_usd": "0.241067532235"
+        },
+        "v23.1": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_PARCIAL_COM_RETENCOES",
+          "request_count": 6,
+          "request_ids": [
+            "RP01",
+            "RP02",
+            "RP03",
+            "RP04",
+            "RP05",
+            "RP06"
+          ],
+          "rp": 6,
+          "counterclaims": 0,
+          "reviewer_agree": 4,
+          "reviewer_disagree": 0,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 10,
+          "tokens": 93142,
+          "cost_usd": "0.20172214752"
+        }
+      }
+    },
+    {
+      "case_id": "0017",
+      "category": "locacao",
+      "assessment": {
+        "verdict": "misto",
+        "catalog": "Em execução anterior da mesma v23.1, consolidou seis rubricas de retenção em CR01 e preservou o dano moral autônomo como CR02; três de quatro revisores aprovaram.",
+        "cause": "Nesta repetição, a lente auditora falhou três vezes nas regras de dupla contagem antes da revisão. É regressão operacional da execução, não evidência de regressão do catálogo."
+      },
+      "versions": {
+        "v22": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_DISAGREE",
+          "label": "APTO_INTEGRAL",
+          "request_count": 10,
+          "request_ids": [
+            "RP01",
+            "RP02",
+            "RP03",
+            "RP04",
+            "RR01",
+            "RR02",
+            "RR03",
+            "RR04",
+            "RR05",
+            "RR06"
+          ],
+          "rp": 4,
+          "counterclaims": 6,
+          "reviewer_agree": 1,
+          "reviewer_disagree": 3,
+          "reviewer_error": 0,
+          "catalog_objections": 1,
+          "other_objections": 2,
+          "format_errors": 0,
+          "api_calls": 10,
+          "tokens": 162157,
+          "cost_usd": "0.499571788925"
+        },
+        "v23.1": {
+          "valid": false,
+          "error": "LLM_INVALID_PANEL:lente=auditora:1=RP04.auditoria:MOTIVO_OBRIGATORIO;2=RP04.auditoria:DUPLA_CONTAGEM_EXIGE_CONFLITO_IDENTIFICADO;3=RP04.auditoria:DUPLA_CONTAGEM_EXIGE_CONFLITO_IDENTIFICADO",
+          "error_kind": "validação da auditora",
+          "consensus": "LOCAL_MAJORITY_DISAGREE",
+          "label": null,
+          "request_count": 0,
+          "request_ids": [],
+          "rp": 0,
+          "counterclaims": 0,
+          "reviewer_agree": 0,
+          "reviewer_disagree": 0,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 6,
+          "tokens": 55099,
+          "cost_usd": "0.282921"
+        }
+      }
+    },
+    {
+      "case_id": "0018",
+      "category": "locacao",
+      "assessment": {
+        "verdict": "estável",
+        "catalog": "Preservou o único pedido agregado de cobrança; itens contestados são componentes da apuração, não pedidos autônomos.",
+        "cause": "Empate 2–2. A fragmentação pedida pelo Mistral contraria a unidade material; a objeção de opção do Claude é opaca e a opção já estava retida pela auditora."
+      },
+      "versions": {
+        "v22": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_DISAGREE",
+          "label": "SEM_OPCAO_APROVADA",
+          "request_count": 1,
+          "request_ids": [
+            "RP01"
+          ],
+          "rp": 1,
+          "counterclaims": 0,
+          "reviewer_agree": 2,
+          "reviewer_disagree": 2,
+          "reviewer_error": 0,
+          "catalog_objections": 2,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 10,
+          "tokens": 50160,
+          "cost_usd": "0.12031505518"
+        },
+        "v23.1": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_DISAGREE",
+          "label": "SEM_OPCAO_APROVADA",
+          "request_count": 1,
+          "request_ids": [
+            "RP01"
+          ],
+          "rp": 1,
+          "counterclaims": 0,
+          "reviewer_agree": 2,
+          "reviewer_disagree": 2,
+          "reviewer_error": 0,
+          "catalog_objections": 1,
+          "other_objections": 1,
+          "format_errors": 0,
+          "api_calls": 10,
+          "tokens": 52695,
+          "cost_usd": "0.11870955142"
+        }
+      }
+    },
+    {
+      "case_id": "0020",
+      "category": "locacao",
+      "assessment": {
+        "verdict": "estável",
+        "catalog": "Preservou corretamente um único pedido de resgate da garantia locatícia.",
+        "cause": "A maioria já existia e passou de 3–1 para unanimidade; sinal positivo, mas sujeito à variação entre execuções."
+      },
+      "versions": {
+        "v22": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "SOMENTE_DILIGENCIAS",
+          "request_count": 1,
+          "request_ids": [
+            "RP01"
+          ],
+          "rp": 1,
+          "counterclaims": 0,
+          "reviewer_agree": 3,
+          "reviewer_disagree": 1,
+          "reviewer_error": 0,
+          "catalog_objections": 1,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 8,
+          "tokens": 35752,
+          "cost_usd": "0.062447815204"
+        },
+        "v23.1": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "SOMENTE_DILIGENCIAS",
+          "request_count": 1,
+          "request_ids": [
+            "RP01"
+          ],
+          "rp": 1,
+          "counterclaims": 0,
+          "reviewer_agree": 4,
+          "reviewer_disagree": 0,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 8,
+          "tokens": 36873,
+          "cost_usd": "0.06731467476"
+        }
+      }
+    },
+    {
+      "case_id": "0022",
+      "category": "locacao",
+      "assessment": {
+        "verdict": "melhoria",
+        "catalog": "Preservou três RP e incluiu CR01 para o pedido afirmativo e autônomo de prazo razoável para desocupação.",
+        "cause": "Três revisores aprovaram. A única divergência foi sobre a conclusão do CR01, não sua existência no catálogo."
+      },
+      "versions": {
+        "v22": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_INTEGRAL",
+          "request_count": 3,
+          "request_ids": [
+            "RP01",
+            "RP02",
+            "RP03"
+          ],
+          "rp": 3,
+          "counterclaims": 0,
+          "reviewer_agree": 4,
+          "reviewer_disagree": 0,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 8,
+          "tokens": 62461,
+          "cost_usd": "0.1285876074195"
+        },
+        "v23.1": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_INTEGRAL",
+          "request_count": 4,
+          "request_ids": [
+            "RP01",
+            "RP02",
+            "RP03",
+            "CR01"
+          ],
+          "rp": 3,
+          "counterclaims": 1,
+          "reviewer_agree": 3,
+          "reviewer_disagree": 1,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 1,
+          "format_errors": 0,
+          "api_calls": 10,
+          "tokens": 97404,
+          "cost_usd": "0.184934248913"
+        }
+      }
+    },
+    {
+      "case_id": "0023",
+      "category": "locacao",
+      "assessment": {
+        "verdict": "melhoria",
+        "catalog": "Removeu a perícia contábil tratada pela v22 como RR01; perícia é meio de apuração, não resultado material de acordo.",
+        "cause": "Aprovação unânime preservada e catálogo ficou mais fiel."
+      },
+      "versions": {
+        "v22": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_PARCIAL_COM_RETENCOES",
+          "request_count": 2,
+          "request_ids": [
+            "RP01",
+            "RR01"
+          ],
+          "rp": 1,
+          "counterclaims": 1,
+          "reviewer_agree": 3,
+          "reviewer_disagree": 1,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 1,
+          "format_errors": 0,
+          "api_calls": 10,
+          "tokens": 54867,
+          "cost_usd": "0.105676733469"
+        },
+        "v23.1": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "SEM_OPCAO_APROVADA",
+          "request_count": 1,
+          "request_ids": [
+            "RP01"
+          ],
+          "rp": 1,
+          "counterclaims": 0,
+          "reviewer_agree": 4,
+          "reviewer_disagree": 0,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 10,
+          "tokens": 47780,
+          "cost_usd": "0.08955868312"
+        }
+      }
+    },
+    {
+      "case_id": "0024",
+      "category": "locacao",
+      "assessment": {
+        "verdict": "estável",
+        "catalog": "Preservou separadamente inexigibilidade, recálculo da multa e devolução do saldo da caução.",
+        "cause": "Passou de 3–1 para unanimidade; nenhuma regressão observada."
+      },
+      "versions": {
+        "v22": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_INTEGRAL",
+          "request_count": 3,
+          "request_ids": [
+            "RP01",
+            "RP02",
+            "RP03"
+          ],
+          "rp": 3,
+          "counterclaims": 0,
+          "reviewer_agree": 3,
+          "reviewer_disagree": 1,
+          "reviewer_error": 0,
+          "catalog_objections": 1,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 8,
+          "tokens": 65858,
+          "cost_usd": "0.186710492684"
+        },
+        "v23.1": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_INTEGRAL",
+          "request_count": 3,
+          "request_ids": [
+            "RP01",
+            "RP02",
+            "RP03"
+          ],
+          "rp": 3,
+          "counterclaims": 0,
+          "reviewer_agree": 4,
+          "reviewer_disagree": 0,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 8,
+          "tokens": 66130,
+          "cost_usd": "0.18559943924"
+        }
+      }
+    },
+    {
+      "case_id": "0026",
+      "category": "locacao",
+      "assessment": {
+        "verdict": "melhoria",
+        "catalog": "Removeu duas declarações defensivas do requerido que apenas negavam responsabilidade pelos RP; manteve os quatro resultados pedidos pelo requerente.",
+        "cause": "Três revisores aprovaram. Mistral insistiu em converter a defesa em CR, exatamente o falso positivo que a v23 foi criada para evitar."
+      },
+      "versions": {
+        "v22": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_INTEGRAL",
+          "request_count": 6,
+          "request_ids": [
+            "RP01",
+            "RP02",
+            "RP03",
+            "RP04",
+            "RR01",
+            "RR02"
+          ],
+          "rp": 4,
+          "counterclaims": 2,
+          "reviewer_agree": 3,
+          "reviewer_disagree": 1,
+          "reviewer_error": 0,
+          "catalog_objections": 1,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 9,
+          "tokens": 83992,
+          "cost_usd": "0.202000707855"
+        },
+        "v23.1": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_INTEGRAL",
+          "request_count": 4,
+          "request_ids": [
+            "RP01",
+            "RP02",
+            "RP03",
+            "RP04"
+          ],
+          "rp": 4,
+          "counterclaims": 0,
+          "reviewer_agree": 3,
+          "reviewer_disagree": 1,
+          "reviewer_error": 0,
+          "catalog_objections": 1,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 10,
+          "tokens": 73306,
+          "cost_usd": "0.18394149298"
+        }
+      }
+    },
+    {
+      "case_id": "0029",
+      "category": "locacao",
+      "assessment": {
+        "verdict": "misto",
+        "catalog": "Corrigiu o valor inventado de R$ 23.400,00: CR02 agora mantém a fórmula de 12 aluguéis, mas deixa o valor numérico nulo. CR01 preserva a disposição econômica única da caução.",
+        "cause": "O catálogo melhorou. Uma opção de CR01 falhou e foi corretamente retida; DeepSeek tratou a retenção como fatal, enquanto OpenAI e Mistral pediram fragmentações ou CR já existente. Há defeito localizado de opção e excesso dos revisores, não retorno do erro numérico."
+      },
+      "versions": {
+        "v22": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_DISAGREE",
+          "label": "APTO_INTEGRAL",
+          "request_count": 3,
+          "request_ids": [
+            "RP01",
+            "RR01",
+            "RR02"
+          ],
+          "rp": 1,
+          "counterclaims": 2,
+          "reviewer_agree": 2,
+          "reviewer_disagree": 2,
+          "reviewer_error": 0,
+          "catalog_objections": 2,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 8,
+          "tokens": 76541,
+          "cost_usd": "0.1540422749915"
+        },
+        "v23.1": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_DISAGREE",
+          "label": "APTO_PARCIAL_COM_RETENCOES",
+          "request_count": 3,
+          "request_ids": [
+            "RP01",
+            "CR01",
+            "CR02"
+          ],
+          "rp": 1,
+          "counterclaims": 2,
+          "reviewer_agree": 1,
+          "reviewer_disagree": 3,
+          "reviewer_error": 0,
+          "catalog_objections": 2,
+          "other_objections": 1,
+          "format_errors": 0,
+          "api_calls": 9,
+          "tokens": 72333,
+          "cost_usd": "0.14500581392"
+        }
+      }
+    },
+    {
+      "case_id": "0031",
+      "category": "cobranca",
+      "assessment": {
+        "verdict": "estável",
+        "catalog": "Preservou um único pedido de honorários de R$ 2.490,00, valor final literalmente declarado na petição.",
+        "cause": "Maioria preservada; a troca do único dissenso de Mistral para OpenAI é variação de modelo."
+      },
+      "versions": {
+        "v22": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_INTEGRAL",
+          "request_count": 1,
+          "request_ids": [
+            "RP01"
+          ],
+          "rp": 1,
+          "counterclaims": 0,
+          "reviewer_agree": 3,
+          "reviewer_disagree": 1,
+          "reviewer_error": 0,
+          "catalog_objections": 1,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 12,
+          "tokens": 64808,
+          "cost_usd": "0.10447911529"
+        },
+        "v23.1": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_INTEGRAL",
+          "request_count": 1,
+          "request_ids": [
+            "RP01"
+          ],
+          "rp": 1,
+          "counterclaims": 0,
+          "reviewer_agree": 3,
+          "reviewer_disagree": 1,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 1,
+          "format_errors": 0,
+          "api_calls": 8,
+          "tokens": 50890,
+          "cost_usd": "0.100559027021"
+        }
+      }
+    },
+    {
+      "case_id": "0033",
+      "category": "cobranca",
+      "assessment": {
+        "verdict": "misto",
+        "catalog": "A v23 removeu corretamente a declaração de inexigibilidade que apenas negava o RP01; execução anterior confirmou o catálogo com um único RP.",
+        "cause": "Nesta repetição, a auditora falhou três vezes em regras de dupla contagem antes da revisão. Falha técnica separada do ganho de catálogo."
+      },
+      "versions": {
+        "v22": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_DISAGREE",
+          "label": "APTO_INTEGRAL",
+          "request_count": 2,
+          "request_ids": [
+            "RP01",
+            "RR01"
+          ],
+          "rp": 1,
+          "counterclaims": 1,
+          "reviewer_agree": 2,
+          "reviewer_disagree": 2,
+          "reviewer_error": 0,
+          "catalog_objections": 2,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 8,
+          "tokens": 43034,
+          "cost_usd": "0.085101275609"
+        },
+        "v23.1": {
+          "valid": false,
+          "error": "LLM_INVALID_PANEL:lente=auditora:1=RP01.auditoria:DUPLA_CONTAGEM_EXIGE_CONFLITO_IDENTIFICADO;2=RP01.auditoria:APTA_COM_RESSALVA_EXIGE_SOMENTE_DUPLA_CONTAGEM_E_CONFLITO;3=RP01.auditoria:APTA_COM_RESSALVA_EXIGE_SOMENTE_DUPLA_CONTAGEM_E_CONFLITO",
+          "error_kind": "validação da auditora",
+          "consensus": "LOCAL_MAJORITY_DISAGREE",
+          "label": null,
+          "request_count": 0,
+          "request_ids": [],
+          "rp": 0,
+          "counterclaims": 0,
+          "reviewer_agree": 0,
+          "reviewer_disagree": 0,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 6,
+          "tokens": 25544,
+          "cost_usd": "0.0456660"
+        }
+      }
+    },
+    {
+      "case_id": "0035",
+      "category": "cobranca",
+      "assessment": {
+        "verdict": "melhoria",
+        "catalog": "Uniu reconhecimento e pagamento da mesma dívida, reduzindo dois RP redundantes para um resultado material.",
+        "cause": "Maioria 3–1 preservada; o dissenso isolado não trouxe falha estruturada de catálogo."
+      },
+      "versions": {
+        "v22": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_INTEGRAL",
+          "request_count": 2,
+          "request_ids": [
+            "RP01",
+            "RP02"
+          ],
+          "rp": 2,
+          "counterclaims": 0,
+          "reviewer_agree": 3,
+          "reviewer_disagree": 1,
+          "reviewer_error": 0,
+          "catalog_objections": 1,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 9,
+          "tokens": 65081,
+          "cost_usd": "0.186259908191"
+        },
+        "v23.1": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_INTEGRAL",
+          "request_count": 1,
+          "request_ids": [
+            "RP01"
+          ],
+          "rp": 1,
+          "counterclaims": 0,
+          "reviewer_agree": 3,
+          "reviewer_disagree": 1,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 1,
+          "format_errors": 0,
+          "api_calls": 10,
+          "tokens": 59378,
+          "cost_usd": "0.16896326238"
+        }
+      }
+    },
+    {
+      "case_id": "0046",
+      "category": "consumo",
+      "assessment": {
+        "verdict": "estável",
+        "catalog": "Manteve os quatro pedidos expressos do consumidor sem criar contrapedidos a partir das defesas.",
+        "cause": "Maioria preservada. A divergência isolada do DeepSeek foi sobre opções, não catálogo."
+      },
+      "versions": {
+        "v22": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "SOMENTE_DILIGENCIAS",
+          "request_count": 4,
+          "request_ids": [
+            "RP01",
+            "RP02",
+            "RP03",
+            "RP04"
+          ],
+          "rp": 4,
+          "counterclaims": 0,
+          "reviewer_agree": 4,
+          "reviewer_disagree": 0,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 10,
+          "tokens": 77358,
+          "cost_usd": "0.181678355451"
+        },
+        "v23.1": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_PARCIAL_COM_RETENCOES",
+          "request_count": 4,
+          "request_ids": [
+            "RP01",
+            "RP02",
+            "RP03",
+            "RP04"
+          ],
+          "rp": 4,
+          "counterclaims": 0,
+          "reviewer_agree": 3,
+          "reviewer_disagree": 1,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 1,
+          "format_errors": 0,
+          "api_calls": 12,
+          "tokens": 94867,
+          "cost_usd": "0.21000856362"
+        }
+      }
+    },
+    {
+      "case_id": "0047",
+      "category": "consumo",
+      "assessment": {
+        "verdict": "melhoria",
+        "catalog": "Consolidou desfazimento, devolução do veículo e restituição do preço como uma composição econômica ligada; dano moral permaneceu autônomo.",
+        "cause": "Unanimidade preservada com catálogo mais compacto."
+      },
+      "versions": {
+        "v22": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_INTEGRAL",
+          "request_count": 3,
+          "request_ids": [
+            "RP01",
+            "RP02",
+            "RP03"
+          ],
+          "rp": 3,
+          "counterclaims": 0,
+          "reviewer_agree": 4,
+          "reviewer_disagree": 0,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 8,
+          "tokens": 56179,
+          "cost_usd": "0.1038994712635"
+        },
+        "v23.1": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_INTEGRAL",
+          "request_count": 2,
+          "request_ids": [
+            "RP01",
+            "RP02"
+          ],
+          "rp": 2,
+          "counterclaims": 0,
+          "reviewer_agree": 4,
+          "reviewer_disagree": 0,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 8,
+          "tokens": 52845,
+          "cost_usd": "0.10142441312"
+        }
+      }
+    },
+    {
+      "case_id": "0048",
+      "category": "consumo",
+      "assessment": {
+        "verdict": "falha técnica",
+        "catalog": "Nenhum catálogo comparável foi produzido em qualquer versão.",
+        "cause": "O mesmo líder DeepSeek retornou texto vazio: na etapa de catálogo da v22 e na lente probatória da v23. Problema de modelo/transporte."
+      },
+      "versions": {
+        "v22": {
+          "valid": false,
+          "error": "LLM_INVALID_PANEL:catalogo:1=CHAMADA_RunnerError;2=CHAMADA_RunnerError;3=CHAMADA_RunnerError|client=OPENROUTER_EMPTY_TEXT",
+          "error_kind": "modelo/transporte",
+          "consensus": "LOCAL_MAJORITY_DISAGREE",
+          "label": null,
+          "request_count": 0,
+          "request_ids": [],
+          "rp": 0,
+          "counterclaims": 0,
+          "reviewer_agree": 0,
+          "reviewer_disagree": 0,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 3,
+          "tokens": 36391,
+          "cost_usd": "0.10322368"
+        },
+        "v23.1": {
+          "valid": false,
+          "error": "LLM_INVALID_PANEL:lente=probatoria:1=CHAMADA_RunnerError;2=CHAMADA_RunnerError;3=CHAMADA_RunnerError|client=OPENROUTER_EMPTY_TEXT",
+          "error_kind": "modelo/transporte",
+          "consensus": "LOCAL_MAJORITY_DISAGREE",
+          "label": null,
+          "request_count": 0,
+          "request_ids": [],
+          "rp": 0,
+          "counterclaims": 0,
+          "reviewer_agree": 0,
+          "reviewer_disagree": 0,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 4,
+          "tokens": 47208,
+          "cost_usd": "0.113278871672"
+        }
+      }
+    },
+    {
+      "case_id": "0050",
+      "category": "consumo",
+      "assessment": {
+        "verdict": "estável",
+        "catalog": "Preservou cinco RP, mas permanece possível sobreposição: RP03 pede todos os valores pagos e RP04 inclui entrada e parcelas dentro dos R$ 19.190,89.",
+        "cause": "Maioria 3–1 preservada. A objeção estruturada do GLM é plausível e revela que consenso maioritário não garante ausência de duplicidade."
+      },
+      "versions": {
+        "v22": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_PARCIAL_COM_RETENCOES",
+          "request_count": 5,
+          "request_ids": [
+            "RP01",
+            "RP02",
+            "RP03",
+            "RP04",
+            "RP05"
+          ],
+          "rp": 5,
+          "counterclaims": 0,
+          "reviewer_agree": 3,
+          "reviewer_disagree": 1,
+          "reviewer_error": 0,
+          "catalog_objections": 0,
+          "other_objections": 1,
+          "format_errors": 0,
+          "api_calls": 11,
+          "tokens": 91477,
+          "cost_usd": "0.183769529116"
+        },
+        "v23.1": {
+          "valid": true,
+          "error": null,
+          "error_kind": null,
+          "consensus": "LOCAL_MAJORITY_AGREE",
+          "label": "APTO_PARCIAL_COM_RETENCOES",
+          "request_count": 5,
+          "request_ids": [
+            "RP01",
+            "RP02",
+            "RP03",
+            "RP04",
+            "RP05"
+          ],
+          "rp": 5,
+          "counterclaims": 0,
+          "reviewer_agree": 3,
+          "reviewer_disagree": 1,
+          "reviewer_error": 0,
+          "catalog_objections": 1,
+          "other_objections": 0,
+          "format_errors": 0,
+          "api_calls": 10,
+          "tokens": 91087,
+          "cost_usd": "0.19153409918"
+        }
+      }
+    }
+  ]
+}

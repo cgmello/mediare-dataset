@@ -76,7 +76,19 @@ partir de 12 × R$ 1.950,00 apesar da proibição textual.
 
 Próximos itens:
 
-- repetir os 20 sentinelas da v22 com o snapshot v23.1 congelado;
-- tratar separadamente falhas de lente/auditoria e latência do DeepSeek;
+- os 20 sentinelas da v22 foram repetidos com o snapshot v23.1 congelado;
+- tratar separadamente falhas de lente/auditoria nos casos 0013, 0017, 0033
+  e 0048, sem reabrir as regras de catálogo aprovadas;
+- registrar o caso 0050 como risco de sobreposição: `RP03` pede todos os
+  valores pagos e `RP04` inclui entrada e parcelas dentro dos danos materiais;
 - avaliar regra determinística para impedir valor catalogado que não esteja
   literalmente ancorado na fonte, sem depender apenas da instrução à LLM.
+
+## Resultado dos 20 sentinelas
+
+A análise pareada completa está em `V23_CASE_BY_CASE_ANALYSIS.html`. A v23.1
+obteve 13/20 maiorias, contra 11/20 da v22, sem perder maioria em caso algum.
+As objeções `REVISOR_CATALOGO` caíram de 16 para 6. Dos sete `Disagree`, quatro
+foram falhas técnicas, dois foram dominados por rigor excessivo ou variação de
+revisor e um foi misto. A direção do catálogo foi aprovada, mas a robustez
+técnica e a sobreposição do caso 0050 permanecem no backlog.

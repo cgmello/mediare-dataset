@@ -30,6 +30,7 @@ V23_DEVELOPMENT_DIRS = (
     "res_openrouter_v23_1_targeted",
     "res_openrouter_v23_1_gate",
     "res_openrouter_v23_1_remaining",
+    "res_openrouter_v23_1_sentinels",
 )
 
 
@@ -165,13 +166,13 @@ def build_ledger(root, account=None):
         ),
         {
             "date": "2026-09-11",
-            "activity": "v23 catalog development and regression gates",
+            "activity": "v23 catalog development, gates, and sentinel validation",
             "tests": v23["completed"],
             "target": v23["completed"],
             "calls": v23["api_calls"],
             "tokens": v23["total_tokens"],
             "cost": v23["cost_usd"],
-            "status": "complete — 6/7 corrections; 6/6 preserved; interrupted calls included",
+            "status": "complete — gates passed; 20/20 sentinels; interrupted calls included",
             "grant_scope": True,
         },
         {
@@ -282,7 +283,7 @@ h1{{margin:.15rem 0;font-size:2rem}}h2{{margin-top:32px;border-bottom:2px solid 
 <p class="muted">The earlier Anthropic amount is the user's approximate estimate for direct API experiments during v1–v20. An automated check was attempted on 10 September 2026, but the available OAuth session lacked Admin API access. Anthropic documents that organization cost reporting requires an Admin credential; the estimate can be replaced by a Console Usage CSV export. Estimated total project API cost including that pre-grant amount: <strong>{money(ledger['total_project_cost'])}</strong>.</p>
 <h2>Current plan for the remaining budget</h2>
 <table><thead><tr><th>Priority</th><th>Control</th></tr></thead><tbody>
-<tr><td>Validate v23.1 on the 20-case sentinel set</td><td>Preserve the 6/7 correction and 6/6 preservation gates before Studio.</td></tr>
+<tr><td>Resolve v23.1 technical failures</td><td>Repeat cases 0013, 0017, 0033, and 0048 without changing the approved catalog semantics.</td></tr>
 <tr><td>Improve panel-generation stability</td><td>Diagnose DeepSeek latency and lens/auditor retries separately from catalog quality.</td></tr>
 <tr><td>Review the nine pseudonymized decisions held for inspection</td><td>No additional API cost unless a targeted repair is approved.</td></tr>
 <tr><td>Reserve the unspent balance for holdouts, robustness and new cases</td><td>Every new paid campaign must have a persisted ceiling and appear in this same ledger.</td></tr>

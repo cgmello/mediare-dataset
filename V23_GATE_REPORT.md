@@ -82,15 +82,18 @@ interrompidas foram somadas a partir dos recibos locais:
 | v23.1 rechecagem dirigida | 22 | 192.708 | US$ 0,4771 |
 | v23.1 gate principal e chamada parcial | 65 | 515.740 | US$ 1,2017 |
 | v23.1 preservações restantes | 38 | 236.675 | US$ 0,5769 |
-| **Total v23** | **254** | **1.839.082** | **US$ 4,4422** |
+| v23.1 sentinelas pareados com v22 | 171 | 1.344.673 | US$ 3,2284 |
+| **Total v23** | **425** | **3.183.755** | **US$ 7,6706** |
 
-## Próximo gate recomendado
+## Resultado do gate de 20 sentinelas
 
-Antes do Studio, executar os 20 sentinelas completos com a v23.1. O avanço deve
-exigir:
+A execução pareada está documentada em `V23_CASE_BY_CASE_ANALYSIS.html`:
 
-- manutenção dos 6/7 casos corrigidos e 6/6 preservados;
-- nenhum `RR01...` em painel novo;
-- melhoria ou estabilidade frente aos 18/20 painéis válidos da v22;
-- investigação separada das falhas de lente do DeepSeek e da auditora;
-- inspeção manual de toda nova divergência de catálogo fundamentada.
+- 13/20 maiorias locais, contra 11/20 da v22;
+- ganhos nos casos 0001 e 0015, sem maioria perdida;
+- 16/20 painéis válidos, contra 18/20, devido a falhas técnicas concentradas;
+- objeções `REVISOR_CATALOGO` reduzidas de 16 para 6;
+- risco persistente de sobreposição material identificado no caso 0050.
+
+O próximo gate deve repetir 0013, 0017, 0033 e 0048 sem mudar a semântica de
+catálogo, e manter 0050 no conjunto de regressão para futura deduplicação.
