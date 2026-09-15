@@ -38,6 +38,7 @@ V23_DEVELOPMENT_DIRS = (
 V24_DEVELOPMENT_DIRS = (
     "res_openrouter_v23_2_technical_gate",
     "res_openrouter_v23_2_1_control_0048",
+    "res_openrouter_v24_targeted_0023_0048",
 )
 
 
@@ -191,7 +192,7 @@ def build_ledger(root, account=None):
             "calls": v24["api_calls"],
             "tokens": v24["total_tokens"],
             "cost": v24["cost_usd"],
-            "status": "complete — five-case gate plus clean 0048 control",
+            "status": "complete — gate, clean control, and targeted 0023/0048 repeats",
             "grant_scope": True,
         },
         {
