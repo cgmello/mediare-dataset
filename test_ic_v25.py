@@ -26,6 +26,53 @@ def catalog():
 
 
 class V25TechnicalTests(unittest.TestCase):
+    def test_declaratory_concession_allows_null_poles(self):
+        pedido = {
+            "id": "RP01", "autor": "requerente", "contra": "requerido",
+            "modalidade": "declarar", "natureza": "declaratoria",
+            "valor_pedido_centavos": None, "descricao": "Declaração de rescisão.",
+        }
+        decisao = {
+            "pedido_id": "RP01", "decisao": "conceder",
+            "pagador": None, "beneficiario": None, "valor_centavos": 0,
+            "fontes_favoraveis": ["PR"], "fontes_contrarias": [],
+            "comentario": "A declaração é compatível com os fatos documentados.",
+            "sustentado": "A rescisão foi comunicada.",
+            "controvertido": "Nenhum identificado.",
+            "lacuna": {"dimensao": "nenhuma", "pergunta": None, "impacto": None},
+        }
+        self.assertTrue(V25["_decisao_valida"](decisao, pedido))
+
+    def test_monetary_concession_still_requires_poles(self):
+        pedido = catalog()["pedidos"][0]
+        decisao = {
+            "pedido_id": "RP01", "decisao": "conceder",
+            "pagador": None, "beneficiario": None, "valor_centavos": 1000,
+            "fontes_favoraveis": ["PR"], "fontes_contrarias": [],
+            "comentario": "Há suporte documental para o pagamento.",
+            "sustentado": "O valor foi comprovado.",
+            "controvertido": "Nenhum identificado.",
+            "lacuna": {"dimensao": "nenhuma", "pergunta": None, "impacto": None},
+        }
+        self.assertFalse(V25["_decisao_valida"](decisao, pedido))
+
+    def test_out_of_scope_may_have_no_follow_up_lacuna(self):
+        pedido = {
+            "id": "RP01", "autor": "requerente", "contra": "requerido",
+            "modalidade": "fazer", "natureza": "obrigacao_fazer",
+            "valor_pedido_centavos": None, "descricao": "Desocupação do imóvel.",
+        }
+        decisao = {
+            "pedido_id": "RP01", "decisao": "fora_de_escopo",
+            "pagador": None, "beneficiario": None, "valor_centavos": None,
+            "fontes_favoraveis": ["RR"], "fontes_contrarias": [],
+            "comentario": "O pedido já foi cumprido.",
+            "sustentado": "A desocupação ocorreu.",
+            "controvertido": "Nenhum identificado.",
+            "lacuna": {"dimensao": "escopo", "pergunta": None, "impacto": None},
+        }
+        self.assertTrue(V25["_decisao_valida"](decisao, pedido))
+
     def test_version_and_runner_compatibility(self):
         source = ROOT / "ic_v25.py"
         self.assertEqual(V25["VERSAO"], "25.0.0-experimental")

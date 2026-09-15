@@ -228,17 +228,34 @@ def _decisao_base_valida(d, pedido) -> bool:
     valor = d["valor_centavos"]
 
     if decisao == "conceder":
-        if pagador not in PARTES or beneficiario not in PARTES:
-            return False
-        if pagador == beneficiario:
-            return False
-        if pagador != pedido["contra"] or beneficiario != pedido["autor"]:
-            return False
+        # A concessão monetária representa transferência entre polos e, por
+        # isso, exige pagador/beneficiário explícitos. Já uma declaração ou
+        # providência não monetária não possui fluxo financeiro: o modelo pode
+        # (e a especificação permite) deixar ambos nulos. A v25 já instrui
+        # declaratórios a usar null; a validação não deve rejeitar esse caso.
+        if pedido["modalidade"] == "pagar":
+            if pagador not in PARTES or beneficiario not in PARTES:
+                return False
+            if pagador == beneficiario:
+                return False
+            if pagador != pedido["contra"] or beneficiario != pedido["autor"]:
+                return False
+            if valor <= 0:
+                return False
+        else:
+            # Para pedidos declaratórios/não monetários, alguns modelos ainda
+            # repetem os polos da obrigação mesmo quando a especificação pede
+            # null. Aceitamos apenas esse par canônico ou ambos nulos; nunca
+            # aceitamos um polo trocado ou parcial.
+            polos_nulos = pagador is None and beneficiario is None
+            polos_canonicos = (
+                pagador == pedido["contra"] and beneficiario == pedido["autor"]
+            )
+            if not (polos_nulos or polos_canonicos):
+                return False
+            if valor != 0:
+                return False
         if not d["fontes_favoraveis"]:
-            return False
-        if pedido["modalidade"] == "pagar" and valor <= 0:
-            return False
-        if pedido["modalidade"] != "pagar" and valor != 0:
             return False
     else:
         if pagador is not None or beneficiario is not None:
@@ -1535,6 +1552,12 @@ def _erro_analise(d):
     if l["dimensao"] == "nenhuma":
         if l["pergunta"] is not None or l["impacto"] is not None or d["decisao"] == "necessita_informacao":
             return "lacuna:PERGUNTA_E_IMPACTO_OBRIGATORIOS_PARA_INDETERMINADO"
+    elif (d["decisao"] == "fora_de_escopo"
+          and l["pergunta"] is None and l["impacto"] is None):
+        # Fora de escopo pode ser uma conclusão objetiva (por exemplo, pedido
+        # já cumprido), sem pergunta adicional para a mediação. Não invente
+        # uma diligência apenas para satisfazer o formato.
+        return ""
     elif not all(_texto_curto(l[c], MAX_ANALISE_CARACTERES) for c in ("pergunta", "impacto")):
         return "lacuna:PERGUNTA_E_IMPACTO_TEXTO_1_A_500"
     return ""
