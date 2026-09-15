@@ -40,6 +40,9 @@ V24_DEVELOPMENT_DIRS = (
     "res_openrouter_v23_2_1_control_0048",
     "res_openrouter_v24_targeted_0023_0048",
 )
+V25_DEVELOPMENT_DIRS = (
+    "res_openrouter_v25_targeted_0023_0048",
+)
 
 
 def as_decimal(value, default="0"):
@@ -104,6 +107,7 @@ def build_ledger(root, account=None):
     v22 = campaign_summary(root, "res_openrouter_v22_0001_0050")
     v23 = aggregate_call_receipts(root, V23_DEVELOPMENT_DIRS)
     v24 = aggregate_call_receipts(root, V24_DEVELOPMENT_DIRS)
+    v25 = aggregate_call_receipts(root, V25_DEVELOPMENT_DIRS)
     pseudo = campaign_summary(root, "res_pseudonymization_0501_1000")
     pseudo_completed = int(pseudo.get("completed") or 0)
     pseudo_accepted = int(pseudo.get("accepted") or 0)
@@ -193,6 +197,17 @@ def build_ledger(root, account=None):
             "tokens": v24["total_tokens"],
             "cost": v24["cost_usd"],
             "status": "complete — gate, clean control, and targeted 0023/0048 repeats",
+            "grant_scope": True,
+        },
+        {
+            "date": "2026-09-15",
+            "activity": "v25 targeted 0023/0048 validation",
+            "tests": v25["completed"],
+            "target": v25["completed"],
+            "calls": v25["api_calls"],
+            "tokens": v25["total_tokens"],
+            "cost": v25["cost_usd"],
+            "status": "complete — 0023 fixed; 0048 granularidade remains",
             "grant_scope": True,
         },
         {

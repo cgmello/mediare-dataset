@@ -21,8 +21,17 @@ existe somente para compatibilidade com as ferramentas do Studio.
   condição de negociação, não como novo pedido material.
 - A validação dos revisores permanece fail-closed e exige evidência estruturada;
   a estabilidade de formato continua sendo medida separadamente da semântica.
-- Nenhuma chamada paga da v25 foi executada ainda; o próximo passo é o gate
-  dirigido de `0023` e `0048`, seguido pelos 20 sentinelas.
+- O gate inicial da v25 é dirigido a `0023` e `0048`, seguido pelos 20
+  sentinelas após a correção de granularidade.
+
+### Resultado do gate dirigido — 2026-09-15
+
+- `0023` foi corrigido: somente `RP01`, maioria Agree 3–1.
+- `0048` continua bloqueado por granularidade: `RP01` e `RP02` repetem a mesma
+  cobrança; três revisores apontaram `GRANULARIDADE` e o Mistral teve erro de
+  formato.
+- A rodada consumiu 23 chamadas, 154.299 tokens e US$ 0,30808477098. O caso
+  `0048` precisa de correção antes do gate de 20 sentinelas.
 
 ## v24 — robustez técnica com semântica congelada — 2026-09-11
 
