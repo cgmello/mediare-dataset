@@ -43,6 +43,10 @@ V24_DEVELOPMENT_DIRS = (
 V25_DEVELOPMENT_DIRS = (
     "res_openrouter_v25_targeted_0023_0048",
     "res_openrouter_v25_targeted_r2_0023_0048",
+    "res_openrouter_v25_targeted_r3_0048",
+    "res_openrouter_v25_targeted_r4_0048",
+    "res_openrouter_v25_targeted_r5_0048",
+    "res_openrouter_v25_targeted_r6_0048",
 )
 
 

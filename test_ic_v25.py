@@ -130,6 +130,7 @@ class V25TechnicalTests(unittest.TestCase):
             {"id": "CR01", "autor": "requerido", "contra": "requerente", "modalidade": "declarar", "natureza": "declaratoria", "valor_pedido_centavos": None, "descricao": "Declaração de que a caução não foi paga."},
             {"id": "CR02", "autor": "requerido", "contra": "requerente", "modalidade": "pagar", "natureza": "outros", "valor_pedido_centavos": 5000, "descricao": "Restituição do saldo pago a maior."},
             {"id": "CR03", "autor": "requerido", "contra": "requerente", "modalidade": "declarar", "natureza": "declaratoria", "valor_pedido_centavos": None, "descricao": "Aplicação do índice correto no recálculo da dívida."},
+            {"id": "CR04", "autor": "requerido", "contra": "requerente", "modalidade": "declarar", "natureza": "declaratoria", "valor_pedido_centavos": None, "descricao": "Reconhecimento da inexigibilidade do débito."},
         ]}
         V25["_normalizar_catalogo"](value)
         self.assertEqual([p["id"] for p in value["pedidos"]], ["RP01", "CR02"])
@@ -150,6 +151,34 @@ class V25TechnicalTests(unittest.TestCase):
         ]}
         V25["_normalizar_catalogo"](value)
         self.assertEqual([p["id"] for p in value["pedidos"]], ["RP01", "CR01"])
+
+    def test_defensive_omission_is_not_a_new_counterclaim(self):
+        review = {
+            "catalogo": "incompleto",
+            "catalogo_falhas": [{
+                "tipo": "OMISSAO", "pedido_id": None, "fonte": "RR",
+                "evidencia": "Reconhecimento da inexigibilidade do débito.",
+                "correcao": "Incluir contrapedido de inexigibilidade.",
+            }],
+            "pedidos": [{"pedido_id": "RP01", "falhas": []}],
+        }
+        V25["_normalizar_revisao_modelo"](review, catalog())
+        self.assertEqual(review["catalogo"], "completo")
+        self.assertEqual(review["catalogo_falhas"], [])
+
+    def test_defensive_compensation_omission_is_not_a_counterclaim(self):
+        review = {
+            "catalogo": "incompleto",
+            "catalogo_falhas": [{
+                "tipo": "OMISSAO", "pedido_id": None, "fonte": "RR",
+                "evidencia": "Compensação do valor devido com o gasto de reparo.",
+                "correcao": "Incluir pedido contraposto autônomo de compensação/abatimento do débito.",
+            }],
+            "pedidos": [{"pedido_id": "RP01", "falhas": []}],
+        }
+        V25["_normalizar_revisao_modelo"](review, catalog())
+        self.assertEqual(review["catalogo"], "completo")
+        self.assertEqual(review["catalogo_falhas"], [])
 
 
 if __name__ == "__main__":

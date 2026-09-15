@@ -587,6 +587,7 @@ _MARCADORES_DEFESA_CR = (
     "redução", "reducao", "recalculo", "recálculo", "ajuste do valor",
     "questiono", "impugno", "impugnação", "impugnacao", "ilegal",
     "índice", "indice", "aplicação do índice", "aplicacao do indice",
+    "inexigibilidade", "improcedência", "improcedencia",
     "não foi efetivamente pago", "nao foi efetivamente pago",
     "não foi pago", "nao foi pago", "inexistência", "inexistencia",
 )
@@ -1421,8 +1422,18 @@ def _erro_revisao(obj, catalogo):
     return ""
 
 
-def _normalizar_revisao_modelo(obj, catalogo):
-    """Remove somente a objeção logicamente impossível a um valor já nulo."""
+_MARCADORES_OMISSAO_DEFENSIVA = (
+    "inexigibilidade", "improcedência", "improcedencia",
+    "exclusão do débito", "exclusao do debito", "redução do débito",
+    "reducao do debito", "compensação do débito", "compensacao do debito",
+    "abatimento do débito", "abatimento do debito",
+    "compensação do valor", "compensacao do valor", "compensação entre",
+    "compensacao entre",
+)
+
+
+def _normalizar_revisao_modelo(obj, catalogo, painel=None):
+    """Descarta objeções sem pedido autônomo ou sem defeito verificável."""
     if not isinstance(obj, dict) or not isinstance(obj.get("catalogo_falhas"), list):
         return
     pedidos_por_id = {
@@ -1432,6 +1443,11 @@ def _normalizar_revisao_modelo(obj, catalogo):
     mantidos = []
     for falha in obj["catalogo_falhas"]:
         pid = falha.get("pedido_id") if isinstance(falha, dict) else None
+        texto_falha = " ".join(str(falha.get(campo) or "").casefold()
+                               for campo in ("evidencia", "correcao")) if isinstance(falha, dict) else ""
+        if (isinstance(falha, dict) and falha.get("tipo") == "OMISSAO"
+                and any(marcador in texto_falha for marcador in _MARCADORES_OMISSAO_DEFENSIVA)):
+            continue
         if isinstance(falha, dict) and falha.get("tipo") == "VALOR_INFERIDO" and pid in pedidos_por_id:
             valor_catalogado = pedidos_por_id[pid].get("valor_pedido_centavos")
             if (valor_catalogado is None
@@ -1439,8 +1455,6 @@ def _normalizar_revisao_modelo(obj, catalogo):
                 descartados.add(pid)
                 continue
         mantidos.append(falha)
-    if len(mantidos) == len(obj["catalogo_falhas"]):
-        return
     obj["catalogo_falhas"] = mantidos
     # PEDIDO sem justificativa estruturada remanescente para o mesmo ID era a
     # duplicação do diagnóstico impossível; demais códigos continuam intactos.
@@ -1449,13 +1463,28 @@ def _normalizar_revisao_modelo(obj, catalogo):
                 and isinstance(item.get("falhas"), list)
                 and "PEDIDO" in item["falhas"]):
             item["falhas"] = [codigo for codigo in item["falhas"] if codigo != "PEDIDO"]
+    # Uma objeção OPCAO sem defeito estrutural verificável não deve derrubar o
+    # quórum. A proposta já passou pela validação completa do painel; só
+    # preservamos OPCAO quando o revisor também fornece um defeito catalogado.
+    if isinstance(painel, dict) and _painel_valido(painel):
+        for item in obj.get("pedidos", []):
+            if not isinstance(item, dict) or "OPCAO" not in item.get("falhas", []):
+                continue
+            has_structured_defect = any(
+                isinstance(falha, dict)
+                and falha.get("pedido_id") == item.get("pedido_id")
+                and falha.get("tipo") in ("GRANULARIDADE", "VALOR_INFERIDO")
+                for falha in mantidos
+            )
+            if not has_structured_defect:
+                item["falhas"] = [codigo for codigo in item["falhas"] if codigo != "OPCAO"]
     if obj.get("catalogo") == "incompleto" and not mantidos:
         obj["catalogo"] = "completo"
 
 
 def _revisao_de(pedir, corpo, lider):
     def verificar(obj):
-        _normalizar_revisao_modelo(obj, lider["catalogo"])
+        _normalizar_revisao_modelo(obj, lider["catalogo"], lider)
         return _erro_revisao(obj, lider["catalogo"])
     return _resposta_validada(
         pedir, _prompt_revisao(corpo, lider), "revisao_compacta",

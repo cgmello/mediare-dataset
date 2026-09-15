@@ -41,6 +41,15 @@ existe somente para compatibilidade com as ferramentas do Studio.
   defensiva e uma objeção de opção.
 - A segunda rodada consumiu 19 chamadas, 103.210 tokens e US$ 0,18535546944.
 
+### Fechamento do caso 0048 — 2026-09-15
+
+- Após quatro refinamentos estreitos, `0048` fechou 4–0 Agree. O catálogo
+  contém apenas `RP01` e a restituição afirmativa `CR01`; inexigibilidade,
+  compensação e abatimento defensivos não são mais promovidos a `CR`.
+- A última repetição consumiu 9 chamadas, 54.260 tokens e US$ 0,0878490891.
+- A v25 está pronta para o gate de 20 sentinelas; nenhuma promoção ao Studio
+  ocorreu ainda.
+
 ## v24 — robustez técnica com semântica congelada — 2026-09-11
 
 - Os protótipos técnicos internos posteriores à v23 foram consolidados como
