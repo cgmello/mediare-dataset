@@ -9,6 +9,21 @@ Desde a v24, as versões públicas avançam apenas por números inteiros (`v24`,
 `v25`, `v26`), conforme `VERSIONING.md`. O sufixo interno `.0.0-experimental`
 existe somente para compatibilidade com as ferramentas do Studio.
 
+## v25 — proteção determinística do catálogo — 2026-09-15
+
+- Criada a candidata v25 a partir da v24, preservando as três lentes, o painel
+  único e a semântica de RP/CR.
+- Adicionado filtro determinístico pós-catálogo: exclusões, reduções,
+  recálculos, índices, perícias e declarações negativas defensivas não podem
+  virar `CR`; restituição, pagamento ou crédito próprio afirmativos continuam
+  permitidos.
+- Parcelamento subsidiário de um pedido monetário passa a ser tratado como
+  condição de negociação, não como novo pedido material.
+- A validação dos revisores permanece fail-closed e exige evidência estruturada;
+  a estabilidade de formato continua sendo medida separadamente da semântica.
+- Nenhuma chamada paga da v25 foi executada ainda; o próximo passo é o gate
+  dirigido de `0023` e `0048`, seguido pelos 20 sentinelas.
+
 ## v24 — robustez técnica com semântica congelada — 2026-09-11
 
 - Os protótipos técnicos internos posteriores à v23 foram consolidados como
