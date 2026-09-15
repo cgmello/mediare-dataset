@@ -142,6 +142,15 @@ class V25TechnicalTests(unittest.TestCase):
         V25["_normalizar_catalogo"](value)
         self.assertEqual([p["id"] for p in value["pedidos"]], ["RP01"])
 
+    def test_accessories_of_same_monetary_claim_are_consolidated(self):
+        value = {"pedidos": [
+            {"id": "RP01", "autor": "requerente", "contra": "requerido", "modalidade": "pagar", "natureza": "principal", "valor_pedido_centavos": 576443, "descricao": "Quitação do débito de R$ 5.764,43 referente à venda da bomba."},
+            {"id": "RP02", "autor": "requerente", "contra": "requerido", "modalidade": "pagar", "natureza": "principal", "valor_pedido_centavos": None, "descricao": "Pagamento do valor devido acrescido de correção monetária e juros."},
+            {"id": "CR01", "autor": "requerido", "contra": "requerente", "modalidade": "pagar", "natureza": "outros", "valor_pedido_centavos": 83400, "descricao": "Restituição da diferença do reparo."},
+        ]}
+        V25["_normalizar_catalogo"](value)
+        self.assertEqual([p["id"] for p in value["pedidos"]], ["RP01", "CR01"])
+
 
 if __name__ == "__main__":
     unittest.main()

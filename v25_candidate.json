@@ -1,6 +1,6 @@
 {
   "source": "ic_v25.py",
-  "source_sha256": "b7fa746c622c28e0529bb6e0138b26ca43bb102ea16cac9b30431877f2b39e86",
+  "source_sha256": "c2d274c2ebefcfa160aa0e2a1843259be2bb8c308d5c4e7d4d2ac9cde1585e36",
   "version": "25.0.0-experimental",
   "display_version": "v25",
   "baseline": {
@@ -21,7 +21,8 @@
     "control_0048": "When an impossible VALOR_INFERIDO objection is normalized, remove only its redundant PEDIDO code and preserve all other reviewer objections; give mandatory-reasoning GLM additional local output headroom.",
     "catalog_defense_gate": "Deterministic post-catalog filter removes defensive CRs (exclusions, reductions, recalculations and negative declarations) while preserving affirmative restitution or payment requests.",
     "dependent_installment": "A parcelamento subsidiary to an existing monetary RP is retained as a negotiation condition rather than a separate catalog item.",
-    "reviewer_stability": "Keep the v24 reviewer schema and fail-closed normalization; use targeted v25 tests to separate semantic objections from malformed compact reviews."
+    "reviewer_stability": "Keep the v24 reviewer schema and fail-closed normalization; use targeted v25 tests to separate semantic objections from malformed compact reviews.",
+    "accessory_consolidation": "Consolidate a repeated monetary RP when the later item only adds juros, correção, multa or encargos for the same debt and parties."
   },
   "local_model_config": "openrouter_models_v25.json",
   "gate": {

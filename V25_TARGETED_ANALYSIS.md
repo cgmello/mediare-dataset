@@ -19,3 +19,12 @@ malformed compact reviewer response.
 
 This targeted run added 23 HTTP calls, 154,299 tokens and US$ 0.30808477098 to
 the OpenRouter budget. The consolidated ledger includes the receipts under v25.
+
+## Second run after the accessory-consolidation fix
+
+`0023` again produced only `RP01` and reached 3–1 Agree. `0048` now produced
+exactly `RP01` plus the affirmative restitution `CR01`, and the leader label
+matched `APTO_INTEGRAL`; reviewers nevertheless split 2–2 (one defensive
+omission objection and one option objection). The rerun cost 19 calls, 103,210
+tokens and US$ 0.18535546944. The catalog regression is fixed, but reviewer
+stability remains before the 20-sentinel gate and Studio promotion.

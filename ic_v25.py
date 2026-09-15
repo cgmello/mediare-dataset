@@ -591,6 +591,11 @@ _MARCADORES_DEFESA_CR = (
     "não foi pago", "nao foi pago", "inexistência", "inexistencia",
 )
 
+_MARCADORES_ACESSORIO = (
+    "juros", "correção monetária", "correcao monetaria", "multa",
+    "encargos", "atualização", "atualizacao", "acessórios", "acessorios",
+)
+
 
 def _catalogo_defesa_requerido(pedido):
     """Identifica CRs que só repetem defesa, sem providência autônoma."""
@@ -625,6 +630,30 @@ def _normalizar_catalogo(obj):
                 and "parcelamento" in descricao and ids_principais):
             continue
         mantidos.append(pedido)
+    # Principal, correção, juros, multa e encargos da mesma cobrança são uma
+    # única unidade negociável. A LLM pode repetir o débito em dois RPs; quando
+    # o segundo é apenas acessório e usa a mesma direção de partes, remova-o.
+    consolidados = []
+    for pedido in mantidos:
+        if (isinstance(pedido, dict) and pedido.get("id", "").startswith("RP")
+                and pedido.get("modalidade") == "pagar"
+                and any(marcador in str(pedido.get("descricao") or "").casefold()
+                        for marcador in _MARCADORES_ACESSORIO)):
+            duplicado = any(
+                isinstance(anterior, dict)
+                and anterior.get("modalidade") == "pagar"
+                and anterior.get("autor") == pedido.get("autor")
+                and anterior.get("contra") == pedido.get("contra")
+                and (pedido.get("valor_pedido_centavos") is None
+                     or anterior.get("valor_pedido_centavos") == pedido.get("valor_pedido_centavos"))
+                and any(palavra in str(anterior.get("descricao") or "").casefold()
+                        for palavra in ("débito", "debito", "aluguel", "pagamento", "cobrança", "cobranca"))
+                for anterior in consolidados
+            )
+            if duplicado:
+                continue
+        consolidados.append(pedido)
+    mantidos = consolidados
     if mantidos:
         obj["pedidos"] = mantidos
 

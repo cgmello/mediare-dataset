@@ -33,6 +33,14 @@ existe somente para compatibilidade com as ferramentas do Studio.
 - A rodada consumiu 23 chamadas, 154.299 tokens e US$ 0,30808477098. O caso
   `0048` precisa de correção antes do gate de 20 sentinelas.
 
+### Segunda rodada após a correção — 2026-09-15
+
+- `0023` repetiu maioria Agree 3–1, com apenas `RP01` no catálogo.
+- `0048` passou a conter `RP01` e `CR01` corretos, sem `RP02` duplicado, e o
+  líder produziu `APTO_INTEGRAL`. A revisão ficou 2–2 por uma objeção de omissão
+  defensiva e uma objeção de opção.
+- A segunda rodada consumiu 19 chamadas, 103.210 tokens e US$ 0,18535546944.
+
 ## v24 — robustez técnica com semântica congelada — 2026-09-11
 
 - Os protótipos técnicos internos posteriores à v23 foram consolidados como

@@ -42,6 +42,7 @@ V24_DEVELOPMENT_DIRS = (
 )
 V25_DEVELOPMENT_DIRS = (
     "res_openrouter_v25_targeted_0023_0048",
+    "res_openrouter_v25_targeted_r2_0023_0048",
 )
 
 
@@ -207,7 +208,7 @@ def build_ledger(root, account=None):
             "calls": v25["api_calls"],
             "tokens": v25["total_tokens"],
             "cost": v25["cost_usd"],
-            "status": "complete — 0023 fixed; 0048 granularidade remains",
+            "status": "complete — 0023 fixed; 0048 catalog fixed, reviewer split remains",
             "grant_scope": True,
         },
         {
