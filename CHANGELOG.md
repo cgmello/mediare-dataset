@@ -9,6 +9,31 @@ Desde a v24, as versões públicas avançam apenas por números inteiros (`v24`,
 `v25`, `v26`), conforme `VERSIONING.md`. O sufixo interno `.0.0-experimental`
 existe somente para compatibilidade com as ferramentas do Studio.
 
+## v26 — casos complexos e escopo bilateral — 2026-09-17
+
+- A investigação do caso `0124` separou duas causas: respostas jurisprudenciais
+  longas podiam truncar o JSON no Studio, enquanto os revisores tratavam ofícios
+  e outras providências exclusivas do juízo como pedidos negociáveis omitidos.
+- Os campos textuais das lentes foram limitados a uma frase de até 160
+  caracteres, preservando a justificativa decisiva e reduzindo o risco de
+  truncamento. Nas seis execuções controladas do `0124`, todos os líderes
+  produziram painéis JSON válidos.
+- O catálogo e os revisores agora excluem tutela, autorização de depósito
+  judicial, ofícios, gratuidade, valor da causa, custas, honorários,
+  sucumbência e litigância de má-fé. Liberação/pagamento de valor depositado em
+  favor de uma parte continua sendo resultado material negociável.
+- Multa civil ou contratual expressamente pedida permanece pedido monetário
+  autônomo. Assim, a normalização não encobre as omissões reais observadas no
+  `0124`: apenas o líder GPT incluiu os seis resultados materiais e recebeu
+  aprovação 4–0; Claude e GLM omitiram restituição, multa ou ambos.
+- No gate pareado de 20 sentinelas, a v26 obteve 15/20 maiorias locais, 20/20
+  painéis válidos e 16/20 saídas úteis, contra 14/20, 18/20 e 15/20 na v25.
+  Houve quatro melhorias e três aparentes regressões de consenso; a inspeção
+  mostrou catálogos idênticos nas três regressões e variação/excesso de rigor
+  dos revisores, não perda da regra nova.
+- Todo o desenvolvimento v26, incluindo tentativas intermediárias, consumiu
+  245 chamadas, 1.879.099 tokens e US$ 4,3399220366495 no OpenRouter.
+
 ## v25 — proteção determinística do catálogo — 2026-09-15
 
 - Criada a candidata v25 a partir da v24, preservando as três lentes, o painel

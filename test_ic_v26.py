@@ -1,0 +1,274 @@
+#!/usr/bin/env python3
+"""Regressões da v26 para casos complexos e catálogo negociável."""
+
+import json
+import hashlib
+from pathlib import Path
+import unittest
+
+from openrouter_runner import load_contract
+from studio_cycle import version_of
+
+
+ROOT = Path(__file__).parent
+V231 = load_contract(ROOT / "ic_v23.py")
+V24 = load_contract(ROOT / "ic_v24.py")
+V26 = load_contract(ROOT / "ic_v26.py")
+
+
+def catalog():
+    return {"pedidos": [{
+        "id": "RP01", "autor": "requerente", "contra": "requerido",
+        "modalidade": "pagar", "natureza": "principal",
+        "valor_pedido_centavos": 3806419,
+        "descricao": "Pagamento dos serviços hospitalares.",
+    }]}
+
+
+class V26TechnicalTests(unittest.TestCase):
+    def test_declaratory_concession_allows_null_poles(self):
+        pedido = {
+            "id": "RP01", "autor": "requerente", "contra": "requerido",
+            "modalidade": "declarar", "natureza": "declaratoria",
+            "valor_pedido_centavos": None, "descricao": "Declaração de rescisão.",
+        }
+        decisao = {
+            "pedido_id": "RP01", "decisao": "conceder",
+            "pagador": None, "beneficiario": None, "valor_centavos": 0,
+            "fontes_favoraveis": ["PR"], "fontes_contrarias": [],
+            "comentario": "A declaração é compatível com os fatos documentados.",
+            "sustentado": "A rescisão foi comunicada.",
+            "controvertido": "Nenhum identificado.",
+            "lacuna": {"dimensao": "nenhuma", "pergunta": None, "impacto": None},
+        }
+        self.assertTrue(V26["_decisao_valida"](decisao, pedido))
+
+    def test_monetary_concession_still_requires_poles(self):
+        pedido = catalog()["pedidos"][0]
+        decisao = {
+            "pedido_id": "RP01", "decisao": "conceder",
+            "pagador": None, "beneficiario": None, "valor_centavos": 1000,
+            "fontes_favoraveis": ["PR"], "fontes_contrarias": [],
+            "comentario": "Há suporte documental para o pagamento.",
+            "sustentado": "O valor foi comprovado.",
+            "controvertido": "Nenhum identificado.",
+            "lacuna": {"dimensao": "nenhuma", "pergunta": None, "impacto": None},
+        }
+        self.assertFalse(V26["_decisao_valida"](decisao, pedido))
+
+    def test_out_of_scope_may_have_no_follow_up_lacuna(self):
+        pedido = {
+            "id": "RP01", "autor": "requerente", "contra": "requerido",
+            "modalidade": "fazer", "natureza": "obrigacao_fazer",
+            "valor_pedido_centavos": None, "descricao": "Desocupação do imóvel.",
+        }
+        decisao = {
+            "pedido_id": "RP01", "decisao": "fora_de_escopo",
+            "pagador": None, "beneficiario": None, "valor_centavos": None,
+            "fontes_favoraveis": ["RR"], "fontes_contrarias": [],
+            "comentario": "O pedido já foi cumprido.",
+            "sustentado": "A desocupação ocorreu.",
+            "controvertido": "Nenhum identificado.",
+            "lacuna": {"dimensao": "escopo", "pergunta": None, "impacto": None},
+        }
+        self.assertTrue(V26["_decisao_valida"](decisao, pedido))
+
+    def test_version_and_runner_compatibility(self):
+        source = ROOT / "ic_v26.py"
+        self.assertEqual(V26["VERSAO"], "26.0.0-experimental")
+        self.assertEqual(version_of(source.read_bytes()), "26.0.0-experimental")
+        candidate = json.loads((ROOT / "v26_candidate.json").read_text(encoding="utf-8"))
+        self.assertEqual(candidate["source_sha256"], hashlib.sha256(source.read_bytes()).hexdigest())
+        self.assertEqual(candidate["scope"], "complex-case catalog and output stability")
+
+    def test_catalog_prompt_excludes_procedural_relief_and_keeps_civil_penalty(self):
+        body = json.dumps({
+            "peticao_requerente": "Pedido de pagamento.",
+            "resposta_requerido": "Contestação sem contrapedido.",
+            "documentos_requerente": "Recibo.",
+            "documentos_requerido": "Nenhum.",
+        }, ensure_ascii=False)
+        prompt = V26["_prompt_catalogo"](body)
+        self.assertIn("expedicao de oficio", prompt)
+        self.assertIn("multa civil ou contratual", prompt)
+        self.assertEqual(V26["_erro_catalogo"](catalog()), V24["_erro_catalogo"](catalog()))
+
+    def test_double_count_without_conflicting_id_remains_fail_closed(self):
+        thesis = {"lente": "auditora", "pedidos": [{
+            "pedido_id": "RP01",
+            "auditoria": {
+                "resultado": "apta_com_ressalva",
+                "riscos": ["DUPLA_CONTAGEM"],
+                "motivo": "A cobertura alegada pode afastar a cobrança.",
+                "conflitos_com": [],
+            },
+        }]}
+        V26["_normalizar_tese_modelo"](thesis, catalog(), "auditora", "{}", [{}, {"pedidos": []}])
+        audit = thesis["pedidos"][0]["auditoria"]
+        self.assertEqual(audit["resultado"], "reformular")
+        self.assertEqual(audit["riscos"], ["PREMISSA"])
+        self.assertEqual(audit["conflitos_com"], [])
+        self.assertEqual(V26["_erro_auditoria"](audit, {}, catalog(), catalog()["pedidos"][0]), "")
+
+    def test_reformular_keeps_other_risks_and_drops_unanchored_double_count(self):
+        thesis = {"lente": "auditora", "pedidos": [{
+            "pedido_id": "RP01",
+            "auditoria": {
+                "resultado": "reformular",
+                "riscos": ["DUPLA_CONTAGEM", "ESCOPO", "PREMISSA"],
+                "motivo": "A base pode estar fora do escopo negociado.",
+                "conflitos_com": [],
+            },
+        }]}
+        V26["_normalizar_tese_modelo"](thesis, catalog(), "auditora", "{}", [{}, {"pedidos": []}])
+        self.assertEqual(thesis["pedidos"][0]["auditoria"]["riscos"], ["ESCOPO", "PREMISSA"])
+
+    def test_bare_pedido_objection_requires_structured_catalog_evidence(self):
+        review = {
+            "catalogo": "completo", "catalogo_falhas": [],
+            "pedidos": [{"pedido_id": "RP01", "falhas": ["PEDIDO"]}],
+        }
+        self.assertEqual(
+            V26["_erro_revisao"](review, catalog()),
+            "REVISAO_PEDIDO_EXIGE_FALHA_CATALOGO_EVIDENCIADA",
+        )
+        review = {
+            "catalogo": "incompleto",
+            "catalogo_falhas": [{
+                "tipo": "GRANULARIDADE", "pedido_id": "RP01", "fonte": "PR",
+                "evidencia": "Pagamento dos serviços hospitalares.",
+                "correcao": "Separar providências materialmente autônomas.",
+            }],
+            "pedidos": [{"pedido_id": "RP01", "falhas": ["PEDIDO"]}],
+        }
+        self.assertEqual(V26["_erro_revisao"](review, catalog()), "")
+
+    def test_normalizer_removes_pedido_code_not_anchored_to_same_id(self):
+        review = {
+            "catalogo": "incompleto",
+            "catalogo_falhas": [{
+                "tipo": "OMISSAO", "pedido_id": None, "fonte": "PR",
+                "evidencia": "Restituição dos valores cobrados indevidamente.",
+                "correcao": "Incluir pedido autônomo de restituição.",
+            }],
+            "pedidos": [{"pedido_id": "RP01", "falhas": ["PEDIDO"]}],
+        }
+        V26["_normalizar_revisao_modelo"](review, catalog())
+        self.assertEqual(review["catalogo"], "incompleto")
+        self.assertEqual(len(review["catalogo_falhas"]), 1)
+        self.assertEqual(review["pedidos"][0]["falhas"], [])
+        self.assertEqual(V26["_erro_revisao"](review, catalog()), "")
+
+    def test_normalized_impossible_value_objection_removes_only_pedido_code(self):
+        review = {
+            "catalogo": "incompleto",
+            "catalogo_falhas": [{
+                "tipo": "VALOR_INFERIDO", "pedido_id": "RP01", "fonte": "PR",
+                "evidencia": "Total literalmente pedido: R$ 38.064,19",
+                "correcao": "Remover o valor.",
+            }],
+            "pedidos": [{
+                "pedido_id": "RP01", "falhas": ["PEDIDO", "CONCLUSAO"],
+            }],
+        }
+        V26["_normalizar_revisao_modelo"](review, catalog())
+        self.assertEqual(review["catalogo"], "completo")
+        self.assertEqual(review["catalogo_falhas"], [])
+        self.assertEqual(review["pedidos"][0]["falhas"], ["CONCLUSAO"])
+        self.assertEqual(V26["_erro_revisao"](review, catalog()), "")
+
+    def test_v26_keeps_the_v24_local_model_controls(self):
+        config = json.loads((ROOT / "openrouter_models_v25.json").read_text(encoding="utf-8"))
+        self.assertEqual(
+            config["model_options"]["deepseek/deepseek-v4-pro"]["reasoning"],
+            {"effort": "none"},
+        )
+        self.assertEqual(
+            config["model_options"]["z-ai/glm-5.3"]["reasoning"],
+            {"effort": "low"},
+        )
+        self.assertEqual(config["model_options"]["z-ai/glm-5.3"]["max_tokens"], 20000)
+
+    def test_defensive_counterclaims_are_removed_but_restitution_is_kept(self):
+        value = {"pedidos": [
+            {"id": "RP01", "autor": "requerente", "contra": "requerido", "modalidade": "pagar", "natureza": "principal", "valor_pedido_centavos": 10000, "descricao": "Pagamento do débito."},
+            {"id": "CR01", "autor": "requerido", "contra": "requerente", "modalidade": "declarar", "natureza": "declaratoria", "valor_pedido_centavos": None, "descricao": "Declaração de que a caução não foi paga."},
+            {"id": "CR02", "autor": "requerido", "contra": "requerente", "modalidade": "pagar", "natureza": "outros", "valor_pedido_centavos": 5000, "descricao": "Restituição do saldo pago a maior."},
+            {"id": "CR03", "autor": "requerido", "contra": "requerente", "modalidade": "declarar", "natureza": "declaratoria", "valor_pedido_centavos": None, "descricao": "Aplicação do índice correto no recálculo da dívida."},
+            {"id": "CR04", "autor": "requerido", "contra": "requerente", "modalidade": "declarar", "natureza": "declaratoria", "valor_pedido_centavos": None, "descricao": "Reconhecimento da inexigibilidade do débito."},
+        ]}
+        V26["_normalizar_catalogo"](value)
+        self.assertEqual([p["id"] for p in value["pedidos"]], ["RP01", "CR02"])
+
+    def test_dependent_installment_request_is_removed(self):
+        value = {"pedidos": [
+            {"id": "RP01", "autor": "requerente", "contra": "requerido", "modalidade": "pagar", "natureza": "principal", "valor_pedido_centavos": 10000, "descricao": "Pagamento do débito."},
+            {"id": "RP02", "autor": "requerente", "contra": "requerido", "modalidade": "pagar", "natureza": "principal", "valor_pedido_centavos": None, "descricao": "Subsidiariamente, parcelamento do débito."},
+        ]}
+        V26["_normalizar_catalogo"](value)
+        self.assertEqual([p["id"] for p in value["pedidos"]], ["RP01"])
+
+    def test_accessories_of_same_monetary_claim_are_consolidated(self):
+        value = {"pedidos": [
+            {"id": "RP01", "autor": "requerente", "contra": "requerido", "modalidade": "pagar", "natureza": "principal", "valor_pedido_centavos": 576443, "descricao": "Quitação do débito de R$ 5.764,43 referente à venda da bomba."},
+            {"id": "RP02", "autor": "requerente", "contra": "requerido", "modalidade": "pagar", "natureza": "principal", "valor_pedido_centavos": None, "descricao": "Pagamento do valor devido acrescido de correção monetária e juros."},
+            {"id": "CR01", "autor": "requerido", "contra": "requerente", "modalidade": "pagar", "natureza": "outros", "valor_pedido_centavos": 83400, "descricao": "Restituição da diferença do reparo."},
+        ]}
+        V26["_normalizar_catalogo"](value)
+        self.assertEqual([p["id"] for p in value["pedidos"]], ["RP01", "CR01"])
+
+    def test_defensive_omission_is_not_a_new_counterclaim(self):
+        review = {
+            "catalogo": "incompleto",
+            "catalogo_falhas": [{
+                "tipo": "OMISSAO", "pedido_id": None, "fonte": "RR",
+                "evidencia": "Reconhecimento da inexigibilidade do débito.",
+                "correcao": "Incluir contrapedido de inexigibilidade.",
+            }],
+            "pedidos": [{"pedido_id": "RP01", "falhas": []}],
+        }
+        V26["_normalizar_revisao_modelo"](review, catalog())
+        self.assertEqual(review["catalogo"], "completo")
+        self.assertEqual(review["catalogo_falhas"], [])
+
+    def test_defensive_compensation_omission_is_not_a_counterclaim(self):
+        review = {
+            "catalogo": "incompleto",
+            "catalogo_falhas": [{
+                "tipo": "OMISSAO", "pedido_id": None, "fonte": "RR",
+                "evidencia": "Compensação do valor devido com o gasto de reparo.",
+                "correcao": "Incluir pedido contraposto autônomo de compensação/abatimento do débito.",
+            }],
+            "pedidos": [{"pedido_id": "RP01", "falhas": []}],
+        }
+        V26["_normalizar_revisao_modelo"](review, catalog())
+        self.assertEqual(review["catalogo"], "completo")
+        self.assertEqual(review["catalogo_falhas"], [])
+
+    def test_procedural_requests_are_removed_but_party_relief_and_penalty_remain(self):
+        value = {"pedidos": [
+            {"id": "RP01", "autor": "requerente", "contra": "requerido", "modalidade": "pagar", "natureza": "multa", "valor_pedido_centavos": 50000, "descricao": "Pagamento de multa civil expressamente requerida."},
+            {"id": "RP02", "autor": "requerente", "contra": "requerido", "modalidade": "fazer", "natureza": "obrigacao_fazer", "valor_pedido_centavos": None, "descricao": "Expedição de ofícios ao Ministério Público e ao CRECI."},
+            {"id": "CR01", "autor": "requerido", "contra": "requerente", "modalidade": "pagar", "natureza": "principal", "valor_pedido_centavos": 10000, "descricao": "Liberação do valor depositado em favor do requerido."},
+            {"id": "CR02", "autor": "requerido", "contra": "requerente", "modalidade": "pagar", "natureza": "outros", "valor_pedido_centavos": None, "descricao": "Condenação por litigância de má-fé, custas processuais e honorários advocatícios."},
+        ]}
+        V26["_normalizar_catalogo"](value)
+        self.assertEqual([p["id"] for p in value["pedidos"]], ["RP01", "CR01"])
+
+    def test_procedural_omission_is_ignored_but_civil_penalty_omission_remains(self):
+        review = {
+            "catalogo": "incompleto",
+            "catalogo_falhas": [
+                {"tipo": "OMISSAO", "pedido_id": None, "fonte": "PR", "evidencia": "Expedição de ofícios ao MP e ao CRECI.", "correcao": "Incluir expedição de ofícios."},
+                {"tipo": "OMISSAO", "pedido_id": None, "fonte": "PR", "evidencia": "Pagamento da multa civil.", "correcao": "Incluir a multa civil como pedido autônomo."},
+            ],
+            "pedidos": [{"pedido_id": "RP01", "falhas": []}],
+        }
+        V26["_normalizar_revisao_modelo"](review, catalog())
+        self.assertEqual(review["catalogo"], "incompleto")
+        self.assertEqual(len(review["catalogo_falhas"]), 1)
+        self.assertIn("multa civil", review["catalogo_falhas"][0]["evidencia"].casefold())
+
+
+if __name__ == "__main__":
+    unittest.main()

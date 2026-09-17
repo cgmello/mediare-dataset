@@ -47,6 +47,22 @@ V25_DEVELOPMENT_DIRS = (
     "res_openrouter_v25_targeted_r4_0048",
     "res_openrouter_v25_targeted_r5_0048",
     "res_openrouter_v25_targeted_r6_0048",
+    "res_openrouter_v25_sentinels",
+    "res_openrouter_v25_juris_fix",
+    "res_openrouter_v25_juris_fix_r2",
+    "res_openrouter_v25_juris_fix_r3",
+    "res_openrouter_v25_case0124_r1",
+    "res_openrouter_v25_case0124_r2",
+    "res_openrouter_v25_case0124_r3",
+)
+V26_DEVELOPMENT_DIRS = (
+    "res_openrouter_v26_case0124_r1",
+    "res_openrouter_v26_case0124_r2",
+    "res_openrouter_v26_case0124_r3",
+    "res_openrouter_v26_case0124_final_r1",
+    "res_openrouter_v26_case0124_final_r2",
+    "res_openrouter_v26_case0124_final_r3",
+    "res_openrouter_v26_sentinels",
 )
 
 
@@ -113,6 +129,7 @@ def build_ledger(root, account=None):
     v23 = aggregate_call_receipts(root, V23_DEVELOPMENT_DIRS)
     v24 = aggregate_call_receipts(root, V24_DEVELOPMENT_DIRS)
     v25 = aggregate_call_receipts(root, V25_DEVELOPMENT_DIRS)
+    v26 = aggregate_call_receipts(root, V26_DEVELOPMENT_DIRS)
     pseudo = campaign_summary(root, "res_pseudonymization_0501_1000")
     pseudo_completed = int(pseudo.get("completed") or 0)
     pseudo_accepted = int(pseudo.get("accepted") or 0)
@@ -206,13 +223,24 @@ def build_ledger(root, account=None):
         },
         {
             "date": "2026-09-15",
-            "activity": "v25 targeted 0023/0048 validation",
+            "activity": "v25 development, sentinel and Studio-follow-up diagnostics",
             "tests": v25["completed"],
             "target": v25["completed"],
             "calls": v25["api_calls"],
             "tokens": v25["total_tokens"],
             "cost": v25["cost_usd"],
-            "status": "complete — 0023 fixed; 0048 catalog fixed, reviewer split remains",
+            "status": "complete — includes targeted gates, 20 sentinels and case 0124 diagnosis",
+            "grant_scope": True,
+        },
+        {
+            "date": "2026-09-17",
+            "activity": "v26 complex-case hardening and validation",
+            "tests": v26["completed"],
+            "target": v26["completed"],
+            "calls": v26["api_calls"],
+            "tokens": v26["total_tokens"],
+            "cost": v26["cost_usd"],
+            "status": "complete — 0124 diagnosis; sentinel gate improved to 15/20 with 20/20 valid panels",
             "grant_scope": True,
         },
         {
@@ -323,8 +351,8 @@ h1{{margin:.15rem 0;font-size:2rem}}h2{{margin-top:32px;border-bottom:2px solid 
 <p class="muted">The earlier Anthropic amount is the user's approximate estimate for direct API experiments during v1–v20. An automated check was attempted on 10 September 2026, but the available OAuth session lacked Admin API access. Anthropic documents that organization cost reporting requires an Admin credential; the estimate can be replaced by a Console Usage CSV export. Estimated total project API cost including that pre-grant amount: <strong>{money(ledger['total_project_cost'])}</strong>.</p>
 <h2>Current plan for the remaining budget</h2>
 <table><thead><tr><th>Priority</th><th>Control</th></tr></thead><tbody>
-<tr><td>Validate v24 on the 20 sentinels</td><td>The five-case technical gate passed; the next checkpoint measures regression risk on the frozen paired sample.</td></tr>
-<tr><td>Preserve semantic and technical separation</td><td>Keep RP/CR rules frozen; track model availability, reviewer schema, and substantive objections as separate metrics.</td></tr>
+<tr><td>Validate the immutable v26 hash in Studio</td><td>The local gate improved to 15/20 with 20/20 valid panels; the next checkpoint is real protocol consensus on case 0124 and the frozen sentinels.</td></tr>
+<tr><td>Preserve semantic and technical separation</td><td>Track JSON/output stability, procedural-scope normalization and genuine material omissions as separate metrics.</td></tr>
 <tr><td>Review the nine pseudonymized decisions held for inspection</td><td>No additional API cost unless a targeted repair is approved.</td></tr>
 <tr><td>Reserve the unspent balance for holdouts, robustness and new cases</td><td>Every new paid campaign must have a persisted ceiling and appear in this same ledger.</td></tr>
 </tbody></table>
