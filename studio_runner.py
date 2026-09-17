@@ -136,7 +136,11 @@ def extrair_metricas(cid: str, tx: dict, dur: float) -> dict:
 # ---------------------------------------------------------------- worker
 def rodar_caso(cli, conta, contrato, cid, args):
     ini = time.time()
-    txh = cli.write_contract(address=contrato, function_name="analyze_case",
+    # genlayer-py recente exige Address (bytes) em vez de uma string hex para
+    # o argumento recipient; normalize aqui para manter --contrato amigável.
+    from eth_typing.evm import Address
+    endereco = Address(bytes.fromhex(contrato.removeprefix("0x")))
+    txh = cli.write_contract(address=endereco, function_name="analyze_case",
                              args=[cid], account=conta)
     txh_hex = txh.hex() if hasattr(txh, "hex") else str(txh)
     if not txh_hex.startswith("0x"):
