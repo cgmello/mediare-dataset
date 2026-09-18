@@ -6,3 +6,5 @@
   repositório, inclusive antes de commits, pushes, testes ou entregas.
 - Preservar arquivos locais e resultados privados que não façam parte da
   alteração solicitada.
+- Toda nova versão major do IC deve atualizar `VERSION_HISTORY.md` com uma
+  descrição curta da mudança, do resultado conhecido e do estado de promoção.

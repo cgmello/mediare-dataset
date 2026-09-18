@@ -137,6 +137,10 @@ ao Studio estão em [V22_EXPERIMENT_PLAN.md](V22_EXPERIMENT_PLAN.md).
 
 ## Notes
 
+- A evolução resumida do IC, da v1 à versão atual, está em
+  [VERSION_HISTORY.md](VERSION_HISTORY.md). O changelog técnico e experimental
+  completo permanece em [CHANGELOG.md](CHANGELOG.md).
+
 - "real" cases were reconstructed from public court decisions (CJPG/TJSP), with
   party names pseudonymized (LGPD compliance). "sintetico" cases contain no real data.
 - Gold cases were manually curated; real cases were generated via LLM and should be
