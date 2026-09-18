@@ -24,7 +24,18 @@ Tempo observado por transacao: ~100s (aceita em 1 rodada) a ~525s (UNDETERMINED
 apos 3 rotacoes). 30 casos em 1 contrato: 1h a 4h30. Os 500: 17h a 73h.
 Resumivel: re-executar pula o que ja foi coletado.
 """
-import argparse, base64, json, os, sys, threading, time, queue
+import argparse, base64, json, os, re, sys, threading, time, queue
+
+
+def redact(data):
+    """Remove credenciais que o Studio possa repetir em node_config."""
+    if isinstance(data, dict):
+        return {k: ("[REDACTED]" if re.sub(r"[^a-z]", "", k.lower()) in
+                    {"privatekey", "apikey", "secret", "password", "accesstoken", "authorization"}
+                    else redact(v)) for k, v in data.items()}
+    if isinstance(data, list):
+        return [redact(v) for v in data]
+    return data
 
 # ---------------------------------------------------------------- decoder
 def decode_eq(v) -> str:
@@ -180,8 +191,8 @@ def worker(nome, cli, conta, contrato, fila, args, lock, parar=None):
             with lock:
                 with open(os.path.join(args.out, "chain.jsonl"), "a", encoding="utf-8") as f:
                     f.write(json.dumps(met, ensure_ascii=False) + "\n")
-                json.dump(tx, open(os.path.join(args.out, "receipts", f"{cid}.json"),
-                                   "w", encoding="utf-8"), ensure_ascii=False, default=str)
+                json.dump(redact(tx), open(os.path.join(args.out, "receipts", f"{cid}.json"),
+                                           "w", encoding="utf-8"), ensure_ascii=False, default=str)
                 print(f"[{nome}] {cid}: {met['status']:12s} {met.get('result_name') or '':16s} "
                       f"rodadas={met['rounds']} rot={met['rotacoes']} {met['duracao_s']:.0f}s "
                       f"faixa={met.get('faixa_total')}", flush=True)
@@ -195,6 +206,9 @@ def worker(nome, cli, conta, contrato, fila, args, lock, parar=None):
                 if parar is not None:
                     parar.set()      # sinaliza que ao menos um endereco caiu
                 return
+            if args.delay > 0 and not fila.empty():
+                print(f"[{nome}] aguardando {args.delay:g}s antes do proximo envio", flush=True)
+                time.sleep(args.delay)
         except Exception as e:
             with lock:
                 with open(os.path.join(args.out, "chain.jsonl"), "a", encoding="utf-8") as f:
@@ -261,6 +275,8 @@ def main():
     ap.add_argument("--timeout-duro", type=int, default=3600,
                 help="seg antes de desistir do caso e PARAR o lote")
     ap.add_argument("--poll", type=int, default=10)
+    ap.add_argument("--delay", type=float, default=15,
+                    help="espera minima apos um caso terminal antes do proximo envio")
     ap.add_argument("--relatorio", action="store_true")
     args = ap.parse_args()
 
