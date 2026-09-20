@@ -9,6 +9,36 @@ Desde a v24, as versões públicas avançam apenas por números inteiros (`v24`,
 `v25`, `v26`), conforme `VERSIONING.md`. O sufixo interno `.0.0-experimental`
 existe somente para compatibilidade com as ferramentas do Studio.
 
+## v27 — literalidade, CR defensivo e estabilidade da auditora — 2026-09-20
+
+- A inspeção pareada dos mesmos 50 holdouts da v26 comparou o consenso real do
+  Studio com os painéis e pareceres individuais preservados pelo runner local.
+  O Studio concluiu 50/50 em `MAJORITY_AGREE`; no OpenRouter houve 34/50
+  maiorias locais, 47/50 painéis de líder válidos, 453 chamadas, 2.381.020
+  tokens e custo real de US$ 5,2026425779065.
+- A adjudicação humana caso a caso encontrou 33 resultados adequados, um caso
+  de excesso/variação do revisor, 13 defeitos materiais de catálogo e três
+  falhas técnicas. O relatório versionado é
+  `V26_HOLDOUT_QUALITATIVE_ANALYSIS.md`.
+- A v27 candidata adiciona uma guarda determinística de literalidade: montante
+  calculado pela LLM a partir de parcelas, preço, adiantamento ou multiplicação
+  é convertido para `null`; somente valor monetário literalmente presente na
+  fonte da parte autora permanece no catálogo.
+- Foram ampliados apenas filtros inequívocos de CR defensivo: legitimidade de
+  retenção, limitação de responsabilidade, parcelamento, isenção e
+  abatimento/compensação dependentes do RP deixam de ser contrapedidos. Crédito
+  próprio, restituição ou saldo afirmativo continuam preservados.
+- Riscos fora do enum e IDs de conflito inexistentes da auditora são
+  normalizados em modo fail-closed: a opção permanece retida com `OUTRO` ou
+  `PREMISSA`, sem transformar erro mecânico em aprovação.
+- O prompt admite somente a providência não monetária mínima diretamente
+  implicada quando um bloco explicitamente chamado “pedidos” descreve uma
+  conduta continuada. A regra proíbe inventar indenização, valor, restituição,
+  rescisão ou remédio adicional.
+- A candidata `27.0.0-experimental` possui testes unitários para os novos
+  invariantes e aguarda repetição pareada dos 50 casos no OpenRouter antes de
+  qualquer promoção ao Studio.
+
 ## v26 — casos complexos e escopo bilateral — 2026-09-17
 
 - A investigação do caso `0124` separou duas causas: respostas jurisprudenciais
