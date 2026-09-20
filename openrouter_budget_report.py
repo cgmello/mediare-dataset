@@ -64,6 +64,9 @@ V26_DEVELOPMENT_DIRS = (
     "res_openrouter_v26_case0124_final_r3",
     "res_openrouter_v26_sentinels",
 )
+V26_STUDIO_HOLDOUT_DIRS = (
+    "res_openrouter_v26_studio_holdout50",
+)
 
 
 def as_decimal(value, default="0"):
@@ -130,6 +133,7 @@ def build_ledger(root, account=None):
     v24 = aggregate_call_receipts(root, V24_DEVELOPMENT_DIRS)
     v25 = aggregate_call_receipts(root, V25_DEVELOPMENT_DIRS)
     v26 = aggregate_call_receipts(root, V26_DEVELOPMENT_DIRS)
+    v26_holdout = aggregate_call_receipts(root, V26_STUDIO_HOLDOUT_DIRS)
     pseudo = campaign_summary(root, "res_pseudonymization_0501_1000")
     pseudo_completed = int(pseudo.get("completed") or 0)
     pseudo_accepted = int(pseudo.get("accepted") or 0)
@@ -244,6 +248,17 @@ def build_ledger(root, account=None):
             "grant_scope": True,
         },
         {
+            "date": "2026-09-20",
+            "activity": "v26 paired OpenRouter analysis of the 50-case Studio holdout",
+            "tests": v26_holdout["completed"],
+            "target": 50,
+            "calls": v26_holdout["api_calls"],
+            "tokens": v26_holdout["total_tokens"],
+            "cost": v26_holdout["cost_usd"],
+            "status": "complete — 34/50 local majorities; qualitative case review pending",
+            "grant_scope": True,
+        },
+        {
             "date": "2026-09-10+",
             "activity": "Dual-model pseudonymization (IDs 0501–1000)",
             "tests": pseudo_completed,
@@ -351,7 +366,7 @@ h1{{margin:.15rem 0;font-size:2rem}}h2{{margin-top:32px;border-bottom:2px solid 
 <p class="muted">The earlier Anthropic amount is the user's approximate estimate for direct API experiments during v1–v20. An automated check was attempted on 10 September 2026, but the available OAuth session lacked Admin API access. Anthropic documents that organization cost reporting requires an Admin credential; the estimate can be replaced by a Console Usage CSV export. Estimated total project API cost including that pre-grant amount: <strong>{money(ledger['total_project_cost'])}</strong>.</p>
 <h2>Current plan for the remaining budget</h2>
 <table><thead><tr><th>Priority</th><th>Control</th></tr></thead><tbody>
-<tr><td>Validate the immutable v26 hash in Studio</td><td>The local gate improved to 15/20 with 20/20 valid panels; the next checkpoint is real protocol consensus on case 0124 and the frozen sentinels.</td></tr>
+<tr><td>Complete the paired qualitative review of v26</td><td>Compare the 50 OpenRouter panels with the successful Studio holdout before deciding whether any repeated material defect justifies v27.</td></tr>
 <tr><td>Preserve semantic and technical separation</td><td>Track JSON/output stability, procedural-scope normalization and genuine material omissions as separate metrics.</td></tr>
 <tr><td>Review the nine pseudonymized decisions held for inspection</td><td>No additional API cost unless a targeted repair is approved.</td></tr>
 <tr><td>Reserve the unspent balance for holdouts, robustness and new cases</td><td>Every new paid campaign must have a persisted ceiling and appear in this same ledger.</td></tr>
