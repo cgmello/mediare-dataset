@@ -34,6 +34,23 @@ existe somente para compatibilidade com as ferramentas do Studio.
 - Todo o desenvolvimento v26, incluindo tentativas intermediárias, consumiu
   245 chamadas, 1.879.099 tokens e US$ 4,3399220366495 no OpenRouter.
 
+### Validação Studio em 50 holdouts — 2026-09-18/20
+
+- O contrato foi atualizado e conferido como `26.0.0-experimental`, SHA-256
+  `72870db2c28e49cb38d90ff6bb71ee4b416d2c4e8b2871e6275aa103bd833602`.
+- A amostra contém o caso `0124` e 49 casos aleatórios inéditos em relação ao
+  lote aleatório da v25, com semente reproduzível `20260918`.
+- Os 50/50 casos terminaram `ACCEPTED`, `MAJORITY_AGREE` e `SUCCESS`. Quarenta e
+  seis fecharam na primeira rodada; `0240`, `0375`, `0197` e `0434` precisaram
+  de uma rotação cada. Não houve `UNDETERMINED`, crash ou erro do contrato.
+- O caso `0124`, único sem consenso no lote v25, foi aceito na primeira rodada
+  em 139 segundos. O lote inteiro levou 3.613,7 segundos de execução on-chain,
+  média de 72,3 segundos por caso.
+- O campo local `erro_decode` não indicava falha do IC: o monitor legado tentava
+  interpretar como texto JSON o objeto nativo GenVM retornado no EP0. O runner
+  passou a registrar `painel_ep0_formato=objeto_genvm` sem falso erro.
+- Relatório resumido: `V26_STUDIO_RANDOM50_REPORT.md`.
+
 ## v25 — proteção determinística do catálogo — 2026-09-15
 
 - Criada a candidata v25 a partir da v24, preservando as três lentes, o painel

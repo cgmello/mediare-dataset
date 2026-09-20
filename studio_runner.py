@@ -57,6 +57,14 @@ def decode_eq(v) -> str:
         shift += 7
     return raw[i:i + length].decode("utf-8")
 
+
+def decode_json_eq(v):
+    """Decodifica EP textual legado; objetos GenVM nativos não são JSON."""
+    texto = decode_eq(v).strip()
+    if not texto.startswith(("{", "[")):
+        return None
+    return json.loads(texto)
+
 def como_dict(x):
     """O SDK pode devolver dict ou objeto; normaliza via json."""
     if isinstance(x, dict):
@@ -119,11 +127,14 @@ def extrair_metricas(cid: str, tx: dict, dur: float) -> dict:
     # EP0 do lider da rodada final: consolidado do painel
     try:
         lr = (cd.get("leader_receipt") or [{}])[0]
-        painel = json.loads(decode_eq(lr["eq_outputs"]["0"]))
-        cons = painel.get("consolidado", {})
-        m["faixa_total"] = cons.get("faixa_total")
-        m["unanime"] = cons.get("unanime")
-        m["responsavel"] = cons.get("responsavel_majoritario")
+        painel = decode_json_eq(lr["eq_outputs"]["0"])
+        if painel is None:
+            m["painel_ep0_formato"] = "objeto_genvm"
+        else:
+            cons = painel.get("consolidado", {})
+            m["faixa_total"] = cons.get("faixa_total")
+            m["unanime"] = cons.get("unanime")
+            m["responsavel"] = cons.get("responsavel_majoritario")
         nc = lr.get("node_config") or {}
         m["lider_modelo"] = (nc.get("primary_model") or {}).get("model") or nc.get("model")
     except Exception as e:
@@ -134,9 +145,12 @@ def extrair_metricas(cid: str, tx: dict, dur: float) -> dict:
     for r in ((tx.get("consensus_history") or {}).get("consensus_results") or []):
         try:
             lr = (r.get("leader_result") or [{}])[0]
-            p = json.loads(decode_eq(lr["eq_outputs"]["0"]))
-            hist.append({"faixa": p["consolidado"].get("faixa_total"),
-                         "unanime": p["consolidado"].get("unanime")})
+            p = decode_json_eq(lr["eq_outputs"]["0"])
+            if p is None:
+                hist.append({"formato": "objeto_genvm"})
+            else:
+                hist.append({"faixa": p["consolidado"].get("faixa_total"),
+                             "unanime": p["consolidado"].get("unanime")})
         except Exception:
             hist.append(None)
     if hist:
