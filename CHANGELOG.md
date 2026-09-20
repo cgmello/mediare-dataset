@@ -36,8 +36,18 @@ existe somente para compatibilidade com as ferramentas do Studio.
   conduta continuada. A regra proíbe inventar indenização, valor, restituição,
   rescisão ou remédio adicional.
 - A candidata `27.0.0-experimental` possui testes unitários para os novos
-  invariantes e aguarda repetição pareada dos 50 casos no OpenRouter antes de
-  qualquer promoção ao Studio.
+  invariantes. No gate pareado dos mesmos 50 casos, subiu de 34/50 para 42/50
+  maiorias locais e de 47/50 para 50/50 painéis válidos, com nove melhorias e
+  uma oscilação negativa atribuída a excesso/variação dos revisores.
+- As falhas técnicas `0119`, `0286` e `0472` foram eliminadas. `0240`, `0313`,
+  `0380`, `0434`, `0479` e `0488` também passaram a obter maioria local após
+  as correções dirigidas. O gate consumiu 475 chamadas, 2.424.218 tokens e
+  US$ 5,1930646974235.
+- Cinco defeitos semânticos reais continuam barrados pelos revisores e ficam
+  para backlog futuro, sem regra determinística arriscada: `0028`, `0124`,
+  `0354`, `0368` e `0468`. Relatório: `V27_OPENROUTER_PAIRED50_REPORT.md`.
+- Decisão: v27 aprovada para validação no Studio em uma nova amostra aleatória
+  reproduzível de 100 casos.
 
 ## v26 — casos complexos e escopo bilateral — 2026-09-17
 

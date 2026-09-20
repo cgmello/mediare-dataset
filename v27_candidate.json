@@ -26,7 +26,24 @@
       "do not materially regress the 50-case paired OpenRouter campaign"
     ]
   },
-  "status": "candidate_for_paired_openrouter_validation",
+  "gate_result": {
+    "status": "approved_for_studio_validation",
+    "completed": 50,
+    "local_majority_agree": 42,
+    "valid_leader_panels": 50,
+    "useful_leader_outputs": 19,
+    "api_calls": 475,
+    "tokens": 2424218,
+    "cost_usd": "5.1930646974235",
+    "v26_baseline": {
+      "local_majority_agree": 34,
+      "valid_leader_panels": 47,
+      "useful_leader_outputs": 19
+    },
+    "paired_changes": "nine disagree-to-agree improvements and one agree-to-disagree reviewer-variance case",
+    "technical_failures": "all three v26 failures recovered"
+  },
+  "status": "approved_for_studio_validation",
   "versioning": {
     "public_policy": "major-only: v26, v27, v28",
     "runtime_literal": "27.0.0-experimental is retained for Studio tooling compatibility"

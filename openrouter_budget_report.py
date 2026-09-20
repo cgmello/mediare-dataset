@@ -67,6 +67,9 @@ V26_DEVELOPMENT_DIRS = (
 V26_STUDIO_HOLDOUT_DIRS = (
     "res_openrouter_v26_studio_holdout50",
 )
+V27_PAIRED_HOLDOUT_DIRS = (
+    "res_openrouter_v27_studio_holdout50",
+)
 
 
 def as_decimal(value, default="0"):
@@ -134,6 +137,7 @@ def build_ledger(root, account=None):
     v25 = aggregate_call_receipts(root, V25_DEVELOPMENT_DIRS)
     v26 = aggregate_call_receipts(root, V26_DEVELOPMENT_DIRS)
     v26_holdout = aggregate_call_receipts(root, V26_STUDIO_HOLDOUT_DIRS)
+    v27_holdout = aggregate_call_receipts(root, V27_PAIRED_HOLDOUT_DIRS)
     pseudo = campaign_summary(root, "res_pseudonymization_0501_1000")
     pseudo_completed = int(pseudo.get("completed") or 0)
     pseudo_accepted = int(pseudo.get("accepted") or 0)
@@ -255,7 +259,18 @@ def build_ledger(root, account=None):
             "calls": v26_holdout["api_calls"],
             "tokens": v26_holdout["total_tokens"],
             "cost": v26_holdout["cost_usd"],
-            "status": "complete — 34/50 local majorities; qualitative case review pending",
+            "status": "complete — 34/50 local majorities; 13 material defects, 3 technical failures and 1 reviewer-variance case adjudicated",
+            "grant_scope": True,
+        },
+        {
+            "date": "2026-09-20",
+            "activity": "v27 paired correction gate on the same 50 Studio holdouts",
+            "tests": v27_holdout["completed"],
+            "target": 50,
+            "calls": v27_holdout["api_calls"],
+            "tokens": v27_holdout["total_tokens"],
+            "cost": v27_holdout["cost_usd"],
+            "status": "complete — 42/50 local majorities; 50/50 valid panels; all 3 v26 technical failures recovered",
             "grant_scope": True,
         },
         {
@@ -366,7 +381,7 @@ h1{{margin:.15rem 0;font-size:2rem}}h2{{margin-top:32px;border-bottom:2px solid 
 <p class="muted">The earlier Anthropic amount is the user's approximate estimate for direct API experiments during v1–v20. An automated check was attempted on 10 September 2026, but the available OAuth session lacked Admin API access. Anthropic documents that organization cost reporting requires an Admin credential; the estimate can be replaced by a Console Usage CSV export. Estimated total project API cost including that pre-grant amount: <strong>{money(ledger['total_project_cost'])}</strong>.</p>
 <h2>Current plan for the remaining budget</h2>
 <table><thead><tr><th>Priority</th><th>Control</th></tr></thead><tbody>
-<tr><td>Complete the paired qualitative review of v26</td><td>Compare the 50 OpenRouter panels with the successful Studio holdout before deciding whether any repeated material defect justifies v27.</td></tr>
+<tr><td>Validate v27 in Studio</td><td>The paired local gate improved from 34/50 to 42/50 majorities and from 47/50 to 50/50 valid panels; run a reproducible random 100-case Studio holdout next.</td></tr>
 <tr><td>Preserve semantic and technical separation</td><td>Track JSON/output stability, procedural-scope normalization and genuine material omissions as separate metrics.</td></tr>
 <tr><td>Review the nine pseudonymized decisions held for inspection</td><td>No additional API cost unless a targeted repair is approved.</td></tr>
 <tr><td>Reserve the unspent balance for holdouts, robustness and new cases</td><td>Every new paid campaign must have a persisted ceiling and appear in this same ledger.</td></tr>
