@@ -57,6 +57,16 @@ existe somente para compatibilidade com as ferramentas do Studio.
   ambos terminaram `ACCEPTED / MAJORITY_AGREE / SUCCESS`. O runner passou a
   persistir cada hash imediatamente, repetir falhas transitórias de leitura no
   mesmo hash e interromper o worker — em vez de avançar — se o envio falhar.
+- O lote Studio foi concluído em 100/100: 95 `ACCEPTED`, dois `FINALIZED` e
+  três `UNDETERMINED` (`0013`, `0019` e `0144`), sem erro do contrato. Dos 97
+  casos válidos, 82 fecharam sem rotação, nove com uma, quatro com duas e dois
+  com três rotações; o tempo médio foi 109,945 segundos.
+- Nos três `UNDETERMINED`, todos os líderes executaram com `SUCCESS`, mas os
+  revisores registraram `MEDIARE_DIAG:REVISOR_CATALOGO`. A inspeção das quatro
+  propostas de cada caso encontrou duas causas determinísticas: consolidação
+  ampla demais remove multa/encargo de objeto autônomo, e o filtro genérico de
+  honorários remove também verba contratual negociável. Não houve rejeição do
+  Termo de Opção nem falha técnica. Análise: `V27_STUDIO_UNDETERMINED_ANALYSIS.md`.
 
 ## v26 — casos complexos e escopo bilateral — 2026-09-17
 
