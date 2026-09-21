@@ -170,17 +170,39 @@ def rodar_caso(cli, conta, contrato, cid, args):
     txh_hex = txh.hex() if hasattr(txh, "hex") else str(txh)
     if not txh_hex.startswith("0x"):
         txh_hex = "0x" + txh_hex
+    pending_dir = os.path.join(args.out, "pending")
+    os.makedirs(pending_dir, exist_ok=True)
+    pending_path = os.path.join(pending_dir, cid + ".json")
+    with open(pending_path, "w", encoding="utf-8") as handle:
+        json.dump({"id": cid, "hash": txh_hex, "contrato": contrato,
+                   "state": "sent", "sent_at": time.time()}, handle)
     print(f"    {cid}: tx enviada {txh_hex}", flush=True)
     ultimo = None
     avisado = False
+    falhas_rpc = 0
     while True:
         time.sleep(args.poll)
-        tx = como_dict(cli.get_transaction(transaction_hash=txh_hex))
+        try:
+            tx = como_dict(cli.get_transaction(transaction_hash=txh_hex))
+            falhas_rpc = 0
+        except Exception as exc:
+            falhas_rpc += 1
+            print(f"    {cid}: RPC_RETRY tipo={type(exc).__name__} tentativa={falhas_rpc}",
+                  flush=True)
+            if time.time() - ini > args.timeout_duro:
+                raise RuntimeError(
+                    f"RPC indisponivel; transacao ja enviada e preservada em {pending_path}"
+                )
+            continue
         st = status_de(tx)
         if st != ultimo:
             print(f"    {cid}: {st}  ({time.time()-ini:.0f}s)", flush=True)
             ultimo = st
         if st in TERMINAIS:
+            with open(pending_path, "w", encoding="utf-8") as handle:
+                json.dump({"id": cid, "hash": txh_hex, "contrato": contrato,
+                           "state": "terminal", "status": st,
+                           "resolved_at": time.time()}, handle)
             return tx, time.time() - ini
         dt = time.time() - ini
         if dt > args.timeout and not avisado:
@@ -226,9 +248,12 @@ def worker(nome, cli, conta, contrato, fila, args, lock, parar=None):
         except Exception as e:
             with lock:
                 with open(os.path.join(args.out, "chain.jsonl"), "a", encoding="utf-8") as f:
-                    f.write(json.dumps({"id": cid, "status": "ERRO_SCRIPT",
+                    f.write(json.dumps({"id": cid, "status": "ERRO_SCRIPT_STOPPED",
                                         "erro": str(e)[:300]}, ensure_ascii=False) + "\n")
                 print(f"[{nome}] {cid}: ERRO {type(e).__name__}: {str(e)[:160]}", flush=True)
+            if parar is not None:
+                parar.set()
+            return
 
 
 # ---------------------------------------------------------------- resumo

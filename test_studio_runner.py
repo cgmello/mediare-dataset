@@ -3,6 +3,9 @@
 
 import unittest
 from unittest.mock import patch
+from types import SimpleNamespace
+from pathlib import Path
+import tempfile
 
 import studio_runner as sr
 
@@ -44,6 +47,31 @@ class StudioRunnerSafetyTests(unittest.TestCase):
         self.assertEqual(metric["painel_ep0_formato"], "objeto_genvm")
         self.assertNotIn("erro_decode", metric)
         self.assertEqual(metric["exec"], "SUCCESS")
+
+    def test_poll_rpc_error_retries_same_hash_and_persists_terminal_state(self):
+        class Client:
+            calls = 0
+
+            def write_contract(self, **_kwargs):
+                return bytes.fromhex("12" * 32)
+
+            def get_transaction(self, **_kwargs):
+                self.calls += 1
+                if self.calls == 1:
+                    raise ValueError("upstream returned HTML")
+                return {"hash": "0x" + "12" * 32, "status": 5}
+
+        with tempfile.TemporaryDirectory() as tmp, patch.object(sr.time, "sleep", return_value=None):
+            args = SimpleNamespace(out=tmp, poll=0, timeout=10, timeout_duro=100)
+            tx, _duration = sr.rodar_caso(
+                Client(), object(), "0x" + "34" * 20, "0404", args,
+            )
+            self.assertEqual(sr.status_de(tx), "ACCEPTED")
+            pending = Path(tmp, "pending", "0404.json")
+            self.assertTrue(pending.exists())
+            state = __import__("json").loads(pending.read_text(encoding="utf-8"))
+            self.assertEqual(state["state"], "terminal")
+            self.assertEqual(state["hash"], "0x" + "12" * 32)
 
 
 if __name__ == "__main__":

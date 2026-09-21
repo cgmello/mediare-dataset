@@ -48,6 +48,15 @@ existe somente para compatibilidade com as ferramentas do Studio.
   `0354`, `0368` e `0468`. Relatório: `V27_OPENROUTER_PAIRED50_REPORT.md`.
 - Decisão: v27 aprovada para validação no Studio em uma nova amostra aleatória
   reproduzível de 100 casos.
+- A amostra Studio usa seed `20260920` e 100 IDs sorteados entre 401 casos
+  compatíveis ainda não usados nos lotes v25/v26. Os registros 0501–1000 não
+  entraram: já foram pseudonimizados, mas continuam como decisões judiciais
+  brutas e ainda não possuem os quatro blocos de entrada exigidos pelo IC.
+- Durante o início do lote, o endpoint devolveu HTML em duas leituras JSON-RPC.
+  Os hashes já transmitidos de `0404` e `0174` foram recuperados sem reenvio e
+  ambos terminaram `ACCEPTED / MAJORITY_AGREE / SUCCESS`. O runner passou a
+  persistir cada hash imediatamente, repetir falhas transitórias de leitura no
+  mesmo hash e interromper o worker — em vez de avançar — se o envio falhar.
 
 ## v26 — casos complexos e escopo bilateral — 2026-09-17
 
