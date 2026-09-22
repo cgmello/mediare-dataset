@@ -307,6 +307,8 @@ def main():
     ap.add_argument("--dataset", default=".")
     ap.add_argument("--out", default="res_studio")
     ap.add_argument("--casos", default="", help="lista explicita: 0002,0004")
+    ap.add_argument("--manifest", default="",
+                    help="JSON com case_ids em ordem (alternativa a --casos)")
     ap.add_argument("--desde", default="")
     ap.add_argument("--limite", type=int, default=30)
     ap.add_argument("--timeout", type=int, default=900,
@@ -336,7 +338,14 @@ def main():
         os.chmod(kpath, 0o600)
     print(f"conta: {conta.address}")
 
-    if args.casos:
+    if args.casos and args.manifest:
+        ap.error("use somente um entre --casos e --manifest")
+    if args.manifest:
+        manifest = json.loads(open(args.manifest, encoding="utf-8").read())
+        ids = [str(c).strip().zfill(4) for c in manifest.get("case_ids", [])]
+        if not ids or len(ids) != len(set(ids)) or any(not re.fullmatch(r"\d{4}", c) for c in ids):
+            ap.error("manifest deve conter case_ids unicos de quatro digitos")
+    elif args.casos:
         ids = [c.strip().zfill(4) for c in args.casos.split(",") if c.strip()]
     else:
         ids = sorted(f[:-5] for f in os.listdir(os.path.join(args.dataset, "casos"))

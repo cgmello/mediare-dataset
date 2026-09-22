@@ -9,6 +9,47 @@ Desde a v24, as versões públicas avançam apenas por números inteiros (`v24`,
 `v25`, `v26`), conforme `VERSIONING.md`. O sufixo interno `.0.0-experimental`
 existe somente para compatibilidade com as ferramentas do Studio.
 
+## v28 — encargos autônomos e honorários contratuais — 2026-09-21/22
+
+- A v28 foi derivada dos três `UNDETERMINED` da campanha Studio v27:
+  `0013`, `0019` e `0144`. O problema não estava no Termo de Opção, mas na
+  normalização do catálogo e na forma como os revisores fiscalizavam omissões.
+- A consolidação agora remove somente acessórios inequivocamente genéricos da
+  mesma dívida. Multa civil ou contratual autônoma, CPFL/SAAE/IPTU/condomínio e
+  obrigações vincendas expressamente pedidas permanecem no catálogo.
+- Honorários advocatícios criados por contrato e cobrados da outra parte são
+  preservados. Custas, honorários judiciais e sucumbenciais continuam fora do
+  catálogo bilateral.
+- Os revisores só podem apontar omissão de catálogo com evidência literal na
+  fonte citada. Correções de granularidade devem indicar uma única operação
+  estrutural, e objeções meramente defensivas de retenção, redução ou ajuste
+  não criam um `CR`.
+- Se uma verba contratual foi pedida e o contrato está listado, mas a cláusula
+  não foi transcrita, o resultado correto é `necessita_informacao`, não negar a
+  pretensão apenas por ausência do documento original.
+- Os três antigos casos sem consenso atingiram maioria local ao longo dos gates
+  dirigidos. A última alteração foi isolada à normalização determinística dos
+  honorários contratuais do `0019`; as repetições intermediárias foram mantidas
+  como evidência paga, sem serem apresentadas como um único ensaio congelado.
+- No gate dos mesmos 20 sentinelas, a v28 obteve 16/20 maiorias locais, 20/20
+  painéis válidos e 18/20 saídas úteis. A referência v26 era 15/20, 20/20 e
+  16/20, respectivamente. Houve ganhos em `0009`, `0013` e `0023`; as perdas
+  aparentes foram `0001`, atribuída a variação dos revisores, e `0017`, no qual
+  o líder separou de forma redundante retenção/compensação e pagamento. O
+  `0017` fica registrado para uma futura v29, sem alterar a candidata já
+  congelada.
+- O desenvolvimento e os gates v28 consumiram 346 chamadas, 2.728.911 tokens e
+  US$ 6,538627530425 no OpenRouter. Relatório: `V28_EXPERIMENT_REPORT.md`.
+- O contrato Studio `0x9311E810d85aB09F8f2E3cDE040fF93c73e31cB9` foi
+  atualizado para `28.0.0-experimental`, SHA-256
+  `ce1485d7f01a23abe0ad8e5c69fa66a1b6c4641c3b11f386a7bfaa28a3171268`,
+  na transação
+  `0x4be3a7c9b3655c46633d896a5c0d3e992f8a2964c7ea307e1df9fec0076bc442`.
+- A validação Studio usa 100 IDs aleatórios únicos, seed `20260922`, sorteados
+  entre os 301 casos de `0001` a `0500` que não apareceram nas amostras Studio
+  v25, v26 ou v27. Manifesto: `studio_v28_random100_seed20260922.json`; execução
+  em andamento em `res_studio_v28_random100`.
+
 ## v27 — literalidade, CR defensivo e estabilidade da auditora — 2026-09-20
 
 - A inspeção pareada dos mesmos 50 holdouts da v26 comparou o consenso real do

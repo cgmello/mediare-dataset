@@ -1,0 +1,53 @@
+{
+  "source": "ic_v28.py",
+  "source_sha256": "ce1485d7f01a23abe0ad8e5c69fa66a1b6c4641c3b11f386a7bfaa28a3171268",
+  "version": "28.0.0-experimental",
+  "display_version": "v28",
+  "baseline": {
+    "source": "ic_v27.py",
+    "source_sha256": "d7aa2dd5337ee51197ef4d17b65ae3aee15ba1a5e8e7e363be8a768a127eded7",
+    "version": "27.0.0-experimental"
+  },
+  "scope": "autonomous charges and contractual fees",
+  "changes": {
+    "contractual_fees": "Preserve attorney fees expressly created by contract and claimed from the other party, while continuing to exclude court-awarded and sucumbential fees.",
+    "accessory_identity": "Consolidate only unmistakably generic accessories of the same debt; preserve autonomous contractual or civil penalties, utilities, taxes and future obligations.",
+    "review_alignment": "Apply the same contractual-fee distinction to reviewer omission normalization and reviewer instructions."
+  },
+  "local_model_config": "openrouter_models_v25.json",
+  "gate": {
+    "targeted_cases": ["0013", "0019", "0144"],
+    "sentinel_cases": ["0001", "0002", "0003", "0004", "0005", "0006", "0007", "0008", "0009", "0010", "0013", "0015", "0017", "0018", "0020", "0023", "0033", "0046", "0048", "0050"],
+    "success_conditions": [
+      "all three former Studio UNDETERMINED cases produce complete leader catalogs",
+      "no material regression across the 20 established sentinels",
+      "only then promote v28 to a fresh random 100-case Studio campaign"
+    ]
+  },
+  "gate_result": {
+    "status": "approved_and_promoted_to_studio",
+    "targeted_cases": ["0013", "0019", "0144"],
+    "targeted_result": "all three former v27 UNDETERMINED structures reached local majority across the directed gates; the final change was isolated to deterministic contractual-fee normalization for 0019, and all intermediate repetitions were retained as paid diagnostic evidence",
+    "sentinel_completed": 20,
+    "sentinel_local_majority_agree": 16,
+    "sentinel_valid_leader_panels": 20,
+    "sentinel_useful_leader_outputs": 18,
+    "v26_sentinel_baseline": {
+      "local_majority_agree": 15,
+      "valid_leader_panels": 20,
+      "useful_leader_outputs": 16
+    },
+    "openrouter_completed_units_including_repetitions": 34,
+    "openrouter_api_calls": 346,
+    "openrouter_tokens": 2728911,
+    "openrouter_cost_usd": "6.538627530425",
+    "studio_upgrade_hash": "0x4be3a7c9b3655c46633d896a5c0d3e992f8a2964c7ea307e1df9fec0076bc442",
+    "studio_contract": "0x9311E810d85aB09F8f2E3cDE040fF93c73e31cB9",
+    "studio_holdout_manifest": "studio_v28_random100_seed20260922.json"
+  },
+  "status": "studio_random100_in_progress",
+  "versioning": {
+    "public_policy": "major-only: v27, v28, v29",
+    "runtime_literal": "28.0.0-experimental is retained for Studio tooling compatibility"
+  }
+}
