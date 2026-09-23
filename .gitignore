@@ -11,6 +11,7 @@ resultados/
 # saidas de avaliacao (locais, nao versionar)
 res_*/
 *.stale*
+.local_runs/
 
 # dados pessoais e acordos finais gerados localmente
 dados-acordo-*.json

@@ -26,6 +26,8 @@ Resumivel: re-executar pula o que ja foi coletado.
 """
 import argparse, base64, json, os, re, sys, threading, time, queue
 
+from local_run_registry import register_run
+
 
 def redact(data):
     """Remove credenciais que o Studio possa repetir em node_config."""
@@ -324,6 +326,11 @@ def main():
     os.makedirs(os.path.join(args.out, "receipts"), exist_ok=True)
     if args.relatorio:
         resumo(args); return
+    run_metadata = {
+        "contracts": list(args.contrato),
+        "selection_manifest": args.manifest or None,
+    }
+    register_run("studio", args.out, "running", run_metadata)
 
     from genlayer_py import create_client, create_account
     from genlayer_py.chains import studionet
@@ -364,6 +371,7 @@ def main():
                 pass
     ids = [c for c in ids if c not in feitos][:args.limite]
     if not ids:
+        register_run("studio", args.out, "completed", run_metadata)
         print("nada a fazer (tudo ja coletado)"); resumo(args); return
 
     ncon = len(args.contrato)
@@ -387,6 +395,7 @@ def main():
         for t in ths:
             t.join()
     except KeyboardInterrupt:
+        register_run("studio", args.out, "interrupted_resumable", run_metadata)
         print("\ninterrompido — o que terminou esta salvo; re-execute para continuar")
         return
     if parar.is_set():
@@ -397,6 +406,9 @@ def main():
             print(f"Sobraram {restantes} casos na fila. Deploye enderecos "
                   f"limpos e rode de novo (o script e resumivel):\n"
                   f"  python3 deploy.py --n 2 --out {args.out}")
+        register_run("studio", args.out, "attention_required", run_metadata)
+    else:
+        register_run("studio", args.out, "completed", run_metadata)
     resumo(args)
 
 

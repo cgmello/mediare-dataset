@@ -24,6 +24,7 @@ import time
 
 from studio_cycle import evaluate
 from studio_phase2 import classify_success, load_case
+from local_run_registry import register_run
 
 
 DEFAULT_OUT = "res_openrouter_v20_0001_0050"
@@ -911,6 +912,10 @@ def initialize(args):
 def run_campaign(args):
     out = Path(args.out)
     manifest = read_json(out / "campaign.json")
+    registry_metadata = {
+        "version": manifest["version"], "selection": manifest["selection"],
+    }
+    register_run("openrouter", out, "running", registry_metadata)
     snapshot = out / "snapshot.py"
     if sha256(snapshot.read_bytes()) != manifest["source_sha256"]:
         raise RunnerError("frozen source snapshot changed")
@@ -956,7 +961,11 @@ def run_campaign(args):
         run_completed += 1
     manifest["account_latest"] = client.account_snapshot()
     atomic_json(out / "campaign.json", manifest)
-    return render_report(manifest, out, args.report)
+    summary = render_report(manifest, out, args.report)
+    target_count = len(select_run_cases(manifest["case_ids"], args.include_cases))
+    status = "completed" if summary["completed"] >= target_count else "paused_resumable"
+    register_run("openrouter", out, status, registry_metadata)
+    return summary
 
 
 def raise_budget(args):

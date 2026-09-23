@@ -1,0 +1,38 @@
+{
+  "source": "ic_v29.py",
+  "source_sha256": "05c8e1c46449da68fd3b8884a76496ce5816ad20e8b38ff02d1fd81680f38699",
+  "version": "29.0.0-experimental",
+  "display_version": "v29",
+  "baseline": {
+    "source": "ic_v28.py",
+    "source_sha256": "ce1485d7f01a23abe0ad8e5c69fa66a1b6c4641c3b11f386a7bfaa28a3171268",
+    "version": "28.0.0-experimental"
+  },
+  "scope": "directional merits separated from quantification",
+  "audit_basis": {
+    "studio_cases": 87,
+    "unresolved_requests": 175,
+    "indispensable_missing_information": 86,
+    "useful_but_not_indispensable": 70,
+    "already_sufficient_for_direction": 19,
+    "avoidable_abstention_cases": 57,
+    "audit_report": "V28_ABSTENTION_AUDIT.md"
+  },
+  "changes": {
+    "three_level_information_test": "Only information capable of reversing grant/deny permits necessita_informacao; useful detail and already summarized evidence no longer block direction.",
+    "directional_monetary_grant": "A monetary request may be granted with valor_centavos=null only when responsibility is supported and the remaining gap is value or proportion.",
+    "summary_as_evidence": "Do not demand originals merely because the IC receives summaries; apply the described evidence while never inventing unseen contents.",
+    "minimum_support": "Unsupported constitutive allegations may be denied on the current record, while specific summarized documentary support is not neutralized by a generic defense.",
+    "non_monetary_execution": "Useful details about timing or implementation do not prevent deciding the requested obligation itself."
+  },
+  "gate": {
+    "selection": "v29_gate50.json",
+    "success_conditions": [
+      "materially reduce avoidable abstentions in the first 25 cases",
+      "preserve necessita_informacao when the audit found decisive information absent",
+      "do not regress the ten fully resolved controls",
+      "produce valid leader panels and no invented monetary values"
+    ]
+  },
+  "status": "candidate_local_gate_pending_explicit_openrouter_authorization"
+}

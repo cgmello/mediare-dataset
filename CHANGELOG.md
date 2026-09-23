@@ -9,6 +9,40 @@ Desde a v24, as versões públicas avançam apenas por números inteiros (`v24`,
 `v25`, `v26`), conforme `VERSIONING.md`. O sufixo interno `.0.0-experimental`
 existe somente para compatibilidade com as ferramentas do Studio.
 
+## v29 — direção do mérito separada da quantificação — 2026-09-23
+
+- A análise dos 98 painéis consensuais da v28 mostrou que 87 casos continham
+  pelo menos um pedido em que ambas as lentes retornaram
+  `necessita_informacao`: 175 pedidos ao todo, sendo 152 `RP` e 23 `CR`.
+- Uma auditoria off-chain, que avaliou primeiro somente os quatro blocos de
+  entrada e consultou o gabarito apenas depois, classificou 86 lacunas como
+  realmente indispensáveis, 70 como úteis mas não indispensáveis e 19 como já
+  supridas para decidir a direção. Assim, 89/175 abstenções eram evitáveis e
+  afetavam 57 casos.
+- O gabarito resolvia 90 pedidos com informação ausente da entrada, 77 com
+  informação já suficiente, quatro eram incompatíveis com a entrada e quatro
+  não eram mapeáveis ao pedido. A auditoria usou 88 chamadas, 200.023 tokens e
+  US$ 1,0140700 no OpenRouter. Relatório: `V28_ABSTENTION_AUDIT.md`.
+- A v29 introduz um teste de indispensabilidade: somente informação capaz de
+  inverter conceder/negar autoriza `necessita_informacao`. Detalhes que apenas
+  calibram quantia, percentual, prazo ou modo permanecem como lacuna, sem
+  bloquear a direção.
+- Uma concessão monetária pode usar `valor_centavos=null` somente quando a
+  responsabilidade está sustentada e a lacuna restante é de valor ou proporção.
+  Isso permite concluir o mérito direcional sem transformar pedido, orçamento
+  ou estimativa em dívida.
+- O resumo passa a ser tratado como a evidência disponível desta etapa: o IC não
+  exige o original apenas porque recebeu contrato, laudo, fotografia, recibo ou
+  BO resumido, mas continua proibido de inventar conteúdo não transcrito.
+- Alegação constitutiva sem suporte mínimo pode ser negada no registro atual;
+  prova documental especificamente resumida não vira indeterminada apenas por
+  defesa genérica. Detalhes de execução não bloqueiam obrigação de fazer ou não
+  fazer cuja direção esteja sustentada.
+- A candidata `29.0.0-experimental` passou nos testes unitários dirigidos. O gate
+  balanceado de 50 casos foi preparado em `v29_gate50.json`, mas nenhuma chamada
+  v29 foi enviada: a exportação desse novo lote ao OpenRouter aguarda autorização
+  explícita separada. Estado: candidata local, não promovida ao Studio.
+
 ## v28 — encargos autônomos e honorários contratuais — 2026-09-21/22
 
 - A v28 foi derivada dos três `UNDETERMINED` da campanha Studio v27:
@@ -48,7 +82,17 @@ existe somente para compatibilidade com as ferramentas do Studio.
 - A validação Studio usa 100 IDs aleatórios únicos, seed `20260922`, sorteados
   entre os 301 casos de `0001` a `0500` que não apareceram nas amostras Studio
   v25, v26 ou v27. Manifesto: `studio_v28_random100_seed20260922.json`; execução
-  em andamento em `res_studio_v28_random100`.
+  concluída em `res_studio_v28_random100`.
+- A campanha terminou com 98/100 `MAJORITY_AGREE` e dois `UNDETERMINED`
+  (`0052` e `0137`). A comparação cega com o gabarito obteve 9/11 (81,8%) nas
+  conclusões exatas que o IC resolveu; após auditar o gabarito `0482`, que
+  concede itens ausentes da petição, o resultado ajustado foi 9/10 (90%). No
+  desfecho binário — alguma tutela ou nenhuma — foram 24/24 acertos, porém com
+  cobertura de apenas 24/98. Três casos puderam ser comparados integralmente em
+  valor e todos continham o gabarito. O achado central é alta precisão
+  condicional, mas baixa cobertura substantiva; consenso do protocolo não é
+  sinônimo de acerto jurídico. Relatório:
+  `V28_STUDIO_GROUND_TRUTH_REPORT.md`.
 
 ## v27 — literalidade, CR defensivo e estabilidade da auditora — 2026-09-20
 

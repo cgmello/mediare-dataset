@@ -61,5 +61,31 @@ US$ 6,538627530425. O valor foi incorporado ao relatório consolidado
 - Seed: `20260922`
 - Manifesto: `studio_v28_random100_seed20260922.json`
 
-A campanha de 100 casos está em andamento. Seus resultados devem ser avaliados
-separadamente dos consensos simulados localmente.
+A campanha de 100 casos foi concluída. Seus resultados são avaliados
+separadamente dos consensos simulados localmente na seção seguinte.
+
+## Resultado final e comparação com o gabarito
+
+A campanha terminou com 98/100 `MAJORITY_AGREE` e dois `UNDETERMINED`. A
+comparação off-chain com o gabarito separou consenso, cobertura e acerto:
+
+- o IC produziu uma conclusão exata de três classes em 11 dos 97 casos cujo
+  gabarito era diretamente mapeável, acertando 9/11 (81,8% quando concluiu);
+- a inspeção dos dois erros encontrou um defeito no gabarito do `0482`, que
+  concede danos morais e multa não pedidos na petição; excluída somente essa
+  referência defeituosa, o resultado auditado é 9/10 (90%);
+- no teste binário — alguma tutela versus nenhuma tutela — o IC concluiu 24 dos
+  98 casos mapeáveis e acertou 24/24;
+- apenas três dos 54 casos com valor de referência confiável tiveram conclusão
+  integralmente quantificada; os três intervalos continham o gabarito;
+- o erro material remanescente é o `0054`: o gabarito concede danos morais, mas
+  o IC rejeitou esse pedido.
+
+O resultado mostra boa precisão condicional, mas baixa cobertura: na maior parte
+dos casos o painel consensual registra `sem_maioria` ou necessidade de
+informação. Portanto, 98% de consenso do protocolo não equivale a 98% de acerto
+jurídico. Relatório reproduzível: `V28_STUDIO_GROUND_TRUTH_REPORT.md`.
+
+Os 100 casos foram sorteados entre os 500 registros já compatíveis com o IC
+(`0001`–`0500`). Os registros `0501`–`1000` são decisões pseudonimizadas, mas
+ainda não foram convertidos nos quatro blocos de entrada exigidos pelo contrato.
