@@ -1,6 +1,6 @@
 {
   "source": "ic_v29.py",
-  "source_sha256": "05c8e1c46449da68fd3b8884a76496ce5816ad20e8b38ff02d1fd81680f38699",
+  "source_sha256": "85a54ea2e15ad3fdb89bea7fbdccfee8c8600a666e589e311c0c05bd90411d99",
   "version": "29.0.0-experimental",
   "display_version": "v29",
   "baseline": {
@@ -48,5 +48,15 @@
     "total_tokens": 2668949,
     "cost_usd": "5.7921103186460"
   },
-  "status": "candidate_gate_failed_not_promoted_to_studio"
+  "revision_after_gate": {
+    "purpose": "restore material-evidence abstentions without losing directional coverage",
+    "changes": [
+      "mandatory material gate for causation, fault, validity, authenticity, contractual incidence and existence of the obligation",
+      "symmetric minimum-support rule that distinguishes a bare allegation from a potentially decisive listed document",
+      "defensive retention, set-off and partial acknowledgement excluded from autonomous RP/CR catalog entries",
+      "targeted structural repair guidance for open-value decisions and audit conflicts"
+    ],
+    "repeat_gate": "res_openrouter_v29_gate50_r2"
+  },
+  "status": "candidate_revised_repeat_gate_pending"
 }

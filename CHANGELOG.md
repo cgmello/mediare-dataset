@@ -48,6 +48,18 @@ existe somente para compatibilidade com as ferramentas do Studio.
   para 18/32. Três painéis também falharam estruturalmente (`0017`, `0088` e
   `0199`). Estado: **não promovida ao Studio**. Relatórios:
   `V29_GATE50_ANALYSIS.md` e `V29_GATE50_REVIEW.md`.
+- A revisão pós-gate preserva a concessão direcional com valor aberto, mas
+  introduz um portão material obrigatório para causalidade, culpa,
+  validade/autenticidade, incidência contratual e existência da obrigação. Uma
+  lacuna nesses pontos volta a exigir informação quando puder inverter o mérito;
+  ausência de prova somente permite negar quando a própria entrada não indicar
+  nenhuma âncora nem documento potencialmente decisivo.
+- Reconhecimento parcial, retenção de caução, abatimento e compensação meramente
+  defensivos deixam de gerar RP/CR autônomo. Efeito suspensivo é explicitamente
+  excluído do catálogo bilateral, dano estético autônomo deixa de ser confundido
+  com dano moral e os reparos de JSON passam a orientar coerência de valor aberto
+  e conflitos da auditora sem afrouxar a validação. O mesmo gate de 50 casos foi
+  reiniciado em `res_openrouter_v29_gate50_r2`.
 
 ## v28 — encargos autônomos e honorários contratuais — 2026-09-21/22
 

@@ -407,6 +407,22 @@ class V29TechnicalTests(unittest.TestCase):
         V29["_normalizar_catalogo"](value)
         self.assertEqual([p["id"] for p in value["pedidos"]], ["RP01"])
 
+    def test_plain_defensive_retention_is_not_counterclaim(self):
+        value = {"pedidos": [
+            {"id": "RP01", "autor": "requerente", "contra": "requerido", "modalidade": "pagar", "natureza": "principal", "valor_pedido_centavos": 1100000, "descricao": "Devolução integral da caução."},
+            {"id": "CR01", "autor": "requerido", "contra": "requerente", "modalidade": "declarar", "natureza": "declaratoria", "valor_pedido_centavos": None, "descricao": "Manutenção da retenção da caução para abatimento dos danos."},
+        ]}
+        V29["_normalizar_catalogo"](value)
+        self.assertEqual([p["id"] for p in value["pedidos"]], ["RP01"])
+
+    def test_suspensive_effect_is_removed_from_bilateral_catalog(self):
+        value = {"pedidos": [
+            {"id": "RP01", "autor": "requerente", "contra": "requerido", "modalidade": "declarar", "natureza": "declaratoria", "valor_pedido_centavos": None, "descricao": "Reconhecimento do excesso de execução."},
+            {"id": "RP02", "autor": "requerente", "contra": "requerido", "modalidade": "fazer", "natureza": "obrigacao_fazer", "valor_pedido_centavos": None, "descricao": "Concessão de efeito suspensivo aos embargos."},
+        ]}
+        V29["_normalizar_catalogo"](value)
+        self.assertEqual([p["id"] for p in value["pedidos"]], ["RP01"])
+
     def test_audit_unknown_risk_and_invalid_conflict_fail_closed(self):
         thesis = {"lente": "auditora", "pedidos": [{
             "pedido_id": "RP01",
@@ -464,8 +480,33 @@ class V29TechnicalTests(unittest.TestCase):
     def test_v29_rules_separate_indispensable_from_useful_information(self):
         rules = V29["REGRAS_GERAIS"]
         self.assertIn("poderia razoavelmente inverter a direcao", rules)
-        self.assertIn("detalhes de execucao meramente uteis", rules)
+        self.assertIn("detalhes meramente executivos", rules)
         self.assertIn("valor_centavos=null", rules)
+        self.assertIn("PORTAO MATERIAL OBRIGATORIO", rules)
+        self.assertIn("autenticidade/validade", rules)
+
+    def test_audit_normalizer_repairs_motive_and_conflict_symmetry(self):
+        cat = {"pedidos": [catalog()["pedidos"][0], {
+            "id": "RP02", "autor": "requerente", "contra": "requerido",
+            "modalidade": "pagar", "natureza": "principal",
+            "valor_pedido_centavos": 1000, "descricao": "Segundo pagamento.",
+        }]}
+        thesis = {"lente": "auditora", "pedidos": [
+            {"pedido_id": "RP01", "auditoria": {
+                "resultado": "reformular", "riscos": ["PREMISSA"],
+                "motivo": "", "conflitos_com": ["RP02"],
+            }},
+            {"pedido_id": "RP02", "auditoria": {
+                "resultado": "apta", "riscos": [],
+                "motivo": "A opção está segura.", "conflitos_com": [],
+            }},
+        ]}
+        V29["_normalizar_tese_modelo"](thesis, cat, "auditora", "{}", [{}, {"pedidos": []}])
+        audit = thesis["pedidos"][0]["auditoria"]
+        self.assertEqual(audit["resultado"], "reformular")
+        self.assertIn("DUPLA_CONTAGEM", audit["riscos"])
+        self.assertTrue(audit["motivo"])
+        self.assertEqual(V29["_erro_auditoria"](audit, {}, cat, cat["pedidos"][0]), "")
 
 
 if __name__ == "__main__":

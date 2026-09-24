@@ -29,6 +29,10 @@ Objetivos desta versao de transicao:
 - reservar necessita_informacao para fatos capazes de inverter a direcao do merito;
 - permitir concessao monetaria direcional com valor aberto, sem inventar cifra;
 - tratar informacao meramente util como ressalva, nao como bloqueio da conclusao.
+- preservar abstencao quando faltar fato material sobre nexo, culpa, validade,
+  autenticidade, incidencia contratual ou existencia da obrigacao;
+- impedir que defesa, retencao ou reconhecimento parcial vire pedido autonomo;
+- orientar reparos estruturais sem afrouxar os validadores fail-closed.
 
 Limitacao conhecida: o catalogo de pedidos ainda e extraido por LLM. A versao
 definitiva deve receber IDs de pedidos ja gravados no caso de entrada.
@@ -112,9 +116,10 @@ REGRAS_GERAIS = (
     "15. Trate o resumo como a evidencia disponivel desta etapa: nao exija o original "
     "apenas porque contrato, foto, laudo, recibo ou BO foram resumidos. Se o resumo "
     "descrever o conteudo decisivo, julgue-o. Se apenas listar contrato sem resumir a "
-    "clausula alegada e a parte onerada a contesta, negue por suporte insuficiente no "
-    "registro atual; use necessita_informacao somente quando exista indicacao concreta "
-    "de documento decisivo cujo conteudo omitido possa inverter a direcao.\n"
+    "clausula alegada e a parte onerada a contesta, isso NAO prova inexistencia nem "
+    "autoriza negar automaticamente: use necessita_informacao quando o conteudo omitido "
+    "puder inverter a direcao. Negue por falta de suporte somente quando a propria entrada "
+    "mostrar que nao existe ancora minima nem documento potencialmente decisivo indicado.\n"
     "16. Em pedido que reune principal e acessorios percentuais, nao conceda um total "
     "parcial como se resolvesse tudo. Se multa, juros, periodo ou base ainda impedirem "
     "quantificar o conjunto, conceda apenas a direcao com valor null e lacuna de valor "
@@ -124,10 +129,19 @@ REGRAS_GERAIS = (
     "resposta faltante poderia razoavelmente inverter a direcao. Se apenas calibrar "
     "quantia, percentual, prazo ou modo de cumprimento, conclua a direcao e preserve a "
     "lacuna. Versoes opostas, defesa generica ou desejo abstrato de mais prova nao bastam.\n"
-    "18. Aplique o suporte minimo: alegacao constitutiva sem nenhuma ancora em PR/DR pode "
-    "ser negada no registro atual; alegacao especifica apoiada por resumo documental nao "
-    "fica indeterminada apenas por defesa generica. Em obrigacao de fazer/nao fazer, "
-    "detalhes de execucao meramente uteis nao impedem decidir a providencia catalogada."
+    "18. Aplique o suporte minimo com simetria: alegacao constitutiva nua, sem fato "
+    "especifico nem documento potencialmente pertinente em PR/DR, pode ser negada; mera "
+    "lista de documento sem seu conteudo nao prova o fato, mas exige informacao se esse "
+    "conteudo puder inverter o merito. Alegacao especifica apoiada por resumo que DESCREVA "
+    "o conteudo decisivo nao fica indeterminada apenas por defesa generica.\n"
+    "19. PORTAO MATERIAL OBRIGATORIO: use necessita_informacao se a lacuna concreta tratar "
+    "de causalidade, culpa ou contribuicao causal, autenticidade/validade, incidencia de "
+    "clausula, existencia da obrigacao, cumprimento de condicao previa ou titularidade E a "
+    "resposta puder razoavelmente inverter conceder/negar. Nao transforme controversia "
+    "material em negativa por onus da prova nem em concessao por narrativa detalhada. "
+    "Somente valor, proporcao, prazo ou modo de cumprimento podem ficar abertos depois de "
+    "uma direcao segura. Em obrigacao de fazer/nao fazer, detalhes meramente executivos nao "
+    "bloqueiam a providencia quando existencia, nexo e responsabilidade ja estao sustentados."
 )
 
 LENTES = (
@@ -136,14 +150,18 @@ LENTES = (
         "Examine pedido por pedido a existencia do dano ou obrigacao, o nexo causal, "
         "a legitimidade, a condicao previa, a liquidez e o suporte no material "
         "resumido. Diferencie alegacao de comprovacao. Orcamento pode provar extensao "
-        "estimada, mas nao prova sozinho que a outra parte causou o dano.",
+        "estimada, mas nao prova sozinho que a outra parte causou o dano. Se um documento "
+        "potencialmente decisivo for apenas listado sem conteudo e houver controversia "
+        "material, preserve necessita_informacao em vez de presumir o resultado.",
     ),
     (
         "jurisprudencial",
         "Examine pedido por pedido conforme regras e padroes decisorios brasileiros "
         "pertinentes. Aplique presuncao, responsabilidade objetiva, inversao do onus, "
         "culpa concorrente ou forca maior somente quando os fatos resumidos permitirem. "
-        "Nao invente precedente nem use uma presuncao sem indicar sua base no caso.",
+        "Nao invente precedente nem use uma presuncao sem indicar sua base no caso. "
+        "Presuncao ou distribuicao do onus nao substitui fato material omitido capaz de "
+        "inverter causalidade, culpa, validade ou existencia da obrigacao.",
     ),
     (
         "auditora",
@@ -397,6 +415,10 @@ def _prompt_catalogo(corpo: str) -> str:
         "- Na resposta do requerido, contestar, pedir extincao ou improcedencia, negar "
         "responsabilidade, alegar inexigibilidade, pedir reducao ou recalculo defensivo e "
         "atribuir culpa NAO criam CR, mesmo sob um titulo chamado 'Pedidos'.\n"
+        "- Reconhecimento parcial, admissao de dever limitado, proposta de abatimento, "
+        "compensacao ou manutencao/retencao de caucao como defesa tambem NAO criam RP/CR "
+        "autonomo. Catalogue somente se a parte pedir providencia independente que gere "
+        "beneficio proprio alem de limitar ou extinguir o pedido adverso.\n"
         "- Crie CR somente se o requerido pedir uma providencia afirmativa e autonoma "
         "CONTRA o requerente, como pagamento, devolucao de saldo, declaracao com efeito "
         "alem de negar o RP, ou obrigacao de fazer/nao fazer. Simples abatimento reduz o RP; "
@@ -412,9 +434,9 @@ def _prompt_catalogo(corpo: str) -> str:
         "restituicao ou liberacao de valor depositado em favor de parte.\n"
         "- Preserve multa civil ou contratual expressamente pedida como resultado monetario "
         "autonomo, ainda que a outra parte conteste sua aplicabilidade; o catalogo nao julga merito.\n"
-        "- Excecao expressa: se a resposta identificar como contrapedido/reconvencao uma "
-        "providencia concreta sobre bem ou valor (por exemplo, manter a retencao integral "
-        "de uma caucao), preserve-a como CR, mesmo que se relacione a um RP.\n"
+        "- Mesmo sob o rotulo contrapedido/reconvencao, reter caucao, compensar ou abater "
+        "para resistir ao RP continua defesa. Preserve CR somente para saldo positivo, "
+        "pagamento, devolucao ou outra providencia independente em favor do requerido.\n"
         "- Nao una ajuste/recalculo de uma divida com pagamento ou devolucao de saldo a uma "
         "parte: o calculo e o pagamento final podem ser aceitos separadamente e sao resultados autonomos.\n"
         "- A descricao deve registrar a providencia pedida, sem incorporar a sua analise, "
@@ -439,7 +461,8 @@ def _prompt_catalogo(corpo: str) -> str:
         "obrigacao_nao_fazer|declaratoria.\n"
         "SIGNIFICADO DAS CATEGORIAS: principal inclui cobranca, restituicao e "
         "ressarcimento de despesas, custos de reparo e danos MATERIAIS. Danos "
-        "materiais NAO sao danos_morais. danos_morais e somente compensacao "
+        "materiais NAO sao danos_morais. Dano estetico autonomo usa outros, nunca "
+        "danos_morais. danos_morais e somente compensacao "
         "extrapatrimonial expressamente pedida (honra, dignidade, sofrimento etc.), "
         "nunca o custo de recompor um bem. A palavra indenizacao sozinha nao "
         "autoriza classificar como moral. multa e penalidade pecuniaria pedida. "
@@ -649,6 +672,19 @@ def _resposta_validada(pedir, prompt, etapa, verificar, tentativas=3):
             "Nao mude o merito para satisfazer o formato. Use apenas uma frase curta "
             "por campo textual para evitar truncamento."
         )
+        if "COERENCIA_DECISAO_VALOR_PARTES_FONTES" in erro:
+            prompt += (
+                " Se decisao=conceder em pedido monetario com valor_centavos=null, "
+                "use polos canonicos e lacuna.dimensao=valor ou proporcao; se a lacuna "
+                "for nexo, existencia, validade, culpa ou escopo capaz de inverter o "
+                "merito, use necessita_informacao, polos null e valor_centavos=null."
+            )
+        if "auditoria:" in erro:
+            prompt += (
+                " Em auditoria, motivo e sempre uma frase nao vazia. DUPLA_CONTAGEM "
+                "exige conflitos_com com outro pedido valido; se nenhum conflito puder "
+                "ser identificado, use PREMISSA sem conflitos, em modo fail-closed."
+            )
     raise ValueError("LLM_INVALID_PANEL:" + etapa + ":" + ";".join(erros))
 
 
@@ -670,6 +706,9 @@ _MARCADORES_DEFESA_CR = (
     "limitação da responsabilidade", "limitacao da responsabilidade",
     "reconhecimento da legitimidade", "reconhecer a legitimidade",
     "retenção legítima", "retencao legitima",
+    "manutenção da retenção", "manutencao da retencao",
+    "manter a retenção", "manter a retencao", "reter a caução", "reter a caucao",
+    "abatimento", "compensação", "compensacao",
 )
 
 _MARCADORES_ACESSORIO = (
@@ -685,6 +724,7 @@ _MARCADORES_FORA_ESCOPO_MEDIACAO = (
     "custas processuais", "honorários advocatícios", "honorarios advocaticios",
     "honorários sucumbenciais", "honorarios sucumbenciais", "sucumbência", "sucumbencia",
     "litigância de má-fé", "litigancia de ma-fe", "litigancia de ma fe",
+    "efeito suspensivo", "suspensão da execução", "suspensao da execucao",
 )
 
 
@@ -1512,6 +1552,9 @@ def _prompt_revisao(corpo, lider):
         "numerado distinto. Fatos, parcelas ou valores narrados fora de uma providencia "
         "expressamente solicitada nao se tornam pedido, e o revisor nao pode soma-los. "
         "Simples abatimento reduz o RP; devolucao de saldo ou credito proprio pode ser CR. "
+        "Reconhecimento parcial do proprio requerente nao e novo RP; retencao, compensacao "
+        "ou cobranca de danos usada somente para resistir ao RP nao e CR sem pedido "
+        "independente de saldo ou pagamento em favor do requerido. "
         "Valor numerico e fiel somente se o montante final estiver literalmente na fonte; "
         "valor calculado exige catalogo='incompleto'. Se a evidencia citada pelo proprio "
         "revisor contiver exatamente o mesmo valor em reais, VALOR_INFERIDO e contraditorio "
@@ -1535,6 +1578,10 @@ def _prompt_revisao(corpo, lider):
         "incerteza e ressalva forem explicitas. Concessao monetaria com valor_centavos=null "
         "e valida quando ambas as lentes sustentam a direcao e a lacuna concreta se limita "
         "a valor ou proporcao; nao marque CONCLUSAO somente porque a cifra ficou aberta.\n"
+        "PORTAO MATERIAL: marque CONCLUSAO se o painel conceder ou negar apesar de faltar "
+        "fato capaz de inverter causalidade, culpa, validade/autenticidade, incidencia "
+        "contratual ou existencia da obrigacao. Nesses casos a conclusao defensavel e "
+        "necessita_informacao; onus da prova ou narrativa detalhada nao substituem o fato.\n"
         "CONSISTENCIA OBRIGATORIA: nunca use PEDIDO isoladamente. Se marcar PEDIDO, "
         "use catalogo='incompleto' e inclua em catalogo_falhas uma falha estruturada "
         "para o mesmo pedido_id, com fonte, evidencia e correcao. Se nao puder indicar "
@@ -2052,6 +2099,14 @@ def _normalizar_tese_modelo(obj, catalogo, nome, corpo, anteriores=None):
                     a["riscos"] = outros or ["PREMISSA"]
                 elif a.get("resultado") == "reformular":
                     a["riscos"] = outros or ["PREMISSA"]
+            riscos = a.get("riscos")
+            conflitos = a.get("conflitos_com")
+            if (isinstance(conflitos, list) and conflitos
+                    and isinstance(riscos, list) and "DUPLA_CONTAGEM" not in riscos):
+                a["resultado"] = "reformular"
+                a["riscos"] = list(dict.fromkeys(riscos + ["DUPLA_CONTAGEM"]))
+            if not _texto_curto(a.get("motivo"), MAX_OPCAO_CARACTERES):
+                a["motivo"] = "A opcao exige revisao conforme os riscos estruturados pela auditoria."
             opcao_anterior = (opcoes[indice].get("opcao") if isinstance(opcoes, list)
                               and indice < len(opcoes) and isinstance(opcoes[indice], dict) else None)
             if isinstance(opcao_anterior, dict) and opcao_anterior.get("tipo") == "opcao_nao_validada":
