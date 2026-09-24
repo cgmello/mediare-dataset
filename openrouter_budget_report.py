@@ -82,6 +82,9 @@ V28_DEVELOPMENT_DIRS = (
 V28_ABSTENTION_AUDIT_DIRS = (
     "res_openrouter_v28_abstention_audit",
 )
+V29_GATE_DIRS = (
+    "res_openrouter_v29_gate50",
+)
 
 
 def as_decimal(value, default="0"):
@@ -152,6 +155,7 @@ def build_ledger(root, account=None):
     v27_holdout = aggregate_call_receipts(root, V27_PAIRED_HOLDOUT_DIRS)
     v28 = aggregate_call_receipts(root, V28_DEVELOPMENT_DIRS)
     v28_abstention_audit = aggregate_call_receipts(root, V28_ABSTENTION_AUDIT_DIRS)
+    v29_gate = aggregate_call_receipts(root, V29_GATE_DIRS)
     pseudo = campaign_summary(root, "res_pseudonymization_0501_1000")
     pseudo_completed = int(pseudo.get("completed") or 0)
     pseudo_accepted = int(pseudo.get("accepted") or 0)
@@ -310,6 +314,17 @@ def build_ledger(root, account=None):
             "grant_scope": True,
         },
         {
+            "date": "2026-09-23",
+            "activity": "v29 balanced 50-case OpenRouter gate",
+            "tests": 50,
+            "target": 50,
+            "calls": v29_gate["api_calls"],
+            "tokens": v29_gate["total_tokens"],
+            "cost": v29_gate["cost_usd"],
+            "status": "complete — 39/50 local majorities; candidate held for precision correction",
+            "grant_scope": True,
+        },
+        {
             "date": "2026-09-10+",
             "activity": "Dual-model pseudonymization (IDs 0501–1000)",
             "tests": pseudo_completed,
@@ -417,7 +432,7 @@ h1{{margin:.15rem 0;font-size:2rem}}h2{{margin-top:32px;border-bottom:2px solid 
 <p class="muted">The earlier Anthropic amount is the user's approximate estimate for direct API experiments during v1–v20. An automated check was attempted on 10 September 2026, but the available OAuth session lacked Admin API access. Anthropic documents that organization cost reporting requires an Admin credential; the estimate can be replaced by a Console Usage CSV export. Estimated total project API cost including that pre-grant amount: <strong>{money(ledger['total_project_cost'])}</strong>.</p>
 <h2>Current plan for the remaining budget</h2>
 <table><thead><tr><th>Priority</th><th>Control</th></tr></thead><tbody>
-<tr><td>Validate v29 off-chain before Studio</td><td>The v28 Studio holdout reached 98/100 protocol consensus, but a full abstention audit found 89 of 175 information requests avoidable. Run the balanced 50-case v29 OpenRouter gate before any Studio promotion.</td></tr>
+<tr><td>Correct v29 before Studio</td><td>The balanced gate completed 50/50 cases and reduced unresolved requests from 98 to 27, but preserved only 19/33 indispensable controls. Restore the material-evidence gate and rerun the same holdout before any Studio promotion.</td></tr>
 <tr><td>Preserve semantic and technical separation</td><td>Track JSON/output stability, procedural-scope normalization and genuine material omissions as separate metrics.</td></tr>
 <tr><td>Review the nine pseudonymized decisions held for inspection</td><td>No additional API cost unless a targeted repair is approved.</td></tr>
 <tr><td>Reserve the unspent balance for holdouts, robustness and new cases</td><td>Every new paid campaign must have a persisted ceiling and appear in this same ledger.</td></tr>

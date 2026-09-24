@@ -38,10 +38,16 @@ existe somente para compatibilidade com as ferramentas do Studio.
   prova documental especificamente resumida não vira indeterminada apenas por
   defesa genérica. Detalhes de execução não bloqueiam obrigação de fazer ou não
   fazer cuja direção esteja sustentada.
-- A candidata `29.0.0-experimental` passou nos testes unitários dirigidos. O gate
-  balanceado de 50 casos foi preparado em `v29_gate50.json`, mas nenhuma chamada
-  v29 foi enviada: a exportação desse novo lote ao OpenRouter aguarda autorização
-  explícita separada. Estado: candidata local, não promovida ao Studio.
+- A candidata `29.0.0-experimental` passou nos testes unitários dirigidos e foi
+  submetida ao gate balanceado de 50 casos de `v29_gate50.json`. O resultado foi
+  39/50 maiorias locais, 47/50 painéis válidos e redução de 98 para 27 pedidos
+  pendentes, ao custo de 445 chamadas, 2.668.949 tokens e US$ 5,7921103.
+- O ganho de cobertura veio com perda de precisão: somente 19/33 lacunas
+  indispensáveis foram preservadas; a concordância pedido a pedido com a
+  auditoria foi 48/98; a precisão condicional do desfecho exato caiu de 8/10
+  para 18/32. Três painéis também falharam estruturalmente (`0017`, `0088` e
+  `0199`). Estado: **não promovida ao Studio**. Relatórios:
+  `V29_GATE50_ANALYSIS.md` e `V29_GATE50_REVIEW.md`.
 
 ## v28 — encargos autônomos e honorários contratuais — 2026-09-21/22
 

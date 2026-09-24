@@ -34,5 +34,19 @@
       "produce valid leader panels and no invented monetary values"
     ]
   },
-  "status": "candidate_local_gate_pending_explicit_openrouter_authorization"
+  "gate_result": {
+    "completed_cases": 50,
+    "local_majority_agree": 39,
+    "valid_leader_panels": 47,
+    "v28_unresolved_requests": 98,
+    "v29_unresolved_requests": 27,
+    "indispensable_controls_preserved": 19,
+    "indispensable_controls_total": 33,
+    "audit_matches": 48,
+    "audit_checks": 98,
+    "api_calls": 445,
+    "total_tokens": 2668949,
+    "cost_usd": "5.7921103186460"
+  },
+  "status": "candidate_gate_failed_not_promoted_to_studio"
 }
