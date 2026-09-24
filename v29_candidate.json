@@ -58,5 +58,17 @@
     ],
     "repeat_gate": "res_openrouter_v29_gate50_r2"
   },
-  "status": "candidate_revised_repeat_gate_pending"
+  "repeat_gate_result": {
+    "completed_cases": 50,
+    "local_majority_agree": 36,
+    "valid_leader_panels": 48,
+    "v29_unresolved_requests": 75,
+    "indispensable_controls_preserved": 30,
+    "indispensable_controls_total": 33,
+    "resolved_control_cases_regressed": 6,
+    "api_calls": 451,
+    "total_tokens": 2833595,
+    "cost_usd": "6.3736802193325"
+  },
+  "status": "candidate_repeat_gate_failed_not_promoted_to_studio"
 }

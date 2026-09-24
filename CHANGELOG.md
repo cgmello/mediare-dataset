@@ -60,6 +60,14 @@ existe somente para compatibilidade com as ferramentas do Studio.
   com dano moral e os reparos de JSON passam a orientar coerência de valor aberto
   e conflitos da auditora sem afrouxar a validação. O mesmo gate de 50 casos foi
   reiniciado em `res_openrouter_v29_gate50_r2`.
+- O gate repetido terminou 50/50 com 36 maiorias locais, 48 painéis válidos e
+  25 saídas úteis. O portão material recuperou 30/33 lacunas indispensáveis,
+  contra 19/33 no primeiro gate, mas elevou as pendências totais de 27 para 75 e
+  introduziu nova abstenção em seis dos dez controles que a v28 já resolvia.
+  Precisão binária condicional subiu para 18/19, porém a cobertura exata caiu
+  para 12/50. Estado: **continua não promovida ao Studio**; o próximo ajuste deve
+  exigir que toda lacuna material descreva concretamente os dois resultados que
+  a informação faltante poderia inverter. Relatório: `V29_GATE50_R2_REVIEW.md`.
 
 ## v28 — encargos autônomos e honorários contratuais — 2026-09-21/22
 
