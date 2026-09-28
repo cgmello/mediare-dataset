@@ -47,6 +47,21 @@ existe somente para compatibilidade com as ferramentas do Studio.
 - Estado: **não promovida**. Snapshot corrigido
   `ec0d3667e1b2fa04353d95b47d78a8f7e65b4e6941a275dc57ccbe024f17c6e5`;
   repetição dos mesmos 12 casos pendente antes do gate de 50.
+- A segunda execução dos 12 casos produziu 6/12 maiorias, 11/12 painéis válidos,
+  107 chamadas, 665.135 tokens e US$ 1,3746160626. Embora o consenso local
+  bruto tenha caído, a cobertura exata subiu de 3 para 6 casos, com 4 acertos,
+  e o desfecho binário ficou correto em 8/8 casos comparáveis. As seis
+  divergências separaram uma falha mecânica (`0037`), omissões reais/variância
+  de catálogo (`0017`, juros de `0243`) e excesso dos revisores (`0003`, `0118`,
+  parte de `0486`).
+- A terceira candidata normaliza deterministicamente valor e polos de
+  providências não monetárias, preserva acessórios expressos na descrição e
+  proíbe três objeções indevidas dos revisores: unir dano material com moral,
+  transformar retenção limitada em vários CRs e inventar declaração como
+  pré-requisito de multa. Também esclarece que fato admitido pode acionar a
+  cláusula sem repetir seu rótulo jurídico e que detalhes executivos não
+  bloqueiam obrigação de fazer. Snapshot:
+  `51c44ec675a889657035630fa64440c1105cca0c3a4c1d2d53ab71f58bfa8f15`.
 
 ## v29 — direção do mérito separada da quantificação — 2026-09-23
 

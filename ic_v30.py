@@ -167,7 +167,18 @@ REGRAS_GERAIS = (
     "24. OBRIGACAO JA CUMPRIDA: se o proprio caso disser que a providencia pedida ja foi "
     "integralmente executada, nao reabra nexo ou culpa para ordenar a mesma prestacao. "
     "Trate a providencia como fora_de_escopo por falta de objeto atual, sem inventar nova "
-    "obrigacao; pedidos autonomos remanescentes continuam sendo analisados."
+    "obrigacao; pedidos autonomos remanescentes continuam sendo analisados.\n"
+    "25. QUALIFICACAO DE FATO ADMITIDO: a parte nao precisa repetir a expressao juridica "
+    "da clausula para admitir o fato que a aciona. Se ela admite a conduta material "
+    "relevante (por exemplo, cessar o servico sem cancelamento formal), decida a incidencia "
+    "da clausula; nao pergunte novamente se ocorreu a mesma conduta com outro rotulo.\n"
+    "26. EXECUCAO NAO BLOQUEIA DIRECAO: detalhes tecnicos de como executar reparo, cessacao "
+    "ou outra obrigacao de fazer sao modo de cumprimento. Se defeito, nexo, responsabilidade "
+    "e providencia estiverem suficientemente descritos, conceda a direcao sem exigir projeto "
+    "executivo, lista final de obras, prazo ou metodo.\n"
+    "27. ACESSORIOS EXPRESSOS: quando principal e acessorios da mesma cobranca forem "
+    "consolidados, a descricao deve preservar multa, juros ou correcao expressamente pedidos, "
+    "mesmo que o valor calculado permaneca null. Consolidar nao autoriza omitir componente."
 )
 
 LENTES = (
@@ -430,6 +441,8 @@ def _prompt_catalogo(corpo: str) -> str:
         "- Principal, multa, juros, correcao e demais acessorios da MESMA cobranca formam "
         "um pedido, salvo se a fonte pedir expressamente resultados autonomos que possam "
         "ser negociados separadamente. Componentes de dano ou retencao nao viram pedidos.\n"
+        "  Ao consolidar, mencione na descricao todos os acessorios expressamente pedidos; "
+        "nao apague juros, multa ou correcao apenas porque o montante final exige calculo.\n"
         "- Numero separado na lista da parte NAO basta para tornar juros ou correcao um "
         "resultado autonomo. Vincule-os ao principal correto: por exemplo, juros sobre "
         "alugueis integram o pedido de alugueis, nunca uma multa contratual distinta. "
@@ -875,6 +888,10 @@ def _normalizar_catalogo(obj, corpo=None):
                       and p.get("modalidade") == "pagar"}
     mantidos = []
     for pedido in pedidos:
+        if isinstance(pedido, dict) and pedido.get("modalidade") != "pagar":
+            # Declaração/fazer/não fazer não possui preço pedido. Um número
+            # copiado da dívida narrada é ruído mecânico, não mérito.
+            pedido["valor_pedido_centavos"] = None
         if (isinstance(pedido, dict) and pedido.get("modalidade") == "pagar"
                 and _eh_int(pedido.get("valor_pedido_centavos")) and corpo is not None
                 and pedido["valor_pedido_centavos"] not in _valores_monetarios_catalogo(
@@ -1598,6 +1615,8 @@ def _prompt_revisao(corpo, lider):
         "contratual expressamente pedida continua sendo pedido monetario autonomo. "
         "Principal e acessorios da mesma cobranca, componentes internos do mesmo dano e "
         "reconhecimento seguido do pagamento da mesma divida devem ser consolidados. "
+        "Dano material/restituicao e dano moral sao resultados autonomos e NUNCA devem "
+        "ser unidos apenas porque decorrem do mesmo fato. "
         "Nao exija juros ou correcao em pedido separado apenas porque aparecem em item "
         "numerado distinto. Fatos, parcelas ou valores narrados fora de uma providencia "
         "expressamente solicitada nao se tornam pedido, e o revisor nao pode soma-los. "
@@ -1605,6 +1624,11 @@ def _prompt_revisao(corpo, lider):
         "Reconhecimento parcial do proprio requerente nao e novo RP; retencao, compensacao "
         "ou cobranca de danos usada somente para resistir ao RP nao e CR sem pedido "
         "independente de saldo ou pagamento em favor do requerido. "
+        "Retencao ou compensacao limitada ao valor que o requerente ja pede de volta "
+        "continua defesa, mesmo sob titulo de pedido contraposto e com componentes listados; "
+        "nao exija cada componente como CR sem saldo positivo ou pagamento independente. "
+        "Nao invente pedido declaratorio como pre-requisito para multa ou cobranca expressa: "
+        "a incidencia da clausula pertence ao merito do pedido monetario existente. "
         "Valor numerico e fiel somente se o montante final estiver literalmente na fonte; "
         "valor calculado exige catalogo='incompleto'. Se a evidencia citada pelo proprio "
         "revisor contiver exatamente o mesmo valor em reais, VALOR_INFERIDO e contraditorio "
@@ -1640,7 +1664,9 @@ def _prompt_revisao(corpo, lider):
         "negativa generica. Uma entrada 'laudo apontando X', 'contrato com clausula Y' ou "
         "'registro demonstrando Z' contem o resumo decisivo; uma entrada que apenas nomeia "
         "'laudo', 'contrato' ou 'foto' nao contem. Rejeite abstencao que ignore admissao "
-        "expressa contra o interesse da propria parte ou base legal independente suficiente.\n"
+        "expressa contra o interesse da propria parte ou base legal independente suficiente. "
+        "Nao rejeite obrigacao de fazer sustentada apenas porque projeto executivo, lista "
+        "final de tarefas, prazo ou metodo de cumprimento ainda precisam ser definidos.\n"
         "CONSISTENCIA OBRIGATORIA: nunca use PEDIDO isoladamente. Se marcar PEDIDO, "
         "use catalogo='incompleto' e inclua em catalogo_falhas uma falha estruturada "
         "para o mesmo pedido_id, com fonte, evidencia e correcao. Se nao puder indicar "
@@ -2122,6 +2148,15 @@ def _normalizar_tese_modelo(obj, catalogo, nome, corpo, anteriores=None):
     ).casefold()
     for d, pedido in zip(respostas, pedidos):
         descricao = str(pedido.get("descricao") or "").casefold() if isinstance(pedido, dict) else ""
+        if (nome != "auditora" and isinstance(d, dict)
+                and d.get("decisao") == "conceder"
+                and isinstance(pedido, dict) and pedido.get("modalidade") != "pagar"):
+            # Em providência não monetária, executor/beneficiário não são polos
+            # financeiros. Canonizar estes campos e valor zero corrige apenas o
+            # schema, preservando decisão, fontes e fundamentação.
+            d["pagador"] = None
+            d["beneficiario"] = None
+            d["valor_centavos"] = 0
         if (nome != "auditora" and isinstance(d, dict) and d.get("decisao") == "negar"
                 and "honor" in descricao and "contratu" in descricao and contrato_resumido
                 and "PR" in (d.get("fontes_favoraveis") or [])

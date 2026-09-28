@@ -96,6 +96,9 @@ class V30TechnicalTests(unittest.TestCase):
         self.assertIn("CONCLUSAO DESCRITA E CONTEUDO", V30["REGRAS_GERAIS"])
         self.assertIn("ADMISSAO E BASE ALTERNATIVA", V30["REGRAS_GERAIS"])
         self.assertIn("OBRIGACAO JA CUMPRIDA", V30["REGRAS_GERAIS"])
+        self.assertIn("QUALIFICACAO DE FATO ADMITIDO", V30["REGRAS_GERAIS"])
+        self.assertIn("EXECUCAO NAO BLOQUEIA DIRECAO", V30["REGRAS_GERAIS"])
+        self.assertIn("ACESSORIOS EXPRESSOS", V30["REGRAS_GERAIS"])
         self.assertIn("proprio requerente admite ser devedor", prompt)
         self.assertIn("nao conceda um total parcial", V30["REGRAS_GERAIS"])
         self.assertEqual(V30["_erro_catalogo"](catalog()), V24["_erro_catalogo"](catalog()))
@@ -116,6 +119,9 @@ class V30TechnicalTests(unittest.TestCase):
         review = V30["_prompt_revisao"](body, leader)
         self.assertIn("laudo apontando X", review)
         self.assertIn("base legal independente suficiente", review)
+        self.assertIn("Dano material/restituicao e dano moral", review)
+        self.assertIn("Nao invente pedido declaratorio", review)
+        self.assertIn("projeto executivo", review)
 
     def test_coherence_repair_explains_nonmonetary_zero_and_fixed_monetary_value(self):
         prompts = []
@@ -135,6 +141,35 @@ class V30TechnicalTests(unittest.TestCase):
         self.assertEqual(V30["_resposta_validada"](ask, "base", "teste", verify), {"ok": True})
         self.assertIn("pedido nao monetario concedido use valor_centavos=0", prompts[1])
         self.assertIn("nunca use lacuna de cumprimento", prompts[1])
+
+    def test_nonmonetary_catalog_value_and_decision_poles_are_canonicalized(self):
+        body = json.dumps({
+            "peticao_requerente": "Declaro saldo de R$ 10.000,00.",
+            "resposta_requerido": "Sem contestação.",
+            "documentos_requerente": "Contrato.",
+            "documentos_requerido": "Nenhum.",
+        }, ensure_ascii=False)
+        value = {"pedidos": [{
+            "id": "RP01", "autor": "requerente", "contra": "requerido",
+            "modalidade": "declarar", "natureza": "declaratoria",
+            "valor_pedido_centavos": 1000000, "descricao": "Declaração do saldo.",
+        }]}
+        V30["_normalizar_catalogo"](value, body)
+        self.assertIsNone(value["pedidos"][0]["valor_pedido_centavos"])
+        thesis = {"lente": "probatoria", "pedidos": [{
+            "pedido_id": "RP01", "decisao": "conceder",
+            "pagador": "requerente", "beneficiario": "requerido",
+            "valor_centavos": None, "fontes_favoraveis": ["PR"],
+            "fontes_contrarias": [], "comentario": "O saldo foi admitido.",
+            "sustentado": "A declaração consta da petição.",
+            "controvertido": "Nenhum ponto material.",
+            "lacuna": {"dimensao": "nenhuma", "pergunta": None, "impacto": None},
+        }]}
+        V30["_normalizar_tese_modelo"](thesis, value, "probatoria", body, [])
+        decision = thesis["pedidos"][0]
+        self.assertEqual((decision["pagador"], decision["beneficiario"]), (None, None))
+        self.assertEqual(decision["valor_centavos"], 0)
+        self.assertTrue(V30["_decisao_valida"](decision, value["pedidos"][0]))
 
     def test_double_count_without_conflicting_id_remains_fail_closed(self):
         thesis = {"lente": "auditora", "pedidos": [{

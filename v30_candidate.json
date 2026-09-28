@@ -1,6 +1,6 @@
 {
   "source": "ic_v30.py",
-  "source_sha256": "ec0d3667e1b2fa04353d95b47d78a8f7e65b4e6941a275dc57ccbe024f17c6e5",
+  "source_sha256": "51c44ec675a889657035630fa64440c1105cca0c3a4c1d2d53ab71f58bfa8f15",
   "version": "30.0.0-experimental",
   "display_version": "v30",
   "baseline": {
@@ -35,5 +35,14 @@
     "cost_usd": "1.31002436675",
     "decision": "iterate_before_full_gate"
   },
-  "status": "candidate_targeted_gate_repeat_pending"
+  "second_targeted_gate": {
+    "completed": 12,
+    "local_majority_agree": 6,
+    "valid_panels": 11,
+    "api_calls": 107,
+    "tokens": 665135,
+    "cost_usd": "1.3746160626",
+    "decision": "iterate_reviewer_consistency_and_mechanical_normalization"
+  },
+  "status": "candidate_third_targeted_gate_pending"
 }

@@ -37,3 +37,28 @@ métrica automática foi excessivamente pessimista porque escolheu uma única
 Os gabaritos continuam sendo usados apenas depois da execução. Quando o gabarito
 depende de sentença, perícia ou outro fato ausente da entrada, a discrepância é
 registrada como limitação do dataset, não como erro automático do IC.
+
+## Segunda execução
+
+A repetição corrigida terminou com 6/12 maiorias e 11/12 painéis válidos. O
+placar de consenso piorou, mas a cobertura exata passou de 3 para 6 casos, com
+4 acertos, e o desfecho binário foi correto nos 8 casos comparáveis. Portanto,
+a queda não representa simplesmente piora do mérito.
+
+- `0037` continuou técnico: o modelo insistiu em polos financeiros numa
+  declaração. Isso passou a ser normalizado deterministicamente.
+- `0003` perdeu quórum porque um revisor tentou unir restituição e dano moral;
+  são resultados autônomos.
+- `0017` recebeu objeções para recriar como CR componentes usados somente para
+  reter/compensar a caução, contrariando a semântica RP/CR congelada.
+- `0118` teve objeção executiva a uma obrigação de reparar já sustentada e uma
+  tentativa de reincluir despesas processuais excluídas do catálogo bilateral.
+- `0243` revelou uma omissão real: juros expressamente pedidos desapareceram da
+  descrição consolidada. A regra agora exige preservar acessórios sem calcular
+  valor.
+- `0486` combinou uma objeção inventando declaração não pedida com divergência
+  sobre a multa; o prompt agora manda qualificar a admissão material já feita,
+  sem exigir que a parte repita o rótulo jurídico da cláusula.
+
+Decisão: ainda não avançar para 50 casos. Repetir os 12 após as correções
+mecânicas e de consistência do revisor.
