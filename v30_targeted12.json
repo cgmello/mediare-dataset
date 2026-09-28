@@ -1,0 +1,23 @@
+{
+  "description": "v30 targeted gate: six resolved-control regressions, three indispensable residuals, two invalid panels and one binary residual",
+  "case_ids": [
+    "0003",
+    "0079",
+    "0118",
+    "0017",
+    "0346",
+    "0037",
+    "0054",
+    "0243",
+    "0343",
+    "0482",
+    "0486",
+    "0163"
+  ],
+  "groups": {
+    "indispensable_residuals": 3,
+    "technical_failures": 2,
+    "resolved_control_regressions": 6,
+    "binary_residual": 1
+  }
+}

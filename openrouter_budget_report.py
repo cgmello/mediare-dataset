@@ -447,7 +447,7 @@ h1{{margin:.15rem 0;font-size:2rem}}h2{{margin-top:32px;border-bottom:2px solid 
 <p class="muted">The earlier Anthropic amount is the user's approximate estimate for direct API experiments during v1–v20. An automated check was attempted on 10 September 2026, but the available OAuth session lacked Admin API access. Anthropic documents that organization cost reporting requires an Admin credential; the estimate can be replaced by a Console Usage CSV export. Estimated total project API cost including that pre-grant amount: <strong>{money(ledger['total_project_cost'])}</strong>.</p>
 <h2>Current plan for the remaining budget</h2>
 <table><thead><tr><th>Priority</th><th>Control</th></tr></thead><tbody>
-<tr><td>Balance v29 before Studio</td><td>The first gate over-decided material gaps; the corrected repeat preserved 30/33 indispensable controls but introduced new abstentions in 6/10 resolved-control cases. Calibrate the gate between these two extremes before any Studio promotion.</td></tr>
+<tr><td>Validate v30 before Studio</td><td>Run the 12-case targeted gate for the explicit two-branch reversibility test. Only then repeat the paired 50-case gate; no Studio promotion is allowed before both controls pass.</td></tr>
 <tr><td>Preserve semantic and technical separation</td><td>Track JSON/output stability, procedural-scope normalization and genuine material omissions as separate metrics.</td></tr>
 <tr><td>Review the nine pseudonymized decisions held for inspection</td><td>No additional API cost unless a targeted repair is approved.</td></tr>
 <tr><td>Reserve the unspent balance for holdouts, robustness and new cases</td><td>Every new paid campaign must have a persisted ceiling and appear in this same ledger.</td></tr>

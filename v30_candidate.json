@@ -1,0 +1,30 @@
+{
+  "source": "ic_v30.py",
+  "source_sha256": "c41ca1cd4cf9dd81a5b59666582b230fc78fc18babdf127fd8d7658933d0d115",
+  "version": "30.0.0-experimental",
+  "display_version": "v30",
+  "baseline": {
+    "source": "ic_v29.py",
+    "source_sha256": "85a54ea2e15ad3fdb89bea7fbdccfee8c8600a666e589e311c0c05bd90411d99",
+    "version": "29.0.0-experimental"
+  },
+  "scope": "explicitly reversible material-information gate",
+  "changes": {
+    "two_branch_test": "Every indispensable gap must state one factual question and opposite SE_SIM/SE_NAO merits outcomes.",
+    "negotiation_not_evidence": "Acceptance, percentage, deadline, payment form and implementation mode cannot themselves block merits.",
+    "open_amount_not_abstention": "Value and proportion gaps cannot use necessita_informacao after responsibility is safely established.",
+    "summarized_fact_finality": "A fact specifically described in DR/DD is not reopened by a generic denial merely because the original is unavailable.",
+    "fail_closed_repairs": "Invalid gap schemas receive directed repair while structural validation remains strict."
+  },
+  "targeted_gate": {
+    "selection": "v30_targeted12.json",
+    "cases": 12,
+    "success_conditions": [
+      "recover the six fully resolved controls without losing the three indispensable controls",
+      "resolve or safely retain the substantive 0163 result",
+      "produce valid panels for 0017 and 0346",
+      "introduce no invented fact or monetary value"
+    ]
+  },
+  "status": "candidate_targeted_gate_pending"
+}

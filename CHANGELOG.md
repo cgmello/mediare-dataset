@@ -9,6 +9,29 @@ Desde a v24, as versões públicas avançam apenas por números inteiros (`v24`,
 `v25`, `v26`), conforme `VERSIONING.md`. O sufixo interno `.0.0-experimental`
 existe somente para compatibilidade com as ferramentas do Studio.
 
+## v30 — reversibilidade explícita da informação indispensável — 2026-09-28
+
+- A v30 nasce dos dois extremos observados na v29: a primeira candidata decidiu
+  lacunas materiais em excesso; a correção preservou 30/33 controles
+  indispensáveis, mas reabriu seis dos dez controles já resolvidos.
+- `necessita_informacao` agora exige uma pergunta factual verificável e impacto
+  com dois ramos literais e opostos: `SE_SIM: conceder; SE_NAO: negar` ou o
+  inverso. Se os dois caminhos não puderem ser descritos sem inventar fatos, a
+  informação é apenas útil e não bloqueia a direção.
+- Aceitação de acordo, percentual, prazo, forma de pagamento e modo de
+  cumprimento deixam de ser tratados como fatos faltantes. Lacunas somente de
+  valor ou proporção não podem produzir abstenção depois de responsabilidade
+  segura; permanecem como ressalva e valor aberto.
+- Documento apenas listado não prova seu conteúdo, mas fato decisivo
+  especificamente descrito em DR/DD não é reaberto por negativa genérica apenas
+  porque o IC não recebeu o original.
+- O validador local aplica o teste reversível e rejeita lacunas negociais; o
+  reparo recebe orientação específica para corrigir schema e os dois ramos sem
+  afrouxar o modo fail-closed.
+- Gate dirigido preparado em `v30_targeted12.json`: três residuais
+  indispensáveis, dois painéis técnicos inválidos, seis regressões de controles
+  resolvidos e o erro binário `0163`. Nenhuma chamada paga realizada ainda.
+
 ## v29 — direção do mérito separada da quantificação — 2026-09-23
 
 - A análise dos 98 painéis consensuais da v28 mostrou que 87 casos continham
