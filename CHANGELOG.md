@@ -30,7 +30,23 @@ existe somente para compatibilidade com as ferramentas do Studio.
   afrouxar o modo fail-closed.
 - Gate dirigido preparado em `v30_targeted12.json`: três residuais
   indispensáveis, dois painéis técnicos inválidos, seis regressões de controles
-  resolvidos e o erro binário `0163`. Nenhuma chamada paga realizada ainda.
+  resolvidos e o erro binário `0163`.
+- O primeiro gate dirigido terminou 12/12: 10 maiorias locais, 11 painéis
+  válidos, 104 chamadas, 622.858 tokens e US$ 1,31002436675. A leitura
+  automática inicial subestimou a qualidade porque reduzia cada painel de duas
+  lentes à tendência favorável e comparava IDs que podem mudar após a
+  consolidação do catálogo.
+- A revisão qualitativa mostrou quatro correções generalizáveis antes de repetir
+  o gate: (1) uma entrada que já descreve a conclusão de laudo/contrato/registro
+  contém informação, enquanto o simples nome do documento não contém; (2) fato
+  admitido contra o interesse da própria parte não deve ser perguntado de novo;
+  (3) base jurídica independente pode tornar uma informação apenas útil; e (4)
+  obrigação expressamente já cumprida não deve gerar nova diligência sobre o
+  mesmo objeto. O caso `0037` também revelou orientação de reparo insuficiente
+  para valor/polos de pedido não monetário e para valor monetário já definido.
+- Estado: **não promovida**. Snapshot corrigido
+  `ec0d3667e1b2fa04353d95b47d78a8f7e65b4e6941a275dc57ccbe024f17c6e5`;
+  repetição dos mesmos 12 casos pendente antes do gate de 50.
 
 ## v29 — direção do mérito separada da quantificação — 2026-09-23
 

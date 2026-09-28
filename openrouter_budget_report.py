@@ -88,6 +88,9 @@ V29_GATE_DIRS = (
 V29_REPEAT_GATE_DIRS = (
     "res_openrouter_v29_gate50_r2",
 )
+V30_TARGETED_DIRS = (
+    "res_openrouter_v30_targeted12",
+)
 
 
 def as_decimal(value, default="0"):
@@ -160,6 +163,7 @@ def build_ledger(root, account=None):
     v28_abstention_audit = aggregate_call_receipts(root, V28_ABSTENTION_AUDIT_DIRS)
     v29_gate = aggregate_call_receipts(root, V29_GATE_DIRS)
     v29_repeat_gate = aggregate_call_receipts(root, V29_REPEAT_GATE_DIRS)
+    v30_targeted = aggregate_call_receipts(root, V30_TARGETED_DIRS)
     pseudo = campaign_summary(root, "res_pseudonymization_0501_1000")
     pseudo_completed = int(pseudo.get("completed") or 0)
     pseudo_accepted = int(pseudo.get("accepted") or 0)
@@ -337,6 +341,17 @@ def build_ledger(root, account=None):
             "tokens": v29_repeat_gate["total_tokens"],
             "cost": v29_repeat_gate["cost_usd"],
             "status": "complete — preserved 30/33 indispensable controls but regressed 6/10 resolved-control cases",
+            "grant_scope": True,
+        },
+        {
+            "date": "2026-09-28",
+            "activity": "v30 reversible-information targeted gate",
+            "tests": v30_targeted["completed"],
+            "target": 12,
+            "calls": v30_targeted["api_calls"],
+            "tokens": v30_targeted["total_tokens"],
+            "cost": v30_targeted["cost_usd"],
+            "status": "complete — 10/12 local majorities and 11/12 valid panels; qualitative review required a prompt correction before the repeated gate",
             "grant_scope": True,
         },
         {

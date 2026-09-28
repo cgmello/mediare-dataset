@@ -173,7 +173,7 @@ def analyze(args):
     return {"summary": summary, "audit_checks": audit_checks, "cases": rows}
 
 
-def render(result):
+def render(result, baseline_label="v28", candidate_label="v29", scope="50 cases"):
     summary = result["summary"]
     groups = summary["groups"]
     invalid = "\n".join(f"- `{row['case_id']}`: `{row['error']}`" for row in summary["invalid_panels"]) or "- None."
@@ -195,10 +195,10 @@ def render(result):
         f"{row['audit_matches']}/{row['audit_checks']} |"
         for name, row in groups.items()
     )
-    return f"""# v29 OpenRouter gate — paired analysis against v28
+    return f"""# {candidate_label} OpenRouter gate — paired analysis against {baseline_label}
 
-This report compares the same 50 cases. The v28 baseline is the accepted Studio
-panel; v29 is an off-chain five-model OpenRouter simulation and is not protocol
+This report compares the same {scope}. The {baseline_label} baseline is the accepted Studio
+panel; {candidate_label} is an off-chain five-model OpenRouter simulation and is not protocol
 consensus. Ground truth is used only for post-run evaluation.
 
 ## Executive result
@@ -206,11 +206,11 @@ consensus. Ground truth is used only for post-run evaluation.
 - Local majority: **{summary['local_majority_agree']}/{summary['cases']}**
 - Structurally valid leader panels: **{summary['valid_leader_panels']}/{summary['cases']}**
 - Operationally useful leader outputs: **{summary['useful_leader_outputs']}/{summary['cases']}**
-- Requests left unresolved: **{summary['baseline_unresolved']} in v28 → {summary['candidate_unresolved']} in v29**
+- Requests left unresolved: **{summary['baseline_unresolved']} in {baseline_label} → {summary['candidate_unresolved']} in {candidate_label}**
 - Agreement with the independent abstention audit: **{summary['audit_matches']}/{summary['audit_checks']} ({summary['audit_match_rate']}%)**
 - Catalog ID sets unchanged: **{summary['catalog_ids_equal_cases']}/{summary['cases']} cases**
-- Exact-outcome resolved/correct: v28 **{summary['exact_baseline']['coverage']}/{summary['exact_baseline']['correct']}**, v29 **{summary['exact_candidate']['coverage']}/{summary['exact_candidate']['correct']}**
-- Binary-relief resolved/correct: v28 **{summary['relief_baseline']['coverage']}/{summary['relief_baseline']['correct']}**, v29 **{summary['relief_candidate']['coverage']}/{summary['relief_candidate']['correct']}**
+- Exact-outcome resolved/correct: {baseline_label} **{summary['exact_baseline']['coverage']}/{summary['exact_baseline']['correct']}**, {candidate_label} **{summary['exact_candidate']['coverage']}/{summary['exact_candidate']['correct']}**
+- Binary-relief resolved/correct: {baseline_label} **{summary['relief_baseline']['coverage']}/{summary['relief_baseline']['correct']}**, {candidate_label} **{summary['relief_candidate']['coverage']}/{summary['relief_candidate']['correct']}**
 
 ## Balanced groups
 
@@ -224,13 +224,13 @@ consensus. Ground truth is used only for post-run evaluation.
 
 ## Audit mismatches requiring qualitative review
 
-| Case | Request | Audit sufficiency | Expected | v29 observed |
+| Case | Request | Audit sufficiency | Expected | {candidate_label} observed |
 |---:|---|---|---|---|
 {mismatch_lines}
 
 ## Every case
 
-| Case | Group | Vote | Valid | Useful | Unresolved v28 → v29 | Exact outcome v28 → v29 |
+| Case | Group | Vote | Valid | Useful | Unresolved {baseline_label} → {candidate_label} | Exact outcome {baseline_label} → {candidate_label} |
 |---:|---|---|---|---|---:|---|
 {case_lines}
 """
@@ -245,10 +245,15 @@ def main():
     parser.add_argument("--audit-rows", default="res_openrouter_v28_abstention_audit/audit_rows.json")
     parser.add_argument("--json", default="V29_GATE50_ANALYSIS.json")
     parser.add_argument("--markdown", default="V29_GATE50_ANALYSIS.md")
+    parser.add_argument("--baseline-label", default="v28")
+    parser.add_argument("--candidate-label", default="v29")
+    parser.add_argument("--scope", default="50 cases")
     args = parser.parse_args()
     result = analyze(args)
     Path(args.json).write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    Path(args.markdown).write_text(render(result), encoding="utf-8")
+    Path(args.markdown).write_text(
+        render(result, args.baseline_label, args.candidate_label, args.scope), encoding="utf-8"
+    )
     print(json.dumps(result["summary"], ensure_ascii=False, indent=2))
 
 

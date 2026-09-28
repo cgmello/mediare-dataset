@@ -93,8 +93,48 @@ class V30TechnicalTests(unittest.TestCase):
         self.assertIn("multa civil ou contratual", prompt)
         self.assertIn("Em RP, objeto, valor, percentual e base devem vir da PR", prompt)
         self.assertIn("TESTE DE INDISPENSABILIDADE", V30["REGRAS_GERAIS"])
+        self.assertIn("CONCLUSAO DESCRITA E CONTEUDO", V30["REGRAS_GERAIS"])
+        self.assertIn("ADMISSAO E BASE ALTERNATIVA", V30["REGRAS_GERAIS"])
+        self.assertIn("OBRIGACAO JA CUMPRIDA", V30["REGRAS_GERAIS"])
+        self.assertIn("proprio requerente admite ser devedor", prompt)
         self.assertIn("nao conceda um total parcial", V30["REGRAS_GERAIS"])
         self.assertEqual(V30["_erro_catalogo"](catalog()), V24["_erro_catalogo"](catalog()))
+
+    def test_lens_and_reviewer_prompts_distinguish_described_content_from_bare_listing(self):
+        body = json.dumps({
+            "peticao_requerente": "Pedido de reparação.",
+            "resposta_requerido": "Contesta o nexo.",
+            "documentos_requerente": "Laudo apontando falha de instalação como causa.",
+            "documentos_requerido": "Relatório interno.",
+        }, ensure_ascii=False)
+        lens = V30["_prompt_lente_base"]("probatoria", "Examine as provas.", body, catalog())
+        self.assertIn("laudo apontando X como causa", lens)
+        leader = {
+            "catalogo": catalog(), "teses": [],
+            "consolidado": {"pedidos": []},
+        }
+        review = V30["_prompt_revisao"](body, leader)
+        self.assertIn("laudo apontando X", review)
+        self.assertIn("base legal independente suficiente", review)
+
+    def test_coherence_repair_explains_nonmonetary_zero_and_fixed_monetary_value(self):
+        prompts = []
+        answers = iter([
+            {"bad": True},
+            {"bad": True},
+            {"ok": True},
+        ])
+
+        def ask(prompt, response_format=None):
+            prompts.append(prompt)
+            return json.dumps(next(answers))
+
+        def verify(obj):
+            return "RP01.COERENCIA_DECISAO_VALOR_PARTES_FONTES" if "ok" not in obj else ""
+
+        self.assertEqual(V30["_resposta_validada"](ask, "base", "teste", verify), {"ok": True})
+        self.assertIn("pedido nao monetario concedido use valor_centavos=0", prompts[1])
+        self.assertIn("nunca use lacuna de cumprimento", prompts[1])
 
     def test_double_count_without_conflicting_id_remains_fail_closed(self):
         thesis = {"lente": "auditora", "pedidos": [{

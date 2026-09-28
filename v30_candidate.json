@@ -1,6 +1,6 @@
 {
   "source": "ic_v30.py",
-  "source_sha256": "c41ca1cd4cf9dd81a5b59666582b230fc78fc18babdf127fd8d7658933d0d115",
+  "source_sha256": "ec0d3667e1b2fa04353d95b47d78a8f7e65b4e6941a275dc57ccbe024f17c6e5",
   "version": "30.0.0-experimental",
   "display_version": "v30",
   "baseline": {
@@ -26,5 +26,14 @@
       "introduce no invented fact or monetary value"
     ]
   },
-  "status": "candidate_targeted_gate_pending"
+  "first_targeted_gate": {
+    "completed": 12,
+    "local_majority_agree": 10,
+    "valid_panels": 11,
+    "api_calls": 104,
+    "tokens": 622858,
+    "cost_usd": "1.31002436675",
+    "decision": "iterate_before_full_gate"
+  },
+  "status": "candidate_targeted_gate_repeat_pending"
 }
