@@ -73,6 +73,10 @@ existe somente para compatibilidade com as ferramentas do Studio.
   auditora também deixa de tratar restituição/dano material e dano moral como
   dupla contagem apenas por compartilharem o evento. Snapshot:
   `5953dd9b8d1294a5ea53b1f6d40db538d3d74beddc2f7145179f9447f0229e28`.
+- A confirmação isolada do `0003`, preservando sua posição/modelo no manifesto,
+  terminou com maioria local, painel válido e saída útil: 8 chamadas, 52.526
+  tokens e US$ 0,14929498. O gate dirigido está fechado; próximo controle é o
+  gate pareado completo de 50 casos antes de qualquer promoção ao Studio.
 
 ## v29 — direção do mérito separada da quantificação — 2026-09-23
 

@@ -92,6 +92,7 @@ V30_TARGETED_DIRS = (
     "res_openrouter_v30_targeted12",
     "res_openrouter_v30_targeted12_r2",
     "res_openrouter_v30_targeted12_r3",
+    "res_openrouter_v30_targeted0003_r4",
 )
 
 
@@ -353,7 +354,7 @@ def build_ledger(root, account=None):
             "calls": v30_targeted["api_calls"],
             "tokens": v30_targeted["total_tokens"],
             "cost": v30_targeted["cost_usd"],
-            "status": "in progress — third 12-case gate reached 11/12 local majorities and 12/12 valid panels; case 0003 remains under directed repair",
+            "status": "complete — third 12-case gate reached 11/12 with 12/12 valid panels; directed case 0003 confirmation then passed",
             "grant_scope": True,
         },
         {

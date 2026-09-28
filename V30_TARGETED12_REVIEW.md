@@ -78,3 +78,7 @@ conclusão, coerentemente com a regra da v30. A correção dirigida torna explí
 que esse contraste deve ser ponderado com a evidência disponível, salvo achado
 técnico contrário igualmente específico. Também remove falso risco de dupla
 contagem entre perda patrimonial e dano moral decorrentes do mesmo evento.
+
+A confirmação isolada do `0003`, com a mesma posição de rotação do manifesto,
+terminou em `LOCAL_MAJORITY_AGREE`, com painel válido e saída útil. O gate
+dirigido fica encerrado; a próxima etapa é repetir o gate pareado de 50 casos.

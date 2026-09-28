@@ -53,5 +53,14 @@
     "cost_usd": "1.43926218694",
     "decision": "repair_case_0003_then_start_full_gate"
   },
-  "status": "candidate_case_0003_retry_pending"
+  "case_0003_confirmation": {
+    "completed": 1,
+    "local_majority_agree": 1,
+    "valid_panels": 1,
+    "api_calls": 8,
+    "tokens": 52526,
+    "cost_usd": "0.14929498",
+    "decision": "targeted_gate_closed"
+  },
+  "status": "candidate_full_50_gate_pending"
 }
