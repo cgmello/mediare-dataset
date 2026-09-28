@@ -94,6 +94,7 @@ class V30TechnicalTests(unittest.TestCase):
         self.assertIn("Em RP, objeto, valor, percentual e base devem vir da PR", prompt)
         self.assertIn("TESTE DE INDISPENSABILIDADE", V30["REGRAS_GERAIS"])
         self.assertIn("CONCLUSAO DESCRITA E CONTEUDO", V30["REGRAS_GERAIS"])
+        self.assertIn("Relatorio interno generico", V30["REGRAS_GERAIS"])
         self.assertIn("ADMISSAO E BASE ALTERNATIVA", V30["REGRAS_GERAIS"])
         self.assertIn("OBRIGACAO JA CUMPRIDA", V30["REGRAS_GERAIS"])
         self.assertIn("QUALIFICACAO DE FATO ADMITIDO", V30["REGRAS_GERAIS"])
@@ -200,6 +201,24 @@ class V30TechnicalTests(unittest.TestCase):
         }]}
         V30["_normalizar_tese_modelo"](thesis, catalog(), "auditora", "{}", [{}, {"pedidos": []}])
         self.assertEqual(thesis["pedidos"][0]["auditoria"]["riscos"], ["ESCOPO", "PREMISSA"])
+
+    def test_material_and_moral_relief_are_not_double_counted_by_event_alone(self):
+        cat = {"pedidos": [
+            {"id": "RP01", "autor": "requerente", "contra": "requerido", "modalidade": "pagar", "natureza": "principal", "valor_pedido_centavos": 10000, "descricao": "Restituição do preço."},
+            {"id": "RP02", "autor": "requerente", "contra": "requerido", "modalidade": "pagar", "natureza": "danos_morais", "valor_pedido_centavos": None, "descricao": "Indenização por dano moral."},
+        ]}
+        thesis = {"lente": "auditora", "pedidos": [
+            {"pedido_id": "RP01", "auditoria": {"resultado": "apta_com_ressalva", "riscos": ["DUPLA_CONTAGEM"], "motivo": "Mesmo evento.", "conflitos_com": ["RP02"]}},
+            {"pedido_id": "RP02", "auditoria": {"resultado": "apta_com_ressalva", "riscos": ["DUPLA_CONTAGEM"], "motivo": "Mesmo evento.", "conflitos_com": ["RP01"]}},
+        ]}
+        options = {"pedidos": [
+            {"opcao": {"tipo": "faixa"}}, {"opcao": {"tipo": "formula"}},
+        ]}
+        V30["_normalizar_tese_modelo"](thesis, cat, "auditora", "{}", [{}, options])
+        for item in thesis["pedidos"]:
+            self.assertEqual(item["auditoria"]["resultado"], "apta")
+            self.assertEqual(item["auditoria"]["riscos"], [])
+            self.assertEqual(item["auditoria"]["conflitos_com"], [])
 
     def test_bare_pedido_objection_requires_structured_catalog_evidence(self):
         review = {

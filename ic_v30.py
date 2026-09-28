@@ -159,7 +159,10 @@ REGRAS_GERAIS = (
     "'contrato com clausula Y' ou 'registro demonstrando Z' ja resume o conteudo decisivo; "
     "nao pergunte se o documento confirma, comprova ou prevalece. Pondere eventual prova "
     "contraria e conclua com o material resumido. Uma entrada que apenas diga 'laudo', "
-    "'contrato' ou 'foto', sem descrever o conteudo relevante, continua sendo mera lista.\n"
+    "'contrato' ou 'foto', sem descrever o conteudo relevante, continua sendo mera lista. "
+    "Relatorio interno generico de conformidade nao torna indispensavel nova prova contra "
+    "conclusao tecnica/pericial externa especificamente resumida; pondere credibilidade e "
+    "conclua, salvo se a entrada resumir achado tecnico contrario igualmente especifico.\n"
     "23. ADMISSAO E BASE ALTERNATIVA: nao trate como ausente fato expressamente admitido "
     "pela parte a quem ele prejudica. Tampouco use necessita_informacao se uma regra legal "
     "ou outra base independente ja resolver a direcao sem o fato perguntado; nesse caso, "
@@ -1507,7 +1510,10 @@ AUDITORIA DO CONJUNTO: compare todas as opcoes entre si. Marque DUPLA_CONTAGEM
 quando duas opcoes cobrem o mesmo dano, base economica, fato gerador, cumprimento
 ou pedidos alternativos; liste os IDs relacionados em conflitos_com. Diferencie
 penalidade autonoma de cobranca duplicada, mas nao presuma autonomia apenas porque
-o pedido recebeu outro nome. Verifique tambem se aprovar uma opcao contradiz a
+o pedido recebeu outro nome. Restituicao/dano material e dano moral nao sao dupla
+contagem apenas por nascerem do mesmo evento: um recompõe perda patrimonial e o
+outro compensa lesao extrapatrimonial. Exija sobreposicao da mesma perda, nao apenas
+fato gerador comum. Verifique tambem se aprovar uma opcao contradiz a
 conclusao ou a ressalva de outro pedido. apta exige conflitos_com=[].
 
 Nao retenha uma opcao SOMENTE porque ela se relaciona ou se sobrepoe a outra,
@@ -2219,6 +2225,24 @@ def _normalizar_tese_modelo(obj, catalogo, nome, corpo, anteriores=None):
                     a["riscos"] = outros or ["PREMISSA"]
             riscos = a.get("riscos")
             conflitos = a.get("conflitos_com")
+            if (isinstance(riscos, list) and riscos == ["DUPLA_CONTAGEM"]
+                    and isinstance(conflitos, list) and conflitos):
+                por_id = {p.get("id"): p for p in pedidos if isinstance(p, dict)}
+                natureza_atual = pedido.get("natureza")
+                somente_patrimonial_vs_moral = all(
+                    cid in por_id
+                    and ((natureza_atual == "danos_morais")
+                         != (por_id[cid].get("natureza") == "danos_morais"))
+                    for cid in conflitos
+                )
+                if somente_patrimonial_vs_moral:
+                    # Mesmo evento não duplica, por si, perda patrimonial e
+                    # lesão extrapatrimonial. Remover apenas esse falso risco.
+                    a["resultado"] = "apta"
+                    a["riscos"] = []
+                    a["conflitos_com"] = []
+                    riscos = a["riscos"]
+                    conflitos = a["conflitos_com"]
             if (isinstance(conflitos, list) and conflitos
                     and isinstance(riscos, list) and "DUPLA_CONTAGEM" not in riscos):
                 a["resultado"] = "reformular"

@@ -62,3 +62,19 @@ a queda não representa simplesmente piora do mérito.
 
 Decisão: ainda não avançar para 50 casos. Repetir os 12 após as correções
 mecânicas e de consistência do revisor.
+
+## Terceira execução
+
+O terceiro gate atingiu 11/12 maiorias e 12/12 painéis válidos. `0037` passou a
+ser estruturalmente válido e consensual; os cinco outros casos que haviam
+perdido quórum na segunda execução também se recuperaram. A comparação
+automática cobriu seis desfechos exatos e acertou cinco; no desfecho binário,
+acertou 7/7.
+
+O único `Disagree`, `0003`, produziu catálogo correto e saída operacionalmente
+útil, mas a lente probatória perguntou se o laudo técnico externo já resumido
+“prevalecia” sobre relatório interno genérico. Dois revisores rejeitaram a
+conclusão, coerentemente com a regra da v30. A correção dirigida torna explícito
+que esse contraste deve ser ponderado com a evidência disponível, salvo achado
+técnico contrário igualmente específico. Também remove falso risco de dupla
+contagem entre perda patrimonial e dano moral decorrentes do mesmo evento.

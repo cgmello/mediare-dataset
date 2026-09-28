@@ -91,6 +91,7 @@ V29_REPEAT_GATE_DIRS = (
 V30_TARGETED_DIRS = (
     "res_openrouter_v30_targeted12",
     "res_openrouter_v30_targeted12_r2",
+    "res_openrouter_v30_targeted12_r3",
 )
 
 
@@ -352,7 +353,7 @@ def build_ledger(root, account=None):
             "calls": v30_targeted["api_calls"],
             "tokens": v30_targeted["total_tokens"],
             "cost": v30_targeted["cost_usd"],
-            "status": "in progress — two 12-case gates completed; second gate improved exact/binary coverage but exposed reviewer overreach and one mechanical failure",
+            "status": "in progress — third 12-case gate reached 11/12 local majorities and 12/12 valid panels; case 0003 remains under directed repair",
             "grant_scope": True,
         },
         {

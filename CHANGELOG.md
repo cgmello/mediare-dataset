@@ -62,6 +62,17 @@ existe somente para compatibilidade com as ferramentas do Studio.
   cláusula sem repetir seu rótulo jurídico e que detalhes executivos não
   bloqueiam obrigação de fazer. Snapshot:
   `51c44ec675a889657035630fa64440c1105cca0c3a4c1d2d53ab71f58bfa8f15`.
+- O terceiro gate recuperou 11/12 maiorias locais e 12/12 painéis válidos, com
+  111 chamadas, 678.968 tokens e US$ 1,43926218694. A cobertura exata ficou em
+  6 casos, com 5 acertos, e o desfecho binário em 7/7. `0037` foi recuperado;
+  o único `Disagree`, `0003`, ainda perguntou se um laudo técnico externo já
+  resumido “prevalecia” sobre relatório interno genérico, contrariando a regra
+  da própria versão.
+- A correção final dirigida explicita a diferença de força informativa entre
+  conclusão técnica/pericial externa resumida e relatório interno genérico. A
+  auditora também deixa de tratar restituição/dano material e dano moral como
+  dupla contagem apenas por compartilharem o evento. Snapshot:
+  `5953dd9b8d1294a5ea53b1f6d40db538d3d74beddc2f7145179f9447f0229e28`.
 
 ## v29 — direção do mérito separada da quantificação — 2026-09-23
 
