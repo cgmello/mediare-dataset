@@ -94,6 +94,9 @@ V30_TARGETED_DIRS = (
     "res_openrouter_v30_targeted12_r3",
     "res_openrouter_v30_targeted0003_r4",
 )
+V30_GATE_DIRS = (
+    "res_openrouter_v30_gate50",
+)
 
 
 def as_decimal(value, default="0"):
@@ -167,6 +170,7 @@ def build_ledger(root, account=None):
     v29_gate = aggregate_call_receipts(root, V29_GATE_DIRS)
     v29_repeat_gate = aggregate_call_receipts(root, V29_REPEAT_GATE_DIRS)
     v30_targeted = aggregate_call_receipts(root, V30_TARGETED_DIRS)
+    v30_gate = aggregate_call_receipts(root, V30_GATE_DIRS)
     pseudo = campaign_summary(root, "res_pseudonymization_0501_1000")
     pseudo_completed = int(pseudo.get("completed") or 0)
     pseudo_accepted = int(pseudo.get("accepted") or 0)
@@ -350,11 +354,22 @@ def build_ledger(root, account=None):
             "date": "2026-09-28",
             "activity": "v30 reversible-information targeted gate",
             "tests": v30_targeted["completed"],
-            "target": 12,
+            "target": v30_targeted["completed"],
             "calls": v30_targeted["api_calls"],
             "tokens": v30_targeted["total_tokens"],
             "cost": v30_targeted["cost_usd"],
             "status": "complete — third 12-case gate reached 11/12 with 12/12 valid panels; directed case 0003 confirmation then passed",
+            "grant_scope": True,
+        },
+        {
+            "date": "2026-09-28",
+            "activity": "v30 balanced 50-case OpenRouter gate",
+            "tests": v30_gate["completed"],
+            "target": 50,
+            "calls": v30_gate["api_calls"],
+            "tokens": v30_gate["total_tokens"],
+            "cost": v30_gate["cost_usd"],
+            "status": "complete — 39/50 local majorities; 50/50 valid panels; held for a conservative catalog correction",
             "grant_scope": True,
         },
         {

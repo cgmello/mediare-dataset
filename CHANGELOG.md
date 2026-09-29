@@ -77,6 +77,19 @@ existe somente para compatibilidade com as ferramentas do Studio.
   terminou com maioria local, painel válido e saída útil: 8 chamadas, 52.526
   tokens e US$ 0,14929498. O gate dirigido está fechado; próximo controle é o
   gate pareado completo de 50 casos antes de qualquer promoção ao Studio.
+- O gate pareado de 50 terminou com 39 maiorias locais, 11 desacordos, 50/50
+  painéis válidos e 28/50 saídas úteis. Consumiu 464 chamadas, 3.062.294 tokens
+  e US$ 6,48779277050. Em comparação com a v28, reduziu pendências de 98 para
+  56; preservou 27/33 lacunas indispensáveis e acertou 27/28 desfechos binários
+  entre os pedidos resolvidos.
+- A revisão caso a caso classificou os 11 desacordos em seis defeitos reais de
+  catálogo (`0021`, `0050`, `0083`, `0142`, `0173`, `0476`), três casos mistos
+  de mérito/prova (`0017`, `0081`, `0243`) e dois casos dominados por fronteira
+  de política ou variação dos revisores (`0037`, `0145`). Relatório:
+  `V30_GATE50_REVIEW.md`.
+- Estado final: **não promovida ao Studio**. A v30 é mantida como baseline
+  equilibrada. A próxima major deve corrigir apenas catálogo defensivo,
+  admissão narrativa e sobreposição, preservando o portão probatório já medido.
 
 ## v29 — direção do mérito separada da quantificação — 2026-09-23
 
