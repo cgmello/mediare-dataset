@@ -1,0 +1,51 @@
+{
+  "source": "ic_v31.py",
+  "source_sha256": "70faea48ff21563ac95d1af9e06c2a162bc63c7b4951ef91a30f5d002edb5a5b",
+  "version": "31.0.0-experimental",
+  "display_version": "v31",
+  "baseline": {
+    "source": "ic_v30.py",
+    "source_sha256": "5953dd9b8d1294a5ea53b1f6d40db538d3d74beddc2f7145179f9447f0229e28",
+    "version": "30.0.0-experimental"
+  },
+  "scope": "conservative material-catalog correction",
+  "changes": {
+    "defensive_counterclaims": "Remove compensation, conditional return, and limited retention that do not request an independent positive balance.",
+    "narrative_admissions": "Do not promote a party's narrative admission or partial acknowledgment into an autonomous request.",
+    "overlapping_losses": "Preserve separately expressed overlapping requests while requiring reciprocal double-counting containment in the auditor lens.",
+    "inseparable_debt_effects": "Treat declaration of non-liability and abstention from collecting the same debt as one material result.",
+    "evidence_gate": "Preserve the v30 reversible-information and evidence rules unchanged."
+  },
+  "targeted_gate": {
+    "selection": "v31_targeted11.json",
+    "cases": 11,
+    "success_conditions": [
+      "recover the six confirmed catalog defects without reopening the v30 evidence gate",
+      "preserve cases dominated by reviewer or policy variance without inventing requests",
+      "produce valid leader panels for all eleven cases",
+      "introduce no duplicated loss, defensive counterclaim, or narrative admission as a request"
+    ]
+  },
+  "targeted_gate_result": {
+    "first_repeat": {
+      "completed": 11,
+      "local_majority_agree": 4,
+      "valid_panels": 11,
+      "useful_outputs": 8,
+      "cost_usd": "1.7416913255475"
+    },
+    "final_repeat": {
+      "completed": 11,
+      "local_majority_agree": 5,
+      "valid_panels": 11,
+      "useful_outputs": 8,
+      "cost_usd": "1.7648272556755"
+    },
+    "directed_confirmations": {
+      "0050": "LOCAL_MAJORITY_AGREE twice after audited overlap containment",
+      "0021": "LOCAL_MAJORITY_AGREE after removing defensive payment acknowledgment"
+    },
+    "decision": "targeted_catalog_gate_closed"
+  },
+  "status": "candidate_full_50_gate_pending"
+}

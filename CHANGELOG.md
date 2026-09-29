@@ -9,6 +9,36 @@ Desde a v24, as versões públicas avançam apenas por números inteiros (`v24`,
 `v25`, `v26`), conforme `VERSIONING.md`. O sufixo interno `.0.0-experimental`
 existe somente para compatibilidade com as ferramentas do Studio.
 
+## v31 — correção conservadora do catálogo material — 2026-09-29
+
+- Mantém sem alteração o teste reversível de informação e todas as regras
+  probatórias da v30. O escopo foi deliberadamente limitado aos seis defeitos
+  reais encontrados no gate de 50.
+- Remove CR de compensação, devolução condicional ou retenção limitada ao RP
+  quando o requerido não pede saldo positivo nem pagamento independente.
+- Impede que admissão ou reconhecimento parcial narrado pelo próprio requerente
+  seja promovido a RP sem providência bilateral expressamente solicitada.
+- Preserva pedidos monetários sobrepostos quando ambos foram expressamente
+  formulados, mas exige contenção recíproca de `DUPLA_CONTAGEM` pela auditora,
+  impedindo que entrada ou parcelas idênticas sejam somadas nas opções.
+- Trata declaração de inexigibilidade e abstenção de cobrar a mesma dívida como
+  um único resultado material, sem apagar obrigações autônomas.
+- Seleção dirigida: `v31_targeted11.json`, contendo os 11 desacordos da v30.
+  A primeira rodada terminou em 4/11 maiorias, 11/11 painéis válidos e 8/11
+  saídas úteis, ao custo de US$ 1,7416913255475.
+- O caso `0050` mostrou que pedidos expressamente sobrepostos devem permanecer
+  fiéis à fonte; a auditora já os continha com `DUPLA_CONTAGEM` e conflitos
+  recíprocos. Após o ajuste, passou duas vezes consecutivas como `Agree`.
+- A repetição final dos 11 terminou em 5/11 maiorias, 11/11 painéis válidos e
+  8/11 saídas úteis, ao custo de US$ 1,7648272556755. `0021` ainda oscilou porque
+  o líder transformou pagamentos já realizados em CR; a correção determinística
+  final foi confirmada isoladamente como `Agree`.
+- Os seis defeitos de catálogo da v30 foram corrigidos. Desacordos remanescentes
+  envolvem conclusão de mérito (`0017`, `0173`, `0243`), múltiplos requeridos
+  não representáveis pelo schema atual (`0083`) e a fronteira processual de
+  excesso de execução (`0145`). Estado: **gate dirigido fechado; liberada para
+  gate pareado de 50, ainda não promovida ao Studio**.
+
 ## v30 — reversibilidade explícita da informação indispensável — 2026-09-28
 
 - A v30 nasce dos dois extremos observados na v29: a primeira candidata decidiu

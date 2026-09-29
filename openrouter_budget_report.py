@@ -97,6 +97,13 @@ V30_TARGETED_DIRS = (
 V30_GATE_DIRS = (
     "res_openrouter_v30_gate50",
 )
+V31_DEVELOPMENT_DIRS = (
+    "res_openrouter_v31_targeted11",
+    "res_openrouter_v31_targeted0050_r2",
+    "res_openrouter_v31_targeted0050_r3",
+    "res_openrouter_v31_targeted11_r2",
+    "res_openrouter_v31_targeted0021_r3",
+)
 
 
 def as_decimal(value, default="0"):
@@ -171,6 +178,7 @@ def build_ledger(root, account=None):
     v29_repeat_gate = aggregate_call_receipts(root, V29_REPEAT_GATE_DIRS)
     v30_targeted = aggregate_call_receipts(root, V30_TARGETED_DIRS)
     v30_gate = aggregate_call_receipts(root, V30_GATE_DIRS)
+    v31_development = aggregate_call_receipts(root, V31_DEVELOPMENT_DIRS)
     pseudo = campaign_summary(root, "res_pseudonymization_0501_1000")
     pseudo_completed = int(pseudo.get("completed") or 0)
     pseudo_accepted = int(pseudo.get("accepted") or 0)
@@ -359,6 +367,17 @@ def build_ledger(root, account=None):
             "tokens": v30_targeted["total_tokens"],
             "cost": v30_targeted["cost_usd"],
             "status": "complete — third 12-case gate reached 11/12 with 12/12 valid panels; directed case 0003 confirmation then passed",
+            "grant_scope": True,
+        },
+        {
+            "date": "2026-09-29",
+            "activity": "v31 conservative catalog correction — targeted development gate",
+            "tests": v31_development["completed"],
+            "target": v31_development["completed"],
+            "calls": v31_development["api_calls"],
+            "tokens": v31_development["total_tokens"],
+            "cost": v31_development["cost_usd"],
+            "status": "complete — six confirmed v30 catalog defects corrected; final 11-case repeat reached 5/11 with 11/11 valid panels, followed by directed 0021 confirmation",
             "grant_scope": True,
         },
         {

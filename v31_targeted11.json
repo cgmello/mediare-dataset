@@ -1,0 +1,21 @@
+{
+  "description": "v31 conservative catalog gate: the eleven v30 local-majority disagreements",
+  "case_ids": [
+    "0017",
+    "0021",
+    "0037",
+    "0050",
+    "0081",
+    "0083",
+    "0142",
+    "0145",
+    "0173",
+    "0243",
+    "0476"
+  ],
+  "groups": {
+    "real_catalog_defects": ["0021", "0050", "0083", "0142", "0173", "0476"],
+    "mixed_merits_or_evidence": ["0017", "0081", "0243"],
+    "reviewer_or_policy_variance": ["0037", "0145"]
+  }
+}
