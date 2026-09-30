@@ -47,5 +47,21 @@
     },
     "decision": "targeted_catalog_gate_closed"
   },
-  "status": "candidate_full_50_gate_pending"
+  "full_gate_result": {
+    "completed": 50,
+    "local_majority_agree": 37,
+    "valid_panels": 48,
+    "useful_outputs": 24,
+    "api_calls": 455,
+    "tokens": 2840952,
+    "cost_usd": "5.8011163668190",
+    "technical_retry": {
+      "cases": ["0050", "0173"],
+      "valid_panels": 2,
+      "local_majority_agree": 0,
+      "cost_usd": "0.29732316482"
+    },
+    "decision": "do_not_promote_to_studio"
+  },
+  "status": "held_for_v32_catalog_regression_correction"
 }

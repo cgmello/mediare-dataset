@@ -38,6 +38,22 @@ existe somente para compatibilidade com as ferramentas do Studio.
   não representáveis pelo schema atual (`0083`) e a fronteira processual de
   excesso de execução (`0145`). Estado: **gate dirigido fechado; liberada para
   gate pareado de 50, ainda não promovida ao Studio**.
+- O gate completo terminou em 37/50 maiorias locais, 48/50 painéis válidos e
+  24/50 saídas úteis: 455 chamadas, 2.840.952 tokens e US$ 5,8011163668190.
+  Frente à v30, 33 casos permaneceram `Agree`, quatro foram recuperados
+  (`0017`, `0021`, `0142`, `0476`) e seis regrediram (`0014`, `0046`, `0079`,
+  `0088`, `0209`, `0430`).
+- `0050` e `0173` falharam tecnicamente na campanha. A repetição dirigida
+  recuperou dois painéis válidos e úteis ao custo de US$ 0,29732316482, mas
+  ambos continuaram `Disagree`; o placar ajustado permanece 37/50.
+- A v31 reduziu pedidos pendentes de 56 na v30 para 46 e melhorou resultados
+  exatos de 13/19 para 15/19, mantendo 24/25 desfechos binários corretos.
+  Entretanto, piorou maiorias (39→37), utilidade (28→24), correspondência com
+  a auditoria de abstenção (52→48/98) e controles indispensáveis (27→26/33).
+- Três regressões são materiais: `0046` uniu inexigibilidade e retirada do
+  cadastro, `0079` omitiu prejuízos fiscais do CNO e `0088` omitiu o pedido de
+  exclusão de restrição cadastral. Estado final: **não promover ao Studio**;
+  construir v32 a partir da v30, portando somente correções comprovadas da v31.
 
 ## v30 — reversibilidade explícita da informação indispensável — 2026-09-28
 

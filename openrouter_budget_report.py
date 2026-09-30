@@ -104,6 +104,12 @@ V31_DEVELOPMENT_DIRS = (
     "res_openrouter_v31_targeted11_r2",
     "res_openrouter_v31_targeted0021_r3",
 )
+V31_GATE_DIRS = (
+    "res_openrouter_v31_gate50",
+)
+V31_TECHNICAL_RETRY_DIRS = (
+    "res_openrouter_v31_gate50_technical_retry",
+)
 
 
 def as_decimal(value, default="0"):
@@ -179,6 +185,8 @@ def build_ledger(root, account=None):
     v30_targeted = aggregate_call_receipts(root, V30_TARGETED_DIRS)
     v30_gate = aggregate_call_receipts(root, V30_GATE_DIRS)
     v31_development = aggregate_call_receipts(root, V31_DEVELOPMENT_DIRS)
+    v31_gate = aggregate_call_receipts(root, V31_GATE_DIRS)
+    v31_technical_retry = aggregate_call_receipts(root, V31_TECHNICAL_RETRY_DIRS)
     pseudo = campaign_summary(root, "res_pseudonymization_0501_1000")
     pseudo_completed = int(pseudo.get("completed") or 0)
     pseudo_accepted = int(pseudo.get("accepted") or 0)
@@ -370,6 +378,17 @@ def build_ledger(root, account=None):
             "grant_scope": True,
         },
         {
+            "date": "2026-09-28",
+            "activity": "v30 balanced 50-case OpenRouter gate",
+            "tests": v30_gate["completed"],
+            "target": 50,
+            "calls": v30_gate["api_calls"],
+            "tokens": v30_gate["total_tokens"],
+            "cost": v30_gate["cost_usd"],
+            "status": "complete — 39/50 local majorities; 50/50 valid panels; held for a conservative catalog correction",
+            "grant_scope": True,
+        },
+        {
             "date": "2026-09-29",
             "activity": "v31 conservative catalog correction — targeted development gate",
             "tests": v31_development["completed"],
@@ -381,14 +400,25 @@ def build_ledger(root, account=None):
             "grant_scope": True,
         },
         {
-            "date": "2026-09-28",
-            "activity": "v30 balanced 50-case OpenRouter gate",
-            "tests": v30_gate["completed"],
+            "date": "2026-09-29/30",
+            "activity": "v31 balanced 50-case OpenRouter gate",
+            "tests": v31_gate["completed"],
             "target": 50,
-            "calls": v30_gate["api_calls"],
-            "tokens": v30_gate["total_tokens"],
-            "cost": v30_gate["cost_usd"],
-            "status": "complete — 39/50 local majorities; 50/50 valid panels; held for a conservative catalog correction",
+            "calls": v31_gate["api_calls"],
+            "tokens": v31_gate["total_tokens"],
+            "cost": v31_gate["cost_usd"],
+            "status": "complete — 37/50 local majorities; 48/50 valid panels; candidate held after three real catalog regressions",
+            "grant_scope": True,
+        },
+        {
+            "date": "2026-09-30",
+            "activity": "v31 technical recovery — cases 0050 and 0173",
+            "tests": v31_technical_retry["completed"],
+            "target": 2,
+            "calls": v31_technical_retry["api_calls"],
+            "tokens": v31_technical_retry["total_tokens"],
+            "cost": v31_technical_retry["cost_usd"],
+            "status": "complete — both panels recovered as valid and useful; both remained local-majority Disagree",
             "grant_scope": True,
         },
         {
