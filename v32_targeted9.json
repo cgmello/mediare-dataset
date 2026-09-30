@@ -1,0 +1,18 @@
+{
+  "description": "v32 selective port gate: six confirmed v31 catalog gains plus three mandatory negative sentinels",
+  "case_ids": [
+    "0021",
+    "0050",
+    "0083",
+    "0142",
+    "0173",
+    "0476",
+    "0046",
+    "0079",
+    "0088"
+  ],
+  "groups": {
+    "ported_catalog_gains": ["0021", "0050", "0083", "0142", "0173", "0476"],
+    "mandatory_negative_sentinels": ["0046", "0079", "0088"]
+  }
+}

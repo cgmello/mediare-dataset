@@ -9,6 +9,41 @@ Desde a v24, as versões públicas avançam apenas por números inteiros (`v24`,
 `v25`, `v26`), conforme `VERSIONING.md`. O sufixo interno `.0.0-experimental`
 existe somente para compatibilidade com as ferramentas do Studio.
 
+## v32 — ganhos seletivos da v31 sobre a baseline v30 — 2026-09-30
+
+- A v32 foi criada diretamente a partir do snapshot da v30. Não herda o
+  conjunto amplo de instruções de catálogo da v31, que melhorou alguns casos,
+  mas reduziu o gate completo de 39/50 para 37/50 maiorias e omitiu pedidos.
+- Porta apenas quatro mecanismos estreitos e comprovados: remoção de CR
+  defensiva/condicional sem saldo positivo independente; descarte de admissão
+  narrativa promovida indevidamente a RP; preservação de perdas sobrepostas
+  com contenção recíproca de dupla contagem; e união de declaração com
+  abstenção somente para a mesma dívida literalmente identificada.
+- Corrige uma regra antiga detectada pelo novo teste negativo: a palavra
+  “exclusão”, sozinha, não caracteriza defesa. Retirar restrição cadastral é
+  providência material autônoma; somente exclusão de responsabilidade, culpa
+  ou dever permanece classificada como defesa.
+- O gate dirigido usa `v32_targeted9.json`: seis controles positivos
+  (`0021`, `0050`, `0083`, `0142`, `0173`, `0476`) e três sentinelas negativas
+  obrigatórias (`0046`, `0079`, `0088`).
+- A primeira execução revelou que `0079` ainda podia omitir o pedido expresso
+  de prejuízos fiscais/CNO. Foi acrescentada validação fail-closed: ela não
+  cria pedido, mas rejeita e repete uma extração que suprima esse objeto.
+- A segunda execução revelou em `0021` que o catalogador podia parafrasear a
+  compensação defensiva de benfeitorias como pagamento autônomo. A normalização
+  passou a consultar a RR e remove esse CR somente quando a fonte liga
+  expressamente as benfeitorias à compensação com débitos, sem saldo positivo.
+- O desenvolvimento dirigido totalizou 27 casos concluídos, 268 chamadas,
+  2.348.062 tokens e US$ 4,75187808533 nas três iterações.
+- No snapshot final, o gate fechou em 7/9 maiorias locais, 9/9 painéis válidos
+  e 5/9 saídas automaticamente úteis: 87 chamadas, 763.579 tokens e
+  US$ 1,50451791091. `0046`, `0079` e `0088` preservaram todos os pedidos
+  expressos. Os `Disagree` restantes foram `0083` (limitação conhecida de
+  múltiplos requeridos e variação de conclusão) e `0088` (divergência de
+  conclusão em CR02/CR03, sem omissão de catálogo).
+- Estado: **gate dirigido aprovado; liberar gate pareado de 50 contra a v30;
+  ainda não promover ao Studio**.
+
 ## v31 — correção conservadora do catálogo material — 2026-09-29
 
 - Mantém sem alteração o teste reversível de informação e todas as regras

@@ -1,0 +1,53 @@
+{
+  "source": "ic_v32.py",
+  "source_sha256": "5d919274e51c3d671b222a41cfa6e88609c5fbe0f6029a2b0eaf37825ed10045",
+  "version": "32.0.0-experimental",
+  "display_version": "v32",
+  "baseline": {
+    "source": "ic_v30.py",
+    "source_sha256": "5953dd9b8d1294a5ea53b1f6d40db538d3d74beddc2f7145179f9447f0229e28",
+    "version": "30.0.0-experimental"
+  },
+  "scope": "selective catalog hardening on v30 baseline",
+  "changes": {
+    "defensive_counterclaims": "Remove only confirmed defensive compensation or payment acknowledgment, conditional return, and limited retention without an independent positive balance.",
+    "narrative_admissions": "Do not promote a party's own narrative admission into an autonomous request.",
+    "audited_overlap": "Preserve separately expressed overlapping losses when the auditor explicitly contains reciprocal double counting.",
+    "inseparable_debt_effects": "Merge only declaration of non-liability and abstention from collection tied to the same literal debt amount.",
+    "material_exclusion": "Preserve exclusion of a credit-registry restriction as an autonomous counterrequest; only exclusion of responsibility, fault, or payment duty is defensive.",
+    "evidence_gate": "Keep the v30 reversible-information and evidence rules unchanged."
+  },
+  "targeted_gate": {
+    "selection": "v32_targeted9.json",
+    "cases": 9,
+    "positive_controls": ["0021", "0050", "0083", "0142", "0173", "0476"],
+    "mandatory_negative_sentinels": ["0046", "0079", "0088"],
+    "success_conditions": [
+      "retain only confirmed v31 catalog improvements",
+      "preserve all explicit autonomous requests in 0046, 0079 and 0088",
+      "produce structurally valid panels without invented requests, facts, or monetary values"
+    ]
+  },
+  "targeted_gate_result": {
+    "development_total": {
+      "completed": 27,
+      "api_calls": 268,
+      "tokens": 2348062,
+      "cost_usd": "4.75187808533"
+    },
+    "final_snapshot": {
+      "source_sha256": "5d919274e51c3d671b222a41cfa6e88609c5fbe0f6029a2b0eaf37825ed10045",
+      "completed": 9,
+      "local_majority_agree": 7,
+      "valid_panels": 9,
+      "useful_outputs": 5,
+      "api_calls": 87,
+      "tokens": 763579,
+      "cost_usd": "1.50451791091",
+      "mandatory_negative_sentinels_preserved": ["0046", "0079", "0088"],
+      "remaining_disagreements": ["0083", "0088"]
+    },
+    "decision": "targeted_gate_passed_full_50_gate_pending"
+  },
+  "status": "candidate_full_50_gate_pending"
+}

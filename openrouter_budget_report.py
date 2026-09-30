@@ -110,6 +110,11 @@ V31_GATE_DIRS = (
 V31_TECHNICAL_RETRY_DIRS = (
     "res_openrouter_v31_gate50_technical_retry",
 )
+V32_TARGETED_DIRS = (
+    "res_openrouter_v32_targeted9",
+    "res_openrouter_v32_targeted9_r2",
+    "res_openrouter_v32_targeted9_r3",
+)
 
 
 def as_decimal(value, default="0"):
@@ -187,6 +192,7 @@ def build_ledger(root, account=None):
     v31_development = aggregate_call_receipts(root, V31_DEVELOPMENT_DIRS)
     v31_gate = aggregate_call_receipts(root, V31_GATE_DIRS)
     v31_technical_retry = aggregate_call_receipts(root, V31_TECHNICAL_RETRY_DIRS)
+    v32_targeted = aggregate_call_receipts(root, V32_TARGETED_DIRS)
     pseudo = campaign_summary(root, "res_pseudonymization_0501_1000")
     pseudo_completed = int(pseudo.get("completed") or 0)
     pseudo_accepted = int(pseudo.get("accepted") or 0)
@@ -422,6 +428,17 @@ def build_ledger(root, account=None):
             "grant_scope": True,
         },
         {
+            "date": "2026-09-30",
+            "activity": "v32 selective catalog hardening — targeted development gate",
+            "tests": v32_targeted["completed"],
+            "target": v32_targeted["completed"],
+            "calls": v32_targeted["api_calls"],
+            "tokens": v32_targeted["total_tokens"],
+            "cost": v32_targeted["cost_usd"],
+            "status": "complete — final 9-case snapshot reached 7/9 local majorities and 9/9 valid panels; all three negative sentinels preserved",
+            "grant_scope": True,
+        },
+        {
             "date": "2026-09-10+",
             "activity": "Dual-model pseudonymization (IDs 0501–1000)",
             "tests": pseudo_completed,
@@ -529,7 +546,7 @@ h1{{margin:.15rem 0;font-size:2rem}}h2{{margin-top:32px;border-bottom:2px solid 
 <p class="muted">The earlier Anthropic amount is the user's approximate estimate for direct API experiments during v1–v20. An automated check was attempted on 10 September 2026, but the available OAuth session lacked Admin API access. Anthropic documents that organization cost reporting requires an Admin credential; the estimate can be replaced by a Console Usage CSV export. Estimated total project API cost including that pre-grant amount: <strong>{money(ledger['total_project_cost'])}</strong>.</p>
 <h2>Current plan for the remaining budget</h2>
 <table><thead><tr><th>Priority</th><th>Control</th></tr></thead><tbody>
-<tr><td>Validate v30 before Studio</td><td>Run the 12-case targeted gate for the explicit two-branch reversibility test. Only then repeat the paired 50-case gate; no Studio promotion is allowed before both controls pass.</td></tr>
+<tr><td>Validate v32 before Studio</td><td>Repeat the paired 50-case OpenRouter gate against the v30 baseline. Promotion is allowed only if the selective gains survive without reintroducing the v31 catalog regressions.</td></tr>
 <tr><td>Preserve semantic and technical separation</td><td>Track JSON/output stability, procedural-scope normalization and genuine material omissions as separate metrics.</td></tr>
 <tr><td>Review the nine pseudonymized decisions held for inspection</td><td>No additional API cost unless a targeted repair is approved.</td></tr>
 <tr><td>Reserve the unspent balance for holdouts, robustness and new cases</td><td>Every new paid campaign must have a persisted ceiling and appear in this same ledger.</td></tr>
