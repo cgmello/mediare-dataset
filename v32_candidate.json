@@ -49,5 +49,36 @@
     },
     "decision": "targeted_gate_passed_full_50_gate_pending"
   },
-  "status": "candidate_full_50_gate_pending"
+  "full_gate_result": {
+    "raw": {
+      "completed": 50,
+      "local_majority_agree": 36,
+      "valid_panels": 50,
+      "useful_outputs": 27,
+      "api_calls": 572,
+      "tokens": 3565041,
+      "cost_usd": "7.17268418722"
+    },
+    "technical_retry": {
+      "cases": ["0145", "0164", "0209", "0310", "0343"],
+      "recovered_to_agree": ["0164", "0310", "0343"],
+      "api_calls": 46,
+      "tokens": 257858,
+      "cost_usd": "0.48135472075"
+    },
+    "adjusted": {
+      "local_majority_agree": 39,
+      "valid_panels": 50,
+      "useful_outputs": 28,
+      "unresolved_requests": 56,
+      "audit_matches": "51/98",
+      "exact_outcome": "13/20",
+      "binary_relief": "24/24",
+      "v30_vote_gains": ["0017", "0021", "0037", "0050", "0081", "0083", "0142", "0243"],
+      "v30_vote_losses": ["0007", "0014", "0079", "0088", "0123", "0209", "0213", "0370"],
+      "mandatory_negative_sentinels_preserved": ["0046", "0079", "0088"]
+    },
+    "decision": "openrouter_gate_passed_studio_validation_ready"
+  },
+  "status": "candidate_studio_validation_ready"
 }

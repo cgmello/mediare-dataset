@@ -214,7 +214,7 @@ consensus. Ground truth is used only for post-run evaluation.
 
 ## Balanced groups
 
-| Group | Cases | Agree | Valid | Useful | Unresolved v28 → v29 | Audit matches |
+| Group | Cases | Agree | Valid | Useful | Unresolved {baseline_label} → {candidate_label} | Audit matches |
 |---|---:|---:|---:|---:|---:|---:|
 {group_lines}
 

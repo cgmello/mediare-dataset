@@ -43,6 +43,25 @@ existe somente para compatibilidade com as ferramentas do Studio.
   conclusão em CR02/CR03, sem omissão de catálogo).
 - Estado: **gate dirigido aprovado; liberar gate pareado de 50 contra a v30;
   ainda não promover ao Studio**.
+- O gate pareado completo terminou inicialmente em 36/50 maiorias locais,
+  50/50 painéis válidos e 27/50 saídas úteis: 572 chamadas, 3.565.041
+  tokens e US$ 7,17268418722. Cinco `Disagree` continham falhas de transporte
+  dos revisores e foram separados da avaliação semântica.
+- A repetição técnica de `0145`, `0164`, `0209`, `0310` e `0343` custou
+  US$ 0,48135472075 (46 chamadas e 257.858 tokens). `0164`, `0310` e `0343`
+  foram recuperados como `Agree`; `0145` e `0209` permaneceram divergências
+  semânticas.
+- O resultado ajustado ficou em 39/50 maiorias, 50/50 painéis válidos,
+  28/50 saídas úteis e 56 pedidos pendentes, igualando a v30 nesses quatro
+  agregados. Houve oito ganhos e oito perdas de voto frente à v30. A v32
+  manteve 13 acertos exatos em 20 resultados resolvidos e 24/24 acertos
+  binários; a auditoria de abstenção ficou em 51/98, um abaixo da v30.
+- As perdas de voto foram dominadas por divergência de conclusão. `0123`
+  permanece como fronteira de granularidade entre reconhecer e pagar a mesma
+  dívida, sem omissão material. As sentinelas `0046`, `0079` e `0088`
+  preservaram, respectivamente, 4, 2 e 4 pedidos expressos.
+- Estado final: **gate OpenRouter aprovado; v32 liberada para validação no
+  Studio, ainda sem promoção definitiva**.
 
 ## v31 — correção conservadora do catálogo material — 2026-09-29
 
