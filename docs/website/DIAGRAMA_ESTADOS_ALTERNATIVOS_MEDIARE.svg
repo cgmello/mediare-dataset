@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 810" role="img" aria-labelledby="title desc">
+<title id="title">Estados alternativos e retomada</title><desc id="desc">Convites podem ser recusados ou expirar. Uma etapa ativa elegível pode ser suspensa, apresentar falha técnica recuperável, ser cancelada ou encerrar sem acordo, conforme as regras do caso. A retomada exige resolução e revalidação da última etapa válida.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#316c69"/></marker></defs>
+<style>text{font-family:Arial,sans-serif;fill:#203e4b}.name{font-size:20px;font-weight:600}.detail{font-size:15px;fill:#526971}.tag{font-size:13px;fill:#176e69;font-weight:700;letter-spacing:1px}.edge{fill:none;stroke:#316c69;stroke-width:2;marker-end:url(#arrow)}.return{stroke-dasharray:7 5}.lane{font-size:14px;fill:#176e69;font-weight:700;letter-spacing:1px}</style>
+<rect width="1120" height="810" fill="#fff"/>
+<text x="35" y="28" class="lane">CONVITE · AUSÊNCIA DE ADESÃO</text>
+<rect x="35" y="76" width="265" height="80" rx="8" fill="#f4f8f7" stroke="#b4cdca" stroke-width="1.5"/><text x="167.5" y="123.0" text-anchor="middle" class="name">Aguardando adesão</text>
+<rect x="535" y="48" width="305" height="65" rx="8" fill="#faf5eb" stroke="#cdbb94" stroke-width="1.5"/><text x="687.5" y="87.5" text-anchor="middle" class="name">Convite recusado</text>
+<rect x="535" y="143" width="305" height="65" rx="8" fill="#faf5eb" stroke="#cdbb94" stroke-width="1.5"/><text x="687.5" y="182.5" text-anchor="middle" class="name">Convite expirado</text>
+<path d="M 300 116 H 420 V 80.5 H 535" class="edge"/>
+<path d="M 420 116 V 175.5 H 535" class="edge"/>
+<text x="440" y="65" class="detail">Recusa</text>
+<text x="440" y="163" class="detail">Prazo</text>
+<path d="M 35 239 H 1085" stroke="#dbe3e4"/>
+<text x="35" y="273" class="lane">INTERRUPÇÃO · RESOLUÇÃO E RETOMADA CONTROLADA</text>
+<rect x="35" y="343" width="265" height="85" rx="8" fill="#f4f8f7" stroke="#b4cdca" stroke-width="1.5"/><text x="167.5" y="392.5" text-anchor="middle" class="name">Etapa ativa elegível</text>
+<rect x="410" y="303" width="265" height="66" rx="8" fill="#faf5eb" stroke="#cdbb94" stroke-width="1.5"/><text x="542.5" y="343.0" text-anchor="middle" class="name">Suspenso</text>
+<rect x="410" y="401" width="265" height="85" rx="8" fill="#faf5eb" stroke="#cdbb94" stroke-width="1.5"/><text x="542.5" y="438.0" text-anchor="middle" class="name">Falha técnica</text><text x="542.5" y="463.0" text-anchor="middle" class="name">recuperável</text>
+<rect x="820" y="345" width="265" height="85" rx="8" fill="#f4f8f7" stroke="#b4cdca" stroke-width="1.5"/><text x="952.5" y="382.0" text-anchor="middle" class="name">Última etapa</text><text x="952.5" y="407.0" text-anchor="middle" class="name">válida</text>
+<path d="M 300 385.5 H 350 V 336 H 410" class="edge"/>
+<path d="M 350 385.5 V 443.5 H 410" class="edge"/>
+<path d="M 675 336 H 743 V 387.5 H 820" class="edge return"/>
+<path d="M 675 443.5 H 743 V 387.5" class="edge return"/>
+<text x="706" y="299" class="detail">Resolver e</text><text x="706" y="321" class="detail">revalidar</text>
+<text x="35" y="521" class="detail">Retomar sem duplicar efeitos; preservar o estado anterior, as revisões e os resultados já produzidos.</text>
+<path d="M 35 550 H 1085" stroke="#dbe3e4"/>
+<text x="35" y="583" class="lane">ENCERRAMENTO · CONFORME REGRA DA ETAPA</text>
+<rect x="35" y="650" width="265" height="80" rx="8" fill="#f4f8f7" stroke="#b4cdca" stroke-width="1.5"/><text x="167.5" y="697.0" text-anchor="middle" class="name">Etapa ativa elegível</text>
+<rect x="535" y="620" width="305" height="65" rx="8" fill="#faf5eb" stroke="#cdbb94" stroke-width="1.5"/><text x="687.5" y="659.5" text-anchor="middle" class="name">Cancelado</text>
+<rect x="535" y="716" width="305" height="65" rx="8" fill="#faf5eb" stroke="#cdbb94" stroke-width="1.5"/><text x="687.5" y="755.5" text-anchor="middle" class="name">Encerrado sem acordo</text>
+<path d="M 300 690 H 420 V 652.5 H 535" class="edge"/>
+<path d="M 420 690 V 748.5 H 535" class="edge"/>
+<text x="440" y="638" class="detail">Cancelar</text>
+<text x="854" y="738" class="detail">Sem consenso, recusa</text><text x="854" y="760" class="detail">ou encerramento</text>
+</svg>

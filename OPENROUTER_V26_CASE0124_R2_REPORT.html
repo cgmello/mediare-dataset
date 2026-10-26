@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mediare 26.0.0-experimental — OpenRouter Experimental Evaluation</title>
+  <style>
+    :root { --ink:#172235; --muted:#5b6778; --blue:#315efb; --pale:#eef3ff; --line:#dce3ef; font-family:Inter,Arial,sans-serif; }
+    * { box-sizing:border-box; } body { margin:0; background:#f3f6fa; color:var(--ink); line-height:1.55; }
+    main { width:min(1120px,calc(100% - 32px)); margin:32px auto; background:white; padding:56px 64px; box-shadow:0 10px 36px #17223512; }
+    h1 { font-size:2.15rem; line-height:1.14; margin:0 0 10px; } h2 { margin-top:42px; border-bottom:2px solid var(--line); padding-bottom:8px; }
+    h3 { margin-top:28px; } .eyebrow { color:var(--blue); font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+    .subtitle,.note { color:var(--muted); } .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:24px 0; }
+    .card { border:1px solid var(--line); border-radius:10px; padding:18px; background:#fff; } .card strong { display:block; font-size:1.55rem; }
+    table { width:100%; border-collapse:collapse; margin:18px 0; font-size:.91rem; } th,td { border:1px solid var(--line); padding:9px 10px; text-align:left; vertical-align:top; }
+    th { background:var(--pale); } code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em; }
+    .status { display:inline-block; border-radius:999px; padding:5px 11px; background:var(--pale); color:var(--blue); font-weight:700; }
+    .callout { border-left:5px solid var(--blue); background:var(--pale); padding:16px 20px; margin:22px 0; }
+    footer { margin-top:48px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:.88rem; }
+    @media(max-width:760px) { main { padding:32px 22px; } .cards { grid-template-columns:1fr 1fr; } table { display:block; overflow-x:auto; } }
+    @media print { body { background:white; } main { width:auto; margin:0; padding:0; box-shadow:none; } }
+  </style>
+</head>
+<body><main>
+  <div class="eyebrow">Investor technical report · GenLayer-sponsored API credit</div>
+  <h1>Mediare 26.0.0-experimental: Local OpenRouter Evaluation and Studio Complementarity</h1>
+  <p class="subtitle">Generated 2026-09-17T18:41:56Z · Status: <span class="status">In progress — 1/50 cases</span></p>
+
+  <h2>Executive summary</h2>
+  <p>GenLayer provided US$500 in OpenRouter API credits to expand the empirical evaluation of the Mediare Intelligent Contract. The local campaign does not replace Studio or claim protocol consensus. Its purpose is to expose intermediate model behavior that Studio correctly keeps outside chain state, accelerate controlled comparisons, and reserve Studio for authoritative protocol validation.</p>
+  <div class="cards">
+    <div class="card"><span>Cases completed</span><strong>1/50</strong></div>
+    <div class="card"><span>Actual API spend</span><strong>$0.2100</strong></div>
+    <div class="card"><span>Average per case</span><strong>$0.2100</strong></div>
+    <div class="card"><span>Average wall time</span><strong>63.9s</strong></div>
+  </div>
+
+  <h2>Why OpenRouter adds experimental value</h2>
+  <p>Studio tests the real GenLayer execution environment: leader selection, validator voting, quorum, rotation, nondeterministic execution and final state commitment. That is indispensable. However, validators persist only an agree/disagree decision, not their private alternative panels or full review reasoning. A local runner can retain those intermediate artifacts and repeat controlled experiments.</p>
+  <table>
+    <thead><tr><th>Capability</th><th>GenLayer Studio</th><th>Local OpenRouter runner</th></tr></thead>
+    <tbody>
+      <tr><td>Real protocol consensus</td><td>Yes — authoritative</td><td>No — explicitly simulated</td></tr>
+      <tr><td>Final leader panel</td><td>Available after accepted execution</td><td>Available for every valid leader run</td></tr>
+      <tr><td>Panel/output produced by each model</td><td>Not persisted by the protocol</td><td>Retained locally for diagnosis</td></tr>
+      <tr><td>Individual reviewer criteria</td><td>Vote only</td><td>Per-request criteria and failure code</td></tr>
+      <tr><td>Raw response before parsing</td><td>Not available as campaign evidence</td><td>Stored locally with prompt hash</td></tr>
+      <tr><td>Controlled v20/v21 A/B comparison</td><td>Slow and subject to validator allocation</td><td>Repeatable with a frozen model matrix</td></tr>
+      <tr><td>Model and provider control</td><td>Studio policy set</td><td>Explicit OpenRouter model slugs and routing policy</td></tr>
+      <tr><td>Token, latency and USD accounting</td><td>Partial execution telemetry; no campaign USD charge</td><td>Per API call and per case</td></tr>
+      <tr><td>High-volume targeted experiments</td><td>Possible but operationally slow</td><td>Designed for resumable local iteration</td></tr>
+    </tbody>
+  </table>
+  <div class="callout"><strong>Interpretation boundary:</strong> a local pass is evidence about prompt behavior and cross-model review stability. It is never evidence that GenLayer consensus will finalize the same proposal.</div>
+
+  <h2>Methodology</h2>
+  <p>The runner imports the exact 26.0.0-experimental source snapshot (<code>fc0756aad453d08e6e33dec3efac3afe63395e43628b5e64993b3e525deb9d1c</code>) and executes its own catalog, three lenses, validation, one-shot repair, consolidation, deterministic Term rendering, compact reviewer prompt and reviewer decision functions. Benchmark answers are not included in model prompts.</p>
+  <p>One model leads each case in round-robin order; the other four review the same proposal. Local acceptance requires 3 reviewer approvals. Requests use free-form model output so that the same IC parser and correction loop are exercised; strict structured output is intentionally not used in the fidelity run. GLM 5.3 uses explicit low reasoning effort because its mandatory default maximum reasoning exhausted the completion budget during the pilot and returned billed responses without final text.</p>
+  <ul><li><code>anthropic/claude-sonnet-4.6</code></li><li><code>openai/gpt-5.4</code></li><li><code>z-ai/glm-5.3</code></li><li><code>deepseek/deepseek-v4-pro</code></li><li><code>mistralai/mistral-medium-3-5</code></li></ul>
+  <p>OpenRouter requests deny provider data collection where supported by routing policy. Each persisted call contains model identity, prompt hash, token counts, reported USD cost and latency. API credentials are never written to campaign logs.</p>
+
+  <h2>Results and calibration</h2>
+  <div class="cards">
+    <div class="card"><span>Valid leader panels</span><strong>1/1</strong></div>
+    <div class="card"><span>Local majority agree</span><strong>1/1</strong></div>
+    <div class="card"><span>Operationally useful leader outputs</span><strong>1/1</strong></div>
+    <div class="card"><span>API calls</span><strong>8</strong></div>
+  </div>
+  <p>Against the stored Studio v20 baseline, local consensus classification currently matches 0/0 cases (—); the operational output label matches 0/0 (—). These are calibration metrics, not legal-accuracy scores.</p>
+  <div class="callout"><strong>Experiment reading:</strong> this candidate is compared against the same frozen cases, model rotation and Studio v20 baseline. Candidate results must improve their target metric without weakening source, audit, catalog-completeness or fail-closed checks. This makes the local runner valuable as a diagnostic complement, while also demonstrating why it cannot substitute for protocol execution.</div>
+
+  <h3>Per-case observations</h3>
+  <table>
+    <thead><tr><th>Case</th><th>Category</th><th>Leader</th><th>Panel</th><th>Reviewers</th><th>Local result</th><th>Local utility</th><th>Studio v20</th><th>HTTP calls</th><th>Cost</th><th>Time</th><th>Observation</th></tr></thead>
+    <tbody><tr><td>0124</td><td>condominio</td><td>openai/gpt-5.4</td><td>valid</td><td>4/4 agree</td><td>LOCAL_MAJORITY_AGREE</td><td>APTO_INTEGRAL</td><td>—</td><td>8</td><td>$0.2100</td><td>63.9s</td><td>Valid APTO_INTEGRAL leader output; 4/4 agree.</td></tr></tbody>
+  </table>
+
+  <h3>Model-level telemetry</h3>
+  <table>
+    <thead><tr><th>Requested model</th><th>HTTP requests</th><th>Reusable responses</th><th>Failed logical calls</th><th>Itemized tokens</th><th>Itemized cost</th></tr></thead>
+    <tbody><tr><td><code>anthropic/claude-sonnet-4.6</code></td><td>1</td><td>1</td><td>0</td><td>14,938</td><td>$0.0462</td></tr><tr><td><code>openai/gpt-5.4</code></td><td>4</td><td>4</td><td>0</td><td>24,728</td><td>$0.1098</td></tr><tr><td><code>z-ai/glm-5.3</code></td><td>1</td><td>1</td><td>0</td><td>14,122</td><td>$0.0209</td></tr><tr><td><code>deepseek/deepseek-v4-pro</code></td><td>1</td><td>1</td><td>0</td><td>14,384</td><td>$0.0112</td></tr><tr><td><code>mistralai/mistral-medium-3-5</code></td><td>1</td><td>1</td><td>0</td><td>14,071</td><td>$0.0218</td></tr></tbody>
+  </table>
+
+  <h2>Time and cost</h2>
+  <p>The 1 completed executions consumed 8 HTTP model requests and 82,243 itemized tokens (77,630 prompt and 4,613 completion), with 63.9 aggregate active case-seconds. Successful and metadata-bearing responses itemize $0.2100; the key-level usage delta is $0.0543. The report conservatively uses the greater value, <strong>$0.2100</strong>, as actual campaign spend because providers may charge an empty response that has no reusable model text.</p>
+  <p>The observed averages are <strong>$0.2100 per case</strong>, <strong>$0.0262 per HTTP request</strong>, and <strong>63.9 seconds per case</strong>. At the same model mix, the projected cost is $10.4977 for 50 cases and $104.9774 for 500 cases. These projections are directional: repair retries, provider routing and case complexity change token use.</p>
+  <p>The remaining 49 cases in this 50-case campaign are projected to cost $10.2878. Against the current live account balance of $52.6508, this leaves projected headroom of $42.3630 and no immediate funding shortfall.</p>
+
+  <h2>Proposed use of the remaining GenLayer-sponsored credit</h2>
+  <p>Announced program credit: $500.0000. Measured campaign spend: $0.2100. Planning balance against the announced grant: <strong>$499.7900</strong>. This planning balance is not the same as the live account balance. The pilot campaign also has a separate persisted safety ceiling of $2.0000; increasing it requires an explicit decision after this checkpoint.</p>
+  <p>At the latest authenticated snapshot, the API reported an account balance of <strong>$52.6508</strong>, from $1,240.0000 in historical credits minus $1,187.3492 in historical usage. The API key itself reported a remaining spending limit of $419.6252. A key limit controls authorization; it does not fund the account. Therefore, the allocation below is contingent on the sponsored balance being available or replenished.</p>
+  <table><thead><tr><th>Experiment class</th><th>Share</th><th>Provisional allocation</th></tr></thead><tbody><tr><td>Targeted reproduction and v21 candidate development</td><td>25%</td><td>$124.9475</td></tr><tr><td>Cross-model and repeated-run robustness checks</td><td>25%</td><td>$124.9475</td></tr><tr><td>Regression testing across cases 0001–0100</td><td>20%</td><td>$99.9580</td></tr><tr><td>Untouched holdouts beginning with cases 0101–0150</td><td>15%</td><td>$74.9685</td></tr><tr><td>Adversarial, malformed-output and safety testing</td><td>10%</td><td>$49.9790</td></tr><tr><td>Contingency for provider or model changes</td><td>5%</td><td>$24.9895</td></tr></tbody></table>
+  <p>Every future run should have a durable cost ceiling, stop after repeated authentication/provider failures, preserve a frozen IC and model configuration, and produce a comparable report. Studio confirmation remains mandatory before promoting any candidate IC version.</p>
+
+  <h2>Limitations</h2>
+  <ul>
+    <li>OpenRouter models, provider endpoints and sampling may differ from Studio validator policies.</li>
+    <li>The local reviewer quorum is an analytical convention, not a reconstruction of GenLayer consensus.</li>
+    <li>Operational usefulness does not certify Brazilian-law correctness or fairness.</li>
+    <li>Cases are summarized and anonymized; the evaluation cannot recover unavailable original evidence.</li>
+    <li>Cases used for candidate development are calibration data. Final validation must use untouched cases.</li>
+  </ul>
+
+  <h2>Sources</h2>
+  <ul>
+    <li><a href="https://openrouter.ai/docs/api_reference/overview">OpenRouter API reference</a></li>
+    <li><a href="https://openrouter.ai/docs/guides/routing/provider-selection">OpenRouter provider routing</a></li>
+    <li><a href="https://openrouter.ai/docs/guides/features/structured-outputs">OpenRouter structured outputs</a></li>
+    <li><a href="https://openrouter.ai/docs/guides/best-practices/reasoning-tokens">OpenRouter reasoning-token controls</a></li>
+    <li><a href="https://openrouter.ai/docs/api/api-reference/api-keys/get-current-key">OpenRouter current-key limits</a></li>
+    <li><a href="https://openrouter.ai/docs/api/api-reference/credits/get-credits">OpenRouter account credits</a></li>
+  </ul>
+  <footer>Prepared for GenLayer as the sponsor of the US$500 OpenRouter evaluation credit. Mediare 26.0.0-experimental remains experimental.</footer>
+</main></body></html>

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1380 1120" role="img" aria-labelledby="mer-publication-title mer-publication-desc">
+<title id="mer-publication-title">MER · Snapshots, publicação e comitê</title><desc id="mer-publication-desc">Entidades relacionais com chaves e cardinalidades. As setas seguem da entidade referenciada para a dependente; campos e relações completas estão no dicionário da seção 19E.</desc>
+<defs><marker id="mer-publication-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#537784"/></marker></defs>
+<style>.mer-publication-name{font:700 18px Arial;fill:#fff}.mer-publication-field{font:15px monospace;fill:#263f4b}</style><rect width="1380" height="1120" fill="#fff"/>
+<text x="40" y="43" font-family="Arial" font-size="25" font-weight="700" fill="#172c38">Snapshots, publicação e comitê</text>
+<text x="40" y="76" font-family="Arial" font-size="17" fill="#536570">PostgreSQL · entidades e campos em inglês · PK = chave primária · FK = chave estrangeira · ? = opcional</text>
+<polyline points="380,230 520,230" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-publication-arrow)"><title>publication_policies (1) → policy_revisions (1..N)</title></polyline>
+<polyline points="860,230 1000,230" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-publication-arrow)"><title>policy_revisions (1) → publication_reviews (0..N)</title></polyline>
+<polyline points="690,450 690,350 1170,350 1170,320" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-publication-arrow)"><title>analysis_snapshots (1) → publication_reviews (0..N)</title></polyline>
+<polyline points="860,550 1000,550" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-publication-arrow)"><title>analysis_snapshots (1) → committee_runs (0..N)</title></polyline>
+<polyline points="520,550 380,550" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-publication-arrow)"><title>analysis_snapshots (1) → snapshot_submissions (2)</title></polyline>
+<polyline points="690,640 690,670 210,670 210,770" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-publication-arrow)"><title>analysis_snapshots (1) → snapshot_derivatives (0..N)</title></polyline>
+<polyline points="520,870 380,870" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-publication-arrow)"><title>document_derivatives (1) → snapshot_derivatives (0..N)</title></polyline>
+<polyline points="1170,770 1170,740 690,740 690,640" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-publication-arrow)"><title>artifacts (1) → analysis_snapshots (0..1)</title></polyline>
+<rect x="405.0" y="217.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="450.0" y="235.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">1 → 1..N</text>
+<rect x="885.0" y="217.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="930.0" y="235.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">1 → 0..N</text>
+<rect x="885.0" y="337.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="930.0" y="355.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">1 → 0..N</text>
+<rect x="885.0" y="537.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="930.0" y="555.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">1 → 0..N</text>
+<rect x="405.0" y="537.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="450.0" y="555.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">1 → 2</text>
+<rect x="405.0" y="657.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="450.0" y="675.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">1 → 0..N</text>
+<rect x="405.0" y="857.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="450.0" y="875.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">1 → 0..N</text>
+<rect x="885.0" y="727.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="930.0" y="745.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">1 → 0..1</text>
+<rect x="40" y="130" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M46 130 H374 Q380 130 380 136 V168 H40 V136 Q40 130 46 130" fill="#244d5d"/><text x="54" y="156" class="mer-publication-name">publication_policies</text>
+<text x="54" y="193" class="mer-publication-field" style="font-size:15.0px">PK id</text>
+<text x="54" y="215" class="mer-publication-field" style="font-size:15.0px">environment [UQ]</text>
+<text x="54" y="237" class="mer-publication-field" style="font-size:15.0px">name</text>
+<rect x="520" y="130" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M526 130 H854 Q860 130 860 136 V168 H520 V136 Q520 130 526 130" fill="#244d5d"/><text x="534" y="156" class="mer-publication-name">policy_revisions</text>
+<text x="534" y="193" class="mer-publication-field" style="font-size:15.0px">PK id</text>
+<text x="534" y="215" class="mer-publication-field" style="font-size:15.0px">FK policy_id</text>
+<text x="534" y="237" class="mer-publication-field" style="font-size:15.0px">FK author_user_id</text>
+<text x="534" y="259" class="mer-publication-field" style="font-size:15.0px">version</text>
+<text x="534" y="281" class="mer-publication-field" style="font-size:15.0px">require_human_publication_review</text>
+<text x="534" y="303" class="mer-publication-field" style="font-size:15.0px">effective_at, reason</text>
+<rect x="1000" y="130" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M1006 130 H1334 Q1340 130 1340 136 V168 H1000 V136 Q1000 130 1006 130" fill="#244d5d"/><text x="1014" y="156" class="mer-publication-name">publication_reviews</text>
+<text x="1014" y="193" class="mer-publication-field" style="font-size:15.0px">PK id</text>
+<text x="1014" y="215" class="mer-publication-field" style="font-size:15.0px">FK snapshot_id</text>
+<text x="1014" y="237" class="mer-publication-field" style="font-size:15.0px">FK policy_revision_id</text>
+<text x="1014" y="259" class="mer-publication-field" style="font-size:15.0px">FK reviewer_user_id?</text>
+<text x="1014" y="281" class="mer-publication-field" style="font-size:15.0px">mode, decision, reviewed_at</text>
+<rect x="40" y="450" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M46 450 H374 Q380 450 380 456 V488 H40 V456 Q40 450 46 450" fill="#244d5d"/><text x="54" y="476" class="mer-publication-name">snapshot_submissions</text>
+<text x="54" y="513" class="mer-publication-field" style="font-size:15.0px">PK id</text>
+<text x="54" y="535" class="mer-publication-field" style="font-size:15.0px">FK snapshot_id</text>
+<text x="54" y="557" class="mer-publication-field" style="font-size:15.0px">FK submission_revision_id</text>
+<rect x="520" y="450" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M526 450 H854 Q860 450 860 456 V488 H520 V456 Q520 450 526 450" fill="#244d5d"/><text x="534" y="476" class="mer-publication-name">analysis_snapshots</text>
+<text x="534" y="513" class="mer-publication-field" style="font-size:15.0px">PK id</text>
+<text x="534" y="535" class="mer-publication-field" style="font-size:15.0px">FK case_id</text>
+<text x="534" y="557" class="mer-publication-field" style="font-size:15.0px">FK artifact_id [UQ]</text>
+<text x="534" y="579" class="mer-publication-field" style="font-size:15.0px">version, publication_status</text>
+<rect x="1000" y="450" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M1006 450 H1334 Q1340 450 1340 456 V488 H1000 V456 Q1000 450 1006 450" fill="#244d5d"/><text x="1014" y="476" class="mer-publication-name">committee_runs</text>
+<text x="1014" y="513" class="mer-publication-field" style="font-size:15.0px">PK id</text>
+<text x="1014" y="535" class="mer-publication-field" style="font-size:15.0px">FK snapshot_id</text>
+<text x="1014" y="557" class="mer-publication-field" style="font-size:15.0px">FK result_artifact_id?</text>
+<text x="1014" y="579" class="mer-publication-field" style="font-size:15.0px">idempotency_key [UQ]</text>
+<text x="1014" y="601" class="mer-publication-field" style="font-size:15.0px">contract_address, tx_hash, status</text>
+<rect x="40" y="770" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M46 770 H374 Q380 770 380 776 V808 H40 V776 Q40 770 46 770" fill="#244d5d"/><text x="54" y="796" class="mer-publication-name">snapshot_derivatives</text>
+<text x="54" y="833" class="mer-publication-field" style="font-size:15.0px">PK id</text>
+<text x="54" y="855" class="mer-publication-field" style="font-size:15.0px">FK snapshot_id</text>
+<text x="54" y="877" class="mer-publication-field" style="font-size:15.0px">FK derivative_id</text>
+<rect x="520" y="770" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M526 770 H854 Q860 770 860 776 V808 H520 V776 Q520 770 526 770" fill="#244d5d"/><text x="534" y="796" class="mer-publication-name">document_derivatives</text>
+<text x="534" y="833" class="mer-publication-field" style="font-size:15.0px">PK id</text>
+<text x="534" y="855" class="mer-publication-field" style="font-size:15.0px">FK document_version_id</text>
+<text x="534" y="877" class="mer-publication-field" style="font-size:15.0px">FK processing_job_id</text>
+<text x="534" y="899" class="mer-publication-field" style="font-size:15.0px">FK artifact_id</text>
+<text x="534" y="921" class="mer-publication-field" style="font-size:15.0px">kind, version</text>
+<rect x="1000" y="770" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M1006 770 H1334 Q1340 770 1340 776 V808 H1000 V776 Q1000 770 1006 770" fill="#244d5d"/><text x="1014" y="796" class="mer-publication-name">artifacts</text>
+<text x="1014" y="833" class="mer-publication-field" style="font-size:15.0px">PK id</text>
+<text x="1014" y="855" class="mer-publication-field" style="font-size:13.7px">version, schema_version, content_hash</text>
+<text x="1014" y="877" class="mer-publication-field" style="font-size:15.0px">s3_key, s3_version_id</text>
+<text x="1014" y="899" class="mer-publication-field" style="font-size:15.0px">byte_size, media_type</text>
+<text x="40" y="1082" font-family="Arial" font-size="16" fill="#536570">Seta: entidade referenciada → dependente. Rótulo: cardinalidade na origem → cardinalidade no destino.</text><text x="40" y="1106" font-family="Arial" font-size="16" fill="#536570">Visão parcial do mesmo modelo; entidades repetidas são a mesma tabela. FKs secundárias constam no dicionário.</text></svg>

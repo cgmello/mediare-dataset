@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1380 1120" role="img" aria-labelledby="mer-agreements-title mer-agreements-desc">
+<title id="mer-agreements-title">MER · Acordos, assinaturas e operação</title><desc id="mer-agreements-desc">Entidades relacionais com chaves e cardinalidades. As setas seguem da entidade referenciada para a dependente; campos e relações completas estão no dicionário da seção 19E.</desc>
+<defs><marker id="mer-agreements-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#537784"/></marker></defs>
+<style>.mer-agreements-name{font:700 18px Arial;fill:#fff}.mer-agreements-field{font:15px monospace;fill:#263f4b}</style><rect width="1380" height="1120" fill="#fff"/>
+<text x="40" y="43" font-family="Arial" font-size="25" font-weight="700" fill="#172c38">Acordos, assinaturas e operação</text>
+<text x="40" y="76" font-family="Arial" font-size="17" fill="#536570">PostgreSQL · entidades e campos em inglês · PK = chave primária · FK = chave estrangeira · ? = opcional</text>
+<polyline points="380,230 520,230" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-agreements-arrow)"><title>agreement_versions (1) → signature_envelopes (0..N)</title></polyline>
+<polyline points="860,230 1000,230" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-agreements-arrow)"><title>signature_envelopes (1) → signatures (0..3)</title></polyline>
+<polyline points="210,770 210,670 410,670 410,350 1170,350 1170,320" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-agreements-arrow)"><title>users (1) → signatures (0..N)</title></polyline>
+<polyline points="1170,450 1170,420 690,420 690,320" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-agreements-arrow)"><title>artifacts (0..1) → signature_envelopes (0..1)</title></polyline>
+<polyline points="380,550 520,550" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-agreements-arrow)"><title>notifications (1) → delivery_attempts (0..N)</title></polyline>
+<polyline points="210,770 210,740 200,740 200,670 210,670 210,640" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-agreements-arrow)"><title>users (0..1) → notifications (0..N)</title></polyline>
+<polyline points="380,870 520,870" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-agreements-arrow)"><title>users (0..1) → audit_events (0..N)</title></polyline>
+<rect x="405.0" y="217.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="450.0" y="235.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">1 → 0..N</text>
+<rect x="885.0" y="217.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="930.0" y="235.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">1 → 0..3</text>
+<rect x="745.0" y="337.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="790.0" y="355.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">1 → 0..N</text>
+<rect x="885.0" y="407.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="930.0" y="425.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">0..1 → 0..1</text>
+<rect x="405.0" y="537.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="450.0" y="555.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">1 → 0..N</text>
+<rect x="155.0" y="692.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="200.0" y="710.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">0..1 → 0..N</text>
+<rect x="405.0" y="857.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="450.0" y="875.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">0..1 → 0..N</text>
+<rect x="40" y="130" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M46 130 H374 Q380 130 380 136 V168 H40 V136 Q40 130 46 130" fill="#244d5d"/><text x="54" y="156" class="mer-agreements-name">agreement_versions</text>
+<text x="54" y="193" class="mer-agreements-field" style="font-size:15.0px">PK id</text>
+<text x="54" y="215" class="mer-agreements-field" style="font-size:15.0px">FK case_id</text>
+<text x="54" y="237" class="mer-agreements-field" style="font-size:15.0px">FK committee_run_id?</text>
+<text x="54" y="259" class="mer-agreements-field" style="font-size:15.0px">FK author_user_id?</text>
+<text x="54" y="281" class="mer-agreements-field" style="font-size:15.0px">FK previous_version_id?</text>
+<text x="54" y="303" class="mer-agreements-field" style="font-size:15.0px">version, content_hash, content</text>
+<rect x="520" y="130" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M526 130 H854 Q860 130 860 136 V168 H520 V136 Q520 130 526 130" fill="#244d5d"/><text x="534" y="156" class="mer-agreements-name">signature_envelopes</text>
+<text x="534" y="193" class="mer-agreements-field" style="font-size:15.0px">PK id</text>
+<text x="534" y="215" class="mer-agreements-field" style="font-size:15.0px">FK agreement_version_id</text>
+<text x="534" y="237" class="mer-agreements-field" style="font-size:15.0px">FK final_pdf_artifact_id? [UQ]</text>
+<text x="534" y="259" class="mer-agreements-field" style="font-size:15.0px">status, content_hash</text>
+<rect x="1000" y="130" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M1006 130 H1334 Q1340 130 1340 136 V168 H1000 V136 Q1000 130 1006 130" fill="#244d5d"/><text x="1014" y="156" class="mer-agreements-name">signatures</text>
+<text x="1014" y="193" class="mer-agreements-field" style="font-size:15.0px">PK id</text>
+<text x="1014" y="215" class="mer-agreements-field" style="font-size:15.0px">FK envelope_id</text>
+<text x="1014" y="237" class="mer-agreements-field" style="font-size:15.0px">FK signer_user_id</text>
+<text x="1014" y="259" class="mer-agreements-field" style="font-size:15.0px">FK case_party_id?</text>
+<text x="1014" y="281" class="mer-agreements-field" style="font-size:15.0px">FK case_representation_id?</text>
+<text x="1014" y="303" class="mer-agreements-field" style="font-size:15.0px">signer_role, signed_at, evidence</text>
+<rect x="40" y="450" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M46 450 H374 Q380 450 380 456 V488 H40 V456 Q40 450 46 450" fill="#244d5d"/><text x="54" y="476" class="mer-agreements-name">notifications</text>
+<text x="54" y="513" class="mer-agreements-field" style="font-size:15.0px">PK id</text>
+<text x="54" y="535" class="mer-agreements-field" style="font-size:15.0px">FK recipient_user_id?</text>
+<text x="54" y="557" class="mer-agreements-field" style="font-size:15.0px">FK case_id?</text>
+<text x="54" y="579" class="mer-agreements-field" style="font-size:15.0px">recipient_contact_ciphertext</text>
+<text x="54" y="601" class="mer-agreements-field" style="font-size:15.0px">template_key, channel, status</text>
+<rect x="520" y="450" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M526 450 H854 Q860 450 860 456 V488 H520 V456 Q520 450 526 450" fill="#244d5d"/><text x="534" y="476" class="mer-agreements-name">delivery_attempts</text>
+<text x="534" y="513" class="mer-agreements-field" style="font-size:15.0px">PK id</text>
+<text x="534" y="535" class="mer-agreements-field" style="font-size:15.0px">FK notification_id</text>
+<text x="534" y="557" class="mer-agreements-field" style="font-size:15.0px">provider_reference, status</text>
+<text x="534" y="579" class="mer-agreements-field" style="font-size:15.0px">attempt_number, delivered_at</text>
+<rect x="1000" y="450" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M1006 450 H1334 Q1340 450 1340 456 V488 H1000 V456 Q1000 450 1006 450" fill="#244d5d"/><text x="1014" y="476" class="mer-agreements-name">artifacts</text>
+<text x="1014" y="513" class="mer-agreements-field" style="font-size:15.0px">PK id</text>
+<text x="1014" y="535" class="mer-agreements-field" style="font-size:13.7px">version, schema_version, content_hash</text>
+<text x="1014" y="557" class="mer-agreements-field" style="font-size:15.0px">s3_key, s3_version_id</text>
+<text x="1014" y="579" class="mer-agreements-field" style="font-size:15.0px">byte_size, media_type</text>
+<rect x="40" y="770" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M46 770 H374 Q380 770 380 776 V808 H40 V776 Q40 770 46 770" fill="#244d5d"/><text x="54" y="796" class="mer-agreements-name">users</text>
+<text x="54" y="833" class="mer-agreements-field" style="font-size:15.0px">PK id</text>
+<text x="54" y="855" class="mer-agreements-field" style="font-size:15.0px">email_lookup_hash [UQ]</text>
+<text x="54" y="877" class="mer-agreements-field" style="font-size:15.0px">email_ciphertext</text>
+<text x="54" y="899" class="mer-agreements-field" style="font-size:15.0px">status</text>
+<rect x="520" y="770" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M526 770 H854 Q860 770 860 776 V808 H520 V776 Q520 770 526 770" fill="#244d5d"/><text x="534" y="796" class="mer-agreements-name">audit_events</text>
+<text x="534" y="833" class="mer-agreements-field" style="font-size:15.0px">PK id</text>
+<text x="534" y="855" class="mer-agreements-field" style="font-size:15.0px">FK actor_user_id?</text>
+<text x="534" y="877" class="mer-agreements-field" style="font-size:15.0px">FK case_id?</text>
+<text x="534" y="899" class="mer-agreements-field" style="font-size:15.0px">resource_type, resource_id</text>
+<text x="534" y="921" class="mer-agreements-field" style="font-size:14.5px">action, occurred_at, correlation_id</text>
+<rect x="1000" y="770" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M1006 770 H1334 Q1340 770 1340 776 V808 H1000 V776 Q1000 770 1006 770" fill="#244d5d"/><text x="1014" y="796" class="mer-agreements-name">outbox_events</text>
+<text x="1014" y="833" class="mer-agreements-field" style="font-size:15.0px">PK id</text>
+<text x="1014" y="855" class="mer-agreements-field" style="font-size:15.0px">aggregate_type, aggregate_id</text>
+<text x="1014" y="877" class="mer-agreements-field" style="font-size:15.0px">event_type, schema_version</text>
+<text x="1014" y="899" class="mer-agreements-field" style="font-size:15.0px">payload, published_at</text>
+<text x="40" y="1082" font-family="Arial" font-size="16" fill="#536570">Seta: entidade referenciada → dependente. Rótulo: cardinalidade na origem → cardinalidade no destino.</text><text x="40" y="1106" font-family="Arial" font-size="16" fill="#536570">Visão parcial do mesmo modelo; entidades repetidas são a mesma tabela. FKs secundárias constam no dicionário.</text></svg>

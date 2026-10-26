@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1380 1120" role="img" aria-labelledby="mer-payments-title mer-payments-desc">
+<title id="mer-payments-title">MER · Cotações, obrigações e pagamentos simulados</title><desc id="mer-payments-desc">Entidades relacionais com chaves e cardinalidades. As setas seguem da entidade referenciada para a dependente; campos e relações completas estão no dicionário da seção 19E.</desc>
+<defs><marker id="mer-payments-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#537784"/></marker></defs>
+<style>.mer-payments-name{font:700 18px Arial;fill:#fff}.mer-payments-field{font:15px monospace;fill:#263f4b}</style><rect width="1380" height="1120" fill="#fff"/>
+<text x="40" y="43" font-family="Arial" font-size="25" font-weight="700" fill="#172c38">Cotações, obrigações e pagamentos simulados</text>
+<text x="40" y="76" font-family="Arial" font-size="17" fill="#536570">PostgreSQL · entidades e campos em inglês · PK = chave primária · FK = chave estrangeira · ? = opcional</text>
+<polyline points="210,450 210,320" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-payments-arrow)"><title>mediation_cases (1) → fee_quotes (0..N)</title></polyline>
+<polyline points="210,640 210,770" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-payments-arrow)"><title>mediation_cases (1) → case_parties (1..2)</title></polyline>
+<polyline points="380,230 520,230" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-payments-arrow)"><title>fee_quotes (0..1) → payment_obligations (0..2)</title></polyline>
+<polyline points="210,770 210,740 220,740 220,670 410,670 410,350 690,350 690,320" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-payments-arrow)"><title>case_parties (1) → payment_obligations (0..N)</title></polyline>
+<polyline points="690,450 690,320" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-payments-arrow)"><title>reschedule_requests (0..1) → payment_obligations (0..1)</title></polyline>
+<polyline points="210,770 210,740 230,740 230,680 420,680 420,670 690,670 690,640" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-payments-arrow)"><title>case_parties (1) → reschedule_requests (0..N)</title></polyline>
+<polyline points="860,230 1000,230" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-payments-arrow)"><title>payment_obligations (1) → payment_attempts (0..N)</title></polyline>
+<polyline points="1170,320 1170,450" fill="none" stroke="#537784" stroke-width="2" marker-end="url(#mer-payments-arrow)"><title>payment_attempts (0..1) → provider_events (0..N)</title></polyline>
+<rect x="165.0" y="372.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="210.0" y="390.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">1 → 0..N</text>
+<rect x="165.0" y="692.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="210.0" y="710.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">1 → 1..2</text>
+<rect x="405.0" y="217.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="450.0" y="235.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">0..1 → 0..2</text>
+<rect x="395.0" y="497.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="440.0" y="515.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">1 → 0..N</text>
+<rect x="645.0" y="372.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="690.0" y="390.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">0..1 → 0..1</text>
+<rect x="510.0" y="657.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="555.0" y="675.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">1 → 0..N</text>
+<rect x="885.0" y="217.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="930.0" y="235.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">1 → 0..N</text>
+<rect x="1125.0" y="372.0" width="90" height="24" rx="4" fill="#fff" stroke="#c6d6db"/><text x="1170.0" y="390.0" text-anchor="middle" font-family="Arial" font-size="15" fill="#294f5f">0..1 → 0..N</text>
+<rect x="40" y="130" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M46 130 H374 Q380 130 380 136 V168 H40 V136 Q40 130 46 130" fill="#244d5d"/><text x="54" y="156" class="mer-payments-name">fee_quotes</text>
+<text x="54" y="193" class="mer-payments-field" style="font-size:15.0px">PK id</text>
+<text x="54" y="215" class="mer-payments-field" style="font-size:15.0px">FK case_id</text>
+<text x="54" y="237" class="mer-payments-field" style="font-size:15.0px">version, total_cents, currency</text>
+<text x="54" y="259" class="mer-payments-field" style="font-size:15.0px">fixed_fee_cents, rate_bps</text>
+<text x="54" y="281" class="mer-payments-field" style="font-size:15.0px">claimant_share_bps</text>
+<rect x="520" y="130" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M526 130 H854 Q860 130 860 136 V168 H520 V136 Q520 130 526 130" fill="#244d5d"/><text x="534" y="156" class="mer-payments-name">payment_obligations</text>
+<text x="534" y="193" class="mer-payments-field" style="font-size:15.0px">PK id</text>
+<text x="534" y="215" class="mer-payments-field" style="font-size:15.0px">FK case_party_id</text>
+<text x="534" y="237" class="mer-payments-field" style="font-size:15.0px">FK fee_quote_id?</text>
+<text x="534" y="259" class="mer-payments-field" style="font-size:15.0px">FK reschedule_request_id? [UQ]</text>
+<text x="534" y="281" class="mer-payments-field" style="font-size:15.0px">amount_cents, currency, purpose</text>
+<text x="534" y="303" class="mer-payments-field" style="font-size:15.0px">status, payment_mode</text>
+<rect x="1000" y="130" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M1006 130 H1334 Q1340 130 1340 136 V168 H1000 V136 Q1000 130 1006 130" fill="#244d5d"/><text x="1014" y="156" class="mer-payments-name">payment_attempts</text>
+<text x="1014" y="193" class="mer-payments-field" style="font-size:15.0px">PK id</text>
+<text x="1014" y="215" class="mer-payments-field" style="font-size:15.0px">FK obligation_id</text>
+<text x="1014" y="237" class="mer-payments-field" style="font-size:15.0px">idempotency_key [UQ]</text>
+<text x="1014" y="259" class="mer-payments-field" style="font-size:15.0px">method, provider_reference</text>
+<text x="1014" y="281" class="mer-payments-field" style="font-size:15.0px">status, payment_mode</text>
+<rect x="40" y="450" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M46 450 H374 Q380 450 380 456 V488 H40 V456 Q40 450 46 450" fill="#244d5d"/><text x="54" y="476" class="mer-payments-name">mediation_cases</text>
+<text x="54" y="513" class="mer-payments-field" style="font-size:15.0px">PK id</text>
+<text x="54" y="535" class="mer-payments-field" style="font-size:15.0px">FK created_by_user_id</text>
+<text x="54" y="557" class="mer-payments-field" style="font-size:15.0px">status, revision</text>
+<text x="54" y="579" class="mer-payments-field" style="font-size:15.0px">disputed_amount_cents</text>
+<rect x="520" y="450" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M526 450 H854 Q860 450 860 456 V488 H520 V456 Q520 450 526 450" fill="#244d5d"/><text x="534" y="476" class="mer-payments-name">reschedule_requests</text>
+<text x="534" y="513" class="mer-payments-field" style="font-size:15.0px">PK id</text>
+<text x="534" y="535" class="mer-payments-field" style="font-size:15.0px">FK case_party_id</text>
+<text x="534" y="557" class="mer-payments-field" style="font-size:15.0px">FK scheduling_round_id</text>
+<text x="534" y="579" class="mer-payments-field" style="font-size:15.0px">FK replacement_round_id?</text>
+<text x="534" y="601" class="mer-payments-field" style="font-size:15.0px">reason, paid_sequence, status</text>
+<rect x="1000" y="450" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M1006 450 H1334 Q1340 450 1340 456 V488 H1000 V456 Q1000 450 1006 450" fill="#244d5d"/><text x="1014" y="476" class="mer-payments-name">provider_events</text>
+<text x="1014" y="513" class="mer-payments-field" style="font-size:15.0px">PK id</text>
+<text x="1014" y="535" class="mer-payments-field" style="font-size:15.0px">FK payment_attempt_id?</text>
+<text x="1014" y="557" class="mer-payments-field" style="font-size:15.0px">provider, external_event_id [UQ]</text>
+<text x="1014" y="579" class="mer-payments-field" style="font-size:15.0px">processing_status, received_at</text>
+<rect x="40" y="770" width="340" height="190" rx="6" fill="#f5f9fa" stroke="#9db9c3"/><path d="M46 770 H374 Q380 770 380 776 V808 H40 V776 Q40 770 46 770" fill="#244d5d"/><text x="54" y="796" class="mer-payments-name">case_parties</text>
+<text x="54" y="833" class="mer-payments-field" style="font-size:15.0px">PK id</text>
+<text x="54" y="855" class="mer-payments-field" style="font-size:15.0px">FK case_id</text>
+<text x="54" y="877" class="mer-payments-field" style="font-size:15.0px">FK user_id?</text>
+<text x="54" y="899" class="mer-payments-field" style="font-size:15.0px">FK company_id?</text>
+<text x="54" y="921" class="mer-payments-field" style="font-size:15.0px">FK company_revision_id?</text>
+<text x="54" y="943" class="mer-payments-field" style="font-size:15.0px">role, party_type</text>
+<text x="40" y="1082" font-family="Arial" font-size="16" fill="#536570">Seta: entidade referenciada → dependente. Rótulo: cardinalidade na origem → cardinalidade no destino.</text><text x="40" y="1106" font-family="Arial" font-size="16" fill="#536570">Visão parcial do mesmo modelo; entidades repetidas são a mesma tabela. FKs secundárias constam no dicionário.</text></svg>

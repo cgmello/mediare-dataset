@@ -1,0 +1,34 @@
+{
+  "case_id": "0005",
+  "combinacoes_total": 2,
+  "opcoes_aprovadas": [
+    "RP01"
+  ],
+  "schema_version": 1,
+  "termos": [
+    {
+      "escolhas": [
+        {
+          "decisao": "aceitar",
+          "pedido_id": "RP01"
+        }
+      ],
+      "id": "TO-001",
+      "texto_markdown": "# Termo de Opção 1 — Mediare\n\n**Caso:** 0005  \n**Versão de origem:** 20.0.0-experimental  \n**Finalidade:** cenário objetivo para discussão pelo mediador; não constitui acordo, decisão ou reconhecimento de dívida.\n\n## Cenário\n\n- As partes aceitam negociar o RP01 — Ressarcimento integral do custo de reparação dos danos no imóvel decorrentes das infiltrações e vícios construtivos, usando a base de R$ 64.734,88 e percentual p a definir, dentro da faixa de R$ 0,00 a R$ 64.734,88.\n  As lentes probatória e jurisprudencial convergiram em necessidade de informação adicional.\n\n## Valores e condições das opções aceitas\n\n### RP01 — Ressarcimento integral do custo de reparação dos danos no imóvel decorrentes das infiltrações e vícios construtivos\n\n- As partes aceitam negociar o RP01 — Ressarcimento integral do custo de reparação dos danos no imóvel decorrentes das infiltrações e vícios construtivos, usando a base de R$ 64.734,88 e percentual p a definir, dentro da faixa de R$ 0,00 a R$ 64.734,88.\n- O percentual `p` será definido pelas partes; a faixa é um limite de discussão, não um valor devido.\n- Fontes indicadas no painel: DR.\n\n## Pontos pendentes ou não aprovados\n\n- A opção do RP02 — Responsabilização do requerido pelos vícios construtivos não é apresentada porque foi retida pela auditoria; riscos: escopo, premissa.\n  As lentes probatória e jurisprudencial convergiram em necessidade de informação adicional.\n\n## Registro da sessão de mediação\n\n- [ ] Cenário selecionado pelas partes\n- [ ] Cenário rejeitado pelas partes\n- [ ] Necessita de nova proposta\n\n**Observações do mediador:** ________________________________________________\n",
+      "titulo": "Termo de Opção 1"
+    },
+    {
+      "escolhas": [
+        {
+          "decisao": "não aceitar",
+          "pedido_id": "RP01"
+        }
+      ],
+      "id": "TO-002",
+      "texto_markdown": "# Termo de Opção 2 — Mediare\n\n**Caso:** 0005  \n**Versão de origem:** 20.0.0-experimental  \n**Finalidade:** cenário objetivo para discussão pelo mediador; não constitui acordo, decisão ou reconhecimento de dívida.\n\n## Cenário\n\n- As partes não adotam, neste cenário, a opção referente ao RP01 — Ressarcimento integral do custo de reparação dos danos no imóvel decorrentes das infiltrações e vícios construtivos. O pedido permanece sem composição.\n  As lentes probatória e jurisprudencial convergiram em necessidade de informação adicional.\n\n## Valores e condições das opções aceitas\n\nNenhuma opção foi aceita neste cenário.\n\n## Pontos pendentes ou não aprovados\n\n- As partes não adotam, neste cenário, a opção referente ao RP01 — Ressarcimento integral do custo de reparação dos danos no imóvel decorrentes das infiltrações e vícios construtivos. O pedido permanece sem composição.\n  As lentes probatória e jurisprudencial convergiram em necessidade de informação adicional.\n- A opção do RP02 — Responsabilização do requerido pelos vícios construtivos não é apresentada porque foi retida pela auditoria; riscos: escopo, premissa.\n  As lentes probatória e jurisprudencial convergiram em necessidade de informação adicional.\n\n## Registro da sessão de mediação\n\n- [ ] Cenário selecionado pelas partes\n- [ ] Cenário rejeitado pelas partes\n- [ ] Necessita de nova proposta\n\n**Observações do mediador:** ________________________________________________\n",
+      "titulo": "Termo de Opção 2"
+    }
+  ],
+  "tipo": "termos_opcao_mediador",
+  "versao_origem": "20.0.0-experimental"
+}

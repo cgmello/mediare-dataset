@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 660" role="img" aria-labelledby="title desc">
+<title id="title">Fluxo principal da mediação</title><desc id="desc">Doze estados, do rascunho até a conclusão com acordo. A leitura segue as setas em três linhas alternadas. As condições completas de avanço estão na tabela da seção 11.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#316c69"/></marker></defs>
+<style>text{font-family:Arial,sans-serif;fill:#203e4b}.name{font-size:20px;font-weight:600}.detail{font-size:15px;fill:#526971}.tag{font-size:13px;fill:#176e69;font-weight:700;letter-spacing:1px}.edge{fill:none;stroke:#316c69;stroke-width:2;marker-end:url(#arrow)}.return{stroke-dasharray:7 5}.lane{font-size:14px;fill:#176e69;font-weight:700;letter-spacing:1px}</style>
+<rect width="1120" height="660" fill="#fff"/>
+<rect x="35" y="60" width="225" height="124" rx="8" fill="#f4f8f7" stroke="#b4cdca" stroke-width="1.5"/><text x="51" y="83" class="tag">01</text><text x="147.5" y="109" text-anchor="middle" class="name">Rascunho</text><text x="147.5" y="171" text-anchor="middle" class="detail">Pedido em preparação</text>
+<rect x="310" y="60" width="225" height="124" rx="8" fill="#f4f8f7" stroke="#b4cdca" stroke-width="1.5"/><text x="326" y="83" class="tag">02</text><text x="422.5" y="109" text-anchor="middle" class="name">Aguardando</text><text x="422.5" y="134" text-anchor="middle" class="name">adesão</text><text x="422.5" y="171" text-anchor="middle" class="detail">Convite emitido</text>
+<rect x="585" y="60" width="225" height="124" rx="8" fill="#f4f8f7" stroke="#b4cdca" stroke-width="1.5"/><text x="601" y="83" class="tag">03</text><text x="697.5" y="109" text-anchor="middle" class="name">Em instrução</text><text x="697.5" y="171" text-anchor="middle" class="detail">Documentos e manifestações</text>
+<rect x="860" y="60" width="225" height="124" rx="8" fill="#f4f8f7" stroke="#b4cdca" stroke-width="1.5"/><text x="876" y="83" class="tag">04</text><text x="972.5" y="109" text-anchor="middle" class="name">Aguardando</text><text x="972.5" y="134" text-anchor="middle" class="name">pagamento</text><text x="972.5" y="171" text-anchor="middle" class="detail">Dados congelados</text>
+<rect x="860" y="260" width="225" height="124" rx="8" fill="#f4f8f7" stroke="#b4cdca" stroke-width="1.5"/><text x="876" y="283" class="tag">05</text><text x="972.5" y="309" text-anchor="middle" class="name">Pronto para</text><text x="972.5" y="334" text-anchor="middle" class="name">análise</text><text x="972.5" y="371" text-anchor="middle" class="detail">Cotas e snapshot liberados</text>
+<rect x="585" y="260" width="225" height="124" rx="8" fill="#f4f8f7" stroke="#b4cdca" stroke-width="1.5"/><text x="601" y="283" class="tag">06</text><text x="697.5" y="309" text-anchor="middle" class="name">Em análise</text><text x="697.5" y="371" text-anchor="middle" class="detail">Comitê GenLayer</text>
+<rect x="310" y="260" width="225" height="124" rx="8" fill="#f4f8f7" stroke="#b4cdca" stroke-width="1.5"/><text x="326" y="283" class="tag">07</text><text x="422.5" y="309" text-anchor="middle" class="name">Revisão humana</text><text x="422.5" y="371" text-anchor="middle" class="detail">Mediador do caso</text>
+<rect x="35" y="260" width="225" height="124" rx="8" fill="#f4f8f7" stroke="#b4cdca" stroke-width="1.5"/><text x="51" y="283" class="tag">08</text><text x="147.5" y="309" text-anchor="middle" class="name">Em agendamento</text><text x="147.5" y="371" text-anchor="middle" class="detail">Cinco opções de horário</text>
+<rect x="35" y="460" width="225" height="124" rx="8" fill="#f4f8f7" stroke="#b4cdca" stroke-width="1.5"/><text x="51" y="483" class="tag">09</text><text x="147.5" y="509" text-anchor="middle" class="name">Agendado</text><text x="147.5" y="571" text-anchor="middle" class="detail">Horário reservado</text>
+<rect x="310" y="460" width="225" height="124" rx="8" fill="#f4f8f7" stroke="#b4cdca" stroke-width="1.5"/><text x="326" y="483" class="tag">10</text><text x="422.5" y="509" text-anchor="middle" class="name">Em sessão</text><text x="422.5" y="571" text-anchor="middle" class="detail">Discussão do termo</text>
+<rect x="585" y="460" width="225" height="124" rx="8" fill="#f4f8f7" stroke="#b4cdca" stroke-width="1.5"/><text x="601" y="483" class="tag">11</text><text x="697.5" y="509" text-anchor="middle" class="name">Em assinatura</text><text x="697.5" y="571" text-anchor="middle" class="detail">Versão final congelada</text>
+<rect x="860" y="460" width="225" height="124" rx="8" fill="#e2f0e9" stroke="#459378" stroke-width="1.5"/><text x="876" y="483" class="tag">12</text><text x="972.5" y="509" text-anchor="middle" class="name">Concluído com</text><text x="972.5" y="534" text-anchor="middle" class="name">acordo</text><text x="972.5" y="571" text-anchor="middle" class="detail">Três assinaturas válidas</text>
+<path d="M 260 122 H 310" class="edge"/>
+<path d="M 535 122 H 585" class="edge"/>
+<path d="M 810 122 H 860" class="edge"/>
+<path d="M 260 522 H 310" class="edge"/>
+<path d="M 535 522 H 585" class="edge"/>
+<path d="M 810 522 H 860" class="edge"/>
+<path d="M 860 322 H 810" class="edge"/>
+<path d="M 585 322 H 535" class="edge"/>
+<path d="M 310 322 H 260" class="edge"/>
+<path d="M 972.5 184 V 260" class="edge"/>
+<path d="M 147.5 384 V 460" class="edge"/>
+<text x="35" y="25" class="lane">FLUXO PRINCIPAL · SEGUIR AS SETAS</text>
+<text x="35" y="624" class="detail">Entrada em pagamento: congelamento das revisões. Na V1, PIX e cartão são simulados.</text>
+<text x="35" y="648" class="detail">A revisão humana deste fluxo é do mediador; a política de revisão da publicação é um controle separado.</text></svg>

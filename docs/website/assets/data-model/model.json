@@ -1,0 +1,780 @@
+{
+  "entities": {
+    "users": [
+      "PK id",
+      "email_lookup_hash [UQ]",
+      "email_ciphertext",
+      "status"
+    ],
+    "profiles": [
+      "PK id",
+      "FK user_id [UQ] -> users",
+      "full_name_ciphertext",
+      "identity_number_ciphertext",
+      "phone_verified_at"
+    ],
+    "auth_identities": [
+      "PK id",
+      "FK user_id -> users",
+      "provider, provider_subject [UQ]",
+      "password_hash [nullable]"
+    ],
+    "kyc_verifications": [
+      "PK id",
+      "FK user_id -> users",
+      "FK document_version_id -> document_versions",
+      "status, verified_at"
+    ],
+    "sessions": [
+      "PK id",
+      "FK user_id -> users",
+      "mfa_verified_at, expires_at"
+    ],
+    "otp_challenges": [
+      "PK id",
+      "FK user_id -> users",
+      "purpose, channel, code_hash",
+      "expires_at, attempts"
+    ],
+    "role_invitations": [
+      "PK id",
+      "FK invited_by_user_id -> users",
+      "recipient_email_hash",
+      "role, token_hash, expires_at"
+    ],
+    "role_grants": [
+      "PK id",
+      "FK user_id -> users",
+      "FK invitation_id? -> role_invitations",
+      "role, status"
+    ],
+    "companies": [
+      "PK id",
+      "cnpj_lookup_hash [UQ]",
+      "cnpj_ciphertext, status"
+    ],
+    "company_revisions": [
+      "PK id",
+      "FK company_id -> companies",
+      "version, trade_name, legal_name",
+      "registered_address"
+    ],
+    "company_representations": [
+      "PK id",
+      "FK company_id -> companies",
+      "FK user_id -> users",
+      "authority_evidence, status"
+    ],
+    "mediation_cases": [
+      "PK id",
+      "FK created_by_user_id -> users",
+      "status, revision",
+      "disputed_amount_cents"
+    ],
+    "case_parties": [
+      "PK id",
+      "FK case_id -> mediation_cases",
+      "FK user_id? -> users",
+      "FK company_id? -> companies",
+      "FK company_revision_id? -> company_revisions",
+      "role, party_type"
+    ],
+    "case_representations": [
+      "PK id",
+      "FK case_party_id -> case_parties",
+      "FK representation_id -> company_representations",
+      "valid_from, valid_until"
+    ],
+    "case_invitations": [
+      "PK id",
+      "FK case_id -> mediation_cases",
+      "FK fee_quote_id -> fee_quotes",
+      "recipient_contact, token_hash",
+      "version, expires_at"
+    ],
+    "acceptances": [
+      "PK id",
+      "FK invitation_id -> case_invitations",
+      "FK case_party_id -> case_parties",
+      "FK actor_user_id -> users",
+      "FK case_representation_id? -> case_representations",
+      "accepted_at, terms_version"
+    ],
+    "mediator_assignments": [
+      "PK id",
+      "FK case_id -> mediation_cases",
+      "FK mediator_user_id -> users",
+      "candidate_manifest, selection_rule",
+      "assigned_at, ended_at"
+    ],
+    "submission_revisions": [
+      "PK id",
+      "FK case_party_id -> case_parties",
+      "FK author_user_id -> users",
+      "version, content, frozen_at"
+    ],
+    "documents": [
+      "PK id",
+      "FK owner_user_id -> users",
+      "FK case_party_id? -> case_parties",
+      "purpose, status"
+    ],
+    "document_versions": [
+      "PK id",
+      "FK document_id -> documents",
+      "FK artifact_id [UQ] -> artifacts",
+      "version, checksum"
+    ],
+    "submission_documents": [
+      "PK id",
+      "FK submission_revision_id -> submission_revisions",
+      "FK document_version_id -> document_versions"
+    ],
+    "processing_jobs": [
+      "PK id",
+      "FK document_version_id -> document_versions",
+      "idempotency_key [UQ]",
+      "status, pipeline_version"
+    ],
+    "document_derivatives": [
+      "PK id",
+      "FK document_version_id -> document_versions",
+      "FK processing_job_id -> processing_jobs",
+      "FK artifact_id -> artifacts",
+      "kind, version"
+    ],
+    "artifacts": [
+      "PK id",
+      "version, schema_version, content_hash",
+      "s3_key, s3_version_id",
+      "byte_size, media_type"
+    ],
+    "analysis_snapshots": [
+      "PK id",
+      "FK case_id -> mediation_cases",
+      "FK artifact_id [UQ] -> artifacts",
+      "version, publication_status"
+    ],
+    "snapshot_submissions": [
+      "PK id",
+      "FK snapshot_id -> analysis_snapshots",
+      "FK submission_revision_id -> submission_revisions"
+    ],
+    "snapshot_derivatives": [
+      "PK id",
+      "FK snapshot_id -> analysis_snapshots",
+      "FK derivative_id -> document_derivatives"
+    ],
+    "publication_policies": [
+      "PK id",
+      "environment [UQ]",
+      "name"
+    ],
+    "policy_revisions": [
+      "PK id",
+      "FK policy_id -> publication_policies",
+      "FK author_user_id -> users",
+      "version",
+      "require_human_publication_review",
+      "effective_at, reason"
+    ],
+    "publication_reviews": [
+      "PK id",
+      "FK snapshot_id -> analysis_snapshots",
+      "FK policy_revision_id -> policy_revisions",
+      "FK reviewer_user_id? -> users",
+      "mode, decision, reviewed_at"
+    ],
+    "committee_runs": [
+      "PK id",
+      "FK snapshot_id -> analysis_snapshots",
+      "FK result_artifact_id? -> artifacts",
+      "idempotency_key [UQ]",
+      "contract_address, tx_hash, status"
+    ],
+    "fee_quotes": [
+      "PK id",
+      "FK case_id -> mediation_cases",
+      "version, total_cents, currency",
+      "fixed_fee_cents, rate_bps",
+      "claimant_share_bps"
+    ],
+    "payment_obligations": [
+      "PK id",
+      "FK case_party_id -> case_parties",
+      "FK fee_quote_id? -> fee_quotes",
+      "FK reschedule_request_id? [UQ] -> reschedule_requests",
+      "amount_cents, currency, purpose",
+      "status, payment_mode"
+    ],
+    "payment_attempts": [
+      "PK id",
+      "FK obligation_id -> payment_obligations",
+      "idempotency_key [UQ]",
+      "method, provider_reference",
+      "status, payment_mode"
+    ],
+    "provider_events": [
+      "PK id",
+      "FK payment_attempt_id? -> payment_attempts",
+      "provider, external_event_id [UQ]",
+      "processing_status, received_at"
+    ],
+    "reschedule_requests": [
+      "PK id",
+      "FK case_party_id -> case_parties",
+      "FK scheduling_round_id -> scheduling_rounds",
+      "FK replacement_round_id? -> scheduling_rounds",
+      "reason, paid_sequence, status"
+    ],
+    "scheduling_rounds": [
+      "PK id",
+      "FK case_id -> mediation_cases",
+      "FK proposed_by_user_id -> users",
+      "round_number, status"
+    ],
+    "schedule_slots": [
+      "PK id",
+      "FK scheduling_round_id -> scheduling_rounds",
+      "starts_at, ends_at, time_zone"
+    ],
+    "slot_selections": [
+      "PK id",
+      "FK slot_id -> schedule_slots",
+      "FK case_party_id -> case_parties",
+      "selected_at"
+    ],
+    "scheduling_responses": [
+      "PK id",
+      "FK scheduling_round_id -> scheduling_rounds",
+      "FK case_party_id -> case_parties",
+      "status, confirmed_at"
+    ],
+    "mediation_sessions": [
+      "PK id",
+      "FK scheduling_round_id -> scheduling_rounds",
+      "FK selected_slot_id [UQ] -> schedule_slots",
+      "status, started_at, ended_at"
+    ],
+    "meeting_link_revisions": [
+      "PK id",
+      "FK session_id -> mediation_sessions",
+      "FK author_user_id -> users",
+      "version, provider, url",
+      "instructions, confirmed_at"
+    ],
+    "agreement_versions": [
+      "PK id",
+      "FK case_id -> mediation_cases",
+      "FK committee_run_id? -> committee_runs",
+      "FK author_user_id? -> users",
+      "FK previous_version_id? -> agreement_versions",
+      "version, content_hash, content"
+    ],
+    "signature_envelopes": [
+      "PK id",
+      "FK agreement_version_id -> agreement_versions",
+      "FK final_pdf_artifact_id? [UQ] -> artifacts",
+      "status, content_hash"
+    ],
+    "signatures": [
+      "PK id",
+      "FK envelope_id -> signature_envelopes",
+      "FK signer_user_id -> users",
+      "FK case_party_id? -> case_parties",
+      "FK case_representation_id? -> case_representations",
+      "signer_role, signed_at, evidence"
+    ],
+    "notifications": [
+      "PK id",
+      "FK recipient_user_id? -> users",
+      "FK case_id? -> mediation_cases",
+      "recipient_contact_ciphertext",
+      "template_key, channel, status"
+    ],
+    "delivery_attempts": [
+      "PK id",
+      "FK notification_id -> notifications",
+      "provider_reference, status",
+      "attempt_number, delivered_at"
+    ],
+    "audit_events": [
+      "PK id",
+      "FK actor_user_id? -> users",
+      "FK case_id? -> mediation_cases",
+      "resource_type, resource_id",
+      "action, occurred_at, correlation_id"
+    ],
+    "outbox_events": [
+      "PK id",
+      "aggregate_type, aggregate_id",
+      "event_type, schema_version",
+      "payload, published_at"
+    ]
+  },
+  "views": [
+    {
+      "key": "IDENTITY",
+      "title": "Identidade, autenticação e habilitação",
+      "nodes": [
+        "auth_identities",
+        "users",
+        "profiles",
+        "sessions",
+        "otp_challenges",
+        "kyc_verifications",
+        "role_invitations",
+        "role_grants"
+      ],
+      "edges": [
+        [
+          "users",
+          "auth_identities",
+          "1",
+          "0..N"
+        ],
+        [
+          "users",
+          "profiles",
+          "1",
+          "0..1"
+        ],
+        [
+          "users",
+          "sessions",
+          "1",
+          "0..N"
+        ],
+        [
+          "users",
+          "otp_challenges",
+          "1",
+          "0..N"
+        ],
+        [
+          "users",
+          "kyc_verifications",
+          "1",
+          "0..N"
+        ],
+        [
+          "users",
+          "role_invitations",
+          "1",
+          "0..N"
+        ],
+        [
+          "users",
+          "role_grants",
+          "1",
+          "0..N"
+        ],
+        [
+          "role_invitations",
+          "role_grants",
+          "0..1",
+          "0..1"
+        ]
+      ]
+    },
+    {
+      "key": "PARTIES",
+      "title": "Empresas, partes e representação",
+      "nodes": [
+        "company_revisions",
+        "companies",
+        "company_representations",
+        "case_invitations",
+        "mediation_cases",
+        "case_representations",
+        "acceptances",
+        "case_parties",
+        "mediator_assignments"
+      ],
+      "edges": [
+        [
+          "companies",
+          "company_revisions",
+          "1",
+          "1..N"
+        ],
+        [
+          "companies",
+          "company_representations",
+          "1",
+          "0..N"
+        ],
+        [
+          "mediation_cases",
+          "case_parties",
+          "1",
+          "1..2"
+        ],
+        [
+          "mediation_cases",
+          "case_invitations",
+          "1",
+          "0..N"
+        ],
+        [
+          "case_invitations",
+          "acceptances",
+          "1",
+          "0..1"
+        ],
+        [
+          "case_parties",
+          "acceptances",
+          "1",
+          "0..N"
+        ],
+        [
+          "company_representations",
+          "case_representations",
+          "1",
+          "0..N"
+        ],
+        [
+          "case_parties",
+          "case_representations",
+          "1",
+          "0..N"
+        ],
+        [
+          "mediation_cases",
+          "mediator_assignments",
+          "1",
+          "0..N"
+        ]
+      ]
+    },
+    {
+      "key": "DOCUMENTS",
+      "title": "Manifestações, documentos e processamento",
+      "nodes": [
+        "submission_revisions",
+        "submission_documents",
+        "document_versions",
+        "case_parties",
+        "documents",
+        "processing_jobs",
+        "artifacts",
+        "document_derivatives",
+        "snapshot_submissions"
+      ],
+      "edges": [
+        [
+          "case_parties",
+          "submission_revisions",
+          "1",
+          "0..N"
+        ],
+        [
+          "case_parties",
+          "documents",
+          "0..1",
+          "0..N"
+        ],
+        [
+          "documents",
+          "document_versions",
+          "1",
+          "0..N"
+        ],
+        [
+          "submission_revisions",
+          "submission_documents",
+          "1",
+          "0..N"
+        ],
+        [
+          "document_versions",
+          "submission_documents",
+          "1",
+          "0..N"
+        ],
+        [
+          "document_versions",
+          "processing_jobs",
+          "1",
+          "0..N"
+        ],
+        [
+          "processing_jobs",
+          "document_derivatives",
+          "1",
+          "0..N"
+        ],
+        [
+          "artifacts",
+          "document_versions",
+          "1",
+          "0..1"
+        ],
+        [
+          "artifacts",
+          "document_derivatives",
+          "1",
+          "0..N"
+        ],
+        [
+          "submission_revisions",
+          "snapshot_submissions",
+          "1",
+          "0..N"
+        ]
+      ]
+    },
+    {
+      "key": "PUBLICATION",
+      "title": "Snapshots, publicação e comitê",
+      "nodes": [
+        "publication_policies",
+        "policy_revisions",
+        "publication_reviews",
+        "snapshot_submissions",
+        "analysis_snapshots",
+        "committee_runs",
+        "snapshot_derivatives",
+        "document_derivatives",
+        "artifacts"
+      ],
+      "edges": [
+        [
+          "publication_policies",
+          "policy_revisions",
+          "1",
+          "1..N"
+        ],
+        [
+          "policy_revisions",
+          "publication_reviews",
+          "1",
+          "0..N"
+        ],
+        [
+          "analysis_snapshots",
+          "publication_reviews",
+          "1",
+          "0..N"
+        ],
+        [
+          "analysis_snapshots",
+          "committee_runs",
+          "1",
+          "0..N"
+        ],
+        [
+          "analysis_snapshots",
+          "snapshot_submissions",
+          "1",
+          "2"
+        ],
+        [
+          "analysis_snapshots",
+          "snapshot_derivatives",
+          "1",
+          "0..N"
+        ],
+        [
+          "document_derivatives",
+          "snapshot_derivatives",
+          "1",
+          "0..N"
+        ],
+        [
+          "artifacts",
+          "analysis_snapshots",
+          "1",
+          "0..1"
+        ]
+      ]
+    },
+    {
+      "key": "PAYMENTS",
+      "title": "Cotações, obrigações e pagamentos simulados",
+      "nodes": [
+        "fee_quotes",
+        "payment_obligations",
+        "payment_attempts",
+        "mediation_cases",
+        "reschedule_requests",
+        "provider_events",
+        "case_parties"
+      ],
+      "edges": [
+        [
+          "mediation_cases",
+          "fee_quotes",
+          "1",
+          "0..N"
+        ],
+        [
+          "mediation_cases",
+          "case_parties",
+          "1",
+          "1..2"
+        ],
+        [
+          "fee_quotes",
+          "payment_obligations",
+          "0..1",
+          "0..2"
+        ],
+        [
+          "case_parties",
+          "payment_obligations",
+          "1",
+          "0..N"
+        ],
+        [
+          "reschedule_requests",
+          "payment_obligations",
+          "0..1",
+          "0..1"
+        ],
+        [
+          "case_parties",
+          "reschedule_requests",
+          "1",
+          "0..N"
+        ],
+        [
+          "payment_obligations",
+          "payment_attempts",
+          "1",
+          "0..N"
+        ],
+        [
+          "payment_attempts",
+          "provider_events",
+          "0..1",
+          "0..N"
+        ]
+      ]
+    },
+    {
+      "key": "SCHEDULING",
+      "title": "Rodadas, escolhas e videoconferência",
+      "nodes": [
+        "scheduling_responses",
+        "scheduling_rounds",
+        "schedule_slots",
+        "case_parties",
+        "slot_selections",
+        "mediation_sessions",
+        "reschedule_requests",
+        "meeting_link_revisions"
+      ],
+      "edges": [
+        [
+          "scheduling_rounds",
+          "schedule_slots",
+          "1",
+          "5"
+        ],
+        [
+          "scheduling_rounds",
+          "scheduling_responses",
+          "1",
+          "0..2"
+        ],
+        [
+          "case_parties",
+          "scheduling_responses",
+          "1",
+          "0..N"
+        ],
+        [
+          "schedule_slots",
+          "slot_selections",
+          "1",
+          "0..2"
+        ],
+        [
+          "case_parties",
+          "slot_selections",
+          "1",
+          "0..N"
+        ],
+        [
+          "schedule_slots",
+          "mediation_sessions",
+          "1",
+          "0..1"
+        ],
+        [
+          "mediation_sessions",
+          "meeting_link_revisions",
+          "1",
+          "0..N"
+        ],
+        [
+          "case_parties",
+          "reschedule_requests",
+          "1",
+          "0..N"
+        ]
+      ]
+    },
+    {
+      "key": "AGREEMENTS",
+      "title": "Acordos, assinaturas e operação",
+      "nodes": [
+        "agreement_versions",
+        "signature_envelopes",
+        "signatures",
+        "notifications",
+        "delivery_attempts",
+        "artifacts",
+        "users",
+        "audit_events",
+        "outbox_events"
+      ],
+      "edges": [
+        [
+          "agreement_versions",
+          "signature_envelopes",
+          "1",
+          "0..N"
+        ],
+        [
+          "signature_envelopes",
+          "signatures",
+          "1",
+          "0..3"
+        ],
+        [
+          "users",
+          "signatures",
+          "1",
+          "0..N"
+        ],
+        [
+          "artifacts",
+          "signature_envelopes",
+          "0..1",
+          "0..1"
+        ],
+        [
+          "notifications",
+          "delivery_attempts",
+          "1",
+          "0..N"
+        ],
+        [
+          "users",
+          "notifications",
+          "0..1",
+          "0..N"
+        ],
+        [
+          "users",
+          "audit_events",
+          "0..1",
+          "0..N"
+        ]
+      ]
+    }
+  ]
+}

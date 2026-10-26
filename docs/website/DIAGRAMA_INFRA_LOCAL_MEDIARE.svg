@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1640 1390" role="img" aria-labelledby="local-title local-desc">
+<title id="local-title">Mediare — fase 1 Docker Compose, PostgreSQL e LocalStack</title><desc id="local-desc">Evolução em três fases: Docker e LocalStack locais; AWS com ECS Fargate; Kubernetes futuro. Frontend, API, workers, PostgreSQL e LocalStack ficam na máquina local. LocalStack emula S3, DynamoDB e SQS. OpenRouter, Google e consenso GenLayer permanecem serviços reais externos. GenLayer consulta somente a API de snapshots de teste por uma ponte HTTPS restrita.</desc>
+<defs><marker id="local-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#527685"/></marker></defs>
+<style>.local-title{font:700 28px Arial;fill:#183845}.local-heading{font:700 21px Arial;fill:#214758}.local-label{font:17px Arial;fill:#3e5966}.local-small{font:15px Arial;fill:#526978}.local-flow{fill:none;stroke:#527685;stroke-width:2;marker-end:url(#local-arrow)}</style><rect width="1640" height="1390" fill="#fff"/>
+<text x="35" y="44" class="local-title">Mediare · fase 1 local e evolução da infraestrutura</text>
+<rect x="35" y="85" width="470" height="120" rx="7" fill="#eaf5ef" stroke="#5d9b81" stroke-width="1.5"/>
+<text x="55" y="117" class="local-heading">Fase 1 · Docker + LocalStack</text>
+<text x="55" y="147" class="local-small">Aplicação e dependências locais</text>
+<text x="55" y="172" class="local-small">OpenRouter, Google e GenLayer reais</text>
+<rect x="585" y="85" width="470" height="120" rx="7" fill="#f3f6fc" stroke="#b3c8d0" stroke-width="1.5"/>
+<text x="605" y="117" class="local-heading">Fase 2 · AWS</text>
+<text x="605" y="147" class="local-small">ECS Fargate · serviços gerenciados</text>
+<text x="605" y="172" class="local-small">Terraform · sem Kubernetes</text>
+<rect x="1135" y="85" width="470" height="120" rx="7" fill="#f7f4fb" stroke="#b3c8d0" stroke-width="1.5"/>
+<text x="1155" y="117" class="local-heading">Fase 3 · Kubernetes</text>
+<text x="1155" y="147" class="local-small">EKS proposto · migração futura</text>
+<text x="1155" y="172" class="local-small">Dados e contratos preservados</text>
+<path d="M505 145 H585" class="local-flow"/>
+<path d="M1055 145 H1135" class="local-flow"/>
+<rect x="35" y="255" width="1060" height="1060" rx="8" fill="#f7fafb" stroke="#7ba7b7" stroke-width="2"/>
+<text x="60" y="292" class="local-heading">MÁQUINA DO DESENVOLVEDOR · DOCKER COMPOSE</text>
+<rect x="65" y="335" width="225" height="95" rx="7" fill="#fff" stroke="#b3c8d0" stroke-width="1.5"/>
+<text x="85" y="367" class="local-heading">Navegador</text>
+<text x="85" y="397" class="local-small">localhost · TLS local</text>
+<rect x="355" y="335" width="295" height="95" rx="7" fill="#fff" stroke="#b3c8d0" stroke-width="1.5"/>
+<text x="375" y="367" class="local-heading">gateway</text>
+<text x="375" y="397" class="local-small">Proxy local · entrada única</text>
+<rect x="735" y="335" width="320" height="95" rx="7" fill="#fff" stroke="#b3c8d0" stroke-width="1.5"/>
+<text x="755" y="367" class="local-heading">frontend</text>
+<text x="755" y="397" class="local-small">React / TypeScript</text>
+<path d="M290 382 H355" class="local-flow"/>
+<path d="M650 382 H735" class="local-flow"/>
+<rect x="355" y="535" width="295" height="145" rx="7" fill="#fff" stroke="#b3c8d0" stroke-width="1.5"/>
+<text x="375" y="567" class="local-heading">api</text>
+<text x="375" y="597" class="local-small">Python · Django / DRF</text>
+<text x="375" y="622" class="local-small">/api/v1 · /public/v1</text>
+<text x="375" y="647" class="local-small">Upload e download pela API</text>
+<rect x="735" y="535" width="320" height="190" rx="7" fill="#fff" stroke="#b3c8d0" stroke-width="1.5"/>
+<text x="755" y="567" class="local-heading">Workers separados</text>
+<text x="755" y="597" class="local-small">worker-documents</text>
+<text x="755" y="622" class="local-small">worker-notifications / committee</text>
+<text x="755" y="647" class="local-small">outbox-dispatcher</text>
+<text x="755" y="672" class="local-small">reconciliation</text>
+<path d="M505 430 V535" class="local-flow"/>
+<text x="525" y="485" class="local-small">HTTP interno</text>
+<rect x="65" y="535" width="225" height="145" rx="7" fill="#fff" stroke="#b3c8d0" stroke-width="1.5"/>
+<text x="85" y="567" class="local-heading">mailpit</text>
+<text x="85" y="597" class="local-small">E-mail de teste / OTP</text>
+<text x="85" y="622" class="local-small">Sem entrega real</text>
+<text x="85" y="647" class="local-small">Ferramenta local</text>
+<path d="M735 690 H675 V740 H320 V650 H290" class="local-flow"/>
+<path d="M505 680 V790 H215 M895 725 V790 H505" fill="none" stroke="#527685" stroke-width="2"/>
+<path d="M215 790 V865" class="local-flow"/>
+<path d="M755 790 V865" class="local-flow"/>
+<text x="65" y="1087" class="local-small">Rede de dados interna · sem portas PostgreSQL / LocalStack publicadas</text>
+<rect x="65" y="865" width="300" height="195" rx="7" fill="#fff" stroke="#b3c8d0" stroke-width="1.5"/>
+<text x="85" y="897" class="local-heading">postgres</text>
+<text x="85" y="927" class="local-small">PostgreSQL real em container</text>
+<text x="85" y="952" class="local-small">Mesmo motor e migrations do RDS</text>
+<text x="85" y="977" class="local-small">Volume: postgres_data</text>
+<text x="85" y="1002" class="local-small">Não é emulação de RDS</text>
+<rect x="425" y="865" width="630" height="195" rx="7" fill="#f0edf9" stroke="#a599bd" stroke-width="1.5"/>
+<text x="445" y="897" class="local-heading">localstack · endpoint interno :4566</text>
+<text x="445" y="927" class="local-small">Um container emula S3, DynamoDB e SQS</text>
+<text x="445" y="952" class="local-small">SDKs com endpoint local; credenciais AWS fictícias</text>
+<text x="445" y="977" class="local-small">Buckets versionados · tabelas JSON · filas e DLQs</text>
+<text x="445" y="1002" class="local-small">Persistência habilitada · volume: localstack_data</text>
+<rect x="65" y="1110" width="990" height="100" rx="7" fill="#edf4f6" stroke="#b3c8d0" stroke-width="1.5"/>
+<text x="85" y="1142" class="local-heading">Bootstrap e testes</text>
+<text x="85" y="1172" class="local-small">Healthchecks → recursos locais → migrations → dados sintéticos → API / workers</text>
+<text x="85" y="1197" class="local-small">Mocks são opcionais para testes; não substituem os provedores reais do desenvolvimento.</text>
+<text x="65" y="1250" class="local-small">Sem provisionamento AWS na fase 1. LocalStack requer token/plano compatível.</text>
+<text x="65" y="1280" class="local-small">Sem Docker socket para o escopo S3 / DynamoDB / SQS, salvo necessidade validada.</text>
+<text x="1165" y="295" class="local-heading">INTERNET · SERVIÇOS REAIS</text>
+<rect x="1195" y="380" width="410" height="115" rx="7" fill="#fff8ed" stroke="#ccb891" stroke-width="1.5"/>
+<text x="1215" y="412" class="local-heading">OpenRouter</text>
+<text x="1215" y="442" class="local-small">LLMs reais · KYC e documentos</text>
+<text x="1215" y="467" class="local-small">Chamadas pelo backend / workers</text>
+<rect x="1195" y="555" width="410" height="115" rx="7" fill="#fff8ed" stroke="#ccb891" stroke-width="1.5"/>
+<text x="1215" y="587" class="local-heading">Google</text>
+<text x="1215" y="617" class="local-small">OAuth real · usuário de teste</text>
+<text x="1215" y="642" class="local-small">Navegador e callback da API</text>
+<rect x="1195" y="730" width="410" height="145" rx="7" fill="#fff8ed" stroke="#ccb891" stroke-width="1.5"/>
+<text x="1215" y="762" class="local-heading">GenLayer</text>
+<text x="1215" y="792" class="local-small">RPC / contrato em rede de teste</text>
+<text x="1215" y="817" class="local-small">Consenso real · carteira de teste</text>
+<text x="1215" y="842" class="local-small">Resultado acompanhado pelo worker</text>
+<path d="M1055 570 H1120 V437 H1195" class="local-flow"/>
+<path d="M650 610 H700 V470 H1135 V612 H1195" class="local-flow"/>
+<path d="M1055 650 H1150 V803 H1195" class="local-flow"/>
+<rect x="1195" y="1000" width="410" height="225" rx="7" fill="#f0f7f4" stroke="#90b09e" stroke-width="1.5"/>
+<text x="1215" y="1032" class="local-heading">API de snapshot em HTTPS</text>
+<text x="1215" y="1062" class="local-small">Ponte restrita para o ensaio real</text>
+<text x="1215" y="1087" class="local-small">Somente GET /public/v1/cases/{snapshot_uuid}.json</text>
+<text x="1215" y="1112" class="local-small">Snapshots sintéticos aprovados</text>
+<text x="1215" y="1137" class="local-small">Sem acesso ao admin, banco ou S3</text>
+<text x="1215" y="1162" class="local-small">localhost não é acessível aos validadores</text>
+<path d="M1400 875 V1000" class="local-flow" stroke-dasharray="7 5"/>
+<path d="M1195 1145 H1125 V755 H695 V650 H650" class="local-flow" stroke-dasharray="7 5"/>
+<text x="1195" y="1280" class="local-small">Retorno ao endpoint local por proxy autorizado.</text>
+<text x="35" y="1350" class="local-small">Visão lógica. Saída externa controlada; acesso público de teste limitado à rota de snapshot. Demais integrações seguem os adaptadores da especificação.</text>
+<text x="35" y="1375" class="local-small">Persistência e APIs emuladas devem ser verificadas na versão/plano do LocalStack. Segurança e comportamento AWS são homologados na fase 2.</text>
+</svg>
