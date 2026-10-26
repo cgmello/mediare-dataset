@@ -23,6 +23,7 @@ DEFAULT_REPORT = "OPENROUTER_BUDGET_REPORT.html"
 DEFAULT_SNAPSHOT = "res_openrouter_budget/account_snapshot.json"
 INITIAL_VALIDATION_COST = Decimal("0.000006452")
 HISTORICAL_ANTHROPIC_ESTIMATE_USD = Decimal("20")
+KEY_EXPIRY_OBSERVED_ON = "2026-10-26"
 V23_DEVELOPMENT_DIRS = (
     "res_openrouter_v23_0001_0050",
     "res_openrouter_v23_0_1_0001_0050",
@@ -555,31 +556,42 @@ def render_html(ledger):
     live_balance = account.get("account_available_balance_usd")
     live_text = money(live_balance) if live_balance is not None else "not available"
     captured = escape(str(account.get("captured_at") or "not available"))
+    key_renewal_note = ""
+    if str(account.get("captured_at") or "")[:10] < KEY_EXPIRY_OBSERVED_ON:
+        key_renewal_note = f"""
+<section class="key-status" lang="pt-BR" aria-label="Solicitação de nova chave OpenRouter">
+<strong>Solicitação ao titular da chave — 26/10/2026</strong>
+<p>A chave OpenRouter usada neste orçamento e no ambiente local do site Mediare expirou. A consulta de autenticação ao OpenRouter respondeu HTTP 401 com a mensagem “API key expired”; a tentativa de gerar um resumo com texto sintético também recebeu HTTP 401. É necessária uma nova chave para testar a geração de resumos sob demanda com o modelo Anthropic Claude Sonnet 4.6 via OpenRouter. Compartilhe a nova chave por um canal seguro, não no próprio relatório.</p>
+<p><strong>Último fechamento confirmado:</strong> {money(spent)} utilizados do limite autorizado de {money(PROGRAM_BUDGET_USD, 2)}; {money(remaining)} de limite não utilizado. O saldo em conta era {live_text} em {captured}. Estes valores são históricos, não representam saldo ou gasto atual em 26/10/2026. Uma nova chave não acrescenta créditos à conta.</p>
+<p>O uso futuro pelo site para resumos de mediações ainda não tem custo aferido neste relatório. O titular deve definir o limite e a autorização para esse uso; os gastos novos serão conciliados após a substituição da chave.</p>
+</section>"""
+    current_balance_note = " Current balance cannot be verified with the expired key." if key_renewal_note else ""
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mediare — OpenRouter US$500 Grant Ledger</title>
 <style>
 :root{{--ink:#172235;--muted:#607086;--blue:#315efb;--line:#dce3ef;--pale:#eef3ff;font-family:Inter,Arial,sans-serif}}
 *{{box-sizing:border-box}}body{{margin:0;background:#f3f6fa;color:var(--ink);line-height:1.45}}main{{width:min(1120px,calc(100% - 28px));margin:28px auto;background:#fff;padding:44px 52px;box-shadow:0 8px 28px #17223512}}
-h1{{margin:.15rem 0;font-size:2rem}}h2{{margin-top:32px;border-bottom:2px solid var(--line);padding-bottom:7px}}.eyebrow{{color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:.07em}}.muted,footer{{color:var(--muted)}}.cards{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}}.card{{border:1px solid var(--line);border-radius:10px;padding:16px}}.card strong{{display:block;font-size:1.55rem}}table{{width:100%;border-collapse:collapse;font-size:.92rem}}th,td{{border:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}}th{{background:var(--pale)}}.historical-external td{{background:#fff4cc;color:#66510d}}tfoot td{{background:var(--pale);font-weight:700}}.note{{background:var(--pale);border-left:4px solid var(--blue);padding:13px 16px}}footer{{margin-top:34px;border-top:1px solid var(--line);padding-top:14px;font-size:.86rem}}@media(max-width:880px){{.cards{{grid-template-columns:1fr 1fr}}}}@media(max-width:720px){{main{{padding:28px 18px}}.cards{{grid-template-columns:1fr}}table{{display:block;overflow:auto}}}}@media print{{body{{background:#fff}}main{{margin:0;padding:0;width:auto;box-shadow:none}}}}
+h1{{margin:.15rem 0;font-size:2rem}}h2{{margin-top:32px;border-bottom:2px solid var(--line);padding-bottom:7px}}.eyebrow{{color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:.07em}}.muted,footer{{color:var(--muted)}}.key-status{{background:#fff5e9;border:1px solid #dfa865;border-left:5px solid #ad641b;border-radius:8px;padding:16px 20px;margin:20px 0}}.key-status strong{{color:#82470e}}.key-status p{{margin:.7rem 0 0}}.cards{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}}.card{{border:1px solid var(--line);border-radius:10px;padding:16px}}.card strong{{display:block;font-size:1.55rem}}table{{width:100%;border-collapse:collapse;font-size:.92rem}}th,td{{border:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}}th{{background:var(--pale)}}.historical-external td{{background:#fff4cc;color:#66510d}}tfoot td{{background:var(--pale);font-weight:700}}.note{{background:var(--pale);border-left:4px solid var(--blue);padding:13px 16px}}footer{{margin-top:34px;border-top:1px solid var(--line);padding-top:14px;font-size:.86rem}}@media(max-width:880px){{.cards{{grid-template-columns:1fr 1fr}}}}@media(max-width:720px){{main{{padding:28px 18px}}.cards{{grid-template-columns:1fr}}table{{display:block;overflow:auto}}}}@media print{{body{{background:#fff}}main{{margin:0;padding:0;width:auto;box-shadow:none}}}}
 </style></head><body><main>
 <div class="eyebrow">Consolidated cost report · GenLayer-sponsored OpenRouter budget</div>
 <h1>US$500 Grant Ledger</h1>
 <p class="muted">Updated {now_local:%Y-%m-%d %H:%M:%S} America/Sao_Paulo ({now_utc:%Y-%m-%d %H:%M:%S} UTC)</p>
+{key_renewal_note}
 <h2>How the project reached v20</h2>
 <p>Mediare progressed from a first v1 prototype on 22 August 2026 to the v20 baseline through short empirical cycles: deploy or run the IC in GenLayer Studio, inspect consensus and operational failures, refine one bounded behavior, and retest. Early iterations also used direct Anthropic API calls; from v20 onward, the local OpenRouter runner added reproducible per-model diagnostics and cost receipts, while Studio remained the authority for real protocol consensus.</p>
-<div class="cards"><div class="card">Authorized OpenRouter budget<strong>{money(PROGRAM_BUDGET_USD, 2)}</strong></div><div class="card">OpenRouter spent to date<strong>{money(spent)}</strong><span>{pct:.2f}% of budget</span></div><div class="card">OpenRouter budget remaining<strong>{money(remaining)}</strong></div><div class="card">Earlier Anthropic API cost<strong>{money(ledger['historical_external_estimate'], 2)}</strong><span>estimated, outside the grant</span></div></div>
+<div class="cards"><div class="card">Authorized OpenRouter budget<strong>{money(PROGRAM_BUDGET_USD, 2)}</strong></div><div class="card">Spend at last account snapshot<strong>{money(spent)}</strong><span>{pct:.2f}% of budget</span></div><div class="card">Unused authorization at snapshot<strong>{money(remaining)}</strong></div><div class="card">Earlier Anthropic API cost<strong>{money(ledger['historical_external_estimate'], 2)}</strong><span>estimated, outside the grant</span></div></div>
 <p class="note"><strong>Accounting rule.</strong> {escape(snapshot_note)} Campaign attribution uses per-call receipts, never overlapping campaign-level key deltas. Any difference is retained as reconciliation until OpenRouter settlement and local receipts align.</p>
 <h2>Spend ledger</h2>
 <table><thead><tr><th>Date</th><th>Version / activity</th><th>Completed</th><th>API calls</th><th>Tokens</th><th>Total cost</th><th>Cost per completed unit</th><th>Status</th></tr></thead><tbody>{''.join(rows)}</tbody><tfoot><tr><td colspan="3">TOTAL</td><td>{ledger['total_api_calls']:,}</td><td>{ledger['total_tokens']:,}</td><td>{money(ledger['total_openrouter_cost'])}</td><td>—</td><td>Total refers only to the US$500 OpenRouter budget; the US$20 pre-grant estimate is excluded</td></tr></tfoot></table>
-<p class="muted">Account snapshot: {captured}. Live account cash balance: {live_text}. The account auto-top-up and the US$500 key authorization are different controls; this report measures consumption against the authorized US$500 project budget.</p>
+<p class="muted">Last authenticated account snapshot: {captured}. Account cash balance at that time: {live_text}. The account auto-top-up and the US$500 key authorization are different controls; this report measures consumption against the authorized US$500 project budget.{current_balance_note}</p>
 <p class="muted">The earlier Anthropic amount is the user's approximate estimate for direct API experiments during v1–v20. An automated check was attempted on 10 September 2026, but the available OAuth session lacked Admin API access. Anthropic documents that organization cost reporting requires an Admin credential; the estimate can be replaced by a Console Usage CSV export. Estimated total project API cost including that pre-grant amount: <strong>{money(ledger['total_project_cost'])}</strong>.</p>
-<h2>Current plan for the remaining budget</h2>
+<h2>Plan based on the last authenticated budget snapshot</h2>
 <table><thead><tr><th>Priority</th><th>Control</th></tr></thead><tbody>
 <tr><td>Validate v32 in Studio</td><td>The paired OpenRouter gate matched the v30 aggregate while preserving the three mandatory negative sentinels. The next control is a randomized Studio holdout before any broader promotion.</td></tr>
 <tr><td>Preserve semantic and technical separation</td><td>Track JSON/output stability, procedural-scope normalization and genuine material omissions as separate metrics.</td></tr>
 <tr><td>Review the nine pseudonymized decisions held for inspection</td><td>No additional API cost unless a targeted repair is approved.</td></tr>
-<tr><td>Reserve the unspent balance for holdouts, robustness and new cases</td><td>Every new paid campaign must have a persisted ceiling and appear in this same ledger.</td></tr>
+<tr><td>Reserve historically unused authorization for holdouts, robustness and new cases</td><td>Recheck the live account balance after key renewal. Every new paid campaign must have a persisted ceiling and appear in this same ledger.</td></tr>
 </tbody></table>
 <p>No cost is omitted because it is small or unsuccessful. Failed/billed calls and delayed settlement remain included through the key-level control total.</p>
 <footer>Prepared for GenLayer. This file is the single consolidated OpenRouter grant-cost report and is regenerated as campaigns progress.</footer>
